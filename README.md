@@ -8,6 +8,7 @@ I would like to maintain compatibility between this and old versions,
 while adding more for the future. That said, While there are no errors during
 compilation or in operation it cant communicate, neither with old versions nor
 with itself.
+
 Any wizards out there who can help?
 
 How to compile LAN Messenger on Windows
