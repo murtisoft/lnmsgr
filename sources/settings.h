@@ -28,7 +28,7 @@
 
 //	Application settings definitions and default values
 #define IDS_VERSION				"Application/Version"
-#define IDS_VERSION_VAL			"2026.1.0"
+#define IDS_VERSION_VAL			"2026.1.0"          //Settings version used for comparison and migration. Doesnt matter right now as 2026.1 uses a different folder.
 #define IDS_OPENPATH			"Application/OpenPath"
 #define IDS_OPENPATH_VAL		QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
 #define IDS_SAVEPATH			"Application/SavePath"

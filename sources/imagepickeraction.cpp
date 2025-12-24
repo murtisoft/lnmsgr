@@ -25,7 +25,7 @@ lmcImagePickerAction::lmcImagePickerAction(QObject* parent, const QString source
 	: QWidgetAction(parent) {
 		this->source = new QList<QString>();
 		for(int index = 0; index < sourceCount; index++)
-			this->source->append(source[index]);
+            this->source->append(source[index]);
 		this->picSize = picSize;
 		this->columns = columns;
 		this->selected = selected;

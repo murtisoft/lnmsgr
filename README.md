@@ -21,7 +21,8 @@ Qt 6.10.1 MinGW 64 bit
 
 Win64OpenSSL-3.6.0  (C:\Qt\Tools\OpenSSL-Win64)
 
-Notes
+
+Footnotes
 ============================
 Most of the old project was borked so I started by removing some dead weight.
 Obviously, we will need some of those back (Like the setup scripts.)

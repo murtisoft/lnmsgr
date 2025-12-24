@@ -300,12 +300,12 @@ void lmcTransferWindow::createToolBar(void) {
 	pToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	ui.toolBarLayout->addWidget(pToolBar);
 
-    pactCancel = pToolBar->addAction(QIcon(ChatHelper::renderEmoji("🚫️",16,12)), "Cancel",
+    pactCancel = pToolBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Stop,16)), "Cancel",
 		this, SLOT(btnCancel_clicked()));
 	pToolBar->addSeparator();
-    pactShowFolder = pToolBar->addAction(QIcon(ChatHelper::renderEmoji("📂️",16,12)), "Show In Folder",
+    pactShowFolder = pToolBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::ShowFolder,16)), "Show In Folder",
 		this, SLOT(btnShowFolder_clicked()));
-    pactRemove = pToolBar->addAction(QIcon(ChatHelper::renderEmoji("❌️",16,12)), "Remove From List",
+    pactRemove = pToolBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Close,16)), "Remove From List",
 		this, SLOT(btnRemove_clicked()));
 }
 

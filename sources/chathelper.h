@@ -58,10 +58,9 @@ QDataStream &operator >> (QDataStream &in, SingleMessage &message);
 class ChatHelper {
 public:
 	static void makeHtmlSafe(QString* lpszMessage);
-	static QString replaceSmiley(QString* lpszHtml);
 	static void encodeSmileys(QString* lpszMessage);
 	static void decodeSmileys(QString* lpszMessage);
-    static QIcon renderEmoji(const QString& emoji, int size = 32, int fontSize = 22);
+    static QIcon renderEmoji(const QString& emoji, int size = 32);
 };
 
 #endif // CHATHELPER_H

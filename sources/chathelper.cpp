@@ -46,61 +46,57 @@ void ChatHelper::makeHtmlSafe(QString* lpszMessage) {
 		lpszMessage->replace(htmlSymbol[index], htmlEscape[index]);
 }
 
-QString ChatHelper::replaceSmiley(QString* lpszHtml) {
-	//<img src="qrc:/smileys/01">
-	for(int index = 0; index < SM_MAPCOUNT; index++) {
-		if(lpszHtml->compare("<img src=\"qrc" + smileyPic[index] + "\">") == 0) {
-			QString code = smileyCode[index];
-			makeHtmlSafe(&code);
-			return code;
-		}
-	}
-
-	return QString();
-}
+/*
+        if (smileyEmoji[nSmiley].startsWith(":/")) {
+            htmlPic = ("<img src='" + smileyEmoji[index] + "' />");
+        } else {
+            htmlPic = ("&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;");
+        }
+*/
 
 void ChatHelper::encodeSmileys(QString* lpszMessage) {
 	//	replace all emoticon images with corresponding text code
-	for(int index = 0; index < SM_MAPCOUNT; index++) {
-		QString code = smileyCode[index];
-		makeHtmlSafe(&code);
-		lpszMessage->replace("<img src=\"" + smileyPic[index] + "\" />", code);
-	}
+    for (int index = 0; index < SM_MAPCOUNT; index++) {
+        QString code = smileyCode[index];
+        makeHtmlSafe(&code);
+
+        if (smileyEmoji[index].startsWith(":/")) {
+            lpszMessage->replace("<img src='" + smileyEmoji[index] + "' />", code); //Legacy png handler
+        } else {
+            lpszMessage->replace("&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;", code);
+        }
+    }
 }
 
 void ChatHelper::decodeSmileys(QString* lpszMessage) {
 	//	replace text emoticons with corresponding images
-	for(int index = 0; index < SM_MAPCOUNT; index++) {
-		QString code = smileyCode[index];
-		makeHtmlSafe(&code);
-		lpszMessage->replace(code, "<img src='qrc" + smileyPic[index] + "' />", Qt::CaseInsensitive);
-	}
+    for (int index = 0; index < SM_MAPCOUNT; index++) {
+        QString code = smileyCode[index];
+        makeHtmlSafe(&code);
+
+        if (smileyEmoji[index].startsWith(":/")) {
+            lpszMessage->replace(code, "<img src='" + smileyEmoji[index] + "' />", Qt::CaseInsensitive);  //Legacy png handler
+        } else {
+            lpszMessage->replace(code, "&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;", Qt::CaseInsensitive);
+        }
+    }
 }
 
 //Renders emojis to a pixmap so they can be used as an icon. Unicode, so every OS has its own flavor.
 //Using colorful emojis, i am deliberately avoiding garbage monochrome brutalist iconpacks of the last decade and a half.
 //Man, i could write a fucking manifesto about this...
-QIcon ChatHelper::renderEmoji(const QString& emoji, int size, int fontSize) {
+QIcon ChatHelper::renderEmoji(const QString& emoji, int size) {
     QPixmap pixmap(size, size);
     pixmap.fill(Qt::transparent);
 
     QPainter painter(&pixmap);
     QFont font = painter.font();
-    font.setPointSize(fontSize);
+    font.setPointSize(qRound(size * 0.7));
     painter.setFont(font);
 
     painter.drawText(pixmap.rect(), Qt::AlignCenter, emoji);
     return QIcon(pixmap);
 }
-
-/*
-void EmojiManager::init() {
-    QStringList emojiList = {"😀", "😂", "🚀"}; // Emoji set
-    for (const QString &e : emojiList) {
-        m_iconCache.insert(e, QIcon(render(e, 32)));
-    }
-}
-*/
 
 QTextBlockData::QTextBlockData(QString id)
 {

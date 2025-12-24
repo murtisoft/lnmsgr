@@ -570,7 +570,15 @@ void lmcMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QS
 		//	get the avatar image for this user from the cache folder
 		QString filePath = participantAvatars.value(*lpszUserId);
 		//	if image not found, use the default avatar image for this user
-        QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
+        //QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
+        QString iconPath; //==========================================================================NEED2TEST this.
+        if (QFile::exists(filePath)) {
+            iconPath = QUrl::fromLocalFile(filePath).toString();
+        } else {
+            // Return a styled span instead of a path
+            // 48x48px approx. equates to 36pt or 48px font-size
+            iconPath = QString("<span style='font-size:48px; line-height:48px;'>%1</span>").arg(avtEmoji[20]);
+        }
 
 		html.replace("%iconpath%", iconPath);
 		html.replace("%sender%", *lpszUserName);
@@ -607,7 +615,15 @@ void lmcMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNa
 		//	get the avatar image for this user from the cache folder
 		QString filePath = participantAvatars.value(*lpszUserId);
 		//	if image not found, use the default avatar image for this user
-        QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
+        //QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
+        QString iconPath; //==========================================================================NEED2TEST this.
+        if (QFile::exists(filePath)) {
+            iconPath = QUrl::fromLocalFile(filePath).toString();
+        } else {
+            // Return a styled span instead of a path
+            // 48x48px approx. equates to 36pt or 48px font-size
+            iconPath = QString("<span style='font-size:48px; line-height:48px;'>%1</span>").arg(avtEmoji[20]);
+        }
 
 		html.replace("%iconpath%", iconPath);
 		html.replace("%sender%", *lpszUserName);

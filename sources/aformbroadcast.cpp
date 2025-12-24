@@ -197,8 +197,13 @@ void lmcBroadcastWindow::smileyAction_triggered(void) {
 	//	if smileys are enabled, insert an image else insert a text smiley
 	//	nSmiley contains index of smiley
 	if(showSmiley) {
-		QString htmlPic("<html><head></head><body><img src='" + smileyPic[nSmiley] + "' /></body></html>");
-		ui.txtMessage->insertHtml(htmlPic);
+        QString htmlPic;
+        if (smileyEmoji[nSmiley].startsWith(":/")) {
+            htmlPic = ("<img src='" + smileyEmoji[nSmiley] + "' />");
+        } else {
+            htmlPic = ("&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[nSmiley] + "</span>&#8203;");
+        }
+        ui.txtMessage->insertHtml(htmlPic);
 	}
 	else
 		ui.txtMessage->insertPlainText(smileyCode[nSmiley]);
@@ -276,7 +281,7 @@ void lmcBroadcastWindow::createToolBar(void) {
 	pToolBar->addWidget(pbtnFontSize);
 
 	//	create the smiley menu
-	lmcImagePickerAction* pSmileyAction = new lmcImagePickerAction(this, smileyPic, SM_COUNT, 19, 10, &nSmiley);
+    lmcImagePickerAction* pSmileyAction = new lmcImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
 	connect(pSmileyAction, SIGNAL(triggered()), this, SLOT(smileyAction_triggered()));
 
 	QMenu* pSmileyMenu = new QMenu(this);
@@ -284,7 +289,7 @@ void lmcBroadcastWindow::createToolBar(void) {
 
 	//	create the smiley tool button
 	pbtnSmiley = new lmcToolButton(pToolBar);
-    pbtnSmiley->setIcon(ChatHelper::renderEmoji("🤪",16,10));
+    pbtnSmiley->setIcon(ChatHelper::renderEmoji(Icons::Smiley,16));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pToolBar->addWidget(pbtnSmiley);

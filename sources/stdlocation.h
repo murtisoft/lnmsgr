@@ -29,7 +29,6 @@
 #include "settings.h"
 
 #define SL_TRANSFERHISTORY		"transfers.lst"
-#define SL_FILESTORAGEDIR		"Received Files"
 #define SL_CACHEDIR				"cache"
 #define SL_RESOURCE				"lmc.rcc"
 #define SL_LANGDIR				"translations"
@@ -50,7 +49,7 @@ public:
 		lmcSettings settings;
 
         QString path = QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::DocumentsLocation) + "/" SL_FILESTORAGEDIR);
+            QStandardPaths::DownloadLocation));
 		path = settings.value(IDS_FILESTORAGEPATH, path).toString();
 		return path;
 	}
@@ -110,8 +109,7 @@ public:
 	}
 
 	static QString freeLogFile(void) {
-		QString fileName = "lmc_" +
-			QString::number(QDateTime::currentDateTimeUtc().toMSecsSinceEpoch()) + ".log";
+        QString fileName = QString(QDateTime::currentDateTime().toString("yyyyMMdd-hhmmss")) + ".log";
 		return QDir::toNativeSeparators(logDir() + "/" + fileName);
 	}
 

@@ -40,11 +40,12 @@ qt6_add_translations(LanMessenger
 
 
 #=================o TO DO o================================
-#Add emoji to bitmap function and replace old icons (Gotta replace smileys and avatars.)
-#   And hopefully find a way to define all that in uidefinitions.h  (70th smiley has to stay a png.)
+#Search for NEED2TEST within the project.
+#70th smiley doesnt insert into the chatlog. wtf? It used to work.
+#Is there a way to detect other unicode emojis, and scale them like the others?
+#Smiley encode/decode might have issues, and icons at Settings>Appearance preview doesnt show properly
 #Tray menu status icon has to be updated when status changes.
 
-#BUG: Holding mouse button after smiley selection, keeps spamming smileys.
 #BUG: Some windows flash at 0,0 - show() should be used AFTER the hidden window is initialized.
 #BUG: Communication is completely broken, despite showing no errors
 #BUG: The program forgets user avatar sometimes. why?
@@ -55,7 +56,6 @@ qt6_add_translations(LanMessenger
 #Debug log files and chat database keeps piling up, naming should be "date-time", and should be cleaned periodically.
 #Broadcasts arent logged. how about group chats?
 #Remove chat groups, instead add roles, set by peers themselves, which will act like global grouping.
-#High dpi? https://github.com/lanmessenger/lanmessenger/issues/29
 
 #Add sticky screen borders
 #Add nudge feature

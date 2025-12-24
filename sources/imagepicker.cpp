@@ -25,6 +25,7 @@
 #include <qmath.h>
 #include "uidefinitions.h"
 #include "imagepicker.h"
+#include "chathelper.h"
 
 lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex)
 	: QTableWidget(parent)
@@ -54,7 +55,7 @@ lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picS
     int cellSize = picSize + 8;
 	verticalHeader()->setDefaultSectionSize(cellSize);
 	verticalHeader()->setMinimumSectionSize(cellSize);
-    horizontalHeader()->setMinimumSectionSize(0);           //QT6 requires this in order for the emojis to fit into the widget.
+    horizontalHeader()->setMinimumSectionSize(0);           //QT6 requires this in order for the smileys to fit into the widget.
 	horizontalHeader()->setDefaultSectionSize(cellSize);
 	horizontalHeader()->setMinimumSectionSize(cellSize);
 
@@ -69,7 +70,12 @@ lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picS
 			QTableWidgetItem* item = new QTableWidgetItem();
 			item->setData(TypeRole, 0);
 			if(k < source->count()) {
-				item->setIcon(QIcon(source->value(k)));
+                QString val = source->value(k);
+                if (val.startsWith(":/")) {
+                    item->setIcon(QIcon(val)); //Legacy Embedded PNG (for custom application icon smiley.)
+                } else {
+                    item->setIcon(ChatHelper::renderEmoji(val, picSize));
+                }
 				item->setData(TypeRole, 1);
 				item->setSizeHint(QSize(picSize, picSize));
 				item->setBackground(this->palette().window());
@@ -86,33 +92,33 @@ lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picS
 lmcImagePicker::~lmcImagePicker() {
 }
 
-void lmcImagePicker::currentChanged(const QModelIndex& current, const QModelIndex& previous) {
-	QMenu* pMenu = (QMenu*)this->parent();
-	if(current.isValid()) {
-		int index = current.row() * max_col + current.column();
-		if(current.data(TypeRole).toInt() == 1) {
-			*selected = index;
-			pMenu->actions()[actionIndex]->trigger();
-		}
-		else {
-			setCurrentIndex(previous);
-			return;
-		}
-	}
-	hoverItem = NULL;
-	setCurrentIndex(QModelIndex());
-	pMenu->close();
+void lmcImagePicker::mouseReleaseEvent(QMouseEvent* e) {
+    QTableWidgetItem* it = itemAt(e->pos());
+
+    if (it && it->data(TypeRole).toInt() == 1) {
+        int index = it->row() * max_col + it->column();
+        *selected = index;
+        hoverItem = nullptr;
+
+        QMenu* pMenu = qobject_cast<QMenu*>(this->parent());
+        if (pMenu) {
+            pMenu->actions()[actionIndex]->trigger();
+            pMenu->close();
+        }
+    }
+
+    QTableWidget::mouseReleaseEvent(e);
 }
 
 void lmcImagePicker::mouseMoveEvent(QMouseEvent* e) {
-	QTableWidget::mouseMoveEvent(e);	
+    QTableWidget::mouseMoveEvent(e);
 
-	QTableWidgetItem* currentItem = itemAt(e->pos());
-	if(currentItem != hoverItem) {
-		hoverItem = currentItem;
-		if(hoverItem)
-			update(visualItemRect(hoverItem));
-	}
+    QTableWidgetItem* currentItem = itemAt(e->pos());
+    if(currentItem != hoverItem) {
+        hoverItem = currentItem;
+        if(hoverItem)
+            update(visualItemRect(hoverItem));
+    }
 }
 
 void lmcImagePicker::paintEvent(QPaintEvent* e) {
@@ -122,7 +128,7 @@ void lmcImagePicker::paintEvent(QPaintEvent* e) {
 	if(hoverItem) {
 		QStyleOptionFrame opt;
 		opt.rect = visualItemRect(hoverItem);
-		opt.rect.adjust(0, 1, -2, -1);
+        opt.rect.adjust(1, 1, -2, -1);
 		QPainter painter(viewport());
 		style()->drawPrimitive(QStyle::PE_FrameButtonBevel, &opt, &painter);
 	}

@@ -26,6 +26,24 @@
 #include "strings.h"
 
 
+namespace Icons { //New Emoji Icons.
+const QString Close         = "❌️";     const QString History       = "🕙️";
+const QString Info          = "ℹ️";     const QString File          = "📄️";
+const QString Transfer      = "📥️";     const QString Font          = "✒️";
+const QString FontColor     = "🖍️";     const QString Smiley        = "🤪️";
+const QString Save          = "💾️";     const QString Stop          = "🚫️";
+const QString Folder        = "📁️";     const QString ShowFolder    = "📂️";
+const QString Broadcast     = "📢️";     const QString Plus          = "➕️";
+const QString Refresh       = "♻️";     const QString Web           = "🌍️";
+const QString Chat          = "💬️";     const QString Play          = "▶️️️️";
+const QString Public        = "👨‍👩‍👧‍👦️";     const QString Settings      = "⚙️";
+const QString GeneralSet    = "🖥️";     const QString AccountSet    = "👨‍👩‍👦️";
+const QString MessageSet    = "📨️";     const QString HistorySet    = "🕙️";
+const QString AlertSet      = "⚠️";     const QString NetworkSet    = "🔗️";
+const QString TransferSet   = "📥️";     const QString ThemeSet      = "🎨️";
+const QString HotkeySet     = "⌨️";
+}
+
 //Remove this group at first opportunity. Still used for message history.
 #define IDR_CRITICAL		":/images/critical"
 #define IDR_FILE			":/images/file"
@@ -83,88 +101,24 @@ const QString statusPic[] = {IDR_AVAILABLE, IDR_BUSY, IDR_NODISTURB, IDR_AWAY, I
 const QString bubblePic[] = {IDR_AVAILABLE_BBL, IDR_BUSY_BBL, IDR_NODISTURB_BBL, IDR_AWAY_BBL, IDR_AWAY_BBL, IDR_OFFLINE_BBL};
 
 //	Smiley definitions
-#define SMI_01			":/smileys/01"
-#define SMI_02			":/smileys/02"
-#define SMI_03			":/smileys/03"
-#define SMI_04			":/smileys/04"
-#define SMI_05			":/smileys/05"
-#define SMI_06			":/smileys/06"
-#define SMI_07			":/smileys/07"
-#define SMI_08			":/smileys/08"
-#define SMI_09			":/smileys/09"
-#define SMI_10			":/smileys/10"
-#define SMI_11			":/smileys/11"
-#define SMI_12			":/smileys/12"
-#define SMI_13			":/smileys/13"
-#define SMI_14			":/smileys/14"
-#define SMI_15			":/smileys/15"
-#define SMI_16			":/smileys/16"
-#define SMI_17			":/smileys/17"
-#define SMI_18			":/smileys/18"
-#define SMI_19			":/smileys/19"
-#define SMI_20			":/smileys/20"
-#define SMI_21			":/smileys/21"
-#define SMI_22			":/smileys/22"
-#define SMI_23			":/smileys/23"
-#define SMI_24			":/smileys/24"
-#define SMI_25			":/smileys/25"
-#define SMI_26			":/smileys/26"
-#define SMI_27			":/smileys/27"
-#define SMI_28			":/smileys/28"
-#define SMI_29			":/smileys/29"
-#define SMI_30			":/smileys/30"
-#define SMI_31			":/smileys/31"
-#define SMI_32			":/smileys/32"
-#define SMI_33			":/smileys/33"
-#define SMI_34			":/smileys/34"
-#define SMI_35			":/smileys/35"
-#define SMI_36			":/smileys/36"
-#define SMI_37			":/smileys/37"
-#define SMI_38			":/smileys/38"
-#define SMI_39			":/smileys/39"
-#define SMI_40			":/smileys/40"
-#define SMI_41			":/smileys/41"
-#define SMI_42			":/smileys/42"
-#define SMI_43			":/smileys/43"
-#define SMI_44			":/smileys/44"
-#define SMI_45			":/smileys/45"
-#define SMI_46			":/smileys/46"
-#define SMI_47			":/smileys/47"
-#define SMI_48			":/smileys/48"
-#define SMI_49			":/smileys/49"
-#define SMI_50			":/smileys/50"
-#define SMI_51			":/smileys/51"
-#define SMI_52			":/smileys/52"
-#define SMI_53			":/smileys/53"
-#define SMI_54			":/smileys/54"
-#define SMI_55			":/smileys/55"
-#define SMI_56			":/smileys/56"
-#define SMI_57			":/smileys/57"
-#define SMI_58			":/smileys/58"
-#define SMI_59			":/smileys/59"
-#define SMI_60			":/smileys/60"
-#define SMI_61			":/smileys/61"
-#define SMI_62			":/smileys/62"
-#define SMI_63			":/smileys/63"
-#define SMI_64			":/smileys/64"
-#define SMI_65			":/smileys/65"
-#define SMI_66			":/smileys/66"
-#define SMI_67			":/smileys/67"
-#define SMI_68			":/smileys/68"
-#define SMI_69			":/smileys/69"
-#define SMI_70			":/smileys/70"
-
 #define SM_COUNT		70
 #define SM_MAPCOUNT		81
 
 //Tried to match old MSN style smileys to new emojis.
 const QString smileyEmoji[] = {
-    "🙂","😀","😉","😮","😛","😎","😠","😕","😳","🙁","😭","😐","⛈️","😬","🤓",
-    "🤒","🥳","🥱","🤔","🤐","🤫","🤨","🙄","❤️","💔","🍸","🍺","🐱","🐶","🐌",
-    "🐑","🌜","⭐","🌞","🌈","👉","👈","👄","🌹","🥀","🕒","🎁","🎂","📷","💡",
-    "☕","📞","📱","🚗","✈️","💻","💰","🎞️","🎵","🍕","⚽","📧","👦","👧","🏝️","☂️",
-    "🤝","⛔","👍","👎","🤞","🙌","🐢","🦇"
-};
+//   1    2     3    4    5     6    7    8     9    10
+    "🙂","😀","😉","😮","😛","😎","😠","😕","😳","🙁",
+    "😭","😐","🌧️️","😬","🤓","🤒","🥳","🥱","🤔","🤐",
+    "🤫","🤨","🙄", "❤️","💔","🍸","🍺","🐱","🐶","🐌",
+    "🐑","🌜","⭐","🌞","🌈","👉","👈","👄","🌹","🥀",
+    "🕒","🎁","🎂","📷","💡", "☕","📞","📱","🚗","✈️",
+    "💻","💰","🎞️", "🎵","🍕","⚽","📧","👦","👧","🏝️",
+    "☂️","🤝","⛔","👍","👎","🤞","🙌","🐢","🦇",":/smileys/70",
+//                 Repeats for multiple mapping
+//    1.   2.   3.    4.   5.   7.   8.    9.  10.   12.      70.
+    "🙂","😀","😉","😮","😛","😠","😕","😳","🙁","😐",":/smileys/70"
+};    // 70th is the custom icon, and has to stay a png.
+
 const QString smileyCode[] = {
 	":-)", ":-D", ";-)", ":-O", ":-P", "(H)", ":-@", ":-S", ":-$", ":-(", 
 	":'(", ":-|", "(ST)", "8o|", "8-|", "+o(", "<:o)", "|-)", "*-)", ":-#", 
@@ -174,49 +128,19 @@ const QString smileyCode[] = {
 	"(CO)", "(MO)", "(~)", "(8)", "(PI)", "(SO)", "(E)", "(Z)", "(X)", "(IP)", 
 	"(UM)", "(OK)", "(SS)", "(Y)", "(N)", "(YN)", "(H5)", "(TU)", ":-[", "(M)",
 	":)", ":D", ";)", ":O", ":P", ":@", ":S", ":$", ":(", ":|", ":["};
-const QString smileyPic[] = {
-	SMI_01, SMI_02, SMI_03, SMI_04, SMI_05, SMI_06, SMI_07, SMI_08, SMI_09, SMI_10,
-	SMI_11, SMI_12, SMI_13, SMI_14, SMI_15, SMI_16, SMI_17, SMI_18, SMI_19, SMI_20,
-	SMI_21, SMI_22, SMI_23, SMI_24, SMI_25, SMI_26, SMI_27, SMI_28, SMI_29, SMI_30,
-	SMI_31, SMI_32, SMI_33, SMI_34, SMI_35, SMI_36, SMI_37, SMI_38, SMI_39, SMI_40, 
-	SMI_41, SMI_42, SMI_43, SMI_44, SMI_45, SMI_46, SMI_47, SMI_48, SMI_49, SMI_50, 
-	SMI_51, SMI_52, SMI_53, SMI_54, SMI_55, SMI_56, SMI_57, SMI_58, SMI_59, SMI_60, 
-	SMI_61, SMI_62, SMI_63, SMI_64, SMI_65, SMI_66, SMI_67, SMI_68, SMI_69, SMI_70,
-	SMI_01, SMI_02, SMI_03, SMI_04, SMI_05, SMI_07, SMI_08, SMI_09, SMI_10, SMI_12, SMI_70};
 
 //	Avatar definitions
-#define AVT_DEFAULT			":/avatars/default"
-#define AVT_0				":/avatars/0"
-#define AVT_1				":/avatars/1"
-#define AVT_2				":/avatars/2"
-#define AVT_3				":/avatars/3"
-#define AVT_4				":/avatars/4"
-#define AVT_5				":/avatars/5"
-#define AVT_6				":/avatars/6"
-#define AVT_7				":/avatars/7"
-#define AVT_8				":/avatars/8"
-#define AVT_9				":/avatars/9"
-#define AVT_10				":/avatars/10"
-#define AVT_11				":/avatars/11"
-#define AVT_12				":/avatars/12"
-#define AVT_13				":/avatars/13"
-#define AVT_14				":/avatars/14"
-#define AVT_15				":/avatars/15"
-#define AVT_16				":/avatars/16"
-#define AVT_17				":/avatars/17"
-#define AVT_18				":/avatars/18"
-#define AVT_19				":/avatars/19"
-
 #define AVT_COUNT	20
-const QString avtPic[] = {AVT_0, AVT_1, AVT_2, AVT_3, AVT_4, AVT_5, AVT_6, AVT_7, AVT_8, AVT_9, 
-	AVT_10, AVT_11, AVT_12, AVT_13, AVT_14, AVT_15, AVT_16, AVT_17, AVT_18, AVT_19};
 
 //Tried to pick distinct avatar replacements, transparency causes no issues.
-const QString avtDefaultEmoji = "👤";
 const QString avtEmoji[] = {
-    "🌅","🌉","🌆","🏜️","🛣️","🏕️","⛄","🏖","🚀","🛸","🚂","⛵",
-    "🏀","⚽","⚾","🏈","👨","👨‍🦰","👩","👩‍🦰"
-};
+    "🌅","🌉","🌆","🏜️",
+    "🛣️","🏕️","⛄","🏖",
+    "🚀","🛸","🚂","⛵",
+    "🏀","⚽","⚾","🏈",
+    "👨","👨‍🦰","👩","👩‍🦰",
+    "👤"
+};// Last is the hidden default.
 
 #define AVT_WIDTH		48
 #define AVT_HEIGHT		48

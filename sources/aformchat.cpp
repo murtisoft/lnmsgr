@@ -437,9 +437,14 @@ void lmcChatWindow::btnTransfers_clicked(void) {
 void lmcChatWindow::smileyAction_triggered(void) {
 	//	nSmiley contains index of smiley
 	if(showSmiley) {
-		QString htmlPic("<html><head></head><body><img src='" + smileyPic[nSmiley] + "' /></body></html>");
-		ui.txtMessage->insertHtml(htmlPic);
-	}
+        QString htmlPic;
+        if (smileyEmoji[nSmiley].startsWith(":/")) {
+            htmlPic = ("<img src='" + smileyEmoji[nSmiley] + "' />");
+        } else {
+            htmlPic = ("&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[nSmiley] + "</span>&#8203;");
+        }
+        ui.txtMessage->insertHtml(htmlPic);
+    }
 	else
 		ui.txtMessage->insertPlainText(smileyCode[nSmiley]);
 }
@@ -462,7 +467,7 @@ void lmcChatWindow::checkChatState(void) {
 }
 
 void lmcChatWindow::createSmileyMenu(void) {
-    pSmileyAction = new lmcImagePickerAction(this, smileyPic, SM_COUNT, 19, 10, &nSmiley);
+    pSmileyAction = new lmcImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
 	connect(pSmileyAction, SIGNAL(triggered()), this, SLOT(smileyAction_triggered()));
 
 	pSmileyMenu = new QMenu(this);
@@ -475,30 +480,30 @@ void lmcChatWindow::createToolBar(void) {
 	pLeftBar->setIconSize(QSize(16, 16));
 	ui.toolBarLayout->addWidget(pLeftBar);
 
-    pFontAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji("✒️",16,10)), "Change Font...", this, SLOT(btnFont_clicked()));
-    pFontColorAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji("🖍️",16,10)), "Change Color...", this, SLOT(btnFontColor_clicked()));
+    pFontAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Font,16)), "Change Font...", this, SLOT(btnFont_clicked()));
+    pFontColorAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::FontColor,16)), "Change Color...", this, SLOT(btnFontColor_clicked()));
 
 	pLeftBar->addSeparator();
 
 	pbtnSmiley = new lmcToolButton(pLeftBar);
-    pbtnSmiley->setIcon(QIcon(ChatHelper::renderEmoji("🤪",16,10)));
+    pbtnSmiley->setIcon(QIcon(ChatHelper::renderEmoji(Icons::Smiley,16)));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pLeftBar->addWidget(pbtnSmiley);
 
 	pLeftBar->addSeparator();
 
-    pFileAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji("📄",16,10)), "Send A &File...", this, SLOT(btnFile_clicked()));
+    pFileAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::File,16)), "Send A &File...", this, SLOT(btnFile_clicked()));
 	pFileAction->setShortcut(QKeySequence::Open);
     bool fileCap = ((peerCaps.value(peerId) & UC_File) == UC_File);
     pFileAction->setEnabled(fileCap);
-    pFolderAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji("📁️",16,10)), "Send A Fol&der...", this, SLOT(btnFolder_clicked()));
+    pFolderAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Folder,16)), "Send A Fol&der...", this, SLOT(btnFolder_clicked()));
     bool folderCap = ((peerCaps.value(peerId) & UC_Folder) == UC_Folder);
     pFolderAction->setEnabled(folderCap);
 
     pLeftBar->addSeparator();
 
-    pSaveAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji("💾️",16,10)), "&Save As...", this, SLOT(btnSave_clicked()));
+    pSaveAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Save,16)), "&Save As...", this, SLOT(btnSave_clicked()));
 	pSaveAction->setShortcut(QKeySequence::Save);
 	pSaveAction->setEnabled(false);
 
@@ -508,9 +513,9 @@ void lmcChatWindow::createToolBar(void) {
 	pRightBar->setLayoutDirection(Qt::RightToLeft);
 	ui.toolBarLayout->addWidget(pRightBar);
 
-    pHistoryAction = pRightBar->addAction(QIcon(ChatHelper::renderEmoji("🕙️",16,10)), "&History", this, SLOT(btnHistory_clicked()));
+    pHistoryAction = pRightBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::History,16)), "&History", this, SLOT(btnHistory_clicked()));
 	pHistoryAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_H));
-    pTransferAction = pRightBar->addAction(QIcon(ChatHelper::renderEmoji("📥️",16,10)), "File &Transfers", this, SLOT(btnTransfers_clicked()));
+    pTransferAction = pRightBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Transfer,16)), "File &Transfers", this, SLOT(btnTransfers_clicked()));
 	pTransferAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
 
 	ui.lblDividerTop->setBackgroundRole(QPalette::Light);

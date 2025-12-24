@@ -30,7 +30,7 @@
 #define IDA_DESCRIPTION	"LAN Messenger is a free peer-to-peer messaging application for intra-network communication "\
 						"and does not require a server.\n"\
 						"LAN Messenger works on essentially every popular desktop platform."
-#define IDA_DOMAIN		"https://github.com/lanmessenger/lanmessenger"
+#define IDA_DOMAIN		"https://github.com/murtisoft/lnmsgr"
 
 #define DELIMITER		"||"
 #define DELIMITER_ESC	"\\|\\|"

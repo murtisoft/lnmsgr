@@ -1,5 +1,4 @@
-# C++ objects and libs    We cant have a 7 year old file here, can we?
-
+# ========================== C++ objects and libs
 *.slo
 *.lo
 *.o
@@ -10,8 +9,7 @@
 *.dll
 *.dylib
 
-# Qt-es
-
+# ========================== Qt-es
 /.qmake.cache
 /.qmake.stash
 *.pro.user
@@ -25,20 +23,12 @@ ui_*.h
 Makefile*
 *build-*
 
-# QtCreator
-
+# ========================== QtCreator
 *.autosave
 
-# QtCtreator Qml
+# ========================== QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
 
-# QtCtreator CMake
+# ========================== QtCtreator CMake
 CMakeLists.txt.user*
-
-/openssl
-/lmc/debug
-/lmc/release*
-/lmc/setup/lmc*.exe
-/lmc/setup/lmc*.zip
-/lmcapp/lib

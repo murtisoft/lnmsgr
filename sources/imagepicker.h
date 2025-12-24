@@ -31,7 +31,7 @@ public:
     ~lmcImagePicker();
 
 protected:
-    void currentChanged(const QModelIndex& current, const QModelIndex& preious);
+    void mouseReleaseEvent(QMouseEvent* e);
     void mouseMoveEvent(QMouseEvent* e);
     void paintEvent(QPaintEvent* e);
     void leaveEvent(QEvent* e);

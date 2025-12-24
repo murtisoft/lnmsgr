@@ -501,8 +501,13 @@ void lmcChatRoomWindow::btnSave_clicked(void) {
 void lmcChatRoomWindow::smileyAction_triggered(void) {
 	//	nSmiley contains index of smiley
 	if(showSmiley) {
-		QString htmlPic("<html><head></head><body><img src='" + smileyPic[nSmiley] + "' /></body></html>");
-		ui.txtMessage->insertHtml(htmlPic);
+        QString htmlPic;
+        if (smileyEmoji[nSmiley].startsWith(":/")) {
+            htmlPic = ("<img src='" + smileyEmoji[nSmiley] + "' />");
+        } else {
+            htmlPic = ("&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[nSmiley] + "</span>&#8203;");
+        }
+        ui.txtMessage->insertHtml(htmlPic);
 	}
 	else
 		ui.txtMessage->insertPlainText(smileyCode[nSmiley]);
@@ -562,7 +567,7 @@ void lmcChatRoomWindow::createUserMenu(void) {
 }
 
 void lmcChatRoomWindow::createSmileyMenu(void) {
-    pSmileyAction = new lmcImagePickerAction(this, smileyPic, SM_COUNT, 19, 10, &nSmiley);
+    pSmileyAction = new lmcImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
 	connect(pSmileyAction, SIGNAL(triggered()), this, SLOT(smileyAction_triggered()));
 
 	pSmileyMenu = new QMenu(this);
@@ -575,22 +580,22 @@ void lmcChatRoomWindow::createToolBar(void) {
 	pLeftBar->setIconSize(QSize(16, 16));
 	ui.toolBarLayout->addWidget(pLeftBar);
 
-    pFontAction = pLeftBar->addAction(ChatHelper::renderEmoji("✒️",16,10), "Change Font...",
+    pFontAction = pLeftBar->addAction(ChatHelper::renderEmoji(Icons::Font,16), "Change Font...",
 									  this, SLOT(btnFont_clicked()));
-    pFontColorAction = pLeftBar->addAction(ChatHelper::renderEmoji("🖍️",16,10), "Change Color...",
+    pFontColorAction = pLeftBar->addAction(ChatHelper::renderEmoji(Icons::FontColor,16), "Change Color...",
 										   this, SLOT(btnFontColor_clicked()));
 
 	pLeftBar->addSeparator();
 
 	pbtnSmiley = new lmcToolButton(pLeftBar);
-    pbtnSmiley->setIcon(ChatHelper::renderEmoji("🤪",16,10));
+    pbtnSmiley->setIcon(ChatHelper::renderEmoji(Icons::Smiley,16));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pLeftBar->addWidget(pbtnSmiley);
 
 	pLeftBar->addSeparator();
 
-    pSaveAction = pLeftBar->addAction(ChatHelper::renderEmoji("💾️",16,10), "&Save As...", this, SLOT(btnSave_clicked()));
+    pSaveAction = pLeftBar->addAction(ChatHelper::renderEmoji(Icons::Save,16), "&Save As...", this, SLOT(btnSave_clicked()));
 	pSaveAction->setShortcut(QKeySequence::Save);
 	pSaveAction->setEnabled(false);
 

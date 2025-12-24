@@ -110,15 +110,15 @@ void lmcSettingsDialog::init(void) {
 
 
     ui.lvCategories->setIconSize(QSize(32, 32));
-    ui.lvCategories->item(0)->setIcon(ChatHelper::renderEmoji("🖥️",32,22));
-    ui.lvCategories->item(1)->setIcon(ChatHelper::renderEmoji("👨‍👩‍👦️",32,22));
-    ui.lvCategories->item(2)->setIcon(ChatHelper::renderEmoji("📨️",32,22));
-    ui.lvCategories->item(3)->setIcon(ChatHelper::renderEmoji("🕙️",32,22));
-    ui.lvCategories->item(4)->setIcon(ChatHelper::renderEmoji("⚠️️",32,22));
-    ui.lvCategories->item(5)->setIcon(ChatHelper::renderEmoji("🔗",32,22));
-    ui.lvCategories->item(6)->setIcon(ChatHelper::renderEmoji("📥️",32,22));
-    ui.lvCategories->item(7)->setIcon(ChatHelper::renderEmoji("🎨️",32,22));
-    ui.lvCategories->item(8)->setIcon(ChatHelper::renderEmoji("⌨️️",32,22));
+    ui.lvCategories->item(0)->setIcon(ChatHelper::renderEmoji(Icons::GeneralSet,32));
+    ui.lvCategories->item(1)->setIcon(ChatHelper::renderEmoji(Icons::AccountSet,32));
+    ui.lvCategories->item(2)->setIcon(ChatHelper::renderEmoji(Icons::MessageSet,32));
+    ui.lvCategories->item(3)->setIcon(ChatHelper::renderEmoji(Icons::HistorySet,32));
+    ui.lvCategories->item(4)->setIcon(ChatHelper::renderEmoji(Icons::AlertSet,32));
+    ui.lvCategories->item(5)->setIcon(ChatHelper::renderEmoji(Icons::NetworkSet,32));
+    ui.lvCategories->item(6)->setIcon(ChatHelper::renderEmoji(Icons::TransferSet,32));
+    ui.lvCategories->item(7)->setIcon(ChatHelper::renderEmoji(Icons::ThemeSet,32));
+    ui.lvCategories->item(8)->setIcon(ChatHelper::renderEmoji(Icons::HotkeySet,32));
 
     setPageHeaderStyle(ui.lblGeneralPage);
     setPageHeaderStyle(ui.lblAccountPage);
@@ -130,7 +130,7 @@ void lmcSettingsDialog::init(void) {
     setPageHeaderStyle(ui.lblThemePage);
     setPageHeaderStyle(ui.lblHotkeysPage);
 
-    ui.btnPlaySound->setIcon(QIcon(ChatHelper::renderEmoji("▶️️️",16,12)));
+    ui.btnPlaySound->setIcon(QIcon(ChatHelper::renderEmoji(Icons::Play,16)));
 
 	pPortValidator = new QIntValidator(1, 65535, this);
 	ui.txtUDPPort->setValidator(pPortValidator);
