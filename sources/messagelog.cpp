@@ -137,7 +137,7 @@ void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStr
 		caption = getChatStateMessage((ChatState)Helper::indexOf(ChatStateNames, CS_Max, message));
         if(!caption.isNull()) {
 			html = themeData.stateMsg;
-            html.replace("%iconpath%", "qrc" IDR_BLANK);
+            html.replace("%icon%", "" );  //Blank
 			html.replace("%sender%", caption.arg(*lpszUserName));
 			html.replace("%message%", "");
             appendMessageLog(&html, type);
@@ -152,7 +152,7 @@ void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStr
 		caption = tr("This message was not delivered to %1:");
 		fontStyle = getFontStyle(&font, &color, true);
 		decodeMessage(&message);
-        html.replace("%iconpath%", "qrc" IDR_CRITICALMSG);
+        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Alert+"</span>");
 		html.replace("%sender%", caption.arg(*lpszUserName));
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", message);
@@ -161,7 +161,7 @@ void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStr
 		break;
 	case MT_Error:
 		html = themeData.sysMsg;
-        html.replace("%iconpath%", "qrc" IDR_CRITICALMSG);
+        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Alert+"</span>");
 		html.replace("%sender%", tr("Your message was not sent."));
 		html.replace("%message%", "");
         appendMessageLog(&html, type);
@@ -181,7 +181,7 @@ void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStr
 		caption = getChatRoomMessage((GroupMsgOp)Helper::indexOf(GroupMsgOpNames, GMO_Max, message));
 		if(!caption.isNull()) {
 			html = themeData.sysMsg;
-            html.replace("%iconpath%", "qrc" IDR_BLANK);
+            html.replace("%icon%", "" );  //Blank
 			html.replace("%sender%", caption.arg(*lpszUserName));
 			html.replace("%message%", "");
             appendMessageLog(&html, type);
@@ -546,9 +546,10 @@ void lmcMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, 
 
 	QString html = themeData.pubMsg;
 	QString caption = tr("Broadcast message from %1:");
-    html.replace("%iconpath%", "qrc" IDR_BROADCASTMSG);
+    html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Broadcast+"</span>");
 	html.replace("%sender%", caption.arg(*lpszUserName));
-	html.replace("%time%", getTimeString(pTime));
+    html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+    html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
 	html.replace("%style%", "");
 	html.replace("%message%", *lpszMessage);
 
@@ -571,24 +572,25 @@ void lmcMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QS
 		QString filePath = participantAvatars.value(*lpszUserId);
 		//	if image not found, use the default avatar image for this user
         //QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
-        QString iconPath; //==========================================================================NEED2TEST this.
+        QString icon; //==========================================================================NEED2TEST this.
         if (QFile::exists(filePath)) {
-            iconPath = QUrl::fromLocalFile(filePath).toString();
+            icon = QUrl::fromLocalFile(filePath).toString();
+            icon = "<img border='0' width='48' height='48' src='"+ icon +"'>";
         } else {
-            // Return a styled span instead of a path
-            // 48x48px approx. equates to 36pt or 48px font-size
-            iconPath = QString("<span style='font-size:48px; line-height:48px;'>%1</span>").arg(avtEmoji[20]);
+            icon = QString("<span style='font-size:32px;'>"+avtEmoji[20]+"</span>"); //Hidden Default Avatar
         }
 
-		html.replace("%iconpath%", iconPath);
+        html.replace("%icon%", icon);
 		html.replace("%sender%", *lpszUserName);
-		html.replace("%time%", getTimeString(pTime));
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
     } else {
 		html = localUser ? themeData.outNextMsg : themeData.inNextMsg;
-		html.replace("%time%", getTimeString(pTime));
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
@@ -612,28 +614,29 @@ void lmcMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNa
 		outStyle = !outStyle;
 		html = outStyle ? themeData.outMsg : themeData.inMsg;
 
-		//	get the avatar image for this user from the cache folder
-		QString filePath = participantAvatars.value(*lpszUserId);
-		//	if image not found, use the default avatar image for this user
+        //	get the avatar image for this user from the cache folder
+        QString filePath = participantAvatars.value(*lpszUserId);
+        //	if image not found, use the default avatar image for this user
         //QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
-        QString iconPath; //==========================================================================NEED2TEST this.
+        QString icon; //==========================================================================NEED2TEST this.
         if (QFile::exists(filePath)) {
-            iconPath = QUrl::fromLocalFile(filePath).toString();
+            icon = QUrl::fromLocalFile(filePath).toString();
+            icon = "<img border='0' width='48' height='48' src='"+ icon +"'>";
         } else {
-            // Return a styled span instead of a path
-            // 48x48px approx. equates to 36pt or 48px font-size
-            iconPath = QString("<span style='font-size:48px; line-height:48px;'>%1</span>").arg(avtEmoji[20]);
+            icon = QString("<span style='font-size:32px;'>"+avtEmoji[20]+"</span>"); //Hidden Default Avatar
         }
 
-		html.replace("%iconpath%", iconPath);
+        html.replace("%icon%", icon);
 		html.replace("%sender%", *lpszUserName);
-		html.replace("%time%", getTimeString(pTime));
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
     } else {
 		html = outStyle ? themeData.outNextMsg : themeData.inNextMsg;
-		html.replace("%time%", getTimeString(pTime));
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
@@ -665,7 +668,9 @@ QString lmcMessageLog::getFileMessageText(MessageType type, QString* lpszUserNam
     }
 
     html = themeData.reqMsg;
-    html.replace("%iconpath%", "qrc" IDR_FILEMSG);
+    html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::File+"</span>");
+    html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+    html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
 
 	FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
     FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
@@ -928,10 +933,9 @@ void lmcMessageLog::processMessageText(QString* lpszMessageText, bool useDefault
 QString lmcMessageLog::getTimeString(QDateTime* pTime) {
 	QString szTimeStamp;
 	if(messageTime) {
-		szTimeStamp.append("(");
 		if (messageDate)
             szTimeStamp.append(QLocale().toString(pTime->date(), QLocale::ShortFormat) + "&nbsp;");
-        szTimeStamp.append(QLocale().toString(pTime->time(), QLocale::ShortFormat) + ")&nbsp;");
+        szTimeStamp.append(QLocale().toString(pTime->time(), QLocale::ShortFormat) + "&nbsp;");
 	}
 
 	return szTimeStamp;

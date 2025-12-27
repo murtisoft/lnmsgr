@@ -240,42 +240,43 @@ void lmcTcpNetwork::update(FileMode mode, FileOp op, FileType type, QString* lps
 }
 
 void lmcTcpNetwork::receiveMessage(QString* lpszUserId, QString* lpszAddress, QByteArray& datagram) {
-	DatagramHeader* pHeader = NULL;
-	if(!Datagram::getHeader(datagram, &pHeader))
-		return;
-	
-	pHeader->userId = *lpszUserId;
-	pHeader->address = *lpszAddress;
-	QByteArray cipherData = Datagram::getData(datagram);
+    DatagramHeader header(DT_Max, *lpszUserId, *lpszAddress);
+    if(!Datagram::getHeader(datagram, header))
+        return;
+
+    header.userId = *lpszUserId;
+    header.address = *lpszAddress;
+
+    QByteArray cipherData = Datagram::getData(datagram);
     QByteArray clearData;
-	QString szMessage;
+    QString szMessage;
 
-	lmcTrace::write("TCP stream type " + QString::number(pHeader->type) +
-					" received from user " + *lpszUserId + " at " + *lpszAddress);
+    lmcTrace::write("TCP stream type " + QString::number(header.type) +
+                    " received from user " + *lpszUserId + " at " + *lpszAddress);
 
-	switch(pHeader->type) {
-	case DT_PublicKey:
-		//	send a session key back
-		sendSessionKey(lpszUserId, cipherData);
-		break;
-	case DT_Handshake:
-		// decrypt aes key and iv with private key
-		crypto->retreiveAES(&pHeader->userId, cipherData);
-		emit newConnection(&pHeader->userId, &pHeader->address);
-		break;
-	case DT_Message:
-		// decrypt message with aes
-        clearData = crypto->decrypt(&pHeader->userId, cipherData);
-		if(clearData.isEmpty()) {
-			lmcTrace::write("Warning: Message could not be retrieved");
-			break;
-		}
-		szMessage = QString::fromUtf8(clearData.data(), clearData.length());
-		emit messageReceived(pHeader, &szMessage);
-		break;
+    switch(header.type) {
+    case DT_PublicKey:
+        //	send a session key back
+        sendSessionKey(lpszUserId, cipherData);
+        break;
+    case DT_Handshake:
+        // decrypt aes key and iv with private key
+        crypto->retreiveAES(&header.userId, cipherData);
+        emit newConnection(&header.userId, &header.address);
+        break;
+    case DT_Message:
+        // decrypt message with aes
+        clearData = crypto->decrypt(&header.userId, cipherData);
+        if(clearData.isEmpty()) {
+            lmcTrace::write("Warning: Message could not be retrieved");
+            break;
+        }
+        szMessage = QString::fromUtf8(clearData.data(), clearData.length());
+        emit messageReceived(&header, &szMessage); // Pass address of stack object
+        break;
     default:
         break;
-	}
+    }
 }
 
 void lmcTcpNetwork::addFileSocket(QString* lpszId, QString* lpszUserId, QTcpSocket* pSocket) {

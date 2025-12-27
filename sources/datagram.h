@@ -37,7 +37,7 @@ enum DatagramHeaderMember
 class Datagram {
 public:
 	static void addHeader(DatagramType type, QByteArray& baData);
-	static bool getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader);
+    static bool getHeader(QByteArray& baDatagram, DatagramHeader& header);
 	static QByteArray getData(QByteArray& baDatagram);
 };
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LanMessenger VERSION 2026.1.0 LANGUAGES CXX)
+project(LanMessenger VERSION 2026.2.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -9,14 +9,32 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Network Xml Multimedia LinguistTools)
 
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/win32.rc" #==============================================================================<< Windows specific resource
+"#include <windows.h>
+IDI_MAIN_ICON ICON \"${CMAKE_CURRENT_SOURCE_DIR}/resources/icons/lanmsg_win.ico\"
+1 VERSIONINFO
+FILEVERSION ${PROJECT_VERSION_MAJOR},${PROJECT_VERSION_MINOR},0,0
+PRODUCTVERSION ${PROJECT_VERSION_MAJOR},${PROJECT_VERSION_MINOR},0,0
+{
+    BLOCK \"StringFileInfo\" {
+        BLOCK \"040904B0\" {
+            VALUE \"FileDescription\", \"LAN Messenger\"
+            VALUE \"FileVersion\",     \"${PROJECT_VERSION}\"
+            VALUE \"ProductName\",     \"LAN Messenger\"
+            VALUE \"ProductVersion\",  \"${PROJECT_VERSION}\"
+        }
+    }
+    BLOCK \"VarFileInfo\" { VALUE \"Translation\", 0x409, 1200 }
+}")
+
 file(GLOB LanMessenger_SOURCES
     "sources/*.cpp" "sources/*.h" "sources/*.ui"
 )
 
-add_executable(LanMessenger
+add_executable(LanMessenger #============================================================================================================<< Executable
     WIN32
     ${LanMessenger_SOURCES}
-    resources/win32.rc
+    "${CMAKE_CURRENT_BINARY_DIR}/win32.rc"
     resources/resources.qrc
 )
 
@@ -26,6 +44,7 @@ target_include_directories(LanMessenger PRIVATE
     ${OPENSSL_DIR}/include
 )
 
+target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake version into code.
 target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia
     ${OPENSSL_DIR}/lib/VC/x64/MTd/libssl.lib
@@ -39,18 +58,12 @@ qt6_add_translations(LanMessenger
 )
 
 
-#=================o TO DO o================================
+#==========================================================================================================================================<< TO DO
 #Search for NEED2TEST within the project.
-#70th smiley doesnt insert into the chatlog. wtf? It used to work.
-#Is there a way to detect other unicode emojis, and scale them like the others?
-#Smiley encode/decode might have issues, and icons at Settings>Appearance preview doesnt show properly
+#Gotta remove settings>messages>show date&time
 #Tray menu status icon has to be updated when status changes.
 
-#BUG: Some windows flash at 0,0 - show() should be used AFTER the hidden window is initialized.
-#BUG: Communication is completely broken, despite showing no errors
-#BUG: The program forgets user avatar sometimes. why?
 #Openssl static paths should be replaced at some point
-#Have cmake handle win32.rc instead of manually + Have a single definition file to handle all version numbering, app name etc.
 #Current sound functions expect extracted files, but the files are an embedded resource now.
 #DragNDrop needs fixing. it was broken somewhere between 1.235-1.239
 #Debug log files and chat database keeps piling up, naming should be "date-time", and should be cleaned periodically.

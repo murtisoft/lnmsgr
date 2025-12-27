@@ -22,6 +22,7 @@
 #include <QDataStream>
 #include <QPainter.h>
 #include <qicon.h>
+#include <qregularexpression.h>
 #include "chathelper.h"
 
 QDataStream &operator << (QDataStream &out, const SingleMessage &message) {
@@ -46,36 +47,32 @@ void ChatHelper::makeHtmlSafe(QString* lpszMessage) {
 		lpszMessage->replace(htmlSymbol[index], htmlEscape[index]);
 }
 
-/*
-        if (smileyEmoji[nSmiley].startsWith(":/")) {
-            htmlPic = ("<img src='" + smileyEmoji[index] + "' />");
-        } else {
-            htmlPic = ("&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;");
-        }
-*/
-
 void ChatHelper::encodeSmileys(QString* lpszMessage) {
-	//	replace all emoticon images with corresponding text code
+    //	replace all emoticon images with corresponding text code
     for (int index = 0; index < SM_MAPCOUNT; index++) {
         QString code = smileyCode[index];
         makeHtmlSafe(&code);
 
         if (smileyEmoji[index].startsWith(":/")) {
-            lpszMessage->replace("<img src='" + smileyEmoji[index] + "' />", code); //Legacy png handler
+            lpszMessage->replace("<img src=\"" + smileyEmoji[index] + "\" />", code); //Legacy png handler
         } else {
-            lpszMessage->replace("&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;", code);
+            lpszMessage->replace(smileyEmoji[index], code);
         }
     }
 }
 
 void ChatHelper::decodeSmileys(QString* lpszMessage) {
-	//	replace text emoticons with corresponding images
+    // Handle any other unicode emoji that is not on the list, first. This doesnt handle everything because unicode emojis are a fucking mess.
+    static const QRegularExpression emojiRegex("([\\p{Emoji_Presentation})");
+    lpszMessage->replace(emojiRegex, "&#8203;<span style='font-size:18px; vertical-align: middle;'>\\1</span>&#8203;");
+
+    //	replace text emoticons with corresponding images
     for (int index = 0; index < SM_MAPCOUNT; index++) {
         QString code = smileyCode[index];
         makeHtmlSafe(&code);
 
         if (smileyEmoji[index].startsWith(":/")) {
-            lpszMessage->replace(code, "<img src='" + smileyEmoji[index] + "' />", Qt::CaseInsensitive);  //Legacy png handler
+            lpszMessage->replace(code, "<img src='qrc" + smileyEmoji[index] + "' />", Qt::CaseInsensitive);  //Legacy png handler
         } else {
             lpszMessage->replace(code, "&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;", Qt::CaseInsensitive);
         }

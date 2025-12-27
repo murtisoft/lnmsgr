@@ -41,23 +41,14 @@ const QString GeneralSet    = "🖥️";     const QString AccountSet    = "👨
 const QString MessageSet    = "📨️";     const QString HistorySet    = "🕙️";
 const QString AlertSet      = "⚠️";     const QString NetworkSet    = "🔗️";
 const QString TransferSet   = "📥️";     const QString ThemeSet      = "🎨️";
-const QString HotkeySet     = "⌨️";
+const QString HotkeySet     = "⌨️";     const QString Alert         = "⚠️";
 }
-
-//Remove this group at first opportunity. Still used for message history.
-#define IDR_CRITICAL		":/images/critical"
-#define IDR_FILE			":/images/file"
-#define IDR_CRITICALMSG		":/images/criticalmsg"
-#define IDR_BROADCASTMSG	":/images/broadcastmsg"
-#define IDR_FILEMSG			":/images/filemsg"
-#define IDR_ADDCONTACT		":/images/addcontact"
 
 //	Resource name definitions
 #define IDR_APPICON			":/icons/application"
 #define IDR_MESSENGER		":/images/messenger"
 #define IDR_LOGO			":/images/logo"
 #define IDR_LOGOSMALL		":/images/logosmall"
-#define IDR_BLANK			":/images/blank"
 #define IDR_HGRIP			":/images/hgrip"
 #define IDR_VGRIP			":/images/vgrip"
 

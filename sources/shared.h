@@ -75,15 +75,15 @@ struct Group {
 };
 
 struct DatagramHeader {
-	DatagramType type;
-	QString userId;
-	QString address;
+    DatagramType type;
+    QString userId;
+    QString address;
 
-	DatagramHeader(DatagramType dtType, QString szUserId, QString szAddress) {
-		type = dtType;
-		userId = szUserId;
-		address = szAddress;
-	}
+    DatagramHeader(DatagramType dtType, QString szUserId, QString szAddress) {
+        type = dtType;
+        userId = szUserId;
+        address = szAddress;
+    }
 };
 
 struct MessageHeader {

@@ -17,70 +17,39 @@
 **
 ****************************************************************************/
 
-
-#include <QMap>
-#include <QDataStream>
-#include <openssl/rand.h>
-#include <openssl/rsa.h>
-#include <openssl/pem.h>
-#include <openssl/aes.h>
-
 #ifndef CRYPTO_H
 #define CRYPTO_H
 
-class EVP_CIPHER_CTX_wrapper {
-public :
-
-	#if OPENSSL_VERSION_NUMBER < 0x10100000L
-
-	EVP_CIPHER_CTX_wrapper() {
-		EVP_CIPHER_CTX_init(&ctx);
-	}
-	EVP_CIPHER_CTX* ptr() { return &ctx; };
-
-	EVP_CIPHER_CTX ctx;
-
-	#else
-
-	EVP_CIPHER_CTX_wrapper() {
-		ctx = EVP_CIPHER_CTX_new();
-		EVP_CIPHER_CTX_init(ctx);
-	}
-
-	~EVP_CIPHER_CTX_wrapper() {
-		EVP_CIPHER_CTX_free(ctx);
-	}
-
-	EVP_CIPHER_CTX* ptr() { return ctx; };
-
-	EVP_CIPHER_CTX* ctx;
-
-	#endif
-
-};
-
-#define EVP_CIPHER_CTX EVP_CIPHER_CTX_wrapper
+#include <QMap>
+#include <QString>
+#include <QByteArray>
+#include <openssl/evp.h>
+#include <openssl/pem.h>
+#include <openssl/rand.h>
+#include <openssl/aes.h>
 
 class lmcCrypto
 {
 public:
-	lmcCrypto(void);
-	~lmcCrypto(void);
+    lmcCrypto();
+    ~lmcCrypto();
 
-	QByteArray generateRSA(void);
-	QByteArray generateAES(QString* lpszUserId, QByteArray& pubKey);
-	void retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv);
-	QByteArray encrypt(QString* lpszUserId, QByteArray& clearData);
-	QByteArray decrypt(QString* lpszUserId, QByteArray& cipherData);
+    QByteArray generateRSA();
+    QByteArray generateAES(QString* lpszUserId, QByteArray& pubKey);
+    void retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv);
+    QByteArray encrypt(QString* lpszUserId, QByteArray& clearData);
+    QByteArray decrypt(QString* lpszUserId, QByteArray& cipherData);
 
-	QByteArray publicKey;
+    QByteArray publicKey;
 
 private:
-	EVP_PKEY* pKey;
-	QMap<QString, EVP_CIPHER_CTX> encryptMap;
-	QMap<QString, EVP_CIPHER_CTX> decryptMap;
-	int bits;
-	long exponent;
+    EVP_PKEY* pKey;
+
+    QMap<QString, EVP_CIPHER_CTX*> encryptMap;
+    QMap<QString, EVP_CIPHER_CTX*> decryptMap;
+
+    int bits;
+    long exponent;
 };
 
 #endif // CRYPTO_H

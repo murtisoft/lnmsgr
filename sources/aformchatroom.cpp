@@ -610,7 +610,7 @@ void lmcChatRoomWindow::createToolBar(void) {
 		pContactsBar->setIconSize(QSize(24, 24));
 		ui.contactsBarLayout->addWidget(pContactsBar);
 
-		addContactAction = pContactsBar->addAction(QIcon(QPixmap(IDR_ADDCONTACT, "PNG")), "&Add Contacts...",
+        addContactAction = pContactsBar->addAction(ChatHelper::renderEmoji(Icons::Plus,16), "&Add Contacts...",
 												   this, SLOT(addContactAction_triggered()));
 
 		QToolButton* pButton = (QToolButton*)pContactsBar->widgetForAction(addContactAction);
