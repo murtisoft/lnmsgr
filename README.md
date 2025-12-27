@@ -5,9 +5,7 @@ Communication is fixed. WOHOO!
 Right now this can communicate both with new and old versions. Happy new year!
 
 I would like to maintain compatibility between this and old versions, 
-while adding more for the future. That said, While there are no errors during
-compilation or in operation it cant communicate, neither with old versions nor
-with itself.
+while adding more in the future. 
 
 How to compile LAN Messenger on Windows
 ============================
