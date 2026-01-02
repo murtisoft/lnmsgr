@@ -79,15 +79,16 @@ void lmcAboutDialog::setUIText(void) {
     QString description(lmcStrings::appDesc() + "\n\n");
     ui.lblDescription->setText(description);
 
-    QFile thanks(IDR_THANKSTEXT);
+
+    QFile thanks(":/credits/contributors"); // Ensure correct resource path
     if(thanks.open(QIODevice::ReadOnly)) {
-        ui.txtThanks->setPlainText(QString(thanks.readAll().constData()));
+        ui.txtThanks->setHtml(QString::fromUtf8(thanks.readAll()));
         thanks.close();
     }
 
-    QFile license(IDR_LICENSETEXT);
+    QFile license(":/credits/index"); // Ensure correct resource path
     if(license.open(QIODevice::ReadOnly)) {
-        ui.txtLicense->setPlainText(QString(license.readAll().constData()));
+        ui.txtLicense->setHtml(QString::fromUtf8(license.readAll()));
         license.close();
     }
 }

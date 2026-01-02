@@ -21,7 +21,7 @@
 #include <QFileInfo>
 #include <QTranslator>
 #include <QApplication>
-#include "application.h"
+#include "translations.h"
 
 #define IDS_LANGUAGE_VAL "en_US"
 Translators Application::translators;

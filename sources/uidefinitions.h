@@ -42,6 +42,7 @@ const QString MessageSet    = "📨️";     const QString HistorySet    = "🕙
 const QString AlertSet      = "⚠️";     const QString NetworkSet    = "🔗️";
 const QString TransferSet   = "📥️";     const QString ThemeSet      = "🎨️";
 const QString HotkeySet     = "⌨️";     const QString Alert         = "⚠️";
+const QString VoiceSet      = "🎙️️";
 }
 
 //	Resource name definitions
@@ -51,9 +52,6 @@ const QString HotkeySet     = "⌨️";     const QString Alert         = "⚠�
 #define IDR_LOGOSMALL		":/images/logosmall"
 #define IDR_HGRIP			":/images/hgrip"
 #define IDR_VGRIP			":/images/vgrip"
-
-#define IDR_LICENSETEXT		":/text/license"
-#define IDR_THANKSTEXT		":/text/thanks"
 
 //	item data role definitions
 enum ItemDataRole {

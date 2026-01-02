@@ -56,9 +56,9 @@ void ChatHelper::encodeSmileys(QString* lpszMessage) {
         if (smileyEmoji[index].startsWith(":/")) {
             lpszMessage->replace("<img src=\"" + smileyEmoji[index] + "\" />", code); //Legacy png handler
         } else {
-            lpszMessage->replace(smileyEmoji[index], code);
-        }
-    }
+            lpszMessage->replace(smileyEmoji[index], code);  //NEED2TEST This part needs to be fixed. Program strips span tags while appending the text into chatlog.
+        }                                                    //But this currently causes multi character emojis like "family" to be split because we have boy and girl
+    }                                                        //emojis in the smiley list.
 }
 
 void ChatHelper::decodeSmileys(QString* lpszMessage) {

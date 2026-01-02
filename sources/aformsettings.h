@@ -34,7 +34,7 @@
 #include "settings.h"
 #include "history.h"
 #include "stdlocation.h"
-#include "application.h"
+#include "translations.h"
 #include "messagelog.h"
 #include "theme.h"
 #include "soundplayer.h"
@@ -83,6 +83,7 @@ private slots:
 	void btnSoundPath_clicked(void);
 	void btnResetSounds_clicked(void);
     void btnRefreshTheme_clicked(void);
+
 
 private:
     void setPageHeaderStyle(QLabel* pLabel);

@@ -80,9 +80,9 @@
 #define IDS_CLEARONCLOSE        "Messages/ClearOnClose"
 #define IDS_CLEARONCLOSE_VAL    true
 #define IDS_MESSAGETOP			"Messages/MessageTop"
-#define IDS_MESSAGETOP_VAL		false
+#define IDS_MESSAGETOP_VAL		true
 #define IDS_PUBMESSAGEPOP		"Messages/PubMessagePop"
-#define IDS_PUBMESSAGEPOP_VAL	false
+#define IDS_PUBMESSAGEPOP_VAL	true
 #define IDS_FONT				"Messages/Font"
 #define IDS_FONT_VAL			QApplication::font().toString()
 #define IDS_COLOR				"Messages/Color"

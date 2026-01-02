@@ -18,6 +18,7 @@
 ****************************************************************************/
 
 #include <QtGlobal>
+#include <QSoundEffect>
 #ifdef Q_OS_WIN
 #include <Windows.h>
 #include <QLibrary>
@@ -58,6 +59,7 @@ bool lmcSoundPlayer::isAvailable()
 #endif
 }
 
+/*  Old Function that fails to play embedded resources.
 void lmcSoundPlayer::play(const QString& filename)
 {
 #ifdef Q_OS_WIN
@@ -69,6 +71,21 @@ void lmcSoundPlayer::play(const QString& filename)
     player->setLoops(QMediaPlayer::Infinite); // Optional
     player->play();
 #endif
+}*/
+
+void lmcSoundPlayer::play(const QString& filename){
+    if (filename.isEmpty()) return;
+    QSoundEffect* effect = new QSoundEffect();
+
+    if (filename.startsWith(":"))
+        effect->setSource(QUrl("qrc" + filename));
+    else
+        effect->setSource(QUrl::fromLocalFile(filename));
+
+    QObject::connect(effect, &QSoundEffect::playingChanged, [effect]() {
+        if (!effect->isPlaying()) effect->deleteLater();
+    });
+    effect->play();
 }
 
 void lmcSoundPlayer::play(SoundEvent event) {

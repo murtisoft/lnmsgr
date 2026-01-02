@@ -16,7 +16,7 @@
 **
 ****************************************************************************/
 
-#include "application.h"
+#include "translations.h"
 #include "lanmsg.h"
 #include "stdlocation.h"
 #include <QResource>

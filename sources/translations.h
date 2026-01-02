@@ -18,8 +18,8 @@
 ****************************************************************************/
 
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#ifndef TRANSLATIONS_H
+#define TRANSLATIONS_H
 
 #include <QApplication>
 #include <QHash>
@@ -51,4 +51,4 @@ private:
     static Translators sysTranslators;
 };
 
-#endif // APPLICATION_H
+#endif // TRANSLATIONS_H

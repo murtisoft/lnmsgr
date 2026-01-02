@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LanMessenger VERSION 2026.2.0 LANGUAGES CXX)
+project(LanMessenger VERSION 2026.3.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -38,10 +38,12 @@ add_executable(LanMessenger #===================================================
     resources/resources.qrc
 )
 
+set(OPUS_DIR "C:/Qt/Tools/opus-1.6")          #libopus 1.6
 set(OPENSSL_DIR "C:/Qt/Tools/OpenSSL-Win64")  #Win64OpenSSL-3_6_0
 target_include_directories(LanMessenger PRIVATE
     ${CMAKE_SOURCE_DIR}/sources
     ${OPENSSL_DIR}/include
+    ${OPUS_DIR}/include
 )
 
 target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake version into code.
@@ -49,6 +51,7 @@ target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia
     ${OPENSSL_DIR}/lib/VC/x64/MTd/libssl.lib
     ${OPENSSL_DIR}/lib/VC/x64/MTd/libcrypto.lib
+    ${OPUS_DIR}/build/Release/libopus.a
 )
 
 file(GLOB LanMessenger_LANGUAGES "${CMAKE_SOURCE_DIR}/resources/languages/*.ts")
@@ -60,17 +63,20 @@ qt6_add_translations(LanMessenger
 
 #==========================================================================================================================================<< TO DO
 #Search for NEED2TEST within the project.
-#Gotta remove settings>messages>show date&time
+#Gotta remove settings>messages>show date&time / maybe instead keep them and recycle the function?
 #Tray menu status icon has to be updated when status changes.
+#Add voice&video settings
+#Group setting needs to be implemented
 
-#Openssl static paths should be replaced at some point
-#Current sound functions expect extracted files, but the files are an embedded resource now.
+#Sending family emoji, splits boy and girl into separate enlarged smileys.
+#      need to handle the text so the smiley spans arent stripped when pushing into messagelog.
+#Switching between old and new client, causes peers to crash. (sometimes) why?
 #DragNDrop needs fixing. it was broken somewhere between 1.235-1.239
 #Debug log files and chat database keeps piling up, naming should be "date-time", and should be cleaned periodically.
 #Broadcasts arent logged. how about group chats?
 #Remove chat groups, instead add roles, set by peers themselves, which will act like global grouping.
 
-#Add sticky screen borders
+#Add sticky window borders
 #Add nudge feature
 #Add opus voice chat
 #Add vp8 video chat / desktop sharing

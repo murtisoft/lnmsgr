@@ -30,6 +30,18 @@ lmcCrypto::lmcCrypto(void) {
 
 lmcCrypto::~lmcCrypto(void) {
     EVP_PKEY_free(pKey);
+
+    // Free all allocated encryption contexts
+    foreach (EVP_CIPHER_CTX* ctx, encryptMap) {
+        EVP_CIPHER_CTX_free(ctx);
+    }
+    encryptMap.clear();
+
+    // Free all allocated decryption contexts
+    foreach (EVP_CIPHER_CTX* ctx, decryptMap) {
+        EVP_CIPHER_CTX_free(ctx);
+    }
+    decryptMap.clear();
 }
 
 //	creates an RSA key pair and returns the string representation of the public key

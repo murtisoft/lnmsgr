@@ -240,7 +240,7 @@ void lmcTcpNetwork::update(FileMode mode, FileOp op, FileType type, QString* lps
 }
 
 void lmcTcpNetwork::receiveMessage(QString* lpszUserId, QString* lpszAddress, QByteArray& datagram) {
-    DatagramHeader header(DT_Max, *lpszUserId, *lpszAddress);
+    DatagramHeader header(DT_None, "", ""); //Null header
     if(!Datagram::getHeader(datagram, header))
         return;
 

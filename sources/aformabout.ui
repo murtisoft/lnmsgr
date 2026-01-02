@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>476</width>
-    <height>334</height>
+    <width>512</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -114,7 +114,7 @@
      </widget>
      <widget class="QWidget" name="tabThanks">
       <attribute name="title">
-       <string>Thanks</string>
+       <string>Contributors</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <property name="spacing">
@@ -133,26 +133,13 @@
         <number>1</number>
        </property>
        <item>
-        <widget class="QPlainTextEdit" name="txtThanks">
-         <property name="tabChangesFocus">
-          <bool>true</bool>
-         </property>
-         <property name="undoRedoEnabled">
-          <bool>false</bool>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="plainText">
-          <string/>
-         </property>
-        </widget>
+        <widget class="QTextBrowser" name="txtThanks"/>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabLicense">
       <attribute name="title">
-       <string>License</string>
+       <string>Copyright</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
@@ -171,24 +158,15 @@
         <number>1</number>
        </property>
        <item>
-        <widget class="QPlainTextEdit" name="txtLicense">
+        <widget class="QTextBrowser" name="txtLicense">
          <property name="minimumSize">
           <size>
            <width>450</width>
            <height>0</height>
           </size>
          </property>
-         <property name="tabChangesFocus">
+         <property name="openExternalLinks">
           <bool>true</bool>
-         </property>
-         <property name="undoRedoEnabled">
-          <bool>false</bool>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="plainText">
-          <string/>
          </property>
         </widget>
        </item>

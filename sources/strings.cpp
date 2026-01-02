@@ -58,7 +58,7 @@ const QString lmcStrings::appDesc(void) {
                        "intra-network communication and does not require a server.\n"\
                        "LAN Messenger works on essentially every popular desktop platform.\n"\
                        "\n"\
-                       "You can support the LAN Messenger by contributing code, translations,\n"\
+                       "You can support LAN Messenger by contributing code, translations,\n"\
                        "bug fixes or reports.\n"\
                        "Help us grow by sharing the project with others!");
 	return m_appDesc;
