@@ -166,14 +166,16 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 	QString data;
 
 	switch(type) {
-	case MT_Message:
+    case MT_Message:{
 		appendMessageLog(type, lpszUserId, &senderName, pMessage);
+        bool isNudge = (pMessage->data(XN_NUDGE) == LM_TRUE);
 		if(isHidden() || !isActiveWindow()) {
-			pSoundPlayer->play(SE_NewMessage);
+            if (!isNudge)  pSoundPlayer->play(SE_NewMessage);
 			title = tr("%1 says...");
 			setWindowTitle(title.arg(senderName));
 		}
-		break;
+        if (isNudge){  QTimer::singleShot(50, this, [this]() { nudge(); });}  //Giving some time for the window to appear. otherwise it might spawn at 0,0
+        break;}
 	case MT_Broadcast:
 		appendMessageLog(type, lpszUserId, &senderName, pMessage);
 		if(isHidden() || !isActiveWindow()) {
@@ -569,6 +571,7 @@ void lmFormChat::nudge(bool send) {
         xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()));
         xmlMessage.addData(XN_FONT, font.toString());
         xmlMessage.addData(XN_COLOR, messageColor.name());
+        xmlMessage.addData(XN_NUDGE, LM_TRUE);   //Sending Nudge Command within xml
         if(groupMode) {
             xmlMessage.addData(XN_THREAD, threadId);
             xmlMessage.addData(XN_GROUPMESSAGE, szMessage);
@@ -582,9 +585,6 @@ void lmFormChat::nudge(bool send) {
             QString userId = index.value();
             emit messageSent(type, &userId, &xmlMessage);
             index++;
-
-            //Nudge Command NEED2TEST Nudge
-
         }
     }
 }

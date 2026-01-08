@@ -52,7 +52,6 @@ const Themes lmTheme::availableThemes(void) {
 /*
     themeData.inMsg         = "/Content.html";
     themeData.inNextMsg     = "/NextContent.html";
-
     themeData.pubMsg        = "/Broadcast.html";
     themeData.sysMsg        = "/Status.html";
     themeData.stateMsg      = "/Status.html";

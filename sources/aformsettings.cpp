@@ -94,6 +94,23 @@ void lmFormSettings::init(void) {
 		pListItem->setCheckState(IDS_SOUNDEVENT_VAL);
 	}
 
+//=========================================================NEED2TEST  Temporary
+    ui.cboMicDevice->addItem("Default Communication Device",
+                              QVariant::fromValue(QMediaDevices::defaultAudioInput()));
+
+    const auto devices = QMediaDevices::audioInputs();
+    for (const QAudioDevice &device : devices) {
+        ui.cboMicDevice->addItem(device.description(), QVariant::fromValue(device));
+    }
+
+    QCameraDevice defaultCam = QMediaDevices::defaultVideoInput();
+    ui.cboCamDevice->addItem("Default Camera", QVariant::fromValue(defaultCam));
+
+    for (const QCameraDevice &camera : QMediaDevices::videoInputs()) {
+        ui.cboCamDevice->addItem(camera.description(), QVariant::fromValue(camera));
+    }
+//=========================================================
+
 	Themes themes = lmTheme::availableThemes();
 	for(int index = 0; index < themes.count(); index++)
 		ui.cboTheme->addItem(themes.at(index).name, themes.at(index).path);
@@ -107,7 +124,6 @@ void lmFormSettings::init(void) {
 	ui.lvCategories->setCurrentRow(0);
 
 	setWindowIcon(QIcon(IDR_APPICON));
-
 
     ui.lvCategories->setIconSize(QSize(32, 32));
     ui.lvCategories->item(0)->setIcon(ChatHelper::renderEmoji(Icons::GeneralSet,32));

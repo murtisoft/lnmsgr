@@ -81,6 +81,8 @@
 #define XN_RELPATH          "relpath"
 #define XN_FILECOUNT        "filecount"
 
+#define XN_NUDGE            "nudge"
+
 class MessageXml : public QDomDocument
 {
 public:

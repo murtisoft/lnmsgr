@@ -4,5 +4,8 @@ build/
 *.autosave
 *.user
 
-# ========================== Bash
-*.sh
+# ========================== Project Root folder
+/*.bat
+/*.sh
+/*.lnk
+

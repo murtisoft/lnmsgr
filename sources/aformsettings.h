@@ -21,6 +21,10 @@
 #ifndef AFORMSETTINGS_H
 #define AFORMSETTINGS_H
 
+#include <QMediaDevices>
+#include <QAudioDevice>
+#include <QCameraDevice>
+
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 #include <QDialog>
@@ -38,6 +42,7 @@
 #include "messagelog.h"
 #include "theme.h"
 #include "soundplayer.h"
+
 
 class lmFormSettings : public QDialog {
 	Q_OBJECT
