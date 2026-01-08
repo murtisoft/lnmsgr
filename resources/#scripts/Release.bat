@@ -1,32 +1,27 @@
 @echo off
-set "7zip=C:\Program Files\7-Zip\7z.exe"
+set "sevenzip=C:\Program Files\7-Zip\7z.exe"
 set "windeployqt=C:\Qt\6.10.1\mingw_64\bin\windeployqt.exe"
-set "src=..\..\build\Release\LanMessenger.exe"
-set "destDir=..\..\..\LanMsgRelated\Deployment"
-set "zipPath=..\..\..\LanMsgRelated\Win64.zip"
-set "targetRoot=..\..\..\lnmsgr"
+set "openssl=C:\Qt\Tools\OpenSSL-Win64"
+set "projectdir=E:\_qtprojects\LanMessenger"
 
-if not exist "%src%" (
+
+if not exist "%projectdir%\build\Release\LanMessenger.exe" (
     echo Error: Source executable not found.
     pause
     exit /b 1
 )
 
 :: Build and Zip
-del /q /s "%destDir%\*" 2>nul
-copy /y "%src%" "%destDir%\LanMessenger.exe"
-"%windeployqt%" "%destDir%\LanMessenger.exe"
-if exist "%destDir%\translations" rd /s /q "%destDir%\translations"
-if exist "%zipPath%" del "%zipPath%"
-"%7zip%" a "%zipPath%" "%destDir%\*"
+del /q /s "%projectdir%\build\Deployment\*" 2>nul
+copy /y "%projectdir%\build\Release\LanMessenger.exe" "%projectdir%\build\Deployment\LanMessenger.exe"
+if not exist "%projectdir%\build\Deployment" mkdir "%projectdir%\build\Deployment"
+"%windeployqt%" "%projectdir%\build\Deployment\LanMessenger.exe"
+if exist "%projectdir%\build\Deployment\translations" rd /s /q "%projectdir%\build\Deployment\translations"
+if exist "%projectdir%\build\Win64.zip" del "%projectdir%\build\Win64.zip"
+copy /y "%openssl%\libcrypto-3-x64.dll" "%projectdir%\build\Deployment\"
+copy /y "%openssl%\libssl-3-x64.dll" "%projectdir%\build\Deployment\"
 
-:: Targeted lnmsgr sync
-rd /s /q "%targetRoot%\resources" 2>nul
-rd /s /q "%targetRoot%\sources" 2>nul
-del /q "%targetRoot%\CMakeLists.txt" 2>nul
+"%sevenzip%" a "%projectdir%\build\Win64.zip" "%projectdir%\build\Deployment\"
 
-xcopy /e /i /y "..\..\resources" "%targetRoot%\resources"
-xcopy /e /i /y "..\..\sources" "%targetRoot%\sources"
-copy /y "..\..\CMakeLists.txt" "%targetRoot%\CMakeLists.txt"
 
 pause
