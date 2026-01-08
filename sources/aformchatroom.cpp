@@ -661,7 +661,7 @@ void lmFormChatRoom::sendMessage(void) {
 
 		MessageType type = groupMode ? MT_GroupMessage : MT_PublicMessage;
 		MessageXml xmlMessage;
-		xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()));
+        xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
 		xmlMessage.addData(XN_FONT, font.toString());
 		xmlMessage.addData(XN_COLOR, messageColor.name());
 		xmlMessage.addData(XN_MESSAGE, szMessage);

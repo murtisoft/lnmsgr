@@ -21,7 +21,8 @@ if exist "%projectdir%\build\Win64.zip" del "%projectdir%\build\Win64.zip"
 copy /y "%openssl%\libcrypto-3-x64.dll" "%projectdir%\build\Deployment\"
 copy /y "%openssl%\libssl-3-x64.dll" "%projectdir%\build\Deployment\"
 
-"%sevenzip%" a "%projectdir%\build\Win64.zip" "%projectdir%\build\Deployment\"
+del "%projectdir%\build\Win64.zip" 2>nul
+"%sevenzip%" a "%projectdir%\build\Win64.zip" "%projectdir%\build\Deployment\*"
 
 
 pause

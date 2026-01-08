@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LanMessenger VERSION 2026.4.0 LANGUAGES CXX)
+project(LanMessenger VERSION 2026.5.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -65,7 +65,6 @@ qt6_add_translations(LanMessenger
 #Search for NEED2TEST within the project.
 #Remove themes.
 
-#Add nudge feature / Need to find a way to transmit the command, while also not crashing old clients.
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Crashing somewhere after "New connection received" and before "Accepted connection from user", (when a new peer joins network.)
 #   Messages are sometimes lost(Corrupted and discarded?). I think these are related.

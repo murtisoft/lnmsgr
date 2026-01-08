@@ -568,7 +568,7 @@ void lmFormChat::nudge(bool send) {
         MessageType type = groupMode ? MT_GroupMessage : MT_Message;
         MessageXml xmlMessage;
 
-        xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()));
+        xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         xmlMessage.addData(XN_FONT, font.toString());
         xmlMessage.addData(XN_COLOR, messageColor.name());
         xmlMessage.addData(XN_NUDGE, LM_TRUE);   //Sending Nudge Command within xml
@@ -634,7 +634,7 @@ void lmFormChat::sendMessage(void) {
 		
 		MessageType type = groupMode ? MT_GroupMessage : MT_Message;
 		MessageXml xmlMessage;
-		xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()));
+        xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
 		xmlMessage.addData(XN_FONT, font.toString());
 		xmlMessage.addData(XN_COLOR, messageColor.name());
 		if(groupMode) {
