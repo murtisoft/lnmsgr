@@ -28,19 +28,19 @@
 #include <QToolButton>
 #include <QLabel>
 #include <QLineEdit>
-#include "uidefinitions.h"
+#include "definitionsui.h"
 
-class lmcToolButton : public QToolButton {
+class lmToolButton : public QToolButton {
 public:
-	lmcToolButton(QWidget* parent = 0);
+	lmToolButton(QWidget* parent = 0);
 
 protected:
 	void paintEvent(QPaintEvent*);
 };
 
-class lmcLabel : public QLabel {
+class lmLabel : public QLabel {
 public:
-	lmcLabel(QWidget* parent = 0);
+	lmLabel(QWidget* parent = 0);
 
 	QString text(void) const;
 	void setText(const QString& text);
@@ -56,11 +56,11 @@ private:
 	QString elidedText;
 };
 
-class lmcLineEdit : public QLineEdit {
+class lmLineEdit : public QLineEdit {
 	Q_OBJECT
 
 public:
-	lmcLineEdit(QWidget* parent = 0);
+	lmLineEdit(QWidget* parent = 0);
 
 signals:
 	void lostFocus(void);

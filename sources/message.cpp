@@ -21,9 +21,9 @@
 #include "trace.h"
 #include "message.h"
 
-QString Message::addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, XmlMessage* pMessage) {
+QString Message::addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, MessageXml* pMessage) {
 	if(!pMessage)
-		pMessage = new XmlMessage();
+		pMessage = new MessageXml();
 
 	// remove time stamp from message
 	pMessage->removeHeader(XN_TIME);
@@ -37,13 +37,13 @@ QString Message::addHeader(MessageType type, qint64 id, QString* lpszLocalId, QS
 	return pMessage->toString();
 }
 
-bool Message::getHeader(QString* lpszMessage, MessageHeader** ppHeader, XmlMessage** ppMessage) {
-	*ppMessage = new XmlMessage(*lpszMessage);
+bool Message::getHeader(QString* lpszMessage, MessageHeader** ppHeader, MessageXml** ppMessage) {
+	*ppMessage = new MessageXml(*lpszMessage);
 	if(!((*ppMessage)->isValid()))
 		return false;
 
 	// add time stamp to message
-	(*ppMessage)->addHeader(XN_TIME, QString::number(QDateTime::currentDateTimeUtc().toMSecsSinceEpoch()));
+    (*ppMessage)->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
 
 	int type = Helper::indexOf(MessageTypeNames, MT_Max, (*ppMessage)->header(XN_TYPE));
 	if(type < 0)

@@ -18,9 +18,9 @@
 ****************************************************************************/
 
 
-#include "xmlmessage.h"
+#include "messagexml.h"
 
-XmlMessage::XmlMessage(void) : QDomDocument() {
+MessageXml::MessageXml(void) : QDomDocument() {
 	QDomElement root = createElement(XN_ROOT);
 	appendChild(root);
 	
@@ -31,52 +31,52 @@ XmlMessage::XmlMessage(void) : QDomDocument() {
 	root.appendChild(body);
 }
 
-XmlMessage::XmlMessage(const QString& text) : QDomDocument() {
+MessageXml::MessageXml(const QString& text) : QDomDocument() {
 	setContent(text);
 }
 
-XmlMessage::~XmlMessage(void) {
+MessageXml::~MessageXml(void) {
 }
 
-bool XmlMessage::addHeader(const QString& nodeName, const QString& nodeValue) {
+bool MessageXml::addHeader(const QString& nodeName, const QString& nodeValue) {
 	return addXmlNode(XN_HEAD, nodeName, nodeValue);
 }
 
-bool XmlMessage::addData(const QString& nodeName, const QString& nodeValue) {
+bool MessageXml::addData(const QString& nodeName, const QString& nodeValue) {
 	return addXmlNode(XN_BODY, nodeName, nodeValue);
 }
 
-QString XmlMessage::header(const QString& nodeName) {
+QString MessageXml::header(const QString& nodeName) {
 	return getXmlNode(XN_HEAD, nodeName);
 }
 
-QString XmlMessage::data(const QString& nodeName) {
+QString MessageXml::data(const QString& nodeName) {
 	return getXmlNode(XN_BODY, nodeName);
 }
 
-bool XmlMessage::removeHeader(const QString& nodeName) {
+bool MessageXml::removeHeader(const QString& nodeName) {
 	return removeXmlNode(XN_HEAD, nodeName);
 }
 
-bool XmlMessage::removeData(const QString& nodeName) {
+bool MessageXml::removeData(const QString& nodeName) {
 	return removeXmlNode(XN_BODY, nodeName);
 }
 
-bool XmlMessage::headerExists(const QString& nodeName) {
+bool MessageXml::headerExists(const QString& nodeName) {
 	return xmlNodeExists(XN_HEAD, nodeName);
 }
 
-bool XmlMessage::dataExists(const QString& nodeName) {
+bool MessageXml::dataExists(const QString& nodeName) {
 	return xmlNodeExists(XN_BODY, nodeName);
 }
 
-XmlMessage XmlMessage::clone(void) {
-	XmlMessage newMsg;
+MessageXml MessageXml::clone(void) {
+	MessageXml newMsg;
 	newMsg.setContent(toString());
 	return newMsg;
 }
 
-bool XmlMessage::isValid(void) {
+bool MessageXml::isValid(void) {
 	QDomElement root = documentElement();
 	if(root.isNull())
 		return false;
@@ -87,7 +87,7 @@ bool XmlMessage::isValid(void) {
 	return false;
 }
 
-bool XmlMessage::addXmlNode(const QString& parentNode, const QString& nodeName, const QString& nodeValue) {
+bool MessageXml::addXmlNode(const QString& parentNode, const QString& nodeName, const QString& nodeValue) {
 	QDomElement root = documentElement();
 	if(root.isNull())
 		return false;
@@ -104,7 +104,7 @@ bool XmlMessage::addXmlNode(const QString& parentNode, const QString& nodeName, 
 	return true;
 }
 
-QString XmlMessage::getXmlNode(const QString& parentNode, const QString& nodeName) {
+QString MessageXml::getXmlNode(const QString& parentNode, const QString& nodeName) {
 	QDomElement root = documentElement();
 	if(root.isNull())
 		return QString();
@@ -122,7 +122,7 @@ QString XmlMessage::getXmlNode(const QString& parentNode, const QString& nodeNam
 	return element.text();
 }
 
-bool XmlMessage::removeXmlNode(const QString& parentNode, const QString& nodeName) {
+bool MessageXml::removeXmlNode(const QString& parentNode, const QString& nodeName) {
 	QDomElement root = documentElement();
 	if(root.isNull())
 		return false;
@@ -144,7 +144,7 @@ bool XmlMessage::removeXmlNode(const QString& parentNode, const QString& nodeNam
 	return true;
 }
 
-bool XmlMessage::xmlNodeExists(const QString& parentNode, const QString& nodeName) {
+bool MessageXml::xmlNodeExists(const QString& parentNode, const QString& nodeName) {
 	QDomElement root = documentElement();
 	if(root.isNull())
 		return false;

@@ -24,7 +24,7 @@
 #include "history.h"
 
 QString History::historyFile(void) {
-	lmcSettings settings;
+	lmSettings settings;
 	bool sysPath = settings.value(IDS_SYSHISTORYPATH, IDS_SYSHISTORYPATH_VAL).toBool();
     QString path = QDir::toNativeSeparators(QStandardPaths::writableLocation(
         QStandardPaths::AppDataLocation) + "/" HC_FILENAME);
@@ -144,7 +144,7 @@ void History::updateIndex(QDataStream* pStream, qint64 oldIndex, qint64 newIndex
 QList<MsgInfo> History::getList(void) {
 	QList<MsgInfo> list;
 
-	lmcSettings settings;
+	lmSettings settings;
 	QString path = historyFile();
 
 	if(!QFile::exists(path))
@@ -181,7 +181,7 @@ QList<MsgInfo> History::getList(void) {
 QString History::getMessage(qint64 offset) {
 	QString data;
 
-	lmcSettings settings;
+	lmSettings settings;
 	QString path = historyFile();
 
 	if(!QFile::exists(path))

@@ -27,6 +27,8 @@
 #include <QDateTime>
 #include <QList>
 #include "settings.h"
+#include <QTreeWidget>
+#include "definitionsui.h"
 
 #define HC_FILENAME		"messenger.db"
 #define HC_HDRSIZE		28
@@ -89,4 +91,17 @@ private:
 	static void updateIndex(QDataStream* pData, qint64 oldIndex, qint64 newIndex);
 };
 
+class lmHistoryTreeWidgetItem : public QTreeWidgetItem {
+public:
+    lmHistoryTreeWidgetItem(QTreeWidget* parent = 0) : QTreeWidgetItem(parent) {}
+    ~lmHistoryTreeWidgetItem() {}
+
+    bool operator < (const QTreeWidgetItem& other) const {
+        int column = treeWidget()->sortColumn();
+        if(column == 1)
+            return data(column, IdRole).toDateTime() < other.data(column, DataRole).toDateTime();
+        else
+            return text(column).toLower() < other.text(column).toLower();
+    }
+};
 #endif // HISTORY_H

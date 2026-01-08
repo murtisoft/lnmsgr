@@ -27,7 +27,7 @@
 #include <QHostInfo>
 #include "definitions.h"
 #ifdef QWIDGET_H
-#include "uidefinitions.h"
+#include "definitionsui.h"
 #endif
 
 struct User {

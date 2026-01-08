@@ -26,13 +26,13 @@
 #include "shared.h"
 #include "settings.h"
 
-class lmcUserSelectDialog : public QDialog
+class lmFormUserSelect : public QDialog
 {
     Q_OBJECT
 
 public:
-	lmcUserSelectDialog(QWidget *parent = 0);
-	~lmcUserSelectDialog();
+	lmFormUserSelect(QWidget *parent = 0);
+	~lmFormUserSelect();
 
 	void init(QList<QTreeWidgetItem*>* pContactsList);
 
@@ -49,7 +49,7 @@ private:
 	void setUIText(void);
 
 	Ui::UserSelectDialog ui;
-	lmcSettings* pSettings;
+	lmSettings* pSettings;
 	bool parentToggling;
 	bool childToggling;
 	int selectedCount;

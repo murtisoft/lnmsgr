@@ -31,27 +31,27 @@
 #include "ui_aformtransfer.h"
 #include "shared.h"
 #include "settings.h"
-#include "stdlocation.h"
+#include "definitionsdir.h"
 #include "soundplayer.h"
-#include "xmlmessage.h"
+#include "messagexml.h"
 
-class lmcTransferWindow : public QWidget
+class lmFormTransfer : public QWidget
 {
 	Q_OBJECT
 
 public:
-	lmcTransferWindow(QWidget *parent = 0);
-	~lmcTransferWindow(void);
+	lmFormTransfer(QWidget *parent = 0);
+	~lmFormTransfer(void);
 
 	void init(void);
 	void updateList(void);
 	void stop(void);
-    void createTransfer(MessageType type, FileMode mode, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage);
-	void receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+    void createTransfer(MessageType type, FileMode mode, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage);
+	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void settingsChanged(void);
 
 signals:
-	void messageSent(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void showTrayMessage(TrayMessageType type, QString szMessage, QString szTitle, TrayMessageIcon icon);
 
 protected:
@@ -76,8 +76,8 @@ private:
 	void clearList(void);
 
 	Ui::TransferWindow ui;
-	lmcSettings* pSettings;
-	lmcSoundPlayer* pSoundPlayer;
+	lmSettings* pSettings;
+	lmSoundPlayer* pSoundPlayer;
 	QAction* pactCancel;
 	QAction* pactShowFolder;
 	QAction* pactRemove;

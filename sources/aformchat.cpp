@@ -21,22 +21,23 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QMimeData>
+#include <qpropertyanimation.h>
 #include "aformchat.h"
 #include "chathelper.h"
 
 const qint64 pauseTime = 5000;
 
-lmcChatWindow::lmcChatWindow(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
+lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
 	ui.setupUi(this);
 	//	Destroy the window when it closes
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	setAcceptDrops(true);
 
-	pMessageLog = new lmcMessageLog(ui.wgtLog);
+	pMessageLog = new lmMessageLog(ui.wgtLog);
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);
-	connect(pMessageLog, SIGNAL(messageSent(MessageType,QString*,XmlMessage*)),
-			this, SLOT(log_sendMessage(MessageType,QString*,XmlMessage*)));
+	connect(pMessageLog, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
+			this, SLOT(log_sendMessage(MessageType,QString*,MessageXml*)));
 
 	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
 			ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
@@ -67,10 +68,10 @@ lmcChatWindow::lmcChatWindow(QWidget *parent, Qt::WindowFlags flags) : QWidget(p
 	keyStroke = 0;
 }
 
-lmcChatWindow::~lmcChatWindow(void) {
+lmFormChat::~lmFormChat(void) {
 }
 
-void lmcChatWindow::init(User* pLocalUser, User* pRemoteUser, bool connected) {
+void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 	localId = pLocalUser->id;
 	localName = pLocalUser->name;
 
@@ -99,7 +100,7 @@ void lmcChatWindow::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 
 	int index = Helper::statusIndexFromCode(pRemoteUser->status);
 	if(index != -1) {
-		setWindowIcon(QIcon(bubblePic[index]));
+        setWindowIcon(QIcon(statusPic[index]));
 		if(statusType[index] == StatusTypeOffline)
 			showStatus(IT_Offline, true);
 		else if(statusType[index] == StatusTypeAway)
@@ -108,9 +109,9 @@ void lmcChatWindow::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 			showStatus(IT_Busy, true);
 	}
 
-	pSoundPlayer = new lmcSoundPlayer();
+	pSoundPlayer = new lmSoundPlayer();
 
-	pSettings = new lmcSettings();
+	pSettings = new lmSettings();
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
 	pMessageLog->showSmiley = showSmiley;
 	pMessageLog->autoFile = pSettings->value(IDS_AUTOFILE, IDS_AUTOFILE_VAL).toBool();
@@ -136,10 +137,10 @@ void lmcChatWindow::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 	QString themePath = pSettings->value(IDS_THEME, IDS_THEME_VAL).toString();
 	pMessageLog->initMessageLog(themePath);
     if(!clearOnClose)
-        pMessageLog->restoreMessageLog(QDir(StdLocation::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
+        pMessageLog->restoreMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
 }
 
-void lmcChatWindow::stop(void) {
+void lmFormChat::stop(void) {
 	bool saveHistory = pSettings->value(IDS_HISTORY, IDS_HISTORY_VAL).toBool();
 	if(pMessageLog->hasData && saveHistory && !dataSaved) {
         if(clearOnClose) {
@@ -150,12 +151,12 @@ void lmcChatWindow::stop(void) {
                 History::save(tr("Group Conversation"), QDateTime::currentDateTime(), &szMessageLog);
             dataSaved = true;
         } else {
-            pMessageLog->saveMessageLog(QDir(StdLocation::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
+            pMessageLog->saveMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
         }
 	}
 }
 
-void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage) {
+void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
 	QString title;
 	int statusIndex;
 
@@ -188,7 +189,7 @@ void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMes
 		data = pMessage->data(XN_STATUS);
 		statusIndex = Helper::statusIndexFromCode(data);
 		if(statusIndex != -1) {
-			setWindowIcon(QIcon(bubblePic[statusIndex]));
+            setWindowIcon(QIcon(statusPic[statusIndex]));
 			statusType[statusIndex] == StatusTypeOffline ? showStatus(IT_Offline, true) : showStatus(IT_Offline, false);
 			statusType[statusIndex] == StatusTypeBusy ? showStatus(IT_Busy, true) : showStatus(IT_Busy, false);
 			statusType[statusIndex] == StatusTypeAway ? showStatus(IT_Away, true) : showStatus(IT_Away, false);
@@ -238,12 +239,12 @@ void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMes
 	}
 }
 
-void lmcChatWindow::connectionStateChanged(bool connected) {
+void lmFormChat::connectionStateChanged(bool connected) {
 	bConnected = connected;
 	bConnected ? showStatus(IT_Disconnected, false) : showStatus(IT_Disconnected, true);
 }
 
-void lmcChatWindow::settingsChanged(void) {
+void lmFormChat::settingsChanged(void) {
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
 	pMessageLog->showSmiley = showSmiley;
 	pMessageLog->fontSizeVal = pSettings->value(IDS_FONTSIZE, IDS_FONTSIZE_VAL).toInt();
@@ -275,7 +276,7 @@ void lmcChatWindow::settingsChanged(void) {
 	}
 }
 
-bool lmcChatWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
+bool lmFormChat::eventFilter(QObject* pObject, QEvent* pEvent) {
     if(pEvent->type() == QEvent::KeyPress) {
         QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
         if(pObject == ui.txtMessage) {
@@ -307,7 +308,7 @@ bool lmcChatWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
 	return false;
 }
 
-void lmcChatWindow::changeEvent(QEvent* pEvent) {
+void lmFormChat::changeEvent(QEvent* pEvent) {
 	switch(pEvent->type()) {
 	case QEvent::ActivationChange:
 		if(isActiveWindow())
@@ -323,7 +324,7 @@ void lmcChatWindow::changeEvent(QEvent* pEvent) {
 	QWidget::changeEvent(pEvent);
 }
 
-void lmcChatWindow::closeEvent(QCloseEvent* pEvent) {
+void lmFormChat::closeEvent(QCloseEvent* pEvent) {
 	setChatState(CS_Inactive);
 	// Call stop() to save history
     stop();
@@ -332,7 +333,7 @@ void lmcChatWindow::closeEvent(QCloseEvent* pEvent) {
 	QWidget::closeEvent(pEvent);
 }
 
-void lmcChatWindow::dragEnterEvent(QDragEnterEvent* pEvent) {
+void lmFormChat::dragEnterEvent(QDragEnterEvent* pEvent) {
 	if(pEvent->mimeData()->hasFormat("text/uri-list")) {
         //  Check if the remote user has file transfer capability
         if((peerCaps.value(peerId) & UC_File) != UC_File)
@@ -350,7 +351,7 @@ void lmcChatWindow::dragEnterEvent(QDragEnterEvent* pEvent) {
 	}
 }
 
-void lmcChatWindow::dropEvent(QDropEvent* pEvent) {
+void lmFormChat::dropEvent(QDropEvent* pEvent) {
 	QList<QUrl> urls = pEvent->mimeData()->urls();
 	if(urls.isEmpty())
 		return;
@@ -371,7 +372,7 @@ void lmcChatWindow::dropEvent(QDropEvent* pEvent) {
     }
 }
 
-void lmcChatWindow::btnFont_clicked(void) {
+void lmFormChat::btnFont_clicked(void) {
 	bool ok;
 	QFont font = ui.txtMessage->font();
 	font.setPointSize(ui.txtMessage->fontPointSize());
@@ -380,7 +381,7 @@ void lmcChatWindow::btnFont_clicked(void) {
 		setMessageFont(newFont);
 }
 
-void lmcChatWindow::btnFontColor_clicked(void) {
+void lmFormChat::btnFontColor_clicked(void) {
 	QColor color = QColorDialog::getColor(messageColor, this, tr("Select Color"));
 	if(color.isValid()) {
 		messageColor = color;
@@ -388,7 +389,7 @@ void lmcChatWindow::btnFontColor_clicked(void) {
 	}
 }
 
-void lmcChatWindow::btnFile_clicked(void) {
+void lmFormChat::btnFile_clicked(void) {
 	QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString fileName = QFileDialog::getOpenFileName(this, QString(), dir);
 	if(!fileName.isEmpty()) {
@@ -397,7 +398,7 @@ void lmcChatWindow::btnFile_clicked(void) {
 	}
 }
 
-void lmcChatWindow::btnFolder_clicked(void) {
+void lmFormChat::btnFolder_clicked(void) {
     QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString path = QFileDialog::getExistingDirectory(this, QString(), dir, QFileDialog::ShowDirsOnly);
     if(!path.isEmpty()) {
@@ -406,7 +407,7 @@ void lmcChatWindow::btnFolder_clicked(void) {
     }
 }
 
-void lmcChatWindow::btnSave_clicked(void) {
+void lmFormChat::btnSave_clicked(void) {
 	QString dir = pSettings->value(IDS_SAVEPATH, IDS_SAVEPATH_VAL).toString();
 	QString fileName = QFileDialog::getSaveFileName(this, tr("Save Conversation"), dir,
 		"HTML File (*.html);;Text File (*.txt)");
@@ -426,15 +427,15 @@ void lmcChatWindow::btnSave_clicked(void) {
 	}
 }
 
-void lmcChatWindow::btnHistory_clicked(void) {
+void lmFormChat::btnHistory_clicked(void) {
 	emit showHistory();
 }
 
-void lmcChatWindow::btnTransfers_clicked(void) {
+void lmFormChat::btnTransfers_clicked(void) {
 	emit showTransfers();
 }
 
-void lmcChatWindow::smileyAction_triggered(void) {
+void lmFormChat::smileyAction_triggered(void) {
 	//	nSmiley contains index of smiley
 	if(showSmiley) {
         QString htmlPic;
@@ -449,11 +450,11 @@ void lmcChatWindow::smileyAction_triggered(void) {
 		ui.txtMessage->insertPlainText(smileyCode[nSmiley]);
 }
 
-void lmcChatWindow::log_sendMessage(MessageType type, QString *lpszUserId, XmlMessage *pMessage) {
+void lmFormChat::log_sendMessage(MessageType type, QString *lpszUserId, MessageXml *pMessage) {
 	emit messageSent(type, lpszUserId, pMessage);
 }
 
-void lmcChatWindow::checkChatState(void) {
+void lmFormChat::checkChatState(void) {
 	if(keyStroke > snapKeyStroke) {
 		snapKeyStroke = keyStroke;
 		QTimer::singleShot(pauseTime, this, SLOT(checkChatState()));
@@ -466,15 +467,15 @@ void lmcChatWindow::checkChatState(void) {
 		setChatState(CS_Paused);
 }
 
-void lmcChatWindow::createSmileyMenu(void) {
-    pSmileyAction = new lmcImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
+void lmFormChat::createSmileyMenu(void) {
+    pSmileyAction = new lmImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
 	connect(pSmileyAction, SIGNAL(triggered()), this, SLOT(smileyAction_triggered()));
 
 	pSmileyMenu = new QMenu(this);
 	pSmileyMenu->addAction(pSmileyAction);
 }
 
-void lmcChatWindow::createToolBar(void) {
+void lmFormChat::createToolBar(void) {
 	QToolBar* pLeftBar = new QToolBar(ui.wgtToolBar);
 	pLeftBar->setStyleSheet("QToolBar { border: 0px }");
 	pLeftBar->setIconSize(QSize(16, 16));
@@ -485,7 +486,7 @@ void lmcChatWindow::createToolBar(void) {
 
 	pLeftBar->addSeparator();
 
-	pbtnSmiley = new lmcToolButton(pLeftBar);
+	pbtnSmiley = new lmToolButton(pLeftBar);
     pbtnSmiley->setIcon(QIcon(ChatHelper::renderEmoji(Icons::Smiley,16)));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
 	pbtnSmiley->setMenu(pSmileyMenu);
@@ -507,6 +508,9 @@ void lmcChatWindow::createToolBar(void) {
 	pSaveAction->setShortcut(QKeySequence::Save);
 	pSaveAction->setEnabled(false);
 
+    pLeftBar->addSeparator();
+    pNudgeAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Nudge,16)), "Nudge", this, SLOT(btnNudge_clicked()));  //NEED2TEST Nudge
+
 	pRightBar = new QToolBar(ui.wgtToolBar);
 	pRightBar->setStyleSheet("QToolBar { border: 0px }");
 	pRightBar->setIconSize(QSize(16, 16));
@@ -524,7 +528,68 @@ void lmcChatWindow::createToolBar(void) {
 	ui.lblDividerBottom->setAutoFillBackground(true);
 }
 
-void lmcChatWindow::setUIText(void) {
+void lmFormChat::btnNudge_clicked() {
+    lmFormChat::nudge(true);
+};
+
+void lmFormChat::nudge(bool send) {
+    pNudgeAction->setEnabled(false);
+    pSoundPlayer->play(SE_Nudge);
+
+    QPropertyAnimation* pAnim = new QPropertyAnimation(this, "pos");
+    pAnim->setDuration(500);
+
+    QPoint startPos = this->pos();
+    for (int i = 1; i < 10; ++i) {
+        // Alternate both X and Y offsets for a diagonal/jitter effect
+        int xOffset = (i % 2 == 0) ? 5 : -5;
+        int yOffset = (i % 3 == 0) ? 5 : -5;
+        pAnim->setKeyValueAt(i / 10.0, startPos + QPoint(xOffset, yOffset));
+    }
+
+    connect(pAnim, &QPropertyAnimation::finished, this, [this]() {
+        QTimer::singleShot(5000, this, [this]() {  //5 second cooldown, so you cant drive your friends insane.
+            pNudgeAction->setEnabled(true);
+        });
+    });
+
+    pAnim->setEndValue(startPos);
+    pAnim->start(QAbstractAnimation::DeleteWhenStopped);
+
+    if (send){
+        //Nudge Message
+        QString szMessage = tr("Sent a nudge!") +"\n__________";
+
+        QFont font = ui.txtMessage->font();
+        font.setPointSize(ui.txtMessage->fontPointSize());
+
+        MessageType type = groupMode ? MT_GroupMessage : MT_Message;
+        MessageXml xmlMessage;
+
+        xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()));
+        xmlMessage.addData(XN_FONT, font.toString());
+        xmlMessage.addData(XN_COLOR, messageColor.name());
+        if(groupMode) {
+            xmlMessage.addData(XN_THREAD, threadId);
+            xmlMessage.addData(XN_GROUPMESSAGE, szMessage);
+        } else
+            xmlMessage.addData(XN_MESSAGE, szMessage);
+
+        appendMessageLog(MT_Message, &localId, &localName, &xmlMessage);
+
+        QHash<QString, QString>::const_iterator index = peerIds.constBegin();
+        while (index != peerIds.constEnd()) {
+            QString userId = index.value();
+            emit messageSent(type, &userId, &xmlMessage);
+            index++;
+
+            //Nudge Command NEED2TEST Nudge
+
+        }
+    }
+}
+
+void lmFormChat::setUIText(void) {
 	ui.retranslateUi(this);
 
 	setWindowTitle(getWindowTitle());
@@ -553,7 +618,7 @@ void lmcChatWindow::setUIText(void) {
 	showStatus(IT_Ok, true);	//	this will force the info label to retranslate
 }
 
-void lmcChatWindow::sendMessage(void) {
+void lmFormChat::sendMessage(void) {
 	if(ui.txtMessage->document()->isEmpty())
 		return;
 
@@ -568,7 +633,7 @@ void lmcChatWindow::sendMessage(void) {
 		font.setPointSize(ui.txtMessage->fontPointSize());
 		
 		MessageType type = groupMode ? MT_GroupMessage : MT_Message;
-		XmlMessage xmlMessage;
+		MessageXml xmlMessage;
 		xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch()));
 		xmlMessage.addData(XN_FONT, font.toString());
 		xmlMessage.addData(XN_COLOR, messageColor.name());
@@ -594,17 +659,17 @@ void lmcChatWindow::sendMessage(void) {
 	ui.txtMessage->setFocus();
 }
 
-void lmcChatWindow::sendFile(QString* lpszFilePath) {
+void lmFormChat::sendFile(QString* lpszFilePath) {
     sendObject(MT_File, lpszFilePath);
 }
 
-void lmcChatWindow::sendFolder(QString* lpszFolderPath) {
+void lmFormChat::sendFolder(QString* lpszFolderPath) {
     sendObject(MT_Folder, lpszFolderPath);
 }
 
-void lmcChatWindow::sendObject(MessageType type, QString* lpszPath) {
+void lmFormChat::sendObject(MessageType type, QString* lpszPath) {
     if(bConnected) {
-        XmlMessage xmlMessage;
+        MessageXml xmlMessage;
         xmlMessage.addData(XN_FILETYPE, FileTypeNames[FT_Normal]);
         xmlMessage.addData(XN_FILEOP, FileOpNames[FO_Request]);
         xmlMessage.addData(XN_FILEPATH, *lpszPath);
@@ -616,12 +681,12 @@ void lmcChatWindow::sendObject(MessageType type, QString* lpszPath) {
 }
 
 //	Called before sending message
-void lmcChatWindow::encodeMessage(QString* lpszMessage) {
+void lmFormChat::encodeMessage(QString* lpszMessage) {
 	//	replace all emoticon images with corresponding text code
 	ChatHelper::encodeSmileys(lpszMessage);
 }
 
-void lmcChatWindow::processFileOp(XmlMessage *pMessage) {
+void lmFormChat::processFileOp(MessageXml *pMessage) {
 	int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
 	int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
     QString fileId = pMessage->data(XN_FILEID);
@@ -640,17 +705,17 @@ void lmcChatWindow::processFileOp(XmlMessage *pMessage) {
     }
 }
 
-void lmcChatWindow::appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage) {
+void lmFormChat::appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage) {
 	pMessageLog->appendMessageLog(type, lpszUserId, lpszUserName, pMessage);
 	if(!pSaveAction->isEnabled())
 		pSaveAction->setEnabled(pMessageLog->hasData);
 }
 
-void lmcChatWindow::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
+void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
 	pMessageLog->updateFileMessage(mode, op, fileId);
 }
 
-void lmcChatWindow::showStatus(int flag, bool add) {
+void lmFormChat::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
 // TODO
@@ -683,7 +748,7 @@ void lmcChatWindow::showStatus(int flag, bool add) {
 //	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }
 
-QString lmcChatWindow::getWindowTitle(void) {
+QString lmFormChat::getWindowTitle(void) {
 	QString title = QString();
 
 	QHash<QString, QString>::const_iterator index = peerNames.constBegin();
@@ -699,12 +764,12 @@ QString lmcChatWindow::getWindowTitle(void) {
 	return title;
 }
 
-void lmcChatWindow::setMessageFont(QFont& font) {
+void lmFormChat::setMessageFont(QFont& font) {
 	ui.txtMessage->setFont(font);
 	ui.txtMessage->setFontPointSize(font.pointSize());
 }
 
-void lmcChatWindow::setChatState(ChatState newChatState) {
+void lmFormChat::setChatState(ChatState newChatState) {
 	if(chatState == newChatState)
 		return;
 
@@ -734,7 +799,7 @@ void lmcChatWindow::setChatState(ChatState newChatState) {
 
 	// send a chat state message
 	if(bNotify && bConnected) {
-		XmlMessage xmlMessage;
+		MessageXml xmlMessage;
 		if(groupMode)
 			xmlMessage.addData(XN_THREAD, threadId);
 		xmlMessage.addData(XN_CHATSTATE, ChatStateNames[chatState]);

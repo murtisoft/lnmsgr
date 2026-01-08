@@ -21,7 +21,7 @@
 #include "aformuserinfo.h"
 #include "chathelper.h"
 
-lmcUserInfoWindow::lmcUserInfoWindow(QWidget *parent) : QDialog(parent) {
+lmFormUserInfo::lmFormUserInfo(QWidget *parent) : QDialog(parent) {
 	ui.setupUi(this);
 	//	set fixed size
 	layout()->setSizeConstraint(QLayout::SetFixedSize);
@@ -31,10 +31,10 @@ lmcUserInfoWindow::lmcUserInfoWindow(QWidget *parent) : QDialog(parent) {
 	setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
-lmcUserInfoWindow::~lmcUserInfoWindow() {
+lmFormUserInfo::~lmFormUserInfo() {
 }
 
-void lmcUserInfoWindow::init(void) {
+void lmFormUserInfo::init(void) {
 	setWindowIcon(QIcon(IDR_APPICON));
 
 	QFont font = ui.lblUserName->font();
@@ -44,20 +44,20 @@ void lmcUserInfoWindow::init(void) {
 	font.setBold(true);
 	ui.lblUserName->setFont(font);
 
-	pSettings = new lmcSettings();
+	pSettings = new lmSettings();
 	setUIText();
 }
 
-void lmcUserInfoWindow::setInfo(XmlMessage* pMessage) {
+void lmFormUserInfo::setInfo(MessageXml* pMessage) {
 	userInfo = *pMessage;
 	setUIText();
 	ui.tabWidget->setCurrentIndex(0);
 }
 
-void lmcUserInfoWindow::settingsChanged(void) {
+void lmFormUserInfo::settingsChanged(void) {
 }
 
-void lmcUserInfoWindow::changeEvent(QEvent* pEvent) {
+void lmFormUserInfo::changeEvent(QEvent* pEvent) {
 	switch(pEvent->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -69,7 +69,7 @@ void lmcUserInfoWindow::changeEvent(QEvent* pEvent) {
 	QDialog::changeEvent(pEvent);
 }
 
-void lmcUserInfoWindow::setUIText(void) {
+void lmFormUserInfo::setUIText(void) {
 	ui.retranslateUi(this);
 	setWindowTitle(tr("User Information"));
 
@@ -84,7 +84,7 @@ void lmcUserInfoWindow::setUIText(void) {
         ui.lblAvatar->setPixmap(QPixmap(filePath));
     }
 	ui.lblUserName->setText(userInfo.data(XN_NAME));
-	ui.lblStatus->setText(lmcStrings::statusDesc()[Helper::statusIndexFromCode(userInfo.data(XN_STATUS))]);
+	ui.lblStatus->setText(lmStrings::statusDesc()[Helper::statusIndexFromCode(userInfo.data(XN_STATUS))]);
 
 	QString data = userInfo.data(XN_FIRSTNAME);
 	if(!data.isNull() && data.compare("N/A") != 0)

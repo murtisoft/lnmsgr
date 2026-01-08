@@ -17,8 +17,8 @@
 ****************************************************************************/
 
 #include "translations.h"
-#include "lanmsg.h"
-#include "stdlocation.h"
+#include "lmcore.h"
+#include "definitionsdir.h"
 #include <QResource>
 #include <QMessageBox>
 #include <QLocalServer>
@@ -28,7 +28,7 @@
 const QString appId = "93fab548-2cf5-4a1e-8758-a416a5ec2120-6fc5009f-84e8-4489-a444-7f934bcf9166";
 
 int showSwitches(void) {
-    QString msg =   "Usage:    lmc [switches]\n" \
+    QString msg =   "Usage:    lm [switches]\n" \
         "    All switches are optional.\n" \
         "\n" \
         "/loopback - Allows loopback communication with local machine.\n" \
@@ -43,7 +43,7 @@ int showSwitches(void) {
         "/? - Display this help.\n" \
         "\n" \
         "Example:\n" \
-        "Start in loopback mode with default settings: lmc /loopback /noconfig\n" \
+        "Start in loopback mode with default settings: lm /loopback /noconfig\n" \
         "\n" \
         "Some command line switches are mutually exclusive. If multiple switches\n" \
         "are specified, they will take precedence in the order given above.\n";
@@ -89,8 +89,6 @@ int main(int argc, char *argv[]) {
     QApplication::setLibraryPaths(QStringList(dir.absolutePath()));
 #endif
 
-    QResource::registerResource(StdLocation::resourceFile());
-
     QApplication::setApplicationName(IDA_PRODUCT);
     QApplication::setOrganizationName(IDA_COMPANY);
     QApplication::setOrganizationDomain(IDA_DOMAIN);
@@ -108,16 +106,11 @@ int main(int argc, char *argv[]) {
             messageList += arguments.at(index) + "\n";
     }
 
-    application.loadTranslations(StdLocation::resLangDir());
-    application.loadTranslations(StdLocation::sysLangDir());
-    application.loadTranslations(StdLocation::userLangDir());
+    application.loadTranslations(DefinitionsDir::resLangDir());
+    application.loadTranslations(DefinitionsDir::sysLangDir());
+    application.loadTranslations(DefinitionsDir::userLangDir());
 
-    //	Enable tracing for Windows and Mac
-#ifndef Q_OS_X11
-    messageList += "/trace\n";
-#endif
-
-    lmcCore core;
+    lmCore core;
     //	handle command line args if this is first instance
     //	some args are handled when the application is initializing
     core.init(messageList);

@@ -20,42 +20,42 @@
 
 #include "transferlistview.h"
 
-lmcTransferListView::lmcTransferListView(QWidget* parent) : QListView(parent) {
+lmTransferListView::lmTransferListView(QWidget* parent) : QListView(parent) {
 	pModel = new FileModel();
 	setModel(pModel);
 	setItemDelegate(new FileDelegate);
 	setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
-void lmcTransferListView::insertItem(int row, FileView* fileTransfer) {
+void lmTransferListView::insertItem(int row, FileView* fileTransfer) {
 	pModel->insertItem(row, fileTransfer);
 }
 
-void lmcTransferListView::removeItem(int row) {
+void lmTransferListView::removeItem(int row) {
 	pModel->removeItem(row);
 }
 
-FileView* lmcTransferListView::item(int row) {
+FileView* lmTransferListView::item(int row) {
 	return pModel->item(row);
 }
 
-FileView* lmcTransferListView::item(QString id) {
+FileView* lmTransferListView::item(QString id) {
 	return pModel->item(id);
 }
 
-FileView* lmcTransferListView::item(QString id, FileView::TransferMode mode) {
+FileView* lmTransferListView::item(QString id, FileView::TransferMode mode) {
 	return pModel->item(id, mode);
 }
 
-int lmcTransferListView::itemIndex(QString id, FileView::TransferMode mode) {
+int lmTransferListView::itemIndex(QString id, FileView::TransferMode mode) {
 	return pModel->itemIndex(id, mode);
 }
 
-FileView* lmcTransferListView::currentItem(void) {
+FileView* lmTransferListView::currentItem(void) {
 	return pModel->item(currentRow());
 }
 
-int lmcTransferListView::currentRow(void) {
+int lmTransferListView::currentRow(void) {
 	QModelIndex index = currentIndex();
 	if(!index.isValid())
 		return -1;
@@ -65,27 +65,27 @@ int lmcTransferListView::currentRow(void) {
 	return index.row();
 }
 
-int lmcTransferListView::count(void) {
+int lmTransferListView::count(void) {
 	return pModel->rowCount();
 }
 
-void lmcTransferListView::setCurrentRow(int row) {
+void lmTransferListView::setCurrentRow(int row) {
 	selectionModel()->setCurrentIndex(pModel->index(row), QItemSelectionModel::ClearAndSelect);
 }
 
-void lmcTransferListView::itemChanged(int row) {
+void lmTransferListView::itemChanged(int row) {
 	pModel->itemChanged(row);
 }
 
-void lmcTransferListView::currentChanged(const QModelIndex& current, const QModelIndex& previous) {
+void lmTransferListView::currentChanged(const QModelIndex& current, const QModelIndex& previous) {
 	QListView::currentChanged(current, previous);
 	emit currentRowChanged(current.row());
 }
 
-void lmcTransferListView::loadData(QString filePath) {
+void lmTransferListView::loadData(QString filePath) {
 	pModel->loadData(filePath);
 }
 
-void lmcTransferListView::saveData(QString filePath) {
+void lmTransferListView::saveData(QString filePath) {
 	pModel->saveData(filePath);
 }

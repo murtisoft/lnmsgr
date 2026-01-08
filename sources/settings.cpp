@@ -19,23 +19,23 @@
 
 
 #include "settings.h"
-#include "stdlocation.h"
+#include "definitionsdir.h"
 
-lmcSettingsBase::lmcSettingsBase(void) : QSettings() {
+lmSettingsBase::lmSettingsBase(void) : QSettings() {
 }
 
-lmcSettingsBase::lmcSettingsBase(const QString& fileName, Format format) :
+lmSettingsBase::lmSettingsBase(const QString& fileName, Format format) :
 	QSettings(fileName, format) {
 }
 
-lmcSettingsBase::lmcSettingsBase(Format format, Scope scope, const QString& organization, const QString& application) :
+lmSettingsBase::lmSettingsBase(Format format, Scope scope, const QString& organization, const QString& application) :
 	QSettings(format, scope, organization, application) {
 }
 
-lmcSettingsBase::~lmcSettingsBase(void) {
+lmSettingsBase::~lmSettingsBase(void) {
 }
 
-void lmcSettingsBase::setValue(const QString& key, const QVariant& value, const QVariant& defaultValue) {
+void lmSettingsBase::setValue(const QString& key, const QVariant& value, const QVariant& defaultValue) {
     if(value != defaultValue)
         QSettings::setValue(key, value);
     else
@@ -44,7 +44,7 @@ void lmcSettingsBase::setValue(const QString& key, const QVariant& value, const 
 
 //	migrate settings from older versions to new format
 //	Returns false if existing settings cannot be migrated, else true
-bool lmcSettings::migrateSettings(void) {
+bool lmSettings::migrateSettings(void) {
 	//	Make sure any pending write operation is completed
 	sync();
 	//	If settings file does not exist, return true indicating no error
@@ -60,23 +60,25 @@ bool lmcSettings::migrateSettings(void) {
 
 //	Load settings from the specified config file and overwrite corresponding
 //	application settings
-bool lmcSettings::loadFromConfig(const QString& configFile) {
+bool lmSettings::loadFromConfig(const QString& configFile) {
 	if(!QFile::exists(configFile))
 		return false;
 
-	if(!Helper::copyFile(configFile, StdLocation::tempConfigFile()))
+	if(!Helper::copyFile(configFile, DefinitionsDir::tempConfigFile()))
 		return false;
 
-	if(!migrateSettings(StdLocation::tempConfigFile()))
+	if(!migrateSettings(DefinitionsDir::tempConfigFile()))
 		return false;
 
 	QVariant value;
-	QSettings extSettings(StdLocation::tempConfigFile(), QSettings::IniFormat);
+	QSettings extSettings(DefinitionsDir::tempConfigFile(), QSettings::IniFormat);
 
 	value = extSettings.value(IDS_AUTOSTART);
 	if(value.isValid())	setValue(IDS_AUTOSTART, value);
 	value = extSettings.value(IDS_AUTOSHOW);
 	if(value.isValid())	setValue(IDS_AUTOSHOW, value);
+    value = extSettings.value(IDS_DEBUGLOG);
+    if(value.isValid())	setValue(IDS_DEBUGLOG, value);
 
 	value = extSettings.value(IDS_SYSTRAY);
 	if(value.isValid())	setValue(IDS_SYSTRAY, value);
@@ -191,12 +193,12 @@ bool lmcSettings::loadFromConfig(const QString& configFile) {
 	setValue(IDS_VERSION, IDA_VERSION);
 	sync();
 
-	QFile::remove(StdLocation::tempConfigFile());
+	QFile::remove(DefinitionsDir::tempConfigFile());
 
 	return true;
 }
 
-void lmcSettings::setAutoStart(bool on) {
+void lmSettings::setAutoStart(bool on) {
 #ifdef Q_OS_WIN
 	QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
 		QSettings::NativeFormat);
@@ -223,7 +225,7 @@ void lmcSettings::setAutoStart(bool on) {
 		autoStartDir.append("/.config/autostart");
 	}
 	QDir dir(autoStartDir);
-	QString fileName = dir.absoluteFilePath("lmc.desktop");
+	QString fileName = dir.absoluteFilePath("lm.desktop");
 	//	delete the file if autostart is set to false
 	if(!on) {
 		QFile::remove(fileName);
@@ -243,8 +245,8 @@ void lmcSettings::setAutoStart(bool on) {
 	stream << "Type=Application\n";
 	stream << "Name=" << IDA_TITLE << "\n";
 	stream << "Comment=Send and receive instant messages\n";
-	stream << "Icon=lmc\n";
-	stream << "Exec=sh " << qApp->applicationDirPath() << "/lmc.sh\n";
+	stream << "Icon=lm\n";
+	stream << "Exec=sh " << qApp->applicationDirPath() << "/lm.sh\n";
 	stream << "Terminal=false\n";
 	file.close();
 #endif
@@ -252,8 +254,8 @@ void lmcSettings::setAutoStart(bool on) {
 
 //	The function expects the config file to exist. Validation must be done
 //	prior to calling the function.
-bool lmcSettings::migrateSettings(const QString& configFile) {
-	lmcSettingsBase settings(configFile, QSettings::IniFormat);
+bool lmSettings::migrateSettings(const QString& configFile) {
+	lmSettingsBase settings(configFile, QSettings::IniFormat);
 
 	QString version = settings.value(IDS_VERSION, IDS_VERSION_VAL).toString();
 
@@ -359,7 +361,7 @@ bool lmcSettings::migrateSettings(const QString& configFile) {
 		}
 		settings.endArray();
 
-		QSettings groupSettings(StdLocation::groupFile(), QSettings::IniFormat);
+		QSettings groupSettings(DefinitionsDir::groupFile(), QSettings::IniFormat);
 		groupSettings.beginWriteArray(IDS_GROUPHDR);
 		QHashIterator<QString, QString> it(groupIdHash);
 		int count = 0;

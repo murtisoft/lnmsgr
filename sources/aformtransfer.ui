@@ -61,7 +61,7 @@
     </widget>
    </item>
    <item>
-    <widget class="lmcTransferListView" name="lvTransferList">
+    <widget class="lmTransferListView" name="lvTransferList">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -116,7 +116,7 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>lmcTransferListView</class>
+   <class>lmTransferListView</class>
    <extends>QListView</extends>
    <header>transferlistview.h</header>
   </customwidget>

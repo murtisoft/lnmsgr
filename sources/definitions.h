@@ -292,8 +292,8 @@ enum UserCap {
 
 #define AUTO_CONNECTION	"Auto"
 
-#define LMC_TRUE	"true"
-#define LMC_FALSE	"false"
+#define LM_TRUE     "true"
+#define LM_FALSE	"false"
 
 #define PROGRESS_TIMEOUT    1500
 

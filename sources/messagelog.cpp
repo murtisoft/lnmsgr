@@ -31,7 +31,7 @@ const QString acceptOp("accept");
 const QString declineOp("decline");
 const QString cancelOp("cancel");
 
-lmcMessageLog::lmcMessageLog(QWidget *parent) : QMessageBrowser (parent) {
+lmMessageLog::lmMessageLog(QWidget *parent) : MessageBrowser (parent) {
 // TODO
 //	connect(this, SIGNAL(linkClicked(QUrl)), this, SLOT(log_linkClicked(QUrl)));
 //	connect(this->page(), SIGNAL(linkHovered(QString, QString, QString)),
@@ -58,10 +58,10 @@ lmcMessageLog::lmcMessageLog(QWidget *parent) : QMessageBrowser (parent) {
 	autoScroll = true;
 }
 
-lmcMessageLog::~lmcMessageLog() {
+lmMessageLog::~lmMessageLog() {
 }
 
-void lmcMessageLog::initMessageLog(QString themePath, bool clearLog) {
+void lmMessageLog::initMessageLog(QString themePath, bool clearLog) {
 	if(clearLog)
 		messageLog.clear();
 	lastId = QString();
@@ -69,28 +69,28 @@ void lmcMessageLog::initMessageLog(QString themePath, bool clearLog) {
     reloadTheme();
 }
 
-void lmcMessageLog::reloadTheme()
+void lmMessageLog::reloadTheme()
 {
-    themeData = lmcTheme::loadTheme(themePath);
+    themeData = lmTheme::loadTheme(themePath);
     clear();
 }
 
-void lmcMessageLog::createContextMenu(void) {
+void lmMessageLog::createContextMenu(void) {
 	contextMenu = new QMenu(this);
 	copyAction = new QAction("&Copy", this);
     copyAction->setShortcut(QKeySequence::Copy);
-	connect(copyAction, &QAction::triggered, this, &lmcMessageLog::copyAction_triggered);
+	connect(copyAction, &QAction::triggered, this, &lmMessageLog::copyAction_triggered);
     contextMenu->addAction(copyAction);
 	copyLinkAction = contextMenu->addAction("&Copy Link", this, SLOT(copyLinkAction_triggered()));
 	contextMenu->addSeparator();
 	selectAllAction = new QAction("Select &All", this);
-    connect(selectAllAction, &QAction::triggered, this, &lmcMessageLog::selectAllAction_triggered);
+    connect(selectAllAction, &QAction::triggered, this, &lmMessageLog::selectAllAction_triggered);
     contextMenu->addAction(selectAllAction);
 	connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 	setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
-void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage,
+void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
 		bool bReload) {
 
 	if(!pMessage && type != MT_Error)
@@ -192,14 +192,14 @@ void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStr
 	}
 
 	if(!bReload && addToLog && pMessage) {
-		XmlMessage xmlMessage = pMessage->clone();
+		MessageXml xmlMessage = pMessage->clone();
 		QString userId = lpszUserId ? *lpszUserId : QString();
 		QString userName = lpszUserName ? *lpszUserName : QString();
 		messageLog.append(SingleMessage(type, userId, userName, xmlMessage, id));
     }
 }
 
-void lmcMessageLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
+void lmMessageLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
 {
     QString tempId = getFileTempId(mode, fileId);
 
@@ -207,7 +207,7 @@ void lmcMessageLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
 	for(int index = 0; index < messageLog.count(); index++) {
 		SingleMessage msg = messageLog.at(index);
 		if(tempId.compare(msg.id) == 0) {
-			XmlMessage xmlMessage = msg.message;
+			MessageXml xmlMessage = msg.message;
 			xmlMessage.removeData(XN_FILEOP);
 			xmlMessage.addData(XN_FILEOP, FileOpNames[op]);
 			msg.message = xmlMessage;
@@ -219,7 +219,7 @@ void lmcMessageLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
 	}
 }
 
-void lmcMessageLog::updateUserName(QString* lpszUserId, QString* lpszUserName) {
+void lmMessageLog::updateUserName(QString* lpszUserId, QString* lpszUserName) {
 	//	update the entries in message log
 	for(int index = 0; index < messageLog.count(); index++) {
 		SingleMessage msg = messageLog.takeAt(index);
@@ -231,13 +231,13 @@ void lmcMessageLog::updateUserName(QString* lpszUserId, QString* lpszUserName) {
 	reloadMessageLog();
 }
 
-void lmcMessageLog::updateAvatar(QString* lpszUserId, QString* lpszFilePath) {
+void lmMessageLog::updateAvatar(QString* lpszUserId, QString* lpszFilePath) {
 	participantAvatars.insert(*lpszUserId, *lpszFilePath);
 
 	reloadMessageLog();
 }
 
-void lmcMessageLog::reloadMessageLog(void) {
+void lmMessageLog::reloadMessageLog(void) {
 	initMessageLog(themePath, false);
 	for(int index = 0; index < messageLog.count(); index++) {
 		SingleMessage msg = messageLog[index];
@@ -245,7 +245,7 @@ void lmcMessageLog::reloadMessageLog(void) {
 	}
 }
 
-QString lmcMessageLog::prepareMessageLogForSave(OutputFormat format) {
+QString lmMessageLog::prepareMessageLogForSave(OutputFormat format) {
 	QDateTime time;
 
 	if(format == HtmlFormat) {
@@ -289,14 +289,14 @@ QString lmcMessageLog::prepareMessageLogForSave(OutputFormat format) {
 	}
 }
 
-void lmcMessageLog::setAutoScroll(bool enable) {
+void lmMessageLog::setAutoScroll(bool enable) {
 	autoScroll = enable;
 }
 
-void lmcMessageLog::abortPendingFileOperations(void) {
-    QMap<QString, XmlMessage>::iterator sIndex = sendFileMap.begin();
+void lmMessageLog::abortPendingFileOperations(void) {
+    QMap<QString, MessageXml>::iterator sIndex = sendFileMap.begin();
     while(sIndex != sendFileMap.end()) {
-        XmlMessage fileData = sIndex.value();
+        MessageXml fileData = sIndex.value();
         FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, fileData.data(XN_FILEOP));
         if(fileOp == FO_Request) {
             updateFileMessage(FM_Send, FO_Abort, fileData.data(XN_FILEID));
@@ -305,9 +305,9 @@ void lmcMessageLog::abortPendingFileOperations(void) {
         }
         sIndex++;
     }
-    QMap<QString, XmlMessage>::iterator rIndex = receiveFileMap.begin();
+    QMap<QString, MessageXml>::iterator rIndex = receiveFileMap.begin();
     while(rIndex != receiveFileMap.end()) {
-        XmlMessage fileData = rIndex.value();
+        MessageXml fileData = rIndex.value();
         FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, fileData.data(XN_FILEOP));
         if(fileOp == FO_Request) {
             updateFileMessage(FM_Receive, FO_Abort, fileData.data(XN_FILEID));
@@ -318,7 +318,7 @@ void lmcMessageLog::abortPendingFileOperations(void) {
     }
 }
 
-void lmcMessageLog::saveMessageLog(QString filePath) {
+void lmMessageLog::saveMessageLog(QString filePath) {
     if(messageLog.isEmpty())
         return;
 
@@ -336,7 +336,7 @@ void lmcMessageLog::saveMessageLog(QString filePath) {
     file.close();
 }
 
-void lmcMessageLog::restoreMessageLog(QString filePath, bool reload) {
+void lmMessageLog::restoreMessageLog(QString filePath, bool reload) {
     messageLog.clear();
 
     QFile file(filePath);
@@ -352,7 +352,7 @@ void lmcMessageLog::restoreMessageLog(QString filePath, bool reload) {
         reloadMessageLog();
 }
 
-void lmcMessageLog::changeEvent(QEvent* event) {
+void lmMessageLog::changeEvent(QEvent* event) {
 	switch(event->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -364,9 +364,9 @@ void lmcMessageLog::changeEvent(QEvent* event) {
     QWidget::changeEvent(event);
 }
 
-void lmcMessageLog::resizeEvent(QResizeEvent *event)
+void lmMessageLog::resizeEvent(QResizeEvent *event)
 {
-    QMessageBrowser::resizeEvent(event);
+    MessageBrowser::resizeEvent(event);
 
     if(autoScroll) {
         QTextCursor cursor = textCursor();
@@ -374,7 +374,7 @@ void lmcMessageLog::resizeEvent(QResizeEvent *event)
     }
 }
 
-void lmcMessageLog::onAnchorClicked(const QUrl &url)
+void lmMessageLog::onAnchorClicked(const QUrl &url)
 {
     QString linkPath = url.toString();
 
@@ -390,7 +390,7 @@ void lmcMessageLog::onAnchorClicked(const QUrl &url)
         linkPath.prepend("http://");
         QDesktopServices::openUrl(QUrl(linkPath));
         return;
-    } else if(!linkPath.startsWith("lmc")) {
+    } else if(!linkPath.startsWith("lm")) {
         QDesktopServices::openUrl(url);
         return;
     }
@@ -417,13 +417,13 @@ void lmcMessageLog::onAnchorClicked(const QUrl &url)
     fileOperation(linkData[3], linkData[2], linkData[1], mode);
 }
 
-void lmcMessageLog::log_linkHovered(const QString& link, const QString& title, const QString& textContent) {
+void lmMessageLog::log_linkHovered(const QString& link, const QString& title, const QString& textContent) {
 	Q_UNUSED(title);
 	Q_UNUSED(textContent);
 	linkHovered = !link.isEmpty();
 }
 
-void lmcMessageLog::showContextMenu(const QPoint& pos) {
+void lmMessageLog::showContextMenu(const QPoint& pos) {
     QTextCursor cursor = textCursor();
     copyAction->setEnabled(cursor.selectionStart() != cursor.selectionEnd());
 	copyLinkAction->setEnabled(linkHovered);
@@ -433,20 +433,20 @@ void lmcMessageLog::showContextMenu(const QPoint& pos) {
 	contextMenu->exec(mapToGlobal(pos));
 }
 
-void lmcMessageLog::copyAction_triggered(void) {
+void lmMessageLog::copyAction_triggered(void) {
     copy();
 }
 
-void lmcMessageLog::copyLinkAction_triggered(void) {
+void lmMessageLog::copyLinkAction_triggered(void) {
 //  TODO
 //	pageAction(QWebPage::CopyLinkToClipboard)->trigger();
 }
 
-void lmcMessageLog::selectAllAction_triggered(void) {
+void lmMessageLog::selectAllAction_triggered(void) {
     selectAll();
 }
 
-void lmcMessageLog::scrollToEnd(QTextCursor &cursor)
+void lmMessageLog::scrollToEnd(QTextCursor &cursor)
 {
     cursor.movePosition(QTextCursor::MoveOperation::End);
     setTextCursor(cursor);
@@ -456,7 +456,7 @@ void lmcMessageLog::scrollToEnd(QTextCursor &cursor)
     scrollBar->setValue(scrollBar->maximum());
 }
 
-void lmcMessageLog::appendMessageLog(QString *lpszHtml, MessageType type, QTextBlockData *data) {
+void lmMessageLog::appendMessageLog(QString *lpszHtml, MessageType type, QTextBlockData *data) {
 
     QTextCursor cursor = textCursor();
     cursor.movePosition(QTextCursor::MoveOperation::End);
@@ -467,12 +467,12 @@ void lmcMessageLog::appendMessageLog(QString *lpszHtml, MessageType type, QTextB
         scrollToEnd(cursor);
 }
 
-void lmcMessageLog::removeMessageLog(MessageType type) {
+void lmMessageLog::removeMessageLog(MessageType type) {
 
     replaceMessageLog(type, QString(), QString());
 }
 
-void lmcMessageLog::replaceMessageLog(MessageType type, QString id, QString html)
+void lmMessageLog::replaceMessageLog(MessageType type, QString id, QString html)
 {
     auto frames = document()->rootFrame()->childFrames();
 
@@ -499,7 +499,7 @@ void lmcMessageLog::replaceMessageLog(MessageType type, QString id, QString html
     }
 }
 
-void lmcMessageLog::insertMessageLog(QTextCursor cursor, QString &html, MessageType type, QTextBlockData *data)
+void lmMessageLog::insertMessageLog(QTextCursor cursor, QString &html, MessageType type, QTextBlockData *data)
 {
     QTextFrameFormat frameFormat;
     frameFormat.setMargin(0);
@@ -517,7 +517,7 @@ void lmcMessageLog::insertMessageLog(QTextCursor cursor, QString &html, MessageT
         block.setUserData(data);
 }
 
-bool lmcMessageLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &id) const
+bool lmMessageLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &id) const
 {
     bool result = false;
 
@@ -539,7 +539,7 @@ bool lmcMessageLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &
     return result;
 }
 
-void lmcMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime) {
+void lmMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime) {
 	Q_UNUSED(lpszUserId);
 
 	decodeMessage(lpszMessage);
@@ -548,15 +548,19 @@ void lmcMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, 
 	QString caption = tr("Broadcast message from %1:");
     html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Broadcast+"</span>");
 	html.replace("%sender%", caption.arg(*lpszUserName));
-    html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-    html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+
+    QString timeStr = getTimeString(pTime);
+    QStringList parts = timeStr.split('|');
+    html.replace("%date%", parts.value(0));
+    html.replace("%time%", parts.value(1));
+
 	html.replace("%style%", "");
 	html.replace("%message%", *lpszMessage);
 
     appendMessageLog(&html, MT_Broadcast);
 }
 
-void lmcMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
+void lmMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
 								  QFont* pFont, QColor* pColor) {
 	QString html = QString();
 	bool localUser = (lpszUserId->compare(localId) == 0);
@@ -566,13 +570,13 @@ void lmcMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QS
 	QString fontStyle = getFontStyle(pFont, pColor, localUser);
 
 	if(lpszUserId->compare(lastId) != 0) {
-		html = localUser ? themeData.outMsg : themeData.inMsg;
+        html = localUser ? themeData.inMsg : themeData.inMsg;
 
 		//	get the avatar image for this user from the cache folder
 		QString filePath = participantAvatars.value(*lpszUserId);
 		//	if image not found, use the default avatar image for this user
         //QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
-        QString icon; //==========================================================================NEED2TEST this.
+        QString icon;
         if (QFile::exists(filePath)) {
             icon = QUrl::fromLocalFile(filePath).toString();
             icon = "<img border='0' width='48' height='48' src='"+ icon +"'>";
@@ -582,15 +586,23 @@ void lmcMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QS
 
         html.replace("%icon%", icon);
 		html.replace("%sender%", *lpszUserName);
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+
+        QString timeStr = getTimeString(pTime);
+        QStringList parts = timeStr.split('|');
+        html.replace("%date%", parts.value(0));
+        html.replace("%time%", parts.value(1));
+
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
     } else {
-		html = localUser ? themeData.outNextMsg : themeData.inNextMsg;
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+        html = localUser ? themeData.inNextMsg : themeData.inNextMsg;
+
+        QString timeStr = getTimeString(pTime);
+        QStringList parts = timeStr.split('|');
+        html.replace("%date%", parts.value(0));
+        html.replace("%time%", parts.value(1));
+
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
@@ -601,7 +613,7 @@ void lmcMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QS
 	hasData = true;
 }
 
-void lmcMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage,
+void lmMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage,
                                         QDateTime *pTime, QFont *pFont, QColor *pColor, MessageType messageType) {
 	QString html = QString();
 	bool localUser = (lpszUserId->compare(localId) == 0);
@@ -612,13 +624,13 @@ void lmcMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNa
 
 	if(lpszUserId->compare(lastId) != 0) {
 		outStyle = !outStyle;
-		html = outStyle ? themeData.outMsg : themeData.inMsg;
+        html = outStyle ? themeData.inMsg : themeData.inMsg;
 
         //	get the avatar image for this user from the cache folder
         QString filePath = participantAvatars.value(*lpszUserId);
         //	if image not found, use the default avatar image for this user
         //QString iconPath = QFile::exists(filePath) ? QUrl::fromLocalFile(filePath).toString() : "qrc" AVT_DEFAULT;
-        QString icon; //==========================================================================NEED2TEST this.
+        QString icon;
         if (QFile::exists(filePath)) {
             icon = QUrl::fromLocalFile(filePath).toString();
             icon = "<img border='0' width='48' height='48' src='"+ icon +"'>";
@@ -628,15 +640,23 @@ void lmcMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNa
 
         html.replace("%icon%", icon);
 		html.replace("%sender%", *lpszUserName);
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+
+        QString timeStr = getTimeString(pTime);
+        QStringList parts = timeStr.split('|');
+        html.replace("%date%", parts.value(0));
+        html.replace("%time%", parts.value(1));
+
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
     } else {
-		html = outStyle ? themeData.outNextMsg : themeData.inNextMsg;
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+        html = outStyle ? themeData.inNextMsg : themeData.inNextMsg;
+
+        QString timeStr = getTimeString(pTime);
+        QStringList parts = timeStr.split('|');
+        html.replace("%date%", parts.value(0));
+        html.replace("%time%", parts.value(1));
+
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", *lpszMessage);
 
@@ -648,7 +668,7 @@ void lmcMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNa
 }
 
 // This function is called to display a file request message on chat box
-QString lmcMessageLog::getFileMessageText(MessageType type, QString* lpszUserName, XmlMessage* pMessage, bool bReload)
+QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
 {
     QString html;
 	QString caption;
@@ -664,13 +684,20 @@ QString lmcMessageLog::getFileMessageText(MessageType type, QString* lpszUserNam
         fileType = "folder";
         break;
     default:
-        throw std::logic_error("lmcMessageLog::generateFileMessageText: not yet implemented");
+        throw std::logic_error("lmMessageLog::generateFileMessageText: not yet implemented");
     }
 
     html = themeData.reqMsg;
     html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::File+"</span>");
-    html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-    html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+
+    //This type of message doesnt come with a timestamp, but I want one anyway.
+    if (messageDate) {
+        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+    } else {
+        html.replace("%date%", "");
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+    }
 
 	FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
     FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
@@ -683,7 +710,7 @@ QString lmcMessageLog::getFileMessageText(MessageType type, QString* lpszUserNam
 		switch(fileOp) {
 		case FO_Request:
 			sendFileMap.insert(fileId, *pMessage);
-            html.replace("%links%", "<a href='lmc://" + fileType + "/" + cancelOp + "/" + fileId + "'>" + tr("Cancel") + "</a>");
+            html.replace("%links%", "<a href='lm://" + fileType + "/" + cancelOp + "/" + fileId + "'>" + tr("Cancel") + "</a>");
 			break;
 		case FO_Cancel:
 		case FO_Accept:
@@ -727,8 +754,8 @@ QString lmcMessageLog::getFileMessageText(MessageType type, QString* lpszUserNam
                     fileOperation(fileId, acceptOp, fileType);
 			} else {
                 html.replace("%links%",
-                    "<a href='lmc://" + fileType + "/" + acceptOp + "/" + fileId + "'>" + tr("Accept") + "</a>&nbsp;&nbsp;" +
-                    "<a href='lmc://" + fileType + "/" + declineOp + "/" + fileId + "'>" + tr("Decline") + "</a>");
+                    "<a href='lm://" + fileType + "/" + acceptOp + "/" + fileId + "'>" + tr("Accept") + "</a>&nbsp;&nbsp;" +
+                    "<a href='lm://" + fileType + "/" + declineOp + "/" + fileId + "'>" + tr("Decline") + "</a>");
 			}
 			break;
 		case FO_Cancel:
@@ -748,7 +775,7 @@ QString lmcMessageLog::getFileMessageText(MessageType type, QString* lpszUserNam
     return html;
 }
 
-QString lmcMessageLog::getFontStyle(QFont* pFont, QColor* pColor, bool size) {
+QString lmMessageLog::getFontStyle(QFont* pFont, QColor* pColor, bool size) {
 	QString style = "font-family:\"" + pFont->family() + "\"; ";
 	if(pFont->italic())
 		style.append("font-style:italic; ");
@@ -770,7 +797,7 @@ QString lmcMessageLog::getFontStyle(QFont* pFont, QColor* pColor, bool size) {
 	return style;
 }
 
-QString lmcMessageLog::getFileStatusMessage(FileMode mode, FileOp op) {
+QString lmMessageLog::getFileStatusMessage(FileMode mode, FileOp op) {
 	QString message;
 
 	switch(op) {
@@ -797,7 +824,7 @@ QString lmcMessageLog::getFileStatusMessage(FileMode mode, FileOp op) {
 	return message;
 }
 
-QString lmcMessageLog::getChatStateMessage(ChatState chatState) {
+QString lmMessageLog::getChatStateMessage(ChatState chatState) {
 	QString message = QString();
 
 	switch(chatState) {
@@ -814,7 +841,7 @@ QString lmcMessageLog::getChatStateMessage(ChatState chatState) {
 	return message;
 }
 
-QString lmcMessageLog::getChatRoomMessage(GroupMsgOp op) {
+QString lmMessageLog::getChatRoomMessage(GroupMsgOp op) {
 	QString message = QString();
 
 	switch(op) {
@@ -831,8 +858,8 @@ QString lmcMessageLog::getChatRoomMessage(GroupMsgOp op) {
 	return message;
 }
 
-void lmcMessageLog::fileOperation(QString fileId, QString action, QString fileType, FileMode mode) {
-    XmlMessage fileData, xmlMessage;
+void lmMessageLog::fileOperation(QString fileId, QString action, QString fileType, FileMode mode) {
+    MessageXml fileData, xmlMessage;
 
     MessageType type;
     if(fileType.compare("file") == 0)
@@ -877,7 +904,7 @@ void lmcMessageLog::fileOperation(QString fileId, QString action, QString fileTy
 //	The useDefaults parameter is an override flag that will ignore app settings
 //	while decoding the message. If the flag is set, message is not trimmed,
 //	smileys are left as text and links will be detected and converted.
-void lmcMessageLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
+void lmMessageLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	if(!useDefaults && trimMessage)
 		*lpszMessage = lpszMessage->trimmed();
 
@@ -923,38 +950,35 @@ void lmcMessageLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	*lpszMessage = message;
 }
 
-void lmcMessageLog::processMessageText(QString* lpszMessageText, bool useDefaults) {
+void lmMessageLog::processMessageText(QString* lpszMessageText, bool useDefaults) {
 	ChatHelper::makeHtmlSafe(lpszMessageText);
 	//	if smileys are enabled, replace text emoticons with corresponding images
 	if(!useDefaults && showSmiley)
 		ChatHelper::decodeSmileys(lpszMessageText);
 }
 
-QString lmcMessageLog::getTimeString(QDateTime* pTime) {
-	QString szTimeStamp;
-	if(messageTime) {
-		if (messageDate)
-            szTimeStamp.append(QLocale().toString(pTime->date(), QLocale::ShortFormat) + "&nbsp;");
-        szTimeStamp.append(QLocale().toString(pTime->time(), QLocale::ShortFormat) + "&nbsp;");
-	}
-
-	return szTimeStamp;
+QString lmMessageLog::getTimeString(QDateTime* pTime) {
+    if (!pTime || !messageTime) return "";
+    if (messageDate) {
+        return pTime->toString("d MMMM yyyy|hh:mm");
+    }
+    return pTime->toString("|hh:mm");  //string will be split, and date placeholder will be replaced with nothing.
 }
 
-void lmcMessageLog::setUIText(void) {
+void lmMessageLog::setUIText(void) {
 	copyAction->setText(tr("&Copy"));
 	selectAllAction->setText(tr("Select &All"));
     reloadMessageLog();
 }
 
-QString lmcMessageLog::getFileTempId(FileMode mode, QString fileId) const
+QString lmMessageLog::getFileTempId(FileMode mode, QString fileId) const
 {
     QString tempId = (mode == FM_Send) ? "send" : "receive";
     tempId.append(fileId);
     return tempId;
 }
 
-QString lmcMessageLog::getFileTempId(XmlMessage *pMessage) const
+QString lmMessageLog::getFileTempId(MessageXml *pMessage) const
 {
     QString fileId = pMessage->data(XN_FILEID);
     FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));

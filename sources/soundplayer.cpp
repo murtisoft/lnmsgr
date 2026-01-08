@@ -35,8 +35,8 @@ typedef BOOL (WINAPI *sndPlaySoundFunc)(LPCSTR lpszSound, UINT fuSound);
 static sndPlaySoundFunc sndPlaySoundFromDll = nullptr;
 #endif
 
-lmcSoundPlayer::lmcSoundPlayer(void) {
-	pSettings = new lmcSettings();
+lmSoundPlayer::lmSoundPlayer(void) {
+	pSettings = new lmSettings();
 	for(int index = 0; index < SE_Max; index++) {
 		eventState[index] = Qt::Checked;
 		sounds[index] = soundFile[index];
@@ -50,7 +50,7 @@ lmcSoundPlayer::lmcSoundPlayer(void) {
 #endif
 }
 
-bool lmcSoundPlayer::isAvailable()
+bool lmSoundPlayer::isAvailable()
 {
 #ifdef Q_OS_WIN
     return sndPlaySoundFromDll != nullptr;
@@ -60,7 +60,7 @@ bool lmcSoundPlayer::isAvailable()
 }
 
 /*  Old Function that fails to play embedded resources.
-void lmcSoundPlayer::play(const QString& filename)
+void lmSoundPlayer::play(const QString& filename)
 {
 #ifdef Q_OS_WIN
     if(sndPlaySoundFromDll)
@@ -73,7 +73,7 @@ void lmcSoundPlayer::play(const QString& filename)
 #endif
 }*/
 
-void lmcSoundPlayer::play(const QString& filename){
+void lmSoundPlayer::play(const QString& filename){
     if (filename.isEmpty()) return;
     QSoundEffect* effect = new QSoundEffect();
 
@@ -88,7 +88,7 @@ void lmcSoundPlayer::play(const QString& filename){
     effect->play();
 }
 
-void lmcSoundPlayer::play(SoundEvent event) {
+void lmSoundPlayer::play(SoundEvent event) {
 	QString localStatus = pSettings->value(IDS_STATUS, IDS_STATUS_VAL).toString();
 	if(!playSound || (localStatus == "Busy" && noBusySound) || (localStatus == "NoDisturb" && noDNDSound))
 		return;
@@ -99,7 +99,7 @@ void lmcSoundPlayer::play(SoundEvent event) {
     play(sounds[event]);
 }
 
-void lmcSoundPlayer::settingsChanged(void) {
+void lmSoundPlayer::settingsChanged(void) {
 	int size = qMin(pSettings->beginReadArray(IDS_SOUNDEVENTHDR), (int)SE_Max);
 	for(int index = 0; index < size; index++) {
 		pSettings->setArrayIndex(index);

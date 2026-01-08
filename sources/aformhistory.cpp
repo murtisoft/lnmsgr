@@ -24,13 +24,13 @@
 #include "aformhistory.h"
 #include <QLocale>
 
-lmcHistoryWindow::lmcHistoryWindow(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
+lmFormHistory::lmFormHistory(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
 	ui.setupUi(this);
 
 	//	Destroy the window when it closes
 	setAttribute(Qt::WA_DeleteOnClose, true);
 
-	pMessageLog = new lmcMessageLog(ui.fraMessageLog);
+	pMessageLog = new lmMessageLog(ui.fraMessageLog);
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);
 
@@ -52,16 +52,16 @@ lmcHistoryWindow::lmcHistoryWindow(QWidget *parent, Qt::WindowFlags flags) : QWi
     ui.btnClose->installEventFilter(this);
 }
 
-lmcHistoryWindow::~lmcHistoryWindow() {
+lmFormHistory::~lmFormHistory() {
 }
 
-void lmcHistoryWindow::init(void) {
+void lmFormHistory::init(void) {
 	setWindowIcon(QIcon(IDR_APPICON));
     ui.splitter->setStyleSheet("QSplitter::handle { image: url(" IDR_HGRIP "); }");
 
 	pMessageLog->setAutoScroll(false);
 
-	pSettings = new lmcSettings();
+	pSettings = new lmSettings();
 	restoreGeometry(pSettings->value(IDS_WINDOWHISTORY).toByteArray());
 	ui.splitter->restoreState(pSettings->value(IDS_SPLITTERHISTORY).toByteArray());
 	setUIText();
@@ -69,19 +69,19 @@ void lmcHistoryWindow::init(void) {
 	displayList();
 }
 
-void lmcHistoryWindow::updateList(void) {
+void lmFormHistory::updateList(void) {
 	displayList();
 }
 
-void lmcHistoryWindow::stop(void) {
+void lmFormHistory::stop(void) {
 	pSettings->setValue(IDS_WINDOWHISTORY, saveGeometry());
 	pSettings->setValue(IDS_SPLITTERHISTORY, ui.splitter->saveState());
 }
 
-void lmcHistoryWindow::settingsChanged(void) {
+void lmFormHistory::settingsChanged(void) {
 }
 
-bool lmcHistoryWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
+bool lmFormHistory::eventFilter(QObject* pObject, QEvent* pEvent) {
     Q_UNUSED(pObject);
     if(pEvent->type() == QEvent::KeyPress) {
         QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
@@ -94,7 +94,7 @@ bool lmcHistoryWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
     return false;
 }
 
-void lmcHistoryWindow::changeEvent(QEvent* pEvent) {
+void lmFormHistory::changeEvent(QEvent* pEvent) {
 	switch(pEvent->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -106,7 +106,7 @@ void lmcHistoryWindow::changeEvent(QEvent* pEvent) {
 	QWidget::changeEvent(pEvent);
 }
 
-void lmcHistoryWindow::tvMsgList_currentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous) {
+void lmFormHistory::tvMsgList_currentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous) {
     Q_UNUSED(previous);
 
 	if(current) {
@@ -117,18 +117,18 @@ void lmcHistoryWindow::tvMsgList_currentItemChanged(QTreeWidgetItem* current, QT
 	}
 }
 
-void lmcHistoryWindow::btnClearHistory_clicked(void) {
+void lmFormHistory::btnClearHistory_clicked(void) {
 	QFile::remove(History::historyFile());
 	displayList();
 }
 
-void lmcHistoryWindow::setUIText(void) {
+void lmFormHistory::setUIText(void) {
 	ui.retranslateUi(this);
 
 	setWindowTitle(tr("Message History"));
 }
 
-void lmcHistoryWindow::displayList(void) {
+void lmFormHistory::displayList(void) {
 	pMessageLog->setHtml("<html></html>");
 	ui.tvMsgList->clear();
 	msgList.clear();
@@ -136,7 +136,7 @@ void lmcHistoryWindow::displayList(void) {
 	msgList = History::getList();
 
 	for(int index = 0; index < msgList.count(); index++) {
-		lmcHistoryTreeWidgetItem* pItem = new lmcHistoryTreeWidgetItem();
+		lmHistoryTreeWidgetItem* pItem = new lmHistoryTreeWidgetItem();
 		pItem->setText(0, msgList[index].name);
 		pItem->setText(1, QLocale().toString(msgList[index].date, QLocale::ShortFormat));
 		pItem->setData(0, DataRole, msgList[index].offset);

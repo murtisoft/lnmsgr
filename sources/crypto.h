@@ -28,11 +28,11 @@
 #include <openssl/rand.h>
 #include <openssl/aes.h>
 
-class lmcCrypto
+class lmCrypto
 {
 public:
-    lmcCrypto();
-    ~lmcCrypto();
+    lmCrypto();
+    ~lmCrypto();
 
     QByteArray generateRSA();
     QByteArray generateAES(QString* lpszUserId, QByteArray& pubKey);

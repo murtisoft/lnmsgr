@@ -37,24 +37,24 @@
 #include "history.h"
 #include "messagelog.h"
 #include "subcontrols.h"
-#include "imagepickeraction.h"
+#include "imagepicker.h"
 #include "soundplayer.h"
-#include "chatdefinitions.h"
+#include "definitionschat.h"
 #include "chathelper.h"
-#include "stdlocation.h"
-#include "xmlmessage.h"
+#include "definitionsdir.h"
+#include "messagexml.h"
 #include "theme.h"
 
-class lmcChatWindow : public QWidget {
+class lmFormChat : public QWidget {
 	Q_OBJECT
 
 public:
-	lmcChatWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-	~lmcChatWindow(void);
+	lmFormChat(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
+	~lmFormChat(void);
 
 	void init(User* pLocalUser, User* pRemoteUser, bool connected);
     void stop(void);
-	void receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(bool connected);
 	void settingsChanged(void);
 
@@ -64,7 +64,7 @@ public:
 	bool groupMode;
 
 signals:
-	void messageSent(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void showHistory(void);
 	void showTransfers(void);
 	void closed(QString* lpszUserId);
@@ -85,8 +85,9 @@ private slots:
 	void btnHistory_clicked(void);
 	void btnTransfers_clicked(void);
 	void smileyAction_triggered(void);
-	void log_sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void log_sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void checkChatState(void);
+    void btnNudge_clicked();
 
 private:
 	void createSmileyMenu(void);
@@ -97,13 +98,14 @@ private:
     void sendFolder(QString* lpszFolderPath);
     void sendObject(MessageType type, QString* lpszPath);
 	void encodeMessage(QString* lpszMessage);
-    void processFileOp(XmlMessage* pMessage);
-	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage);
+    void processFileOp(MessageXml* pMessage);
+	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
 	void showStatus(int flag, bool add);
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
 	void setChatState(ChatState newChatState);
+    void nudge(bool send = false);
 
 	QString peerId;
 	QString localName;
@@ -114,26 +116,27 @@ private:
 	QString lastUserId;
 
 	Ui::ChatWindow ui;
-	lmcSettings* pSettings;
-	lmcMessageLog* pMessageLog;
+	lmSettings* pSettings;
+	lmMessageLog* pMessageLog;
 	QAction* pFontAction;
 	QAction* pFontColorAction;
-	lmcToolButton* pbtnSmiley;
+	lmToolButton* pbtnSmiley;
 	QAction* pFileAction;
     QAction* pFolderAction;
 	QAction* pSaveAction;
+    QAction* pNudgeAction;
 	QToolBar* pRightBar;
 	QAction* pHistoryAction;
 	QAction* pTransferAction;
 	QMenu* pSmileyMenu;
-	lmcImagePickerAction* pSmileyAction;
+	lmImagePickerAction* pSmileyAction;
 	int nSmiley;
 	bool bConnected;
 	int infoFlag;
 	bool showSmiley;
 	bool sendKeyMod;
     bool clearOnClose;
-	lmcSoundPlayer* pSoundPlayer;
+	lmSoundPlayer* pSoundPlayer;
 	QColor messageColor;
 	ChatState chatState;
 	qint64 keyStroke;

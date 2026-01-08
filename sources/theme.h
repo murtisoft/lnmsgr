@@ -21,7 +21,7 @@
 #ifndef THEME_H
 #define THEME_H
 
-#include "stdlocation.h"
+#include "definitionsdir.h"
 
 struct Theme {
 	QString name;
@@ -49,7 +49,7 @@ struct ThemeData {
 	QString stateMsg;
 };
 
-class lmcTheme
+class lmTheme
 {
 public:
 	static const Themes availableThemes(void);

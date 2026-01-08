@@ -33,18 +33,18 @@
 #include "shared.h"
 #include "settings.h"
 #include "history.h"
-#include "stdlocation.h"
+#include "definitionsdir.h"
 #include "translations.h"
 #include "messagelog.h"
 #include "theme.h"
 #include "soundplayer.h"
 
-class lmcSettingsDialog : public QDialog {
+class lmFormSettings : public QDialog {
 	Q_OBJECT
 
 public:
-	lmcSettingsDialog(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
-	~lmcSettingsDialog(void);
+	lmFormSettings(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+	~lmFormSettings(void);
 
 	void init(void);
 	void settingsChanged(void);
@@ -93,14 +93,14 @@ private:
     void insertStatusMessageinLog();
 
 	Ui::SettingsDialog ui;
-	lmcSettings* pSettings;
+	lmSettings* pSettings;
 	int fontSize;
 	QFont font;
 	QColor color;
 	QIntValidator* pPortValidator;
 	QRegularExpression ipRegExp;
     QRegularExpressionValidator* pIpValidator;
-	lmcMessageLog* pMessageLog;
+	lmMessageLog* pMessageLog;
     int statusTimerId;
     int statusNow;
 };

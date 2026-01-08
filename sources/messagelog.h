@@ -22,25 +22,25 @@
 #define MESSAGELOG_H
 
 #include "shared.h"
-#include "chatdefinitions.h"
+#include "definitionschat.h"
 #include "chathelper.h"
-#include "xmlmessage.h"
+#include "messagexml.h"
 #include "theme.h"
-#include "qmessagebrowser.h"
+#include "messagebrowser.h"
 
 enum OutputFormat{ HtmlFormat, TextFormat };
 
-class lmcMessageLog : public QMessageBrowser
+class lmMessageLog : public MessageBrowser
 {
     Q_OBJECT
 
 public:
-    lmcMessageLog(QWidget *parent = nullptr);
-    ~lmcMessageLog(void) override;
+    lmMessageLog(QWidget *parent = nullptr);
+    ~lmMessageLog(void) override;
 
 	void initMessageLog(QString themePath, bool clearLog = true);
     void reloadTheme();
-	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage,
+	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
 		bool bReload = false);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
 	void updateUserName(QString* lpszUserId, QString* lpszUserName);
@@ -69,7 +69,7 @@ public:
 	bool trimMessage;
 
 signals:
-	void messageSent(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 
 protected:
     virtual void changeEvent(QEvent* event) override;
@@ -99,7 +99,7 @@ private:
 		QFont* pFont, QColor* pColor);
 	void appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
         QFont* pFont, QColor* pColor, MessageType messageType);
-    QString getFileMessageText(MessageType type, QString* lpszUserName, XmlMessage* pMessage, bool bReload = false);
+    QString getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
     QString getFontStyle(QFont* pFont, QColor* pColor, bool size = false);
 	QString getFileStatusMessage(FileMode mode, FileOp op);
 	QString getChatStateMessage(ChatState chatState);
@@ -110,10 +110,10 @@ private:
 	QString getTimeString(QDateTime* pTime);
 	void setUIText(void);
     QString getFileTempId(FileMode mode, QString fileId) const;
-    QString getFileTempId(XmlMessage* pMessage) const;
+    QString getFileTempId(MessageXml* pMessage) const;
 
-	QMap<QString, XmlMessage> sendFileMap;
-	QMap<QString, XmlMessage> receiveFileMap;
+	QMap<QString, MessageXml> sendFileMap;
+	QMap<QString, MessageXml> receiveFileMap;
 	QList<SingleMessage> messageLog;
 	ThemeData themeData;
 	QMenu* contextMenu;

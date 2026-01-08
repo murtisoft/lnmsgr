@@ -22,9 +22,9 @@
 #define CHATHELPER_H
 
 #include <QTextBlockUserData>
-#include "uidefinitions.h"
-#include "chatdefinitions.h"
-#include "xmlmessage.h"
+#include "definitionsui.h"
+#include "definitionschat.h"
+#include "messagexml.h"
 
 class QTextBlockData : public QTextBlockUserData
 {
@@ -39,11 +39,11 @@ struct SingleMessage {
 	MessageType type;
 	QString userId;
 	QString userName;
-	XmlMessage message;
+	MessageXml message;
 	QString id;	// secondary id for more efficient traversal
 
 	SingleMessage() {}
-	SingleMessage(MessageType mType, QString szUserId, QString szUserName, XmlMessage xmlMessage, QString szId = QString()) {
+	SingleMessage(MessageType mType, QString szUserId, QString szUserName, MessageXml xmlMessage, QString szId = QString()) {
 		type = mType;
 		userId = szUserId;
 		userName = szUserName;

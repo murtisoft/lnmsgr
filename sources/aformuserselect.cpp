@@ -20,7 +20,7 @@
 
 #include "aformuserselect.h"
 
-lmcUserSelectDialog::lmcUserSelectDialog(QWidget *parent) : QDialog(parent) {
+lmFormUserSelect::lmFormUserSelect(QWidget *parent) : QDialog(parent) {
 	ui.setupUi(this);
 	//	remove the help button from window button group
 	setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -33,10 +33,10 @@ lmcUserSelectDialog::lmcUserSelectDialog(QWidget *parent) : QDialog(parent) {
 	childToggling = false;
 }
 
-lmcUserSelectDialog::~lmcUserSelectDialog() {
+lmFormUserSelect::~lmFormUserSelect() {
 }
 
-void lmcUserSelectDialog::init(QList<QTreeWidgetItem*>* pContactsList) {
+void lmFormUserSelect::init(QList<QTreeWidgetItem*>* pContactsList) {
 	ui.tvUserList->setIconSize(QSize(16, 16));
     ui.tvUserList->header()->setSectionsMovable(false);
 	ui.tvUserList->header()->setStretchLastSection(false);
@@ -54,7 +54,7 @@ void lmcUserSelectDialog::init(QList<QTreeWidgetItem*>* pContactsList) {
 	ui.tvUserList->expandAll();
 
 	//	load settings
-	pSettings = new lmcSettings();
+	pSettings = new lmSettings();
 	int viewType = pSettings->value(IDS_USERLISTVIEW, IDS_USERLISTVIEW_VAL).toInt();
 	ui.tvUserList->setView((UserListView)viewType);
 
@@ -65,7 +65,7 @@ void lmcUserSelectDialog::init(QList<QTreeWidgetItem*>* pContactsList) {
 	setUIText();
 }
 
-void lmcUserSelectDialog::changeEvent(QEvent* pEvent) {
+void lmFormUserSelect::changeEvent(QEvent* pEvent) {
 	switch(pEvent->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -77,7 +77,7 @@ void lmcUserSelectDialog::changeEvent(QEvent* pEvent) {
 	QWidget::changeEvent(pEvent);
 }
 
-void lmcUserSelectDialog::btnOK_clicked(void) {
+void lmFormUserSelect::btnOK_clicked(void) {
 	selectedContacts.clear();
 
 	for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++) {
@@ -92,7 +92,7 @@ void lmcUserSelectDialog::btnOK_clicked(void) {
 }
 
 //	event called when the user checks/unchecks a tree item
-void lmcUserSelectDialog::tvUserList_itemChanged(QTreeWidgetItem* item, int column) {
+void lmFormUserSelect::tvUserList_itemChanged(QTreeWidgetItem* item, int column) {
 	Q_UNUSED(column);
 
 	//	if parent tree item was toggled, update all its children to the same state
@@ -122,7 +122,7 @@ void lmcUserSelectDialog::tvUserList_itemChanged(QTreeWidgetItem* item, int colu
 	ui.btnOK->setEnabled((selectedCount > 0));
 }
 
-void lmcUserSelectDialog::setUIText(void) {
+void lmFormUserSelect::setUIText(void) {
 	ui.retranslateUi(this);
 
 	setWindowTitle(tr("Select Contacts"));

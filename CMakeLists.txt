@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LanMessenger VERSION 2026.3.0 LANGUAGES CXX)
+project(LanMessenger VERSION 2026.4.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -46,7 +46,7 @@ target_include_directories(LanMessenger PRIVATE
     ${OPUS_DIR}/include
 )
 
-target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake version into code.
+target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake project version into code.
 target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia
     ${OPENSSL_DIR}/lib/VC/x64/MTd/libssl.lib
@@ -63,21 +63,23 @@ qt6_add_translations(LanMessenger
 
 #==========================================================================================================================================<< TO DO
 #Search for NEED2TEST within the project.
-#Gotta remove settings>messages>show date&time / maybe instead keep them and recycle the function?
-#Tray menu status icon has to be updated when status changes.
-#Add voice&video settings
-#Group setting needs to be implemented
+#Remove themes.
 
-#Sending family emoji, splits boy and girl into separate enlarged smileys.
-#      need to handle the text so the smiley spans arent stripped when pushing into messagelog.
-#Switching between old and new client, causes peers to crash. (sometimes) why?
-#DragNDrop needs fixing. it was broken somewhere between 1.235-1.239
-#Debug log files and chat database keeps piling up, naming should be "date-time", and should be cleaned periodically.
-#Broadcasts arent logged. how about group chats?
+#Add nudge feature / Need to find a way to transmit the command, while also not crashing old clients.
+#File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
+#Crashing somewhere after "New connection received" and before "Accepted connection from user", (when a new peer joins network.)
+#   Messages are sometimes lost(Corrupted and discarded?). I think these are related.
+#   New client starting for the first time reliably crashes all old clients.
+#Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
+#Font size settings in settings dialog are local only, and dont even affect public chat for some reason. Maybe i should remove those ancient buttons?
+#There should be links to open or show in folder after a file transfer. Not just "Completed."
+#Chat window pops up in the monitor where the cursor is, not where it was last left.
+#   New chatroom does the same, public chat works as expected, though.
+#Broadcasts arent logged. Chat History needs a complete replacement.
 #Remove chat groups, instead add roles, set by peers themselves, which will act like global grouping.
 
-#Add sticky window borders
-#Add nudge feature
+#Implement voice&video settings
+#Implement group setting
 #Add opus voice chat
 #Add vp8 video chat / desktop sharing
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.

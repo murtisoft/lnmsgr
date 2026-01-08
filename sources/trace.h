@@ -25,16 +25,16 @@
 #include <QTextStream>
 #include <QDateTime>
 #include <QDir>
-#include "stdlocation.h"
-#include "xmlmessage.h"
+#include "definitionsdir.h"
 
-class lmcTrace {
+class lmTrace {
 public:
-	lmcTrace(void);
-	~lmcTrace(void);
+	lmTrace(void);
+	~lmTrace(void);
 
-	static void init(XmlMessage* pInitParams);
+    static void init(QString fileName, bool traceMode);
     static void write(const QString& string, bool verbose = true);
+    static void stop(const QString& string);
 
 private:
 	static bool traceMode;

@@ -21,7 +21,7 @@
 #include "aformabout.h"
 
 //	constructor
-lmcAboutDialog::lmcAboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
+lmFormAbout::lmFormAbout(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
     ui.setupUi(this);
     //	set minimum size
     layout()->setSizeConstraint(QLayout::SetMinimumSize);
@@ -31,22 +31,22 @@ lmcAboutDialog::lmcAboutDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog
     setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
-lmcAboutDialog::~lmcAboutDialog(void) {
+lmFormAbout::~lmFormAbout(void) {
 }
 
-void lmcAboutDialog::init(void) {
+void lmFormAbout::init(void) {
     setWindowIcon(QIcon(IDR_APPICON));
 
-    pSettings = new lmcSettings();
+    pSettings = new lmSettings();
     setUIText();
 
     ui.tabWidget->setCurrentIndex(0);
 }
 
-void lmcAboutDialog::settingsChanged(void) {
+void lmFormAbout::settingsChanged(void) {
 }
 
-void lmcAboutDialog::changeEvent(QEvent* pEvent) {
+void lmFormAbout::changeEvent(QEvent* pEvent) {
     switch(pEvent->type()) {
     case QEvent::LanguageChange:
         setUIText();
@@ -58,13 +58,13 @@ void lmcAboutDialog::changeEvent(QEvent* pEvent) {
     QDialog::changeEvent(pEvent);
 }
 
-void lmcAboutDialog::setUIText(void) {
+void lmFormAbout::setUIText(void) {
     ui.retranslateUi(this);
 
     QString title = tr("About %1");
-    setWindowTitle(title.arg(lmcStrings::appName()));
+    setWindowTitle(title.arg(lmStrings::appName()));
 
-    ui.lblTitle->setText(lmcStrings::appName() + "\n" IDA_VERSION);
+    ui.lblTitle->setText(lmStrings::appName() + "\n" IDA_VERSION);
     ui.lblLogoSmall->setPixmap(QPixmap(IDR_LOGOSMALL));
 #if defined(QT_NO_DEBUG)
 #define DEBUGINFO " "
@@ -76,17 +76,17 @@ void lmcAboutDialog::setUIText(void) {
                                   QSysInfo::buildCpuArchitecture(),
                                   QSysInfo::prettyProductName()));
 
-    QString description(lmcStrings::appDesc() + "\n\n");
+    QString description(lmStrings::appDesc() + "\n\n");
     ui.lblDescription->setText(description);
 
 
-    QFile thanks(":/credits/contributors"); // Ensure correct resource path
+    QFile thanks(":/credits/contributors");
     if(thanks.open(QIODevice::ReadOnly)) {
         ui.txtThanks->setHtml(QString::fromUtf8(thanks.readAll()));
         thanks.close();
     }
 
-    QFile license(":/credits/index"); // Ensure correct resource path
+    QFile license(":/credits/index");
     if(license.open(QIODevice::ReadOnly)) {
         ui.txtLicense->setHtml(QString::fromUtf8(license.readAll()));
         license.close();

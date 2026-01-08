@@ -38,7 +38,7 @@ QDataStream &operator >> (QDataStream &in, SingleMessage &message) {
     QString xmlMessage;
     QString id;
     in >> type >> userId >> userName >> xmlMessage >> id;
-    message = SingleMessage((MessageType)type, userId, userName, XmlMessage(xmlMessage), id);
+    message = SingleMessage((MessageType)type, userId, userName, MessageXml(xmlMessage), id);
     return in;
 }
 
@@ -56,14 +56,16 @@ void ChatHelper::encodeSmileys(QString* lpszMessage) {
         if (smileyEmoji[index].startsWith(":/")) {
             lpszMessage->replace("<img src=\"" + smileyEmoji[index] + "\" />", code); //Legacy png handler
         } else {
-            lpszMessage->replace(smileyEmoji[index], code);  //NEED2TEST This part needs to be fixed. Program strips span tags while appending the text into chatlog.
-        }                                                    //But this currently causes multi character emojis like "family" to be split because we have boy and girl
-    }                                                        //emojis in the smiley list.
+            // Replaces only if NOT preceded or followed by a Zero Width Joiner
+            QRegularExpression lonelyEmoji("(?<!\\x{200D})" + QRegularExpression::escape(smileyEmoji[index]) + "(?!\\x{200D})");
+            lpszMessage->replace(lonelyEmoji, code);
+        }
+    }
 }
 
 void ChatHelper::decodeSmileys(QString* lpszMessage) {
     // Handle any other unicode emoji that is not on the list, first. This doesnt handle everything because unicode emojis are a fucking mess.
-    static const QRegularExpression emojiRegex("([\\p{Emoji_Presentation})");
+    static const QRegularExpression emojiRegex("(\\p{Emoji_Presentation}(?:\\x{200D}\\p{Emoji_Presentation})*)");
     lpszMessage->replace(emojiRegex, "&#8203;<span style='font-size:18px; vertical-align: middle;'>\\1</span>&#8203;");
 
     //	replace text emoticons with corresponding images
@@ -72,7 +74,7 @@ void ChatHelper::decodeSmileys(QString* lpszMessage) {
         makeHtmlSafe(&code);
 
         if (smileyEmoji[index].startsWith(":/")) {
-            lpszMessage->replace(code, "<img src='qrc" + smileyEmoji[index] + "' />", Qt::CaseInsensitive);  //Legacy png handler
+            lpszMessage->replace(code, "<img src='qrc" + smileyEmoji[index] + "'/>", Qt::CaseInsensitive);  //Legacy png handler
         } else {
             lpszMessage->replace(code, "&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;", Qt::CaseInsensitive);
         }

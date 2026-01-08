@@ -29,34 +29,34 @@
 #include <QtWidgets/QStyledItemDelegate>
 #include <QPainter>
 #include <QFontMetrics>
-#include "uidefinitions.h"
+#include "definitionsui.h"
 
-class lmcUserTreeWidgetItem : public QTreeWidgetItem {
+class lmUserTreeWidgetItem : public QTreeWidgetItem {
 public:
-	lmcUserTreeWidgetItem();
-	~lmcUserTreeWidgetItem() {}
+	lmUserTreeWidgetItem();
+	~lmUserTreeWidgetItem() {}
 
 	QRect checkBoxRect(const QRect& itemRect);
 };
 
-class lmcUserTreeWidgetGroupItem : public lmcUserTreeWidgetItem {
+class lmUserTreeWidgetGroupItem : public lmUserTreeWidgetItem {
 public:
-	lmcUserTreeWidgetGroupItem() : lmcUserTreeWidgetItem() {}
-	~lmcUserTreeWidgetGroupItem() {}
+	lmUserTreeWidgetGroupItem() : lmUserTreeWidgetItem() {}
+	~lmUserTreeWidgetGroupItem() {}
 
 	void addChild(QTreeWidgetItem* child);
 };
 
-class lmcUserTreeWidgetUserItem : public lmcUserTreeWidgetItem {
+class lmUserTreeWidgetUserItem : public lmUserTreeWidgetItem {
 public:
-	lmcUserTreeWidgetUserItem() : lmcUserTreeWidgetItem() {}
-	~lmcUserTreeWidgetUserItem() {}
+	lmUserTreeWidgetUserItem() : lmUserTreeWidgetItem() {}
+	~lmUserTreeWidgetUserItem() {}
 
 private:
 	bool operator < (const QTreeWidgetItem& other) const;
 };
 
-class lmcUserTreeWidgetDelegate : public QStyledItemDelegate {
+class lmUserTreeWidgetDelegate : public QStyledItemDelegate {
 public:
 	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
@@ -64,12 +64,12 @@ private:
 	void drawCheckBox(QPainter* painter, const QPalette& palette, const QRect& checkBoxRect, Qt::CheckState checkState) const;
 };
 
-class lmcUserTreeWidget : public QTreeWidget {
+class lmUserTreeWidget : public QTreeWidget {
 	Q_OBJECT
 
 public:
-	lmcUserTreeWidget(QWidget* parent);
-	~lmcUserTreeWidget() {}
+	lmUserTreeWidget(QWidget* parent);
+	~lmUserTreeWidget() {}
 
 	bool checkable(void);
 	void setCheckable(bool enable);
@@ -89,7 +89,7 @@ protected:
 	void keyPressEvent(QKeyEvent* event);
 
 private:
-	lmcUserTreeWidgetDelegate* itemDelegate;
+	lmUserTreeWidgetDelegate* itemDelegate;
 	bool dragGroup;
 	bool dragUser;
 	QString parentId;

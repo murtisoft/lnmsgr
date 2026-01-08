@@ -25,19 +25,19 @@
 #include "ui_aformuserinfo.h"
 #include "shared.h"
 #include "settings.h"
-#include "stdlocation.h"
-#include "xmlmessage.h"
+#include "definitionsdir.h"
+#include "messagexml.h"
 
-class lmcUserInfoWindow : public QDialog
+class lmFormUserInfo : public QDialog
 {
 	Q_OBJECT
 
 public:
-	lmcUserInfoWindow(QWidget *parent = 0);
-	~lmcUserInfoWindow();
+	lmFormUserInfo(QWidget *parent = 0);
+	~lmFormUserInfo();
 
 	void init(void);
-	void setInfo(XmlMessage* pMessage);
+	void setInfo(MessageXml* pMessage);
 	void settingsChanged(void);
 
 protected:
@@ -48,8 +48,8 @@ private:
 	void fillFields(void);
 
     Ui::UserInfoWindow ui;
-	lmcSettings* pSettings;
-	XmlMessage userInfo;
+	lmSettings* pSettings;
+	MessageXml userInfo;
 };
 
 #endif // AFORMUSERINFO_H

@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 ** 
@@ -18,8 +18,8 @@
 ****************************************************************************/
 
 
-#ifndef TCPNETWORK_H
-#define TCPNETWORK_H
+#ifndef NETWORKTCP_H
+#define NETWORKTCP_H
 
 #include <QObject>
 #include <QTcpSocket>
@@ -30,18 +30,18 @@
 #include "netstreamer.h"
 #include "crypto.h"
 
-class lmcTcpNetwork : public QObject {
+class lmNetworkTcp : public QObject {
 	Q_OBJECT
 
 public:
-	lmcTcpNetwork(void);
-	~lmcTcpNetwork(void) {}
+	lmNetworkTcp(void);
+	~lmNetworkTcp(void) {}
 
 	void init(int nPort = 0);
 	void start(void);
 	void stop(void);
 	void setLocalId(QString* lpszLocalId);
-	void setCrypto(lmcCrypto* pCrypto);
+	void setCrypto(lmCrypto* pCrypto);
 	void addConnection(QString* lpszUserId, QString* lpszAddress);
 	void sendMessage(QString* lpszReceiverId, QString* lpszData);
 	void initSendFile(QString* lpszReceiverId, QString* lpszAddress, QString* lpszData);
@@ -78,12 +78,12 @@ private:
 	QList<FileReceiver*>	  receiveList;
 	QMap<QString, MsgStream*> messageMap;
 	MsgStream*				  locMsgStream;
-	lmcSettings*			  pSettings;
+	lmSettings*			  pSettings;
 	bool					  isRunning;
 	int						  tcpPort;
 	QString					  localId;
-	lmcCrypto*				  crypto;
+	lmCrypto*				  crypto;
 	QHostAddress			  ipAddress;
 };
 
-#endif // TCPNETWORK_H
+#endif // NETWORKTCP_H

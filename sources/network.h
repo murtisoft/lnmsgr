@@ -25,21 +25,21 @@
 #include <QNetworkAddressEntry>
 #include <QHostAddress>
 #include <QTimer>
-#include "udpnetwork.h"
-#include "tcpnetwork.h"
-#include "webnetwork.h"
+#include "networkudp.h"
+#include "networktcp.h"
+#include "networkweb.h"
 #include "crypto.h"
 #include "settings.h"
-#include "xmlmessage.h"
+#include "messagexml.h"
 
-class lmcNetwork : public QObject {
+class lmNetwork : public QObject {
 	Q_OBJECT
 
 public:
-	lmcNetwork(void);
-	~lmcNetwork(void);
+	lmNetwork(void);
+	~lmNetwork(void);
 
-	void init(XmlMessage* pInitParams);
+	void init(MessageXml* pInitParams);
 	void start(void);
 	void stop(void);
 	QString physicalAddress(void);
@@ -90,11 +90,11 @@ private:
 		QString type;
 	};
 
-	lmcSettings*			pSettings;
-	lmcUdpNetwork*			pUdpNetwork;
-	lmcTcpNetwork*			pTcpNetwork;
-	lmcWebNetwork*			pWebNetwork;
-	lmcCrypto*				pCrypto;
+	lmSettings*			pSettings;
+	lmNetworkUdp*			pUdpNetwork;
+	lmNetworkTcp*			pTcpNetwork;
+	lmNetworkWeb*			pWebNetwork;
+	lmCrypto*				pCrypto;
 	QTimer*					pTimer;
     QString					interfaceName;
 	QNetworkInterface		networkInterface;

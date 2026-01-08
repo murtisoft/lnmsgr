@@ -47,6 +47,8 @@
 #define IDS_AUTOSTART_VAL		true
 #define IDS_AUTOSHOW			"AutoShow"
 #define IDS_AUTOSHOW_VAL		true
+#define IDS_DEBUGLOG			"DebugLog"
+#define IDS_DEBUGLOG_VAL		true
 #define IDS_LANGUAGE			"Locale/Language"
 #define IDS_LANGUAGE_VAL		"en_US"
 #define IDS_SYSTRAY				"SystemTray/SysTray"
@@ -154,6 +156,8 @@
 #define IDS_AVATAR_VAL			65535	//	this should be a number bigger than AVT_COUNT, 65535 set arbitrarily
 #define IDS_USERNAME			"User/Name"
 #define IDS_USERNAME_VAL		""
+#define IDS_USERGROUP			"User/Group"
+#define IDS_USERGROUP_VAL		"This does nothing."
 #define IDS_USERFIRSTNAME		"User/FirstName"
 #define IDS_USERFIRSTNAME_VAL	""
 #define IDS_USERLASTNAME		"User/LastName"
@@ -171,21 +175,21 @@
 #define IDS_BROADCASTHDR		"BroadcastList"
 #define IDS_BROADCAST			"Broadcast"
 
-class lmcSettingsBase : public QSettings {
+class lmSettingsBase : public QSettings {
 public:
-	lmcSettingsBase(void);
-	lmcSettingsBase(const QString& fileName, Format format);
-	lmcSettingsBase(Format format, Scope scope, const QString& organization, const QString& application);
-	~lmcSettingsBase(void);
+	lmSettingsBase(void);
+	lmSettingsBase(const QString& fileName, Format format);
+	lmSettingsBase(Format format, Scope scope, const QString& organization, const QString& application);
+	~lmSettingsBase(void);
 
 	using QSettings::setValue;
 	void setValue(const QString& key, const QVariant& value, const QVariant& defaultValue);
 };
 
-class lmcSettings : public lmcSettingsBase {
+class lmSettings : public lmSettingsBase {
 public:
-	lmcSettings(void) : lmcSettingsBase(QSettings::IniFormat, QSettings::UserScope, IDA_COMPANY, IDA_PRODUCT) {}
-	~lmcSettings(void) {}
+	lmSettings(void) : lmSettingsBase(QSettings::IniFormat, QSettings::UserScope, IDA_COMPANY, IDA_PRODUCT) {}
+	~lmSettings(void) {}
 
 	bool migrateSettings(void);
 	bool loadFromConfig(const QString& configFile);

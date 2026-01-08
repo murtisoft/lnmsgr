@@ -18,8 +18,8 @@
 ****************************************************************************/
 
 
-#ifndef UIDEFINITIONS_H
-#define UIDEFINITIONS_H
+#ifndef DEFINITIONSUI_H
+#define DEFINITIONSUI_H
 
 #include <QString>
 #include "definitions.h"
@@ -43,6 +43,12 @@ const QString AlertSet      = "⚠️";     const QString NetworkSet    = "🔗�
 const QString TransferSet   = "📥️";     const QString ThemeSet      = "🎨️";
 const QString HotkeySet     = "⌨️";     const QString Alert         = "⚠️";
 const QString VoiceSet      = "🎙️️";
+const QString Microphone    = "🎤️️";
+const QString Speaker       = "🎧️️";
+const QString Telephone     = "📞️️";
+const QString Camera        = "📽️️️";
+const QString Screenshot    = "📷️️";
+const QString Nudge         = "🛎️️️";
 }
 
 //	Resource name definitions
@@ -79,15 +85,9 @@ const QString fontStyle[] = {"font-size:8.25pt;", "font-size:9pt;", "font-size:1
 #define IDR_BUSY			":/images/status/busy"
 #define IDR_NODISTURB		":/images/status/nodisturb"
 #define IDR_OFFLINE			":/images/status/offline"
-#define IDR_AVAILABLE_BBL	":/icons/bubbles/online"
-#define IDR_AWAY_BBL		":/icons/bubbles/away"
-#define IDR_BUSY_BBL		":/icons/bubbles/busy"
-#define IDR_NODISTURB_BBL	":/icons/bubbles/nodisturb"
-#define IDR_OFFLINE_BBL		":/icons/bubbles/offline"
 
 //const QString statusDesc[] = {"Available", "Busy", "Do Not Disturb", "Be Right Back", "Away", "Appear Offline"};
 const QString statusPic[] = {IDR_AVAILABLE, IDR_BUSY, IDR_NODISTURB, IDR_AWAY, IDR_AWAY, IDR_OFFLINE};
-const QString bubblePic[] = {IDR_AVAILABLE_BBL, IDR_BUSY_BBL, IDR_NODISTURB_BBL, IDR_AWAY_BBL, IDR_AWAY_BBL, IDR_OFFLINE_BBL};
 
 //	Smiley definitions
 #define SM_COUNT		70
@@ -142,18 +142,38 @@ enum SoundEvent {
 	SE_NewFile,
 	SE_FileDone,
 	SE_NewPubMessage,
+    SE_MicOn,
+    SE_MicOff,
+    SE_CamOn,
+    SE_CamOff,
+    SE_SpeakerOn,
+    SE_SpeakerOff,
+    SE_RingIn,
+    SE_RingOut,
+    SE_Nudge,
+    SE_MuteTalk,
 	SE_Max
 };
 
-#define SND_NEWMESSAGE		":/sounds/newmessage"
-#define SND_USERONLINE		":/sounds/useronline"
-#define SND_USEROFFLINE		":/sounds/useroffline"
-#define SND_NEWFILE			":/sounds/newfile"
-#define SND_FILEDONE		":/sounds/filedone"
-#define SND_NEWPUBMESSAGE	SND_NEWMESSAGE
-
-#define SE_COUNT	6
-const QString soundFile[] = {SND_NEWMESSAGE, SND_USERONLINE, SND_USEROFFLINE, SND_NEWFILE, SND_FILEDONE, SND_NEWPUBMESSAGE};
+#define SE_COUNT	16
+const QString soundFile[] = {
+    ":/sounds/newmessage",      //New Message
+    ":/sounds/useronline",      //User Online
+    ":/sounds/useroffline",     //User Offline
+    ":/sounds/newfile",         //New File Transfer
+    ":/sounds/filedone",        //File Transfer Done
+    ":/sounds/newmessage",      //New Public Message
+    ":/sounds/mic_on",          //Microphone On
+    ":/sounds/mic_off",         //Microphone Off
+    ":/sounds/cam_on",          //Camera On
+    ":/sounds/cam_off",         //Camera Off
+    ":/sounds/speaker_on",      //Speaker On
+    ":/sounds/speaker_off",     //Speaker Off
+    ":/sounds/ring_in",         //Incoming Call
+    ":/sounds/ring_out",        //Outgoing Call
+    ":/sounds/nudge",           //Nudge
+    ":/sounds/muted_talk",      //Talking While Microphone Muted
+};
 
 #define AT_COUNT	8
 const int awayTimeVal[] = {5, 10, 15, 20, 30, 45, 60, 0};
@@ -176,4 +196,4 @@ const int itemViewHeight[] = {36, 20};
 #define GRAY_TEXT_COLOR     QApplication::palette().color(QPalette::Shadow)
 #endif
 
-#endif // UIDEFINITIONS_H
+#endif // DEFINITIONSUI_H

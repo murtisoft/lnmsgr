@@ -19,9 +19,9 @@
 
 
 #include "trace.h"
-#include "tcpnetwork.h"
+#include "networktcp.h"
 
-lmcTcpNetwork::lmcTcpNetwork(void) {
+lmNetworkTcp::lmNetworkTcp(void) {
 	sendList.clear();
 	receiveList.clear();
 	messageMap.clear();
@@ -32,18 +32,18 @@ lmcTcpNetwork::lmcTcpNetwork(void) {
 	connect(server, SIGNAL(newConnection()), this, SLOT(server_newConnection()));
 }
 
-void lmcTcpNetwork::init(int nPort) {
-	pSettings = new lmcSettings();
+void lmNetworkTcp::init(int nPort) {
+	pSettings = new lmSettings();
 	tcpPort = nPort > 0 ? nPort : pSettings->value(IDS_TCPPORT, IDS_TCPPORT_VAL).toInt();
 }
 
-void lmcTcpNetwork::start(void) {
-	lmcTrace::write("Starting TCP server");
+void lmNetworkTcp::start(void) {
+	lmTrace::write("Starting TCP server");
 	isRunning = server->listen(QHostAddress::Any, tcpPort);
-	lmcTrace::write((isRunning ? "Success" : "Failed"));
+	lmTrace::write((isRunning ? "Success" : "Failed"));
 }
 
-void lmcTcpNetwork::stop(void) {
+void lmNetworkTcp::stop(void) {
 	server->close();
 	// Close all open sockets
 	if(locMsgStream)
@@ -58,21 +58,21 @@ void lmcTcpNetwork::stop(void) {
 	isRunning = false;
 }
 
-void lmcTcpNetwork::setLocalId(QString* lpszLocalId) {
+void lmNetworkTcp::setLocalId(QString* lpszLocalId) {
 	localId = *lpszLocalId;
 }
 
-void lmcTcpNetwork::setCrypto(lmcCrypto* pCrypto) {
+void lmNetworkTcp::setCrypto(lmCrypto* pCrypto) {
 	crypto = pCrypto;
 }
 
-void lmcTcpNetwork::addConnection(QString* lpszUserId, QString* lpszAddress) {
+void lmNetworkTcp::addConnection(QString* lpszUserId, QString* lpszAddress) {
     if(!isRunning) {
-        lmcTrace::write("Warning: TCP server not running. Unable to connect");
+        lmTrace::write("Warning: TCP server not running. Unable to connect");
         return;
     }
 
-	lmcTrace::write("Connecting to user " + *lpszUserId + " at " + *lpszAddress);
+	lmTrace::write("Connecting to user " + *lpszUserId + " at " + *lpszAddress);
 
 	MsgStream* msgStream = new MsgStream(localId, *lpszUserId, *lpszAddress, tcpPort);
 	connect(msgStream, SIGNAL(connectionLost(QString*)), 
@@ -88,9 +88,9 @@ void lmcTcpNetwork::addConnection(QString* lpszUserId, QString* lpszAddress) {
 	msgStream->init();
 }
 
-void lmcTcpNetwork::sendMessage(QString* lpszReceiverId, QString* lpszData) {
+void lmNetworkTcp::sendMessage(QString* lpszReceiverId, QString* lpszData) {
     if(!isRunning) {
-        lmcTrace::write("Warning: TCP server not running. Message not sent");
+        lmTrace::write("Warning: TCP server not running. Message not sent");
         return;
     }
 
@@ -102,11 +102,11 @@ void lmcTcpNetwork::sendMessage(QString* lpszReceiverId, QString* lpszData) {
 		msgStream = messageMap.value(*lpszReceiverId, NULL);
 
 	if(msgStream) {
-		lmcTrace::write("Sending TCP data stream to user " + *lpszReceiverId);
+		lmTrace::write("Sending TCP data stream to user " + *lpszReceiverId);
 		QByteArray clearData = lpszData->toUtf8();
 		QByteArray cipherData = crypto->encrypt(lpszReceiverId, clearData);
 		if(cipherData.isEmpty()) {
-			lmcTrace::write("Warning: Message could not be sent");
+			lmTrace::write("Warning: Message could not be sent");
 			return;
 		}
 		//	cipherData should now contain encrypted content
@@ -115,11 +115,11 @@ void lmcTcpNetwork::sendMessage(QString* lpszReceiverId, QString* lpszData) {
 		return;
 	}
 
-	lmcTrace::write("Warning: Socket not found. Message sending failed");
+	lmTrace::write("Warning: Socket not found. Message sending failed");
 }
 
-void lmcTcpNetwork::initSendFile(QString* lpszReceiverId, QString* lpszAddress, QString* lpszData) {
-	XmlMessage xmlMessage(*lpszData);
+void lmNetworkTcp::initSendFile(QString* lpszReceiverId, QString* lpszAddress, QString* lpszData) {
+	MessageXml xmlMessage(*lpszData);
 	int type = Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
 
     FileSender* sender = new FileSender(xmlMessage.data(XN_FILEID), localId, *lpszReceiverId, xmlMessage.data(XN_FILEPATH),
@@ -130,8 +130,8 @@ void lmcTcpNetwork::initSendFile(QString* lpszReceiverId, QString* lpszAddress, 
     sender->init();
 }
 
-void lmcTcpNetwork::initReceiveFile(QString* lpszSenderId, QString* lpszAddress, QString* lpszData) {
-	XmlMessage xmlMessage(*lpszData);
+void lmNetworkTcp::initReceiveFile(QString* lpszSenderId, QString* lpszAddress, QString* lpszData) {
+	MessageXml xmlMessage(*lpszData);
 	int type = Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
 
 	FileReceiver* receiver = new FileReceiver(xmlMessage.data(XN_FILEID), *lpszSenderId, xmlMessage.data(XN_FILEPATH), 
@@ -141,10 +141,10 @@ void lmcTcpNetwork::initReceiveFile(QString* lpszSenderId, QString* lpszAddress,
 	receiveList.prepend(receiver);
 }
 
-void lmcTcpNetwork::fileOperation(FileMode mode, QString* lpszUserId, QString* lpszData) {
+void lmNetworkTcp::fileOperation(FileMode mode, QString* lpszUserId, QString* lpszData) {
     Q_UNUSED(lpszUserId);
 
-	XmlMessage xmlMessage(*lpszData);
+	MessageXml xmlMessage(*lpszData);
 
 	int fileOp = Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
 	QString id = xmlMessage.data(XN_FILEID);
@@ -176,20 +176,20 @@ void lmcTcpNetwork::fileOperation(FileMode mode, QString* lpszUserId, QString* l
 	}
 }
 
-void lmcTcpNetwork::settingsChanged(void) {
+void lmNetworkTcp::settingsChanged(void) {
 }
 
-void lmcTcpNetwork::setIPAddress(const QString& szAddress) {
+void lmNetworkTcp::setIPAddress(const QString& szAddress) {
 	ipAddress = QHostAddress(szAddress);
 }
 
-void lmcTcpNetwork::server_newConnection(void) {
-	lmcTrace::write("New connection received");
+void lmNetworkTcp::server_newConnection(void) {
+	lmTrace::write("New connection received");
 	QTcpSocket* socket = server->nextPendingConnection();
 	connect(socket, SIGNAL(readyRead()), this, SLOT(socket_readyRead()));
 }
 
-void lmcTcpNetwork::socket_readyRead(void) {
+void lmNetworkTcp::socket_readyRead(void) {
 	QTcpSocket* socket = (QTcpSocket*)sender();
 	disconnect(socket, SIGNAL(readyRead()), this, SLOT(socket_readyRead()));
 
@@ -206,12 +206,12 @@ void lmcTcpNetwork::socket_readyRead(void) {
 	}
 }
 
-void lmcTcpNetwork::msgStream_connectionLost(QString* lpszUserId) {
+void lmNetworkTcp::msgStream_connectionLost(QString* lpszUserId) {
 	emit connectionLost(lpszUserId);
 }
 
-void lmcTcpNetwork::update(FileMode mode, FileOp op, FileType type, QString* lpszId, QString* lpszUserId, QString* lpszData) {
-	XmlMessage xmlMessage;
+void lmNetworkTcp::update(FileMode mode, FileOp op, FileType type, QString* lpszId, QString* lpszUserId, QString* lpszData) {
+	MessageXml xmlMessage;
 	xmlMessage.addHeader(XN_FROM, *lpszUserId);
 	xmlMessage.addHeader(XN_TO, localId);
 	xmlMessage.addData(XN_MODE, FileModeNames[mode]);
@@ -239,7 +239,7 @@ void lmcTcpNetwork::update(FileMode mode, FileOp op, FileType type, QString* lps
 	emit progressReceived(lpszUserId, &szMessage);
 }
 
-void lmcTcpNetwork::receiveMessage(QString* lpszUserId, QString* lpszAddress, QByteArray& datagram) {
+void lmNetworkTcp::receiveMessage(QString* lpszUserId, QString* lpszAddress, QByteArray& datagram) {
     DatagramHeader header(DT_None, "", ""); //Null header
     if(!Datagram::getHeader(datagram, header))
         return;
@@ -251,7 +251,7 @@ void lmcTcpNetwork::receiveMessage(QString* lpszUserId, QString* lpszAddress, QB
     QByteArray clearData;
     QString szMessage;
 
-    lmcTrace::write("TCP stream type " + QString::number(header.type) +
+    lmTrace::write("TCP stream type " + QString::number(header.type) +
                     " received from user " + *lpszUserId + " at " + *lpszAddress);
 
     switch(header.type) {
@@ -268,7 +268,7 @@ void lmcTcpNetwork::receiveMessage(QString* lpszUserId, QString* lpszAddress, QB
         // decrypt message with aes
         clearData = crypto->decrypt(&header.userId, cipherData);
         if(clearData.isEmpty()) {
-            lmcTrace::write("Warning: Message could not be retrieved");
+            lmTrace::write("Warning: Message could not be retrieved");
             break;
         }
         szMessage = QString::fromUtf8(clearData.data(), clearData.length());
@@ -279,14 +279,14 @@ void lmcTcpNetwork::receiveMessage(QString* lpszUserId, QString* lpszAddress, QB
     }
 }
 
-void lmcTcpNetwork::addFileSocket(QString* lpszId, QString* lpszUserId, QTcpSocket* pSocket) {
+void lmNetworkTcp::addFileSocket(QString* lpszId, QString* lpszUserId, QTcpSocket* pSocket) {
     FileReceiver* receiver = getReceiver(*lpszId, *lpszUserId);
 	if(receiver)
 		receiver->init(pSocket);
 }
 
-void lmcTcpNetwork::addMsgSocket(QString* lpszUserId, QTcpSocket* pSocket) {
-	lmcTrace::write("Accepted connection from user " + *lpszUserId);
+void lmNetworkTcp::addMsgSocket(QString* lpszUserId, QTcpSocket* pSocket) {
+	lmTrace::write("Accepted connection from user " + *lpszUserId);
 	QString address = pSocket->peerAddress().toString();
 	MsgStream* msgStream = new MsgStream(localId, *lpszUserId, address, tcpPort);
 	connect(msgStream, SIGNAL(connectionLost(QString*)), 
@@ -300,8 +300,8 @@ void lmcTcpNetwork::addMsgSocket(QString* lpszUserId, QTcpSocket* pSocket) {
 }
 
 //	Once a new incoming connection is established, the server sends a public key to client
-void lmcTcpNetwork::sendPublicKey(QString* lpszUserId) {
-	lmcTrace::write("Sending public key to user " + *lpszUserId);
+void lmNetworkTcp::sendPublicKey(QString* lpszUserId) {
+	lmTrace::write("Sending public key to user " + *lpszUserId);
 	MsgStream* msgStream = messageMap.value(*lpszUserId);
 	if(msgStream) {
 		QByteArray publicKey = crypto->publicKey;
@@ -313,7 +313,7 @@ void lmcTcpNetwork::sendPublicKey(QString* lpszUserId) {
 
 //	Once the public key from server is received, the client sends a session key which is
 //	encrypted with the public key of the server
-void lmcTcpNetwork::sendSessionKey(QString* lpszUserId, QByteArray& publicKey) {
+void lmNetworkTcp::sendSessionKey(QString* lpszUserId, QByteArray& publicKey) {
 	MsgStream* msgStream;
 
 	if(lpszUserId->compare(localId) == 0)
@@ -322,14 +322,14 @@ void lmcTcpNetwork::sendSessionKey(QString* lpszUserId, QByteArray& publicKey) {
 		msgStream = messageMap.value(*lpszUserId);
 
 	if(msgStream) {
-		lmcTrace::write("Sending session key to user " + *lpszUserId);
+		lmTrace::write("Sending session key to user " + *lpszUserId);
 		QByteArray sessionKey = crypto->generateAES(lpszUserId, publicKey);
 		Datagram::addHeader(DT_Handshake, sessionKey);
 		msgStream->sendMessage(sessionKey);
 	}
 }
 
-FileSender* lmcTcpNetwork::getSender(QString id, QString userId) {
+FileSender* lmNetworkTcp::getSender(QString id, QString userId) {
 	for(int index = 0; index < sendList.count(); index++)
         if(sendList[index]->id.compare(id) == 0 && sendList[index]->peerId.compare(userId) == 0)
 			return sendList[index];
@@ -337,7 +337,7 @@ FileSender* lmcTcpNetwork::getSender(QString id, QString userId) {
 	return NULL;
 }
 
-FileReceiver* lmcTcpNetwork::getReceiver(QString id, QString userId) {
+FileReceiver* lmNetworkTcp::getReceiver(QString id, QString userId) {
 	for(int index = 0; index < receiveList.count(); index++)
         if(receiveList[index]->id.compare(id) == 0 && receiveList[index]->peerId.compare(userId) == 0)
 			return receiveList[index];
@@ -345,13 +345,13 @@ FileReceiver* lmcTcpNetwork::getReceiver(QString id, QString userId) {
 	return NULL;
 }
 
-void lmcTcpNetwork::removeSender(FileSender* pSender) {
+void lmNetworkTcp::removeSender(FileSender* pSender) {
     int index = sendList.indexOf(pSender);
     FileSender* sender = sendList.takeAt(index);
     sender->deleteLater();  // deleting later is generally safer
 }
 
-void lmcTcpNetwork::removeReceiver(FileReceiver* pReceiver) {
+void lmNetworkTcp::removeReceiver(FileReceiver* pReceiver) {
     int index = receiveList.indexOf(pReceiver);
     FileReceiver* receiver = receiveList.takeAt(index);
     receiver->deleteLater();  // deleting later is generally safer

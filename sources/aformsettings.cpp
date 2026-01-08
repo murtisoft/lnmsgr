@@ -26,14 +26,14 @@
 #include "soundplayer.h"
 #include "chathelper.h"
 
-lmcSettingsDialog::lmcSettingsDialog(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
+lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
 	ui.setupUi(this);
 	//	remove the help button from window button group
 	setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 	//	Destroy the window when it closes
 	setAttribute(Qt::WA_DeleteOnClose, true);
 
-	pMessageLog = new lmcMessageLog(ui.fraMessageLog);
+	pMessageLog = new lmMessageLog(ui.fraMessageLog);
 	ui.logLayout->addWidget(pMessageLog);
 
     statusTimerId = 0;
@@ -67,10 +67,10 @@ lmcSettingsDialog::lmcSettingsDialog(QWidget *parent, Qt::WindowFlags flags) : Q
     connect(ui.btnRefresfTheme, SIGNAL(clicked()), this, SLOT(btnRefreshTheme_clicked()));
 }
 
-lmcSettingsDialog::~lmcSettingsDialog(void) {
+lmFormSettings::~lmFormSettings(void) {
 }
 
-void lmcSettingsDialog::init(void) {
+void lmFormSettings::init(void) {
 	QMap<QString, QString> languages;
 	//	Loop through available languages and add them to a map. This ensures that
 	//	the languages are sorted alphabetically. After that add the sorted items
@@ -85,21 +85,21 @@ void lmcSettingsDialog::init(void) {
 		ui.cboLanguage->addItem(languages.keys().value(index), languages.values().value(index));
 
 	for(int index = 0; index < FS_COUNT; index++)
-		ui.cboFontSize->addItem(lmcStrings::fontSize()[index], index);
+		ui.cboFontSize->addItem(lmStrings::fontSize()[index], index);
 
 	for(int index = 0; index < SE_Max; index++) {
 		QListWidgetItem* pListItem = new QListWidgetItem(ui.lvSounds);
-		pListItem->setText(lmcStrings::soundDesc()[index]);
+		pListItem->setText(lmStrings::soundDesc()[index]);
 		pListItem->setData(Qt::UserRole, soundFile[index]);
 		pListItem->setCheckState(IDS_SOUNDEVENT_VAL);
 	}
 
-	Themes themes = lmcTheme::availableThemes();
+	Themes themes = lmTheme::availableThemes();
 	for(int index = 0; index < themes.count(); index++)
 		ui.cboTheme->addItem(themes.at(index).name, themes.at(index).path);
 
 	for(int index = 0; index < ULV_Max; index++)
-		ui.cboUserListView->addItem(lmcStrings::userListView()[index], index);
+		ui.cboUserListView->addItem(lmStrings::userListView()[index], index);
 
 	fontSize = 0;
 	font = QApplication::font();
@@ -144,16 +144,16 @@ void lmcSettingsDialog::init(void) {
 
     pMessageLog->setAutoScroll(false);
 
-	pSettings = new lmcSettings();
+	pSettings = new lmSettings();
 	setUIText();
 	loadSettings();
 }
 
-void lmcSettingsDialog::settingsChanged(void) {
+void lmFormSettings::settingsChanged(void) {
 	loadSettings();
 }
 
-void lmcSettingsDialog::changeEvent(QEvent* pEvent) {
+void lmFormSettings::changeEvent(QEvent* pEvent) {
 	switch(pEvent->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -165,10 +165,10 @@ void lmcSettingsDialog::changeEvent(QEvent* pEvent) {
     QDialog::changeEvent(pEvent);
 }
 
-void lmcSettingsDialog::timerEvent(QTimerEvent *event)
+void lmFormSettings::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == statusTimerId) {
-        XmlMessage msg;
+        MessageXml msg;
         msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         msg.addData(XN_FONT, QFont().toString());
         msg.addData(XN_COLOR, QColor::fromRgb(96, 96, 96).name());
@@ -191,27 +191,27 @@ void lmcSettingsDialog::timerEvent(QTimerEvent *event)
     }
 }
 
-void lmcSettingsDialog::lvCategories_currentRowChanged(int currentRow) {
+void lmFormSettings::lvCategories_currentRowChanged(int currentRow) {
 	ui.stackedWidget->setCurrentIndex(currentRow);
 }
 
-void lmcSettingsDialog::btnOk_clicked(void) {
+void lmFormSettings::btnOk_clicked(void) {
 	saveSettings();
 }
 
-void lmcSettingsDialog::chkMessageTime_toggled(bool checked) {
+void lmFormSettings::chkMessageTime_toggled(bool checked) {
     Q_UNUSED(checked);
 
 	ui.chkMessageDate->setEnabled(ui.chkMessageTime->isChecked());
 }
 
-void lmcSettingsDialog::chkAllowLinks_toggled(bool checked) {
+void lmFormSettings::chkAllowLinks_toggled(bool checked) {
 	Q_UNUSED(checked);
 
 	ui.chkPathToLink->setEnabled(ui.chkAllowLinks->isChecked());
 }
 
-void lmcSettingsDialog::rdbSysHistoryPath_toggled(bool checked) {
+void lmFormSettings::rdbSysHistoryPath_toggled(bool checked) {
 	ui.txtHistoryPath->setEnabled(!checked);
 	ui.btnHistoryPath->setEnabled(!checked);
 
@@ -221,59 +221,59 @@ void lmcSettingsDialog::rdbSysHistoryPath_toggled(bool checked) {
 		ui.txtHistoryPath->clear();
 }
 
-void lmcSettingsDialog::btnHistoryPath_clicked(void) {
+void lmFormSettings::btnHistoryPath_clicked(void) {
 	QString historyPath = QFileDialog::getSaveFileName(this, tr("Save History"),
 		ui.txtHistoryPath->text(), "Messenger DB (*.db)");
 	if(!historyPath.isEmpty())
 		ui.txtHistoryPath->setText(historyPath);
 }
 
-void lmcSettingsDialog::btnFilePath_clicked(void) {
+void lmFormSettings::btnFilePath_clicked(void) {
 	QString filePath = QFileDialog::getExistingDirectory(this, tr("Select folder"),
 		ui.txtFilePath->text(), QFileDialog::ShowDirsOnly);
 	if(!filePath.isEmpty())
 		ui.txtFilePath->setText(filePath);
 }
 
-void lmcSettingsDialog::btnClearHistory_clicked(void) {
+void lmFormSettings::btnClearHistory_clicked(void) {
 	QFile::remove(History::historyFile());
 	emit historyCleared();
 }
 
-void lmcSettingsDialog::btnClearFileHistory_clicked(void) {
-	QFile::remove(StdLocation::transferHistory());
+void lmFormSettings::btnClearFileHistory_clicked(void) {
+	QFile::remove(DefinitionsDir::transferHistory());
 	emit fileHistoryCleared();
 }
 
-void lmcSettingsDialog::chkSound_toggled(bool checked) {
+void lmFormSettings::chkSound_toggled(bool checked) {
 	ui.lvSounds->setEnabled(checked);
 }
 
-void lmcSettingsDialog::chkAutoShowFile_toggled(bool checked) {
+void lmFormSettings::chkAutoShowFile_toggled(bool checked) {
 	ui.rdbFileTop->setEnabled(checked);
 	ui.rdbFileBottom->setEnabled(checked);
 }
 
-void lmcSettingsDialog::btnViewFiles_clicked(void) {
+void lmFormSettings::btnViewFiles_clicked(void) {
 	QDesktopServices::openUrl(QUrl::fromLocalFile(ui.txtFilePath->text()));
 }
 
-void lmcSettingsDialog::btnFont_clicked(void) {
+void lmFormSettings::btnFont_clicked(void) {
 	bool ok;
 	QFont newFont = QFontDialog::getFont(&ok, font, this, tr("Select Font"));
 	if(ok)
 		font = newFont;
 }
 
-void lmcSettingsDialog::btnColor_clicked(void) {
+void lmFormSettings::btnColor_clicked(void) {
 	QColor newColor = QColorDialog::getColor(color, this, tr("Select Color"));
 	if(newColor.isValid())
 		color = newColor;
 }
 
-void lmcSettingsDialog::btnReset_clicked(void) {
+void lmFormSettings::btnReset_clicked(void) {
 	QString message = tr("Are you sure you want to reset your %1 preferences?");
-	if(QMessageBox::question(this, tr("Reset Preferences"), message.arg(lmcStrings::appName()), QMessageBox::Yes, QMessageBox::No)
+	if(QMessageBox::question(this, tr("Reset Preferences"), message.arg(lmStrings::appName()), QMessageBox::Yes, QMessageBox::No)
 		== QMessageBox::Yes) {
 		QFile::remove(pSettings->fileName());
 		pSettings->sync();
@@ -281,7 +281,7 @@ void lmcSettingsDialog::btnReset_clicked(void) {
 	}
 }
 
-void lmcSettingsDialog::cboTheme_currentIndexChanged(int index) {
+void lmFormSettings::cboTheme_currentIndexChanged(int index) {
 	QString themePath = ui.cboTheme->itemData(index, Qt::UserRole).toString();
 
 	pMessageLog->fontSizeVal = FS_SMALL;
@@ -290,7 +290,7 @@ void lmcSettingsDialog::cboTheme_currentIndexChanged(int index) {
 	pMessageLog->messageTime = true;
     pMessageLog->initMessageLog(themePath);
 
-	XmlMessage msg;
+	MessageXml msg;
 	msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
 	msg.addData(XN_FONT, QFont().toString());
 	msg.addData(XN_COLOR, QColor::fromRgb(96, 96, 96).name());
@@ -324,7 +324,7 @@ void lmcSettingsDialog::cboTheme_currentIndexChanged(int index) {
 	userName = "Jack";
 
     pMessageLog->autoFile = false;
-    XmlMessage fileMsg;
+    MessageXml fileMsg;
     auto fileId = Helper::getUuid();
     fileMsg.addData(XN_FILEPATH, "C:\\unreal file path\\file name.txt");
     fileMsg.addData(XN_FILEID, fileId);
@@ -346,15 +346,15 @@ void lmcSettingsDialog::cboTheme_currentIndexChanged(int index) {
     statusTimerId = startTimer(3000);
 }
 
-void lmcSettingsDialog::lvBroadcasts_currentRowChanged(int index) {
+void lmFormSettings::lvBroadcasts_currentRowChanged(int index) {
 	ui.btnDeleteBroadcast->setEnabled(!(index < 0));
 }
 
-void lmcSettingsDialog::txtBroadcast_textEdited(const QString& text) {
+void lmFormSettings::txtBroadcast_textEdited(const QString& text) {
 	ui.btnAddBroadcast->setEnabled(ipRegExp.match(text).hasMatch());
 }
 
-void lmcSettingsDialog::btnAddBroadcast_clicked(void) {
+void lmFormSettings::btnAddBroadcast_clicked(void) {
 	QString address = ui.txtBroadcast->text();
 	//	Do not add if not a valid ip address
 	if (!ipRegExp.match(address).hasMatch())
@@ -375,7 +375,7 @@ void lmcSettingsDialog::btnAddBroadcast_clicked(void) {
 	ui.txtBroadcast->setFocus();
 }
 
-void lmcSettingsDialog::btnDeleteBroadcast_clicked(void) {
+void lmFormSettings::btnDeleteBroadcast_clicked(void) {
 	if(ui.lvBroadcasts->currentRow() < 0)
 		return;
 
@@ -383,7 +383,7 @@ void lmcSettingsDialog::btnDeleteBroadcast_clicked(void) {
 	delete item;
 }
 
-void lmcSettingsDialog::lvSounds_currentRowChanged(int index) {
+void lmFormSettings::lvSounds_currentRowChanged(int index) {
 	ui.btnPlaySound->setEnabled(!(index < 0));
 	ui.btnSoundPath->setEnabled(!(index < 0));
 
@@ -399,14 +399,14 @@ void lmcSettingsDialog::lvSounds_currentRowChanged(int index) {
 		ui.txtSoundFile->setText(tr("<File Not Found>"));
 }
 
-void lmcSettingsDialog::btnPlaySound_clicked(void) {
+void lmFormSettings::btnPlaySound_clicked(void) {
 	if(ui.lvSounds->currentRow() < 0)
 		return;
 
-    lmcSoundPlayer::play(ui.lvSounds->currentItem()->data(Qt::UserRole).toString());
+    lmSoundPlayer::play(ui.lvSounds->currentItem()->data(Qt::UserRole).toString());
 }
 
-void lmcSettingsDialog::btnSoundPath_clicked(void) {
+void lmFormSettings::btnSoundPath_clicked(void) {
 	if(ui.lvSounds->currentRow() < 0)
 		return;
 
@@ -418,7 +418,7 @@ void lmcSettingsDialog::btnSoundPath_clicked(void) {
 	}
 }
 
-void lmcSettingsDialog::btnResetSounds_clicked(void) {
+void lmFormSettings::btnResetSounds_clicked(void) {
 	for(int index = 0; index < SE_Max; index++) {
 		QListWidgetItem* pListItem = ui.lvSounds->item(index);
 		pListItem->setData(Qt::UserRole, soundFile[index]);
@@ -426,13 +426,13 @@ void lmcSettingsDialog::btnResetSounds_clicked(void) {
     lvSounds_currentRowChanged(ui.lvSounds->currentRow());
 }
 
-void lmcSettingsDialog::btnRefreshTheme_clicked()
+void lmFormSettings::btnRefreshTheme_clicked()
 {
     pMessageLog->reloadTheme();
     cboTheme_currentIndexChanged(ui.cboTheme->currentIndex());
 }
 
-void lmcSettingsDialog::setPageHeaderStyle(QLabel* pLabel) {
+void lmFormSettings::setPageHeaderStyle(QLabel* pLabel) {
     QFont font = pLabel->font();
     int fontSize = pLabel->fontInfo().pixelSize();
     fontSize += (fontSize * 0.2);
@@ -441,14 +441,15 @@ void lmcSettingsDialog::setPageHeaderStyle(QLabel* pLabel) {
     pLabel->setFont(font);
 }
 
-void lmcSettingsDialog::setUIText(void) {
+void lmFormSettings::setUIText(void) {
 	ui.retranslateUi(this);
 
 	setWindowTitle(tr("Preferences"));
 
-	ui.chkAutoStart->setText(ui.chkAutoStart->text().arg(lmcStrings::appName()));
-	ui.chkAutoShow->setText(ui.chkAutoShow->text().arg(lmcStrings::appName()));
-	ui.lblFinePrint->setText(ui.lblFinePrint->text().arg(lmcStrings::appName()));
+	ui.chkAutoStart->setText(ui.chkAutoStart->text().arg(lmStrings::appName()));
+	ui.chkAutoShow->setText(ui.chkAutoShow->text().arg(lmStrings::appName()));
+    ui.chkDebugLog->setText(ui.chkDebugLog->text().arg(lmStrings::appName()));
+	ui.lblFinePrint->setText(ui.lblFinePrint->text().arg(lmStrings::appName()));
 
 	if(!QSystemTrayIcon::isSystemTrayAvailable()) {
 		ui.grpSysTray->setEnabled(false);
@@ -458,19 +459,19 @@ void lmcSettingsDialog::setUIText(void) {
 		ui.grpAlerts->setEnabled(false);
 		ui.grpAlerts->setTitle(tr("Status Alerts (Not Available)"));
 	}
-    if(!lmcSoundPlayer::isAvailable()) {
+    if(!lmSoundPlayer::isAvailable()) {
 		ui.grpSounds->setEnabled(false);
 		ui.grpSounds->setTitle(tr("Sounds (Not Available)"));
 	}
 
 	for(int index = 0; index < ui.cboFontSize->count(); index++)
-		ui.cboFontSize->setItemText(index, lmcStrings::fontSize()[index]);
+		ui.cboFontSize->setItemText(index, lmStrings::fontSize()[index]);
 
 	for(int index = 0; index < ui.lvSounds->count(); index++)
-		ui.lvSounds->item(index)->setText(lmcStrings::soundDesc()[index]);
+		ui.lvSounds->item(index)->setText(lmStrings::soundDesc()[index]);
 
 	for(int index = 0; index < ULV_Max; index++)
-		ui.cboUserListView->setItemText(index, lmcStrings::userListView()[index]);
+		ui.cboUserListView->setItemText(index, lmStrings::userListView()[index]);
 
     QString updateLink = QString(IDA_DOMAIN);
 	ui.lblUpdateLink->setText("<a href='" + updateLink + "'><span style='text-decoration: underline; color:#0000ff;'>" + 
@@ -490,7 +491,7 @@ void lmcSettingsDialog::setUIText(void) {
 	layout()->setSizeConstraint(QLayout::SetMinimumSize);
 }
 
-void lmcSettingsDialog::loadSettings(void) {
+void lmFormSettings::loadSettings(void) {
     //	Auto start function not implemented on Mac since Mac itself provides an easy UI for it
 #ifdef Q_OS_MAC
 	ui.chkAutoStart->setChecked(false);
@@ -499,6 +500,7 @@ void lmcSettingsDialog::loadSettings(void) {
 	ui.chkAutoStart->setChecked(pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool());
 #endif
 	ui.chkAutoShow->setChecked(pSettings->value(IDS_AUTOSHOW, IDS_AUTOSHOW_VAL).toBool());
+    ui.chkDebugLog->setChecked(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool());
 	ui.chkSysTray->setChecked(pSettings->value(IDS_SYSTRAY, IDS_SYSTRAY_VAL).toBool());
 	ui.chkMinimizeTray->setChecked(pSettings->value(IDS_MINIMIZETRAY, IDS_MINIMIZETRAY_VAL).toBool());
 	ui.chkSingleClickTray->setChecked(pSettings->value(IDS_SINGLECLICKTRAY, IDS_SINGLECLICKTRAY_VAL).toBool());
@@ -514,6 +516,7 @@ void lmcSettingsDialog::loadSettings(void) {
 	}
 
 	ui.txtUserName->setText(pSettings->value(IDS_USERNAME, IDS_USERNAME_VAL).toString());
+    ui.txtUserGroup->setText(pSettings->value(IDS_USERGROUP, IDS_USERGROUP_VAL).toString());
 	ui.txtFirstName->setText(pSettings->value(IDS_USERFIRSTNAME, IDS_USERFIRSTNAME_VAL).toString());
 	ui.txtLastName->setText(pSettings->value(IDS_USERLASTNAME, IDS_USERLASTNAME_VAL).toString());
 	ui.txtAbout->setPlainText(pSettings->value(IDS_USERABOUT, IDS_USERABOUT_VAL).toString());
@@ -578,7 +581,7 @@ void lmcSettingsDialog::loadSettings(void) {
 	ui.chkAutoShowFile->setChecked(pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool());
 	ui.rdbFileTop->setChecked(pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
 	ui.rdbFileBottom->setChecked(!pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
-	ui.txtFilePath->setText(StdLocation::fileStorageDir());
+	ui.txtFilePath->setText(DefinitionsDir::fileStorageDir());
 
 	QString themePath = pSettings->value(IDS_THEME, IDS_THEME_VAL).toString();
 	for(int index = 0; index < ui.cboTheme->count(); index ++) {
@@ -596,11 +599,12 @@ void lmcSettingsDialog::loadSettings(void) {
 	ui.rdbCmdEnter->setChecked(pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
 }
 
-void lmcSettingsDialog::saveSettings(void) {
+void lmFormSettings::saveSettings(void) {
 	pSettings->setValue(IDS_VERSION, IDA_VERSION);
 
 	pSettings->setValue(IDS_AUTOSTART, ui.chkAutoStart->isChecked(), IDS_AUTOSTART_VAL);
 	pSettings->setValue(IDS_AUTOSHOW, ui.chkAutoShow->isChecked(), IDS_AUTOSHOW_VAL);
+    pSettings->setValue(IDS_DEBUGLOG, ui.chkDebugLog->isChecked(), IDS_DEBUGLOG_VAL);
 	pSettings->setValue(IDS_SYSTRAY, ui.chkSysTray->isChecked(), IDS_SYSTRAY_VAL);
 	pSettings->setValue(IDS_MINIMIZETRAY, ui.chkMinimizeTray->isChecked(), IDS_MINIMIZETRAY_VAL);
 	pSettings->setValue(IDS_SINGLECLICKTRAY, ui.chkSingleClickTray->isChecked(), IDS_SINGLECLICKTRAY_VAL);
@@ -610,6 +614,7 @@ void lmcSettingsDialog::saveSettings(void) {
 	pSettings->setValue(IDS_LANGUAGE, langCode, IDS_LANGUAGE_VAL);
 
 	pSettings->setValue(IDS_USERNAME, ui.txtUserName->text(), IDS_USERNAME_VAL);
+    pSettings->setValue(IDS_USERGROUP, ui.txtUserGroup->text(), IDS_USERGROUP_VAL);
 	pSettings->setValue(IDS_USERFIRSTNAME, ui.txtFirstName->text(), IDS_USERFIRSTNAME_VAL);
 	pSettings->setValue(IDS_USERLASTNAME, ui.txtLastName->text(), IDS_USERLASTNAME_VAL);
 	pSettings->setValue(IDS_USERABOUT, ui.txtAbout->toPlainText(), IDS_USERABOUT_VAL);

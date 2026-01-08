@@ -38,17 +38,17 @@
 #include "ui_aformmain.h"
 #include "shared.h"
 #include "settings.h"
-#include "imagepickeraction.h"
+#include "imagepicker.h"
 #include "soundplayer.h"
-#include "stdlocation.h"
-#include "xmlmessage.h"
+#include "definitionsdir.h"
+#include "messagexml.h"
 
-class lmcMainWindow : public QWidget {
+class lmFormMain : public QWidget {
 	Q_OBJECT
 
 public:
-    lmcMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
-	~lmcMainWindow(void);
+    lmFormMain(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+	~lmFormMain(void);
 
 	void init(User* pLocalUser, QList<Group>* pGroupList, bool connected);
     void start(void);
@@ -59,15 +59,15 @@ public:
 	void addUser(User* pUser);
 	void updateUser(User* pUser);
 	void removeUser(QString* lpszUserId);
-	void receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(bool connected);
 	void settingsChanged(bool init = false);
-	void showTrayMessage(TrayMessageType type, QString szMessage, QString szTitle = QString(), TrayMessageIcon icon = TMI_Info);
+    void showTrayMessage(TrayMessageType type, QString szMessage, QString szTitle = QString(), TrayMessageIcon icon = TMI_Info, const QPixmap &avatar = QPixmap());
     QList<QTreeWidgetItem*> getContactsList(void);
 
 signals:
 	void appExiting(void);
-	void messageSent(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void chatStarting(QString* lpszUserId);
 	void chatRoomStarting(QString* lpszThreadId);
 	void showTransfers(void);
@@ -84,9 +84,10 @@ protected:
     bool eventFilter(QObject* pObject, QEvent* pEvent);
 	void closeEvent(QCloseEvent* pEvent);
 	void changeEvent(QEvent* pEvent);
+    void moveEvent(QMoveEvent *event);
 
 private slots:
-	void sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void trayShowAction_triggered(void);
 	void trayHistoryAction_triggered(void);
 	void trayFileAction_triggered(void);
@@ -139,9 +140,10 @@ private:
     void setUserAvatar(QString* lpszUserId, QString* lpszFilePath);
 	void processTrayIconTrigger(void);
 	void setTrayTooltip(void);
+    void createToast(const QString& title, const QString& msg, TrayMessageIcon icon , const QPixmap &avatar = QPixmap());
 
 	Ui::MainWindow ui;
-	lmcSettings* pSettings;
+	lmSettings* pSettings;
 	QMenuBar* pMainMenu;
 	QSystemTrayIcon* pTrayIcon;
 	QMenu* pFileMenu;
@@ -171,7 +173,7 @@ private:
 	bool noBusyAlert;
 	bool noDNDAlert;
 	bool statusToolTip;
-	lmcSoundPlayer* pSoundPlayer;
+	lmSoundPlayer* pSoundPlayer;
 	TrayMessageType lastTrayMessageType;
 	QActionGroup* statusGroup;
 	QAction* chatRoomAction;

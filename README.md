@@ -1,9 +1,10 @@
 Notes
 ===========================
-Unfortunately, the program mysteriously crashes sometimes. 
+Unfortunately, the program mysteriously crashes when a new peer joins the network. It only seems to crash when my back is turned, so I am having a very hard time tracking this.
 
-I would like to maintain compatibility between this and old versions, 
-while adding more in the future. 
+I would like to maintain compatibility between this and old versions, while adding more in the future. 
+
+I would also discourage translators from contributing for now, the interface is constantly changing.
 
 How to compile LAN Messenger on Windows
 ============================

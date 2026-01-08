@@ -24,7 +24,7 @@
 #include <QString>
 #include <QStringList>
 #include "shared.h"
-#include "xmlmessage.h"
+#include "messagexml.h"
 
 enum MessagHeaderMember {
 	MH_AppId = 0,
@@ -36,8 +36,8 @@ enum MessagHeaderMember {
 
 class Message {
 public:
-	static QString addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, XmlMessage* pMessage);
-	static bool getHeader(QString* lpszMessage, MessageHeader** ppHeader, XmlMessage** ppMessage);
+	static QString addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, MessageXml* pMessage);
+	static bool getHeader(QString* lpszMessage, MessageHeader** ppHeader, MessageXml** ppMessage);
 };
 
 #endif // MESSAGE_H

@@ -18,8 +18,8 @@
 ****************************************************************************/
 
 
-#ifndef LANMSG_H
-#define LANMSG_H
+#ifndef LMCORE_H
+#define LMCORE_H
 
 #include <QObject>
 #include <QTimer>
@@ -31,7 +31,7 @@
 #include "aformmain.h"
 #include "aformchat.h"
 #include "history.h"
-#include "stdlocation.h"
+#include "definitionsdir.h"
 #include "aformtransfer.h"
 #include "aformhistory.h"
 #include "aformsettings.h"
@@ -41,12 +41,12 @@
 #include "aformabout.h"
 #include "aformbroadcast.h"
 
-class lmcCore : public QObject {
+class lmCore : public QObject {
 	Q_OBJECT
 
 public:
-	lmcCore(void);
-	~lmcCore(void);
+	lmCore(void);
+	~lmCore(void);
 	void init(const QString& szCommandArgs);
 	bool start(void);
 
@@ -59,8 +59,8 @@ private slots:
 	void timer_timeout(void);
 	void startChat(QString* lpszUserId);
 	void startChatRoom(QString* lpszThreadId);
-	void sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
-	void receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
+	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(void);
 	void showTransfers(void);
 	void showHistory(void);
@@ -80,43 +80,43 @@ private:
 	void stop(void);
 	void loadSettings(void);
 	void settingsChanged(void);
-	void processMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
-    void processFile(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
-	void routeMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
-	void routeGroupMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
-	void processPublicMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void processMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
+    void processFile(MessageType type, QString* lpszUserId, MessageXml* pMessage);
+	void routeMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
+	void routeGroupMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
+	void processPublicMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
     void createTransferWindow(void);
 	void showTransferWindow(bool show = false);
-    void initFileTransfer(MessageType type, FileMode mode, QString* lpszUserId, XmlMessage* pMessage);
-	void showUserInfo(XmlMessage* pMessage);
+    void initFileTransfer(MessageType type, FileMode mode, QString* lpszUserId, MessageXml* pMessage);
+	void showUserInfo(MessageXml* pMessage);
 	void createChatWindow(QString* lpszUserId);
-	void showChatWindow(lmcChatWindow* chatWindow, bool show, bool alert = false);
+	void showChatWindow(lmFormChat* chatWindow, bool show, bool alert = false);
 	void createChatRoomWindow(QString* lpszThreadId);
-	void showChatRoomWindow(lmcChatRoomWindow* chatRoomWindow, bool show, bool alert = false, bool add = false);
+	void showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool alert = false, bool add = false);
 	void showPublicChatWindow(bool show, bool alert = false, bool open = false);
     QStringList showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList);
 	void showPortConflictMessage(void);
 
-	lmcSettings*					pSettings;
+	lmSettings*					pSettings;
 	QTimer*							pTimer;
-	lmcMessaging*					pMessaging;
-	lmcMainWindow*					pMainWindow;
-	QList<lmcChatWindow*>			chatWindows;
-	QList<lmcChatRoomWindow*>		chatRoomWindows;
-	lmcTransferWindow*				pTransferWindow;
-	QPointer<lmcHistoryWindow>		pHistoryWindow;
-	QPointer<lmcSettingsDialog>		pSettingsDialog;
-	QPointer<lmcUserInfoWindow>		pUserInfoWindow;
-	QPointer<lmcChatRoomWindow>		pPublicChatWindow;
-	QPointer<lmcUserSelectDialog>	pUserSelectDialog;
-	QPointer<lmcAboutDialog>		pAboutDialog;
-	QPointer<lmcBroadcastWindow>	pBroadcastWindow;
+	lmMessaging*					pMessaging;
+	lmFormMain*					pMainWindow;
+	QList<lmFormChat*>			chatWindows;
+	QList<lmFormChatRoom*>		chatRoomWindows;
+	lmFormTransfer*				pTransferWindow;
+	QPointer<lmFormHistory>		pHistoryWindow;
+	QPointer<lmFormSettings>		pSettingsDialog;
+	QPointer<lmFormUserInfo>		pUserInfoWindow;
+	QPointer<lmFormChatRoom>		pPublicChatWindow;
+	QPointer<lmFormUserSelect>	pUserSelectDialog;
+	QPointer<lmFormAbout>		pAboutDialog;
+	QPointer<lmFormBroadcast>	pBroadcastWindow;
 	bool							messageTop;
 	bool							pubMessagePop;
 	QString							lang;
 	bool							adaptiveRefresh;
 	int								refreshTime;
-	XmlMessage*						pInitParams;
+	MessageXml*						pInitParams;
 };
 
-#endif // LANMSG_H
+#endif // LMCORE_H

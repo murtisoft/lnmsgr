@@ -22,7 +22,7 @@
 #include "aformbroadcast.h"
 
 //	constructor
-lmcBroadcastWindow::lmcBroadcastWindow(QWidget *parent) : QWidget(parent) {
+lmFormBroadcast::lmFormBroadcast(QWidget *parent) : QWidget(parent) {
 	ui.setupUi(this);
 
 	//	Destroy the window when it closes
@@ -56,10 +56,10 @@ lmcBroadcastWindow::lmcBroadcastWindow(QWidget *parent) : QWidget(parent) {
 	childToggling = false;
 }
 
-lmcBroadcastWindow::~lmcBroadcastWindow() {
+lmFormBroadcast::~lmFormBroadcast() {
 }
 
-void lmcBroadcastWindow::init(bool connected) {
+void lmFormBroadcast::init(bool connected) {
 	createToolBar();
 
 	setWindowIcon(QIcon(IDR_APPICON));
@@ -72,7 +72,7 @@ void lmcBroadcastWindow::init(bool connected) {
 	ui.tvUserList->setCheckable(true);
 
 	//	load settings
-	pSettings = new lmcSettings();
+	pSettings = new lmSettings();
 	restoreGeometry(pSettings->value(IDS_WINDOWBROADCAST).toByteArray());
 	ui.splitter->restoreState(pSettings->value(IDS_SPLITTERBROADCAST).toByteArray());
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
@@ -94,13 +94,13 @@ void lmcBroadcastWindow::init(bool connected) {
 	ui.txtMessage->setFocus();
 }
 
-void lmcBroadcastWindow::stop(void) {
+void lmFormBroadcast::stop(void) {
 	//	save window geometry and splitter panel sizes
 	pSettings->setValue(IDS_WINDOWBROADCAST, saveGeometry());
 	pSettings->setValue(IDS_SPLITTERBROADCAST, ui.splitter->saveState());
 }
 
-void lmcBroadcastWindow::show(QList<QTreeWidgetItem*>* pGroupList) {
+void lmFormBroadcast::show(QList<QTreeWidgetItem*>* pGroupList) {
 
 	
 	if(!pGroupList)
@@ -121,13 +121,13 @@ void lmcBroadcastWindow::show(QList<QTreeWidgetItem*>* pGroupList) {
     QWidget::show();
 }
 
-void lmcBroadcastWindow::connectionStateChanged(bool connected) {
+void lmFormBroadcast::connectionStateChanged(bool connected) {
 	bConnected = connected;
 	ui.btnSend->setEnabled(bConnected);
 	bConnected ? showStatus(IT_Disconnected, false) : showStatus(IT_Disconnected, true);
 }
 
-void lmcBroadcastWindow::settingsChanged(void) {
+void lmFormBroadcast::settingsChanged(void) {
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 	int viewType = pSettings->value(IDS_USERLISTVIEW, IDS_USERLISTVIEW_VAL).toInt();
@@ -136,7 +136,7 @@ void lmcBroadcastWindow::settingsChanged(void) {
 
 //	this method receives keyboard events and check if Enter key or Escape key were pressed
 //	if so, corresponding functions are called
-bool lmcBroadcastWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
+bool lmFormBroadcast::eventFilter(QObject* pObject, QEvent* pEvent) {
 	if(pEvent->type() == QEvent::KeyPress) {
 		QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
 		if(pKeyEvent->key() == Qt::Key_Escape) {
@@ -158,7 +158,7 @@ bool lmcBroadcastWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
 	return false;
 }
 
-void lmcBroadcastWindow::changeEvent(QEvent* pEvent) {
+void lmFormBroadcast::changeEvent(QEvent* pEvent) {
 	switch(pEvent->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -170,7 +170,7 @@ void lmcBroadcastWindow::changeEvent(QEvent* pEvent) {
 	QWidget::changeEvent(pEvent);
 }
 
-void lmcBroadcastWindow::closeEvent(QCloseEvent* pEvent) {
+void lmFormBroadcast::closeEvent(QCloseEvent* pEvent) {
 	ui.txtMessage->clear();
 	btnSelectNone_clicked();
 
@@ -178,22 +178,22 @@ void lmcBroadcastWindow::closeEvent(QCloseEvent* pEvent) {
 }
 
 //	change the font size of the text box with toolbar button
-void lmcBroadcastWindow::btnFontSize_clicked(void) {
+void lmFormBroadcast::btnFontSize_clicked(void) {
 	fontSizeVal = (fontSizeVal == FS_COUNT - 1) ? 0 : fontSizeVal + 1;
 	pFontGroup->actions()[fontSizeVal]->setChecked(true);
-	pbtnFontSize->setText(lmcStrings::fontSize()[fontSizeVal]);
+	pbtnFontSize->setText(lmStrings::fontSize()[fontSizeVal]);
 	ui.txtMessage->setStyleSheet("QTextEdit { " + fontStyle[fontSizeVal] + " }");
 }
 
 //	change the font size of text box through menu
-void lmcBroadcastWindow::fontAction_triggered(QAction* action) {
+void lmFormBroadcast::fontAction_triggered(QAction* action) {
 	fontSizeVal = action->data().toInt();
-	pbtnFontSize->setText(lmcStrings::fontSize()[fontSizeVal]);
+	pbtnFontSize->setText(lmStrings::fontSize()[fontSizeVal]);
 	ui.txtMessage->setStyleSheet("QTextEdit { " + fontStyle[fontSizeVal] + " }");
 }
 
 //	insert a smiley into the text box
-void lmcBroadcastWindow::smileyAction_triggered(void) {
+void lmFormBroadcast::smileyAction_triggered(void) {
 	//	if smileys are enabled, insert an image else insert a text smiley
 	//	nSmiley contains index of smiley
 	if(showSmiley) {
@@ -210,19 +210,19 @@ void lmcBroadcastWindow::smileyAction_triggered(void) {
 }
 
 //	select all users in the user tree
-void lmcBroadcastWindow::btnSelectAll_clicked(void) {
+void lmFormBroadcast::btnSelectAll_clicked(void) {
 	for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++)
 		ui.tvUserList->topLevelItem(index)->setCheckState(0, Qt::Checked);
 }
 
 //	deselect all users in the user tree
-void lmcBroadcastWindow::btnSelectNone_clicked(void) {
+void lmFormBroadcast::btnSelectNone_clicked(void) {
 	for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++)
 		ui.tvUserList->topLevelItem(index)->setCheckState(0, Qt::Unchecked);
 }
 
 //	event called when the user checks/unchecks a tree item
-void lmcBroadcastWindow::tvUserList_itemChanged(QTreeWidgetItem* item, int column) {
+void lmFormBroadcast::tvUserList_itemChanged(QTreeWidgetItem* item, int column) {
     Q_UNUSED(column);
 
 	//	if parent tree item was toggled, update all its children to the same state
@@ -247,12 +247,12 @@ void lmcBroadcastWindow::tvUserList_itemChanged(QTreeWidgetItem* item, int colum
 	}
 }
 
-void lmcBroadcastWindow::btnSend_clicked(void) {
+void lmFormBroadcast::btnSend_clicked(void) {
 	sendMessage();
 }
 
 //	create toolbar and add buttons
-void lmcBroadcastWindow::createToolBar(void) {
+void lmFormBroadcast::createToolBar(void) {
 	//	create the toolbar
 	pToolBar = new QToolBar(ui.toolBarWidget);
 	pToolBar->setStyleSheet("QToolBar { border: 0px }");
@@ -265,7 +265,7 @@ void lmcBroadcastWindow::createToolBar(void) {
 	connect(pFontGroup, SIGNAL(triggered(QAction*)), this, SLOT(fontAction_triggered(QAction*)));
 
 	for(int index = 0; index < FS_COUNT; index++) {
-		QAction* pAction = new QAction(lmcStrings::fontSize()[index], this);
+		QAction* pAction = new QAction(lmStrings::fontSize()[index], this);
 		pAction->setCheckable(true);
 		pAction->setData(index);
 		pFontGroup->addAction(pAction);
@@ -281,35 +281,35 @@ void lmcBroadcastWindow::createToolBar(void) {
 	pToolBar->addWidget(pbtnFontSize);
 
 	//	create the smiley menu
-    lmcImagePickerAction* pSmileyAction = new lmcImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
+    lmImagePickerAction* pSmileyAction = new lmImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
 	connect(pSmileyAction, SIGNAL(triggered()), this, SLOT(smileyAction_triggered()));
 
 	QMenu* pSmileyMenu = new QMenu(this);
 	pSmileyMenu->addAction(pSmileyAction);
 
 	//	create the smiley tool button
-	pbtnSmiley = new lmcToolButton(pToolBar);
+	pbtnSmiley = new lmToolButton(pToolBar);
     pbtnSmiley->setIcon(ChatHelper::renderEmoji(Icons::Smiley,16));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pToolBar->addWidget(pbtnSmiley);
 }
 
-void lmcBroadcastWindow::setUIText(void) {
+void lmFormBroadcast::setUIText(void) {
 	ui.retranslateUi(this);
 
 	setWindowTitle(tr("Send Broadcast Message"));
 
-	pbtnFontSize->setText(lmcStrings::fontSize()[fontSizeVal]);
+	pbtnFontSize->setText(lmStrings::fontSize()[fontSizeVal]);
 	pbtnFontSize->setToolTip(tr("Change Font Size"));
 	pbtnSmiley->setToolTip(tr("Insert Smiley"));
 
 	for(int index = 0; index < pFontGroup->actions().count(); index++)
-		pFontGroup->actions()[index]->setText(lmcStrings::fontSize()[index]);
+		pFontGroup->actions()[index]->setText(lmStrings::fontSize()[index]);
 }
 
 //	send the broadcast message to all selected users
-void lmcBroadcastWindow::sendMessage(void) {
+void lmFormBroadcast::sendMessage(void) {
 	//	return if text box is empty
 	if(ui.txtMessage->document()->isEmpty())
 		return;
@@ -324,7 +324,7 @@ void lmcBroadcastWindow::sendMessage(void) {
 		
 		//	send broadcast
 		int sendCount = 0;
-		XmlMessage xmlMessage;
+		MessageXml xmlMessage;
 		xmlMessage.addData(XN_BROADCAST, szMessage);
 		for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++) {
 			for(int childIndex = 0; childIndex < ui.tvUserList->topLevelItem(index)->childCount(); childIndex++) {
@@ -349,13 +349,13 @@ void lmcBroadcastWindow::sendMessage(void) {
 }
 
 //	Called before sending message
-void lmcBroadcastWindow::encodeMessage(QString* lpszMessage) {
+void lmFormBroadcast::encodeMessage(QString* lpszMessage) {
 	//	replace all emoticon images with corresponding text code
 	ChatHelper::encodeSmileys(lpszMessage);
 }
 
 //	show a message depending on the connection state
-void lmcBroadcastWindow::showStatus(int flag, bool add) {
+void lmFormBroadcast::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
 	ui.lblInfo->setStyleSheet("QLabel { background-color:white;font-size:9pt; }");

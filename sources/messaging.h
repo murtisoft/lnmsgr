@@ -27,7 +27,7 @@
 #include "message.h"
 #include "network.h"
 #include "settings.h"
-#include "xmlmessage.h"
+#include "messagexml.h"
 
 
 struct PendingMsg {
@@ -36,11 +36,11 @@ struct PendingMsg {
 	QDateTime timeStamp;
 	MessageType type;
 	QString userId;
-	XmlMessage xmlMessage;
+	MessageXml xmlMessage;
 	int retry;
 
 	PendingMsg(void) {}
-	PendingMsg(qint64 nMsgId, bool bActive, QDateTime timeStamp, MessageType mtType, QString szUserId, XmlMessage xmlMessage, int nRetry) {
+	PendingMsg(qint64 nMsgId, bool bActive, QDateTime timeStamp, MessageType mtType, QString szUserId, MessageXml xmlMessage, int nRetry) {
 		this->msgId = nMsgId;
 		this->active = bActive;
 		this->timeStamp = timeStamp;
@@ -125,14 +125,14 @@ struct TransFolder : public Transfer {
       }
 };
 
-class lmcMessaging : public QObject {
+class lmMessaging : public QObject {
 	Q_OBJECT
 
 public:
-	lmcMessaging(void);
-	~lmcMessaging(void);
+	lmMessaging(void);
+	~lmMessaging(void);
 
-	void init(XmlMessage* pInitParams);
+	void init(MessageXml* pInitParams);
 	void start(void);
 	void update(void);
 	void stop(void);
@@ -140,9 +140,9 @@ public:
 	bool canReceive(void);
 	void setLoopback(bool on);
 	User* getUser(QString* lpszUserId);
-	void sendBroadcast(MessageType type, XmlMessage* pMessage);
-	void sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
-	void sendWebMessage(MessageType type, XmlMessage* pMessage);
+	void sendBroadcast(MessageType type, MessageXml* pMessage);
+	void sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
+	void sendWebMessage(MessageType type, MessageXml* pMessage);
 	void settingsChanged(void);
 	void updateGroup(GroupOp op, QVariant value1, QVariant value2);
 	void updateGroupMap(QString oldGroup, QString newGroup);
@@ -154,7 +154,7 @@ public:
 	QList<Group> groupList;
 
 signals:
-	void messageReceived(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void messageReceived(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(void);
 
 private slots:
@@ -171,36 +171,36 @@ private:
 	QString createUserId(QString* lpszAddress, QString* lpszUserName);
 	QString getUserName(void);
 	void loadGroups(void);
-	void getUserInfo(XmlMessage* pMessage);
+	void getUserInfo(MessageXml* pMessage);
 	void sendUserData(MessageType type, QueryOp op, QString* lpszUserId, QString* lpszAddress);
-	void prepareBroadcast(MessageType type, XmlMessage* pMessage);
-	void prepareMessage(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, XmlMessage* pMessage);
-	void prepareFile(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, XmlMessage* pMessage);
-    void prepareFolder(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, XmlMessage* pMessage);
-	void processBroadcast(MessageHeader* pHeader, XmlMessage* pMessage);
-	void processMessage(MessageHeader* pHeader, XmlMessage* pMessage);
-	void processFile(MessageHeader* pHeader, XmlMessage* pMessage);
-    void processFolder(MessageHeader* pHeader, XmlMessage* pMessage);
-	void processWebMessage(MessageHeader* pHeader, XmlMessage* pMessage);
+	void prepareBroadcast(MessageType type, MessageXml* pMessage);
+	void prepareMessage(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, MessageXml* pMessage);
+	void prepareFile(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, MessageXml* pMessage);
+    void prepareFolder(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, MessageXml* pMessage);
+	void processBroadcast(MessageHeader* pHeader, MessageXml* pMessage);
+	void processMessage(MessageHeader* pHeader, MessageXml* pMessage);
+	void processFile(MessageHeader* pHeader, MessageXml* pMessage);
+    void processFolder(MessageHeader* pHeader, MessageXml* pMessage);
+	void processWebMessage(MessageHeader* pHeader, MessageXml* pMessage);
     bool addUser(QString szUserId, QString szVersion, QString szAddress, QString szName, QString szStatus, QString szAvatar, QString szNote, QString szCaps);
 	void updateUser(MessageType type, QString szUserId, QString szUserData);
 	void removeUser(QString szUserId);
 	bool addReceivedMsg(qint64 msgId, QString userId);
-	void addPendingMsg(qint64 msgId, MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void addPendingMsg(qint64 msgId, MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void removePendingMsg(qint64);
 	void removeAllPendingMsg(QString* lpszUserId);
 	void checkPendingMsg(void);
-	void resendMessage(MessageType type, qint64 msgId, QString* lpszUserId, XmlMessage* pMessage);
-    bool addFileTransfer(FileMode fileMode, QString *lpszUserId, XmlMessage *pMessage);
-    bool updateFileTransfer(FileMode fileMode, FileOp fileOp, QString *lpszUserId, XmlMessage *pMessage);
+	void resendMessage(MessageType type, qint64 msgId, QString* lpszUserId, MessageXml* pMessage);
+    bool addFileTransfer(FileMode fileMode, QString *lpszUserId, MessageXml *pMessage);
+    bool updateFileTransfer(FileMode fileMode, FileOp fileOp, QString *lpszUserId, MessageXml *pMessage);
     QString getFreeFileName(QString fileName);
-    bool addFolderTransfer(FileMode folderMode, QString* lpszUserId, XmlMessage* pMessage);
-    bool updateFolderTransfer(FileMode folderMode, FileOp folderOp, QString* lpszUserId, XmlMessage* pMessage);
+    bool addFolderTransfer(FileMode folderMode, QString* lpszUserId, MessageXml* pMessage);
+    bool updateFolderTransfer(FileMode folderMode, FileOp folderOp, QString* lpszUserId, MessageXml* pMessage);
     QString getFreeFolderName(QString folderName);
     QString getFolderPath(QString folderId, QString userId, FileMode mode);
 
-	lmcNetwork*			pNetwork;
-	lmcSettings*		pSettings;
+	lmNetwork*			pNetwork;
+	lmSettings*		pSettings;
 	QTimer*				pTimer;
 	qint64				msgId;
 	QList<ReceivedMsg>	receivedList;

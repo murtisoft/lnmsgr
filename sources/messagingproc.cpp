@@ -22,14 +22,14 @@
 #include "messaging.h"
 
 //	A broadcast is to be sent
-void lmcMessaging::sendBroadcast(MessageType type, XmlMessage* pMessage) {
+void lmMessaging::sendBroadcast(MessageType type, MessageXml* pMessage) {
 	prepareBroadcast(type, pMessage);
 }
 
 //	A message is to be sent
-void lmcMessaging::sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage) {
+void lmMessaging::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
 	QString data = QString();
-	XmlMessage message;
+	MessageXml message;
 
 	switch(type) {
 	case MT_Group:
@@ -77,12 +77,12 @@ void lmcMessaging::sendMessage(MessageType type, QString* lpszUserId, XmlMessage
 	}
 }
 
-void lmcMessaging::sendWebMessage(MessageType type, XmlMessage *pMessage) {
+void lmMessaging::sendWebMessage(MessageType type, MessageXml *pMessage) {
 	Q_UNUSED(pMessage);
 
 	QString szUrl;
 
-	lmcTrace::write("Sending web message type " + QString::number(type));
+	lmTrace::write("Sending web message type " + QString::number(type));
 
 	switch(type) {
 	case MT_Version:
@@ -95,11 +95,11 @@ void lmcMessaging::sendWebMessage(MessageType type, XmlMessage *pMessage) {
 }
 
 //	A broadcast has been received
-void lmcMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) {
+void lmMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) {
 	MessageHeader* pMsgHeader = NULL;
-	XmlMessage* pMessage = NULL;
+	MessageXml* pMessage = NULL;
 	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
-		lmcTrace::write("Warning: Broadcast header parse failed");
+		lmTrace::write("Warning: Broadcast header parse failed");
 		return;
 	}
 	pMsgHeader->address = pHeader->address;
@@ -107,11 +107,11 @@ void lmcMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) 
 }
 
 //	A message has been received
-void lmcMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
+void lmMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
 	MessageHeader* pMsgHeader = NULL;
-	XmlMessage* pMessage = NULL;
+	MessageXml* pMessage = NULL;
 	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
-		lmcTrace::write("Warning: Message header parse failed");
+		lmTrace::write("Warning: Message header parse failed");
 		return;
 	}
 	pMsgHeader->address = pHeader->address;
@@ -119,11 +119,11 @@ void lmcMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
 }
 
 //	A web message has been received
-void lmcMessaging::receiveWebMessage(QString *lpszData) {
+void lmMessaging::receiveWebMessage(QString *lpszData) {
 	MessageHeader* pMsgHeader = NULL;
-	XmlMessage* pMessage = NULL;
+	MessageXml* pMessage = NULL;
 	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
-		lmcTrace::write("Warning: Web message header parse failed");
+		lmTrace::write("Warning: Web message header parse failed");
 		return;
 	}
 
@@ -131,19 +131,19 @@ void lmcMessaging::receiveWebMessage(QString *lpszData) {
 }
 
 //	Handshake procedure has been completed
-void lmcMessaging::newConnection(QString* lpszUserId, QString* lpszAddress) {
-	lmcTrace::write("Connection completed with user " + *lpszUserId + " at " + *lpszAddress);
+void lmMessaging::newConnection(QString* lpszUserId, QString* lpszAddress) {
+	lmTrace::write("Connection completed with user " + *lpszUserId + " at " + *lpszAddress);
 	sendUserData(MT_UserData, QO_Get, lpszUserId, lpszAddress);
 }
 
-void lmcMessaging::connectionLost(QString* lpszUserId) {
-	lmcTrace::write("Connection to user " + *lpszUserId + " lost");
+void lmMessaging::connectionLost(QString* lpszUserId) {
+	lmTrace::write("Connection to user " + *lpszUserId + " lost");
 	removeUser(*lpszUserId);
 }
 
-void lmcMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserId, QString* lpszAddress) {
-	lmcTrace::write("Sending local user details to user " + *lpszUserId + " at " + *lpszAddress);
-	XmlMessage xmlMessage;
+void lmMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserId, QString* lpszAddress) {
+	lmTrace::write("Sending local user details to user " + *lpszUserId + " at " + *lpszAddress);
+	MessageXml xmlMessage;
 	xmlMessage.addData(XN_USERID, localUser->id);
 	xmlMessage.addData(XN_NAME, localUser->name);
 	xmlMessage.addData(XN_ADDRESS, localUser->address);
@@ -156,30 +156,30 @@ void lmcMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserI
 	pNetwork->sendMessage(lpszUserId, lpszAddress, &szMessage);
 }
 
-void lmcMessaging::prepareBroadcast(MessageType type, XmlMessage* pMessage) {
+void lmMessaging::prepareBroadcast(MessageType type, MessageXml* pMessage) {
     if(!isConnected()) {
-        lmcTrace::write("Warning: Not connected. Broadcast not sent");
+        lmTrace::write("Warning: Not connected. Broadcast not sent");
         return;
     }
     if(localUser->id.isNull()) {
-        lmcTrace::write("Warning: Local user not initialized. Broadcast not sent");
+        lmTrace::write("Warning: Local user not initialized. Broadcast not sent");
         return;
     }
 
-	lmcTrace::write("Sending broadcast type " + QString::number(type));
+	lmTrace::write("Sending broadcast type " + QString::number(type));
 	QString szMessage = Message::addHeader(type, msgId, &localUser->id, NULL, pMessage);
 	pNetwork->sendBroadcast(&szMessage);
-	lmcTrace::write("Broadcast sending done");
+	lmTrace::write("Broadcast sending done");
 }
 
 //	This method converts a Message from ui layer to a Datagram that can be passed to network layer
-void lmcMessaging::prepareMessage(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, XmlMessage* pMessage) {
+void lmMessaging::prepareMessage(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, MessageXml* pMessage) {
 	if(!isConnected()) {
-		lmcTrace::write("Warning: Not connected. Message not sent");
+		lmTrace::write("Warning: Not connected. Message not sent");
 		return;
 	}
     if(localUser->id.isNull()) {
-        lmcTrace::write("Warning: Local user not initialized. Message not sent");
+        lmTrace::write("Warning: Local user not initialized. Message not sent");
         return;
     }
 
@@ -238,26 +238,26 @@ void lmcMessaging::prepareMessage(MessageType type, qint64 msgId, bool retry, QS
 	}
 
 	if(!receiver) {
-		lmcTrace::write("Warning: Recipient " + *lpszUserId + " not found. Message not sent");
+		lmTrace::write("Warning: Recipient " + *lpszUserId + " not found. Message not sent");
 		return;
 	}
 
-	lmcTrace::write("Sending message type " + QString::number(type) + " to user " + receiver->id
+	lmTrace::write("Sending message type " + QString::number(type) + " to user " + receiver->id
 		+ " at " + receiver->address);
 	QString szMessage = Message::addHeader(type, msgId, &localUser->id, lpszUserId, pMessage);
 	pNetwork->sendMessage(&receiver->id, &receiver->address, &szMessage);
-	lmcTrace::write("Message sending done");
+	lmTrace::write("Message sending done");
 }
 
 //	This method converts a Datagram from network layer to a Message that can be passed to ui layer
-void lmcMessaging::processBroadcast(MessageHeader* pHeader, XmlMessage* pMessage) {
+void lmMessaging::processBroadcast(MessageHeader* pHeader, MessageXml* pMessage) {
 	Q_UNUSED(pMessage);
 
 	//	do not process broadcasts from local user unless loopback is specified in command line
 	if(!loopback && pHeader->userId.compare(localUser->id) == 0)
 		return;
 
-	lmcTrace::write("Processing broadcast type " + QString::number(pHeader->type) + " from user " +
+	lmTrace::write("Processing broadcast type " + QString::number(pHeader->type) + " from user " +
 		pHeader->userId);
 
 	switch(pHeader->type) {
@@ -272,15 +272,15 @@ void lmcMessaging::processBroadcast(MessageHeader* pHeader, XmlMessage* pMessage
         break;
 	}
 
-	lmcTrace::write("Broadcast processing done");
+	lmTrace::write("Broadcast processing done");
 }
 
-void lmcMessaging::processMessage(MessageHeader* pHeader, XmlMessage* pMessage) {
+void lmMessaging::processMessage(MessageHeader* pHeader, MessageXml* pMessage) {
 	QString msgId;
 	QString data = QString();
-	XmlMessage reply;
+	MessageXml reply;
 
-	lmcTrace::write("Processing message type " + QString::number(pHeader->type) + " from user " +
+	lmTrace::write("Processing message type " + QString::number(pHeader->type) + " from user " +
 		pHeader->userId);
 
 	switch(pHeader->type) {
@@ -341,7 +341,7 @@ void lmcMessaging::processMessage(MessageHeader* pHeader, XmlMessage* pMessage) 
 			removePendingMsg(msgId.toLongLong());
             //  Add the path to the user's avatar image stored locally
             data = "avt_" + pHeader->userId + ".png";
-            data = QDir(StdLocation::cacheDir()).absoluteFilePath(data);
+            data = QDir(DefinitionsDir::cacheDir()).absoluteFilePath(data);
             pMessage->addData(XN_AVATAR, data);
 			emit messageReceived(pHeader->type, &pHeader->userId, pMessage);
 		}
@@ -365,11 +365,11 @@ void lmcMessaging::processMessage(MessageHeader* pHeader, XmlMessage* pMessage) 
         break;
 	}
 
-	lmcTrace::write("Message processing done");
+	lmTrace::write("Message processing done");
 }
 
-void lmcMessaging::processWebMessage(MessageHeader* pHeader, XmlMessage *pMessage) {
-	lmcTrace::write("Processing web message type " + QString::number(pHeader->type));
+void lmMessaging::processWebMessage(MessageHeader* pHeader, MessageXml *pMessage) {
+	lmTrace::write("Processing web message type " + QString::number(pHeader->type));
 
 	switch(pHeader->type) {
 	case MT_Version:

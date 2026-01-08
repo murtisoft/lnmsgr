@@ -24,12 +24,12 @@
 #include <QStringList>
 #include <QCoreApplication>
 
-class lmcStrings {
-	Q_DECLARE_TR_FUNCTIONS(lmcStrings)
+class lmStrings {
+	Q_DECLARE_TR_FUNCTIONS(lmStrings)
 
 public:
-	lmcStrings(void);
-	~lmcStrings(void);
+	lmStrings(void);
+	~lmStrings(void);
 
 	static void retranslate(void);
 	static const QString appName(void);

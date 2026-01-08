@@ -23,11 +23,11 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <qmath.h>
-#include "uidefinitions.h"
+#include "definitionsui.h"
 #include "imagepicker.h"
 #include "chathelper.h"
 
-lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex)
+lmImagePicker::lmImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex)
 	: QTableWidget(parent)
 {
 	setMouseTracking(true);
@@ -41,7 +41,6 @@ lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picS
 	setSelectionMode(QAbstractItemView::NoSelection);
 	setShowGrid(false);
 	horizontalHeader()->setVisible(false);
-
 
 	verticalHeader()->setVisible(false);
 	setStyleSheet("QTableWidget { padding: 4px }");	// padding around table
@@ -60,8 +59,8 @@ lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picS
 	horizontalHeader()->setMinimumSectionSize(cellSize);
 
 	//	set min and max size of table, with padding included
-    setMinimumSize(max_col * cellSize + 10 , max_row * cellSize + 10);
-    setMaximumSize(max_col * cellSize + 10 , max_row * cellSize + 10);
+    setMinimumSize(max_col * cellSize + 8 , max_row * cellSize + 8);
+    setMaximumSize(max_col * cellSize + 8 , max_row * cellSize + 8);
 
 	for(int i = 0; i < max_row; i++) {
 		for(int j = 0; j < max_col; j++) {
@@ -89,10 +88,10 @@ lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picS
 	this->hoverItem = NULL;
 }
 
-lmcImagePicker::~lmcImagePicker() {
+lmImagePicker::~lmImagePicker() {
 }
 
-void lmcImagePicker::mouseReleaseEvent(QMouseEvent* e) {
+void lmImagePicker::mouseReleaseEvent(QMouseEvent* e) {
     QTableWidgetItem* it = itemAt(e->pos());
 
     if (it && it->data(TypeRole).toInt() == 1) {
@@ -110,7 +109,7 @@ void lmcImagePicker::mouseReleaseEvent(QMouseEvent* e) {
     QTableWidget::mouseReleaseEvent(e);
 }
 
-void lmcImagePicker::mouseMoveEvent(QMouseEvent* e) {
+void lmImagePicker::mouseMoveEvent(QMouseEvent* e) {
     QTableWidget::mouseMoveEvent(e);
 
     QTableWidgetItem* currentItem = itemAt(e->pos());
@@ -121,7 +120,7 @@ void lmcImagePicker::mouseMoveEvent(QMouseEvent* e) {
     }
 }
 
-void lmcImagePicker::paintEvent(QPaintEvent* e) {
+void lmImagePicker::paintEvent(QPaintEvent* e) {
 	QTableWidget::paintEvent(e);
 
 	//	If mouse is hovered over an item, draw a border around it
@@ -134,8 +133,35 @@ void lmcImagePicker::paintEvent(QPaintEvent* e) {
 	}
 }
 
-void lmcImagePicker::leaveEvent(QEvent* e) {
+void lmImagePicker::leaveEvent(QEvent* e) {
 	QTableWidget::leaveEvent(e);
 
 	hoverItem = NULL;
+}
+
+lmImagePickerAction::lmImagePickerAction(QObject* parent, const QString source[], int sourceCount, int picSize, int columns, int* selected)
+    : QWidgetAction(parent) {
+    this->source = new QList<QString>();
+    for(int index = 0; index < sourceCount; index++)
+        this->source->append(source[index]);
+    this->picSize = picSize;
+    this->columns = columns;
+    this->selected = selected;
+}
+
+lmImagePickerAction::~lmImagePickerAction(void) {
+}
+
+void lmImagePickerAction::releaseWidget(QWidget* widget) {
+    widget->deleteLater();
+}
+
+QWidget* lmImagePickerAction::createWidget(QWidget* parent) {
+    QMenu* menu = (QMenu*)parent;
+    int index = 0;
+    for(; index < menu->actions().count(); index++)
+        if(menu->actions()[index] == this)
+            break;
+    lmImagePicker* widget = new lmImagePicker(parent, source, picSize, columns, selected, index);
+    return widget;
 }

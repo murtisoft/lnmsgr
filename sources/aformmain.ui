@@ -113,7 +113,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="lmcLabel" name="lblUserName">
+           <widget class="lmLabel" name="lblUserName">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -175,7 +175,7 @@
          </layout>
         </item>
         <item>
-         <widget class="lmcLineEdit" name="txtNote">
+         <widget class="lmLineEdit" name="txtNote">
           <property name="maximumSize">
            <size>
             <width>16777215</width>
@@ -206,7 +206,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="lmcToolButton" name="btnAvatar">
+       <widget class="lmToolButton" name="btnAvatar">
         <property name="toolTip">
          <string>Change avatar</string>
         </property>
@@ -291,7 +291,7 @@
     </widget>
    </item>
    <item>
-    <widget class="lmcUserTreeWidget" name="tvUserList">
+    <widget class="lmUserTreeWidget" name="tvUserList">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -331,22 +331,22 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>lmcUserTreeWidget</class>
+   <class>lmUserTreeWidget</class>
    <extends>QTreeWidget</extends>
    <header>usertreewidget.h</header>
   </customwidget>
   <customwidget>
-   <class>lmcLabel</class>
+   <class>lmLabel</class>
    <extends>QLabel</extends>
    <header>subcontrols.h</header>
   </customwidget>
   <customwidget>
-   <class>lmcToolButton</class>
+   <class>lmToolButton</class>
    <extends>QToolButton</extends>
    <header>subcontrols.h</header>
   </customwidget>
   <customwidget>
-   <class>lmcLineEdit</class>
+   <class>lmLineEdit</class>
    <extends>QLineEdit</extends>
    <header>subcontrols.h</header>
   </customwidget>

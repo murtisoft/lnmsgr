@@ -18,8 +18,8 @@
 ****************************************************************************/
 
 
-#ifndef XMLMESSAGE_H
-#define XMLMESSAGE_H
+#ifndef MESSAGEXML_H
+#define MESSAGEXML_H
 
 #include <QDomDocument>
 #include "definitions.h"
@@ -71,8 +71,8 @@
 #define XN_GROUPMSGOP		"groupmsgop"
 #define XN_DESCRIPTION		"description"
 #define XN_NOTE				"note"
-#define XN_SILENTMODE		"silentmode"
-#define XN_TRACEMODE		"tracemode"
+#define XN_SILENTMODE		"silentmode"    //This is for suppressing alerts
+#define XN_TRACEMODE		"tracemode"     //This is for debug logging
 #define XN_LOGFILE			"logfile"
 #define XN_PORT				"port"
 #define XN_CONFIG			"config"
@@ -81,12 +81,12 @@
 #define XN_RELPATH          "relpath"
 #define XN_FILECOUNT        "filecount"
 
-class XmlMessage : public QDomDocument
+class MessageXml : public QDomDocument
 {
 public:
-	XmlMessage(void);
-	XmlMessage(const QString& text);
-	~XmlMessage(void);
+	MessageXml(void);
+	MessageXml(const QString& text);
+	~MessageXml(void);
 
 	bool addHeader(const QString& nodeName, const QString& nodeValue);
 	bool addData(const QString& nodeName, const QString& nodeValue);
@@ -96,7 +96,7 @@ public:
 	bool removeData(const QString& nodeName);
 	bool headerExists(const QString& nodeName);
 	bool dataExists(const QString& nodeName);
-	XmlMessage clone(void);
+	MessageXml clone(void);
 	bool isValid(void);
 
 private:
@@ -106,4 +106,4 @@ private:
 	bool xmlNodeExists(const QString& parentNode, const QString& nodeName);
 };
 
-#endif // XMLMESSAGE_H
+#endif // MESSAGEXML_H

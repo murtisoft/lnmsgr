@@ -20,15 +20,15 @@
 #include "crypto.h"
 #include "trace.h"
 
-lmcCrypto::lmcCrypto(void) {
+lmCrypto::lmCrypto(void) {
     pKey = nullptr;
     encryptMap.clear();
     decryptMap.clear();
-    bits = 1024;       //This has to be 1024, otherwise it will crash older clients <1.2.39
+    bits = 1024;       //This has to be 1024, otherwise it will crash older clients <=1.2.39
     exponent = 65537;
 }
 
-lmcCrypto::~lmcCrypto(void) {
+lmCrypto::~lmCrypto(void) {
     EVP_PKEY_free(pKey);
 
     // Free all allocated encryption contexts
@@ -45,7 +45,7 @@ lmcCrypto::~lmcCrypto(void) {
 }
 
 //	creates an RSA key pair and returns the string representation of the public key
-QByteArray lmcCrypto::generateRSA() {
+QByteArray lmCrypto::generateRSA() {
     EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, nullptr);
     if (!ctx) return QByteArray();
 
@@ -65,7 +65,7 @@ QByteArray lmcCrypto::generateRSA() {
 }
 
 //	generates a random aes key and iv, and encrypts it with the public key
-QByteArray lmcCrypto::generateAES(QString* userId, QByteArray& pubKey) {
+QByteArray lmCrypto::generateAES(QString* userId, QByteArray& pubKey) {
     BIO* bio = BIO_new_mem_buf(pubKey.data(), pubKey.length());
     EVP_PKEY* peerPubKey = PEM_read_bio_PUBKEY(bio, nullptr, nullptr, nullptr);
     BIO_free(bio);
@@ -95,7 +95,7 @@ QByteArray lmcCrypto::generateAES(QString* userId, QByteArray& pubKey) {
 }
 
 //	decrypts the aes key and iv with the private key
-void lmcCrypto::retreiveAES(QString* userId, QByteArray& aesKeyIv) {
+void lmCrypto::retreiveAES(QString* userId, QByteArray& aesKeyIv) {
     EVP_PKEY_CTX* decCtx = EVP_PKEY_CTX_new(pKey, nullptr);
     EVP_PKEY_decrypt_init(decCtx);
     EVP_PKEY_CTX_set_rsa_padding(decCtx, RSA_PKCS1_OAEP_PADDING);
@@ -105,7 +105,7 @@ void lmcCrypto::retreiveAES(QString* userId, QByteArray& aesKeyIv) {
 
     unsigned char keyIv[48];
     if (EVP_PKEY_decrypt(decCtx, keyIv, &outlen, (unsigned char*)aesKeyIv.data(), aesKeyIv.length()) <= 0) {
-        lmcTrace::write("Error: RSA Decryption of AES key failed");
+        lmTrace::write("Error: RSA Decryption of AES key failed");
         EVP_PKEY_CTX_free(decCtx);
         return;
     }
@@ -121,13 +121,13 @@ void lmcCrypto::retreiveAES(QString* userId, QByteArray& aesKeyIv) {
     decryptMap.insert(*userId, dctx);
 }
 
-QByteArray lmcCrypto::encrypt(QString* userId, QByteArray& data) {
+QByteArray lmCrypto::encrypt(QString* userId, QByteArray& data) {
     EVP_CIPHER_CTX* ctx = encryptMap.value(*userId);
     if (!ctx) return QByteArray();
 
     QByteArray out(data.length() + AES_BLOCK_SIZE, 0);
     if (out.isEmpty()) {
-        lmcTrace::write("Error: Buffer not allocated");
+        lmTrace::write("Error: Buffer not allocated");
         return QByteArray();
     }
 
@@ -136,7 +136,7 @@ QByteArray lmcCrypto::encrypt(QString* userId, QByteArray& data) {
 
     if (!EVP_EncryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)data.data(), data.length()) ||
         !EVP_EncryptFinal_ex(ctx, (unsigned char*)out.data() + len, &flen)) {
-        lmcTrace::write("Error: Message encryption failed");
+        lmTrace::write("Error: Message encryption failed");
         return QByteArray();
     }
 
@@ -144,13 +144,13 @@ QByteArray lmcCrypto::encrypt(QString* userId, QByteArray& data) {
     return out;
 }
 
-QByteArray lmcCrypto::decrypt(QString* userId, QByteArray& cipherData) {
+QByteArray lmCrypto::decrypt(QString* userId, QByteArray& cipherData) {
     EVP_CIPHER_CTX* ctx = decryptMap.value(*userId);
     if (!ctx) return QByteArray();
 
     QByteArray out(cipherData.length(), 0);
     if (out.isEmpty() && cipherData.length() > 0) {
-        lmcTrace::write("Error: Buffer not allocated");
+        lmTrace::write("Error: Buffer not allocated");
         return QByteArray();
     }
 
@@ -159,7 +159,7 @@ QByteArray lmcCrypto::decrypt(QString* userId, QByteArray& cipherData) {
 
     if (!EVP_DecryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)cipherData.data(), cipherData.length()) ||
         !EVP_DecryptFinal_ex(ctx, (unsigned char*)out.data() + len, &flen)) {
-        lmcTrace::write("Error: Message decryption failed");
+        lmTrace::write("Error: Message decryption failed");
         return QByteArray();
     }
 

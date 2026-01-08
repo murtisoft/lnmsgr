@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -173,6 +173,13 @@
              <widget class="QCheckBox" name="chkAutoShow">
               <property name="text">
                <string>Show main window when %1 starts</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="chkDebugLog">
+              <property name="text">
+               <string>Enable Debug Logging</string>
               </property>
              </widget>
             </item>
@@ -425,7 +432,7 @@
                </size>
               </property>
               <property name="text">
-               <string>This does nothing</string>
+               <string/>
               </property>
              </widget>
             </item>
@@ -922,7 +929,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QComboBox" name="cboFontSize_2">
+             <widget class="QComboBox" name="cboMicDevice">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -948,7 +955,7 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QComboBox" name="cboFontSize_3">
+             <widget class="QComboBox" name="cboMicActivation">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -966,7 +973,7 @@
             <item row="2" column="0" colspan="2">
              <layout class="QHBoxLayout" name="horizontalLayout_36">
               <item>
-               <widget class="QSlider" name="horizontalSlider">
+               <widget class="QSlider" name="sldMicThreshold">
                 <property name="autoFillBackground">
                  <bool>true</bool>
                 </property>
@@ -982,7 +989,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="btnTestMic">
                 <property name="text">
                  <string>Test</string>
                 </property>
@@ -991,28 +998,28 @@
              </layout>
             </item>
             <item row="3" column="0">
-             <widget class="QCheckBox" name="checkBox_2">
+             <widget class="QCheckBox" name="chkAttenuation">
               <property name="text">
                <string>Attenuation</string>
               </property>
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QCheckBox" name="checkBox_4">
+             <widget class="QCheckBox" name="chkCancellation">
               <property name="text">
                <string>Echo cancellation</string>
               </property>
              </widget>
             </item>
             <item row="4" column="0">
-             <widget class="QCheckBox" name="checkBox">
+             <widget class="QCheckBox" name="chkDenoise">
               <property name="text">
                <string>Denoise</string>
               </property>
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QCheckBox" name="checkBox_3">
+             <widget class="QCheckBox" name="chkDucking">
               <property name="text">
                <string>Ducking</string>
               </property>
@@ -1041,7 +1048,7 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QComboBox" name="cboFontSize_5">
+             <widget class="QComboBox" name="cboCamDevice">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>

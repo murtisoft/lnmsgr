@@ -18,11 +18,11 @@
 ****************************************************************************/
 
 
-#include "qmessagebrowser.h"
+#include "messagebrowser.h"
 
 #include <QScrollBar>
 
-QMessageBrowser::QMessageBrowser(QWidget* parent)
+MessageBrowser::MessageBrowser(QWidget* parent)
     : QTextBrowser (parent)
 {
     setOpenLinks(false);
@@ -31,12 +31,12 @@ QMessageBrowser::QMessageBrowser(QWidget* parent)
     connect(this, SIGNAL(anchorClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
 }
 
-QMessageBrowser::~QMessageBrowser()
+MessageBrowser::~MessageBrowser()
 {
 
 }
 
-void QMessageBrowser::insertMessage(QTextCursor cursor, const QString &sender, const QString &receiver, const QDateTime &time, const QString &avatarUrl, const QString &text)
+void MessageBrowser::insertMessage(QTextCursor cursor, const QString &sender, const QString &receiver, const QDateTime &time, const QString &avatarUrl, const QString &text)
 {
     QString html = "<table border='0' width='100%'><tr><td rowspan='2'><img src='%AVATAR_URL%'></td><td style='background: #0000ff;font-size: 2px;'></td></tr><tr><td width='100%' style='padding-left: 10px;'>%TEXT%</td></tr></table>";
 
@@ -49,7 +49,7 @@ void QMessageBrowser::insertMessage(QTextCursor cursor, const QString &sender, c
     cursor.insertHtml(html);
 }
 
-QMessageBrowser::InsertWithoutScrollingData QMessageBrowser::beginInsertWithoutScrolling()
+MessageBrowser::InsertWithoutScrollingData MessageBrowser::beginInsertWithoutScrolling()
 {
     InsertWithoutScrollingData data;
 
@@ -62,7 +62,7 @@ QMessageBrowser::InsertWithoutScrollingData QMessageBrowser::beginInsertWithoutS
     return data;
 }
 
-void QMessageBrowser::endInsertWithoutScrollig(InsertWithoutScrollingData data)
+void MessageBrowser::endInsertWithoutScrollig(InsertWithoutScrollingData data)
 {
     setTextCursor(data.cursor);
     setUpdatesEnabled(true);
@@ -72,19 +72,19 @@ void QMessageBrowser::endInsertWithoutScrollig(InsertWithoutScrollingData data)
     scrollBar->setValue(delta);
 }
 
-void QMessageBrowser::insertMoreMessagesAnchor(const QString &text)
+void MessageBrowser::insertMoreMessagesAnchor(const QString &text)
 {
     QTextCursor cursor = textCursor();
     moveCursor(QTextCursor::MoveOperation::Start);
     insertMoreMessagesAnchor(cursor, text);
 }
 
-void QMessageBrowser::insertMoreMessagesAnchor(QTextCursor cursor, const QString &text)
+void MessageBrowser::insertMoreMessagesAnchor(QTextCursor cursor, const QString &text)
 {
     cursor.insertHtml(QString("<a href='#more_messages'>%1</a>").arg(text));
 }
 
-void QMessageBrowser::onAnchorClicked(const QUrl &arg1)
+void MessageBrowser::onAnchorClicked(const QUrl &arg1)
 {
     if(arg1.toString() == "#more_messages") {
 

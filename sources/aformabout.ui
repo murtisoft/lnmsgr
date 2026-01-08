@@ -133,7 +133,17 @@
         <number>1</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="txtThanks"/>
+        <widget class="QTextBrowser" name="txtThanks">
+         <property name="frameShape">
+          <enum>QFrame::Shape::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>0</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -164,6 +174,15 @@
            <width>450</width>
            <height>0</height>
           </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>0</number>
          </property>
          <property name="openExternalLinks">
           <bool>true</bool>

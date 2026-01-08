@@ -28,19 +28,19 @@
 #include "ui_aformbroadcast.h"
 #include "shared.h"
 #include "settings.h"
-#include "imagepickeraction.h"
+#include "imagepicker.h"
 #include "subcontrols.h"
-#include "chatdefinitions.h"
+#include "definitionschat.h"
 #include "chathelper.h"
-#include "xmlmessage.h"
+#include "messagexml.h"
 
-class lmcBroadcastWindow : public QWidget
+class lmFormBroadcast : public QWidget
 {
 	Q_OBJECT
 
 public:
-	lmcBroadcastWindow(QWidget *parent = 0);
-	~lmcBroadcastWindow();
+	lmFormBroadcast(QWidget *parent = 0);
+	~lmFormBroadcast();
 
 	void init(bool connected);
 	void stop(void);
@@ -49,7 +49,7 @@ public:
 	void settingsChanged(void);
 
 signals:
-	void messageSent(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 
 protected:
 	bool eventFilter(QObject* pObject, QEvent* pEvent);
@@ -73,10 +73,10 @@ private:
 	void showStatus(int flag, bool add);
 
 	Ui::BroadcastWindow ui;
-	lmcSettings* pSettings;
+	lmSettings* pSettings;
 	QToolBar* pToolBar;
 	QToolButton* pbtnFontSize;
-	lmcToolButton* pbtnSmiley;
+	lmToolButton* pbtnSmiley;
 	int fontSizeVal;
 	int nSmiley;
 	bool bConnected;

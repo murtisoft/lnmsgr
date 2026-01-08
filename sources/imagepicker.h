@@ -22,13 +22,15 @@
 #define IMAGEPICKER_H
 
 #include <QTableWidget>
+#include <QWidget>
+#include <QWidgetAction>
 
-class lmcImagePicker : public QTableWidget {
+class lmImagePicker : public QTableWidget {
     Q_OBJECT
 
 public:
-    lmcImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex);
-    ~lmcImagePicker();
+    lmImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex);
+    ~lmImagePicker();
 
 protected:
     void mouseReleaseEvent(QMouseEvent* e);
@@ -43,5 +45,21 @@ private:
 
     QTableWidgetItem* hoverItem;
 };
+
+class lmImagePickerAction : public QWidgetAction {
+public:
+    lmImagePickerAction(QObject* parent, const QString source[], int sourceCount, int picSize, int columns, int* selected);
+    ~lmImagePickerAction(void);
+
+    void releaseWidget(QWidget* widget);
+    QWidget* createWidget(QWidget* parent);
+
+private:
+    QList<QString>* source;
+    int picSize;
+    int columns;
+    int* selected;
+};
+
 
 #endif // IMAGEPICKER_H

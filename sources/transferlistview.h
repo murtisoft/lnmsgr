@@ -25,12 +25,12 @@
 #include <QPushButton>
 #include "filemodelview.h"
 
-class lmcTransferListView : public QListView {
+class lmTransferListView : public QListView {
 	Q_OBJECT
 
 public:
-	lmcTransferListView(QWidget* parent = 0);
-	~lmcTransferListView(void) {}
+	lmTransferListView(QWidget* parent = 0);
+	~lmTransferListView(void) {}
 
 	void insertItem(int row, FileView* fileTransfer);
 	void removeItem(int row);

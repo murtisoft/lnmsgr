@@ -22,10 +22,10 @@
 #include "strings.h"
 #include "subcontrols.h"
 
-lmcToolButton::lmcToolButton(QWidget* parent) : QToolButton(parent) {
+lmToolButton::lmToolButton(QWidget* parent) : QToolButton(parent) {
 }
 
-void lmcToolButton::paintEvent(QPaintEvent*) {
+void lmToolButton::paintEvent(QPaintEvent*) {
 	QStylePainter p(this);
 	QStyleOptionToolButton opt;
 	initStyleOption(&opt);
@@ -33,40 +33,40 @@ void lmcToolButton::paintEvent(QPaintEvent*) {
 	p.drawComplexControl(QStyle::CC_ToolButton, opt);
 }
 
-lmcLabel::lmcLabel(QWidget* parent) : QLabel(parent) {
+lmLabel::lmLabel(QWidget* parent) : QLabel(parent) {
 	actualText = elidedText = QString();
 }
 
-QString lmcLabel::text(void) const {
+QString lmLabel::text(void) const {
 	return actualText;
 }
 
-void lmcLabel::setText(const QString& text) {
+void lmLabel::setText(const QString& text) {
 	actualText = text;
 	setElidedText();
 }
 
-void lmcLabel::resizeEvent(QResizeEvent*) {
+void lmLabel::resizeEvent(QResizeEvent*) {
 	setElidedText();
 }
 
-void lmcLabel::paintEvent(QPaintEvent*) {
+void lmLabel::paintEvent(QPaintEvent*) {
 	QStylePainter p(this);
 	p.drawText(rect(), alignment(), elidedText);
 }
 
-void lmcLabel::setElidedText(void) {
+void lmLabel::setElidedText(void) {
 	elidedText = fontMetrics().elidedText(actualText, Qt::ElideRight, width());
 }
 
-lmcLineEdit::lmcLineEdit(QWidget* parent) : QLineEdit(parent) {
+lmLineEdit::lmLineEdit(QWidget* parent) : QLineEdit(parent) {
 	QPalette p = QApplication::palette();
 	p.setColor(QPalette::Base, p.color(QPalette::Window));
     p.setColor(QPalette::Text, GRAY_TEXT_COLOR);
 	setPalette(p);
 }
 
-void lmcLineEdit::focusInEvent(QFocusEvent* event) {
+void lmLineEdit::focusInEvent(QFocusEvent* event) {
 	QLineEdit::focusInEvent(event);
 
 	setSelection(0, text().length());
@@ -77,7 +77,7 @@ void lmcLineEdit::focusInEvent(QFocusEvent* event) {
 	setPalette(p);
 }
 
-void lmcLineEdit::focusOutEvent(QFocusEvent* event) {
+void lmLineEdit::focusOutEvent(QFocusEvent* event) {
 	QLineEdit::focusOutEvent(event);
 
 	QPalette p = QApplication::palette();

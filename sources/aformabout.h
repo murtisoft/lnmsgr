@@ -27,12 +27,12 @@
 #include "shared.h"
 #include "settings.h"
 
-class lmcAboutDialog : public QDialog {
+class lmFormAbout : public QDialog {
 	Q_OBJECT
 
 public:
-    lmcAboutDialog(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-	~lmcAboutDialog(void);
+    lmFormAbout(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
+	~lmFormAbout(void);
 
 	void init(void);
 	void settingsChanged(void);
@@ -44,7 +44,7 @@ private:
 	void setUIText(void);
 
 	Ui::AboutDialog ui;
-	lmcSettings* pSettings;
+	lmSettings* pSettings;
 };
 
 #endif // ABOUTDIALOG_H

@@ -22,8 +22,8 @@
 #include "messaging.h"
 #include <QDirIterator>
 
-void lmcMessaging::receiveProgress(QString* lpszUserId, QString* lpszData) {
-    XmlMessage xmlMessage(*lpszData);
+void lmMessaging::receiveProgress(QString* lpszUserId, QString* lpszData) {
+    MessageXml xmlMessage(*lpszData);
     int fileMode = Helper::indexOf(FileModeNames, FM_Max, xmlMessage.data(XN_MODE));
     int fileOp = Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
     int fileType = Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
@@ -44,7 +44,7 @@ void lmcMessaging::receiveProgress(QString* lpszUserId, QString* lpszData) {
         break;
     }
 
-    XmlMessage reply;
+    MessageXml reply;
 
     switch(fileOp) {
     case FO_Error:
@@ -65,7 +65,7 @@ void lmcMessaging::receiveProgress(QString* lpszUserId, QString* lpszData) {
     }
 }
 
-void lmcMessaging::prepareFile(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, XmlMessage* pMessage) {
+void lmMessaging::prepareFile(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, MessageXml* pMessage) {
     Q_UNUSED(type);
     Q_UNUSED(msgId);
     Q_UNUSED(retry);
@@ -76,7 +76,7 @@ void lmcMessaging::prepareFile(MessageType type, qint64 msgId, bool retry, QStri
     User* user = getUser(lpszUserId);
     QString szMessage;
 
-    lmcTrace::write("Sending file message type " + QString::number(fileOp) + " to user " + *lpszUserId
+    lmTrace::write("Sending file message type " + QString::number(fileOp) + " to user " + *lpszUserId
         + ", Mode: " + QString::number(fileMode));
 
     switch(fileOp) {
@@ -102,7 +102,7 @@ void lmcMessaging::prepareFile(MessageType type, qint64 msgId, bool retry, QStri
     }
 }
 
-void lmcMessaging::prepareFolder(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, XmlMessage* pMessage) {
+void lmMessaging::prepareFolder(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, MessageXml* pMessage) {
     Q_UNUSED(type);
     Q_UNUSED(msgId);
     Q_UNUSED(retry);
@@ -110,7 +110,7 @@ void lmcMessaging::prepareFolder(MessageType type, qint64 msgId, bool retry, QSt
     int folderOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
     int folderMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
 
-    lmcTrace::write("Sending folder message type " + QString::number(folderOp) + " to user " + *lpszUserId
+    lmTrace::write("Sending folder message type " + QString::number(folderOp) + " to user " + *lpszUserId
         + ", Mode: " + QString::number(folderMode));
 
     switch(folderOp) {
@@ -134,7 +134,7 @@ void lmcMessaging::prepareFolder(MessageType type, qint64 msgId, bool retry, QSt
     }
 }
 
-void lmcMessaging::processFile(MessageHeader* pHeader, XmlMessage* pMessage) {
+void lmMessaging::processFile(MessageHeader* pHeader, MessageXml* pMessage) {
     int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
     int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
     QString szMessage;
@@ -145,7 +145,7 @@ void lmcMessaging::processFile(MessageHeader* pHeader, XmlMessage* pMessage) {
     pMessage->removeData(XN_MODE);
     pMessage->addData(XN_MODE, FileModeNames[fileMode]);
 
-    lmcTrace::write("Processing file message type " + QString::number(fileOp) + " from user " +
+    lmTrace::write("Processing file message type " + QString::number(fileOp) + " from user " +
         pHeader->userId + ", Mode: " + QString::number(fileMode));
 
     switch(fileOp) {
@@ -175,7 +175,7 @@ void lmcMessaging::processFile(MessageHeader* pHeader, XmlMessage* pMessage) {
     }
 }
 
-void lmcMessaging::processFolder(MessageHeader* pHeader, XmlMessage* pMessage) {
+void lmMessaging::processFolder(MessageHeader* pHeader, MessageXml* pMessage) {
     int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
     int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
 
@@ -185,7 +185,7 @@ void lmcMessaging::processFolder(MessageHeader* pHeader, XmlMessage* pMessage) {
     pMessage->removeData(XN_MODE);
     pMessage->addData(XN_MODE, FileModeNames[fileMode]);
 
-    lmcTrace::write("Processing folder message type " + QString::number(fileOp) + " from user " +
+    lmTrace::write("Processing folder message type " + QString::number(fileOp) + " from user " +
         pHeader->userId + ", Mode: " + QString::number(fileMode));
 
     switch(fileOp) {
@@ -211,12 +211,12 @@ void lmcMessaging::processFolder(MessageHeader* pHeader, XmlMessage* pMessage) {
     }
 }
 
-bool lmcMessaging::addFileTransfer(FileMode fileMode, QString* lpszUserId, XmlMessage* pMessage) {
+bool lmMessaging::addFileTransfer(FileMode fileMode, QString* lpszUserId, MessageXml* pMessage) {
     int fileType = Helper::indexOf(FileTypeNames, FT_Max, pMessage->data(XN_FILETYPE));
 
     QString fileId, folderId;
     QFileInfo fileInfo;
-    XmlMessage xmlMessage;
+    MessageXml xmlMessage;
 
     bool emitMsg = true;
     switch(fileMode) {
@@ -281,7 +281,7 @@ bool lmcMessaging::addFileTransfer(FileMode fileMode, QString* lpszUserId, XmlMe
     return emitMsg;
 }
 
-bool lmcMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString* lpszUserId, XmlMessage* pMessage) {
+bool lmMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString* lpszUserId, MessageXml* pMessage) {
     QString fileId = pMessage->data(XN_FILEID);
     int fileType = Helper::indexOf(FileTypeNames, FT_Max, pMessage->data(XN_FILETYPE));
 
@@ -291,7 +291,7 @@ bool lmcMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString*
         if(transFile.userId == *lpszUserId && transFile.id == fileId && transFile.mode == fileMode) {
             QString filePath, fileName, folderId;
             QDir cacheDir;
-            XmlMessage xmlMessage;
+            MessageXml xmlMessage;
             emitMsg = true;
             switch(fileOp) {
             case FO_Accept:
@@ -315,7 +315,7 @@ bool lmcMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString*
                     case FT_Normal:
                         //  set valid free file name and correct path
                         fileName = getFreeFileName(transFile.name);
-                        filePath = QDir(StdLocation::fileStorageDir()).absoluteFilePath(fileName);
+                        filePath = QDir(DefinitionsDir::fileStorageDir()).absoluteFilePath(fileName);
                         fileList[index].name = fileName;
                         fileList[index].path = filePath;
                         pMessage->removeData(XN_FILEPATH);
@@ -326,7 +326,7 @@ bool lmcMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString*
                         emit messageReceived(MT_File, lpszUserId, &xmlMessage);
                         break;
                     case FT_Avatar:
-                        cacheDir = QDir(StdLocation::cacheDir());
+                        cacheDir = QDir(DefinitionsDir::cacheDir());
                         fileName = "avt_" + *lpszUserId + "_part.png";
                         filePath = cacheDir.absoluteFilePath(fileName);
                         fileList[index].name = fileName;
@@ -389,7 +389,7 @@ bool lmcMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString*
                 } else {
                     switch(fileType) {
                     case FT_Avatar:
-                        cacheDir = QDir(StdLocation::cacheDir());
+                        cacheDir = QDir(DefinitionsDir::cacheDir());
                         fileName = "avt_" + *lpszUserId + ".png";
                         filePath = cacheDir.absoluteFilePath(fileName);
                         QFile::remove(filePath);
@@ -455,10 +455,10 @@ bool lmcMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString*
     return emitMsg;
 }
 
-QString lmcMessaging::getFreeFileName(QString fileName) {
+QString lmMessaging::getFreeFileName(QString fileName) {
     QString freeFileName = fileName;
 
-    QString fileDir = StdLocation::fileStorageDir();
+    QString fileDir = DefinitionsDir::fileStorageDir();
     QDir dir(fileDir);
     QString filePath = dir.absoluteFilePath(fileName);
     QString baseName = fileName.mid(0, fileName.lastIndexOf("."));
@@ -474,12 +474,12 @@ QString lmcMessaging::getFreeFileName(QString fileName) {
     return freeFileName;
 }
 
-bool lmcMessaging::addFolderTransfer(FileMode folderMode, QString* lpszUserId, XmlMessage* pMessage) {
+bool lmMessaging::addFolderTransfer(FileMode folderMode, QString* lpszUserId, MessageXml* pMessage) {
     int folderType = Helper::indexOf(FileTypeNames, FT_Max, pMessage->data(XN_FILETYPE));
 
     QString folderId;
     QFileInfo fileInfo;
-    XmlMessage xmlMessage;
+    MessageXml xmlMessage;
 
     bool emitMsg = true;
     QDirIterator iterator(QDir(pMessage->data(XN_FILEPATH)), QDirIterator::Subdirectories);
@@ -519,7 +519,7 @@ bool lmcMessaging::addFolderTransfer(FileMode folderMode, QString* lpszUserId, X
     return emitMsg;
 }
 
-bool lmcMessaging::updateFolderTransfer(FileMode folderMode, FileOp folderOp, QString* lpszUserId, XmlMessage* pMessage) {
+bool lmMessaging::updateFolderTransfer(FileMode folderMode, FileOp folderOp, QString* lpszUserId, MessageXml* pMessage) {
     QString folderId = pMessage->data(XN_FOLDERID);
 
     bool emitMsg = false;
@@ -529,7 +529,7 @@ bool lmcMessaging::updateFolderTransfer(FileMode folderMode, FileOp folderOp, QS
             emitMsg = true;
             QString folderName, folderPath;
             int fileIndex;
-            XmlMessage xmlMessage;
+            MessageXml xmlMessage;
             switch(folderOp) {
             case FO_Accept:
                 if(folderMode == FM_Send) {
@@ -551,7 +551,7 @@ bool lmcMessaging::updateFolderTransfer(FileMode folderMode, FileOp folderOp, QS
                 } else {
                     //  set valid free folder name and correct path
                     folderName = getFreeFolderName(transFolder.name);
-                    folderPath = StdLocation::fileStorageDir() + "/" + folderName;
+                    folderPath = DefinitionsDir::fileStorageDir() + "/" + folderName;
                     folderList[index].name = folderName;
                     folderList[index].path = folderPath;
                     folderList[index].currentFile = pMessage->data(XN_FILEID);
@@ -559,7 +559,7 @@ bool lmcMessaging::updateFolderTransfer(FileMode folderMode, FileOp folderOp, QS
                     pMessage->addData(XN_FILEPATH, folderPath);
                     pMessage->removeData(XN_FILENAME);
                     pMessage->addData(XN_FILENAME, folderName);
-                    QDir(StdLocation::fileStorageDir()).mkdir(folderName);
+                    QDir(DefinitionsDir::fileStorageDir()).mkdir(folderName);
                     xmlMessage = pMessage->clone();
                     emit messageReceived(MT_Folder, lpszUserId, &xmlMessage);
                 }
@@ -644,10 +644,10 @@ bool lmcMessaging::updateFolderTransfer(FileMode folderMode, FileOp folderOp, QS
     return emitMsg;
 }
 
-QString lmcMessaging::getFreeFolderName(QString folderName) {
+QString lmMessaging::getFreeFolderName(QString folderName) {
     QString freeFolderName = folderName;
 
-    QString fileDir = StdLocation::fileStorageDir();
+    QString fileDir = DefinitionsDir::fileStorageDir();
     QDir dir(fileDir + "/" + folderName);
 
     int fileCount = 0;
@@ -660,7 +660,7 @@ QString lmcMessaging::getFreeFolderName(QString folderName) {
     return freeFolderName;
 }
 
-QString lmcMessaging::getFolderPath(QString folderId, QString userId, FileMode mode) {
+QString lmMessaging::getFolderPath(QString folderId, QString userId, FileMode mode) {
     for(int index = 0; index < folderList.count(); index++) {
         if(folderList[index].id == folderId && folderList[index].userId == userId
                 && folderList[index].mode == mode)

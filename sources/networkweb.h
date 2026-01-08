@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** This file is part of LAN Messenger.
-**
+** 
 ** LAN Messenger is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 3 of the License, or
@@ -18,36 +18,44 @@
 ****************************************************************************/
 
 
-#ifndef QMESSAGEBROWSER_H
-#define QMESSAGEBROWSER_H
+#ifndef NETWORKWEB_H
+#define NETWORKWEB_H
 
-#include <QTextBrowser>
+#include <QObject>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrl>
+#include "messagexml.h"
 
-class QMessageBrowser : public QTextBrowser
-{
-    Q_OBJECT
+class lmNetworkWeb : public QObject {
+	Q_OBJECT
 
 public:
-    explicit QMessageBrowser(QWidget* parent = nullptr);
-    virtual ~QMessageBrowser();
+	lmNetworkWeb(void);
+	~lmNetworkWeb(void);
 
-    void insertMoreMessagesAnchor(const QString &text);
-    void insertMoreMessagesAnchor(QTextCursor cursor, const QString &text);
-    void insertMessage(QTextCursor cursor, const QString &sender, const QString &receiver, const QDateTime &time, const QString &avatarUrl, const QString &text);
+	void init(void);
+	void start(void);
+	void stop(void);
+	void sendMessage(QString* lpszUrl, QString* lpszData);
+	void settingsChanged(void);
 
-    typedef struct {
-        QTextCursor cursor;
-        int scrollBarMaximum;
-    } InsertWithoutScrollingData;
-
-    InsertWithoutScrollingData beginInsertWithoutScrolling();
-    void endInsertWithoutScrollig(InsertWithoutScrollingData data);
+signals:
+	void messageReceived(QString* lpszData);
 
 private slots:
-    void onAnchorClicked(const QUrl &arg1);
+	void slotError(QNetworkReply::NetworkError code);
+	void replyFinished(QNetworkReply* reply);
 
-Q_SIGNALS:
-    void moreMessagesAnchorClicked();
+private:
+	enum ErrorType{ET_Busy, ET_Error};
+
+	void sendMessage(const QUrl& url);
+	void raiseError(ErrorType type);
+
+	QNetworkAccessManager* manager;
+	bool active;
 };
 
-#endif // QMESSAGEBROWSER_H
+#endif // NETWORKWEB_H

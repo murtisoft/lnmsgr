@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** This file is part of LAN Messenger.
-** 
+**
 ** LAN Messenger is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 3 of the License, or
@@ -20,41 +20,55 @@
 
 #include "trace.h"
 
-bool lmcTrace::traceMode;
-QString lmcTrace::fileName;
+bool lmTrace::traceMode;
+QString lmTrace::fileName;
 
-lmcTrace::lmcTrace(void) {
+lmTrace::lmTrace(void) {
 }
 
-lmcTrace::~lmcTrace(void) {
+lmTrace::~lmTrace(void) {
 }
 
-void lmcTrace::init(XmlMessage* pInitParams) {
-	traceMode = Helper::stringToBool(pInitParams->data(XN_TRACEMODE));
-	fileName = pInitParams->data(XN_LOGFILE);
+void lmTrace::init(QString fileName, bool traceMode) {
+    lmTrace::traceMode = traceMode;
+    lmTrace::fileName = fileName;
 
-	write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"\
+    QDir dir(DefinitionsDir::logDir());
+    QStringList logs = dir.entryList({"*.log"}, QDir::Files, QDir::Time);
+
+    while (logs.count() >= 3) {
+        dir.remove(logs.takeLast());  //Delete all logs except last 3.
+    }
+
+    write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"\
           "         " IDA_TITLE " " IDA_VERSION " application log\n"\
-		  "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+          "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 }
 
-void lmcTrace::write(const QString& string, bool verbose) {
+void lmTrace::write(const QString& string, bool verbose) {
     if(!traceMode || !verbose)
-		return;
+        return;
 
-	QDir logDir(StdLocation::logDir());
-	if(!logDir.exists())
-		logDir.mkdir(logDir.absolutePath());
-	QFile file(fileName);
-	if(!file.open(QIODevice::Text | QIODevice::Append))
-		return;
+    QDir logDir(DefinitionsDir::logDir());
+    if(!logDir.exists())
+        logDir.mkdir(logDir.absolutePath());
+    QFile file(fileName);
+    if(!file.open(QIODevice::Text | QIODevice::Append))
+        return;
 
-	QTextStream stream(&file);
+    QTextStream stream(&file);
 
-	QString timeStamp = "[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss") + "] ";
-	QStringList stringList = string.split("\n", Qt::SkipEmptyParts);
-	for(int index = 0; index < stringList.count(); index++)
-		stream << timeStamp << stringList[index] << "\n";
+    QString timeStamp = "[" + QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss") + "] ";
+    QStringList stringList = string.split("\n", Qt::SkipEmptyParts);
+    for(int index = 0; index < stringList.count(); index++)
+        stream << timeStamp << stringList[index] << "\n";
 
-	file.close();
+    file.close();
+}
+
+void lmTrace::stop(const QString& string) {
+    if (!traceMode) return;
+    write(string);
+    write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+    lmTrace::traceMode = false;
 }

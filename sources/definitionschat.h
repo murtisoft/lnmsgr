@@ -18,10 +18,10 @@
 ****************************************************************************/
 
 
-#ifndef CHATDEFINITIONS_H
-#define CHATDEFINITIONS_H
+#ifndef DEFINITIONSCHAT_H
+#define DEFINITIONSCHAT_H
 
-#include "uidefinitions.h"
+#include "definitionsui.h"
 
 const int HTMLESC_COUNT = 5;
 const QString htmlSymbol[] = {"&", "\"", "<", ">", " "};
@@ -58,4 +58,4 @@ const QString ChatStateNames[] = {
 	"gone"
 };
 
-#endif // CHATDEFINITIONS_H
+#endif // DEFINITIONSCHAT_H

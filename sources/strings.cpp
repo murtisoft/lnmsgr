@@ -20,22 +20,22 @@
 
 #include "strings.h"
 
-QString lmcStrings::m_appName;
-QString lmcStrings::m_appDesc;
-QString lmcStrings::m_autoConn;
-QStringList lmcStrings::m_fontSize;
-QStringList lmcStrings::m_statusDesc;
-QStringList lmcStrings::m_soundDesc;
-QStringList lmcStrings::m_awayTimeDesc;
-QStringList lmcStrings::m_userListView;
+QString lmStrings::m_appName;
+QString lmStrings::m_appDesc;
+QString lmStrings::m_autoConn;
+QStringList lmStrings::m_fontSize;
+QStringList lmStrings::m_statusDesc;
+QStringList lmStrings::m_soundDesc;
+QStringList lmStrings::m_awayTimeDesc;
+QStringList lmStrings::m_userListView;
 
-lmcStrings::lmcStrings(void) {
+lmStrings::lmStrings(void) {
 }
 
-lmcStrings::~lmcStrings(void) {
+lmStrings::~lmStrings(void) {
 }
 
-void lmcStrings::retranslate(void) {
+void lmStrings::retranslate(void) {
 	m_appName.clear();
 	m_appDesc.clear();
 	m_autoConn.clear();
@@ -46,13 +46,13 @@ void lmcStrings::retranslate(void) {
 	m_userListView.clear();
 }
 
-const QString lmcStrings::appName(void) {
+const QString lmStrings::appName(void) {
 	if(m_appName.isEmpty())
         m_appName = tr("LAN Messenger");
 	return m_appName;
 }
 
-const QString lmcStrings::appDesc(void) {
+const QString lmStrings::appDesc(void) {
 	if(m_appDesc.isEmpty())
         m_appDesc = tr("LAN Messenger is a free peer-to-peer messaging application for\n"\
                        "intra-network communication and does not require a server.\n"\
@@ -64,13 +64,13 @@ const QString lmcStrings::appDesc(void) {
 	return m_appDesc;
 }
 
-const QString lmcStrings::autoConn(void) {
+const QString lmStrings::autoConn(void) {
 	if(m_autoConn.isEmpty())
 		m_autoConn = tr("Automatic");
 	return m_autoConn;
 }
 
-const QStringList lmcStrings::fontSize(void) {
+const QStringList lmStrings::fontSize(void) {
 	if(m_fontSize.isEmpty()) {
 		m_fontSize.append(tr("Small text"));
 		m_fontSize.append(tr("Medium text"));
@@ -79,7 +79,7 @@ const QStringList lmcStrings::fontSize(void) {
 	return m_fontSize;
 }
 
-const QStringList lmcStrings::statusDesc(void) {
+const QStringList lmStrings::statusDesc(void) {
 	if(m_statusDesc.isEmpty()) {
 		m_statusDesc.append(tr("Available"));
 		m_statusDesc.append(tr("Busy"));
@@ -91,7 +91,7 @@ const QStringList lmcStrings::statusDesc(void) {
 	return m_statusDesc;
 }
 
-const QStringList lmcStrings::soundDesc(void) {
+const QStringList lmStrings::soundDesc(void) {
 	if(m_soundDesc.isEmpty()) {
 		m_soundDesc.append(tr("Incoming message"));
 		m_soundDesc.append(tr("User is online"));
@@ -99,25 +99,35 @@ const QStringList lmcStrings::soundDesc(void) {
 		m_soundDesc.append(tr("Incoming file transfer"));
 		m_soundDesc.append(tr("File transfer completed"));
 		m_soundDesc.append(tr("Incoming public message"));
+        m_soundDesc.append(tr("Microphone on"));
+        m_soundDesc.append(tr("Microphone off"));
+        m_soundDesc.append(tr("Camera on"));
+        m_soundDesc.append(tr("Camera off"));
+        m_soundDesc.append(tr("Speaker on"));
+        m_soundDesc.append(tr("Speaker off"));
+        m_soundDesc.append(tr("Incoming call"));
+        m_soundDesc.append(tr("Outgoing call"));
+        m_soundDesc.append(tr("Nudge"));
+        m_soundDesc.append(tr("Talking while microphone muted"));
 	}
 	return m_soundDesc;
 }
 
-const QStringList lmcStrings::awayTimeDesc(void) {
-	if(m_awayTimeDesc.isEmpty()) {
-		m_awayTimeDesc.append(tr("5 minutes"));
-		m_awayTimeDesc.append(tr("10 minutes"));
-		m_awayTimeDesc.append(tr("15 minutes"));
-		m_awayTimeDesc.append(tr("20 minutes"));
-		m_awayTimeDesc.append(tr("30 minutes"));
-		m_awayTimeDesc.append(tr("45 minutes"));
-		m_awayTimeDesc.append(tr("60 minutes"));
-		m_awayTimeDesc.append(tr("Never"));
-	}
-	return m_awayTimeDesc;
+const QStringList lmStrings::awayTimeDesc(void) {
+    if(m_awayTimeDesc.isEmpty()) {
+        m_awayTimeDesc.append(tr("5 minutes"));
+        m_awayTimeDesc.append(tr("10 minutes"));
+        m_awayTimeDesc.append(tr("15 minutes"));
+        m_awayTimeDesc.append(tr("20 minutes"));
+        m_awayTimeDesc.append(tr("30 minutes"));
+        m_awayTimeDesc.append(tr("45 minutes"));
+        m_awayTimeDesc.append(tr("60 minutes"));
+        m_awayTimeDesc.append(tr("Never"));
+    }
+    return m_awayTimeDesc;
 }
 
-const QStringList lmcStrings::userListView(void) {
+const QStringList lmStrings::userListView(void) {
 	if(m_userListView.isEmpty()) {
 		m_userListView.append(tr("Detailed"));
 		m_userListView.append(tr("Compact"));

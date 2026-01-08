@@ -37,21 +37,21 @@
 #include "history.h"
 #include "messagelog.h"
 #include "subcontrols.h"
-#include "imagepickeraction.h"
+#include "imagepicker.h"
 #include "soundplayer.h"
-#include "chatdefinitions.h"
+#include "definitionschat.h"
 #include "chathelper.h"
-#include "stdlocation.h"
-#include "xmlmessage.h"
+#include "definitionsdir.h"
+#include "messagexml.h"
 #include "theme.h"
 
-class lmcChatRoomWindow : public QWidget
+class lmFormChatRoom : public QWidget
 {
     Q_OBJECT
 
 public:
-	explicit lmcChatRoomWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-	~lmcChatRoomWindow();
+	explicit lmFormChatRoom(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
+	~lmFormChatRoom();
 
 	void init(User* pLocalUser, bool connected, QString thread = QString());  // ✅
 	void show(void);
@@ -59,7 +59,7 @@ public:
 	void addUser(User* pUser);
 	void updateUser(User* pUser);
 	void removeUser(QString* lpszUserId);
-	void receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(bool connected);
 	void settingsChanged(void);
 	void selectContacts(QStringList* selectedContacts);
@@ -68,7 +68,7 @@ public:
 	QHash<QString, QString> peerIds;
 
 signals:
-	void messageSent(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void chatStarting(QString* lpszUserId);
     void contactsAdding(QStringList* excludeList);
 	void closed(QString* lpszThreadId);
@@ -87,7 +87,7 @@ private slots:
 	void btnSave_clicked(void);
 	void smileyAction_triggered(void);
 	void addContactAction_triggered(void);
-	void log_sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+	void log_sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void tvUserList_itemActivated(QTreeWidgetItem* pItem, int column);
 	void tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos);
 
@@ -98,7 +98,7 @@ private:
 	void setUIText(void);
 	void sendMessage(void);
 	void encodeMessage(QString* lpszMessage);
-	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage);
+	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage);
 	void showStatus(int flag, bool add);
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
@@ -115,25 +115,25 @@ private:
 	bool groupMode;
 
 	Ui::ChatRoomWindow ui;
-	lmcSettings* pSettings;
-	lmcMessageLog* pMessageLog;
+	lmSettings* pSettings;
+	lmMessageLog* pMessageLog;
 	QMenu* pUserMenu;
 	QAction* userChatAction;
 	QAction* userFileAction;
 	QAction* userInfoAction;
 	QAction* pFontAction;
 	QAction* pFontColorAction;
-	lmcToolButton* pbtnSmiley;
+	lmToolButton* pbtnSmiley;
 	QAction* pSaveAction;
 	QMenu* pSmileyMenu;
-	lmcImagePickerAction* pSmileyAction;
+	lmImagePickerAction* pSmileyAction;
 	QAction* addContactAction;
 	int nSmiley;
 	bool bConnected;
 	int infoFlag;
 	bool showSmiley;
 	bool sendKeyMod;
-	lmcSoundPlayer* pSoundPlayer;
+	lmSoundPlayer* pSoundPlayer;
 	QColor messageColor;
 	bool dataSaved;
 	bool windowLoaded;

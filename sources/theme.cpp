@@ -20,39 +20,27 @@
 
 #include "theme.h"
 
-const QString defTheme = StdLocation::resThemeDir() + "/Classic";
+const QString defTheme = DefinitionsDir::resThemeDir() + "/Classic";
 
-const QString docTemplate(
-	"<html>"\
-	"<head>"\
-	"<style type='text/css'>"\
-		"%1"\
-	"</style>"\
-	"</head>"\
-	"<body style='-webkit-nbsp-mode: space; word-wrap:break-word;'>"\
-	"</body>"\
-	"</html>");
-
-
-const Themes lmcTheme::availableThemes(void) {
+const Themes lmTheme::availableThemes(void) {
 	QDir::Filters filters = QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable;
 	QDir::SortFlags sort = QDir::Name;
 
 	Themes themes;
 
-	QDir dir(StdLocation::resThemeDir());
+	QDir dir(DefinitionsDir::resThemeDir());
 	QStringList entries = dir.entryList(QStringList(), filters, sort);
 	foreach(QString dirName, entries) {
 		themes.append(Theme(dirName, dir.absoluteFilePath(dirName)));
 	}
 
-	dir.setPath(StdLocation::sysThemeDir());
+	dir.setPath(DefinitionsDir::sysThemeDir());
 	entries = dir.entryList(QStringList(), filters, sort);
 	foreach(QString dirName, entries) {
 		themes.append(Theme(dirName, dir.absoluteFilePath(dirName)));
 	}
 
-	dir.setPath(StdLocation::userThemeDir());
+	dir.setPath(DefinitionsDir::userThemeDir());
 	entries = dir.entryList(QStringList(), filters, sort);
 	foreach(QString dirName, entries) {
 		themes.append(Theme(dirName, dir.absoluteFilePath(dirName)));
@@ -61,34 +49,34 @@ const Themes lmcTheme::availableThemes(void) {
 	return themes;
 }
 
-const ThemeData lmcTheme::loadTheme(const QString &path) {
+/*
+    themeData.inMsg         = "/Content.html";
+    themeData.inNextMsg     = "/NextContent.html";
+
+    themeData.pubMsg        = "/Broadcast.html";
+    themeData.sysMsg        = "/Status.html";
+    themeData.stateMsg      = "/Status.html";
+    themeData.sysNextMsg    = "/NextStatus.html";
+    themeData.reqMsg        = "/Request.html";
+*/
+
+
+const ThemeData lmTheme::loadTheme(const QString &path) {
     QFile file;
     ThemeData themeData;
 
     themeData.themePath = path;
 
-    file.setFileName(path + "/Incoming/Content.html");
+    file.setFileName(path + "/Content.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     themeData.inMsg = QString(file.readAll().constData());
     file.close();
 
-    file.setFileName(path + "/Incoming/NextContent.html");
+    file.setFileName(path + "/NextContent.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     themeData.inNextMsg = QString(file.readAll().constData());
-    file.close();
-
-    file.setFileName(path + "/Outgoing/Content.html");
-    if(!file.open(QIODevice::ReadOnly))
-        return loadTheme(defTheme);
-    themeData.outMsg = QString(file.readAll().constData());
-    file.close();
-
-    file.setFileName(path + "/Outgoing/NextContent.html");
-    if(!file.open(QIODevice::ReadOnly))
-        return loadTheme(defTheme);
-    themeData.outNextMsg = QString(file.readAll().constData());
     file.close();
 
     file.setFileName(path + "/Broadcast.html");

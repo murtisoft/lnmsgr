@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 ** 
@@ -18,8 +18,8 @@
 ****************************************************************************/
 
 
-#ifndef STDLOCATION_H
-#define STDLOCATION_H
+#ifndef DEFINITIONSDIR_H
+#define DEFINITIONSDIR_H
 
 #include <QStandardPaths>
 #include <QDir>
@@ -28,25 +28,24 @@
 #include <QDateTime>
 #include "settings.h"
 
-#define SL_TRANSFERHISTORY		"transfers.lst"
-#define SL_CACHEDIR				"cache"
-#define SL_RESOURCE				"lmc.rcc"
-#define SL_LANGDIR				"translations"
-#define SL_THEMEDIR				"themes"
-#define SL_GROUPFILE			"group.cfg"
-#define SL_AVATARFILE			"avt_local.png"
-#define SL_LOGDIR				"logs"
-#define SL_TEMPCONFIG			"lmctmpconf.ini"
+#define TRANSFERHISTORY		"transfers.lst"
+#define CACHEDIR			"cache"
+#define LANGDIR				"translations"
+#define THEMEDIR			"themes"
+#define GROUPFILE			"group.cfg"
+#define AVATARFILE			"avt_local.png"
+#define LOGDIR				"logs"
+#define TEMPCONFIG			"lmtmpconf.ini"
 
-class StdLocation {
+class DefinitionsDir {
 public:
 	static QString transferHistory(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::AppDataLocation) + "/" SL_TRANSFERHISTORY);
+            QStandardPaths::AppDataLocation) + "/" TRANSFERHISTORY);
 	}
 
 	static QString fileStorageDir(void) {
-		lmcSettings settings;
+		lmSettings settings;
 
         QString path = QDir::toNativeSeparators(QStandardPaths::writableLocation(
             QStandardPaths::DownloadLocation));
@@ -56,67 +55,63 @@ public:
 
 	static QString cacheDir(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::AppDataLocation) + "/" SL_CACHEDIR);
+            QStandardPaths::AppDataLocation) + "/" CACHEDIR);
 	}
 
 	static QString libDir(void) {
 		return QDir::toNativeSeparators(QDir::currentPath());
 	}
 
-	static QString resourceFile(void) {
-		return QDir::toNativeSeparators(QDir::current().absoluteFilePath(SL_RESOURCE));
-	}
-
 	static QString resLangDir(void) {
-        return ":/" SL_LANGDIR;
+        return ":/" LANGDIR;
 	}
 
 	static QString sysLangDir(void) {
-        return QDir::toNativeSeparators(QDir::currentPath() + "/" SL_LANGDIR);
+        return QDir::toNativeSeparators(QDir::currentPath() + "/" LANGDIR);
 	}
 
 	static QString userLangDir(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::AppDataLocation) + "/" SL_LANGDIR);
+            QStandardPaths::AppDataLocation) + "/" LANGDIR);
 	}
 
 	static QString resThemeDir(void) {
-        return ":/" SL_THEMEDIR;
+        return ":/" THEMEDIR;
 	}
 
 	static QString sysThemeDir(void) {
-        return QDir::toNativeSeparators(QDir::currentPath() + "/" SL_THEMEDIR);
+        return QDir::toNativeSeparators(QDir::currentPath() + "/" THEMEDIR);
 	}
 
 	static QString userThemeDir(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::AppDataLocation) + "/" SL_THEMEDIR);
+            QStandardPaths::AppDataLocation) + "/" THEMEDIR);
 	}
 
 	static QString groupFile(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::AppDataLocation) + "/" SL_GROUPFILE);
+            QStandardPaths::AppDataLocation) + "/" GROUPFILE);
 	}
 
 	static QString avatarFile(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::AppDataLocation) + "/" SL_AVATARFILE);
+            QStandardPaths::AppDataLocation) + "/" AVATARFILE);
 	}
 
 	static QString logDir(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::AppDataLocation) + "/" SL_LOGDIR);
+            QStandardPaths::AppDataLocation) + "/" LOGDIR);
 	}
 
 	static QString freeLogFile(void) {
-        QString fileName = QString(QDateTime::currentDateTime().toString("yyyyMMdd-hhmmss")) + ".log";
+        QString fileName = QString(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")) + ".log";
 		return QDir::toNativeSeparators(logDir() + "/" + fileName);
 	}
 
 	static QString tempConfigFile(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
-            QStandardPaths::TempLocation) + "/" SL_TEMPCONFIG);
+            QStandardPaths::TempLocation) + "/" TEMPCONFIG);
 	}
 };
 
-#endif // STDLOCATION_H
+#endif // DEFINITIONSDIR_H

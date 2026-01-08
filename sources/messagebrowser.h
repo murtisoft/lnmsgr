@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** This file is part of LAN Messenger.
-** 
+**
 ** LAN Messenger is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation, either version 3 of the License, or
@@ -18,47 +18,36 @@
 ****************************************************************************/
 
 
-#ifndef AFORMHISTORY_H
-#define AFORMHISTORY_H
+#ifndef MESSAGEBROWSER_H
+#define MESSAGEBROWSER_H
 
-#include <QWidget>
-#include <QList>
-#include <QTreeWidget>
-#include <qevent.h>
-#include "ui_aformhistory.h"
-#include "settings.h"
-#include "history.h"
-#include "messagelog.h"
+#include <QTextBrowser>
 
-class lmFormHistory : public QWidget
+class MessageBrowser : public QTextBrowser
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-    lmFormHistory(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-	~lmFormHistory();
+    explicit MessageBrowser(QWidget* parent = nullptr);
+    virtual ~MessageBrowser();
 
-	void init(void);
-	void updateList(void);
-	void stop(void);
-	void settingsChanged(void);
+    void insertMoreMessagesAnchor(const QString &text);
+    void insertMoreMessagesAnchor(QTextCursor cursor, const QString &text);
+    void insertMessage(QTextCursor cursor, const QString &sender, const QString &receiver, const QDateTime &time, const QString &avatarUrl, const QString &text);
 
-protected:
-    bool eventFilter(QObject* pObject, QEvent* pEvent);
-	void changeEvent(QEvent* pEvent);
+    typedef struct {
+        QTextCursor cursor;
+        int scrollBarMaximum;
+    } InsertWithoutScrollingData;
+
+    InsertWithoutScrollingData beginInsertWithoutScrolling();
+    void endInsertWithoutScrollig(InsertWithoutScrollingData data);
 
 private slots:
-	void tvMsgList_currentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous);
-	void btnClearHistory_clicked(void);
+    void onAnchorClicked(const QUrl &arg1);
 
-private:
-	void setUIText(void);
-	void displayList(void);
-
-	Ui::HistoryWindow ui;
-	lmSettings* pSettings;
-	lmMessageLog* pMessageLog;
-	QList<MsgInfo> msgList;
+Q_SIGNALS:
+    void moreMessagesAnchorClicked();
 };
 
-#endif // AFORMHISTORY_H
+#endif // MESSAGEBROWSER_H

@@ -117,11 +117,11 @@ int Helper::compareVersions(const QString& version1, const QString& version2) {
 }
 
 QString Helper::boolToString(bool value) {
-	return value ? LMC_TRUE : LMC_FALSE;
+    return value ? LM_TRUE : LM_FALSE;
 }
 
 bool Helper::stringToBool(const QString& value) {
-	return value.compare(LMC_TRUE) == 0 ? true : false;
+    return value.compare(LM_TRUE) == 0 ? true : false;
 }
 
 //	Function that copies content of source to destination

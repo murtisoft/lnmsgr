@@ -21,12 +21,12 @@
 #ifndef SOUNDPLAYER_H
 #define SOUNDPLAYER_H
 
-#include "uidefinitions.h"
+#include "definitionsui.h"
 #include "settings.h"
 
-class lmcSoundPlayer {
+class lmSoundPlayer {
 public:
-	lmcSoundPlayer(void);
+	lmSoundPlayer(void);
 
     static bool isAvailable();
     static void play(const QString &filename);
@@ -34,7 +34,7 @@ public:
 	void settingsChanged(void);
 
 private:
-	lmcSettings* pSettings;
+	lmSettings* pSettings;
 	int eventState[SE_Max];
 	QString sounds[SE_Max];
 	bool playSound;

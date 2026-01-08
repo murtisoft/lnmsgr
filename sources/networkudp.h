@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 ** 
@@ -18,8 +18,8 @@
 ****************************************************************************/
 
 
-#ifndef UDPNETWORK_H
-#define UDPNETWORK_H
+#ifndef NETWORKUDP_H
+#define NETWORKUDP_H
 
 #include <QObject>
 #include <QUdpSocket>
@@ -31,18 +31,18 @@
 #include "settings.h"
 #include "crypto.h"
 
-class lmcUdpNetwork : public QObject {
+class lmNetworkUdp : public QObject {
 	Q_OBJECT
 
 public:
-	lmcUdpNetwork(void);
-	~lmcUdpNetwork(void);
+	lmNetworkUdp(void);
+	~lmNetworkUdp(void);
 
 	void init(int nPort = 0);
 	void start(void);
 	void stop(void);
 	void setLocalId(QString* lpszLocalId);
-	void setCrypto(lmcCrypto* pCrypto);
+	void setCrypto(lmCrypto* pCrypto);
 	void sendBroadcast(QString* lpszData);
 	void settingsChanged(void);
 	void setMulticastInterface(const QNetworkInterface& networkInterface);
@@ -64,10 +64,10 @@ private:
 	void parseDatagram(QString* lpszAddress, QByteArray& baDatagram);
 	void setDefaultBroadcast(void);
 
-	lmcSettings*		pSettings;
+	lmSettings*		pSettings;
 	QUdpSocket*			pUdpReceiver;
 	QUdpSocket*			pUdpSender;
-	lmcCrypto*			pCrypto;
+	lmCrypto*			pCrypto;
 
 	bool				isRunning;
     quint16				nUdpPort;
@@ -80,4 +80,4 @@ private:
 	QHostAddress		defBroadcast;
 };
 
-#endif // UDPNETWORK_H
+#endif // NETWORKUDP_H

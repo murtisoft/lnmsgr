@@ -25,7 +25,7 @@
 #include "aformtransfer.h"
 #include "chathelper.h"
 
-lmcTransferWindow::lmcTransferWindow(QWidget *parent) : QWidget(parent) {
+lmFormTransfer::lmFormTransfer(QWidget *parent) : QWidget(parent) {
 	ui.setupUi(this);
 	QScreen* screen = QGuiApplication::primaryScreen();
      QRect screenRect = screen->geometry();
@@ -44,38 +44,38 @@ lmcTransferWindow::lmcTransferWindow(QWidget *parent) : QWidget(parent) {
 	pendingSendList.clear();
 }
 
-lmcTransferWindow::~lmcTransferWindow(void) {
+lmFormTransfer::~lmFormTransfer(void) {
 }
 
-void lmcTransferWindow::init(void) {
+void lmFormTransfer::init(void) {
 	setWindowIcon(QIcon(IDR_APPICON));
 
 	createToolBar();
 	setButtonState(FileView::TS_Max);
 
-	pSettings = new lmcSettings();
+	pSettings = new lmSettings();
 	restoreGeometry(pSettings->value(IDS_WINDOWTRANSFERS).toByteArray());
 	setUIText();
 
-	ui.lvTransferList->loadData(StdLocation::transferHistory());
+	ui.lvTransferList->loadData(DefinitionsDir::transferHistory());
 	if(ui.lvTransferList->count() > 0)
 		ui.lvTransferList->setCurrentRow(0);
 
-	pSoundPlayer = new lmcSoundPlayer();
+	pSoundPlayer = new lmSoundPlayer();
 }
 
-void lmcTransferWindow::updateList(void) {
+void lmFormTransfer::updateList(void) {
 	clearList();
 }
 
-void lmcTransferWindow::stop(void) {
+void lmFormTransfer::stop(void) {
 	//	Cancel all active transfers
 	for(int index = 0; index < ui.lvTransferList->count(); index++) {
 		FileView* view = ui.lvTransferList->item(index);
 
 		if(view->state < FileView::TS_Complete) {
 			int mode = view->mode == FileView::TM_Send ? FM_Send : FM_Receive;
-			XmlMessage xmlMessage;
+			MessageXml xmlMessage;
 			xmlMessage.addData(XN_MODE, FileModeNames[mode]);
 			xmlMessage.addData(XN_FILETYPE, FileTypeNames[FT_Normal]);
 			xmlMessage.addData(XN_FILEOP, FileOpNames[FO_Cancel]);
@@ -88,11 +88,11 @@ void lmcTransferWindow::stop(void) {
 
 	bool saveHistory = pSettings->value(IDS_FILEHISTORY, IDS_FILEHISTORY_VAL).toBool();
 	if(saveHistory)
-		ui.lvTransferList->saveData(StdLocation::transferHistory());
+		ui.lvTransferList->saveData(DefinitionsDir::transferHistory());
 	pSettings->setValue(IDS_WINDOWTRANSFERS, saveGeometry());
 }
 
-void lmcTransferWindow::createTransfer(MessageType type, FileMode mode, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage) {
+void lmFormTransfer::createTransfer(MessageType type, FileMode mode, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage) {
 	FileView fileView(pMessage->data(XN_FILEID));
 	fileView.fileSize = pMessage->data(XN_FILESIZE).toLongLong();
 	fileView.sizeDisplay = Helper::formatSize(fileView.fileSize);
@@ -115,7 +115,7 @@ void lmcTransferWindow::createTransfer(MessageType type, FileMode mode, QString*
     ui.lvTransferList->setCurrentRow(0);
 }
 
-void lmcTransferWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage) {
+void lmFormTransfer::receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
     Q_UNUSED(type);
     Q_UNUSED(lpszUserId);
 
@@ -203,11 +203,11 @@ void lmcTransferWindow::receiveMessage(MessageType type, QString* lpszUserId, Xm
 	setButtonState(current->state);
 }
 
-void lmcTransferWindow::settingsChanged(void) {
+void lmFormTransfer::settingsChanged(void) {
 	pSoundPlayer->settingsChanged();
 }
 
-bool lmcTransferWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
+bool lmFormTransfer::eventFilter(QObject* pObject, QEvent* pEvent) {
     Q_UNUSED(pObject);
     if(pEvent->type() == QEvent::KeyPress) {
         QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
@@ -220,7 +220,7 @@ bool lmcTransferWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
     return false;
 }
 
-void lmcTransferWindow::changeEvent(QEvent* pEvent) {
+void lmFormTransfer::changeEvent(QEvent* pEvent) {
 	switch(pEvent->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -232,7 +232,7 @@ void lmcTransferWindow::changeEvent(QEvent* pEvent) {
 	QWidget::changeEvent(pEvent);
 }
 
-void lmcTransferWindow::lvTransferList_currentRowChanged(int currentRow) {
+void lmFormTransfer::lvTransferList_currentRowChanged(int currentRow) {
 	if(currentRow < 0) {
 		setButtonState(FileView::TS_Max);
 		return;
@@ -243,17 +243,17 @@ void lmcTransferWindow::lvTransferList_currentRowChanged(int currentRow) {
 	pactShowFolder->setEnabled(QFile::exists(pFileView->filePath));
 }
 
-void lmcTransferWindow::lvTransferList_activated(const QModelIndex& index) {
+void lmFormTransfer::lvTransferList_activated(const QModelIndex& index) {
 	FileView* view = ui.lvTransferList->item(index.row());
 
 	QDesktopServices::openUrl(QUrl::fromLocalFile(view->filePath));
 }
 
-void lmcTransferWindow::btnCancel_clicked(void) {
+void lmFormTransfer::btnCancel_clicked(void) {
 	FileView* view = ui.lvTransferList->currentItem();
 
 	int mode = view->mode == FileView::TM_Send ? FM_Send : FM_Receive;
-	XmlMessage xmlMessage;
+	MessageXml xmlMessage;
 	xmlMessage.addData(XN_MODE, FileModeNames[mode]);
 	xmlMessage.addData(XN_FILETYPE, FileTypeNames[FT_Normal]);
 	xmlMessage.addData(XN_FILEOP, FileOpNames[FO_Cancel]);
@@ -266,7 +266,7 @@ void lmcTransferWindow::btnCancel_clicked(void) {
 	setButtonState(view->state);
 }
 
-void lmcTransferWindow::btnRemove_clicked(void) {
+void lmFormTransfer::btnRemove_clicked(void) {
 	FileView* view = ui.lvTransferList->currentItem();
 
 	if(view->state < FileView::TS_Complete)
@@ -275,12 +275,12 @@ void lmcTransferWindow::btnRemove_clicked(void) {
 	ui.lvTransferList->removeItem(ui.lvTransferList->currentRow());
 }
 
-void lmcTransferWindow::btnClear_clicked(void) {
-    QFile::remove(StdLocation::transferHistory());
+void lmFormTransfer::btnClear_clicked(void) {
+    QFile::remove(DefinitionsDir::transferHistory());
 	clearList();
 }
 
-void lmcTransferWindow::btnShowFolder_clicked(void) {
+void lmFormTransfer::btnShowFolder_clicked(void) {
 	FileView* view = ui.lvTransferList->currentItem();
 
 	QString path = QFileInfo(view->filePath).dir().path();
@@ -294,7 +294,7 @@ void lmcTransferWindow::btnShowFolder_clicked(void) {
 	QDesktopServices::openUrl(url);
 }
 
-void lmcTransferWindow::createToolBar(void) {
+void lmFormTransfer::createToolBar(void) {
 	QToolBar* pToolBar = new QToolBar(ui.wgtToolBar);
 	pToolBar->setIconSize(QSize(16, 16));
 	pToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -309,7 +309,7 @@ void lmcTransferWindow::createToolBar(void) {
 		this, SLOT(btnRemove_clicked()));
 }
 
-void lmcTransferWindow::setUIText(void) {
+void lmFormTransfer::setUIText(void) {
 	ui.retranslateUi(this);
 
 	setWindowTitle(tr("File Transfers"));
@@ -319,7 +319,7 @@ void lmcTransferWindow::setUIText(void) {
 	pactRemove->setText(tr("Remove From List"));
 }
 
-void lmcTransferWindow::setButtonState(FileView::TransferState state) {
+void lmFormTransfer::setButtonState(FileView::TransferState state) {
 	switch(state) {
 	case FileView::TS_Send:
 	case FileView::TS_Receive:
@@ -341,7 +341,7 @@ void lmcTransferWindow::setButtonState(FileView::TransferState state) {
 	}
 }
 
-QPixmap lmcTransferWindow::getIcon(QString filePath) {
+QPixmap lmFormTransfer::getIcon(QString filePath) {
 	QFileIconProvider iconProvider;
 	QFileInfo fileInfo(filePath);
 	QPixmap icon;
@@ -361,7 +361,7 @@ QPixmap lmcTransferWindow::getIcon(QString filePath) {
 	return icon;
 }
 
-QString lmcTransferWindow::formatTime(qint64 size, qint64 speed) {
+QString lmFormTransfer::formatTime(qint64 size, qint64 speed) {
 	int d = 86400;
 	int h = 3600;
 	int m = 60;
@@ -389,7 +389,7 @@ QString lmcTransferWindow::formatTime(qint64 size, qint64 speed) {
 	return s.trimmed();
 }
 
-void lmcTransferWindow::clearList(void) {
+void lmFormTransfer::clearList(void) {
 	for(int index = 0; index < ui.lvTransferList->count(); index++) {
 		FileView* view = ui.lvTransferList->item(index);
 		if(view->state < FileView::TS_Complete)
@@ -400,7 +400,7 @@ void lmcTransferWindow::clearList(void) {
 	}
 }
 
-void lmcTransferWindow::updateProgress(FileView* view, qint64 currentPos) {
+void lmFormTransfer::updateProgress(FileView* view, qint64 currentPos) {
     view->position = currentPos;
     view->posDisplay = Helper::formatSize(view->position);
     qint64 timeSpan = view->startTime.msecsTo(QDateTime::currentDateTime()) / 1000;
