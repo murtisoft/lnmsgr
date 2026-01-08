@@ -196,8 +196,9 @@ void lmCore::settingsChanged(void) {
 
     if(!Helper::stringToBool(pInitParams->data(XN_TRACEMODE))){          //No /trace argument from console
         if(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool()){   //Debuglog setting from UI
-            lmTrace::init(pInitParams->data(XN_LOGFILE) , true);
-            lmTrace::write("Debug logging started via settingsChanged");
+            if (!lmTrace::check()){
+                lmTrace::init(pInitParams->data(XN_LOGFILE) , true);
+                lmTrace::write("Debug logging started via settingsChanged");}
         }else {
             lmTrace::stop("Debug logging stopped via settingsChanged");
             }

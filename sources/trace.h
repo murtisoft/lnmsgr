@@ -35,6 +35,7 @@ public:
     static void init(QString fileName, bool traceMode);
     static void write(const QString& string, bool verbose = true);
     static void stop(const QString& string);
+    static bool check();
 
 private:
 	static bool traceMode;

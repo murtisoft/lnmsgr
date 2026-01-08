@@ -72,3 +72,7 @@ void lmTrace::stop(const QString& string) {
     write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
     lmTrace::traceMode = false;
 }
+
+bool lmTrace::check(){
+    return lmTrace::traceMode;
+}
