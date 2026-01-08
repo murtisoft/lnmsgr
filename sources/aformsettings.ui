@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>3</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2161,6 +2161,21 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <item>
+                 <property name="text">
+                  <string>System</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Light</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Dark</string>
+                 </property>
+                </item>
                </widget>
               </item>
               <item>
@@ -2175,13 +2190,6 @@
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnRefresfTheme">
-                <property name="text">
-                 <string>Refresh</string>
-                </property>
-               </widget>
               </item>
              </layout>
             </item>

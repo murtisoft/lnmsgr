@@ -144,6 +144,8 @@
 #define IDS_THEME_OLD_VAL		":/themes/Classic"
 #define IDS_THEME				"Appearance/Theme"
 #define IDS_THEME_VAL			":/themes/Classic"
+#define IDS_COLORSCHEME			"Appearance/ColorScheme"
+#define IDS_COLORSCHEME_VAL		"0"
 #define IDS_USERLISTVIEW		"Appearance/UserListView"
 #define IDS_USERLISTVIEW_VAL	ULV_Detailed
 #define IDS_STATUSTOOLTIP		"Appearance/StatusToolTip"

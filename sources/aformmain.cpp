@@ -25,6 +25,7 @@
 #include "messagelog.h"
 #include "history.h"
 #include <cstdlib>
+#include <qstylehints.h>
 
 lmFormMain::lmFormMain(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
 	ui.setupUi(this);
@@ -136,6 +137,24 @@ void lmFormMain::start(void) {
 	// and the program will connect to the network before start() is called.
 	setAvatar();
 	pTrayIcon->setVisible(showSysTray);
+
+    int colorSchemeIndex = pSettings->value(IDS_COLORSCHEME, IDS_COLORSCHEME_VAL).toInt();  //NEED2TEST Kinda had to, but its messy, i dont like this.
+    switch (colorSchemeIndex) {
+    case 0:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Unknown);
+        break;
+    case 1:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Light);
+        break;
+    case 2:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Dark);
+        break;
+    default:
+        break;
+    }
+    QEvent event(QEvent::ThemeChange);
+    QCoreApplication::sendEvent(qApp, &event);
+
 	if(pSettings->value(IDS_AUTOSHOW, IDS_AUTOSHOW_VAL).toBool())
 		show();
 }

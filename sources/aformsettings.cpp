@@ -22,6 +22,7 @@
 #include <QSystemTrayIcon>
 #include <QLocale>
 #include <QMessageBox>
+#include <qstylehints.h>
 #include "aformsettings.h"
 #include "soundplayer.h"
 #include "chathelper.h"
@@ -64,7 +65,6 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
 	connect(ui.btnPlaySound, SIGNAL(clicked()), this, SLOT(btnPlaySound_clicked()));
 	connect(ui.btnSoundPath, SIGNAL(clicked()), this, SLOT(btnSoundPath_clicked()));
 	connect(ui.btnResetSounds, SIGNAL(clicked()), this, SLOT(btnResetSounds_clicked()));
-    connect(ui.btnRefresfTheme, SIGNAL(clicked()), this, SLOT(btnRefreshTheme_clicked()));
 }
 
 lmFormSettings::~lmFormSettings(void) {
@@ -111,16 +111,12 @@ void lmFormSettings::init(void) {
     }
 //=========================================================
 
-	Themes themes = lmTheme::availableThemes();
-	for(int index = 0; index < themes.count(); index++)
-		ui.cboTheme->addItem(themes.at(index).name, themes.at(index).path);
-
 	for(int index = 0; index < ULV_Max; index++)
 		ui.cboUserListView->addItem(lmStrings::userListView()[index], index);
 
-	fontSize = 0;
-	font = QApplication::font();
-	color = QApplication::palette().text().color();
+    fontSize = 0;
+    font = QApplication::font();
+    color = QApplication::palette().text().color();
 	ui.lvCategories->setCurrentRow(0);
 
 	setWindowIcon(QIcon(IDR_APPICON));
@@ -298,13 +294,14 @@ void lmFormSettings::btnReset_clicked(void) {
 }
 
 void lmFormSettings::cboTheme_currentIndexChanged(int index) {
-	QString themePath = ui.cboTheme->itemData(index, Qt::UserRole).toString();
+    int colorSchemeIndex = ui.cboTheme->currentIndex();
+    changeColorScheme(colorSchemeIndex);
 
 	pMessageLog->fontSizeVal = FS_SMALL;
 	pMessageLog->localId = "Myself";
 	pMessageLog->peerId = "Jack";
 	pMessageLog->messageTime = true;
-    pMessageLog->initMessageLog(themePath);
+    pMessageLog->initMessageLog("");  //initializing empty theme path, so it retargets to default. remove later. NEED2TEST
 
 	MessageXml msg;
 	msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
@@ -440,12 +437,6 @@ void lmFormSettings::btnResetSounds_clicked(void) {
 		pListItem->setData(Qt::UserRole, soundFile[index]);
 	}
     lvSounds_currentRowChanged(ui.lvSounds->currentRow());
-}
-
-void lmFormSettings::btnRefreshTheme_clicked()
-{
-    pMessageLog->reloadTheme();
-    cboTheme_currentIndexChanged(ui.cboTheme->currentIndex());
 }
 
 void lmFormSettings::setPageHeaderStyle(QLabel* pLabel) {
@@ -599,20 +590,33 @@ void lmFormSettings::loadSettings(void) {
 	ui.rdbFileBottom->setChecked(!pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
 	ui.txtFilePath->setText(DefinitionsDir::fileStorageDir());
 
-	QString themePath = pSettings->value(IDS_THEME, IDS_THEME_VAL).toString();
-	for(int index = 0; index < ui.cboTheme->count(); index ++) {
-		QString theme = ui.cboTheme->itemData(index, Qt::UserRole).toString();
-		if(themePath.compare(theme) == 0) {
-			ui.cboTheme->setCurrentIndex(index);
-			break;
-		}
-	}
+    int colorSchemeIndex = pSettings->value(IDS_COLORSCHEME, IDS_COLORSCHEME_VAL).toInt();
+    ui.cboTheme->setCurrentIndex(colorSchemeIndex);
+
 	int userListView = pSettings->value(IDS_USERLISTVIEW, IDS_USERLISTVIEW_VAL).toInt();
 	ui.cboUserListView->setCurrentIndex(userListView);
 	ui.chkUserListToolTip->setChecked(pSettings->value(IDS_STATUSTOOLTIP, IDS_STATUSTOOLTIP_VAL).toBool());
 
 	ui.rdbEnter->setChecked(!pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
 	ui.rdbCmdEnter->setChecked(pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
+}
+
+void lmFormSettings::changeColorScheme(int index){
+    switch (index) {
+    case 0:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Unknown);
+        break;
+    case 1:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Light);
+        break;
+    case 2:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Dark);
+        break;
+    default:
+        break;
+    }
+    QEvent event(QEvent::ThemeChange);
+    QCoreApplication::sendEvent(qApp, &event);
 }
 
 void lmFormSettings::saveSettings(void) {
@@ -717,8 +721,8 @@ void lmFormSettings::saveSettings(void) {
 	pSettings->setValue(IDS_FILETOP, ui.rdbFileTop->isChecked(), IDS_FILETOP_VAL);
 	pSettings->setValue(IDS_FILESTORAGEPATH, ui.txtFilePath->text(), IDS_FILESTORAGEPATH_VAL);
 
-	QString themePath = ui.cboTheme->itemData(ui.cboTheme->currentIndex(), Qt::UserRole).toString();
-	pSettings->setValue(IDS_THEME, themePath, IDS_THEME_VAL);
+    int colorSchemeIndex = ui.cboTheme->currentIndex();
+    pSettings->setValue(IDS_COLORSCHEME, colorSchemeIndex, IDS_COLORSCHEME_VAL);
 	pSettings->setValue(IDS_USERLISTVIEW, ui.cboUserListView->currentIndex(), IDS_USERLISTVIEW_VAL);
 	pSettings->setValue(IDS_STATUSTOOLTIP, ui.chkUserListToolTip->isChecked(), IDS_STATUSTOOLTIP_VAL);
 

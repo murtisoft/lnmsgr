@@ -53,6 +53,7 @@ public:
 
 	void init(void);
 	void settingsChanged(void);
+    void changeColorScheme(int index);
 
 signals:
 	void historyCleared(void);
@@ -87,7 +88,6 @@ private slots:
 	void btnPlaySound_clicked(void);
 	void btnSoundPath_clicked(void);
 	void btnResetSounds_clicked(void);
-    void btnRefreshTheme_clicked(void);
 
 
 private:

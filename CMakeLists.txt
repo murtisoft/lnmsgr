@@ -64,9 +64,7 @@ qt6_add_translations(LanMessenger
 #==========================================================================================================================================<< TO DO
 #Search for NEED2TEST within the project.
 #Remove themes.
-#qApp->styleHints()->setColorScheme(Qt::ColorScheme::Dark);
-#qApp->styleHints()->setColorScheme(Qt::ColorScheme::Light);
-#qApp->styleHints()->setColorScheme(Qt::ColorScheme::Unknown);
+#colorschemes are a complete mess. How do you even get these to behave?!
 
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Crashing somewhere after "New connection received" and before "Accepted connection from user", (when a new peer joins network.)
