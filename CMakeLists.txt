@@ -68,7 +68,8 @@ qt6_add_translations(LanMessenger
 #   A is an old client, B is new, A sends 9+ (8 messages wont crash) messages to B, then A changes avatar, makes B crash.
 #   A is a new client, B is old, A sends 9+ (8 messages wont crash) messages to B, then A changes avatar, A crashes.
 #   If the chat window is closed after those messages, it wont crash, nor will it, if it is any other type of chat, chatroom or public.
-#   I am tearing my hairs out here.
+#   Same thing happens when you send a bunch of messages to B, then change a setting like show date and time. Which should make the dates appear/disappear in the window.
+# the crashing problem is about the scrollbar! it happens in all different chat modules. the messages just need to stack long enough to activate the scrollbar!
 
 #Remove themes.
 #colorschemes are a complete mess. Manually set fonts and color palettes causing problems with those.

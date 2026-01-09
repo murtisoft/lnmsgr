@@ -1,6 +1,8 @@
 /****************************************************************************
 **
 ** This file is part of LAN Messenger.
+**
+** Copyright (c) LAN Messenger Contributors.
 ** 
 ** LAN Messenger is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -66,7 +68,7 @@ QByteArray lmCrypto::generateRSA() {
 }
 
 //	generates a random aes key and iv, and encrypts it with the public key
-QByteArray lmCrypto::generateAES(QString* userId, QByteArray& pubKey) {
+QByteArray lmCrypto::generateAES(QString* lpszUserId, QByteArray& pubKey) {
     BIO* bio = BIO_new_mem_buf(pubKey.data(), pubKey.length());
     EVP_PKEY* peerPubKey = PEM_read_bio_PUBKEY(bio, nullptr, nullptr, nullptr);
     BIO_free(bio);
@@ -78,8 +80,8 @@ QByteArray lmCrypto::generateAES(QString* userId, QByteArray& pubKey) {
     EVP_EncryptInit_ex(ectx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
     EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
 
-    encryptMap.insert(*userId, ectx);
-    decryptMap.insert(*userId, dctx);
+    encryptMap.insert(*lpszUserId, ectx);
+    decryptMap.insert(*lpszUserId, dctx);
 
     EVP_PKEY_CTX* encCtx = EVP_PKEY_CTX_new(peerPubKey, nullptr);
     EVP_PKEY_encrypt_init(encCtx);
@@ -96,7 +98,7 @@ QByteArray lmCrypto::generateAES(QString* userId, QByteArray& pubKey) {
 }
 
 //	decrypts the aes key and iv with the private key
-void lmCrypto::retreiveAES(QString* userId, QByteArray& aesKeyIv) {
+void lmCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
     EVP_PKEY_CTX* decCtx = EVP_PKEY_CTX_new(pKey, nullptr);
     EVP_PKEY_decrypt_init(decCtx);
     EVP_PKEY_CTX_set_rsa_padding(decCtx, RSA_PKCS1_OAEP_PADDING);
@@ -118,15 +120,15 @@ void lmCrypto::retreiveAES(QString* userId, QByteArray& aesKeyIv) {
     EVP_EncryptInit_ex(ectx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
     EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
 
-    encryptMap.insert(*userId, ectx);
-    decryptMap.insert(*userId, dctx);
+    encryptMap.insert(*lpszUserId, ectx);
+    decryptMap.insert(*lpszUserId, dctx);
 }
 
-QByteArray lmCrypto::encrypt(QString* userId, QByteArray& data) {
-    EVP_CIPHER_CTX* ctx = encryptMap.value(*userId);
+QByteArray lmCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
+    EVP_CIPHER_CTX* ctx = encryptMap.value(*lpszUserId);
     if (!ctx) return QByteArray();
 
-    QByteArray out(data.length() + AES_BLOCK_SIZE, 0);
+    QByteArray out(clearData.length() + AES_BLOCK_SIZE, 0);
     if (out.isEmpty()) {
         lmTrace::write("Error: Buffer not allocated");
         return QByteArray();
@@ -135,7 +137,7 @@ QByteArray lmCrypto::encrypt(QString* userId, QByteArray& data) {
     int len = 0, flen = 0;
     EVP_EncryptInit_ex(ctx, nullptr, nullptr, nullptr, nullptr);
 
-    if (!EVP_EncryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)data.data(), data.length()) ||
+    if (!EVP_EncryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)clearData.data(), clearData.length()) ||
         !EVP_EncryptFinal_ex(ctx, (unsigned char*)out.data() + len, &flen)) {
         lmTrace::write("Error: Message encryption failed");
         return QByteArray();
@@ -145,8 +147,8 @@ QByteArray lmCrypto::encrypt(QString* userId, QByteArray& data) {
     return out;
 }
 
-QByteArray lmCrypto::decrypt(QString* userId, QByteArray& cipherData) {
-    EVP_CIPHER_CTX* ctx = decryptMap.value(*userId);
+QByteArray lmCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData) {
+    EVP_CIPHER_CTX* ctx = decryptMap.value(*lpszUserId);
     if (!ctx) return QByteArray();
 
     QByteArray out(cipherData.length(), 0);

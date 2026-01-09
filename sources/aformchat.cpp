@@ -1,6 +1,8 @@
 /****************************************************************************
 **
 ** This file is part of LAN Messenger.
+**
+** Copyright (c) LAN Messenger Contributors.
 ** 
 ** LAN Messenger is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -511,7 +513,7 @@ void lmFormChat::createToolBar(void) {
 	pSaveAction->setEnabled(false);
 
     pLeftBar->addSeparator();
-    pNudgeAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Nudge,16)), "Nudge", this, SLOT(btnNudge_clicked()));  //NEED2TEST Nudge
+    pNudgeAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Nudge,16)), "Nudge", this, SLOT(btnNudge_clicked()));
 
 	pRightBar = new QToolBar(ui.wgtToolBar);
 	pRightBar->setStyleSheet("QToolBar { border: 0px }");
