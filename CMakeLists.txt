@@ -60,16 +60,19 @@ qt6_add_translations(LanMessenger
     RESOURCE_PREFIX "/translations"
 )
 
-
 #==========================================================================================================================================<< TO DO
 #Search for NEED2TEST within the project.
-#Remove themes.
-#colorschemes are a complete mess. How do you even get these to behave?!
-
-#File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Crashing somewhere after "New connection received" and before "Accepted connection from user", (when a new peer joins network.)
 #   Messages are sometimes lost(Corrupted and discarded?). I think these are related.
-#   New client starting for the first time reliably crashes all old clients.
+#   Both new clients, A sends a handful of messages to B, then A changes avatar, A crashes. When A restarts, makes B crash.
+#   A is an old client, B is new, A sends 9+ (8 messages wont crash) messages to B, then A changes avatar, makes B crash.
+#   A is a new client, B is old, A sends 9+ (8 messages wont crash) messages to B, then A changes avatar, A crashes.
+#   If the chat window is closed after those messages, it wont crash, nor will it, if it is any other type of chat, chatroom or public.
+#   I am tearing my hairs out here.
+
+#Remove themes.
+#colorschemes are a complete mess. Manually set fonts and color palettes causing problems with those.
+#File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
 #Font size settings in settings dialog are local only, and dont even affect public chat for some reason. Maybe i should remove those ancient buttons?
 #There should be links to open or show in folder after a file transfer. Not just "Completed."
