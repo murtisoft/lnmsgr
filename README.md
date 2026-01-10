@@ -1,6 +1,6 @@
 Notes
 ===========================
-Unfortunately, the program mysteriously crashes when a new peer joins the network. It only seems to crash when my back is turned, so I am having a very hard time tracking this.
+After the recent two crash fixes, I am hoping that this is reliable enough to actually use, now.
 
 I would like to maintain compatibility between this and old versions, while adding more in the future. 
 
