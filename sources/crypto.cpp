@@ -57,8 +57,7 @@ QByteArray lmCrypto::generateRSA() {
     EVP_PKEY_CTX_free(ctx);
 
     BIO* bio = BIO_new(BIO_s_mem());
-    // Use RSAPublicKey for compatibility with older clients
-    if (PEM_write_bio_RSAPublicKey(bio, EVP_PKEY_get0_RSA(pKey))) {
+    if (PEM_write_bio_RSAPublicKey(bio, EVP_PKEY_get0_RSA(pKey))) {     // for compatibility with older clients
         publicKey.resize(BIO_pending(bio));
         BIO_read(bio, publicKey.data(), publicKey.size());
     }

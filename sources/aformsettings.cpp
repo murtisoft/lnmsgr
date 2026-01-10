@@ -457,7 +457,6 @@ void lmFormSettings::setUIText(void) {
 
 	ui.chkAutoStart->setText(ui.chkAutoStart->text().arg(lmStrings::appName()));
 	ui.chkAutoShow->setText(ui.chkAutoShow->text().arg(lmStrings::appName()));
-    ui.chkDebugLog->setText(ui.chkDebugLog->text().arg(lmStrings::appName()));
 	ui.lblFinePrint->setText(ui.lblFinePrint->text().arg(lmStrings::appName()));
 
 	if(!QSystemTrayIcon::isSystemTrayAvailable()) {

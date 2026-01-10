@@ -29,37 +29,26 @@
 
 
 namespace Icons { //New Emoji Icons.
-const QString Close         = "❌️";     const QString History       = "🕙️";
-const QString Info          = "ℹ️";     const QString File          = "📄️";
-const QString Transfer      = "📥️";     const QString Font          = "✒️";
-const QString FontColor     = "🖍️";     const QString Smiley        = "🤪️";
-const QString Save          = "💾️";     const QString Stop          = "🚫️";
-const QString Folder        = "📁️";     const QString ShowFolder    = "📂️";
-const QString Broadcast     = "📢️";     const QString Plus          = "➕️";
-const QString Refresh       = "♻️";     const QString Web           = "🌍️";
-const QString Chat          = "💬️";     const QString Play          = "▶️️️️";
-const QString Public        = "👨‍👩‍👧‍👦️";     const QString Settings      = "⚙️";
-const QString GeneralSet    = "🖥️";     const QString AccountSet    = "👨‍👩‍👦️";
-const QString MessageSet    = "📨️";     const QString HistorySet    = "🕙️";
-const QString AlertSet      = "⚠️";     const QString NetworkSet    = "🔗️";
-const QString TransferSet   = "📥️";     const QString ThemeSet      = "🎨️";
-const QString HotkeySet     = "⌨️";     const QString Alert         = "⚠️";
-const QString VoiceSet      = "🎙️️";
-const QString Microphone    = "🎤️️";
-const QString Speaker       = "🎧️️";
-const QString Telephone     = "📞️️";
-const QString Camera        = "📽️️️";
-const QString Screenshot    = "📷️️";
-const QString Nudge         = "🛎️️️";
+const QString Close         = "❌️";    const QString History       = "🕙️";    const QString Info          = "ℹ️";
+const QString File          = "📄️";    const QString Transfer      = "📥️";    const QString Font          = "✒️";
+const QString FontColor     = "🖍️";    const QString Smiley        = "🤪️";    const QString Save          = "💾️";
+const QString Stop          = "🚫️";    const QString Folder        = "📁️";    const QString ShowFolder    = "📂️";
+const QString Broadcast     = "📢️";    const QString Plus          = "➕️";    const QString Refresh       = "♻️";
+const QString Web           = "🌍️";    const QString Chat          = "💬️";    const QString Play          = "▶️️️️";
+const QString Public        = "👨‍👩‍👧‍👦️";    const QString Alert         = "⚠️";    const QString VoiceSet      = "🎙️️";
+const QString Microphone    = "🎤️️";    const QString Speaker       = "🎧️️";    const QString Telephone     = "📞️️";
+const QString Camera        = "📽️️️";    const QString Screenshot    = "📷️️";    const QString Nudge         = "🛎️️️";
+const QString Settings      = "⚙️";    const QString GeneralSet    = "🖥️";    const QString AccountSet    = "👨‍👩‍👦️";
+const QString MessageSet    = "📨️";    const QString HistorySet    = "🕙️";    const QString AlertSet      = "⚠️";
+const QString NetworkSet    = "🔗️";    const QString TransferSet   = "📥️";    const QString ThemeSet      = "🎨️";
+const QString HotkeySet     = "⌨️";
 }
 
 //	Resource name definitions
 #define IDR_APPICON			":/icons/application"
-#define IDR_MESSENGER		":/images/messenger"
-#define IDR_LOGO			":/images/logo"
-#define IDR_LOGOSMALL		":/images/logosmall"
-#define IDR_HGRIP			":/images/hgrip"
-#define IDR_VGRIP			":/images/vgrip"
+#define IDR_LOGO128			":/images/logo128"
+#define IDR_LOGO48          ":/images/logo48"
+#define IDR_LOGO16          ":/images/logo16"
 
 //	item data role definitions
 enum ItemDataRole {
@@ -82,11 +71,11 @@ enum ItemDataRole {
 const QString fontStyle[] = {"font-size:8.25pt;", "font-size:9pt;", "font-size:10.5pt;"};
 
 //	status image definitions
-#define IDR_AVAILABLE		":/images/status/online"
-#define IDR_AWAY			":/images/status/away"
-#define IDR_BUSY			":/images/status/busy"
-#define IDR_NODISTURB		":/images/status/nodisturb"
-#define IDR_OFFLINE			":/images/status/offline"
+#define IDR_AVAILABLE		":/images/status_online"
+#define IDR_AWAY			":/images/status_away"
+#define IDR_BUSY			":/images/status_busy"
+#define IDR_NODISTURB		":/images/status_nodisturb"
+#define IDR_OFFLINE			":/images/status_offline"
 
 //const QString statusDesc[] = {"Available", "Busy", "Do Not Disturb", "Be Right Back", "Away", "Appear Offline"};
 const QString statusPic[] = {IDR_AVAILABLE, IDR_BUSY, IDR_NODISTURB, IDR_AWAY, IDR_AWAY, IDR_OFFLINE};
@@ -104,10 +93,10 @@ const QString smileyEmoji[] = {
     "🐑","🌜","⭐","🌞","🌈","👉","👈","👄","🌹","🥀",
     "🕒","🎁","🎂","📷","💡", "☕","📞","📱","🚗","✈️",
     "💻","💰","🎞️", "🎵","🍕","⚽","📧","👦","👧","🏝️",
-    "☂️","🤝","⛔","👍","👎","🤞","🙌","🐢","🦇",":/smileys/70",
+    "☂️","🤝","⛔","👍","👎","🤞","🙌","🐢","🦇",":/images/smiley_70",
 //                 Repeats for multiple mapping
 //    1.   2.   3.    4.   5.   7.   8.    9.  10.   12.      70.
-    "🙂","😀","😉","😮","😛","😠","😕","😳","🙁","😐",":/smileys/70"
+    "🙂","😀","😉","😮","😛","😠","😕","😳","🙁","😐",":/images/smiley_70"  //The last one seems like a mistake, but since old clients do it that way...
 };    // 70th is the custom icon, and has to stay a png.
 
 const QString smileyCode[] = {

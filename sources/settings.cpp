@@ -97,6 +97,8 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 
 	value = extSettings.value(IDS_USERNAME);
 	if(value.isValid())	setValue(IDS_USERNAME, value);
+    value = extSettings.value(IDS_USERGROUP);
+    if(value.isValid())	setValue(IDS_USERGROUP, value);
 	value = extSettings.value(IDS_USERFIRSTNAME);
 	if(value.isValid())	setValue(IDS_USERFIRSTNAME, value);
 	value = extSettings.value(IDS_USERLASTNAME);

@@ -54,7 +54,6 @@ struct ThemeData {
 class lmTheme
 {
 public:
-	static const Themes availableThemes(void);
 	static const ThemeData loadTheme(const QString& path);
 };
 

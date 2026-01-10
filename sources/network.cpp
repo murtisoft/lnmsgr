@@ -189,10 +189,6 @@ void lmNetwork::tcp_receiveProgress(QString* lpszUserId, QString* lpszData) {
 	emit progressReceived(lpszUserId, lpszData);
 }
 
-void lmNetwork::web_receiveMessage(QString *lpszData) {
-	emit webMessageReceived(lpszData);
-}
-
 bool lmNetwork::getIPAddress(bool verbose) {
 	// If an interface is already being used, get it. Ignore all others
     networkInterface = QNetworkInterface::interfaceFromName(interfaceName);

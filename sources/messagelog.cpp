@@ -927,6 +927,22 @@ void lmMessageLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 								 "<a data-isLink='true' href='file:\\1'>\\1</a>");
 	}
 
+/*  NEED2TEST This part needs expansion.
+TEST CASES
+1 \\Murticom\e\ss.png   pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the file.
+2 \\Murticom\e\         pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the correct directory.
+3 \\Murticom\e          pathToLink   Entire line disappears
+4 https://github.com    allowLinks   Works as expected
+5 www.github.com        allowLinks   Works as expected
+6 github.com            allowLinks   Shows up as plain text
+7 192.168.0.10          allowLinks   Shows up as plain text
+8 192.168.0.10:1111     allowLinks   Shows up as plain text
+9 ftp.debian.org        allowLinks   Works, but tries to open in file explorer instead of browser
+file:///E:/ss.png       This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
+file:///E:/_qtprojects  This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
+*/
+
+
 	QString message = QString();
 	int index = 0;
 

@@ -44,16 +44,14 @@ lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
 
 	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
 			ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
-	QList<int> sizes;
-	sizes.append(height() - bottomPanelHeight - ui.hSplitter->handleWidth());
-	sizes.append(bottomPanelHeight);
-	ui.hSplitter->setSizes(sizes);
-    ui.hSplitter->setStyleSheet("QSplitter::handle { image: url(" IDR_VGRIP "); }");
-	sizes.clear();
-	sizes.append(width() * 0.7);
-	sizes.append(width() - width() * 0.7 - ui.vSplitter->handleWidth());
-	ui.vSplitter->setSizes(sizes);
-    ui.vSplitter->setStyleSheet("QSplitter::handle { image: url(" IDR_HGRIP "); }");
+    QList<int> sizes;
+    sizes.append(height() - bottomPanelHeight - ui.hSplitter->handleWidth());
+    sizes.append(bottomPanelHeight);
+    ui.hSplitter->setSizes(sizes);
+    sizes.clear();
+    sizes.append(width() * 0.7);
+    sizes.append(width() - width() * 0.7 - ui.vSplitter->handleWidth());
+    ui.vSplitter->setSizes(sizes);
 
 	ui.lblInfo->setBackgroundRole(QPalette::Base);
 	ui.lblInfo->setAutoFillBackground(true);
@@ -779,11 +777,12 @@ QTreeWidgetItem* lmFormChatRoom::getGroupItem(QString* lpszGroupId) {
 }
 
 void lmFormChatRoom::setUserAvatar(QString* lpszUserId, QString* lpszFilePath) {
-	QTreeWidgetItem* pUserItem = getUserItem(lpszUserId);
+    QTreeWidgetItem* pUserItem = getUserItem(lpszUserId);
     if(!pUserItem || !lpszFilePath)
 		return;
 
     QPixmap avatar(*lpszFilePath);
+    if (avatar.isNull())  return;
     avatar = avatar.scaled(QSize(32, 32), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     pUserItem->setData(0, AvatarRole, QIcon(avatar));
     pMessageLog->updateAvatar(lpszUserId, lpszFilePath);

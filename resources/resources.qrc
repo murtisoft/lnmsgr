@@ -2,46 +2,36 @@
     <qresource prefix="/icons">
         <file alias="application">icons/lanmsg_win.ico</file>
     </qresource>
-    <qresource prefix="/icons/bubbles"/>
     <qresource prefix="/images">
-        <file alias="hgrip">images/hgrip.png</file>
-        <file alias="logo">images/logo.png</file>
-        <file alias="logosmall">images/logosmall.png</file>
-        <file alias="messenger">images/messenger.png</file>
-        <file alias="vgrip">images/vgrip.png</file>
+        <file alias="logo128">images/logo128.png</file>
+        <file alias="logo48">images/logo48.png</file>
+        <file alias="logo16">images/logo16.png</file>
+		<file alias="smiley_70">images/smiley_70.png</file>
+		<file alias="status_away">images/status_away.png</file>
+        <file alias="status_busy">images/status_busy.png</file>
+        <file alias="status_nodisturb">images/status_nodisturb.png</file>
+        <file alias="status_offline">images/status_offline.png</file>
+        <file alias="status_online">images/status_online.png</file>
     </qresource>
-    <qresource prefix="/images/status">
-        <file alias="away">images/away.png</file>
-        <file alias="busy">images/busy.png</file>
-        <file alias="nodisturb">images/nodisturb.png</file>
-        <file alias="offline">images/offline.png</file>
-        <file alias="online">images/online.png</file>
-    </qresource>
-    <qresource prefix="/smileys">
-        <file alias="70">smileys/70.png</file>
-    </qresource>
-    <qresource prefix="/text"/>
     <qresource prefix="/credits">
         <file alias="contributors">credits/contributors.html</file>
-        <file alias="index">credits/index.html</file>
+        <file alias="license_index">credits/license_index.html</file>
         <file alias="license_lanmessenger">credits/license_lanmessenger.html</file>
         <file alias="license_openssl">credits/license_openssl.html</file>
         <file alias="license_opus">credits/license_opus.html</file>
         <file alias="license_qt">credits/license_qt.html</file>
-    </qresource>
-    <qresource prefix="/themes">
-        <file alias="Classic/Broadcast.html">themes/Classic/Broadcast.html</file>
-        <file alias="Classic/Content.html">themes/Classic/Content.html</file>
-        <file alias="Classic/NextContent.html">themes/Classic/NextContent.html</file>
-        <file alias="Classic/NextStatus.html">themes/Classic/NextStatus.html</file>
-        <file alias="Classic/Request.html">themes/Classic/Request.html</file>
-        <file alias="Classic/Status.html">themes/Classic/Status.html</file>
     </qresource>
     <qresource prefix="/templates">
         <file alias="msg_header.html">templates/msg_header.html</file>
 		<file alias="msg_body.html">templates/msg_body.html</file>
 		<file alias="msg_request.html">templates/msg_request.html</file>
 		<file alias="msg_warning.html">templates/msg_warning.html</file>
+        <file alias="old_broadcast.html">templates/old_broadcast.html</file>
+        <file alias="old_content.html">templates/old_content.html</file>
+        <file alias="old_nextcontent.html">templates/old_nextcontent.html</file>
+        <file alias="old_nextstatus.html">templates/old_nextstatus.html</file>
+        <file alias="old_request.html">templates/old_request.html</file>
+        <file alias="old_status.html">templates/old_status.html</file>
     </qresource>
     <qresource prefix="/sounds">
         <file alias="filedone">sounds/filedone.wav</file>
@@ -60,5 +50,4 @@
         <file alias="nudge">sounds/nudge.wav</file>
         <file alias="muted_talk">sounds/muted_talk.wav</file>
     </qresource>
-    <qresource prefix="/"/>
 </RCC>

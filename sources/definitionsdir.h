@@ -33,7 +33,7 @@
 #define TRANSFERHISTORY		"transfers.lst"
 #define CACHEDIR			"cache"
 #define LANGDIR				"translations"
-#define THEMEDIR			"themes"
+#define THEMEDIR			"templates"
 #define GROUPFILE			"group.cfg"
 #define AVATARFILE			"avt_local.png"
 #define LOGDIR				"logs"

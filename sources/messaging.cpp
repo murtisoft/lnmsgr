@@ -30,8 +30,6 @@ lmMessaging::lmMessaging(void) {
 		this, SLOT(receiveBroadcast(DatagramHeader*, QString*)));
 	connect(pNetwork, SIGNAL(messageReceived(DatagramHeader*, QString*)), 
 		this, SLOT(receiveMessage(DatagramHeader*, QString*)));
-	connect(pNetwork, SIGNAL(webMessageReceived(QString*)),
-		this, SLOT(receiveWebMessage(QString*)));
 	connect(pNetwork, SIGNAL(newConnection(QString*, QString*)), 
 		this, SLOT(newConnection(QString*, QString*)));
 	connect(pNetwork, SIGNAL(connectionLost(QString*)),

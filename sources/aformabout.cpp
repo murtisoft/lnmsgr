@@ -67,7 +67,7 @@ void lmFormAbout::setUIText(void) {
     setWindowTitle(title.arg(lmStrings::appName()));
 
     ui.lblTitle->setText(lmStrings::appName() + "\n" IDA_VERSION);
-    ui.lblLogoSmall->setPixmap(QPixmap(IDR_LOGOSMALL));
+    ui.lblLogoSmall->setPixmap(QPixmap(IDR_LOGO48));
 #if defined(QT_NO_DEBUG)
 #define DEBUGINFO " "
 #else
@@ -88,7 +88,7 @@ void lmFormAbout::setUIText(void) {
         thanks.close();
     }
 
-    QFile license(":/credits/index");
+    QFile license(":/credits/license_index");
     if(license.open(QIODevice::ReadOnly)) {
         ui.txtLicense->setHtml(QString::fromUtf8(license.readAll()));
         license.close();

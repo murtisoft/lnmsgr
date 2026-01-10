@@ -22,34 +22,7 @@
 
 #include "theme.h"
 
-const QString defTheme = DefinitionsDir::resThemeDir() + "/Classic";
-
-const Themes lmTheme::availableThemes(void) {
-	QDir::Filters filters = QDir::Dirs | QDir::NoDotAndDotDot | QDir::Readable;
-	QDir::SortFlags sort = QDir::Name;
-
-	Themes themes;
-
-	QDir dir(DefinitionsDir::resThemeDir());
-	QStringList entries = dir.entryList(QStringList(), filters, sort);
-	foreach(QString dirName, entries) {
-		themes.append(Theme(dirName, dir.absoluteFilePath(dirName)));
-	}
-
-	dir.setPath(DefinitionsDir::sysThemeDir());
-	entries = dir.entryList(QStringList(), filters, sort);
-	foreach(QString dirName, entries) {
-		themes.append(Theme(dirName, dir.absoluteFilePath(dirName)));
-	}
-
-	dir.setPath(DefinitionsDir::userThemeDir());
-	entries = dir.entryList(QStringList(), filters, sort);
-	foreach(QString dirName, entries) {
-		themes.append(Theme(dirName, dir.absoluteFilePath(dirName)));
-	}
-
-	return themes;
-}
+const QString defTheme = DefinitionsDir::resThemeDir();
 
 /*
     themeData.inMsg         = "/Content.html";
@@ -68,25 +41,25 @@ const ThemeData lmTheme::loadTheme(const QString &path) {
 
     themeData.themePath = path;
 
-    file.setFileName(path + "/Content.html");
+    file.setFileName(path + "/old_content.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     themeData.inMsg = QString(file.readAll().constData());
     file.close();
 
-    file.setFileName(path + "/NextContent.html");
+    file.setFileName(path + "/old_nextcontent.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     themeData.inNextMsg = QString(file.readAll().constData());
     file.close();
 
-    file.setFileName(path + "/Broadcast.html");
+    file.setFileName(path + "/old_broadcast.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     themeData.pubMsg = QString(file.readAll().constData());
     file.close();
 
-    file.setFileName(path + "/Status.html");
+    file.setFileName(path + "/old_status.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     QString sys = QString(file.readAll().constData());
@@ -94,13 +67,13 @@ const ThemeData lmTheme::loadTheme(const QString &path) {
     themeData.stateMsg = sys;
     file.close();
 
-    file.setFileName(path + "/NextStatus.html");
+    file.setFileName(path + "/old_nextstatus.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     themeData.sysNextMsg = QString(file.readAll().constData());
     file.close();
 
-    file.setFileName(path + "/Request.html");
+    file.setFileName(path + "/old_request.html");
     if(!file.open(QIODevice::ReadOnly))
         return loadTheme(defTheme);
     themeData.reqMsg = QString(file.readAll().constData());

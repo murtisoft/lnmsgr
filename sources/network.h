@@ -51,7 +51,6 @@ public:
 	void initSendFile(QString* lpszReceiverId, QString* lpszAddress, QString* lpszData);
 	void initReceiveFile(QString* lpszSenderId, QString* lpszAddress, QString* lpszData);
 	void fileOperation(FileMode mode, QString* lpszUserId, QString* lpszData);
-	void sendWebMessage(QString* lpszUrl, QString* lpszData);
 	void settingsChanged(void);
 
 	QString	ipAddress;
@@ -66,7 +65,6 @@ signals:
 	void connectionLost(QString* lpszUserId);
 	void messageReceived(DatagramHeader* pHeader, QString* lpszData);
 	void progressReceived(QString* lpszUserId, QString* lpszData);
-	void webMessageReceived(QString* lpszData);
 
 private slots:
 	void timer_timeout(void);
@@ -75,7 +73,6 @@ private slots:
 	void tcp_connectionLost(QString* lpszUserId);
 	void tcp_receiveMessage(DatagramHeader* pHeader, QString* lpszData);
 	void tcp_receiveProgress(QString* lpszUserId, QString* lpszData);
-	void web_receiveMessage(QString* lpszData);
 
 private:
     bool getIPAddress(bool verbose = true);

@@ -94,7 +94,6 @@ QIcon ChatHelper::renderEmoji(const QString& emoji, int size) {
     QFont font = painter.font();
     font.setPointSize(qRound(size * 0.7));
     painter.setFont(font);
-
     painter.drawText(pixmap.rect(), Qt::AlignCenter, emoji);
     return QIcon(pixmap);
 }

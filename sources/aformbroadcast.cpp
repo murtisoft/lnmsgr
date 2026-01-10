@@ -65,7 +65,6 @@ void lmFormBroadcast::init(bool connected) {
 	createToolBar();
 
 	setWindowIcon(QIcon(IDR_APPICON));
-    ui.splitter->setStyleSheet("QSplitter::handle { image: url(" IDR_HGRIP "); }");
 
 	ui.tvUserList->setIconSize(QSize(16, 16));
     ui.tvUserList->header()->setSectionsMovable(false);

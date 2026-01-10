@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>9</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -216,7 +216,7 @@
             <item>
              <widget class="QCheckBox" name="chkSysTrayMsg">
               <property name="text">
-               <string>Show balloon notifications in tray</string>
+               <string>Show toast notifications in tray</string>
               </property>
              </widget>
             </item>
@@ -2148,7 +2148,7 @@
          <item>
           <widget class="QGroupBox" name="grpChatTheme">
            <property name="title">
-            <string>Chat Theme</string>
+            <string>Color Scheme</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_30">
             <item>

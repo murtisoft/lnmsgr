@@ -838,7 +838,7 @@ void lmFormMain::createTrayMenu(void) {
     pTrayMenu = new QMenu(this);
 
     QString text = "&Show %1";
-    trayShowAction = new QAction(QIcon(QPixmap(IDR_MESSENGER, "PNG")), text.arg(lmStrings::appName()), this);
+    trayShowAction = new QAction(QIcon(QPixmap(IDR_LOGO16, "PNG")), text.arg(lmStrings::appName()), this);
     connect(trayShowAction, &QAction::triggered, this, &lmFormMain::trayShowAction_triggered);
     pTrayMenu->addAction(trayShowAction);
 
