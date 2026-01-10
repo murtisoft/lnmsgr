@@ -49,8 +49,8 @@ target_include_directories(LanMessenger PRIVATE
 target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake project version into code.
 target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia
-    ${OPENSSL_DIR}/lib/VC/x64/MTd/libssl.lib
-    ${OPENSSL_DIR}/lib/VC/x64/MTd/libcrypto.lib
+    ${OPENSSL_DIR}/lib/VC/x64/MT/libssl.lib
+    ${OPENSSL_DIR}/lib/VC/x64/MT/libcrypto.lib
     ${OPUS_DIR}/build/Release/libopus.a
 )
 
@@ -62,14 +62,7 @@ qt6_add_translations(LanMessenger
 
 #==========================================================================================================================================<< TO DO
 #Search for NEED2TEST within the project.
-#Crashing somewhere after "New connection received" and before "Accepted connection from user", (when a new peer joins network.)
-#   Messages are sometimes lost(Corrupted and discarded?). I think these are related.
-#   Both new clients, A sends a handful of messages to B, then A changes avatar, A crashes. When A restarts, makes B crash.
-#   A is an old client, B is new, A sends 9+ (8 messages wont crash) messages to B, then A changes avatar, makes B crash.
-#   A is a new client, B is old, A sends 9+ (8 messages wont crash) messages to B, then A changes avatar, A crashes.
-#   If the chat window is closed after those messages, it wont crash, nor will it, if it is any other type of chat, chatroom or public.
-#   Same thing happens when you send a bunch of messages to B, then change a setting like show date and time. Which should make the dates appear/disappear in the window.
-# the crashing problem is about the scrollbar! it happens in all different chat modules. the messages just need to stack long enough to activate the scrollbar!
+#   Messages are sometimes lost(Corrupted and discarded?).
 
 #Remove themes.
 #colorschemes are a complete mess. Manually set fonts and color palettes causing problems with those.

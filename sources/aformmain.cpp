@@ -436,7 +436,7 @@ void lmFormMain::createToast(const QString& title, const QString& msg, TrayMessa
     bodyLayout->addStretch();
     mainLayout->addLayout(bodyLayout);
 
-    toast->setFixedWidth(320);
+    toast->setFixedWidth(265);
     toast->adjustSize();
 
     QRect geo = QGuiApplication::primaryScreen()->availableGeometry();

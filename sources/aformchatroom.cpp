@@ -36,6 +36,7 @@ lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
 		this, SLOT(tvUserList_itemContextMenu(QTreeWidgetItem*, QPoint&)));
 
 	pMessageLog = new lmMessageLog(ui.wgtLog);
+    pMessageLog->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);  // Always on scrollbar fixes the "redraw while scrollbar activated" crash.
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);
 	connect(pMessageLog, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
