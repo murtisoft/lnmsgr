@@ -29,7 +29,6 @@
 #include <QTimer>
 #include "networkudp.h"
 #include "networktcp.h"
-#include "networkweb.h"
 #include "crypto.h"
 #include "settings.h"
 #include "messagexml.h"
@@ -95,7 +94,6 @@ private:
 	lmSettings*			pSettings;
 	lmNetworkUdp*			pUdpNetwork;
 	lmNetworkTcp*			pTcpNetwork;
-	lmNetworkWeb*			pWebNetwork;
 	lmCrypto*				pCrypto;
 	QTimer*					pTimer;
     QString					interfaceName;

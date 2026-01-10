@@ -26,7 +26,6 @@
 lmNetwork::lmNetwork(void) {
 	pUdpNetwork = new lmNetworkUdp();
 	pTcpNetwork = new lmNetworkTcp();
-	pWebNetwork = new lmNetworkWeb();
 	connect(pUdpNetwork, SIGNAL(broadcastReceived(DatagramHeader*, QString*)), 
 		this, SLOT(udp_receiveBroadcast(DatagramHeader*, QString*)));
 	connect(pTcpNetwork, SIGNAL(newConnection(QString*, QString*)),
@@ -37,8 +36,6 @@ lmNetwork::lmNetwork(void) {
 		this, SLOT(tcp_receiveMessage(DatagramHeader*, QString*)));
 	connect(pTcpNetwork, SIGNAL(progressReceived(QString*, QString*)),
 		this, SLOT(tcp_receiveProgress(QString*, QString*)));
-	connect(pWebNetwork, SIGNAL(messageReceived(QString*)),
-		this, SLOT(web_receiveMessage(QString*)));
 	pTimer = NULL;
 	pCrypto = new lmCrypto();
 	ipAddress = QString();
@@ -140,10 +137,6 @@ void lmNetwork::initReceiveFile(QString* lpszSenderId, QString* lpszAddress, QSt
 
 void lmNetwork::fileOperation(FileMode mode, QString* lpszUserId, QString* lpszData) {
 	pTcpNetwork->fileOperation(mode, lpszUserId, lpszData);
-}
-
-void lmNetwork::sendWebMessage(QString *lpszUrl, QString *lpszData) {
-	pWebNetwork->sendMessage(lpszUrl, lpszData);
 }
 
 void lmNetwork::settingsChanged(void) {

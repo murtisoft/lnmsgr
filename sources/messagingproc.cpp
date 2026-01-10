@@ -70,28 +70,10 @@ void lmMessaging::sendMessage(MessageType type, QString* lpszUserId, MessageXml*
 		msgId++;
 		break;
 	case MT_Version:
-		sendWebMessage(type, pMessage);
 		break;
 	default:
 		prepareMessage(type, msgId, false, lpszUserId, pMessage);
 		msgId++;
-		break;
-	}
-}
-
-void lmMessaging::sendWebMessage(MessageType type, MessageXml *pMessage) {
-	Q_UNUSED(pMessage);
-
-	QString szUrl;
-
-	lmTrace::write("Sending web message type " + QString::number(type));
-
-	switch(type) {
-	case MT_Version:
-        szUrl = QString(IDA_DOMAIN "/version");
-		pNetwork->sendWebMessage(&szUrl, NULL);
-		break;
-	default:
 		break;
 	}
 }
@@ -118,18 +100,6 @@ void lmMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
 	}
 	pMsgHeader->address = pHeader->address;
 	processMessage(pMsgHeader, pMessage);
-}
-
-//	A web message has been received
-void lmMessaging::receiveWebMessage(QString *lpszData) {
-	MessageHeader* pMsgHeader = NULL;
-	MessageXml* pMessage = NULL;
-	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
-		lmTrace::write("Warning: Web message header parse failed");
-		return;
-	}
-
-	processWebMessage(pMsgHeader, pMessage);
 }
 
 //	Handshake procedure has been completed
@@ -370,17 +340,3 @@ void lmMessaging::processMessage(MessageHeader* pHeader, MessageXml* pMessage) {
 	lmTrace::write("Message processing done");
 }
 
-void lmMessaging::processWebMessage(MessageHeader* pHeader, MessageXml *pMessage) {
-	lmTrace::write("Processing web message type " + QString::number(pHeader->type));
-
-	switch(pHeader->type) {
-	case MT_Version:
-		emit messageReceived(pHeader->type, NULL, pMessage);
-		break;
-	case MT_WebFailed:
-		emit messageReceived(pHeader->type, NULL, pMessage);
-		break;
-	default:
-		break;
-	}
-}

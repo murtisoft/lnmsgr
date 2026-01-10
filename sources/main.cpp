@@ -26,6 +26,7 @@
 #include <QMessageBox>
 #include <QLocalServer>
 #include <QLocalSocket>
+#include <QSslSocket>
 
 //	Define a unique application id. This is a combination of two GUIDs
 const QString appId = "93fab548-2cf5-4a1e-8758-a416a5ec2120-6fc5009f-84e8-4489-a444-7f934bcf9166";

@@ -144,7 +144,6 @@ public:
 	User* getUser(QString* lpszUserId);
 	void sendBroadcast(MessageType type, MessageXml* pMessage);
 	void sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
-	void sendWebMessage(MessageType type, MessageXml* pMessage);
 	void settingsChanged(void);
 	void updateGroup(GroupOp op, QVariant value1, QVariant value2);
 	void updateGroupMap(QString oldGroup, QString newGroup);
@@ -162,7 +161,6 @@ signals:
 private slots:
 	void receiveBroadcast(DatagramHeader* pHeader, QString* lpszData);
 	void receiveMessage(DatagramHeader* pHeader, QString* lpszData);
-	void receiveWebMessage(QString* lpszData);
 	void newConnection(QString* lpszUserId, QString* lpszAddress);
 	void connectionLost(QString* lpszUserId);
 	void receiveProgress(QString* lpszUserId, QString* lpszData);
@@ -183,7 +181,6 @@ private:
 	void processMessage(MessageHeader* pHeader, MessageXml* pMessage);
 	void processFile(MessageHeader* pHeader, MessageXml* pMessage);
     void processFolder(MessageHeader* pHeader, MessageXml* pMessage);
-	void processWebMessage(MessageHeader* pHeader, MessageXml* pMessage);
     bool addUser(QString szUserId, QString szVersion, QString szAddress, QString szName, QString szStatus, QString szAvatar, QString szNote, QString szCaps);
 	void updateUser(MessageType type, QString szUserId, QString szUserData);
 	void removeUser(QString szUserId);
@@ -202,7 +199,7 @@ private:
     QString getFolderPath(QString folderId, QString userId, FileMode mode);
 
 	lmNetwork*			pNetwork;
-	lmSettings*		pSettings;
+    lmSettings*         pSettings;
 	QTimer*				pTimer;
 	qint64				msgId;
 	QList<ReceivedMsg>	receivedList;
