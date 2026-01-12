@@ -25,13 +25,13 @@
 const QString defTheme = DefinitionsDir::resThemeDir();
 
 /*
-    themeData.inMsg         = "/Content.html";
-    themeData.inNextMsg     = "/NextContent.html";
-    themeData.pubMsg        = "/Broadcast.html";
-    themeData.sysMsg        = "/Status.html";
-    themeData.stateMsg      = "/Status.html";
-    themeData.sysNextMsg    = "/NextStatus.html";
-    themeData.reqMsg        = "/Request.html";
+    themeData.inMsg = "/old_content.html"
+    themeData.inNextMsg = "/old_nextcontent.html"
+    themeData.pubMsg = "/old_broadcast.html"
+    themeData.sysMsg = "/old_status.html"
+    themeData.stateMsg = "/old_status.html"
+    themeData.sysNextMsg = "/old_nextstatus.html"
+    themeData.reqMsg = "/old_request.html"
 */
 
 

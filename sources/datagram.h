@@ -30,17 +30,17 @@
 
 enum DatagramHeaderMember
 {
-	DH_AppId = 0,
-	DH_Type,
-	DH_UserId,
-	DH_Max
+    DH_AppId = 0,
+    DH_Type,
+    DH_UserId,
+    DH_Max
 };
 
 class Datagram {
 public:
-	static void addHeader(DatagramType type, QByteArray& baData);
-    static bool getHeader(QByteArray& baDatagram, DatagramHeader& header);
-	static QByteArray getData(QByteArray& baDatagram);
+    static void addHeader(DatagramType type, QByteArray& baData);
+    static bool getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader);
+    static QByteArray getData(QByteArray& baDatagram);
 };
 
 #endif // DATAGRAM_H

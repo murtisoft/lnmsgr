@@ -229,10 +229,12 @@ void lmFormSettings::rdbSysHistoryPath_toggled(bool checked) {
 	ui.txtHistoryPath->setEnabled(!checked);
 	ui.btnHistoryPath->setEnabled(!checked);
 
-	if(!checked)
-		ui.txtHistoryPath->setText(History::historyFile());
-	else
-		ui.txtHistoryPath->clear();
+    if(!checked) {
+        ui.txtHistoryPath->setText(History::historyFile());
+    } else {
+        QString path = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/" HC_FILENAME);
+        ui.txtHistoryPath->setText(path);
+    }
 }
 
 void lmFormSettings::btnHistoryPath_clicked(void) {
@@ -549,6 +551,7 @@ void lmFormSettings::loadSettings(void) {
 	ui.chkHistory->setChecked(pSettings->value(IDS_HISTORY, IDS_HISTORY_VAL).toBool());
 	ui.rdbSysHistoryPath->setChecked(pSettings->value(IDS_SYSHISTORYPATH, IDS_SYSHISTORYPATH_VAL).toBool());
 	ui.rdbCustomHistoryPath->setChecked(!pSettings->value(IDS_SYSHISTORYPATH, IDS_SYSHISTORYPATH_VAL).toBool());
+    ui.txtHistoryPath->setText(History::historyFile());
 	ui.chkFileHistory->setChecked(pSettings->value(IDS_FILEHISTORY, IDS_FILEHISTORY_VAL).toBool());
 
 	ui.chkAlert->setChecked(pSettings->value(IDS_ALERT, IDS_ALERT_VAL).toBool());

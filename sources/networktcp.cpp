@@ -242,39 +242,38 @@ void lmNetworkTcp::update(FileMode mode, FileOp op, FileType type, QString* lpsz
 }
 
 void lmNetworkTcp::receiveMessage(QString* lpszUserId, QString* lpszAddress, QByteArray& datagram) {
-    DatagramHeader header(DT_None, "", ""); //Null header
-    if(!Datagram::getHeader(datagram, header))
+    DatagramHeader* pHeader = NULL;
+    if(!Datagram::getHeader(datagram, &pHeader))
         return;
 
-    header.userId = *lpszUserId;
-    header.address = *lpszAddress;
-
+    pHeader->userId = *lpszUserId;
+    pHeader->address = *lpszAddress;
     QByteArray cipherData = Datagram::getData(datagram);
     QByteArray clearData;
     QString szMessage;
 
-    lmTrace::write("TCP stream type " + QString::number(header.type) +
+    lmTrace::write("TCP stream type " + QString::number(pHeader->type) +
                     " received from user " + *lpszUserId + " at " + *lpszAddress);
 
-    switch(header.type) {
+    switch(pHeader->type) {
     case DT_PublicKey:
         //	send a session key back
         sendSessionKey(lpszUserId, cipherData);
         break;
     case DT_Handshake:
         // decrypt aes key and iv with private key
-        crypto->retreiveAES(&header.userId, cipherData);
-        emit newConnection(&header.userId, &header.address);
+        crypto->retreiveAES(&pHeader->userId, cipherData);
+        emit newConnection(&pHeader->userId, &pHeader->address);
         break;
     case DT_Message:
         // decrypt message with aes
-        clearData = crypto->decrypt(&header.userId, cipherData);
+        clearData = crypto->decrypt(&pHeader->userId, cipherData);
         if(clearData.isEmpty()) {
             lmTrace::write("Warning: Message could not be retrieved");
             break;
         }
         szMessage = QString::fromUtf8(clearData.data(), clearData.length());
-        emit messageReceived(&header, &szMessage); // Pass address of stack object
+        emit messageReceived(pHeader, &szMessage);
         break;
     default:
         break;
