@@ -16,6 +16,7 @@ endif()
 #   Messages are sometimes lost(Corrupted and discarded?).
 #   Sending messages from old to new, no losses. New to any... lots of decryption errors / lost messages. great.
 #   All font coloring options can be safely removed, so it can be handled via colorschemes and palettes.
+#Disabling sound feedback disables the listview, but next time settings window shows up, its enabled again.
 
 #Remove themes.
 #colorschemes are a complete mess. Manually set fonts and color palettes causing problems with those.

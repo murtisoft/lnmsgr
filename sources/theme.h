@@ -2,7 +2,7 @@
 **
 ** This file is part of LAN Messenger.
 **
-** Copyright (c) LAN Messenger Contributors.
+** Copyright (c) LAN Messenger Authors.
 ** 
 ** LAN Messenger is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -26,35 +26,35 @@
 #include "definitionsdir.h"
 
 struct Theme {
-	QString name;
-	QString path;
+    QString name;
+    QString path;
 
-	Theme() {}
-	Theme(QString szName, QString szPath) {
-		name = szName;
-		path = szPath;
-	}
+    Theme() {}
+    Theme(QString szName, QString szPath) {
+        name = szName;
+        path = szPath;
+    }
 };
 
 typedef QList<Theme> Themes;
 
 struct ThemeData {
-	QString themePath;
-	QString inMsg;
-	QString inNextMsg;
-	QString outMsg;
-	QString outNextMsg;
-	QString pubMsg;
-	QString sysMsg;
-	QString sysNextMsg;
-	QString reqMsg;
-	QString stateMsg;
+    QString themePath;
+    QString inMsg;
+    QString inNextMsg;
+    QString outMsg;
+    QString outNextMsg;
+    QString pubMsg;
+    QString sysMsg;
+    QString sysNextMsg;
+    QString reqMsg;
+    QString stateMsg;
 };
 
 class lmTheme
 {
 public:
-	static const ThemeData loadTheme(const QString& path);
+    static const ThemeData loadTheme(const QString& path);
 };
 
 #endif // THEME_H
