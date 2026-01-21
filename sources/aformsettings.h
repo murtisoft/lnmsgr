@@ -42,7 +42,6 @@
 #include "definitionsdir.h"
 #include "translations.h"
 #include "messagelog.h"
-#include "theme.h"
 #include "soundplayer.h"
 
 

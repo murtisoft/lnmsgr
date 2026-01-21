@@ -136,8 +136,7 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 	ui.txtMessage->setStyleSheet("QTextEdit {color: " + messageColor.name() + ";}");
 	ui.txtMessage->setFocus();
 
-	QString themePath = pSettings->value(IDS_THEME, IDS_THEME_VAL).toString();
-	pMessageLog->initMessageLog(themePath);
+    pMessageLog->initMessageLog();
     if(!clearOnClose)
         pMessageLog->restoreMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
 }
@@ -266,16 +265,14 @@ void lmFormChat::settingsChanged(void) {
 	bool allowLinks = pSettings->value(IDS_ALLOWLINKS, IDS_ALLOWLINKS_VAL).toBool();
 	bool pathToLink = pSettings->value(IDS_PATHTOLINK, IDS_PATHTOLINK_VAL).toBool();
 	bool trim = pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool();
-	QString theme = pSettings->value(IDS_THEME, IDS_THEME_VAL).toString();
 	if(msgTime != pMessageLog->messageTime || msgDate != pMessageLog->messageDate ||
 			allowLinks != pMessageLog->allowLinks || pathToLink != pMessageLog->pathToLink ||
-			trim != pMessageLog->trimMessage || theme.compare(pMessageLog->themePath) != 0) {
+            trim != pMessageLog->trimMessage ) {
 		pMessageLog->messageTime = msgTime;
 		pMessageLog->messageDate = msgDate;
 		pMessageLog->allowLinks = allowLinks;
 		pMessageLog->pathToLink = pathToLink;
 		pMessageLog->trimMessage = trim;
-		pMessageLog->themePath = theme;
         pMessageLog->reloadMessageLog();
 	}
 }

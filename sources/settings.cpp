@@ -184,8 +184,6 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 	value = extSettings.value(IDS_FILETOP);
 	if(value.isValid())	setValue(IDS_FILETOP, value);
 
-	value = extSettings.value(IDS_THEME);
-	if(value.isValid())	setValue(IDS_THEME, value);
 	value = extSettings.value(IDS_USERLISTVIEW);
 	if(value.isValid())	setValue(IDS_USERLISTVIEW, value);
 	value = extSettings.value(IDS_STATUSTOOLTIP);
@@ -259,162 +257,18 @@ void lmSettings::setAutoStart(bool on) {
 //	The function expects the config file to exist. Validation must be done
 //	prior to calling the function.
 bool lmSettings::migrateSettings(const QString& configFile) {
-	lmSettingsBase settings(configFile, QSettings::IniFormat);
+    lmSettingsBase settings(configFile, QSettings::IniFormat);
 
-	QString version = settings.value(IDS_VERSION, IDS_VERSION_VAL).toString();
+    QString version = settings.value(IDS_VERSION, IDS_VERSION_VAL).toString();
 
-	//	Check if settings can be migrated, else reset settings and return false
-	//	If the settings are from a later version, its deemed non migratable
-	if(Helper::compareVersions(IDA_VERSION, version) < 0) {
-		QFile::remove(configFile);
-		return false;
-	}
+    //	Check if settings can be migrated, else reset settings and return false
+    //	If the settings are from a later version, its deemed non migratable
+    if(Helper::compareVersions(IDA_VERSION, version) < 0) {
+        QFile::remove(configFile);
+        return false;
+    }
 
-	//	Migrate settings from version 1.2.10 and older
-	//	Any version before 1.2.10 will also return 1.2.10 as the version since its the
-	//	default value
-	if(Helper::compareVersions(version, "1.2.10") == 0) {
-		//	The group settings were changed in v1.2.16
-		//	Groups now have both an id and a name. All the existing groups in the
-		//	settings are assigned a unique id. The general group is assigned a special
-		//	unique id that is predefined. The user group mapping is done with user id
-		//	and group id.
-		QList<Group> groupList;
-		QHash<QString, QString> groupIdHash;
-		QMap<QString, QString> userGroupMap;
-
-		int size = settings.beginReadArray(IDS_GROUPHDR);
-		for(int index = 0; index < size; index++) {
-			settings.setArrayIndex(index);
-			QString groupName = settings.value(IDS_GROUP).toString();
-			QString groupId = (groupName == GRP_DEFAULT) ? GRP_DEFAULT_ID : Helper::getUuid();
-			groupList.append(Group(groupId, groupName));
-			groupIdHash.insert(groupName, groupId);
-		}
-		settings.endArray();
-
-		if(groupList.count() == 0)
-			groupList.append(Group(GRP_DEFAULT_ID, GRP_DEFAULT));
-
-		size = settings.beginReadArray(IDS_GROUPMAPHDR);
-		for(int index = 0; index < size; index++)
-		{
-			settings.setArrayIndex(index);
-			QString userId = settings.value(IDS_USER).toString();
-			QString groupName = settings.value(IDS_GROUP).toString();
-			QString groupId = groupIdHash.value(groupName);
-			userGroupMap.insert(userId, groupId);
-		}
-		settings.endArray();
-
-		// now save settings in the new format
-		settings.beginWriteArray(IDS_GROUPHDR);
-		for(int index = 0; index < groupList.count(); index++) {
-			settings.setArrayIndex(index);
-			settings.setValue(IDS_GROUP, groupList[index].id);
-			settings.setValue(IDS_GROUPNAME, groupList[index].name);
-		}
-		settings.endArray();
-
-		settings.beginWriteArray(IDS_GROUPMAPHDR);
-		QMapIterator<QString, QString> i(userGroupMap);
-		int count = 0;
-		while(i.hasNext()) {
-			settings.setArrayIndex(count);
-			i.next();
-			settings.setValue(IDS_USER, i.key());
-			settings.setValue(IDS_GROUP, i.value());
-			count++;
-		}
-		settings.endArray();
-	}
-	//	End of migration from 1.2.10
-
-	//	Migrate settings if version less than 1.2.25
-	if(Helper::compareVersions(version, "1.2.25") < 0) {
-		//	Theme is now saved under the "Appearance" section
-		//	Prior to 1.2.25, it was under "Themes" section which is no longer used
-		QString theme = settings.value(IDS_THEME_OLD).toString();
-		if(!theme.isEmpty()) settings.setValue(IDS_THEME, theme, IDS_THEME_VAL);
-
-		//	Change the refresh interval to reduce network load
-		int refreshTime = settings.value(IDS_REFRESHTIME, IDS_REFRESHTIME_VAL).toInt();
-		if(refreshTime < IDS_REFRESHTIME_VAL) settings.setValue(IDS_REFRESHTIME, IDS_REFRESHTIME_VAL);
-
-		//	Group settings (except group tree item expanded info) are now saved in a
-		//	separate group file. Copy group details from settings file to group file
-		QHash<QString, QString> groupIdHash;
-		QMap<QString, QString> userGroupMap;
-
-		int size = settings.beginReadArray(IDS_GROUPHDR);
-		for(int index = 0; index < size; index++) {
-			settings.setArrayIndex(index);
-			QString groupId = settings.value(IDS_GROUP).toString();
-			QString groupName = settings.value(IDS_GROUPNAME).toString();
-			groupIdHash.insert(groupId, groupName);
-		}
-		settings.endArray();
-
-		size = settings.beginReadArray(IDS_GROUPMAPHDR);
-		for(int index = 0; index < size; index++)
-		{
-			settings.setArrayIndex(index);
-			QString user = settings.value(IDS_USER).toString();
-			QString group = settings.value(IDS_GROUP).toString();
-			userGroupMap.insert(user, group);
-		}
-		settings.endArray();
-
-		QSettings groupSettings(DefinitionsDir::groupFile(), QSettings::IniFormat);
-		groupSettings.beginWriteArray(IDS_GROUPHDR);
-		QHashIterator<QString, QString> it(groupIdHash);
-		int count = 0;
-		while(it.hasNext()) {
-			groupSettings.setArrayIndex(count);
-			it.next();
-			groupSettings.setValue(IDS_GROUP, it.key());
-			groupSettings.setValue(IDS_GROUPNAME, it.value());
-			count++;
-		}
-		groupSettings.endArray();
-
-		groupSettings.beginWriteArray(IDS_GROUPMAPHDR);
-		QMapIterator<QString, QString> i(userGroupMap);
-		count = 0;
-		while(i.hasNext()) {
-			groupSettings.setArrayIndex(count);
-			i.next();
-			groupSettings.setValue(IDS_USER, i.key());
-			groupSettings.setValue(IDS_GROUP, i.value());
-			count++;
-		}
-		groupSettings.endArray();
-	}
-	//	End of migration to 1.2.25
-
-	//	Migrate settings if version less than 1.2.28
-	if(Helper::compareVersions(version, "1.2.28") < 0) {
-		//	Broadcast list used instead of single broadcast address
-		//	Remove old entry from settings
-		settings.remove(IDS_BROADCAST_OLD);
-	}
-	//	End of migration to 1.2.28
-
-	// Migrate settings if version less than 1.2.30
-	if(Helper::compareVersions(version, "1.2.30") < 0) {
-		//	The old group settings were still present in the settings file though
-		//	group settings are now saved to a different file.
-		//	Remove group settings from application settings file
-		settings.beginGroup(IDS_GROUPHDR);
-		settings.remove("");
-		settings.endGroup();
-
-		settings.beginGroup(IDS_GROUPMAPHDR);
-		settings.remove("");
-		settings.endGroup();
-	}
-
-	settings.setValue(IDS_VERSION, IDA_VERSION);
-	settings.sync();
-	return true;
+    settings.setValue(IDS_VERSION, IDA_VERSION);
+    settings.sync();
+    return true;
 }

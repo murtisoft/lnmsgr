@@ -24,6 +24,7 @@
 #define DEFINITIONSUI_H
 
 #include <QString>
+#include <qdir.h>
 #include "definitions.h"
 #include "strings.h"
 
@@ -186,5 +187,15 @@ const int itemViewHeight[] = {36, 20};
 #else
 #define GRAY_TEXT_COLOR     QApplication::palette().color(QPalette::Shadow)
 #endif
+
+struct Templates {
+    QString inMsg       = [] { QFile file(":/templates/old_content.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+    QString inNextMsg   = [] { QFile file(":/templates/old_nextcontent.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+    QString pubMsg      = [] { QFile file(":/templates/old_broadcast.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+    QString sysMsg      = [] { QFile file(":/templates/old_status.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+    QString sysNextMsg  = [] { QFile file(":/templates/old_nextstatus.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+    QString reqMsg      = [] { QFile file(":/templates/old_request.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+    QString stateMsg    = [] { QFile file(":/templates/old_status.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+};
 
 #endif // DEFINITIONSUI_H

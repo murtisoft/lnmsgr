@@ -27,7 +27,7 @@
 #include "definitionschat.h"
 #include "chathelper.h"
 #include "messagexml.h"
-#include "theme.h"
+#include "definitionsdir.h"
 #include "messagebrowser.h"
 
 enum OutputFormat{ HtmlFormat, TextFormat };
@@ -40,8 +40,7 @@ public:
     lmMessageLog(QWidget *parent = nullptr);
     ~lmMessageLog(void) override;
 
-	void initMessageLog(QString themePath, bool clearLog = true);
-    void reloadTheme();
+    void initMessageLog(bool clearLog = true);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
 		bool bReload = false);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
@@ -65,7 +64,6 @@ public:
 	bool autoFile;
 	bool messageTime;
 	bool messageDate;
-	QString themePath;
 	bool allowLinks;
 	bool pathToLink;
 	bool trimMessage;
@@ -117,7 +115,7 @@ private:
 	QMap<QString, MessageXml> sendFileMap;
 	QMap<QString, MessageXml> receiveFileMap;
 	QList<SingleMessage> messageLog;
-	ThemeData themeData;
+    Templates templates;
 	QMenu* contextMenu;
 	QAction* copyAction;
 	QAction* copyLinkAction;

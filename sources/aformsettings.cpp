@@ -305,7 +305,7 @@ void lmFormSettings::cboTheme_currentIndexChanged(int index) {
 	pMessageLog->localId = "Myself";
 	pMessageLog->peerId = "Jack";
 	pMessageLog->messageTime = true;
-    pMessageLog->initMessageLog("");  //initializing empty theme path, so it retargets to default. remove later. NEED2TEST
+    pMessageLog->initMessageLog();  // NEED2TEST
 
 	MessageXml msg;
 	msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
@@ -543,7 +543,7 @@ void lmFormSettings::loadSettings(void) {
 	ui.chkTrimMessage->setChecked(pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool());
     ui.chkClearOnClose->setChecked(pSettings->value(IDS_CLEARONCLOSE, IDS_CLEARONCLOSE_VAL).toBool());
 	font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
-	color = QColor::fromString(pSettings->value(IDS_COLOR, IDS_COLOR_VAL).toString());
+    color = QColor::fromString(pSettings->value(IDS_COLOR, IDS_COLOR_VAL).toString());
 	fontSize = pSettings->value(IDS_FONTSIZE, IDS_FONTSIZE_VAL).toInt();
 	fontSize = qMin(FS_LARGE, qMax(FS_SMALL, fontSize));
 	ui.cboFontSize->setCurrentIndex(fontSize);
@@ -603,7 +603,7 @@ void lmFormSettings::loadSettings(void) {
 	ui.chkUserListToolTip->setChecked(pSettings->value(IDS_STATUSTOOLTIP, IDS_STATUSTOOLTIP_VAL).toBool());
 
 	ui.rdbEnter->setChecked(!pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
-	ui.rdbCmdEnter->setChecked(pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
+    ui.rdbCmdEnter->setChecked(pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
 }
 
 void lmFormSettings::changeColorScheme(int index){
@@ -655,7 +655,7 @@ void lmFormSettings::saveSettings(void) {
 	pSettings->setValue(IDS_TRIMMESSAGE, ui.chkTrimMessage->isChecked(), IDS_TRIMMESSAGE_VAL);
     pSettings->setValue(IDS_CLEARONCLOSE, ui.chkClearOnClose->isChecked(), IDS_CLEARONCLOSE_VAL);
 	pSettings->setValue(IDS_FONT, font.toString(), IDS_FONT_VAL);
-	pSettings->setValue(IDS_COLOR, color.name(), IDS_COLOR_VAL);
+    pSettings->setValue(IDS_COLOR, color.name(), IDS_COLOR_VAL);
 	pSettings->setValue(IDS_FONTSIZE, ui.cboFontSize->currentIndex(), IDS_FONTSIZE_VAL);
 
 	pSettings->setValue(IDS_HISTORY, ui.chkHistory->isChecked(), IDS_HISTORY_VAL);

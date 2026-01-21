@@ -17,7 +17,7 @@ endif()
 #   Sending messages from old to new, no losses. New to any... lots of decryption errors / lost messages. great.
 #   All font coloring options can be safely removed, so it can be handled via colorschemes and palettes.
 
-#Remove themes.
+#there seems to be more connection issues if a client's username includes unicode characters like "ü".
 #colorschemes are a complete mess. Manually set fonts and color palettes causing problems with those.
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.

@@ -45,7 +45,6 @@
 #include "chathelper.h"
 #include "definitionsdir.h"
 #include "messagexml.h"
-#include "theme.h"
 
 class lmFormChatRoom : public QWidget
 {

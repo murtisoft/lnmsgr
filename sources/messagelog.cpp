@@ -63,17 +63,11 @@ lmMessageLog::lmMessageLog(QWidget *parent) : MessageBrowser (parent) {
 lmMessageLog::~lmMessageLog() {
 }
 
-void lmMessageLog::initMessageLog(QString themePath, bool clearLog) {
-	if(clearLog)
+void lmMessageLog::initMessageLog(bool clearLog) {
+    if(clearLog){
 		messageLog.clear();
+    }
 	lastId = QString();
-	this->themePath = themePath;
-    reloadTheme();
-}
-
-void lmMessageLog::reloadTheme()
-{
-    themeData = lmTheme::loadTheme(themePath);
     clear();
 }
 
@@ -138,7 +132,7 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 		message = pMessage->data(XN_CHATSTATE);
 		caption = getChatStateMessage((ChatState)Helper::indexOf(ChatStateNames, CS_Max, message));
         if(!caption.isNull()) {
-			html = themeData.stateMsg;
+            html = templates.stateMsg;
             html.replace("%icon%", "" );  //Blank
 			html.replace("%sender%", caption.arg(*lpszUserName));
 			html.replace("%message%", "");
@@ -150,7 +144,7 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 		message = pMessage->data(XN_MESSAGE);
 		font.fromString(pMessage->data(XN_FONT));
 		color = QColor::fromString(pMessage->data(XN_COLOR));
-		html = themeData.sysMsg;
+        html = templates.sysMsg;
 		caption = tr("This message was not delivered to %1:");
 		fontStyle = getFontStyle(&font, &color, true);
 		decodeMessage(&message);
@@ -162,7 +156,7 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 		lastId  = QString();
 		break;
 	case MT_Error:
-		html = themeData.sysMsg;
+        html = templates.sysMsg;
         html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Alert+"</span>");
 		html.replace("%sender%", tr("Your message was not sent."));
 		html.replace("%message%", "");
@@ -182,7 +176,7 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 		message = pMessage->data(XN_GROUPMSGOP);
 		caption = getChatRoomMessage((GroupMsgOp)Helper::indexOf(GroupMsgOpNames, GMO_Max, message));
 		if(!caption.isNull()) {
-			html = themeData.sysMsg;
+            html = templates.sysMsg;
             html.replace("%icon%", "" );  //Blank
 			html.replace("%sender%", caption.arg(*lpszUserName));
 			html.replace("%message%", "");
@@ -240,7 +234,7 @@ void lmMessageLog::updateAvatar(QString* lpszUserId, QString* lpszFilePath) {
 }
 
 void lmMessageLog::reloadMessageLog(void) {
-	initMessageLog(themePath, false);
+    initMessageLog(true);
 	for(int index = 0; index < messageLog.count(); index++) {
 		SingleMessage msg = messageLog[index];
 		appendMessageLog(msg.type, &msg.userId, &msg.userName, &msg.message, true);
@@ -546,7 +540,7 @@ void lmMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, Q
 
 	decodeMessage(lpszMessage);
 
-	QString html = themeData.pubMsg;
+    QString html = templates.pubMsg;
 	QString caption = tr("Broadcast message from %1:");
     html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Broadcast+"</span>");
 	html.replace("%sender%", caption.arg(*lpszUserName));
@@ -572,7 +566,7 @@ void lmMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QSt
 	QString fontStyle = getFontStyle(pFont, pColor, localUser);
 
 	if(lpszUserId->compare(lastId) != 0) {
-        html = localUser ? themeData.inMsg : themeData.inMsg;
+        html = localUser ? templates.inMsg : templates.inMsg;
 
 		//	get the avatar image for this user from the cache folder
 		QString filePath = participantAvatars.value(*lpszUserId);
@@ -598,7 +592,7 @@ void lmMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QSt
 		html.replace("%message%", *lpszMessage);
 
     } else {
-        html = localUser ? themeData.inNextMsg : themeData.inNextMsg;
+        html = localUser ? templates.inNextMsg : templates.inNextMsg;
 
         QString timeStr = getTimeString(pTime);
         QStringList parts = timeStr.split('|');
@@ -626,7 +620,7 @@ void lmMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNam
 
 	if(lpszUserId->compare(lastId) != 0) {
 		outStyle = !outStyle;
-        html = outStyle ? themeData.inMsg : themeData.inMsg;
+        html = outStyle ? templates.inMsg : templates.inMsg;
 
         //	get the avatar image for this user from the cache folder
         QString filePath = participantAvatars.value(*lpszUserId);
@@ -652,7 +646,7 @@ void lmMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNam
 		html.replace("%message%", *lpszMessage);
 
     } else {
-        html = outStyle ? themeData.inNextMsg : themeData.inNextMsg;
+        html = outStyle ? templates.inNextMsg : templates.inNextMsg;
 
         QString timeStr = getTimeString(pTime);
         QStringList parts = timeStr.split('|');
@@ -689,7 +683,7 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
         throw std::logic_error("lmMessageLog::generateFileMessageText: not yet implemented");
     }
 
-    html = themeData.reqMsg;
+    html = templates.reqMsg;
     html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::File+"</span>");
 
     //This type of message doesnt come with a timestamp, but I want one anyway.
