@@ -558,6 +558,7 @@ void lmFormSettings::loadSettings(void) {
 	ui.chkNoBusyAlert->setChecked(pSettings->value(IDS_NOBUSYALERT, IDS_NOBUSYALERT_VAL).toBool());
 	ui.chkNoDNDAlert->setChecked(pSettings->value(IDS_NODNDALERT, IDS_NODNDALERT_VAL).toBool());
 	ui.chkSound->setChecked(pSettings->value(IDS_SOUND, IDS_SOUND_VAL).toBool());
+    ui.lvSounds->setEnabled(pSettings->value(IDS_SOUND, IDS_SOUND_VAL).toBool());
 	// Check so that number of elements read from settings file does not exceed the number of elements
 	// in the list view control. This prevents array out of bounds error.
 	int size = qMin(pSettings->beginReadArray(IDS_SOUNDEVENTHDR), ui.lvSounds->count());
