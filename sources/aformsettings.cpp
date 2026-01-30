@@ -483,10 +483,6 @@ void lmFormSettings::setUIText(void) {
 	for(int index = 0; index < ULV_Max; index++)
 		ui.cboUserListView->setItemText(index, lmStrings::userListView()[index]);
 
-    QString updateLink = QString(IDA_DOMAIN);
-	ui.lblUpdateLink->setText("<a href='" + updateLink + "'><span style='text-decoration: underline; color:#0000ff;'>" + 
-		tr("Check for updates") + "</span></a>");
-
 	cboTheme_currentIndexChanged(ui.cboTheme->currentIndex());
 
 #ifdef Q_OS_MAC

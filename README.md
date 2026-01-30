@@ -1,6 +1,7 @@
 Notes
 ===========================
-After the recent two crash fixes, I am hoping that this is reliable enough to actually use, now.
+Openssl has been such a headache, and I cant seem to get it right. At this point I am wondering if I should just scrap both openssl and opus for the sake of simplicity. This will break compatibility with older versions of course, but it will be so much simpler to maintain, moving forward. File transfers and chatrooms are already unencrypted, who cares if singular chat & the rest are too?
+I really need SOME feedback here. Anyone there? ECHO! Echo echo ...
 
 I would like to maintain compatibility between this and old versions, while adding more in the future. 
 

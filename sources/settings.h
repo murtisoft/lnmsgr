@@ -74,7 +74,7 @@
 #define IDS_MESSAGETIME			"Messages/MessageTime"
 #define IDS_MESSAGETIME_VAL		true
 #define IDS_MESSAGEDATE			"Messages/MessageDate"
-#define IDS_MESSAGEDATE_VAL		false
+#define IDS_MESSAGEDATE_VAL		true
 #define IDS_ALLOWLINKS			"Messages/AllowLinks"
 #define IDS_ALLOWLINKS_VAL		true
 #define IDS_PATHTOLINK			"Messages/PathToLink"
