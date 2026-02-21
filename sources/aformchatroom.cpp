@@ -702,7 +702,7 @@ void lmFormChatRoom::appendMessageLog(MessageType type, QString* lpszUserId, QSt
 void lmFormChatRoom::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
-// TODO
+// TODO long-ass-fucking-time-ago
 //	int relScrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) -
 //			pMessageLog->page()->mainFrame()->scrollBarValue(Qt::Vertical);
 
@@ -715,7 +715,7 @@ void lmFormChatRoom::showStatus(int flag, bool add) {
 		ui.lblInfo->setVisible(false);
 	}
 
-// TODO
+// TODO long-ass-fucking-time-ago
 //	int scrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) - relScrollPos;
 //	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }

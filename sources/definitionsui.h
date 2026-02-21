@@ -38,7 +38,7 @@ const QString Broadcast     = "📢️";    const QString Plus          = "➕�
 const QString Web           = "🌍️";    const QString Chat          = "💬️";    const QString Play          = "▶️️️️";
 const QString Public        = "👨‍👩‍👧‍👦️";    const QString Alert         = "⚠️";    const QString VoiceSet      = "🎙️️";
 const QString Microphone    = "🎤️️";    const QString Speaker       = "🎧️️";    const QString Telephone     = "📞️️";
-const QString Camera        = "📽️️️";    const QString Screenshot    = "📷️️";    const QString Nudge         = "🛎️️️";
+const QString Camera        = "📷️️️";    const QString Screenshot    = "📷️️";    const QString Nudge         = "🛎️️️";
 const QString Settings      = "⚙️";    const QString GeneralSet    = "🖥️";    const QString AccountSet    = "👨‍👩‍👦️";
 const QString MessageSet    = "📨️";    const QString HistorySet    = "🕙️";    const QString AlertSet      = "⚠️";
 const QString NetworkSet    = "🔗️";    const QString TransferSet   = "📥️";    const QString ThemeSet      = "🎨️";
@@ -143,7 +143,7 @@ enum SoundEvent {
     SE_RingIn,
     SE_RingOut,
     SE_Nudge,
-    SE_MuteTalk,
+    SE_MutedTalk,
 	SE_Max
 };
 

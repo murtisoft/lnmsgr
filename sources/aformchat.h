@@ -45,6 +45,10 @@
 #include "chathelper.h"
 #include "definitionsdir.h"
 #include "messagexml.h"
+#include <QAudioSource>
+#include <QAudioFormat>
+#include <QMediaDevices>
+#include "networkudp.h"
 
 class lmFormChat : public QWidget {
 	Q_OBJECT
@@ -89,6 +93,8 @@ private slots:
 	void log_sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void checkChatState(void);
     void btnNudge_clicked();
+    void btnAudio_clicked();
+    void btnVideo_clicked();
 
 private:
 	void createSmileyMenu(void);
@@ -100,8 +106,10 @@ private:
     void sendObject(MessageType type, QString* lpszPath);
 	void encodeMessage(QString* lpszMessage);
     void processFileOp(MessageXml* pMessage);
+    void processStreamOp(MessageXml* pMessage);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
+    void updateStreamMessage(StreamMode mode, StreamOp op, QString streamId);
 	void showStatus(int flag, bool add);
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
@@ -126,6 +134,8 @@ private:
     QAction* pFolderAction;
 	QAction* pSaveAction;
     QAction* pNudgeAction;
+    QAction* pAudioAction;
+    QAction* pVideoAction;
 	QToolBar* pRightBar;
 	QAction* pHistoryAction;
 	QAction* pTransferAction;

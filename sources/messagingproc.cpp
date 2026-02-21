@@ -70,7 +70,7 @@ void lmMessaging::sendMessage(MessageType type, QString* lpszUserId, MessageXml*
 		msgId++;
 		break;
 	case MT_Version:
-		break;
+        break;
 	default:
 		prepareMessage(type, msgId, false, lpszUserId, pMessage);
 		msgId++;

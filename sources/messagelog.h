@@ -44,6 +44,7 @@ public:
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
 		bool bReload = false);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
+    void updateStreamMessage(StreamMode mode, StreamOp op, QString streamId);
 	void updateUserName(QString* lpszUserId, QString* lpszUserName);
 	void updateAvatar(QString* lpszUserId, QString* lpszFilePath);
 	void reloadMessageLog(void);
@@ -78,7 +79,7 @@ protected:
     void scrollToEnd(QTextCursor &cursor);
 
 private slots:
-    // TODO
+    // TODO long-ass-fucking-time-ago
     //void log_linkClicked(QUrl url);
 	void log_linkHovered(const QString& link, const QString& title, const QString& textContent);
 	void showContextMenu(const QPoint& pos);
@@ -99,6 +100,7 @@ private:
 		QFont* pFont, QColor* pColor);
 	void appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
         QFont* pFont, QColor* pColor, MessageType messageType);
+    QString getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
     QString getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
     QString getFontStyle(QFont* pFont, QColor* pColor, bool size = false);
 	QString getFileStatusMessage(FileMode mode, FileOp op);
@@ -111,6 +113,8 @@ private:
 	void setUIText(void);
     QString getFileTempId(FileMode mode, QString fileId) const;
     QString getFileTempId(MessageXml* pMessage) const;
+    QString getStreamTempId(StreamMode mode, QString streamId) const;
+    QString getStreamTempId(MessageXml* pMessage) const;
 
 	QMap<QString, MessageXml> sendFileMap;
 	QMap<QString, MessageXml> receiveFileMap;

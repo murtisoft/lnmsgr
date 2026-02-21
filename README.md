@@ -1,11 +1,23 @@
 Notes
 ===========================
-Openssl has been such a headache, and I cant seem to get it right. At this point I am wondering if I should just scrap both openssl and opus for the sake of simplicity. This will break compatibility with older versions of course, but it will be so much simpler to maintain, moving forward. File transfers and chatrooms are already unencrypted, who cares if singular chat & the rest are too?
-I really need SOME feedback here. Anyone there? ECHO! Echo echo ...
+Encryption has been a headache to fix, unfortunately. I hope to fix it eventually, but in the meantime, you should realize messages (including nudges) might fail to encrypt or decrypt, practically "disappearing". Broadcasts, file transfers, public chats or chatrooms are not affected, as they are not encrypted.
 
 I would like to maintain compatibility between this and old versions, while adding more in the future. 
 
 I would also discourage translators from contributing for now, the interface is constantly changing.
+
+Why LAN Messenger? (2026)
+============================
+* No accounts, no logins.
+* Serverless. No need to keep a computer on, just to communicate.
+* Complete privacy. Your data stays within your network.
+* Lightweight. Stays out of your way.
+* Internet independent. Feel the joy of asking a peer: "Is the internet working?"
+* Nudging. Annoy your friends shamelessly!
+* 1 on 1 Encrypted communications.
+* Voice chat. (Eventually)
+* Video chat/desktop sharing (Eventually)
+* Multi platform (Eventually - older linux & mac versions are compatible.)
 
 How to compile LAN Messenger on Windows
 ============================

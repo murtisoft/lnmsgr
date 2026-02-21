@@ -72,7 +72,7 @@ void lmMessaging::init(MessageXml *pInitParams) {
 
 	int nAvatar = pSettings->value(IDS_AVATAR, IDS_AVATAR_VAL).toInt();
 	QString userNote = pSettings->value(IDS_NOTE, IDS_NOTE_VAL).toString();
-    uint userCaps = UC_File | UC_GroupMessage | UC_Folder;
+    uint userCaps = UC_File | UC_GroupMessage | UC_Folder | UC_Nudge | UC_Audio | UC_Video;
     localUser = new User(userId, IDA_VERSION, pNetwork->ipAddress, userName, userStatus,
                          QString(), nAvatar, userNote, DefinitionsDir::avatarFile(),
                          QString::number(userCaps));

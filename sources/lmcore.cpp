@@ -316,6 +316,8 @@ void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMes
 	case MT_Version:
     case MT_File:
     case MT_Avatar:
+    case MT_Audio:
+    case MT_Video:
     case MT_Folder:
 		pMessaging->sendMessage(type, lpszUserId, pMessage);
 		break;

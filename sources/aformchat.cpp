@@ -237,6 +237,18 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
     case MT_Depart:
         pMessageLog->abortPendingFileOperations();
         break;
+    case MT_Audio:
+    case MT_Video:
+        if(pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request]) {
+            //	a stream request has been received
+            appendMessageLog(type, lpszUserId, &senderName, pMessage);
+            if(pMessage->data(XN_STREAMMODE) == StreamModeNames[SM_In] && (isHidden() || !isActiveWindow())) {
+                pSoundPlayer->play(SE_RingIn);}
+        } else {
+            // a file message of op other than request has been received
+            processFileOp(pMessage);
+        }
+        break;
 	default:
 		break;
 	}
@@ -511,6 +523,18 @@ void lmFormChat::createToolBar(void) {
 
     pLeftBar->addSeparator();
     pNudgeAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Nudge,16)), "Nudge", this, SLOT(btnNudge_clicked()));
+    bool nudgeCap = ((peerCaps.value(peerId) & UC_Nudge) == UC_Nudge);
+    pNudgeAction->setEnabled(nudgeCap);
+
+    pLeftBar->addSeparator();
+    pAudioAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Telephone,16)), "Voice Call", this, SLOT(btnAudio_clicked()));
+    bool audioCap = ((peerCaps.value(peerId) & UC_Audio) == UC_Audio);
+    pAudioAction->setEnabled(audioCap);
+
+    pLeftBar->addSeparator();
+    pVideoAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Camera,16)), "Video Call", this, SLOT(btnVideo_clicked()));
+    bool videoCap = ((peerCaps.value(peerId) & UC_Video) == UC_Video);
+    pVideoAction->setEnabled(videoCap);
 
 	pRightBar = new QToolBar(ui.wgtToolBar);
 	pRightBar->setStyleSheet("QToolBar { border: 0px }");
@@ -528,6 +552,36 @@ void lmFormChat::createToolBar(void) {
 	ui.lblDividerBottom->setBackgroundRole(QPalette::Dark);
 	ui.lblDividerBottom->setAutoFillBackground(true);
 }
+
+void lmFormChat::btnVideo_clicked() {
+    if (!bConnected) return;
+
+    QString streamId = QString::number(QDateTime::currentMSecsSinceEpoch());
+
+    MessageXml xml;
+    xml.addData(XN_STREAMMODE, StreamModeNames[SM_Out]);
+    xml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
+    xml.addData(XN_STREAMID, streamId);
+
+    appendMessageLog(MT_Video, &localId, &localName, &xml);
+
+    emit messageSent(MT_Video, &peerId, &xml);   //TODO
+};
+
+void lmFormChat::btnAudio_clicked() {
+    if (!bConnected) return;
+
+    QString streamId = QString::number(QDateTime::currentMSecsSinceEpoch());
+
+    MessageXml xml;
+    xml.addData(XN_STREAMMODE, StreamModeNames[SM_Out]);
+    xml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
+    xml.addData(XN_STREAMID, streamId);
+
+    appendMessageLog(MT_Audio, &localId, &localName, &xml);
+
+    emit messageSent(MT_Audio, &peerId, &xml);   //TODO
+};
 
 void lmFormChat::btnNudge_clicked() {
     lmFormChat::nudge(true);
@@ -559,7 +613,7 @@ void lmFormChat::nudge(bool send) {
 
     if (send){
         //Nudge Message
-        QString szMessage = tr("Sent a nudge!") +"\n__________";
+        QString szMessage = tr("Sent a nudge!") +"\n———————";
 
         QFont font = ui.txtMessage->font();
         font.setPointSize(ui.txtMessage->fontPointSize());
@@ -685,6 +739,24 @@ void lmFormChat::encodeMessage(QString* lpszMessage) {
 	ChatHelper::encodeSmileys(lpszMessage);
 }
 
+void lmFormChat::processStreamOp(MessageXml *pMessage) {
+    int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
+    int streamMode = Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));
+    QString streamId = pMessage->data(XN_STREAMID);
+
+    switch(streamOp) {
+    case SO_Request:
+    case SO_Accept:
+    case SO_Decline:
+    case SO_Error:
+    case SO_Abort:
+        updateStreamMessage((StreamMode)streamMode, (StreamOp)streamOp, streamId);
+        break;
+    default:
+        break;
+    }
+}
+
 void lmFormChat::processFileOp(MessageXml *pMessage) {
 	int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
 	int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
@@ -710,6 +782,10 @@ void lmFormChat::appendMessageLog(MessageType type, QString* lpszUserId, QString
 		pSaveAction->setEnabled(pMessageLog->hasData);
 }
 
+void lmFormChat::updateStreamMessage(StreamMode mode, StreamOp op, QString streamId) {
+    pMessageLog->updateStreamMessage(mode, op, streamId);
+}
+
 void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
 	pMessageLog->updateFileMessage(mode, op, fileId);
 }
@@ -717,7 +793,7 @@ void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
 void lmFormChat::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
-// TODO
+// TODO long-ass-fucking-time-ago
 //	int relScrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) -
 //			pMessageLog->page()->mainFrame()->scrollBarValue(Qt::Vertical);
 
@@ -742,7 +818,7 @@ void lmFormChat::showStatus(int flag, bool add) {
 		ui.lblInfo->setVisible(false);
 	}
 
-// TODO
+// TODO long-ass-fucking-time-ago
 //	int scrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) - relScrollPos;
 //	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }

@@ -34,7 +34,7 @@ const QString declineOp("decline");
 const QString cancelOp("cancel");
 
 lmMessageLog::lmMessageLog(QWidget *parent) : MessageBrowser (parent) {
-// TODO
+// TODO long-ass-fucking-time-ago
 //	connect(this, SIGNAL(linkClicked(QUrl)), this, SLOT(log_linkClicked(QUrl)));
 //	connect(this->page(), SIGNAL(linkHovered(QString, QString, QString)),
 //			this, SLOT(log_linkHovered(QString, QString, QString)));
@@ -183,6 +183,18 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
             appendMessageLog(&html, type);
 		}
 		lastId = QString();
+    case MT_Audio:
+        id = getStreamTempId(pMessage);
+        html = getStreamMessageText(type, lpszUserName, pMessage, bReload);
+        lastId = QString();
+        appendMessageLog(&html, MT_Audio, new QTextBlockData(id));
+        break;
+    case MT_Video:
+        id = getStreamTempId(pMessage);
+        html = getStreamMessageText(type, lpszUserName, pMessage, bReload);
+        lastId = QString();
+        appendMessageLog(&html, MT_Video, new QTextBlockData(id));
+        break;
 	default:
 		break;
 	}
@@ -192,6 +204,26 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 		QString userId = lpszUserId ? *lpszUserId : QString();
 		QString userName = lpszUserName ? *lpszUserName : QString();
 		messageLog.append(SingleMessage(type, userId, userName, xmlMessage, id));
+    }
+}
+
+void lmMessageLog::updateStreamMessage(StreamMode mode, StreamOp op, QString streamId)
+{
+    QString tempId = getStreamTempId(mode, streamId);
+
+    //	update the entry in message log
+    for(int index = 0; index < messageLog.count(); index++) {
+        SingleMessage msg = messageLog.at(index);
+        if(tempId.compare(msg.id) == 0) {
+            MessageXml xmlMessage = msg.message;
+            xmlMessage.removeData(XN_STREAMOP);
+            xmlMessage.addData(XN_STREAMOP, StreamOpNames[op]);
+            msg.message = xmlMessage;
+
+            QString html = getStreamMessageText(msg.type, &msg.userName, &msg.message);
+            replaceMessageLog(msg.type, tempId, html);
+            break;
+        }
     }
 }
 
@@ -434,7 +466,7 @@ void lmMessageLog::copyAction_triggered(void) {
 }
 
 void lmMessageLog::copyLinkAction_triggered(void) {
-//  TODO
+//  TODO long-ass-fucking-time-ago
 //	pageAction(QWebPage::CopyLinkToClipboard)->trigger();
 }
 
@@ -663,7 +695,101 @@ void lmMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNam
 	hasData = true;
 }
 
-// This function is called to display a file request message on chat box
+// This function is called to display a audio/video request message in chatlog
+QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
+{
+    QString html;
+    QString caption;
+    QString streamId = pMessage->data(XN_STREAMID);
+    QString szStatus;
+    QString streamType;
+    html = templates.reqMsg;
+
+    switch(type) {
+    case MT_Audio:
+        streamType = "audio";
+        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Telephone+"</span>");
+        break;
+    case MT_Video:
+        streamType = "video";
+        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Camera+"</span>");
+        break;
+    default:
+        throw std::logic_error("lmMessageLog::getStreamMessageText: not yet implemented");
+    }
+
+    //This type of message doesnt come with a timestamp, but I want one anyway.
+    if (messageDate) {
+        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+    } else {
+        html.replace("%date%", "");
+        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
+    }
+
+    StreamMode streamMode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));
+    StreamOp streamOp = (StreamOp)Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
+    //"","request","accept","decline","error","abort",
+
+        if(streamMode == SM_Out) {
+
+        //"Requesting audio/video call from user"
+        caption = tr("Requesting %1 call from user.");
+        html.replace("%sender%", caption.arg(streamType));
+        html.replace("%message%", "");
+
+        switch(streamOp) {
+        case SO_Request:
+            html.replace("%links%", "<a href='lm://" + streamType + "/" + cancelOp + "/" + streamId + "'>" + tr("Cancel") + "</a>");
+            break;
+        case SO_Accept:
+            html.replace("%links%", tr("Call accepted."));
+            break;
+        case SO_Decline:
+            html.replace("%links%", tr("Call declined."));
+            break;
+        case SO_Error:
+            html.replace("%links%", tr("Call error."));
+            break;
+        case SO_Abort:
+            html.replace("%links%", tr("Call aborted."));
+            break;
+        default:
+            html = QString();
+        }
+
+    }else{
+            //"User is requesting audio/video call"
+            caption = tr("User is requesting %1 call.");
+            html.replace("%sender%", caption.arg(streamType));
+            html.replace("%message%", "");
+
+            switch(streamOp) {
+            case SO_Request:
+                html.replace("%links%",
+                             "<a href='lm://" + streamType + "/" + acceptOp + "/" + streamId + "'>" + tr("Accept") + "</a>&nbsp;&nbsp;" +
+                                 "<a href='lm://" + streamType + "/" + declineOp + "/" + streamId + "'>" + tr("Decline") + "</a>");
+                break;
+            case SO_Accept:
+                html.replace("%links%", tr("Call accepted."));
+                break;
+            case SO_Decline:
+                html.replace("%links%", tr("Call declined."));
+                break;
+            case SO_Error:
+                html.replace("%links%", tr("Call error."));
+                break;
+            case SO_Abort:
+                html.replace("%links%", tr("Call aborted."));
+                break;
+            default:
+                html = QString();
+            }
+    }
+    return html;
+}
+
+// This function is called to display a file request message in chatlog
 QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
 {
     QString html;
@@ -680,7 +806,7 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
         fileType = "folder";
         break;
     default:
-        throw std::logic_error("lmMessageLog::generateFileMessageText: not yet implemented");
+        throw std::logic_error("lmMessageLog::getFileMessageText: not yet implemented");
     }
 
     html = templates.reqMsg;
@@ -907,33 +1033,47 @@ void lmMessageLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	//	The url detection regexps only work with plain text, so link detection is done before
 	//	making the text html safe. The converted links are given a "data-isLink" custom
 	//	attribute to differentiate them from the message content
-	if(useDefaults || allowLinks) {
-//		lpszMessage->replace(QRegularExpression("(((https|http|ftp|file|smb):[/][/]|www.)[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)"),
-//							 "<a href='\\1'>\\1</a>");
-		lpszMessage->replace(
-    QRegularExpression("((?:(?:https?|ftp|file)://|www\\.|ftp\\.)[-A-Z0-9+&@#/%=~_|$?!:,.]*[A-Z0-9+&@#/%=~_|$])",
-                       QRegularExpression::CaseInsensitiveOption),
-    "<a data-isLink='true' href='\\1'>\\1</a>");
-		lpszMessage->replace("<a data-isLink='true' href='www", "<a data-isLink='true' href='http://www");
+    if(useDefaults || allowLinks) {
+        //		lpszMessage->replace(QRegularExpression("(((https|http|ftp|file|smb):[/][/]|www.)[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)"),
+        //							 "<a href='\\1'>\\1</a>");
+        lpszMessage->replace(
+            QRegularExpression("((?:(?:https?|ftp|file)://|www\\.|ftp\\.)[-A-Z0-9+&@#/%=~_|$?!:,.]*[A-Z0-9+&@#/%=~_|$])",
+                               QRegularExpression::CaseInsensitiveOption),
+            "<a data-isLink='true' href='\\1'>\\1</a>");
+        lpszMessage->replace("<a data-isLink='true' href='www", "<a data-isLink='true' href='http://www");
 
-		if(!useDefaults && pathToLink)
-			lpszMessage->replace(QRegularExpression("((\\\\\\\\[\\w-]+\\\\[^\\\\/:*?<>|""]+)((?:\\\\[^\\\\/:*?<>|""]+)*\\\\?)$)"),
-								 "<a data-isLink='true' href='file:\\1'>\\1</a>");
-	}
+        if(!useDefaults && pathToLink)
+            lpszMessage->replace(QRegularExpression("((\\\\\\\\[\\w-]+\\\\[^\\\\/:*?<>|""]+)((?:\\\\[^\\\\/:*?<>|""]+)*\\\\?)$)"),
+                                 "<a data-isLink='true' href='file:\\1'>\\1</a>");
+    }
 
-/*  NEED2TEST This part needs expansion.
+/*  NEED2TEST This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
 TEST CASES
-1 \\Murticom\e\ss.png   pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the file.
-2 \\Murticom\e\         pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the correct directory.
-3 \\Murticom\e          pathToLink   Entire line disappears
-4 https://github.com    allowLinks   Works as expected
-5 www.github.com        allowLinks   Works as expected
-6 github.com            allowLinks   Shows up as plain text
-7 192.168.0.10          allowLinks   Shows up as plain text
-8 192.168.0.10:1111     allowLinks   Shows up as plain text
-9 ftp.debian.org        allowLinks   Works, but tries to open in file explorer instead of browser
-file:///E:/ss.png       This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
-file:///E:/_qtprojects  This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
+00 \\Murticom-2026\e\ss.png   pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the file.
+01 //Murticom-2026/e/ss.png   pathToLink
+   \\Murticom-2026\e/ss.png
+   \\Murticom-2026\e\S p a c e.png
+   \\Murticom-2026\e\Ünıcöde.png
+   smb:// for linux.
+   %WINDIR%
+   %USERPROFILE%\Documents\%USERNAME%_log.txt
+02 \\Murticom-2026\e\         pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the correct directory.
+03 //Murticom-2026/e/         pathToLink
+04 \\Murticom-2026\e          pathToLink   Entire line disappears
+05 //Murticom-2026/e          pathToLink
+06 \\192.168.0.10\e           pathToLink   Shows up as plain text
+07 //192.168.0.10/e           pathToLink
+08 https://github.com         allowLinks   Works as expected
+   https://google.com/search?q=qt+6
+   (https://google.com)
+09 www.github.com             allowLinks   Works as expected
+10 github.com                 allowLinks   Shows up as plain text
+   v3.beta.github.com
+11 192.168.0.10               allowLinks   Shows up as plain text
+12 192.168.0.10:1111          allowLinks   Shows up as plain text
+13 ftp.debian.org             allowLinks   Works, but tries to open in file explorer instead of browser
+14 file:///E:/ss.png          This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
+15 file:///E:/_qtprojects     This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
 */
 
 
@@ -995,4 +1135,18 @@ QString lmMessageLog::getFileTempId(MessageXml *pMessage) const
     QString fileId = pMessage->data(XN_FILEID);
     FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
     return getFileTempId(fileMode, fileId);
+}
+
+QString lmMessageLog::getStreamTempId(StreamMode mode, QString streamId) const
+{
+    QString tempId = (mode == SM_Out) ? "outgoing" : "incoming";
+    tempId.append(streamId);
+    return tempId;
+}
+
+QString lmMessageLog::getStreamTempId(MessageXml *pMessage) const
+{
+    QString streamId = pMessage->data(XN_STREAMID);
+    StreamMode streamMode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));
+    return getStreamTempId(streamMode, streamId);
 }

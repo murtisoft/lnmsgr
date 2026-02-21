@@ -105,10 +105,16 @@ void lmFormSettings::init(void) {
         ui.cboMicDevice->addItem(device.description(), QVariant::fromValue(device));
     }
 
-    QCameraDevice defaultCam = QMediaDevices::defaultVideoInput();
-    ui.cboCamDevice->addItem("Default Camera", QVariant::fromValue(defaultCam));
+    ui.cboCamDevice->addItem("Still Image", QVariant("still_image"));
 
-    for (const QCameraDevice &camera : QMediaDevices::videoInputs()) {
+    const auto screens = QGuiApplication::screens();
+    for (int i = 0; i < screens.size(); ++i) {
+        ui.cboCamDevice->addItem(QString("Desktop %1").arg(i + 1),
+                                 QVariant::fromValue(screens[i]));
+    }
+
+    const auto cameras = QMediaDevices::videoInputs();
+    for (const QCameraDevice &camera : cameras) {
         ui.cboCamDevice->addItem(camera.description(), QVariant::fromValue(camera));
     }
 //=========================================================
