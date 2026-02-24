@@ -17,6 +17,7 @@ endif()
 #   Sending messages from old to new, no losses. New to any... lots of decryption errors / lost messages. great.
 #   All font coloring options can be safely removed, so it can be handled via colorschemes and palettes.
 
+#"New chatroom" crashes the program, now.
 #Sending a file or folder to an offline appearing client works. (lol)
 #Sending a file or folder to an actually offline client waits for confirmation, but crashes upon canceling.
 #there seems to be more connection issues if a client's username includes unicode characters like "ü".
