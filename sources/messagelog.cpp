@@ -183,17 +183,13 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
             appendMessageLog(&html, type);
 		}
 		lastId = QString();
-    case MT_Audio:
-        id = getStreamTempId(pMessage);
-        html = getStreamMessageText(type, lpszUserName, pMessage, bReload);
-        lastId = QString();
-        appendMessageLog(&html, MT_Audio, new QTextBlockData(id));
         break;
+    case MT_Audio:
     case MT_Video:
         id = getStreamTempId(pMessage);
         html = getStreamMessageText(type, lpszUserName, pMessage, bReload);
         lastId = QString();
-        appendMessageLog(&html, MT_Video, new QTextBlockData(id));
+        appendMessageLog(&html, type, new QTextBlockData(id));
         break;
 	default:
 		break;
@@ -716,6 +712,7 @@ QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserNa
         break;
     default:
         throw std::logic_error("lmMessageLog::getStreamMessageText: not yet implemented");
+        break;
     }
 
     //This type of message doesnt come with a timestamp, but I want one anyway.
