@@ -21,7 +21,6 @@ endif()
 #Sending a file or folder to an actually offline client waits for confirmation, but crashes upon canceling.
 #there seems to be more connection issues if a client's username includes unicode characters like "ü".
 #colorschemes are a complete mess. Manually set fonts and color palettes causing problems with those.
-#When A and B is chatting, if B changes avatar, A's chatlog becomes empty, instead of crashing, now. (Crash was resolved via permanent scrollbars for chatlog)
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
 #Font size settings in settings dialog are local only, and dont even affect public chat for some reason. Maybe i should remove those ancient buttons?

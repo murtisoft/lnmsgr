@@ -262,7 +262,7 @@ void lmMessageLog::updateAvatar(QString* lpszUserId, QString* lpszFilePath) {
 }
 
 void lmMessageLog::reloadMessageLog(void) {
-    initMessageLog(true);
+    initMessageLog(false);
 	for(int index = 0; index < messageLog.count(); index++) {
 		SingleMessage msg = messageLog[index];
 		appendMessageLog(msg.type, &msg.userId, &msg.userName, &msg.message, true);

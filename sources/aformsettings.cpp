@@ -539,8 +539,10 @@ void lmFormSettings::loadSettings(void) {
 	ui.chkPublicMessagePop->setChecked(pSettings->value(IDS_PUBMESSAGEPOP, IDS_PUBMESSAGEPOP_VAL).toBool());
 	ui.chkEmoticon->setChecked(pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool());
 	ui.chkMessageTime->setChecked(pSettings->value(IDS_MESSAGETIME, IDS_MESSAGETIME_VAL).toBool());
+    emit chkMessageTime_toggled(pSettings->value(IDS_MESSAGETIME, IDS_MESSAGETIME_VAL).toBool());
 	ui.chkMessageDate->setChecked(pSettings->value(IDS_MESSAGEDATE, IDS_MESSAGEDATE_VAL).toBool());
 	ui.chkAllowLinks->setChecked(pSettings->value(IDS_ALLOWLINKS, IDS_ALLOWLINKS_VAL).toBool());
+    emit chkAllowLinks_toggled(pSettings->value(IDS_ALLOWLINKS, IDS_ALLOWLINKS_VAL).toBool());
 	ui.chkPathToLink->setChecked(pSettings->value(IDS_PATHTOLINK, IDS_PATHTOLINK_VAL).toBool());
 	ui.chkTrimMessage->setChecked(pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool());
     ui.chkClearOnClose->setChecked(pSettings->value(IDS_CLEARONCLOSE, IDS_CLEARONCLOSE_VAL).toBool());
@@ -560,7 +562,7 @@ void lmFormSettings::loadSettings(void) {
 	ui.chkNoBusyAlert->setChecked(pSettings->value(IDS_NOBUSYALERT, IDS_NOBUSYALERT_VAL).toBool());
 	ui.chkNoDNDAlert->setChecked(pSettings->value(IDS_NODNDALERT, IDS_NODNDALERT_VAL).toBool());
 	ui.chkSound->setChecked(pSettings->value(IDS_SOUND, IDS_SOUND_VAL).toBool());
-    ui.lvSounds->setEnabled(pSettings->value(IDS_SOUND, IDS_SOUND_VAL).toBool());
+    emit ui.chkSound->toggled(pSettings->value(IDS_SOUND, IDS_SOUND_VAL).toBool());
 	// Check so that number of elements read from settings file does not exceed the number of elements
 	// in the list view control. This prevents array out of bounds error.
 	int size = qMin(pSettings->beginReadArray(IDS_SOUNDEVENTHDR), ui.lvSounds->count());
@@ -593,6 +595,7 @@ void lmFormSettings::loadSettings(void) {
 
 	ui.chkAutoFile->setChecked(pSettings->value(IDS_AUTOFILE, IDS_AUTOFILE_VAL).toBool());
 	ui.chkAutoShowFile->setChecked(pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool());
+    emit chkAutoShowFile_toggled(pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool());
 	ui.rdbFileTop->setChecked(pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
 	ui.rdbFileBottom->setChecked(!pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
 	ui.txtFilePath->setText(DefinitionsDir::fileStorageDir());

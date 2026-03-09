@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>7</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
