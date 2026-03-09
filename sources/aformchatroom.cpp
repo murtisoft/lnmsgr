@@ -733,7 +733,7 @@ QString lmFormChatRoom::getWindowTitle(void) {
 		//	remove the final comma and space
 		title.remove(title.length() - 2, 2);
 		title.append(" - ");
-		title.append(tr("Conversation"));
+        title.append(tr("Chat Room"));
 	} else
 		title = tr("Public Chat");
 

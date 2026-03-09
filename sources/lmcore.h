@@ -82,6 +82,7 @@ private:
 	void stop(void);
 	void loadSettings(void);
 	void settingsChanged(void);
+    void processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage);
 	void processMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
     void processFile(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void routeMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);

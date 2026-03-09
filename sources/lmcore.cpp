@@ -565,12 +565,22 @@ void lmCore::processMessage(MessageType type, QString* lpszUserId, MessageXml* p
     case MT_Folder:
         processFile(type, lpszUserId, pMessage);
 		break;
+    case MT_Audio:
+    case MT_Video:
+        processStream(type, lpszUserId, pMessage);
+        break;
 	case MT_Version:
 	case MT_WebFailed:
 		break;
     default:
         break;
 	}
+}
+
+void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage) {
+    int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
+
+    routeMessage(type, lpszUserId, pMessage);
 }
 
 void lmCore::processFile(MessageType type, QString *lpszUserId, MessageXml* pMessage) {
@@ -592,10 +602,12 @@ void lmCore::processFile(MessageType type, QString *lpszUserId, MessageXml* pMes
 
 void lmCore::routeMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
 	bool windowExists = false;
-	bool needsNotice = (type == MT_Message || type == MT_Broadcast || type == MT_Failed
-		|| (type == MT_File && pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
+    bool needsNotice = (type == MT_Message || type == MT_Broadcast || type == MT_Failed
+        || (type == MT_File && pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
         || (type == MT_Folder && pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
-		|| type == MT_GroupMessage);
+        || (type == MT_Audio  && pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request])
+        || (type == MT_Video  && pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request])
+        || type == MT_GroupMessage);
 
 	//	If no specific user is specified, send this message to all windows
 	if(!lpszUserId) {

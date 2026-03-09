@@ -45,9 +45,13 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
 	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
 			ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
 	QList<int> sizes;
-	sizes.append(height() - bottomPanelHeight - ui.splitter->handleWidth());
-	sizes.append(bottomPanelHeight);
-	ui.splitter->setSizes(sizes);
+    sizes.append(height() - bottomPanelHeight - ui.hSplitter->handleWidth());
+    sizes.append(bottomPanelHeight);
+    ui.hSplitter->setSizes(sizes);
+    sizes.clear();
+    sizes.append(width() * 0.7);
+    sizes.append(width() - width() * 0.7 - ui.vSplitter->handleWidth());
+    ui.vSplitter->setSizes(sizes);
 
 	ui.lblInfo->setBackgroundRole(QPalette::Base);
 	ui.lblInfo->setAutoFillBackground(true);
@@ -565,6 +569,8 @@ void lmFormChat::btnVideo_clicked() {
 
     appendMessageLog(MT_Video, &localId, &localName, &xml);
 
+    xml.removeData(XN_STREAMMODE);
+    xml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
     emit messageSent(MT_Video, &peerId, &xml);   //TODO
 };
 
@@ -580,6 +586,8 @@ void lmFormChat::btnAudio_clicked() {
 
     appendMessageLog(MT_Audio, &localId, &localName, &xml);
 
+    xml.removeData(XN_STREAMMODE);
+    xml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
     emit messageSent(MT_Audio, &peerId, &xml);   //TODO
 };
 
@@ -836,6 +844,9 @@ QString lmFormChat::getWindowTitle(void) {
 	title.remove(title.length() - 2, 2);
 	title.append(" - ");
 	title.append(tr("Conversation"));
+    title.append(" (");
+    title.append(tr("Encrypted"));
+    title.append(")");
 	return title;
 }
 
