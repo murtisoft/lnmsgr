@@ -400,10 +400,12 @@ void lmMessageLog::onAnchorClicked(const QUrl &url)
 
     //	this is a hack so qdesktopservices can open a network path
     if(linkPath.startsWith("file")) {
-        // strip out the 'file:' prefix and get the path
         linkPath = linkPath.mid(5);
-        // use a url that contains native separators
-        QDesktopServices::openUrl(QUrl(QDir::toNativeSeparators(linkPath)));
+        if(linkPath.startsWith("//")) {   // proper file:// URL, open directly
+            QDesktopServices::openUrl(QUrl(linkPath));
+        } else {                          // UNC network path hack
+            QDesktopServices::openUrl(QUrl(QDir::toNativeSeparators(linkPath)));
+        }
         return;
     } else if(linkPath.startsWith("www")) {
         // prepend 'http://' to link
@@ -883,12 +885,13 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
             break;
         case FO_Complete:
         {
-            QString filePath = pMessage->data(XN_FILEPATH);
-            QString folderPath = QFileInfo(filePath).dir().absolutePath();
+            QString fileName = pMessage->data(XN_FILENAME);
+            QString filePath = QDir(DefinitionsDir::fileStorageDir()).absoluteFilePath(fileName);
+            QString folderPath = DefinitionsDir::fileStorageDir();
             html.replace("%links%",
                          tr("Completed.") + "&nbsp;&nbsp;" +
-                             "<a href='file://" + filePath + "'>" + tr("Open") + "</a>&nbsp;&nbsp;" +  //TODO
-                             "<a href='file://" + folderPath + "'>" + tr("Show in Folder") + "</a>");
+                             "<a href='" + QUrl::fromLocalFile(filePath).toString() + "'>" + tr("Open") + "</a>&nbsp;&nbsp;" +
+                             "<a href='" + QUrl::fromLocalFile(folderPath).toString() + "'>" + tr("Show in Folder") + "</a>");
             break;
         }
 		default:

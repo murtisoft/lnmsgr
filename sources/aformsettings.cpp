@@ -295,7 +295,6 @@ void lmFormSettings::btnReset_clicked(void) {
 }
 
 void lmFormSettings::cboTheme_currentIndexChanged(int index) {
-    int colorSchemeIndex = ui.cboTheme->currentIndex();
 
     pMessageLog->fontSizeVal = FS_SMALL;
     pMessageLog->localId = "Myself";
