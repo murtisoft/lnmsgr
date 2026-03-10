@@ -82,8 +82,6 @@ protected:
 	void dropEvent(QDropEvent* pEvent);
 
 private slots:
-	void btnFont_clicked(void);
-	void btnFontColor_clicked(void);
 	void btnFile_clicked(void);
     void btnFolder_clicked(void);
 	void btnSave_clicked(void);
@@ -127,8 +125,6 @@ private:
 	Ui::ChatWindow ui;
 	lmSettings* pSettings;
 	lmMessageLog* pMessageLog;
-	QAction* pFontAction;
-	QAction* pFontColorAction;
 	lmToolButton* pbtnSmiley;
 	QAction* pFileAction;
     QAction* pFolderAction;

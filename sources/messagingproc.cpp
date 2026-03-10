@@ -118,6 +118,7 @@ void lmMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserId
 	MessageXml xmlMessage;
 	xmlMessage.addData(XN_USERID, localUser->id);
 	xmlMessage.addData(XN_NAME, localUser->name);
+    xmlMessage.addData(XN_GROUP, localUser->group);
 	xmlMessage.addData(XN_ADDRESS, localUser->address);
 	xmlMessage.addData(XN_VERSION, localUser->version);
 	xmlMessage.addData(XN_STATUS, localUser->status);

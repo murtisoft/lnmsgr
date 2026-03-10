@@ -83,8 +83,6 @@ private slots:
 	void userConversationAction_triggered(void);
 	void userFileAction_triggered(void);
 	void userInfoAction_triggered(void);
-	void btnFont_clicked(void);
-	void btnFontColor_clicked(void);
 	void btnSave_clicked(void);
 	void smileyAction_triggered(void);
 	void addContactAction_triggered(void);
@@ -122,8 +120,6 @@ private:
 	QAction* userChatAction;
 	QAction* userFileAction;
 	QAction* userInfoAction;
-	QAction* pFontAction;
-	QAction* pFontColorAction;
 	lmToolButton* pbtnSmiley;
 	QAction* pSaveAction;
 	QMenu* pSmileyMenu;

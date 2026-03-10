@@ -59,7 +59,6 @@ protected:
 	void closeEvent(QCloseEvent* pEvent);
 
 private slots:
-	void btnFontSize_clicked(void);
 	void fontAction_triggered(QAction* action);
 	void smileyAction_triggered(void);
 	void btnSelectAll_clicked(void);
@@ -77,7 +76,6 @@ private:
 	Ui::BroadcastWindow ui;
 	lmSettings* pSettings;
 	QToolBar* pToolBar;
-	QToolButton* pbtnFontSize;
 	lmToolButton* pbtnSmiley;
 	int fontSizeVal;
 	int nSmiley;

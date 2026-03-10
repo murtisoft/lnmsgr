@@ -389,23 +389,6 @@ void lmFormChat::dropEvent(QDropEvent* pEvent) {
     }
 }
 
-void lmFormChat::btnFont_clicked(void) {
-	bool ok;
-	QFont font = ui.txtMessage->font();
-	font.setPointSize(ui.txtMessage->fontPointSize());
-	QFont newFont = QFontDialog::getFont(&ok, font, this, tr("Select Font"));
-	if(ok)
-		setMessageFont(newFont);
-}
-
-void lmFormChat::btnFontColor_clicked(void) {
-	QColor color = QColorDialog::getColor(messageColor, this, tr("Select Color"));
-	if(color.isValid()) {
-		messageColor = color;
-		ui.txtMessage->setStyleSheet("QTextEdit {color: " + messageColor.name() + ";}");
-	}
-}
-
 void lmFormChat::btnFile_clicked(void) {
 	QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString fileName = QFileDialog::getOpenFileName(this, QString(), dir);
@@ -498,9 +481,6 @@ void lmFormChat::createToolBar(void) {
 	pLeftBar->setIconSize(QSize(16, 16));
 	ui.toolBarLayout->addWidget(pLeftBar);
 
-    pFontAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Font,16)), "Change Font...", this, SLOT(btnFont_clicked()));
-    pFontColorAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::FontColor,16)), "Change Color...", this, SLOT(btnFontColor_clicked()));
-
 	pLeftBar->addSeparator();
 
 	pbtnSmiley = new lmToolButton(pLeftBar);
@@ -567,7 +547,8 @@ void lmFormChat::btnVideo_clicked() {
     xml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
     xml.addData(XN_STREAMID, streamId);
 
-    appendMessageLog(MT_Video, &localId, &localName, &xml);
+    QString pName = peerNames.value(peerId);
+    appendMessageLog(MT_Video, &localId, &pName, &xml);
 
     xml.removeData(XN_STREAMMODE);
     xml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
@@ -584,7 +565,8 @@ void lmFormChat::btnAudio_clicked() {
     xml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
     xml.addData(XN_STREAMID, streamId);
 
-    appendMessageLog(MT_Audio, &localId, &localName, &xml);
+    QString pName = peerNames.value(peerId);
+    appendMessageLog(MT_Audio, &localId, &pName, &xml);
 
     xml.removeData(XN_STREAMMODE);
     xml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
@@ -671,10 +653,6 @@ void lmFormChat::setUIText(void) {
 	pSaveAction->setToolTip(tr("Save this conversation"));
 	pHistoryAction->setToolTip(tr("View History"));
 	pTransferAction->setToolTip(tr("View File Transfers"));
-	pFontAction->setText(tr("Change Font..."));
-	pFontAction->setToolTip(tr("Change message font"));
-	pFontColorAction->setText(tr("Change Color..."));
-	pFontColorAction->setToolTip(tr("Change message text color"));
 
 	showStatus(IT_Ok, true);	//	this will force the info label to retranslate
 }

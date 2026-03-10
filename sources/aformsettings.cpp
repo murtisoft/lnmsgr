@@ -55,7 +55,6 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
 	connect(ui.chkSound, SIGNAL(toggled(bool)), this, SLOT(chkSound_toggled(bool)));
 	connect(ui.chkAutoShowFile, SIGNAL(toggled(bool)), this, SLOT(chkAutoShowFile_toggled(bool)));
 	connect(ui.btnFont, SIGNAL(clicked()), this, SLOT(btnFont_clicked()));
-	connect(ui.btnColor, SIGNAL(clicked()), this, SLOT(btnColor_clicked()));
 	connect(ui.btnReset, SIGNAL(clicked()), this, SLOT(btnReset_clicked()));
 	connect(ui.cboTheme, SIGNAL(currentIndexChanged(int)), this, SLOT(cboTheme_currentIndexChanged(int)));
 	connect(ui.lvBroadcasts, SIGNAL(currentRowChanged(int)), this, SLOT(lvBroadcasts_currentRowChanged(int)));
@@ -285,12 +284,6 @@ void lmFormSettings::btnFont_clicked(void) {
 	QFont newFont = QFontDialog::getFont(&ok, font, this, tr("Select Font"));
 	if(ok)
 		font = newFont;
-}
-
-void lmFormSettings::btnColor_clicked(void) {
-	QColor newColor = QColorDialog::getColor(color, this, tr("Select Color"));
-	if(newColor.isValid())
-		color = newColor;
 }
 
 void lmFormSettings::btnReset_clicked(void) {

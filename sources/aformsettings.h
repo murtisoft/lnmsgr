@@ -78,7 +78,6 @@ private slots:
 	void chkAutoShowFile_toggled(bool checked);
 	void btnViewFiles_clicked(void);
 	void btnFont_clicked(void);
-	void btnColor_clicked(void);
 	void btnReset_clicked(void);
 	void cboTheme_currentIndexChanged(int index);
 	void lvBroadcasts_currentRowChanged(int index);
@@ -102,7 +101,7 @@ private:
 	lmSettings* pSettings;
 	int fontSize;
 	QFont font;
-	QColor color;
+    QColor color;
 	QIntValidator* pPortValidator;
 	QRegularExpression ipRegExp;
     QRegularExpressionValidator* pIpValidator;

@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>7</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -745,30 +745,6 @@
               </item>
               <item>
                <spacer name="horizontalSpacer_6">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_9">
-              <item>
-               <widget class="QPushButton" name="btnColor">
-                <property name="text">
-                 <string>Change Color...</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_7">
                 <property name="orientation">
                  <enum>Qt::Orientation::Horizontal</enum>
                 </property>
@@ -2460,7 +2436,6 @@
   <tabstop>chkTrimMessage</tabstop>
   <tabstop>chkClearOnClose</tabstop>
   <tabstop>btnFont</tabstop>
-  <tabstop>btnColor</tabstop>
   <tabstop>cboFontSize</tabstop>
   <tabstop>chkHistory</tabstop>
   <tabstop>btnClearHistory</tabstop>

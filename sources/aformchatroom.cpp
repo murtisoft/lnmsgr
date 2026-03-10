@@ -459,23 +459,6 @@ void lmFormChatRoom::userInfoAction_triggered(void) {
 	emit messageSent(MT_Query, &userId, &xmlMessage);
 }
 
-void lmFormChatRoom::btnFont_clicked(void) {
-	bool ok;
-	QFont font = ui.txtMessage->font();
-	font.setPointSize(ui.txtMessage->fontPointSize());
-	QFont newFont = QFontDialog::getFont(&ok, font, this, tr("Select Font"));
-	if(ok)
-		setMessageFont(newFont);
-}
-
-void lmFormChatRoom::btnFontColor_clicked(void) {
-	QColor color = QColorDialog::getColor(messageColor, this, tr("Select Color"));
-	if(color.isValid()) {
-		messageColor = color;
-		ui.txtMessage->setStyleSheet("QTextEdit {color: " + messageColor.name() + ";}");
-	}
-}
-
 void lmFormChatRoom::btnSave_clicked(void) {
 	QString dir = pSettings->value(IDS_SAVEPATH, IDS_SAVEPATH_VAL).toString();
 	QString fileName = QFileDialog::getSaveFileName(this, tr("Save Conversation"), dir,
@@ -578,11 +561,6 @@ void lmFormChatRoom::createToolBar(void) {
 	pLeftBar->setIconSize(QSize(16, 16));
 	ui.toolBarLayout->addWidget(pLeftBar);
 
-    pFontAction = pLeftBar->addAction(ChatHelper::renderEmoji(Icons::Font,16), "Change Font...",
-									  this, SLOT(btnFont_clicked()));
-    pFontColorAction = pLeftBar->addAction(ChatHelper::renderEmoji(Icons::FontColor,16), "Change Color...",
-										   this, SLOT(btnFontColor_clicked()));
-
 	pLeftBar->addSeparator();
 
 	pbtnSmiley = new lmToolButton(pLeftBar);
@@ -630,10 +608,6 @@ void lmFormChatRoom::setUIText(void) {
 	pbtnSmiley->setToolTip(tr("Insert Smiley"));
 	pSaveAction->setText(tr("&Save As..."));
 	pSaveAction->setToolTip(tr("Save this conversation"));
-	pFontAction->setText(tr("Change Font..."));
-	pFontAction->setToolTip(tr("Change message font"));
-	pFontColorAction->setText(tr("Change Color..."));
-	pFontColorAction->setToolTip(tr("Change message text color"));
 
 	if(groupMode) {
 		addContactAction->setText(tr("&Add Contacts..."));

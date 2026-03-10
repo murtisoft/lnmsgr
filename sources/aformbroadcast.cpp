@@ -178,18 +178,9 @@ void lmFormBroadcast::closeEvent(QCloseEvent* pEvent) {
 	QWidget::closeEvent(pEvent);
 }
 
-//	change the font size of the text box with toolbar button
-void lmFormBroadcast::btnFontSize_clicked(void) {
-	fontSizeVal = (fontSizeVal == FS_COUNT - 1) ? 0 : fontSizeVal + 1;
-	pFontGroup->actions()[fontSizeVal]->setChecked(true);
-	pbtnFontSize->setText(lmStrings::fontSize()[fontSizeVal]);
-	ui.txtMessage->setStyleSheet("QTextEdit { " + fontStyle[fontSizeVal] + " }");
-}
-
 //	change the font size of text box through menu
 void lmFormBroadcast::fontAction_triggered(QAction* action) {
 	fontSizeVal = action->data().toInt();
-	pbtnFontSize->setText(lmStrings::fontSize()[fontSizeVal]);
 	ui.txtMessage->setStyleSheet("QTextEdit { " + fontStyle[fontSizeVal] + " }");
 }
 
@@ -273,18 +264,11 @@ void lmFormBroadcast::createToolBar(void) {
 		pFontMenu->addAction(pAction);
 	}
 
-	//	create the font tool button
-	pbtnFontSize = new QToolButton(pToolBar);
-	pbtnFontSize->setToolButtonStyle(Qt::ToolButtonTextOnly);
-	pbtnFontSize->setPopupMode(QToolButton::MenuButtonPopup);
-	pbtnFontSize->setMenu(pFontMenu);
-	connect(pbtnFontSize, SIGNAL(clicked()), this, SLOT(btnFontSize_clicked()));
-	pToolBar->addWidget(pbtnFontSize);
-
 	//	create the smiley menu
     lmImagePickerAction* pSmileyAction = new lmImagePickerAction(this, smileyEmoji, SM_COUNT, 19, 10, &nSmiley);
 	connect(pSmileyAction, SIGNAL(triggered()), this, SLOT(smileyAction_triggered()));
 
+    pToolBar->addSeparator();
 	QMenu* pSmileyMenu = new QMenu(this);
 	pSmileyMenu->addAction(pSmileyAction);
 
@@ -301,8 +285,6 @@ void lmFormBroadcast::setUIText(void) {
 
 	setWindowTitle(tr("Send Broadcast Message"));
 
-	pbtnFontSize->setText(lmStrings::fontSize()[fontSizeVal]);
-	pbtnFontSize->setToolTip(tr("Change Font Size"));
 	pbtnSmiley->setToolTip(tr("Insert Smiley"));
 
 	for(int index = 0; index < pFontGroup->actions().count(); index++)

@@ -731,8 +731,8 @@ QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserNa
         if(streamMode == SM_Out) {
 
         //"Requesting audio/video call from user"
-        caption = tr("Requesting %1 call from user.");
-        html.replace("%sender%", caption.arg(streamType));
+        caption = tr("Requesting %1 call from %2.");
+        html.replace("%sender%", caption.arg(streamType, *lpszUserName));
         html.replace("%message%", "");
 
         switch(streamOp) {
@@ -757,8 +757,8 @@ QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserNa
 
     }else{
             //"User is requesting audio/video call"
-            caption = tr("User is requesting %1 call.");
-            html.replace("%sender%", caption.arg(streamType));
+            caption = tr("%1 is requesting %2 call.");
+            html.replace("%sender%", caption.arg(*lpszUserName, streamType));
             html.replace("%message%", "");
 
             switch(streamOp) {
@@ -882,10 +882,19 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
 		case FO_Decline:
         case FO_Error:
         case FO_Abort:
-        case FO_Complete:
-			szStatus = getFileStatusMessage(FM_Receive, fileOp);
+            szStatus = getFileStatusMessage(FM_Receive, fileOp);
             html.replace("%links%", szStatus);
-			break;
+            break;
+        case FO_Complete:
+        {
+            QString filePath = pMessage->data(XN_FILEPATH);
+            QString folderPath = QFileInfo(filePath).dir().absolutePath();
+            html.replace("%links%",
+                         tr("Completed.") + "&nbsp;&nbsp;" +
+                             "<a href='file://" + filePath + "'>" + tr("Open") + "</a>&nbsp;&nbsp;" +  //TODO
+                             "<a href='file://" + folderPath + "'>" + tr("Show in Folder") + "</a>");
+            break;
+        }
 		default:
             html = QString();
         }

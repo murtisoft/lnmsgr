@@ -23,8 +23,7 @@ endif()
 #colorschemes are a complete mess. Manually set fonts and color palettes causing problems with those.
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
-#Font size settings in settings dialog are local only, and dont even affect public chat for some reason. Maybe i should remove those ancient buttons?
-#There should be links to open or show in folder after a file transfer. Not just "Completed."
+#There should be links to open or show in folder after a file transfer. Not just "Completed." + File status can change after completion for some reason.
 #Link / path handling needs to be fixed and expanded.
 #Chat window pops up in the monitor where the cursor is, not where it was last left.
 #   New chatroom does the same, public chat works as expected, though.
