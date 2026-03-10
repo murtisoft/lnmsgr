@@ -20,7 +20,7 @@ endif()
 #Sending a file or folder to an offline appearing client works. (lol)
 #Sending a file or folder to an actually offline client waits for confirmation, but crashes upon canceling.
 #there seems to be more connection issues if a client's username includes unicode characters like "ü".
-#colorschemes need fixing. text coloring might lag behind or even be wrong outright.
+#colorschemes need more attention.
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
 #There should be links to open or show in folder after a file transfer. Not just "Completed." + File status can change after completion for some reason.

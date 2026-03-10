@@ -62,30 +62,16 @@ void lmLabel::setElidedText(void) {
 }
 
 lmLineEdit::lmLineEdit(QWidget* parent) : QLineEdit(parent) {
-	QPalette p = QApplication::palette();
-	p.setColor(QPalette::Base, p.color(QPalette::Window));
-    p.setColor(QPalette::Text, GRAY_TEXT_COLOR);
-	setPalette(p);
 }
 
 void lmLineEdit::focusInEvent(QFocusEvent* event) {
 	QLineEdit::focusInEvent(event);
 
 	setSelection(0, text().length());
-
-	QPalette p = QApplication::palette();
-	p.setColor(QPalette::Base, p.color(QPalette::Base));
-	p.setColor(QPalette::Text, p.color(QPalette::Text));
-	setPalette(p);
 }
 
 void lmLineEdit::focusOutEvent(QFocusEvent* event) {
 	QLineEdit::focusOutEvent(event);
-
-	QPalette p = QApplication::palette();
-	p.setColor(QPalette::Base, p.color(QPalette::Window));
-    p.setColor(QPalette::Text, GRAY_TEXT_COLOR);
-	setPalette(p);
 
 	emit lostFocus();
 }
