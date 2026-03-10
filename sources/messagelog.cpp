@@ -97,7 +97,6 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 	QString caption;
 	QDateTime time;
 	QFont font;
-	QColor color;
 	QString fontStyle;
 	QString id = QString();
 	bool addToLog = true;
@@ -109,8 +108,7 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 		time.setMSecsSinceEpoch(pMessage->header(XN_TIME).toLongLong());
 		message = pMessage->data(XN_MESSAGE);
 		font.fromString(pMessage->data(XN_FONT));
-		color = QColor::fromString(pMessage->data(XN_COLOR));
-		appendMessage(lpszUserId, lpszUserName, &message, &time, &font, &color);
+        appendMessage(lpszUserId, lpszUserName, &message, &time, &font);
 		lastId = *lpszUserId;
 		break;
 	case MT_PublicMessage:
@@ -118,8 +116,7 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 		time.setMSecsSinceEpoch(pMessage->header(XN_TIME).toLongLong());
 		message = pMessage->data(XN_MESSAGE);
 		font.fromString(pMessage->data(XN_FONT));
-		color = QColor::fromString(pMessage->data(XN_COLOR));
-        appendPublicMessage(lpszUserId, lpszUserName, &message, &time, &font, &color, type);
+        appendPublicMessage(lpszUserId, lpszUserName, &message, &time, &font, type);
 		lastId = *lpszUserId;
 		break;
 	case MT_Broadcast:
@@ -143,10 +140,9 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
 	case MT_Failed:
 		message = pMessage->data(XN_MESSAGE);
 		font.fromString(pMessage->data(XN_FONT));
-		color = QColor::fromString(pMessage->data(XN_COLOR));
         html = templates.sysMsg;
 		caption = tr("This message was not delivered to %1:");
-		fontStyle = getFontStyle(&font, &color, true);
+        fontStyle = getFontStyle(&font, true);
 		decodeMessage(&message);
         html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Alert+"</span>");
 		html.replace("%sender%", caption.arg(*lpszUserName));
@@ -585,13 +581,13 @@ void lmMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, Q
 }
 
 void lmMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
-								  QFont* pFont, QColor* pColor) {
+                                  QFont* pFont) {
 	QString html = QString();
 	bool localUser = (lpszUserId->compare(localId) == 0);
 
 	decodeMessage(lpszMessage);
 
-	QString fontStyle = getFontStyle(pFont, pColor, localUser);
+    QString fontStyle = getFontStyle(pFont, localUser);
 
 	if(lpszUserId->compare(lastId) != 0) {
         html = localUser ? templates.inMsg : templates.inMsg;
@@ -638,13 +634,13 @@ void lmMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QSt
 }
 
 void lmMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage,
-                                        QDateTime *pTime, QFont *pFont, QColor *pColor, MessageType messageType) {
+                                        QDateTime *pTime, QFont *pFont, MessageType messageType) {
 	QString html = QString();
 	bool localUser = (lpszUserId->compare(localId) == 0);
 
 	decodeMessage(lpszMessage);
 
-	QString fontStyle = getFontStyle(pFont, pColor, localUser);
+    QString fontStyle = getFontStyle(pFont, localUser);
 
 	if(lpszUserId->compare(lastId) != 0) {
 		outStyle = !outStyle;
@@ -903,7 +899,7 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
     return html;
 }
 
-QString lmMessageLog::getFontStyle(QFont* pFont, QColor* pColor, bool size) {
+QString lmMessageLog::getFontStyle(QFont* pFont, bool size) {
 	QString style = "font-family:\"" + pFont->family() + "\"; ";
 	if(pFont->italic())
 		style.append("font-style:italic; ");
@@ -912,7 +908,6 @@ QString lmMessageLog::getFontStyle(QFont* pFont, QColor* pColor, bool size) {
 
 	if(size) {
 		style.append("font-size:" + QString::number(pFont->pointSize()) + "pt; ");
-		style.append("color:" + pColor->name() + "; ");
 	}
 	else
 		style.append(fontStyle[fontSizeVal] + " ");

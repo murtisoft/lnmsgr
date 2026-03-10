@@ -29,7 +29,6 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QFontDialog>
-#include <QColorDialog>
 #include <QFile>
 #include <QTextStream>
 #include <qevent.h>
@@ -144,7 +143,6 @@ private:
 	bool sendKeyMod;
     bool clearOnClose;
 	lmSoundPlayer* pSoundPlayer;
-	QColor messageColor;
 	ChatState chatState;
 	qint64 keyStroke;
 	qint64 snapKeyStroke;

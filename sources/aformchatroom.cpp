@@ -119,13 +119,6 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
 	pMessageLog->trimMessage = pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool();
 	QFont font = QApplication::font();
 	font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
-	messageColor = QApplication::palette().text().color();
-	QString colorStr = pSettings->value(IDS_COLOR, IDS_COLOR_VAL).toString();
-    QColor parsedColor = QColor::fromString(colorStr);
-    if (parsedColor.isValid())
-        messageColor = parsedColor;
-    else
-    messageColor = QColor(Qt::black); // or any fallback color you prefer
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 
 	if(!groupMode) {
@@ -137,7 +130,6 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
 	setUIText();
 
 	setMessageFont(font);
-	ui.txtMessage->setStyleSheet("QTextEdit {color: " + messageColor.name() + ";}");
 	ui.txtMessage->setFocus();
 
     pMessageLog->initMessageLog();
@@ -635,7 +627,6 @@ void lmFormChatRoom::sendMessage(void) {
 		MessageXml xmlMessage;
         xmlMessage.addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
 		xmlMessage.addData(XN_FONT, font.toString());
-		xmlMessage.addData(XN_COLOR, messageColor.name());
 		xmlMessage.addData(XN_MESSAGE, szMessage);
 		if(groupMode) {
 			xmlMessage.addData(XN_THREAD, threadId);

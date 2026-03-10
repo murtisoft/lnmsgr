@@ -97,12 +97,12 @@ private:
     bool isSameBlock(QTextCursor& cursor, MessageType type, QString& id) const;
 	void appendBroadcast(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime);
 	void appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
-		QFont* pFont, QColor* pColor);
+        QFont* pFont );
 	void appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
-        QFont* pFont, QColor* pColor, MessageType messageType);
+        QFont* pFont, MessageType messageType);
     QString getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
     QString getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
-    QString getFontStyle(QFont* pFont, QColor* pColor, bool size = false);
+    QString getFontStyle(QFont* pFont,  bool size = false);
 	QString getFileStatusMessage(FileMode mode, FileOp op);
 	QString getChatStateMessage(ChatState chatState);
 	QString getChatRoomMessage(GroupMsgOp op);

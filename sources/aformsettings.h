@@ -33,7 +33,6 @@
 #include <QListWidget>
 #include <QFileDialog>
 #include <QFontDialog>
-#include <QColorDialog>
 #include <QDesktopServices>
 #include "ui_aformsettings.h"
 #include "shared.h"
@@ -101,7 +100,6 @@ private:
 	lmSettings* pSettings;
 	int fontSize;
 	QFont font;
-    QColor color;
 	QIntValidator* pPortValidator;
 	QRegularExpression ipRegExp;
     QRegularExpressionValidator* pIpValidator;

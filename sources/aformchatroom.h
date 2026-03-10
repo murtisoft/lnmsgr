@@ -29,7 +29,6 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QFontDialog>
-#include <QColorDialog>
 #include <QFile>
 #include <QTextStream>
 #include <qevent.h>
@@ -131,7 +130,6 @@ private:
 	bool showSmiley;
 	bool sendKeyMod;
 	lmSoundPlayer* pSoundPlayer;
-	QColor messageColor;
 	bool dataSaved;
 	bool windowLoaded;
 };

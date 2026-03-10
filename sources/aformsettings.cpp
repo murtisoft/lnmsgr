@@ -123,7 +123,6 @@ void lmFormSettings::init(void) {
 
     fontSize = 0;
     font = QApplication::font();
-    color = QApplication::palette().text().color();
 	ui.lvCategories->setCurrentRow(0);
 
 	setWindowIcon(QIcon(IDR_APPICON));
@@ -190,7 +189,6 @@ void lmFormSettings::timerEvent(QTimerEvent *event)
         MessageXml msg;
         msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         msg.addData(XN_FONT, QFont().toString());
-        msg.addData(XN_COLOR, QColor::fromRgb(96, 96, 96).name());
         QString userId = "Jack";
         QString userName = "Jack";
         msg.removeData(XN_MESSAGE);
@@ -309,7 +307,6 @@ void lmFormSettings::cboTheme_currentIndexChanged(int index) {
 	MessageXml msg;
 	msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
 	msg.addData(XN_FONT, QFont().toString());
-	msg.addData(XN_COLOR, QColor::fromRgb(96, 96, 96).name());
 
 	QString userId = "Jack";
 	QString userName = "Jack";
@@ -540,7 +537,6 @@ void lmFormSettings::loadSettings(void) {
 	ui.chkTrimMessage->setChecked(pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool());
     ui.chkClearOnClose->setChecked(pSettings->value(IDS_CLEARONCLOSE, IDS_CLEARONCLOSE_VAL).toBool());
 	font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
-    color = QColor::fromString(pSettings->value(IDS_COLOR, IDS_COLOR_VAL).toString());
 	fontSize = pSettings->value(IDS_FONTSIZE, IDS_FONTSIZE_VAL).toInt();
 	fontSize = qMin(FS_LARGE, qMax(FS_SMALL, fontSize));
 	ui.cboFontSize->setCurrentIndex(fontSize);
@@ -653,7 +649,6 @@ void lmFormSettings::saveSettings(void) {
 	pSettings->setValue(IDS_TRIMMESSAGE, ui.chkTrimMessage->isChecked(), IDS_TRIMMESSAGE_VAL);
     pSettings->setValue(IDS_CLEARONCLOSE, ui.chkClearOnClose->isChecked(), IDS_CLEARONCLOSE_VAL);
 	pSettings->setValue(IDS_FONT, font.toString(), IDS_FONT_VAL);
-    pSettings->setValue(IDS_COLOR, color.name(), IDS_COLOR_VAL);
 	pSettings->setValue(IDS_FONTSIZE, ui.cboFontSize->currentIndex(), IDS_FONTSIZE_VAL);
 
 	pSettings->setValue(IDS_HISTORY, ui.chkHistory->isChecked(), IDS_HISTORY_VAL);
