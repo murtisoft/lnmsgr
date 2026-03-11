@@ -23,7 +23,6 @@ endif()
 #colorschemes need more attention.
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
-#File status can change after completion for some reason.
 #Link / path handling needs to be fixed and expanded.
 #Broadcasts arent logged. Chat History needs a complete replacement.
 #Remove chat groups, instead add roles, set by peers themselves, which will act like global grouping.

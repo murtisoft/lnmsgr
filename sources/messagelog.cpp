@@ -228,6 +228,10 @@ void lmMessageLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
 		SingleMessage msg = messageLog.at(index);
 		if(tempId.compare(msg.id) == 0) {
 			MessageXml xmlMessage = msg.message;
+
+            FileOp current = (FileOp)Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
+            if(current == FO_Complete) break;   //Dont downgrade status if op is complete
+
 			xmlMessage.removeData(XN_FILEOP);
 			xmlMessage.addData(XN_FILEOP, FileOpNames[op]);
 			msg.message = xmlMessage;
