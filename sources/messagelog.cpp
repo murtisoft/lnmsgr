@@ -402,7 +402,7 @@ void lmMessageLog::onAnchorClicked(const QUrl &url)
     if(linkPath.startsWith("file")) {
         linkPath = linkPath.mid(5);
         if(linkPath.startsWith("//")) {   // proper file:// URL, open directly
-            QDesktopServices::openUrl(QUrl(linkPath));
+            QDesktopServices::openUrl(QUrl("file:" + linkPath));
         } else {                          // UNC network path hack
             QDesktopServices::openUrl(QUrl(QDir::toNativeSeparators(linkPath)));
         }
@@ -885,11 +885,12 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
             break;
         case FO_Complete:
         {
+            szStatus = getFileStatusMessage(FM_Receive, fileOp);
             QString fileName = pMessage->data(XN_FILENAME);
             QString filePath = QDir(DefinitionsDir::fileStorageDir()).absoluteFilePath(fileName);
             QString folderPath = DefinitionsDir::fileStorageDir();
             html.replace("%links%",
-                         tr("Completed.") + "&nbsp;&nbsp;" +
+                         szStatus + "&nbsp;&nbsp;" +
                              "<a href='" + QUrl::fromLocalFile(filePath).toString() + "'>" + tr("Open") + "</a>&nbsp;&nbsp;" +
                              "<a href='" + QUrl::fromLocalFile(folderPath).toString() + "'>" + tr("Show in Folder") + "</a>");
             break;
