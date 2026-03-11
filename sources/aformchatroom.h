@@ -79,6 +79,7 @@ protected:
 	void closeEvent(QCloseEvent* pEvent);
 
 private slots:
+    void btnSend_clicked(void);
 	void userConversationAction_triggered(void);
 	void userFileAction_triggered(void);
 	void userInfoAction_triggered(void);

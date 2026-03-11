@@ -81,6 +81,7 @@ protected:
 	void dropEvent(QDropEvent* pEvent);
 
 private slots:
+    void btnSend_clicked(void);
 	void btnFile_clicked(void);
     void btnFolder_clicked(void);
 	void btnSave_clicked(void);

@@ -39,6 +39,7 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
     pMessageLog->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);  // Always on scrollbar fixes the "redraw while scrollbar activated" crash.
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);
+    connect(ui.btnSend, SIGNAL(clicked()), this, SLOT(btnSend_clicked()));
 	connect(pMessageLog, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
 			this, SLOT(log_sendMessage(MessageType,QString*,MessageXml*)));
 
@@ -384,6 +385,12 @@ void lmFormChat::dropEvent(QDropEvent* pEvent) {
         else if(fileInfo.isDir())
             sendFolder(&path);
     }
+}
+
+void lmFormChat::btnSend_clicked(void) {
+    sendMessage();
+    setChatState(CS_Active);
+    ui.txtMessage->setFocus();
 }
 
 void lmFormChat::btnFile_clicked(void) {

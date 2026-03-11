@@ -39,6 +39,7 @@ lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
     pMessageLog->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);  // Always on scrollbar fixes the "redraw while scrollbar activated" crash.
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);
+    connect(ui.btnSend, SIGNAL(clicked()), this, SLOT(btnSend_clicked()));
 	connect(pMessageLog, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
 			this, SLOT(log_sendMessage(MessageType,QString*,MessageXml*)));
 
@@ -449,6 +450,11 @@ void lmFormChatRoom::userInfoAction_triggered(void) {
 	MessageXml xmlMessage;
 	xmlMessage.addData(XN_QUERYOP, QueryOpNames[QO_Get]);
 	emit messageSent(MT_Query, &userId, &xmlMessage);
+}
+
+void lmFormChatRoom::btnSend_clicked(void) {
+    sendMessage();
+    ui.txtMessage->setFocus();
 }
 
 void lmFormChatRoom::btnSave_clicked(void) {
