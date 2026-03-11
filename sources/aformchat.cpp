@@ -205,6 +205,7 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 			statusType[statusIndex] == StatusTypeBusy ? showStatus(IT_Busy, true) : showStatus(IT_Busy, false);
 			statusType[statusIndex] == StatusTypeAway ? showStatus(IT_Away, true) : showStatus(IT_Away, false);
 			peerStatuses.insert(senderId, data);
+            updateButtonStates();
 		}
 		break;
     case MT_Avatar:
@@ -262,6 +263,22 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 	}
 }
 
+void lmFormChat::updateButtonStates() {
+    QString currentStatus = peerStatuses.value(peerId);
+    int statusIndex = Helper::statusIndexFromCode(currentStatus);
+
+    bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
+
+    this->setAcceptDrops(isOnline && (peerCaps.value(peerId) & UC_File));
+
+    ui.btnSend->setEnabled(isOnline && bConnected);
+    pFileAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_File));
+    pFolderAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Folder));
+    pNudgeAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Nudge));
+    pAudioAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Audio));
+    pVideoAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Video));
+}
+
 void lmFormChat::connectionStateChanged(bool connected) {
 	bConnected = connected;
 	bConnected ? showStatus(IT_Disconnected, false) : showStatus(IT_Disconnected, true);
@@ -302,6 +319,13 @@ bool lmFormChat::eventFilter(QObject* pObject, QEvent* pEvent) {
         QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
         if(pObject == ui.txtMessage) {
             if(pKeyEvent->key() == Qt::Key_Return || pKeyEvent->key() == Qt::Key_Enter) {
+
+                QString currentStatus = peerStatuses.value(peerId);
+                int statusIndex = Helper::statusIndexFromCode(currentStatus);
+                bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
+                if(!isOnline || !bConnected)
+                    return true;             //Ignore key event if the peer is offline.
+
                 bool keyMod = ((pKeyEvent->modifiers() & Qt::ControlModifier) == Qt::ControlModifier);
                 if(keyMod == sendKeyMod) {
                     sendMessage();
@@ -403,6 +427,13 @@ void lmFormChat::btnFile_clicked(void) {
 	QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString fileName = QFileDialog::getOpenFileName(this, QString(), dir);
 	if(!fileName.isEmpty()) {
+        QString currentStatus = peerStatuses.value(peerId);
+        int statusIndex = Helper::statusIndexFromCode(currentStatus);
+        bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
+
+        if(!isOnline || !bConnected) {
+            return; // Abort silently
+        }
 		pSettings->setValue(IDS_OPENPATH, QFileInfo(fileName).dir().absolutePath());
 		sendFile(&fileName);
 	}
@@ -412,6 +443,13 @@ void lmFormChat::btnFolder_clicked(void) {
     QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString path = QFileDialog::getExistingDirectory(this, QString(), dir, QFileDialog::ShowDirsOnly);
     if(!path.isEmpty()) {
+        QString currentStatus = peerStatuses.value(peerId);
+        int statusIndex = Helper::statusIndexFromCode(currentStatus);
+        bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
+
+        if(!isOnline || !bConnected) {
+            return; // Abort silently
+        }
         pSettings->setValue(IDS_OPENPATH, QFileInfo(path).absolutePath());
         sendFolder(&path);
     }
@@ -604,7 +642,7 @@ void lmFormChat::nudge(bool send) {
 
     connect(pAnim, &QPropertyAnimation::finished, this, [this]() {
         QTimer::singleShot(5000, this, [this]() {  //5 second cooldown, so you cant drive your friends insane.
-            pNudgeAction->setEnabled(true);
+            updateButtonStates();
         });
     });
 

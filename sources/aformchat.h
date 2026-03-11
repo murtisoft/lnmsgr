@@ -112,6 +112,7 @@ private:
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
 	void setChatState(ChatState newChatState);
+    void updateButtonStates();
     void nudge(bool send = false);
 
 	QString peerId;
