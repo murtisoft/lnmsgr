@@ -119,6 +119,9 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 	pSoundPlayer = new lmSoundPlayer();
 
 	pSettings = new lmSettings();
+    restoreGeometry(pSettings->value(IDS_WINDOWCHAT).toByteArray());
+    ui.hSplitter->restoreState(pSettings->value(IDS_SPLITTERCHATH).toByteArray());
+    ui.vSplitter->restoreState(pSettings->value(IDS_SPLITTERCHATV).toByteArray());
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
 	pMessageLog->showSmiley = showSmiley;
 	pMessageLog->autoFile = pSettings->value(IDS_AUTOFILE, IDS_AUTOFILE_VAL).toBool();
@@ -157,6 +160,9 @@ void lmFormChat::stop(void) {
             pMessageLog->saveMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
         }
 	}
+    pSettings->setValue(IDS_WINDOWCHAT, saveGeometry());
+    pSettings->setValue(IDS_SPLITTERCHATH, ui.hSplitter->saveState());
+    pSettings->setValue(IDS_SPLITTERCHATV, ui.vSplitter->saveState());
 }
 
 void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {

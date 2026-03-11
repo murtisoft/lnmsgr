@@ -25,8 +25,6 @@ endif()
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
 #File status can change after completion for some reason.
 #Link / path handling needs to be fixed and expanded.
-#Chat window pops up in the monitor where the cursor is, not where it was last left.
-#   New chatroom does the same, public chat works as expected, though.
 #Broadcasts arent logged. Chat History needs a complete replacement.
 #Remove chat groups, instead add roles, set by peers themselves, which will act like global grouping.
 

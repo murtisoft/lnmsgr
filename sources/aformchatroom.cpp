@@ -122,11 +122,11 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
 	font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 
-	if(!groupMode) {
-		restoreGeometry(pSettings->value(IDS_WINDOWPUBLICCHAT).toByteArray());
-		ui.vSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATV).toByteArray());
-		ui.hSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATH).toByteArray());
-	}
+
+    restoreGeometry(pSettings->value(IDS_WINDOWPUBLICCHAT).toByteArray());
+    ui.vSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATV).toByteArray());
+    ui.hSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATH).toByteArray());
+
 
 	setUIText();
 
@@ -162,7 +162,7 @@ void lmFormChatRoom::stop(void) {
 		dataSaved = true;
 	}
 
-	if(!groupMode && windowLoaded) {
+    if(windowLoaded) {
 		pSettings->setValue(IDS_WINDOWPUBLICCHAT, saveGeometry());
 		pSettings->setValue(IDS_SPLITTERPUBLICCHATV, ui.vSplitter->saveState());
 		pSettings->setValue(IDS_SPLITTERPUBLICCHATH, ui.hSplitter->saveState());
