@@ -738,6 +738,12 @@ void lmFormMain::userFileAction_triggered(void) {
 	QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
 	QString fileName = QFileDialog::getOpenFileName(this, QString(), dir);
 	if(!fileName.isEmpty()) {
+        QTreeWidgetItem* pItem = getUserItem(&userId);
+        if(!pItem || !bConnected)
+            return;
+        int statusIndex = pItem->data(0, StatusRole).toInt();
+        if(statusType[statusIndex] == StatusTypeOffline)    //Abort silently
+            return;
 		pSettings->setValue(IDS_OPENPATH, QFileInfo(fileName).dir().absolutePath());
         sendMessage(MT_File, &userId, &fileName);
 	}
@@ -748,6 +754,12 @@ void lmFormMain::userFolderAction_triggered(void) {
     QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString path = QFileDialog::getExistingDirectory(this, QString(), dir, QFileDialog::ShowDirsOnly);
     if(!path.isEmpty()) {
+        QTreeWidgetItem* pItem = getUserItem(&userId);
+        if(!pItem || !bConnected)
+            return;
+        int statusIndex = pItem->data(0, StatusRole).toInt();
+        if(statusType[statusIndex] == StatusTypeOffline)    //Abort silently
+            return;
         pSettings->setValue(IDS_OPENPATH, QFileInfo(path).absolutePath());
         sendMessage(MT_Folder, &userId, &path);
     }

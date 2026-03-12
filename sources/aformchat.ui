@@ -216,6 +216,9 @@
               <height>0</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>Send</string>
+            </property>
             <property name="text">
              <string>&gt;</string>
             </property>
