@@ -251,13 +251,9 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
     case MT_Audio:
     case MT_Video:
         if(pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request]) {
-            //	a stream request has been received
             appendMessageLog(type, lpszUserId, &senderName, pMessage);
-            if(pMessage->data(XN_STREAMMODE) == StreamModeNames[SM_In] && (isHidden() || !isActiveWindow())) {
-                pSoundPlayer->play(SE_RingIn);}
         } else {
-            // a file message of op other than request has been received
-            processFileOp(pMessage);
+            processStreamOp(pMessage);
         }
         break;
 	default:
@@ -265,20 +261,26 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 	}
 }
 
+void lmFormChat::callPhaseChanged(bool busy) {
+    bCallBusy = busy;
+    updateButtonStates();
+}
+
 void lmFormChat::updateButtonStates() {
-    QString currentStatus = peerStatuses.value(peerId);
-    int statusIndex = Helper::statusIndexFromCode(currentStatus);
+    QString pStatus = peerStatuses.value(peerId);
+    int statusIndex = Helper::statusIndexFromCode(pStatus);
 
-    bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
+    bool peerOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
 
-    this->setAcceptDrops(isOnline && (peerCaps.value(peerId) & UC_File));
+    this->setAcceptDrops(peerOnline && (peerCaps.value(peerId) & UC_File));
 
-    ui.btnSend->setEnabled(isOnline && bConnected);
-    pFileAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_File));
-    pFolderAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Folder));
-    pNudgeAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Nudge));
-    pAudioAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Audio));
-    pVideoAction->setEnabled(isOnline && (peerCaps.value(peerId) & UC_Video));
+    ui.btnSend->setEnabled(peerOnline && bConnected);
+    pFileAction->setEnabled(peerOnline && (peerCaps.value(peerId) & UC_File));
+    pFolderAction->setEnabled(peerOnline && (peerCaps.value(peerId) & UC_Folder));
+    pNudgeAction->setEnabled(peerOnline && (peerCaps.value(peerId) & UC_Nudge));
+    pAudioAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Audio));
+    pVideoAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Video));
+    pHangUpAction->setEnabled(peerOnline && bCallBusy && (peerCaps.value(peerId) & UC_Video));;
 }
 
 void lmFormChat::connectionStateChanged(bool connected) {
@@ -557,18 +559,16 @@ void lmFormChat::createToolBar(void) {
 
     pLeftBar->addSeparator();
     pNudgeAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Nudge,16)), "Nudge", this, SLOT(btnNudge_clicked()));
-    bool nudgeCap = ((peerCaps.value(peerId) & UC_Nudge) == UC_Nudge);
-    pNudgeAction->setEnabled(nudgeCap);
 
     pLeftBar->addSeparator();
     pAudioAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Telephone,16)), "Voice Call", this, SLOT(btnAudio_clicked()));
-    bool audioCap = ((peerCaps.value(peerId) & UC_Audio) == UC_Audio);
-    pAudioAction->setEnabled(audioCap);
 
     pLeftBar->addSeparator();
     pVideoAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Camera,16)), "Video Call", this, SLOT(btnVideo_clicked()));
-    bool videoCap = ((peerCaps.value(peerId) & UC_Video) == UC_Video);
-    pVideoAction->setEnabled(videoCap);
+
+    pLeftBar->addSeparator();
+    pHangUpAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Close,12)), "Hang Up", this, SLOT(btnHangUp_clicked()));
+    updateButtonStates();
 
 	pRightBar = new QToolBar(ui.wgtToolBar);
 	pRightBar->setStyleSheet("QToolBar { border: 0px }");
@@ -588,40 +588,35 @@ void lmFormChat::createToolBar(void) {
 }
 
 void lmFormChat::btnVideo_clicked() {
-    if (!bConnected) return;
-
-    QString streamId = QString::number(QDateTime::currentMSecsSinceEpoch());
-
-    MessageXml xml;
-    xml.addData(XN_STREAMMODE, StreamModeNames[SM_Out]);
-    xml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
-    xml.addData(XN_STREAMID, streamId);
-
-    QString pName = peerNames.value(peerId);
-    appendMessageLog(MT_Video, &localId, &pName, &xml);
-
-    xml.removeData(XN_STREAMMODE);
-    xml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
-    emit messageSent(MT_Video, &peerId, &xml);   //TODO
+    startCall(MT_Video);
 };
 
 void lmFormChat::btnAudio_clicked() {
+    startCall(MT_Audio);
+}
+
+void lmFormChat::btnHangUp_clicked() {
+
+}
+
+void lmFormChat::startCall(MessageType type) {
     if (!bConnected) return;
-
+    emit callRequested(type);
     QString streamId = QString::number(QDateTime::currentMSecsSinceEpoch());
-
-    MessageXml xml;
-    xml.addData(XN_STREAMMODE, StreamModeNames[SM_Out]);
-    xml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
-    xml.addData(XN_STREAMID, streamId);
-
     QString pName = peerNames.value(peerId);
-    appendMessageLog(MT_Audio, &localId, &pName, &xml);
 
-    xml.removeData(XN_STREAMMODE);
-    xml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
-    emit messageSent(MT_Audio, &peerId, &xml);   //TODO
-};
+    MessageXml localXml;
+    localXml.addData(XN_STREAMID, streamId);
+    localXml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
+    localXml.addData(XN_STREAMMODE, StreamModeNames[SM_Out]);
+    appendMessageLog(type, &localId, &pName, &localXml);
+
+    MessageXml sendXml;
+    sendXml.addData(XN_STREAMID, streamId);
+    sendXml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
+    sendXml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
+    emit messageSent(type, &peerId, &sendXml);
+}
 
 void lmFormChat::btnNudge_clicked() {
     lmFormChat::nudge(true);
@@ -775,20 +770,22 @@ void lmFormChat::encodeMessage(QString* lpszMessage) {
 
 void lmFormChat::processStreamOp(MessageXml *pMessage) {
     int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
-    int streamMode = Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));
     QString streamId = pMessage->data(XN_STREAMID);
 
     switch(streamOp) {
-    case SO_Request:
     case SO_Accept:
+        emit callConnected();
+        break;
     case SO_Decline:
     case SO_Error:
     case SO_Abort:
-        updateStreamMessage((StreamMode)streamMode, (StreamOp)streamOp, streamId);
+        emit callEnded();
         break;
     default:
         break;
     }
+    updateStreamMessage(SM_Out, (StreamOp)streamOp, streamId);   //Update whichever exists. In/Out flipping gets confusing.
+    updateStreamMessage(SM_In, (StreamOp)streamOp, streamId);
 }
 
 void lmFormChat::processFileOp(MessageXml *pMessage) {

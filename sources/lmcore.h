@@ -51,9 +51,13 @@ public:
 	~lmCore(void);
 	void init(const QString& szCommandArgs);
 	bool start(void);
+    CallPhase callPhase = CP_Idle;
 
 public slots:
 	bool receiveAppMessage(const QString& szMessage);
+
+signals:
+    void callPhaseChanged(bool);
 
 private slots:
 	void exitApp(void);
@@ -77,6 +81,9 @@ private slots:
     void addContacts(QStringList *pExcludList);
 	void chatWindow_closed(QString* lpszUserId);
 	void chatRoomWindow_closed(QString* lpszThreadId);
+    void callRequested(MessageType type);
+    void callConnected();
+    void callEnded();
 
 private:
 	void stop(void);
@@ -99,6 +106,8 @@ private:
 	void showPublicChatWindow(bool show, bool alert = false, bool open = false);
     QStringList showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList);
 	void showPortConflictMessage(void);
+    void playLoopSound(SoundEvent event);
+    void stopLoopSound();
 
 	lmSettings*					pSettings;
 	QTimer*							pTimer;

@@ -316,8 +316,6 @@ void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMes
 	case MT_Version:
     case MT_File:
     case MT_Avatar:
-    case MT_Audio:
-    case MT_Video:
     case MT_Folder:
 		pMessaging->sendMessage(type, lpszUserId, pMessage);
 		break;
@@ -330,6 +328,17 @@ void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMes
 	case MT_Refresh:
 		pMessaging->update();
 		break;
+    case MT_Audio:
+    case MT_Video:
+        pMessaging->sendMessage(type, lpszUserId, pMessage);
+        {
+            int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
+            if(streamOp == SO_Abort || streamOp == SO_Decline)
+                callEnded();
+            else if(streamOp == SO_Accept)
+                callConnected();
+        }
+        break;
 	default:
 		break;
 	}
@@ -577,9 +586,53 @@ void lmCore::processMessage(MessageType type, QString* lpszUserId, MessageXml* p
 	}
 }
 
+void lmCore::callRequested(MessageType type) {
+    if (callPhase != CP_Idle) return; // busy
+    callPhase = CP_Calling;
+    emit callPhaseChanged(callPhase != CP_Idle);
+    pMainWindow->playLoopSound(SE_RingOut);
+    // TODO:  initiate stream
+}
+
+void lmCore::callConnected() {
+    callPhase = CP_Connected;
+    emit callPhaseChanged(callPhase != CP_Idle);
+    pMainWindow->stopLoopSound();
+    // TODO: stop dial/ring tone, start A/V stream
+}
+
+void lmCore::callEnded() {
+    callPhase = CP_Idle;
+    emit callPhaseChanged(callPhase != CP_Idle);
+    pMainWindow->stopLoopSound();
+    // TODO: stop any ringtone/dial tone
+}
+
 void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage) {
     int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
-
+    switch(streamOp) {
+    case SO_Request:
+        if(callPhase != CP_Idle) {
+            MessageXml xml;
+            xml.addData(XN_STREAMOP, StreamOpNames[SO_Decline]);
+            xml.addData(XN_STREAMID, pMessage->data(XN_STREAMID));
+            sendMessage(type, lpszUserId, &xml);
+            return;
+        }
+        callPhase = CP_Ringing;
+        emit callPhaseChanged(true);
+        break;
+    case SO_Accept:
+        callConnected();
+        break;
+    case SO_Decline:
+    case SO_Abort:
+    case SO_Error:
+        callEnded();
+        break;
+    default:
+        break;
+    }
     routeMessage(type, lpszUserId, pMessage);
 }
 
@@ -831,6 +884,14 @@ void lmCore::createChatWindow(QString* lpszUserId) {
 	connect(pChatWindow, SIGNAL(showTransfers()), this, SLOT(showTransfers()));
 	connect(pChatWindow, SIGNAL(closed(QString*)), this, SLOT(chatWindow_closed(QString*)));
 	pChatWindow->init(pLocalUser, pRemoteUser, pMessaging->isConnected());
+    connect(pChatWindow, SIGNAL(callRequested(MessageType)),
+            this, SLOT(callRequested(MessageType)));
+    connect(pChatWindow, SIGNAL(callEnded()),
+            this, SLOT(callEnded()));
+    connect(pChatWindow, SIGNAL(callConnected()),
+            this, SLOT(callConnected()));
+    connect(this, SIGNAL(callPhaseChanged(bool)),
+            pChatWindow, SLOT(callPhaseChanged(bool)));
 }
 
 void lmCore::showChatWindow(lmFormChat* chatWindow, bool show, bool alert) {

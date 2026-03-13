@@ -89,6 +89,7 @@ private slots:
     void onAnchorClicked(const QUrl &arg1);
 
 private:
+    void streamOperation(QString streamId, QString action, QString streamType);
 	void createContextMenu(void);
     void appendMessageLog(QString* lpszHtml, MessageType type, QTextBlockData *data = nullptr);
     void removeMessageLog(MessageType type);

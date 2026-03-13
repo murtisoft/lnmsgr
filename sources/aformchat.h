@@ -72,6 +72,9 @@ signals:
 	void showHistory(void);
 	void showTransfers(void);
 	void closed(QString* lpszUserId);
+    void callRequested(MessageType type);
+    void callConnected();
+    void callEnded();
 
 protected:
 	bool eventFilter(QObject* pObject, QEvent* pEvent);
@@ -93,6 +96,9 @@ private slots:
     void btnNudge_clicked();
     void btnAudio_clicked();
     void btnVideo_clicked();
+    void btnHangUp_clicked();
+    void startCall(MessageType type);
+    void callPhaseChanged(bool busy);
 
 private:
 	void createSmileyMenu(void);
@@ -133,6 +139,7 @@ private:
     QAction* pNudgeAction;
     QAction* pAudioAction;
     QAction* pVideoAction;
+    QAction* pHangUpAction;
 	QToolBar* pRightBar;
 	QAction* pHistoryAction;
 	QAction* pTransferAction;
@@ -149,6 +156,7 @@ private:
 	qint64 keyStroke;
 	qint64 snapKeyStroke;
 	bool dataSaved;
+    bool bCallBusy = false;
 };
 
 #endif // AFORMCHAT_H

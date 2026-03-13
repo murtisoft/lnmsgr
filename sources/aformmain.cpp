@@ -312,6 +312,13 @@ void lmFormMain::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 	}
 }
 
+void lmFormMain::playLoopSound(SoundEvent event) {
+    pSoundPlayer->playLoop(event);
+}
+void lmFormMain::stopLoopSound() {
+    pSoundPlayer->stopLoop();
+}
+
 void lmFormMain::connectionStateChanged(bool connected) {
 	if(connected)
 		showTrayMessage(TM_Connection, tr("You are online."));

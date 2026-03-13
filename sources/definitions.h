@@ -212,6 +212,14 @@ enum UserCap {  //Capabilities
     UC_Max = 0xFFFFFFFF,
 };
 
+enum CallPhase {
+    CP_Idle,
+    CP_Ringing,
+    CP_Calling,
+    CP_Connected,
+    CP_Max
+};
+
 #define GRP_DEFAULT		"General"
 #define GRP_DEFAULT_ID	"1CD75C10048C4E65F6082539A32DC111"
 

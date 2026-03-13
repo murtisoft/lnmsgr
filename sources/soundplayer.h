@@ -25,6 +25,7 @@
 
 #include "definitionsui.h"
 #include "settings.h"
+#include <qsoundeffect.h>
 
 class lmSoundPlayer {
 public:
@@ -34,6 +35,8 @@ public:
     static void play(const QString &filename);
     void play(SoundEvent event);
 	void settingsChanged(void);
+    void playLoop(SoundEvent event);
+    void stopLoop();
 
 private:
 	lmSettings* pSettings;
@@ -42,6 +45,7 @@ private:
 	bool playSound;
 	bool noBusySound;
 	bool noDNDSound;
+    QSoundEffect* pLoopEffect = nullptr;
 };
 
 #endif // SOUNDPLAYER_H

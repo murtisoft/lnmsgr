@@ -66,6 +66,8 @@ public:
 	void settingsChanged(bool init = false);
     void showTrayMessage(TrayMessageType type, QString szMessage, QString szTitle = QString(), TrayMessageIcon icon = TMI_Info, const QPixmap &avatar = QPixmap());
     QList<QTreeWidgetItem*> getContactsList(void);
+    void playLoopSound(SoundEvent event);
+    void stopLoopSound();
 
 signals:
 	void appExiting(void);
@@ -175,7 +177,7 @@ private:
 	bool noBusyAlert;
 	bool noDNDAlert;
 	bool statusToolTip;
-	lmSoundPlayer* pSoundPlayer;
+    lmSoundPlayer* pSoundPlayer;
 	TrayMessageType lastTrayMessageType;
 	QActionGroup* statusGroup;
 	QAction* chatRoomAction;

@@ -61,20 +61,6 @@ bool lmSoundPlayer::isAvailable()
 #endif
 }
 
-/*  Old Function that fails to play embedded resources.
-void lmSoundPlayer::play(const QString& filename)
-{
-#ifdef Q_OS_WIN
-    if(sndPlaySoundFromDll)
-        sndPlaySoundFromDll(filename.toStdString().c_str(), SND_ASYNC);
-#else
-    QMediaPlayer* player = new QMediaPlayer;
-    player->setSource(QUrl::fromLocalFile(filename));
-    player->setLoops(QMediaPlayer::Infinite); // Optional
-    player->play();
-#endif
-}*/
-
 void lmSoundPlayer::play(const QString& filename){
     if (filename.isEmpty()) return;
     QSoundEffect* effect = new QSoundEffect();
@@ -119,4 +105,30 @@ void lmSoundPlayer::settingsChanged(void) {
 	playSound = pSettings->value(IDS_SOUND, IDS_SOUND_VAL).toBool();
 	noBusySound = pSettings->value(IDS_NOBUSYSOUND, IDS_NOBUSYSOUND_VAL).toBool();
 	noDNDSound = pSettings->value(IDS_NODNDSOUND, IDS_NODNDSOUND_VAL).toBool();
+}
+
+void lmSoundPlayer::playLoop(SoundEvent event) {
+    stopLoop();
+    QString localStatus = pSettings->value(IDS_STATUS, IDS_STATUS_VAL).toString();
+    if (!playSound || (localStatus == "Busy" && noBusySound) || (localStatus == "NoDisturb" && noDNDSound))
+        return;
+    if (!eventState[event])
+        return;
+    QString filename = sounds[event];
+    if (filename.isEmpty()) return;
+    pLoopEffect = new QSoundEffect();
+    if (filename.startsWith(":"))
+        pLoopEffect->setSource(QUrl("qrc" + filename));
+    else
+        pLoopEffect->setSource(QUrl::fromLocalFile(filename));
+    pLoopEffect->setLoopCount(QSoundEffect::Infinite);
+    pLoopEffect->play();
+}
+
+void lmSoundPlayer::stopLoop() {
+    if (pLoopEffect) {
+        pLoopEffect->stop();
+        pLoopEffect->deleteLater();
+        pLoopEffect = nullptr;
+    }
 }

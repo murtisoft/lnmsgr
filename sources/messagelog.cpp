@@ -422,6 +422,9 @@ void lmMessageLog::onAnchorClicked(const QUrl &url)
     }
 
     QStringList linkData = linkPath.split("/", Qt::SkipEmptyParts);
+    if(linkData[1] == "audio" || linkData[1] == "video") {
+        streamOperation(linkData[3], linkData[2], linkData[1]);
+    } else {
     FileMode mode;
     FileOp op;
 
@@ -441,6 +444,28 @@ void lmMessageLog::onAnchorClicked(const QUrl &url)
     updateFileMessage(mode, op, linkData[3]);
 
     fileOperation(linkData[3], linkData[2], linkData[1], mode);
+    }
+}
+
+void lmMessageLog::streamOperation(QString streamId, QString action, QString streamType) {
+    MessageXml xmlMessage;
+    MessageType type = (streamType == "audio") ? MT_Audio : MT_Video;
+    xmlMessage.addData(XN_STREAMID, streamId);
+    if(action.compare(acceptOp) == 0) {
+        xmlMessage.addData(XN_STREAMOP, StreamOpNames[SO_Accept]);
+        xmlMessage.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
+    } else if(action.compare(declineOp) == 0) {
+        xmlMessage.addData(XN_STREAMOP, StreamOpNames[SO_Decline]);
+        xmlMessage.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
+    } else if(action.compare(cancelOp) == 0) {
+        xmlMessage.addData(XN_STREAMOP, StreamOpNames[SO_Abort]);
+        xmlMessage.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
+    }
+    emit messageSent(type, &peerId, &xmlMessage);
+    StreamMode mode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, xmlMessage.data(XN_STREAMMODE));
+    StreamOp op = (StreamOp)Helper::indexOf(StreamOpNames, SO_Max, xmlMessage.data(XN_STREAMOP));
+    updateStreamMessage(SM_Out, op, streamId);   //Update whichever
+    updateStreamMessage(SM_In, op, streamId);
 }
 
 void lmMessageLog::log_linkHovered(const QString& link, const QString& title, const QString& textContent) {
@@ -742,7 +767,7 @@ QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserNa
             html.replace("%links%", "<a href='lm://" + streamType + "/" + cancelOp + "/" + streamId + "'>" + tr("Cancel") + "</a>");
             break;
         case SO_Accept:
-            html.replace("%links%", tr("Call accepted."));
+            html.replace("%links%", tr("Call in progress."));
             break;
         case SO_Decline:
             html.replace("%links%", tr("Call declined."));
@@ -770,7 +795,7 @@ QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserNa
                                  "<a href='lm://" + streamType + "/" + declineOp + "/" + streamId + "'>" + tr("Decline") + "</a>");
                 break;
             case SO_Accept:
-                html.replace("%links%", tr("Call accepted."));
+                html.replace("%links%", tr("Call in progress."));
                 break;
             case SO_Decline:
                 html.replace("%links%", tr("Call declined."));
