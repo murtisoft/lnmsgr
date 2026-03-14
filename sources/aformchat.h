@@ -67,6 +67,10 @@ public:
 	QString threadId;
 	bool groupMode;
 
+public slots:
+    void btnHangUp_clicked();
+    void callPhaseChanged(bool busy);
+
 signals:
 	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void showHistory(void);
@@ -96,9 +100,7 @@ private slots:
     void btnNudge_clicked();
     void btnAudio_clicked();
     void btnVideo_clicked();
-    void btnHangUp_clicked();
     void startCall(MessageType type);
-    void callPhaseChanged(bool busy);
 
 private:
 	void createSmileyMenu(void);
@@ -113,7 +115,7 @@ private:
     void processStreamOp(MessageXml* pMessage);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
-    void updateStreamMessage(StreamMode mode, StreamOp op, QString streamId);
+    void updateStreamMessage(StreamOp op, QString streamId);
 	void showStatus(int flag, bool add);
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
@@ -157,6 +159,8 @@ private:
 	qint64 snapKeyStroke;
 	bool dataSaved;
     bool bCallBusy = false;
+    QString currentCallId;
+    MessageType currentCallType;
 };
 
 #endif // AFORMCHAT_H

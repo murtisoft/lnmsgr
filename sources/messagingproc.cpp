@@ -334,7 +334,7 @@ void lmMessaging::processMessage(MessageHeader* pHeader, MessageXml* pMessage) {
     case MT_Folder:
         processFolder(pHeader, pMessage);
         break;
-    case MT_Audio: //TODO
+    case MT_Audio:
     case MT_Video:
         emit messageReceived(pHeader->type, &pHeader->userId, pMessage);
         break;

@@ -95,7 +95,7 @@ void lmFormSettings::init(void) {
         pListItem->setCheckState(IDS_SOUNDEVENT_VAL);
     }
 
-    //=========================================================NEED2TEST  Temporary
+    //=========================================================TODO  Find a permanent spot for this.
     ui.cboMicDevice->addItem("Default Communication Device",
                              QVariant::fromValue(QMediaDevices::defaultAudioInput()));
 
@@ -300,7 +300,7 @@ void lmFormSettings::cboTheme_currentIndexChanged(int index) {
     pMessageLog->localId = "Myself";
     pMessageLog->peerId = "Jack";
     pMessageLog->messageTime = true;
-    pMessageLog->initMessageLog();  // NEED2TEST
+    pMessageLog->initMessageLog();
 
     MessageXml msg;
     msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));

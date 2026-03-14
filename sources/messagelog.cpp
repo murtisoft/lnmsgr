@@ -34,7 +34,7 @@ const QString declineOp("decline");
 const QString cancelOp("cancel");
 
 lmMessageLog::lmMessageLog(QWidget *parent) : MessageBrowser (parent) {
-// TODO long-ass-fucking-time-ago
+// TOD0
 //	connect(this, SIGNAL(linkClicked(QUrl)), this, SLOT(log_linkClicked(QUrl)));
 //	connect(this->page(), SIGNAL(linkHovered(QString, QString, QString)),
 //			this, SLOT(log_linkHovered(QString, QString, QString)));
@@ -199,21 +199,17 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
     }
 }
 
-void lmMessageLog::updateStreamMessage(StreamMode mode, StreamOp op, QString streamId)
+void lmMessageLog::updateStreamMessage(StreamOp op, QString streamId)
 {
-    QString tempId = getStreamTempId(mode, streamId);
-
-    //	update the entry in message log
     for(int index = 0; index < messageLog.count(); index++) {
         SingleMessage msg = messageLog.at(index);
-        if(tempId.compare(msg.id) == 0) {
+        if(msg.id == "outgoing" + streamId || msg.id == "incoming" + streamId) {
             MessageXml xmlMessage = msg.message;
             xmlMessage.removeData(XN_STREAMOP);
             xmlMessage.addData(XN_STREAMOP, StreamOpNames[op]);
             msg.message = xmlMessage;
-
             QString html = getStreamMessageText(msg.type, &msg.userName, &msg.message);
-            replaceMessageLog(msg.type, tempId, html);
+            replaceMessageLog(msg.type, msg.id, html);
             break;
         }
     }
@@ -462,10 +458,8 @@ void lmMessageLog::streamOperation(QString streamId, QString action, QString str
         xmlMessage.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
     }
     emit messageSent(type, &peerId, &xmlMessage);
-    StreamMode mode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, xmlMessage.data(XN_STREAMMODE));
     StreamOp op = (StreamOp)Helper::indexOf(StreamOpNames, SO_Max, xmlMessage.data(XN_STREAMOP));
-    updateStreamMessage(SM_Out, op, streamId);   //Update whichever
-    updateStreamMessage(SM_In, op, streamId);
+    updateStreamMessage(op, streamId);
 }
 
 void lmMessageLog::log_linkHovered(const QString& link, const QString& title, const QString& textContent) {
@@ -489,7 +483,7 @@ void lmMessageLog::copyAction_triggered(void) {
 }
 
 void lmMessageLog::copyLinkAction_triggered(void) {
-//  TODO long-ass-fucking-time-ago
+//  TOD0
 //	pageAction(QWebPage::CopyLinkToClipboard)->trigger();
 }
 
@@ -1081,7 +1075,7 @@ void lmMessageLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
                                  "<a data-isLink='true' href='file:\\1'>\\1</a>");
     }
 
-/*  NEED2TEST This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
+/*  TODO This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
 TEST CASES
 00 \\Murticom-2026\e\ss.png   pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the file.
 01 //Murticom-2026/e/ss.png   pathToLink

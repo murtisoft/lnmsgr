@@ -12,8 +12,8 @@ elseif(UNIX)
 endif()
 
 #==========================================================================================================================================<< TO DO
-#Search for NEED2TEST within the project.
-#   Messages are sometimes lost(Corrupted and discarded?).
+#Search for TODO in the project. 15 year old ones are renamed to TOD0
+#   Messages are sometimes lost(Encryption and decryption errors.).
 #   Sending messages from old to new, no losses. New to any... lots of decryption errors / lost messages. great.
 
 #A sends file to B, while its pending confirmation, if B appears offline, A will show transfer interrupted, while B can still download the file.

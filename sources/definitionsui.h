@@ -42,7 +42,7 @@ const QString Camera        = "📷️️️";    const QString Screenshot    = 
 const QString Settings      = "⚙️";    const QString GeneralSet    = "🖥️";    const QString AccountSet    = "👨‍👩‍👦️";
 const QString MessageSet    = "📨️";    const QString HistorySet    = "🕙️";    const QString AlertSet      = "⚠️";
 const QString NetworkSet    = "🔗️";    const QString TransferSet   = "📥️";    const QString ThemeSet      = "🎨️";
-const QString HotkeySet     = "⌨️";
+const QString HotkeySet     = "⌨️";    const QString HangUp        = "📵";
 }
 
 //	Resource name definitions

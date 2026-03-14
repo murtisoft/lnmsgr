@@ -140,7 +140,7 @@ void lmFormMain::start(void) {
 	setAvatar();
 	pTrayIcon->setVisible(showSysTray);
 
-    int colorSchemeIndex = pSettings->value(IDS_COLORSCHEME, IDS_COLORSCHEME_VAL).toInt();  //NEED2TEST Kinda had to, but its messy, i dont like this.
+    int colorSchemeIndex = pSettings->value(IDS_COLORSCHEME, IDS_COLORSCHEME_VAL).toInt();  //TODO I should tidy this up.
     switch (colorSchemeIndex) {
     case 0:
         qApp->styleHints()->setColorScheme(Qt::ColorScheme::Unknown);

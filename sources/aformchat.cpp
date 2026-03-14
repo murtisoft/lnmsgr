@@ -246,11 +246,14 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 		}
 		break;
     case MT_Depart:
+        btnHangUp_clicked();
         pMessageLog->abortPendingFileOperations();
         break;
     case MT_Audio:
     case MT_Video:
         if(pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request]) {
+            currentCallId = pMessage->data(XN_STREAMID);  // ADD THIS
+            currentCallType = type;
             appendMessageLog(type, lpszUserId, &senderName, pMessage);
         } else {
             processStreamOp(pMessage);
@@ -376,6 +379,7 @@ void lmFormChat::changeEvent(QEvent* pEvent) {
 void lmFormChat::closeEvent(QCloseEvent* pEvent) {
 	setChatState(CS_Inactive);
 	// Call stop() to save history
+    btnHangUp_clicked();
     stop();
 	emit closed(&peerId);
 
@@ -567,7 +571,7 @@ void lmFormChat::createToolBar(void) {
     pVideoAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Camera,16)), "Video Call", this, SLOT(btnVideo_clicked()));
 
     pLeftBar->addSeparator();
-    pHangUpAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Close,12)), "Hang Up", this, SLOT(btnHangUp_clicked()));
+    pHangUpAction = pLeftBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::HangUp,16)), "Hang Up", this, SLOT(btnHangUp_clicked()));
     updateButtonStates();
 
 	pRightBar = new QToolBar(ui.wgtToolBar);
@@ -596,26 +600,34 @@ void lmFormChat::btnAudio_clicked() {
 }
 
 void lmFormChat::btnHangUp_clicked() {
-
+    if (currentCallId.isEmpty()) return;
+    MessageXml sendXml;
+    sendXml.addData(XN_STREAMID, currentCallId);
+    sendXml.addData(XN_STREAMOP, StreamOpNames[SO_Abort]);
+    emit messageSent(currentCallType, &peerId, &sendXml);
+    updateStreamMessage(SO_Abort, currentCallId);
+    emit callEnded();
+    currentCallId.clear();
 }
 
 void lmFormChat::startCall(MessageType type) {
     if (!bConnected) return;
     emit callRequested(type);
-    QString streamId = QString::number(QDateTime::currentMSecsSinceEpoch());
+    currentCallId = QString::number(QDateTime::currentMSecsSinceEpoch());
+    currentCallType = type;
     QString pName = peerNames.value(peerId);
 
     MessageXml localXml;
-    localXml.addData(XN_STREAMID, streamId);
+    localXml.addData(XN_STREAMID, currentCallId);
     localXml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
     localXml.addData(XN_STREAMMODE, StreamModeNames[SM_Out]);
-    appendMessageLog(type, &localId, &pName, &localXml);
+    appendMessageLog(type, &localId, &pName, &localXml);     //Local displays Cancel
 
     MessageXml sendXml;
-    sendXml.addData(XN_STREAMID, streamId);
+    sendXml.addData(XN_STREAMID, currentCallId);
     sendXml.addData(XN_STREAMOP, StreamOpNames[SO_Request]);
     sendXml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
-    emit messageSent(type, &peerId, &sendXml);
+    emit messageSent(type, &peerId, &sendXml);              //Remote displays Accept/Decline
 }
 
 void lmFormChat::btnNudge_clicked() {
@@ -779,13 +791,13 @@ void lmFormChat::processStreamOp(MessageXml *pMessage) {
     case SO_Decline:
     case SO_Error:
     case SO_Abort:
+        currentCallId.clear();
         emit callEnded();
         break;
     default:
         break;
     }
-    updateStreamMessage(SM_Out, (StreamOp)streamOp, streamId);   //Update whichever exists. In/Out flipping gets confusing.
-    updateStreamMessage(SM_In, (StreamOp)streamOp, streamId);
+    updateStreamMessage((StreamOp)streamOp, streamId);
 }
 
 void lmFormChat::processFileOp(MessageXml *pMessage) {
@@ -813,8 +825,8 @@ void lmFormChat::appendMessageLog(MessageType type, QString* lpszUserId, QString
 		pSaveAction->setEnabled(pMessageLog->hasData);
 }
 
-void lmFormChat::updateStreamMessage(StreamMode mode, StreamOp op, QString streamId) {
-    pMessageLog->updateStreamMessage(mode, op, streamId);
+void lmFormChat::updateStreamMessage(StreamOp op, QString streamId) {
+    pMessageLog->updateStreamMessage(op, streamId);
 }
 
 void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
@@ -824,7 +836,7 @@ void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
 void lmFormChat::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
-// TODO long-ass-fucking-time-ago
+// TOD0
 //	int relScrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) -
 //			pMessageLog->page()->mainFrame()->scrollBarValue(Qt::Vertical);
 
@@ -849,7 +861,7 @@ void lmFormChat::showStatus(int flag, bool add) {
 		ui.lblInfo->setVisible(false);
 	}
 
-// TODO long-ass-fucking-time-ago
+// TOD0
 //	int scrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) - relScrollPos;
 //	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }

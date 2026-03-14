@@ -44,7 +44,7 @@ public:
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
 		bool bReload = false);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
-    void updateStreamMessage(StreamMode mode, StreamOp op, QString streamId);
+    void updateStreamMessage(StreamOp op, QString streamId);
 	void updateUserName(QString* lpszUserId, QString* lpszUserName);
 	void updateAvatar(QString* lpszUserId, QString* lpszFilePath);
 	void reloadMessageLog(void);
@@ -79,7 +79,7 @@ protected:
     void scrollToEnd(QTextCursor &cursor);
 
 private slots:
-    // TODO long-ass-fucking-time-ago
+    // TOD0
     //void log_linkClicked(QUrl url);
 	void log_linkHovered(const QString& link, const QString& title, const QString& textContent);
 	void showContextMenu(const QPoint& pos);

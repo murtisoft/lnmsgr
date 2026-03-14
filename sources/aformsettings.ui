@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -336,7 +336,7 @@
             <item row="0" column="0">
              <widget class="QLabel" name="lblUserNameDesc">
               <property name="text">
-               <string>User name as seen by contacts:</string>
+               <string>User name :</string>
               </property>
              </widget>
             </item>
@@ -353,6 +353,9 @@
                 <width>0</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="placeholderText">
+               <string>User name as seen by contacts</string>
               </property>
              </widget>
             </item>
@@ -371,7 +374,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Group:</string>
+               <string>Group :</string>
               </property>
              </widget>
             </item>
@@ -401,12 +404,15 @@
               <property name="text">
                <string/>
               </property>
+              <property name="placeholderText">
+               <string>Group as seen by contacts</string>
+              </property>
              </widget>
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="lblFirstNameDesc">
               <property name="text">
-               <string>First Name:</string>
+               <string>First Name :</string>
               </property>
              </widget>
             </item>
@@ -418,12 +424,15 @@
                 <height>0</height>
                </size>
               </property>
+              <property name="placeholderText">
+               <string>For User Information dialog</string>
+              </property>
              </widget>
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="lblLastNameDesc">
               <property name="text">
-               <string>Last Name:</string>
+               <string>Last Name :</string>
               </property>
              </widget>
             </item>
@@ -434,6 +443,9 @@
                 <width>0</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="placeholderText">
+               <string>For User Information dialog</string>
               </property>
              </widget>
             </item>
@@ -463,6 +475,9 @@
                 <width>16777215</width>
                 <height>41</height>
                </size>
+              </property>
+              <property name="placeholderText">
+               <string>For User Information dialog</string>
               </property>
              </widget>
             </item>
@@ -1017,7 +1032,9 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>Video Preview Placeholder</string>
+                 <string>Video Preview Placeholder
+
+Settings on this page dont work for the time being.</string>
                 </property>
                </widget>
               </item>

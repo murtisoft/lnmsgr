@@ -406,7 +406,7 @@ void MsgStream::bytesWritten(qint64 bytes) {
 	if(outDataLen < 0)
 		lmTrace::write("Warning: Socket write overrun");
 
-    //	TODO long-ass-fucking-time-ago
+    //	TOD0
     //  handle situation when entire message is not written to stream in one write operation
 	//	The following code is not functional currently, hence commented out.
 	/*outData = outData.mid(outDataLen);

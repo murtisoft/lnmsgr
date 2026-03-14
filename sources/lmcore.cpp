@@ -209,6 +209,7 @@ void lmCore::settingsChanged(void) {
 
 void lmCore::stop(void) {
 	for(int index = 0; index < chatWindows.count(); index++) {
+        chatWindows[index]->btnHangUp_clicked();
 		chatWindows[index]->stop();
         chatWindows[index]->deleteLater();
     }
@@ -591,28 +592,25 @@ void lmCore::callRequested(MessageType type) {
     callPhase = CP_Calling;
     emit callPhaseChanged(callPhase != CP_Idle);
     pMainWindow->playLoopSound(SE_RingOut);
-    // TODO:  initiate stream
 }
 
 void lmCore::callConnected() {
     callPhase = CP_Connected;
     emit callPhaseChanged(callPhase != CP_Idle);
     pMainWindow->stopLoopSound();
-    // TODO: stop dial/ring tone, start A/V stream
 }
 
 void lmCore::callEnded() {
     callPhase = CP_Idle;
     emit callPhaseChanged(callPhase != CP_Idle);
     pMainWindow->stopLoopSound();
-    // TODO: stop any ringtone/dial tone
 }
 
 void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage) {
     int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
     switch(streamOp) {
     case SO_Request:
-        if(callPhase != CP_Idle) {
+        if(callPhase != CP_Idle) {  //Auto decline if busy
             MessageXml xml;
             xml.addData(XN_STREAMOP, StreamOpNames[SO_Decline]);
             xml.addData(XN_STREAMID, pMessage->data(XN_STREAMID));
@@ -621,6 +619,7 @@ void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pM
         }
         callPhase = CP_Ringing;
         emit callPhaseChanged(true);
+        pMainWindow->playLoopSound(SE_RingIn);
         break;
     case SO_Accept:
         callConnected();
@@ -892,6 +891,7 @@ void lmCore::createChatWindow(QString* lpszUserId) {
             this, SLOT(callConnected()));
     connect(this, SIGNAL(callPhaseChanged(bool)),
             pChatWindow, SLOT(callPhaseChanged(bool)));
+    pChatWindow->callPhaseChanged(callPhase != CP_Idle);
 }
 
 void lmCore::showChatWindow(lmFormChat* chatWindow, bool show, bool alert) {
