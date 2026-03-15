@@ -29,12 +29,12 @@
 #include <qevent.h>
 #include "ui_aformbroadcast.h"
 #include "shared.h"
-#include "settings.h"
-#include "imagepicker.h"
-#include "subcontrols.h"
+#include "definitionssettings.h"
+#include "widgetimagepicker.h"
+#include "widgetleftovers.h"
 #include "definitionschat.h"
 #include "chathelper.h"
-#include "messagexml.h"
+#include "xmlhandler.h"
 
 class lmFormBroadcast : public QWidget
 {

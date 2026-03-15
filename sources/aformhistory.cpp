@@ -32,7 +32,7 @@ lmFormHistory::lmFormHistory(QWidget *parent, Qt::WindowFlags flags) : QWidget(p
 	//	Destroy the window when it closes
 	setAttribute(Qt::WA_DeleteOnClose, true);
 
-	pMessageLog = new lmMessageLog(ui.fraMessageLog);
+	pMessageLog = new lmChatLog(ui.fraMessageLog);
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);
 

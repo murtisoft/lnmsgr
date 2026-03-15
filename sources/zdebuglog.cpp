@@ -20,20 +20,20 @@
 ****************************************************************************/
 
 
-#include "trace.h"
+#include "zdebuglog.h"
 
-bool lmTrace::traceMode;
-QString lmTrace::fileName;
+bool lmDebugLog::traceMode;
+QString lmDebugLog::fileName;
 
-lmTrace::lmTrace(void) {
+lmDebugLog::lmDebugLog(void) {
 }
 
-lmTrace::~lmTrace(void) {
+lmDebugLog::~lmDebugLog(void) {
 }
 
-void lmTrace::init(QString fileName, bool traceMode) {
-    lmTrace::traceMode = traceMode;
-    lmTrace::fileName = fileName;
+void lmDebugLog::init(QString fileName, bool traceMode) {
+    lmDebugLog::traceMode = traceMode;
+    lmDebugLog::fileName = fileName;
 
     QDir dir(DefinitionsDir::logDir());
     QStringList logs = dir.entryList({"*.log"}, QDir::Files, QDir::Time);
@@ -47,7 +47,7 @@ void lmTrace::init(QString fileName, bool traceMode) {
           "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 }
 
-void lmTrace::write(const QString& string, bool verbose) {
+void lmDebugLog::write(const QString& string, bool verbose) {
     if(!traceMode || !verbose)
         return;
 
@@ -68,13 +68,13 @@ void lmTrace::write(const QString& string, bool verbose) {
     file.close();
 }
 
-void lmTrace::stop(const QString& string) {
+void lmDebugLog::stop(const QString& string) {
     if (!traceMode) return;
     write(string);
     write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-    lmTrace::traceMode = false;
+    lmDebugLog::traceMode = false;
 }
 
-bool lmTrace::check(){
-    return lmTrace::traceMode;
+bool lmDebugLog::check(){
+    return lmDebugLog::traceMode;
 }

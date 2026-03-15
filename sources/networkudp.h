@@ -29,8 +29,8 @@
 #include <QHostAddress>
 #include <QList>
 #include "shared.h"
-#include "datagram.h"
-#include "settings.h"
+#include "networkdatagram.h"
+#include "definitionssettings.h"
 #include "crypto.h"
 
 class lmNetworkUdp : public QObject {

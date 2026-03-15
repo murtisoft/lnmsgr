@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "messagexml.h"
+#include "xmlhandler.h"
 
 MessageXml::MessageXml(void) : QDomDocument() {
 	QDomElement root = createElement(XN_ROOT);

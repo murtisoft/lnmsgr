@@ -28,9 +28,9 @@
 #include <QTreeWidget>
 #include <qevent.h>
 #include "ui_aformhistory.h"
-#include "settings.h"
+#include "definitionssettings.h"
 #include "history.h"
-#include "messagelog.h"
+#include "widgetchatlog.h"
 
 class lmFormHistory : public QWidget
 {
@@ -59,7 +59,7 @@ private:
 
 	Ui::HistoryWindow ui;
 	lmSettings* pSettings;
-	lmMessageLog* pMessageLog;
+	lmChatLog* pMessageLog;
 	QList<MsgInfo> msgList;
 };
 

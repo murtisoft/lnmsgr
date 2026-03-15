@@ -24,7 +24,7 @@
 #include <QTimer>
 #include <QUrl>
 #include "aformmain.h"
-#include "messagelog.h"
+#include "widgetchatlog.h"
 #include "history.h"
 #include <cstdlib>
 #include <qstylehints.h>
@@ -206,7 +206,7 @@ void lmFormMain::stop(void) {
     QDir::SortFlags sort = QDir::Name;
     //  save all cached conversations to history, then delete the files
     QString filter = "msg_*.tmp";
-    lmMessageLog* pMessageLog = new lmMessageLog();
+    lmChatLog* pMessageLog = new lmChatLog();
     QStringList fileNames = cacheDir.entryList(QStringList() << filter, filters, sort);
     foreach (QString fileName, fileNames) {
         QString filePath = cacheDir.absoluteFilePath(fileName);
@@ -232,7 +232,7 @@ void lmFormMain::addUser(User* pUser) {
 
 	int index = Helper::statusIndexFromCode(pUser->status);
 
-	lmUserTreeWidgetUserItem *pItem = new lmUserTreeWidgetUserItem();
+	lmWidgetUserTreeUserItem *pItem = new lmWidgetUserTreeUserItem();
 	pItem->setData(0, IdRole, pUser->id);
 	pItem->setData(0, TypeRole, "User");
 	pItem->setData(0, StatusRole, index);
@@ -245,7 +245,7 @@ void lmFormMain::addUser(User* pUser) {
 	if(index != -1)
 		pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
 
-	lmUserTreeWidgetGroupItem* pGroupItem = (lmUserTreeWidgetGroupItem*)getGroupItem(&pUser->group);
+	lmWidgetUserTreeGroupItem* pGroupItem = (lmWidgetUserTreeGroupItem*)getGroupItem(&pUser->group);
 	pGroupItem->addChild(pItem);
 	pGroupItem->sortChildren(0, Qt::AscendingOrder);
 
@@ -642,14 +642,14 @@ void lmFormMain::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos)
 }
 
 void lmFormMain::tvUserList_itemDragDropped(QTreeWidgetItem* pItem) {
-    if(dynamic_cast<lmUserTreeWidgetUserItem*>(pItem)) {
+    if(dynamic_cast<lmWidgetUserTreeUserItem*>(pItem)) {
         QString szUserId = pItem->data(0, IdRole).toString();
         QString szMessage = pItem->parent()->data(0, IdRole).toString();
         sendMessage(MT_Group, &szUserId, &szMessage);
 		QTreeWidgetItem* pGroupItem = pItem->parent();
 		pGroupItem->sortChildren(0, Qt::AscendingOrder);
     }
-	else if(dynamic_cast<lmUserTreeWidgetGroupItem*>(pItem)) {
+	else if(dynamic_cast<lmWidgetUserTreeGroupItem*>(pItem)) {
 		int index = ui.tvUserList->indexOfTopLevelItem(pItem);
 		QString groupId = pItem->data(0, IdRole).toString();
 		emit groupUpdated(GO_Move, groupId, index);
@@ -682,7 +682,7 @@ void lmFormMain::groupAddAction_triggered(void) {
 	} while(getGroupItem(&groupId));
 	
 	emit groupUpdated(GO_New, groupId, groupName);
-	lmUserTreeWidgetGroupItem *pItem = new lmUserTreeWidgetGroupItem();
+	lmWidgetUserTreeGroupItem *pItem = new lmWidgetUserTreeGroupItem();
 	pItem->setData(0, IdRole, groupId);
 	pItem->setData(0, TypeRole, "Group");
 	pItem->setText(0, groupName);
@@ -1108,7 +1108,7 @@ void lmFormMain::showMinimizeMessage(void) {
 
 void lmFormMain::initGroups(QList<Group>* pGroupList) {
 	for(int index = 0; index < pGroupList->count(); index++) {
-		lmUserTreeWidgetGroupItem *pItem = new lmUserTreeWidgetGroupItem();
+		lmWidgetUserTreeGroupItem *pItem = new lmWidgetUserTreeGroupItem();
 		pItem->setData(0, IdRole, pGroupList->value(index).id);
 		pItem->setData(0, TypeRole, "Group");
 		pItem->setText(0, pGroupList->value(index).name);

@@ -24,7 +24,7 @@
 #define SOUNDPLAYER_H
 
 #include "definitionsui.h"
-#include "settings.h"
+#include "definitionssettings.h"
 #include <qsoundeffect.h>
 
 class lmSoundPlayer {

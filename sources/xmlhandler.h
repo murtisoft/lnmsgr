@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef MESSAGEXML_H
-#define MESSAGEXML_H
+#ifndef XMLHANDLER_H
+#define XMLHANDLER_H
 
 #include <QDomDocument>
 #include "definitions.h"
@@ -112,4 +112,4 @@ private:
 	bool xmlNodeExists(const QString& parentNode, const QString& nodeName);
 };
 
-#endif // MESSAGEXML_H
+#endif // XMLHANDLER_H

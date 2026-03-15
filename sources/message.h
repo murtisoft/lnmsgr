@@ -26,7 +26,7 @@
 #include <QString>
 #include <QStringList>
 #include "shared.h"
-#include "messagexml.h"
+#include "xmlhandler.h"
 
 enum MessagHeaderMember {
 	MH_AppId = 0,

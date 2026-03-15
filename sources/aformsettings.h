@@ -36,11 +36,11 @@
 #include <QDesktopServices>
 #include "ui_aformsettings.h"
 #include "shared.h"
-#include "settings.h"
+#include "definitionssettings.h"
 #include "history.h"
 #include "definitionsdir.h"
 #include "translations.h"
-#include "messagelog.h"
+#include "widgetchatlog.h"
 #include "soundplayer.h"
 
 
@@ -103,7 +103,7 @@ private:
 	QIntValidator* pPortValidator;
 	QRegularExpression ipRegExp;
     QRegularExpressionValidator* pIpValidator;
-	lmMessageLog* pMessageLog;
+	lmChatLog* pMessageLog;
     int statusTimerId;
     int statusNow;
 };

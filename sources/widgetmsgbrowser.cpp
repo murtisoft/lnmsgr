@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "messagebrowser.h"
+#include "widgetmsgbrowser.h"
 
 #include <QScrollBar>
 

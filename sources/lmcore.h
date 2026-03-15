@@ -28,7 +28,7 @@
 #include <QSysInfo>
 #include <QPointer>
 #include "shared.h"
-#include "settings.h"
+#include "definitionssettings.h"
 #include "messaging.h"
 #include "aformmain.h"
 #include "aformchat.h"

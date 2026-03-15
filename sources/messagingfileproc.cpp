@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "trace.h"
+#include "zdebuglog.h"
 #include "messaging.h"
 #include <QDirIterator>
 
@@ -78,7 +78,7 @@ void lmMessaging::prepareFile(MessageType type, qint64 msgId, bool retry, QStrin
     User* user = getUser(lpszUserId);
     QString szMessage;
 
-    lmTrace::write("Sending file message type " + QString::number(fileOp) + " to user " + *lpszUserId
+    lmDebugLog::write("Sending file message type " + QString::number(fileOp) + " to user " + *lpszUserId
         + ", Mode: " + QString::number(fileMode));
 
     switch(fileOp) {
@@ -112,7 +112,7 @@ void lmMessaging::prepareFolder(MessageType type, qint64 msgId, bool retry, QStr
     int folderOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
     int folderMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
 
-    lmTrace::write("Sending folder message type " + QString::number(folderOp) + " to user " + *lpszUserId
+    lmDebugLog::write("Sending folder message type " + QString::number(folderOp) + " to user " + *lpszUserId
         + ", Mode: " + QString::number(folderMode));
 
     switch(folderOp) {
@@ -147,7 +147,7 @@ void lmMessaging::processFile(MessageHeader* pHeader, MessageXml* pMessage) {
     pMessage->removeData(XN_MODE);
     pMessage->addData(XN_MODE, FileModeNames[fileMode]);
 
-    lmTrace::write("Processing file message type " + QString::number(fileOp) + " from user " +
+    lmDebugLog::write("Processing file message type " + QString::number(fileOp) + " from user " +
         pHeader->userId + ", Mode: " + QString::number(fileMode));
 
     switch(fileOp) {
@@ -187,7 +187,7 @@ void lmMessaging::processFolder(MessageHeader* pHeader, MessageXml* pMessage) {
     pMessage->removeData(XN_MODE);
     pMessage->addData(XN_MODE, FileModeNames[fileMode]);
 
-    lmTrace::write("Processing folder message type " + QString::number(fileOp) + " from user " +
+    lmDebugLog::write("Processing folder message type " + QString::number(fileOp) + " from user " +
         pHeader->userId + ", Mode: " + QString::number(fileMode));
 
     switch(fileOp) {

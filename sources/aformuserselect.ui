@@ -21,7 +21,7 @@
     <number>6</number>
    </property>
    <item>
-    <widget class="lmUserTreeWidget" name="tvUserList">
+    <widget class="lmWidgetUserTree" name="tvUserList">
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
@@ -76,9 +76,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>lmUserTreeWidget</class>
+   <class>lmWidgetUserTree</class>
    <extends>QTreeWidget</extends>
-   <header>usertreewidget.h</header>
+   <header>widgetusertree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

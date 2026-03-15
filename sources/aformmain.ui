@@ -291,7 +291,7 @@
     </widget>
    </item>
    <item>
-    <widget class="lmUserTreeWidget" name="tvUserList">
+    <widget class="lmWidgetUserTree" name="tvUserList">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -331,24 +331,24 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>lmUserTreeWidget</class>
+   <class>lmWidgetUserTree</class>
    <extends>QTreeWidget</extends>
-   <header>usertreewidget.h</header>
+   <header>widgetusertree.h</header>
   </customwidget>
   <customwidget>
    <class>lmLabel</class>
    <extends>QLabel</extends>
-   <header>subcontrols.h</header>
+   <header>widgetleftovers.h</header>
   </customwidget>
   <customwidget>
    <class>lmToolButton</class>
    <extends>QToolButton</extends>
-   <header>subcontrols.h</header>
+   <header>widgetleftovers.h</header>
   </customwidget>
   <customwidget>
    <class>lmLineEdit</class>
    <extends>QLineEdit</extends>
-   <header>subcontrols.h</header>
+   <header>widgetleftovers.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

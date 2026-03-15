@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef DEFINITIONSSETTINGS_H
+#define DEFINITIONSSETTINGS_H
 
 #include <QSettings>
 #include <QtWidgets/QApplication>
@@ -52,7 +52,7 @@
 #define IDS_AUTOSTART_VAL		true
 #define IDS_AUTOSHOW			"AutoShow"
 #define IDS_AUTOSHOW_VAL		true
-#define IDS_DEBUGLOG			"DebugLog"
+#define IDS_DEBUGLOG			"lmDebugLog"
 #define IDS_DEBUGLOG_VAL		true
 #define IDS_LANGUAGE			"Locale/Language"
 #define IDS_LANGUAGE_VAL		"en_US"
@@ -203,4 +203,4 @@ private:
 	bool migrateSettings(const QString& configFile);
 };
 
-#endif // SETTINGS_H
+#endif // DEFINITIONSSETTINGS_H

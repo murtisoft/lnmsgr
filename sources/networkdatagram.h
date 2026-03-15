@@ -20,31 +20,27 @@
 ****************************************************************************/
 
 
-#include <QDataStream>
-#include "trace.h"
-#include "datagram.h"
+#ifndef NETWORKDATAGRAM_H
+#define NETWORKDATAGRAM_H
 
-void Datagram::addHeader(DatagramType type, QByteArray& baData) {
-	QByteArray datagramType = DatagramTypeNames[type].toLocal8Bit();
-	baData.insert(0, datagramType);
-}
+#include <QString>
+#include <QStringList>
+#include "shared.h"
+#include "xmlhandler.h"
 
-bool Datagram::getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader) {
-    QString datagramType(baDatagram.mid(0, 6));	// first 6 bytes represent datagram type
-    int type = Helper::indexOf(DatagramTypeNames, DT_Max, datagramType);
-    if(type < 0)
-        return false;
+enum DatagramHeaderMember
+{
+    DH_AppId = 0,
+    DH_Type,
+    DH_UserId,
+    DH_Max
+};
 
-    *ppHeader = new DatagramHeader(
-        (DatagramType)type,
-        QString(),
-        QString());
-    return true;
-}
+class Datagram {
+public:
+    static void addHeader(DatagramType type, QByteArray& baData);
+    static bool getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader);
+    static QByteArray getData(QByteArray& baDatagram);
+};
 
-QByteArray Datagram::getData(QByteArray& baDatagram) {
-	if(baDatagram.length() > 6)
-		return baDatagram.mid(6);
-
-	return QByteArray();
-}
+#endif // NETWORKDATAGRAM_H

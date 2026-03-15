@@ -22,7 +22,7 @@
 
 #include "messaging.h"
 #include "definitionsdir.h"
-#include "trace.h"
+#include "zdebuglog.h"
 
 lmMessaging::lmMessaging(void) {
 	pNetwork = new lmNetwork();
@@ -52,7 +52,7 @@ lmMessaging::~lmMessaging(void) {
 }
 
 void lmMessaging::init(MessageXml *pInitParams) {
-	lmTrace::write("Messaging initialized");
+	lmDebugLog::write("Messaging initialized");
 
 	pNetwork->init(pInitParams);
 
@@ -90,7 +90,7 @@ void lmMessaging::init(MessageXml *pInitParams) {
 }
 
 void lmMessaging::start(void) {
-	lmTrace::write("Messaging started");
+	lmDebugLog::write("Messaging started");
 	pNetwork->start();
 
 	sendBroadcast(MT_Depart, NULL);
@@ -98,7 +98,7 @@ void lmMessaging::start(void) {
 }
 
 void lmMessaging::update(void) {
-	lmTrace::write("Refreshing contacts list...");
+	lmDebugLog::write("Refreshing contacts list...");
 	sendBroadcast(MT_Announce, NULL);
 
 	for(int index = 0; index < userList.count(); index++)
@@ -114,7 +114,7 @@ void lmMessaging::stop(void) {
 
 	saveGroups();
 
-	lmTrace::write("Messaging stopped");
+	lmDebugLog::write("Messaging stopped");
 }
 
 bool lmMessaging::isConnected(void) {
@@ -325,7 +325,7 @@ bool lmMessaging::addUser(QString szUserId, QString szVersion, QString szAddress
 		if(userList[index].id.compare(szUserId) == 0)
 			return false;
 
-	lmTrace::write("Adding new user: " + szUserId + ", " + szVersion + ", " + szAddress);
+	lmDebugLog::write("Adding new user: " + szUserId + ", " + szVersion + ", " + szAddress);
 
 	if(!userGroupMap.contains(szUserId) || !groupList.contains(Group(userGroupMap.value(szUserId))))
 		userGroupMap.insert(szUserId, GRP_DEFAULT_ID);

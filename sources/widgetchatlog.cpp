@@ -24,7 +24,7 @@
 #include <QAction>
 #include <QScrollBar>
 #include <QTextBlock>
-#include "messagelog.h"
+#include "widgetchatlog.h"
 #include <QRegularExpression>
 #include <QLocale>
 #include "chathelper.h"
@@ -33,7 +33,7 @@ const QString acceptOp("accept");
 const QString declineOp("decline");
 const QString cancelOp("cancel");
 
-lmMessageLog::lmMessageLog(QWidget *parent) : MessageBrowser (parent) {
+lmChatLog::lmChatLog(QWidget *parent) : MessageBrowser (parent) {
 // TOD0
 //	connect(this, SIGNAL(linkClicked(QUrl)), this, SLOT(log_linkClicked(QUrl)));
 //	connect(this->page(), SIGNAL(linkHovered(QString, QString, QString)),
@@ -60,10 +60,10 @@ lmMessageLog::lmMessageLog(QWidget *parent) : MessageBrowser (parent) {
 	autoScroll = true;
 }
 
-lmMessageLog::~lmMessageLog() {
+lmChatLog::~lmChatLog() {
 }
 
-void lmMessageLog::initMessageLog(bool clearLog) {
+void lmChatLog::initMessageLog(bool clearLog) {
     if(clearLog){
 		messageLog.clear();
     }
@@ -71,22 +71,22 @@ void lmMessageLog::initMessageLog(bool clearLog) {
     clear();
 }
 
-void lmMessageLog::createContextMenu(void) {
+void lmChatLog::createContextMenu(void) {
 	contextMenu = new QMenu(this);
 	copyAction = new QAction("&Copy", this);
     copyAction->setShortcut(QKeySequence::Copy);
-	connect(copyAction, &QAction::triggered, this, &lmMessageLog::copyAction_triggered);
+	connect(copyAction, &QAction::triggered, this, &lmChatLog::copyAction_triggered);
     contextMenu->addAction(copyAction);
 	copyLinkAction = contextMenu->addAction("&Copy Link", this, SLOT(copyLinkAction_triggered()));
 	contextMenu->addSeparator();
 	selectAllAction = new QAction("Select &All", this);
-    connect(selectAllAction, &QAction::triggered, this, &lmMessageLog::selectAllAction_triggered);
+    connect(selectAllAction, &QAction::triggered, this, &lmChatLog::selectAllAction_triggered);
     contextMenu->addAction(selectAllAction);
 	connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
 	setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
-void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
+void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
 		bool bReload) {
 
 	if(!pMessage && type != MT_Error)
@@ -199,7 +199,7 @@ void lmMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStri
     }
 }
 
-void lmMessageLog::updateStreamMessage(StreamOp op, QString streamId)
+void lmChatLog::updateStreamMessage(StreamOp op, QString streamId)
 {
     for(int index = 0; index < messageLog.count(); index++) {
         SingleMessage msg = messageLog.at(index);
@@ -215,7 +215,7 @@ void lmMessageLog::updateStreamMessage(StreamOp op, QString streamId)
     }
 }
 
-void lmMessageLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
+void lmChatLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
 {
     QString tempId = getFileTempId(mode, fileId);
 
@@ -239,7 +239,7 @@ void lmMessageLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
 	}
 }
 
-void lmMessageLog::updateUserName(QString* lpszUserId, QString* lpszUserName) {
+void lmChatLog::updateUserName(QString* lpszUserId, QString* lpszUserName) {
 	//	update the entries in message log
 	for(int index = 0; index < messageLog.count(); index++) {
 		SingleMessage msg = messageLog.takeAt(index);
@@ -251,13 +251,13 @@ void lmMessageLog::updateUserName(QString* lpszUserId, QString* lpszUserName) {
 	reloadMessageLog();
 }
 
-void lmMessageLog::updateAvatar(QString* lpszUserId, QString* lpszFilePath) {
+void lmChatLog::updateAvatar(QString* lpszUserId, QString* lpszFilePath) {
 	participantAvatars.insert(*lpszUserId, *lpszFilePath);
 
 	reloadMessageLog();
 }
 
-void lmMessageLog::reloadMessageLog(void) {
+void lmChatLog::reloadMessageLog(void) {
     initMessageLog(false);
 	for(int index = 0; index < messageLog.count(); index++) {
 		SingleMessage msg = messageLog[index];
@@ -265,7 +265,7 @@ void lmMessageLog::reloadMessageLog(void) {
 	}
 }
 
-QString lmMessageLog::prepareMessageLogForSave(OutputFormat format) {
+QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 	QDateTime time;
 
 	if(format == HtmlFormat) {
@@ -309,11 +309,11 @@ QString lmMessageLog::prepareMessageLogForSave(OutputFormat format) {
 	}
 }
 
-void lmMessageLog::setAutoScroll(bool enable) {
+void lmChatLog::setAutoScroll(bool enable) {
 	autoScroll = enable;
 }
 
-void lmMessageLog::abortPendingFileOperations(void) {
+void lmChatLog::abortPendingFileOperations(void) {
     QMap<QString, MessageXml>::iterator sIndex = sendFileMap.begin();
     while(sIndex != sendFileMap.end()) {
         MessageXml fileData = sIndex.value();
@@ -338,7 +338,7 @@ void lmMessageLog::abortPendingFileOperations(void) {
     }
 }
 
-void lmMessageLog::saveMessageLog(QString filePath) {
+void lmChatLog::saveMessageLog(QString filePath) {
     if(messageLog.isEmpty())
         return;
 
@@ -356,7 +356,7 @@ void lmMessageLog::saveMessageLog(QString filePath) {
     file.close();
 }
 
-void lmMessageLog::restoreMessageLog(QString filePath, bool reload) {
+void lmChatLog::restoreMessageLog(QString filePath, bool reload) {
     messageLog.clear();
 
     QFile file(filePath);
@@ -372,7 +372,7 @@ void lmMessageLog::restoreMessageLog(QString filePath, bool reload) {
         reloadMessageLog();
 }
 
-void lmMessageLog::changeEvent(QEvent* event) {
+void lmChatLog::changeEvent(QEvent* event) {
 	switch(event->type()) {
 	case QEvent::LanguageChange:
 		setUIText();
@@ -384,7 +384,7 @@ void lmMessageLog::changeEvent(QEvent* event) {
     QWidget::changeEvent(event);
 }
 
-void lmMessageLog::resizeEvent(QResizeEvent *event)
+void lmChatLog::resizeEvent(QResizeEvent *event)
 {
     MessageBrowser::resizeEvent(event);
 
@@ -394,7 +394,7 @@ void lmMessageLog::resizeEvent(QResizeEvent *event)
     }
 }
 
-void lmMessageLog::onAnchorClicked(const QUrl &url)
+void lmChatLog::onAnchorClicked(const QUrl &url)
 {
     QString linkPath = url.toString();
 
@@ -443,7 +443,7 @@ void lmMessageLog::onAnchorClicked(const QUrl &url)
     }
 }
 
-void lmMessageLog::streamOperation(QString streamId, QString action, QString streamType) {
+void lmChatLog::streamOperation(QString streamId, QString action, QString streamType) {
     MessageXml xmlMessage;
     MessageType type = (streamType == "audio") ? MT_Audio : MT_Video;
     xmlMessage.addData(XN_STREAMID, streamId);
@@ -462,13 +462,13 @@ void lmMessageLog::streamOperation(QString streamId, QString action, QString str
     updateStreamMessage(op, streamId);
 }
 
-void lmMessageLog::log_linkHovered(const QString& link, const QString& title, const QString& textContent) {
+void lmChatLog::log_linkHovered(const QString& link, const QString& title, const QString& textContent) {
 	Q_UNUSED(title);
 	Q_UNUSED(textContent);
 	linkHovered = !link.isEmpty();
 }
 
-void lmMessageLog::showContextMenu(const QPoint& pos) {
+void lmChatLog::showContextMenu(const QPoint& pos) {
     QTextCursor cursor = textCursor();
     copyAction->setEnabled(cursor.selectionStart() != cursor.selectionEnd());
 	copyLinkAction->setEnabled(linkHovered);
@@ -478,20 +478,20 @@ void lmMessageLog::showContextMenu(const QPoint& pos) {
 	contextMenu->exec(mapToGlobal(pos));
 }
 
-void lmMessageLog::copyAction_triggered(void) {
+void lmChatLog::copyAction_triggered(void) {
     copy();
 }
 
-void lmMessageLog::copyLinkAction_triggered(void) {
+void lmChatLog::copyLinkAction_triggered(void) {
 //  TOD0
 //	pageAction(QWebPage::CopyLinkToClipboard)->trigger();
 }
 
-void lmMessageLog::selectAllAction_triggered(void) {
+void lmChatLog::selectAllAction_triggered(void) {
     selectAll();
 }
 
-void lmMessageLog::scrollToEnd(QTextCursor &cursor)
+void lmChatLog::scrollToEnd(QTextCursor &cursor)
 {
     cursor.movePosition(QTextCursor::MoveOperation::End);
     setTextCursor(cursor);
@@ -501,7 +501,7 @@ void lmMessageLog::scrollToEnd(QTextCursor &cursor)
     scrollBar->setValue(scrollBar->maximum());
 }
 
-void lmMessageLog::appendMessageLog(QString *lpszHtml, MessageType type, QTextBlockData *data) {
+void lmChatLog::appendMessageLog(QString *lpszHtml, MessageType type, QTextBlockData *data) {
 
     QTextCursor cursor = textCursor();
     cursor.movePosition(QTextCursor::MoveOperation::End);
@@ -512,12 +512,12 @@ void lmMessageLog::appendMessageLog(QString *lpszHtml, MessageType type, QTextBl
         scrollToEnd(cursor);
 }
 
-void lmMessageLog::removeMessageLog(MessageType type) {
+void lmChatLog::removeMessageLog(MessageType type) {
 
     replaceMessageLog(type, QString(), QString());
 }
 
-void lmMessageLog::replaceMessageLog(MessageType type, QString id, QString html)
+void lmChatLog::replaceMessageLog(MessageType type, QString id, QString html)
 {
     auto frames = document()->rootFrame()->childFrames();
 
@@ -544,7 +544,7 @@ void lmMessageLog::replaceMessageLog(MessageType type, QString id, QString html)
     }
 }
 
-void lmMessageLog::insertMessageLog(QTextCursor cursor, QString &html, MessageType type, QTextBlockData *data)
+void lmChatLog::insertMessageLog(QTextCursor cursor, QString &html, MessageType type, QTextBlockData *data)
 {
     QTextFrameFormat frameFormat;
     frameFormat.setMargin(0);
@@ -562,7 +562,7 @@ void lmMessageLog::insertMessageLog(QTextCursor cursor, QString &html, MessageTy
         block.setUserData(data);
 }
 
-bool lmMessageLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &id) const
+bool lmChatLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &id) const
 {
     bool result = false;
 
@@ -584,7 +584,7 @@ bool lmMessageLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &i
     return result;
 }
 
-void lmMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime) {
+void lmChatLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime) {
 	Q_UNUSED(lpszUserId);
 
 	decodeMessage(lpszMessage);
@@ -605,7 +605,7 @@ void lmMessageLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, Q
     appendMessageLog(&html, MT_Broadcast);
 }
 
-void lmMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
+void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
                                   QFont* pFont) {
 	QString html = QString();
 	bool localUser = (lpszUserId->compare(localId) == 0);
@@ -658,7 +658,7 @@ void lmMessageLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QSt
 	hasData = true;
 }
 
-void lmMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage,
+void lmChatLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage,
                                         QDateTime *pTime, QFont *pFont, MessageType messageType) {
 	QString html = QString();
 	bool localUser = (lpszUserId->compare(localId) == 0);
@@ -713,7 +713,7 @@ void lmMessageLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserNam
 }
 
 // This function is called to display a audio/video request message in chatlog
-QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
+QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
 {
     QString html;
     QString caption;
@@ -732,7 +732,7 @@ QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserNa
         html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Camera+"</span>");
         break;
     default:
-        throw std::logic_error("lmMessageLog::getStreamMessageText: not yet implemented");
+        throw std::logic_error("lmChatLog::getStreamMessageText: not yet implemented");
         break;
     }
 
@@ -808,7 +808,7 @@ QString lmMessageLog::getStreamMessageText(MessageType type, QString* lpszUserNa
 }
 
 // This function is called to display a file request message in chatlog
-QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
+QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
 {
     QString html;
 	QString caption;
@@ -824,7 +824,7 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
         fileType = "folder";
         break;
     default:
-        throw std::logic_error("lmMessageLog::getFileMessageText: not yet implemented");
+        throw std::logic_error("lmChatLog::getFileMessageText: not yet implemented");
     }
 
     html = templates.reqMsg;
@@ -926,7 +926,7 @@ QString lmMessageLog::getFileMessageText(MessageType type, QString* lpszUserName
     return html;
 }
 
-QString lmMessageLog::getFontStyle(QFont* pFont, bool size) {
+QString lmChatLog::getFontStyle(QFont* pFont, bool size) {
 	QString style = "font-family:\"" + pFont->family() + "\"; ";
 	if(pFont->italic())
 		style.append("font-style:italic; ");
@@ -947,7 +947,7 @@ QString lmMessageLog::getFontStyle(QFont* pFont, bool size) {
 	return style;
 }
 
-QString lmMessageLog::getFileStatusMessage(FileMode mode, FileOp op) {
+QString lmChatLog::getFileStatusMessage(FileMode mode, FileOp op) {
 	QString message;
 
 	switch(op) {
@@ -974,7 +974,7 @@ QString lmMessageLog::getFileStatusMessage(FileMode mode, FileOp op) {
 	return message;
 }
 
-QString lmMessageLog::getChatStateMessage(ChatState chatState) {
+QString lmChatLog::getChatStateMessage(ChatState chatState) {
 	QString message = QString();
 
 	switch(chatState) {
@@ -991,7 +991,7 @@ QString lmMessageLog::getChatStateMessage(ChatState chatState) {
 	return message;
 }
 
-QString lmMessageLog::getChatRoomMessage(GroupMsgOp op) {
+QString lmChatLog::getChatRoomMessage(GroupMsgOp op) {
 	QString message = QString();
 
 	switch(op) {
@@ -1008,7 +1008,7 @@ QString lmMessageLog::getChatRoomMessage(GroupMsgOp op) {
 	return message;
 }
 
-void lmMessageLog::fileOperation(QString fileId, QString action, QString fileType, FileMode mode) {
+void lmChatLog::fileOperation(QString fileId, QString action, QString fileType, FileMode mode) {
     MessageXml fileData, xmlMessage;
 
     MessageType type;
@@ -1054,7 +1054,7 @@ void lmMessageLog::fileOperation(QString fileId, QString action, QString fileTyp
 //	The useDefaults parameter is an override flag that will ignore app settings
 //	while decoding the message. If the flag is set, message is not trimmed,
 //	smileys are left as text and links will be detected and converted.
-void lmMessageLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
+void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	if(!useDefaults && trimMessage)
 		*lpszMessage = lpszMessage->trimmed();
 
@@ -1130,14 +1130,14 @@ TEST CASES
 	*lpszMessage = message;
 }
 
-void lmMessageLog::processMessageText(QString* lpszMessageText, bool useDefaults) {
+void lmChatLog::processMessageText(QString* lpszMessageText, bool useDefaults) {
 	ChatHelper::makeHtmlSafe(lpszMessageText);
 	//	if smileys are enabled, replace text emoticons with corresponding images
 	if(!useDefaults && showSmiley)
 		ChatHelper::decodeSmileys(lpszMessageText);
 }
 
-QString lmMessageLog::getTimeString(QDateTime* pTime) {
+QString lmChatLog::getTimeString(QDateTime* pTime) {
     if (!pTime || !messageTime) return "";
     if (messageDate) {
         return pTime->toString("d MMMM yyyy|hh:mm");
@@ -1145,34 +1145,34 @@ QString lmMessageLog::getTimeString(QDateTime* pTime) {
     return pTime->toString("|hh:mm");  //string will be split, and date placeholder will be replaced with nothing.
 }
 
-void lmMessageLog::setUIText(void) {
+void lmChatLog::setUIText(void) {
 	copyAction->setText(tr("&Copy"));
 	selectAllAction->setText(tr("Select &All"));
     reloadMessageLog();
 }
 
-QString lmMessageLog::getFileTempId(FileMode mode, QString fileId) const
+QString lmChatLog::getFileTempId(FileMode mode, QString fileId) const
 {
     QString tempId = (mode == FM_Send) ? "send" : "receive";
     tempId.append(fileId);
     return tempId;
 }
 
-QString lmMessageLog::getFileTempId(MessageXml *pMessage) const
+QString lmChatLog::getFileTempId(MessageXml *pMessage) const
 {
     QString fileId = pMessage->data(XN_FILEID);
     FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
     return getFileTempId(fileMode, fileId);
 }
 
-QString lmMessageLog::getStreamTempId(StreamMode mode, QString streamId) const
+QString lmChatLog::getStreamTempId(StreamMode mode, QString streamId) const
 {
     QString tempId = (mode == SM_Out) ? "outgoing" : "incoming";
     tempId.append(streamId);
     return tempId;
 }
 
-QString lmMessageLog::getStreamTempId(MessageXml *pMessage) const
+QString lmChatLog::getStreamTempId(MessageXml *pMessage) const
 {
     QString streamId = pMessage->data(XN_STREAMID);
     StreamMode streamMode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));

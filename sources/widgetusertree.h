@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef USERTREEWIDGET_H
-#define USERTREEWIDGET_H
+#ifndef WIDGETUSERTREE_H
+#define WIDGETUSERTREE_H
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QTreeWidget>
@@ -33,32 +33,32 @@
 #include <QFontMetrics>
 #include "definitionsui.h"
 
-class lmUserTreeWidgetItem : public QTreeWidgetItem {
+class lmWidgetUserTreeItem : public QTreeWidgetItem {
 public:
-	lmUserTreeWidgetItem();
-	~lmUserTreeWidgetItem() {}
+	lmWidgetUserTreeItem();
+	~lmWidgetUserTreeItem() {}
 
 	QRect checkBoxRect(const QRect& itemRect);
 };
 
-class lmUserTreeWidgetGroupItem : public lmUserTreeWidgetItem {
+class lmWidgetUserTreeGroupItem : public lmWidgetUserTreeItem {
 public:
-	lmUserTreeWidgetGroupItem() : lmUserTreeWidgetItem() {}
-	~lmUserTreeWidgetGroupItem() {}
+	lmWidgetUserTreeGroupItem() : lmWidgetUserTreeItem() {}
+	~lmWidgetUserTreeGroupItem() {}
 
 	void addChild(QTreeWidgetItem* child);
 };
 
-class lmUserTreeWidgetUserItem : public lmUserTreeWidgetItem {
+class lmWidgetUserTreeUserItem : public lmWidgetUserTreeItem {
 public:
-	lmUserTreeWidgetUserItem() : lmUserTreeWidgetItem() {}
-	~lmUserTreeWidgetUserItem() {}
+	lmWidgetUserTreeUserItem() : lmWidgetUserTreeItem() {}
+	~lmWidgetUserTreeUserItem() {}
 
 private:
 	bool operator < (const QTreeWidgetItem& other) const;
 };
 
-class lmUserTreeWidgetDelegate : public QStyledItemDelegate {
+class lmWidgetUserTreeDelegate : public QStyledItemDelegate {
 public:
 	void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
@@ -66,12 +66,12 @@ private:
 	void drawCheckBox(QPainter* painter, const QPalette& palette, const QRect& checkBoxRect, Qt::CheckState checkState) const;
 };
 
-class lmUserTreeWidget : public QTreeWidget {
+class lmWidgetUserTree : public QTreeWidget {
 	Q_OBJECT
 
 public:
-	lmUserTreeWidget(QWidget* parent);
-	~lmUserTreeWidget() {}
+	lmWidgetUserTree(QWidget* parent);
+	~lmWidgetUserTree() {}
 
 	bool checkable(void);
 	void setCheckable(bool enable);
@@ -91,7 +91,7 @@ protected:
 	void keyPressEvent(QKeyEvent* event);
 
 private:
-	lmUserTreeWidgetDelegate* itemDelegate;
+	lmWidgetUserTreeDelegate* itemDelegate;
 	bool dragGroup;
 	bool dragUser;
 	QString parentId;
@@ -101,4 +101,4 @@ private:
 	UserListView viewType;
 };
 
-#endif // USERTREEWIDGET_H
+#endif // WIDGETUSERTREE_H

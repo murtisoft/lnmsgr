@@ -30,8 +30,8 @@
 #include "networkudp.h"
 #include "networktcp.h"
 #include "crypto.h"
-#include "settings.h"
-#include "messagexml.h"
+#include "definitionssettings.h"
+#include "xmlhandler.h"
 
 class lmNetwork : public QObject {
 	Q_OBJECT

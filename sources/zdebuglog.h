@@ -20,36 +20,28 @@
 ****************************************************************************/
 
 
-#ifndef MESSAGEBROWSER_H
-#define MESSAGEBROWSER_H
+#ifndef ZDEBUGLOG_H
+#define ZDEBUGLOG_H
 
-#include <QTextBrowser>
+#include <QFile>
+#include <QTextStream>
+#include <QDateTime>
+#include <QDir>
+#include "definitionsdir.h"
 
-class MessageBrowser : public QTextBrowser
-{
-    Q_OBJECT
-
+class lmDebugLog {
 public:
-    explicit MessageBrowser(QWidget* parent = nullptr);
-    virtual ~MessageBrowser();
+	lmDebugLog(void);
+	~lmDebugLog(void);
 
-    void insertMoreMessagesAnchor(const QString &text);
-    void insertMoreMessagesAnchor(QTextCursor cursor, const QString &text);
-    void insertMessage(QTextCursor cursor, const QString &sender, const QString &receiver, const QDateTime &time, const QString &avatarUrl, const QString &text);
+    static void init(QString fileName, bool traceMode);
+    static void write(const QString& string, bool verbose = true);
+    static void stop(const QString& string);
+    static bool check();
 
-    typedef struct {
-        QTextCursor cursor;
-        int scrollBarMaximum;
-    } InsertWithoutScrollingData;
-
-    InsertWithoutScrollingData beginInsertWithoutScrolling();
-    void endInsertWithoutScrollig(InsertWithoutScrollingData data);
-
-private slots:
-    void onAnchorClicked(const QUrl &arg1);
-
-Q_SIGNALS:
-    void moreMessagesAnchorClicked();
+private:
+	static bool traceMode;
+	static QString fileName;
 };
 
-#endif // MESSAGEBROWSER_H
+#endif // ZDEBUGLOG_H

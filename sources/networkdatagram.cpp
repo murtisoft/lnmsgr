@@ -20,28 +20,31 @@
 ****************************************************************************/
 
 
-#ifndef TRACE_H
-#define TRACE_H
+#include <QDataStream>
+#include "zdebuglog.h"
+#include "networkdatagram.h"
 
-#include <QFile>
-#include <QTextStream>
-#include <QDateTime>
-#include <QDir>
-#include "definitionsdir.h"
+void Datagram::addHeader(DatagramType type, QByteArray& baData) {
+	QByteArray datagramType = DatagramTypeNames[type].toLocal8Bit();
+	baData.insert(0, datagramType);
+}
 
-class lmTrace {
-public:
-	lmTrace(void);
-	~lmTrace(void);
+bool Datagram::getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader) {
+    QString datagramType(baDatagram.mid(0, 6));	// first 6 bytes represent datagram type
+    int type = Helper::indexOf(DatagramTypeNames, DT_Max, datagramType);
+    if(type < 0)
+        return false;
 
-    static void init(QString fileName, bool traceMode);
-    static void write(const QString& string, bool verbose = true);
-    static void stop(const QString& string);
-    static bool check();
+    *ppHeader = new DatagramHeader(
+        (DatagramType)type,
+        QString(),
+        QString());
+    return true;
+}
 
-private:
-	static bool traceMode;
-	static QString fileName;
-};
+QByteArray Datagram::getData(QByteArray& baDatagram) {
+	if(baDatagram.length() > 6)
+		return baDatagram.mid(6);
 
-#endif // TRACE_H
+	return QByteArray();
+}

@@ -177,7 +177,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="chkDebugLog">
+             <widget class="QCheckBox" name="chklmDebugLog">
               <property name="text">
                <string>Enable Debug Logging</string>
               </property>

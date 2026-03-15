@@ -39,11 +39,11 @@
 #include <QFileDialog>
 #include "ui_aformmain.h"
 #include "shared.h"
-#include "settings.h"
-#include "imagepicker.h"
+#include "definitionssettings.h"
+#include "widgetimagepicker.h"
 #include "soundplayer.h"
 #include "definitionsdir.h"
-#include "messagexml.h"
+#include "xmlhandler.h"
 
 class lmFormMain : public QWidget {
 	Q_OBJECT

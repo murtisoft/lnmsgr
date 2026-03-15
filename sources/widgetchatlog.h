@@ -20,25 +20,25 @@
 ****************************************************************************/
 
 
-#ifndef MESSAGELOG_H
-#define MESSAGELOG_H
+#ifndef WIDGETCHATLOG_H
+#define WIDGETCHATLOG_H
 
 #include "shared.h"
 #include "definitionschat.h"
 #include "chathelper.h"
-#include "messagexml.h"
+#include "xmlhandler.h"
 #include "definitionsdir.h"
-#include "messagebrowser.h"
+#include "widgetmsgbrowser.h"
 
 enum OutputFormat{ HtmlFormat, TextFormat };
 
-class lmMessageLog : public MessageBrowser
+class lmChatLog : public MessageBrowser
 {
     Q_OBJECT
 
 public:
-    lmMessageLog(QWidget *parent = nullptr);
-    ~lmMessageLog(void) override;
+    lmChatLog(QWidget *parent = nullptr);
+    ~lmChatLog(void) override;
 
     void initMessageLog(bool clearLog = true);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,
@@ -130,4 +130,4 @@ private:
 	bool autoScroll;
 };
 
-#endif // MESSAGELOG_H
+#endif // WIDGETCHATLOG_H

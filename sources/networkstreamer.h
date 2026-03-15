@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef NETSTREAMER_H
-#define NETSTREAMER_H
+#ifndef NETWORKSTREAMER_H
+#define NETWORKSTREAMER_H
 
 #include <QTcpSocket>
 #include <QTcpServer>
@@ -166,4 +166,4 @@ private:
 	bool reading;
 };
 
-#endif // NETSTREAMER_H
+#endif // NETWORKSTREAMER_H

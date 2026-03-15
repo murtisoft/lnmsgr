@@ -183,7 +183,7 @@
         </widget>
        </item>
        <item>
-        <widget class="lmUserTreeWidget" name="tvUserList">
+        <widget class="lmWidgetUserTree" name="tvUserList">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -261,9 +261,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>lmUserTreeWidget</class>
+   <class>lmWidgetUserTree</class>
    <extends>QTreeWidget</extends>
-   <header>usertreewidget.h</header>
+   <header>widgetusertree.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

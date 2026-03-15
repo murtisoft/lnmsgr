@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "settings.h"
+#include "definitionssettings.h"
 #include "definitionsdir.h"
 
 lmSettingsBase::lmSettingsBase(void) : QSettings() {

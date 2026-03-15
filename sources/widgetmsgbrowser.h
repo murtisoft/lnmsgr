@@ -20,41 +20,36 @@
 ****************************************************************************/
 
 
-#ifndef AFORMUSERSELECT_H
-#define AFORMUSERSELECT_H
+#ifndef WIDGETMSGBROWSER_H
+#define WIDGETMSGBROWSER_H
 
-#include <QDialog>
-#include "ui_aformuserselect.h"
-#include "shared.h"
-#include "definitionssettings.h"
+#include <QTextBrowser>
 
-class lmFormUserSelect : public QDialog
+class MessageBrowser : public QTextBrowser
 {
     Q_OBJECT
 
 public:
-	lmFormUserSelect(QWidget *parent = 0);
-	~lmFormUserSelect();
+    explicit MessageBrowser(QWidget* parent = nullptr);
+    virtual ~MessageBrowser();
 
-	void init(QList<QTreeWidgetItem*>* pContactsList);
+    void insertMoreMessagesAnchor(const QString &text);
+    void insertMoreMessagesAnchor(QTextCursor cursor, const QString &text);
+    void insertMessage(QTextCursor cursor, const QString &sender, const QString &receiver, const QDateTime &time, const QString &avatarUrl, const QString &text);
 
-	QStringList selectedContacts;
+    typedef struct {
+        QTextCursor cursor;
+        int scrollBarMaximum;
+    } InsertWithoutScrollingData;
 
-protected:
-	void changeEvent(QEvent* pEvent);
+    InsertWithoutScrollingData beginInsertWithoutScrolling();
+    void endInsertWithoutScrollig(InsertWithoutScrollingData data);
 
 private slots:
-	void btnOK_clicked(void);
-	void tvUserList_itemChanged(QTreeWidgetItem* item, int column);
+    void onAnchorClicked(const QUrl &arg1);
 
-private:
-	void setUIText(void);
-
-	Ui::UserSelectDialog ui;
-	lmSettings* pSettings;
-	bool parentToggling;
-	bool childToggling;
-	int selectedCount;
+Q_SIGNALS:
+    void moreMessagesAnchorClicked();
 };
 
-#endif // AFORMUSERSELECT_H
+#endif // WIDGETMSGBROWSER_H

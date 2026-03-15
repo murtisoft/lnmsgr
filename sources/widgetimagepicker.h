@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef IMAGEPICKER_H
-#define IMAGEPICKER_H
+#ifndef WIDGETIMAGEPICKER_H
+#define WIDGETIMAGEPICKER_H
 
 #include <QTableWidget>
 #include <QWidget>
@@ -64,4 +64,4 @@ private:
 };
 
 
-#endif // IMAGEPICKER_H
+#endif // WIDGETIMAGEPICKER_H

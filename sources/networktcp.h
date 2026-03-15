@@ -27,9 +27,9 @@
 #include <QTcpSocket>
 #include <QTcpServer>
 #include "shared.h"
-#include "datagram.h"
-#include "settings.h"
-#include "netstreamer.h"
+#include "networkdatagram.h"
+#include "definitionssettings.h"
+#include "networkstreamer.h"
 #include "crypto.h"
 
 class lmNetworkTcp : public QObject {

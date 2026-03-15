@@ -35,7 +35,7 @@ lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
 	connect(ui.tvUserList, SIGNAL(itemContextMenu(QTreeWidgetItem*, QPoint&)),
 		this, SLOT(tvUserList_itemContextMenu(QTreeWidgetItem*, QPoint&)));
 
-	pMessageLog = new lmMessageLog(ui.wgtLog);
+	pMessageLog = new lmChatLog(ui.wgtLog);
     pMessageLog->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);  // Always on scrollbar fixes the "redraw while scrollbar activated" crash.
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);
@@ -100,7 +100,7 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
 	ui.tvUserList->header()->setStretchLastSection(false);
     ui.tvUserList->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 
-	lmUserTreeWidgetGroupItem *pItem = new lmUserTreeWidgetGroupItem();
+	lmWidgetUserTreeGroupItem *pItem = new lmWidgetUserTreeGroupItem();
 	pItem->setData(0, IdRole, GroupId);
 	pItem->setData(0, TypeRole, "Group");
 	pItem->setText(0, "Participants");
@@ -187,7 +187,7 @@ void lmFormChatRoom::addUser(User* pUser) {
 
 	int index = Helper::statusIndexFromCode(pUser->status);
 
-	lmUserTreeWidgetUserItem *pItem = new lmUserTreeWidgetUserItem();
+	lmWidgetUserTreeUserItem *pItem = new lmWidgetUserTreeUserItem();
 	pItem->setData(0, IdRole, pUser->id);
 	pItem->setData(0, TypeRole, "User");
 	pItem->setData(0, StatusRole, index);
@@ -197,7 +197,7 @@ void lmFormChatRoom::addUser(User* pUser) {
 	if(index != -1)
 		pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
 
-	lmUserTreeWidgetGroupItem* pGroupItem = (lmUserTreeWidgetGroupItem*)getGroupItem(&GroupId);
+	lmWidgetUserTreeGroupItem* pGroupItem = (lmWidgetUserTreeGroupItem*)getGroupItem(&GroupId);
 	pGroupItem->addChild(pItem);
 	pGroupItem->sortChildren(0, Qt::AscendingOrder);
 

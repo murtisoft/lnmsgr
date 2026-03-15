@@ -26,7 +26,7 @@
 #include <QMouseEvent>
 #include <qmath.h>
 #include "definitionsui.h"
-#include "imagepicker.h"
+#include "widgetimagepicker.h"
 #include "chathelper.h"
 
 lmImagePicker::lmImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex)

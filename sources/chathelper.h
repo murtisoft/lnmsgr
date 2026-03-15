@@ -26,7 +26,7 @@
 #include <QTextBlockUserData>
 #include "definitionsui.h"
 #include "definitionschat.h"
-#include "messagexml.h"
+#include "xmlhandler.h"
 
 class QTextBlockData : public QTextBlockUserData
 {

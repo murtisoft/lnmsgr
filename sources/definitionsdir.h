@@ -28,7 +28,7 @@
 #include <QFileInfo>
 #include <QDesktopServices>
 #include <QDateTime>
-#include "settings.h"
+#include "definitionssettings.h"
 
 #define TRANSFERHISTORY		"transfers.lst"
 #define CACHEDIR			"cache"

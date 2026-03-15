@@ -32,10 +32,10 @@
 #include <qevent.h>
 #include "ui_aformtransfer.h"
 #include "shared.h"
-#include "settings.h"
+#include "definitionssettings.h"
 #include "definitionsdir.h"
 #include "soundplayer.h"
-#include "messagexml.h"
+#include "xmlhandler.h"
 
 class lmFormTransfer : public QWidget
 {

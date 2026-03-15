@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef TRANSFERLISTVIEW_H
-#define TRANSFERLISTVIEW_H
+#ifndef WIDGETTRANSFERLIST_H
+#define WIDGETTRANSFERLIST_H
 
 #include <QListView>
 #include <QPushButton>
@@ -58,4 +58,4 @@ private:
 	FileModel* pModel;
 };
 
-#endif // TRANSFERLISTVIEW_H
+#endif // WIDGETTRANSFERLIST_H

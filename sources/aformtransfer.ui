@@ -118,7 +118,7 @@
   <customwidget>
    <class>lmTransferListView</class>
    <extends>QListView</extends>
-   <header>transferlistview.h</header>
+   <header>widgettransferlist.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

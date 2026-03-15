@@ -23,7 +23,7 @@
 #include <QMessageBox>
 #include <QTranslator>
 #include <utilapiset.h>
-#include "trace.h"
+#include "zdebuglog.h"
 #include "lmcore.h"
 
 lmCore::lmCore(void) {
@@ -92,11 +92,11 @@ void lmCore::init(const QString& szCommandArgs) {
 		}
 	}
 
-    lmTrace::init(pInitParams->data(XN_LOGFILE) , Helper::stringToBool(pInitParams->data(XN_TRACEMODE)));
-    lmTrace::write("Application initialized");
+    lmDebugLog::init(pInitParams->data(XN_LOGFILE) , Helper::stringToBool(pInitParams->data(XN_TRACEMODE)));
+    lmDebugLog::write("Application initialized");
 
     loadSettings();
-    lmTrace::write("Settings loaded");
+    lmDebugLog::write("Settings loaded");
 
 	pMessaging->init(pInitParams);
 	pMainWindow->init(pMessaging->localUser, &pMessaging->groupList, pMessaging->isConnected());
@@ -104,7 +104,7 @@ void lmCore::init(const QString& szCommandArgs) {
 }
 
 bool lmCore::start(void) {
-	lmTrace::write("Application started");
+	lmDebugLog::write("Application started");
 	pMessaging->start();
 
 	if(pMessaging->isConnected() && !pMessaging->canReceive()) {
@@ -134,8 +134,8 @@ void lmCore::loadSettings(void) {
 
     if(!Helper::stringToBool(pInitParams->data(XN_TRACEMODE))){          //No /trace argument from console
         if(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool()){   //Debuglog setting from UI
-            lmTrace::init(pInitParams->data(XN_LOGFILE) , true);
-            lmTrace::write("Debug logging started via loadSettings");
+            lmDebugLog::init(pInitParams->data(XN_LOGFILE) , true);
+            lmDebugLog::write("Debug logging started via loadSettings");
     }};
 
 	bool silent = Helper::stringToBool(pInitParams->data(XN_SILENTMODE));
@@ -198,11 +198,11 @@ void lmCore::settingsChanged(void) {
 
     if(!Helper::stringToBool(pInitParams->data(XN_TRACEMODE))){          //No /trace argument from console
         if(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool()){   //Debuglog setting from UI
-            if (!lmTrace::check()){
-                lmTrace::init(pInitParams->data(XN_LOGFILE) , true);
-                lmTrace::write("Debug logging started via settingsChanged");}
+            if (!lmDebugLog::check()){
+                lmDebugLog::init(pInitParams->data(XN_LOGFILE) , true);
+                lmDebugLog::write("Debug logging started via settingsChanged");}
         }else {
-            lmTrace::stop("Debug logging stopped via settingsChanged");
+            lmDebugLog::stop("Debug logging stopped via settingsChanged");
             }
     }
 }
@@ -248,7 +248,7 @@ void lmCore::stop(void) {
 	pMessaging->stop();
 	pMainWindow->stop();
 
-	lmTrace::write("Application stopped");
+	lmDebugLog::write("Application stopped");
 }
 
 //	This slot handles the exit signal emitted by main window when the user
@@ -264,7 +264,7 @@ void lmCore::aboutToExit(void) {
 	stop();
 	pSettings->setValue(IDS_VERSION, IDA_VERSION);
 
-	lmTrace::write("Application exit");
+	lmDebugLog::write("Application exit");
 
 	pSettings->sync();
 }

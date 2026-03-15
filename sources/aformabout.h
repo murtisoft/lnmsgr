@@ -27,7 +27,7 @@
 #include <QPicture>
 #include "ui_aformabout.h"
 #include "shared.h"
-#include "settings.h"
+#include "definitionssettings.h"
 
 class lmFormAbout : public QDialog {
 	Q_OBJECT

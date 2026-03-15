@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -22,8 +22,8 @@
 
 //	This file contains definitions for subclassed controls
 
-#ifndef SUBCONTROLS_H
-#define SUBCONTROLS_H
+#ifndef WIDGETLEFTOVERS_H
+#define WIDGETLEFTOVERS_H
 
 #include <QStylePainter>
 #include <QStyleOption>
@@ -72,4 +72,4 @@ protected:
 	void focusOutEvent(QFocusEvent* event);
 };
 
-#endif //SUBCONTROLS_H
+#endif //WIDGETLEFTOVERS_H

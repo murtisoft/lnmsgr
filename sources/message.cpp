@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "trace.h"
+#include "zdebuglog.h"
 #include "message.h"
 
 QString Message::addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, MessageXml* pMessage) {

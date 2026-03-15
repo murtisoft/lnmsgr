@@ -35,7 +35,7 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	setAcceptDrops(true);
 
-	pMessageLog = new lmMessageLog(ui.wgtLog);
+	pMessageLog = new lmChatLog(ui.wgtLog);
     pMessageLog->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);  // Always on scrollbar fixes the "redraw while scrollbar activated" crash.
 	ui.logLayout->addWidget(pMessageLog);
 	pMessageLog->setAcceptDrops(false);

@@ -22,7 +22,7 @@
 
 #include <QApplication>
 #include "strings.h"
-#include "subcontrols.h"
+#include "widgetleftovers.h"
 
 lmToolButton::lmToolButton(QWidget* parent) : QToolButton(parent) {
 }

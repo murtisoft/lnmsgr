@@ -34,16 +34,16 @@
 #include <qevent.h>
 #include "ui_aformchat.h"
 #include "shared.h"
-#include "settings.h"
+#include "definitionssettings.h"
 #include "history.h"
-#include "messagelog.h"
-#include "subcontrols.h"
-#include "imagepicker.h"
+#include "widgetchatlog.h"
+#include "widgetleftovers.h"
+#include "widgetimagepicker.h"
 #include "soundplayer.h"
 #include "definitionschat.h"
 #include "chathelper.h"
 #include "definitionsdir.h"
-#include "messagexml.h"
+#include "xmlhandler.h"
 #include <QAudioSource>
 #include <QAudioFormat>
 #include <QMediaDevices>
@@ -133,7 +133,7 @@ private:
 
 	Ui::ChatWindow ui;
 	lmSettings* pSettings;
-	lmMessageLog* pMessageLog;
+	lmChatLog* pMessageLog;
 	lmToolButton* pbtnSmiley;
 	QAction* pFileAction;
     QAction* pFolderAction;

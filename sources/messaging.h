@@ -28,8 +28,8 @@
 #include "shared.h"
 #include "message.h"
 #include "network.h"
-#include "settings.h"
-#include "messagexml.h"
+#include "definitionssettings.h"
+#include "xmlhandler.h"
 
 
 struct PendingMsg {

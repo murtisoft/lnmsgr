@@ -20,14 +20,14 @@
 ****************************************************************************/
 
 
-#include "usertreewidget.h"
+#include "widgetusertree.h"
 
-lmUserTreeWidgetItem::lmUserTreeWidgetItem() : QTreeWidgetItem(UserType + 1) {
+lmWidgetUserTreeItem::lmWidgetUserTreeItem() : QTreeWidgetItem(UserType + 1) {
 	//	make item not user checkable
 	setFlags(flags() & ~Qt::ItemIsUserCheckable);
 }
 
-QRect lmUserTreeWidgetItem::checkBoxRect(const QRect& itemRect) {
+QRect lmWidgetUserTreeItem::checkBoxRect(const QRect& itemRect) {
 	QRect checkBoxRect(0, 0, 0, 0);
 
 	if(data(0, TypeRole).toString() == "Group")
@@ -35,7 +35,7 @@ QRect lmUserTreeWidgetItem::checkBoxRect(const QRect& itemRect) {
 	else if(data(0, TypeRole).toString() == "User")
 		checkBoxRect = QRect(itemRect.left(), itemRect.top() + 4, 0, 0);
 
-    lmUserTreeWidget* treeWidget = static_cast<lmUserTreeWidget*>(this->treeWidget());
+    lmWidgetUserTree* treeWidget = static_cast<lmWidgetUserTree*>(this->treeWidget());
 	if(treeWidget->checkable()) {
 		checkBoxRect.setSize(QSize(12, 12));
 		checkBoxRect.moveLeft(checkBoxRect.left() + 3);
@@ -44,13 +44,13 @@ QRect lmUserTreeWidgetItem::checkBoxRect(const QRect& itemRect) {
 	return checkBoxRect;
 }
 
-void lmUserTreeWidgetGroupItem::addChild(QTreeWidgetItem* child) {
-    lmUserTreeWidget* treeWidget = static_cast<lmUserTreeWidget*>(this->treeWidget());
+void lmWidgetUserTreeGroupItem::addChild(QTreeWidgetItem* child) {
+    lmWidgetUserTree* treeWidget = static_cast<lmWidgetUserTree*>(this->treeWidget());
 	child->setSizeHint(0, QSize(0, itemViewHeight[treeWidget->view()]));
 	QTreeWidgetItem::addChild(child);
 }
 
-bool lmUserTreeWidgetUserItem::operator < (const QTreeWidgetItem& other) const {
+bool lmWidgetUserTreeUserItem::operator < (const QTreeWidgetItem& other) const {
 	int column = treeWidget()->sortColumn();
 	if(column == 0) {
 		//	sort based on status and user name
@@ -65,13 +65,13 @@ bool lmUserTreeWidgetUserItem::operator < (const QTreeWidgetItem& other) const {
 	return text(column).toLower() < other.text(column).toLower();
 }
 
-void lmUserTreeWidgetDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const {
+void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const {
 	painter->save();
 
 	QPalette palette = QApplication::palette();
 	QRect itemRect = option.rect;
-	lmUserTreeWidgetItem* pItem = static_cast<lmUserTreeWidgetItem*>(index.internalPointer());
-    lmUserTreeWidget* pTreeWidget = static_cast<lmUserTreeWidget*>(pItem->treeWidget());
+	lmWidgetUserTreeItem* pItem = static_cast<lmWidgetUserTreeItem*>(index.internalPointer());
+    lmWidgetUserTree* pTreeWidget = static_cast<lmWidgetUserTree*>(pItem->treeWidget());
 	QString type = pItem->data(0, TypeRole).toString();
 	QString name = pItem->data(0, Qt::DisplayRole).toString();
 
@@ -185,7 +185,7 @@ void lmUserTreeWidgetDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 	painter->restore();
 }
 
-void lmUserTreeWidgetDelegate::drawCheckBox(QPainter *painter, const QPalette& palette,
+void lmWidgetUserTreeDelegate::drawCheckBox(QPainter *painter, const QPalette& palette,
 										const QRect &checkBoxRect, Qt::CheckState checkState) const {
 	painter->setPen(QPen(palette.color(QPalette::Shadow)));
 	painter->setBrush(palette.base());
@@ -202,27 +202,27 @@ void lmUserTreeWidgetDelegate::drawCheckBox(QPainter *painter, const QPalette& p
 	}
 }
 
-lmUserTreeWidget::lmUserTreeWidget(QWidget* parent) : QTreeWidget(parent) {
-	itemDelegate = new lmUserTreeWidgetDelegate();
+lmWidgetUserTree::lmWidgetUserTree(QWidget* parent) : QTreeWidget(parent) {
+	itemDelegate = new lmWidgetUserTreeDelegate();
 	setItemDelegate(itemDelegate);
 
 	isCheckable = false;
 	viewType = ULV_Detailed;
 }
 
-bool lmUserTreeWidget::checkable(void) {
+bool lmWidgetUserTree::checkable(void) {
 	return isCheckable;
 }
 
-void lmUserTreeWidget::setCheckable(bool enable) {
+void lmWidgetUserTree::setCheckable(bool enable) {
 	isCheckable = enable;
 }
 
-UserListView lmUserTreeWidget::view(void) {
+UserListView lmWidgetUserTree::view(void) {
 	return viewType;
 }
 
-void lmUserTreeWidget::setView(UserListView view) {
+void lmWidgetUserTree::setView(UserListView view) {
 	viewType = view;
 
 	//	Set the item heights for the selected view type
@@ -233,7 +233,7 @@ void lmUserTreeWidget::setView(UserListView view) {
 	}
 }
 
-void lmUserTreeWidget::mousePressEvent(QMouseEvent* event) {
+void lmWidgetUserTree::mousePressEvent(QMouseEvent* event) {
 	if(event->button() == Qt::LeftButton) {
 		QTreeWidgetItem* item = itemAt(event->position().toPoint());
 
@@ -245,11 +245,11 @@ void lmUserTreeWidget::mousePressEvent(QMouseEvent* event) {
 
 		if(item) {
 			dragItem = item;
-			if(dynamic_cast<lmUserTreeWidgetGroupItem*>(item)) {
+			if(dynamic_cast<lmWidgetUserTreeGroupItem*>(item)) {
 				dragGroup = true;
 				expanded = dragItem->isExpanded();
 			}
-			else if(dynamic_cast<lmUserTreeWidgetUserItem*>(item)) {
+			else if(dynamic_cast<lmWidgetUserTreeUserItem*>(item)) {
 				dragUser = true;
 				parentId = dragItem->parent()->data(0, IdRole).toString();
 			}
@@ -259,25 +259,25 @@ void lmUserTreeWidget::mousePressEvent(QMouseEvent* event) {
 	QTreeWidget::mousePressEvent(event);
 }
 
-void lmUserTreeWidget::dragMoveEvent(QDragMoveEvent* event) {
+void lmWidgetUserTree::dragMoveEvent(QDragMoveEvent* event) {
 	QTreeWidget::dragMoveEvent(event);
 
 	QTreeWidgetItem* item = itemAt(event->position().toPoint());
 	bool accept = false;
 
 	if(dragUser) {
-		if(item && dynamic_cast<lmUserTreeWidgetGroupItem*>(item) && visualItemRect(item).contains(event->position().toPoint(), true))
+		if(item && dynamic_cast<lmWidgetUserTreeGroupItem*>(item) && visualItemRect(item).contains(event->position().toPoint(), true))
 			accept = true;
 	}
 	else if(dragGroup) {
-		if(!item || (dynamic_cast<lmUserTreeWidgetGroupItem*>(item) && !visualItemRect(item).contains(event->position().toPoint(), true)))
+		if(!item || (dynamic_cast<lmWidgetUserTreeGroupItem*>(item) && !visualItemRect(item).contains(event->position().toPoint(), true)))
 			accept = true;
 	}
 
 	accept ? event->accept() : event->ignore();
 }
 
-void lmUserTreeWidget::dropEvent(QDropEvent* event) {
+void lmWidgetUserTree::dropEvent(QDropEvent* event) {
 	QTreeWidget::dropEvent(event);
 
 	if(dragUser) {
@@ -301,7 +301,7 @@ void lmUserTreeWidget::dropEvent(QDropEvent* event) {
 		emit itemDragDropped(dragItem);
 }
 
-void lmUserTreeWidget::contextMenuEvent(QContextMenuEvent* event) {
+void lmWidgetUserTree::contextMenuEvent(QContextMenuEvent* event) {
     QTreeWidget::contextMenuEvent(event);
 
     QTreeWidgetItem* item = itemAt(event->pos());
@@ -316,11 +316,11 @@ void lmUserTreeWidget::contextMenuEvent(QContextMenuEvent* event) {
     emit itemContextMenu(item, pos);
 }
 
-void lmUserTreeWidget::mouseReleaseEvent(QMouseEvent* event) {
+void lmWidgetUserTree::mouseReleaseEvent(QMouseEvent* event) {
 	QTreeWidget::mouseReleaseEvent(event);
 
 	QPoint pos = event->position().toPoint();
-    lmUserTreeWidgetItem* item = static_cast<lmUserTreeWidgetItem*>(itemAt(pos));
+    lmWidgetUserTreeItem* item = static_cast<lmWidgetUserTreeItem*>(itemAt(pos));
 	if(item && checkable() && item->checkBoxRect(visualItemRect(item)).contains(pos)) {
 		// toggle checkstate
 		if(item->checkState(0) == Qt::Checked)
@@ -330,11 +330,11 @@ void lmUserTreeWidget::mouseReleaseEvent(QMouseEvent* event) {
 	}
 }
 
-void lmUserTreeWidget::keyPressEvent(QKeyEvent* event) {
+void lmWidgetUserTree::keyPressEvent(QKeyEvent* event) {
 	QTreeWidget::keyPressEvent(event);
 
 	if(event->key() == Qt::Key_Space && selectedItems().count() > 0) {
-        lmUserTreeWidgetItem* item = static_cast<lmUserTreeWidgetItem*>(selectedItems().at(0));
+        lmWidgetUserTreeItem* item = static_cast<lmWidgetUserTreeItem*>(selectedItems().at(0));
 		if(item && checkable()) {
 			// toggle checkstate
 			if(item->checkState(0) == Qt::Checked)

@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "trace.h"
+#include "zdebuglog.h"
 #include "messaging.h"
 
 //	A broadcast is to be sent
@@ -83,7 +83,7 @@ void lmMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) {
 	MessageHeader* pMsgHeader = NULL;
 	MessageXml* pMessage = NULL;
 	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
-		lmTrace::write("Warning: Broadcast header parse failed");
+		lmDebugLog::write("Warning: Broadcast header parse failed");
 		return;
 	}
 	pMsgHeader->address = pHeader->address;
@@ -95,7 +95,7 @@ void lmMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
 	MessageHeader* pMsgHeader = NULL;
 	MessageXml* pMessage = NULL;
 	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
-		lmTrace::write("Warning: Message header parse failed");
+		lmDebugLog::write("Warning: Message header parse failed");
 		return;
 	}
 	pMsgHeader->address = pHeader->address;
@@ -104,17 +104,17 @@ void lmMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
 
 //	Handshake procedure has been completed
 void lmMessaging::newConnection(QString* lpszUserId, QString* lpszAddress) {
-	lmTrace::write("Connection completed with user " + *lpszUserId + " at " + *lpszAddress);
+	lmDebugLog::write("Connection completed with user " + *lpszUserId + " at " + *lpszAddress);
 	sendUserData(MT_UserData, QO_Get, lpszUserId, lpszAddress);
 }
 
 void lmMessaging::connectionLost(QString* lpszUserId) {
-	lmTrace::write("Connection to user " + *lpszUserId + " lost");
+	lmDebugLog::write("Connection to user " + *lpszUserId + " lost");
 	removeUser(*lpszUserId);
 }
 
 void lmMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserId, QString* lpszAddress) {
-	lmTrace::write("Sending local user details to user " + *lpszUserId + " at " + *lpszAddress);
+	lmDebugLog::write("Sending local user details to user " + *lpszUserId + " at " + *lpszAddress);
 	MessageXml xmlMessage;
 	xmlMessage.addData(XN_USERID, localUser->id);
 	xmlMessage.addData(XN_NAME, localUser->name);
@@ -131,28 +131,28 @@ void lmMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserId
 
 void lmMessaging::prepareBroadcast(MessageType type, MessageXml* pMessage) {
     if(!isConnected()) {
-        lmTrace::write("Warning: Not connected. Broadcast not sent");
+        lmDebugLog::write("Warning: Not connected. Broadcast not sent");
         return;
     }
     if(localUser->id.isNull()) {
-        lmTrace::write("Warning: Local user not initialized. Broadcast not sent");
+        lmDebugLog::write("Warning: Local user not initialized. Broadcast not sent");
         return;
     }
 
-	lmTrace::write("Sending broadcast type " + QString::number(type));
+	lmDebugLog::write("Sending broadcast type " + QString::number(type));
 	QString szMessage = Message::addHeader(type, msgId, &localUser->id, NULL, pMessage);
 	pNetwork->sendBroadcast(&szMessage);
-	lmTrace::write("Broadcast sending done");
+	lmDebugLog::write("Broadcast sending done");
 }
 
 //	This method converts a Message from ui layer to a Datagram that can be passed to network layer
 void lmMessaging::prepareMessage(MessageType type, qint64 msgId, bool retry, QString* lpszUserId, MessageXml* pMessage) {
 	if(!isConnected()) {
-		lmTrace::write("Warning: Not connected. Message not sent");
+		lmDebugLog::write("Warning: Not connected. Message not sent");
 		return;
 	}
     if(localUser->id.isNull()) {
-        lmTrace::write("Warning: Local user not initialized. Message not sent");
+        lmDebugLog::write("Warning: Local user not initialized. Message not sent");
         return;
     }
 
@@ -211,15 +211,15 @@ void lmMessaging::prepareMessage(MessageType type, qint64 msgId, bool retry, QSt
 	}
 
 	if(!receiver) {
-		lmTrace::write("Warning: Recipient " + *lpszUserId + " not found. Message not sent");
+		lmDebugLog::write("Warning: Recipient " + *lpszUserId + " not found. Message not sent");
 		return;
 	}
 
-	lmTrace::write("Sending message type " + QString::number(type) + " to user " + receiver->id
+	lmDebugLog::write("Sending message type " + QString::number(type) + " to user " + receiver->id
 		+ " at " + receiver->address);
 	QString szMessage = Message::addHeader(type, msgId, &localUser->id, lpszUserId, pMessage);
 	pNetwork->sendMessage(&receiver->id, &receiver->address, &szMessage);
-	lmTrace::write("Message sending done");
+	lmDebugLog::write("Message sending done");
 }
 
 //	This method converts a Datagram from network layer to a Message that can be passed to ui layer
@@ -230,7 +230,7 @@ void lmMessaging::processBroadcast(MessageHeader* pHeader, MessageXml* pMessage)
 	if(!loopback && pHeader->userId.compare(localUser->id) == 0)
 		return;
 
-	lmTrace::write("Processing broadcast type " + QString::number(pHeader->type) + " from user " +
+	lmDebugLog::write("Processing broadcast type " + QString::number(pHeader->type) + " from user " +
 		pHeader->userId);
 
 	switch(pHeader->type) {
@@ -245,7 +245,7 @@ void lmMessaging::processBroadcast(MessageHeader* pHeader, MessageXml* pMessage)
         break;
 	}
 
-	lmTrace::write("Broadcast processing done");
+	lmDebugLog::write("Broadcast processing done");
 }
 
 void lmMessaging::processMessage(MessageHeader* pHeader, MessageXml* pMessage) {
@@ -253,7 +253,7 @@ void lmMessaging::processMessage(MessageHeader* pHeader, MessageXml* pMessage) {
 	QString data = QString();
 	MessageXml reply;
 
-	lmTrace::write("Processing message type " + QString::number(pHeader->type) + " from user " +
+	lmDebugLog::write("Processing message type " + QString::number(pHeader->type) + " from user " +
 		pHeader->userId);
 
 	switch(pHeader->type) {
@@ -342,6 +342,6 @@ void lmMessaging::processMessage(MessageHeader* pHeader, MessageXml* pMessage) {
         break;
 	}
 
-	lmTrace::write("Message processing done");
+	lmDebugLog::write("Message processing done");
 }
 

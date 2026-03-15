@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 #include "crypto.h"
-#include "trace.h"
+#include "zdebuglog.h"
 
 lmCrypto::lmCrypto(void) {
     pKey = nullptr;
@@ -107,7 +107,7 @@ void lmCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
 
     unsigned char keyIv[48];
     if (EVP_PKEY_decrypt(decCtx, keyIv, &outlen, (unsigned char*)aesKeyIv.data(), aesKeyIv.length()) <= 0) {
-        lmTrace::write("Error: RSA Decryption of AES key failed");
+        lmDebugLog::write("Error: RSA Decryption of AES key failed");
         EVP_PKEY_CTX_free(decCtx);
         return;
     }
@@ -129,7 +129,7 @@ QByteArray lmCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
 
     QByteArray out(clearData.length() + AES_BLOCK_SIZE, 0);
     if (out.isEmpty()) {
-        lmTrace::write("Error: Buffer not allocated");
+        lmDebugLog::write("Error: Buffer not allocated");
         return QByteArray();
     }
 
@@ -138,7 +138,7 @@ QByteArray lmCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
 
     if (!EVP_EncryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)clearData.data(), clearData.length()) ||
         !EVP_EncryptFinal_ex(ctx, (unsigned char*)out.data() + len, &flen)) {
-        lmTrace::write("Error: Message encryption failed");
+        lmDebugLog::write("Error: Message encryption failed");
         return QByteArray();
     }
 
@@ -152,7 +152,7 @@ QByteArray lmCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData) {
 
     QByteArray out(cipherData.length(), 0);
     if (out.isEmpty() && cipherData.length() > 0) {
-        lmTrace::write("Error: Buffer not allocated");
+        lmDebugLog::write("Error: Buffer not allocated");
         return QByteArray();
     }
 
@@ -161,7 +161,7 @@ QByteArray lmCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData) {
 
     if (!EVP_DecryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)cipherData.data(), cipherData.length()) ||
         !EVP_DecryptFinal_ex(ctx, (unsigned char*)out.data() + len, &flen)) {
-        lmTrace::write("Error: Message decryption failed");
+        lmDebugLog::write("Error: Message decryption failed");
         return QByteArray();
     }
 

@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "transferlistview.h"
+#include "widgettransferlist.h"
 
 lmTransferListView::lmTransferListView(QWidget* parent) : QListView(parent) {
 	pModel = new FileModel();
