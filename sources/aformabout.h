@@ -46,7 +46,7 @@ private:
 	void setUIText(void);
 
 	Ui::AboutDialog ui;
-	lmSettings* pSettings;
+    lmSettings*     pSettings;
 };
 
 #endif // ABOUTDIALOG_H

@@ -598,12 +598,26 @@ void lmCore::callConnected() {
     callPhase = CP_Connected;
     emit callPhaseChanged(callPhase != CP_Idle);
     pMainWindow->stopLoopSound();
+
+    for (lmFormChat* w : chatWindows) {
+        if (w->isVisible()) {
+            User* pUser = pMessaging->getUser(&w->peerId);
+            if (pUser) {
+                if (!m_audioStream) m_audioStream = new lmAudioStream(this);
+                m_audioStream->start(QHostAddress(pUser->address),
+                                   pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt());
+            }
+            break;
+        }
+    }
 }
 
 void lmCore::callEnded() {
     callPhase = CP_Idle;
     emit callPhaseChanged(callPhase != CP_Idle);
     pMainWindow->stopLoopSound();
+
+    if (m_audioStream) { m_audioStream->stop(); delete m_audioStream; m_audioStream = nullptr; }
 }
 
 void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage) {

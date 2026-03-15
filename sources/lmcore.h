@@ -42,6 +42,7 @@
 #include "aformuserselect.h"
 #include "aformabout.h"
 #include "aformbroadcast.h"
+#include "networkstreamer.h"
 
 class lmCore : public QObject {
 	Q_OBJECT
@@ -109,26 +110,27 @@ private:
     void playLoopSound(SoundEvent event);
     void stopLoopSound();
 
-	lmSettings*					pSettings;
+    lmSettings*                     pSettings;
 	QTimer*							pTimer;
 	lmMessaging*					pMessaging;
-	lmFormMain*					pMainWindow;
-	QList<lmFormChat*>			chatWindows;
-	QList<lmFormChatRoom*>		chatRoomWindows;
-	lmFormTransfer*				pTransferWindow;
-	QPointer<lmFormHistory>		pHistoryWindow;
+    lmFormMain*                     pMainWindow;
+    QList<lmFormChat*>              chatWindows;
+    QList<lmFormChatRoom*>          chatRoomWindows;
+    lmFormTransfer*                 pTransferWindow;
+    QPointer<lmFormHistory>         pHistoryWindow;
 	QPointer<lmFormSettings>		pSettingsDialog;
 	QPointer<lmFormUserInfo>		pUserInfoWindow;
 	QPointer<lmFormChatRoom>		pPublicChatWindow;
-	QPointer<lmFormUserSelect>	pUserSelectDialog;
-	QPointer<lmFormAbout>		pAboutDialog;
-	QPointer<lmFormBroadcast>	pBroadcastWindow;
+    QPointer<lmFormUserSelect>      pUserSelectDialog;
+    QPointer<lmFormAbout>           pAboutDialog;
+    QPointer<lmFormBroadcast>       pBroadcastWindow;
 	bool							messageTop;
 	bool							pubMessagePop;
 	QString							lang;
 	bool							adaptiveRefresh;
 	int								refreshTime;
 	MessageXml*						pInitParams;
+    lmAudioStream*                  m_audioStream = nullptr;
 };
 
 #endif // LMCORE_H

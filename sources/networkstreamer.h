@@ -27,7 +27,40 @@
 #include <QTcpServer>
 #include <QTimer>
 #include <QFile>
+#include <QObject>
+#include <QUdpSocket>
+#include <QAudioSource>
+#include <QAudioSink>
+#include <QMediaDevices>
+#include <QAudioFormat>
 #include "shared.h"
+
+
+class lmAudioStream : public QObject {
+    Q_OBJECT
+public:
+    explicit lmAudioStream(QObject* parent = nullptr);
+    ~lmAudioStream();
+
+    void start(const QHostAddress& peerAddress, quint16 port);
+    void stop();
+
+private slots:
+    void onReadyRead();
+
+private:
+    QAudioSource*  m_source  = nullptr;
+    QAudioSink*    m_sink    = nullptr;
+    QIODevice*     m_input   = nullptr;
+    QIODevice*     m_output  = nullptr;
+    QUdpSocket*    m_sendSock = nullptr;
+    QUdpSocket*    m_recvSock = nullptr;
+    QHostAddress   m_peerAddress;
+    quint16        m_port    = 0;
+
+    static constexpr quint16 AUDIO_PORT_OFFSET = 1; // udpPort + 1
+};
+
 
 /****************************************************************************
 ** Class: FileSender

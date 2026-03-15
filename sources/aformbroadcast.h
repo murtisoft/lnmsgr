@@ -74,18 +74,18 @@ private:
 	void showStatus(int flag, bool add);
 
 	Ui::BroadcastWindow ui;
-	lmSettings* pSettings;
-	QToolBar* pToolBar;
-	lmToolButton* pbtnSmiley;
-	int fontSizeVal;
-	int nSmiley;
-	bool bConnected;
-	int infoFlag;
-	bool showSmiley;
-	bool sendKeyMod;
-	bool parentToggling;
-	bool childToggling;
-	QActionGroup* pFontGroup;
+    lmSettings*     pSettings;
+    QToolBar*       pToolBar;
+    lmToolButton*   pbtnSmiley;
+    int             fontSizeVal;
+    int             nSmiley;
+    bool            bConnected;
+    int             infoFlag;
+    bool            showSmiley;
+    bool            sendKeyMod;
+    bool            parentToggling;
+    bool            childToggling;
+    QActionGroup*   pFontGroup;
 };
 
 #endif // AFORMBROADCAST_H

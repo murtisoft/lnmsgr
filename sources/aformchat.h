@@ -66,6 +66,7 @@ public:
 	QHash<QString, QString> peerIds;
 	QString threadId;
 	bool groupMode;
+    QString peerId;
 
 public slots:
     void btnHangUp_clicked();
@@ -123,7 +124,6 @@ private:
     void updateButtonStates();
     void nudge(bool send = false);
 
-	QString peerId;
 	QString localName;
 	QHash<QString, QString> peerNames;
 	QHash<QString, QString> peerStatuses;

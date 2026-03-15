@@ -25,13 +25,76 @@
 #include <QDataStream>
 #include "zdebuglog.h"
 #include "networkstreamer.h"
+#include "networkdatagram.h"
 
-const qint64 bufferSize = 65535;
+lmAudioStream::lmAudioStream(QObject* parent) : QObject(parent) {}
+
+lmAudioStream::~lmAudioStream() { stop(); }
+
+void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort) {
+    m_peerAddress = peerAddress;
+    m_port = udpPort + AUDIO_PORT_OFFSET;
+
+    QAudioFormat fmt;
+    fmt.setSampleRate(44100);
+    fmt.setChannelCount(1);
+    fmt.setSampleFormat(QAudioFormat::Int16);
+
+    // Record from default mic, send over UDP
+    m_sendSock = new QUdpSocket(this);
+    m_source = new QAudioSource(QMediaDevices::defaultAudioInput(), fmt, this);
+    m_input  = m_source->start();
+
+    connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onReadyRead);
+
+    // Receive UDP, play to default speaker
+    m_recvSock = new QUdpSocket(this);
+    m_recvSock->bind(QHostAddress::AnyIPv4, m_port,
+                     QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
+
+    m_sink   = new QAudioSink(QMediaDevices::defaultAudioOutput(), fmt, this);
+    m_output = m_sink->start();
+
+    connect(m_recvSock, &QUdpSocket::readyRead, this, &lmAudioStream::onReadyRead);
+}
+
+void lmAudioStream::onReadyRead() {
+    QObject* src = sender();
+
+    if (src == m_input) {
+        // Mic data → send to peer
+        QByteArray pcm = m_input->readAll();
+        if (pcm.isEmpty()) return;
+        Datagram::addHeader(DT_Audio, pcm);
+        m_sendSock->writeDatagram(pcm, m_peerAddress, m_port);
+    } else if (src == m_recvSock) {
+        // Received from peer → play
+        while (m_recvSock->hasPendingDatagrams()) {
+            QByteArray dg;
+            dg.resize(m_recvSock->pendingDatagramSize());
+            m_recvSock->readDatagram(dg.data(), dg.size());
+            QByteArray pcm = Datagram::getData(dg);
+            if (m_output && !pcm.isEmpty())
+                m_output->write(pcm);
+        }
+    }
+}
+
+void lmAudioStream::stop() {
+    if (m_source) { m_source->stop(); delete m_source; m_source = nullptr; }
+    if (m_sink)   { m_sink->stop();   delete m_sink;   m_sink   = nullptr; }
+    if (m_sendSock) { m_sendSock->close(); delete m_sendSock; m_sendSock = nullptr; }
+    if (m_recvSock) { m_recvSock->close(); delete m_recvSock; m_recvSock = nullptr; }
+    m_input = m_output = nullptr;
+}
+
 
 /****************************************************************************
 ** Class: FileSender
 ** Description: Handles sending files.
 ****************************************************************************/
+const qint64 bufferSize = 65535;
+
 FileSender::FileSender(void) {
 }
 
