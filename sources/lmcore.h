@@ -83,8 +83,8 @@ private slots:
 	void chatWindow_closed(QString* lpszUserId);
 	void chatRoomWindow_closed(QString* lpszThreadId);
     void callRequested(MessageType type);
-    void callConnected();
-    void callEnded();
+    void callConnected(MessageType type);
+    void callEnded(MessageType type);
 
 private:
 	void stop(void);

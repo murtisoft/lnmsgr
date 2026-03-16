@@ -256,7 +256,7 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
             currentCallType = type;
             appendMessageLog(type, lpszUserId, &senderName, pMessage);
         } else {
-            processStreamOp(pMessage);
+            processStreamOp(type, pMessage);
         }
         break;
 	default:
@@ -507,7 +507,7 @@ void lmFormChat::smileyAction_triggered(void) {
 }
 
 void lmFormChat::log_sendMessage(MessageType type, QString *lpszUserId, MessageXml *pMessage) {
-	emit messageSent(type, lpszUserId, pMessage);
+    emit messageSent(type, lpszUserId, pMessage);
 }
 
 void lmFormChat::checkChatState(void) {
@@ -533,6 +533,7 @@ void lmFormChat::createSmileyMenu(void) {
 
 void lmFormChat::createToolBar(void) {
 	QToolBar* pLeftBar = new QToolBar(ui.wgtToolBar);
+    ui.wgtToolBar->setStyleSheet("QToolBar::separator { background: transparent; margin: 0; }");
 	pLeftBar->setStyleSheet("QToolBar { border: 0px }");
 	pLeftBar->setIconSize(QSize(16, 16));
 	ui.toolBarLayout->addWidget(pLeftBar);
@@ -606,7 +607,7 @@ void lmFormChat::btnHangUp_clicked() {
     sendXml.addData(XN_STREAMOP, StreamOpNames[SO_Abort]);
     emit messageSent(currentCallType, &peerId, &sendXml);
     updateStreamMessage(SO_Abort, currentCallId);
-    emit callEnded();
+    emit callEnded(currentCallType);
     currentCallId.clear();
 }
 
@@ -780,19 +781,23 @@ void lmFormChat::encodeMessage(QString* lpszMessage) {
 	ChatHelper::encodeSmileys(lpszMessage);
 }
 
-void lmFormChat::processStreamOp(MessageXml *pMessage) {
+void lmFormChat::processStreamOp(MessageType type, MessageXml *pMessage) {
     int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
     QString streamId = pMessage->data(XN_STREAMID);
 
     switch(streamOp) {
     case SO_Accept:
-        emit callConnected();
+        if (type == MT_Audio) {
+            emit callConnected(type);  // future: init PCM/Opus
+        } else if (type == MT_Video) {
+            emit callConnected(type);  // future: init VPX+Opus mux
+        }
         break;
     case SO_Decline:
     case SO_Error:
     case SO_Abort:
         currentCallId.clear();
-        emit callEnded();
+        emit callEnded(currentCallType);
         break;
     default:
         break;

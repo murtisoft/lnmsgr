@@ -45,7 +45,7 @@ lmImagePicker::lmImagePicker(QWidget *parent, QList<QString>* source, int picSiz
 	horizontalHeader()->setVisible(false);
 
 	verticalHeader()->setVisible(false);
-	setStyleSheet("QTableWidget { padding: 4px }");	// padding around table
+    setStyleSheet("QTableWidget { background: transparent; padding: 4px }");	// padding around table
 
 	max_col = columns;
 	int max_row = qCeil(source->count() / (qreal)max_col);
@@ -79,7 +79,6 @@ lmImagePicker::lmImagePicker(QWidget *parent, QList<QString>* source, int picSiz
                 }
 				item->setData(TypeRole, 1);
 				item->setSizeHint(QSize(picSize, picSize));
-				item->setBackground(this->palette().window());
 			}
 			setItem(i, j, item);
 		}

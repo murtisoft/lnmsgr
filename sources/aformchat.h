@@ -78,8 +78,8 @@ signals:
 	void showTransfers(void);
 	void closed(QString* lpszUserId);
     void callRequested(MessageType type);
-    void callConnected();
-    void callEnded();
+    void callConnected(MessageType type);
+    void callEnded(MessageType type);
 
 protected:
 	bool eventFilter(QObject* pObject, QEvent* pEvent);
@@ -113,7 +113,7 @@ private:
     void sendObject(MessageType type, QString* lpszPath);
 	void encodeMessage(QString* lpszMessage);
     void processFileOp(MessageXml* pMessage);
-    void processStreamOp(MessageXml* pMessage);
+    void processStreamOp(MessageType type, MessageXml *pMessage);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
     void updateStreamMessage(StreamOp op, QString streamId);

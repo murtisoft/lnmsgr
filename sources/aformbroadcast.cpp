@@ -247,6 +247,7 @@ void lmFormBroadcast::btnSend_clicked(void) {
 void lmFormBroadcast::createToolBar(void) {
 	//	create the toolbar
 	pToolBar = new QToolBar(ui.toolBarWidget);
+    ui.toolBarWidget->setStyleSheet("QToolBar::separator { background: transparent; margin: 0; }");
 	pToolBar->setStyleSheet("QToolBar { border: 0px }");
 	pToolBar->setIconSize(QSize(16, 16));
 	ui.toolBarLayout->addWidget(pToolBar);

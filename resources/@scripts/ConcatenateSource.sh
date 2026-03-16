@@ -11,7 +11,8 @@ SOURCES=../../sources
 EXCLUDE=(
     "aformabout.cpp"	"aformbroadcast.cpp"	"aformchatroom.cpp"
 	"aformhistory.cpp"	"aformsettings.cpp"		"aformtransfer.cpp"
-	"aformuserinfo.cpp"	"aformuserselect.cpp"
+	"aformuserinfo.cpp"	"aformuserselect.cpp"	"strings.cpp"
+	"translations.cpp"	"history.cpp"			"filemodelview.cpp"
     "*.h"				"*.ui"
 )
 #================================================================================================

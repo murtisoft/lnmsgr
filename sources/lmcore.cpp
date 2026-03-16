@@ -335,9 +335,9 @@ void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMes
         {
             int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
             if(streamOp == SO_Abort || streamOp == SO_Decline)
-                callEnded();
+                callEnded(type);
             else if(streamOp == SO_Accept)
-                callConnected();
+                callConnected(type);
         }
         break;
 	default:
@@ -594,11 +594,11 @@ void lmCore::callRequested(MessageType type) {
     pMainWindow->playLoopSound(SE_RingOut);
 }
 
-void lmCore::callConnected() {
+void lmCore::callConnected(MessageType type) {
     callPhase = CP_Connected;
     emit callPhaseChanged(callPhase != CP_Idle);
     pMainWindow->stopLoopSound();
-
+    if (type == MT_Video) return; // TODO Video streaming.
     for (lmFormChat* w : chatWindows) {
         if (w->isVisible()) {
             User* pUser = pMessaging->getUser(&w->peerId);
@@ -612,7 +612,7 @@ void lmCore::callConnected() {
     }
 }
 
-void lmCore::callEnded() {
+void lmCore::callEnded(MessageType type) {
     callPhase = CP_Idle;
     emit callPhaseChanged(callPhase != CP_Idle);
     pMainWindow->stopLoopSound();
@@ -636,12 +636,12 @@ void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pM
         pMainWindow->playLoopSound(SE_RingIn);
         break;
     case SO_Accept:
-        callConnected();
+        callConnected(type);
         break;
     case SO_Decline:
     case SO_Abort:
     case SO_Error:
-        callEnded();
+        callEnded(type);
         break;
     default:
         break;
@@ -899,10 +899,10 @@ void lmCore::createChatWindow(QString* lpszUserId) {
 	pChatWindow->init(pLocalUser, pRemoteUser, pMessaging->isConnected());
     connect(pChatWindow, SIGNAL(callRequested(MessageType)),
             this, SLOT(callRequested(MessageType)));
-    connect(pChatWindow, SIGNAL(callEnded()),
-            this, SLOT(callEnded()));
-    connect(pChatWindow, SIGNAL(callConnected()),
-            this, SLOT(callConnected()));
+    connect(pChatWindow, SIGNAL(callEnded(MessageType)),
+            this, SLOT(callEnded(MessageType)));
+    connect(pChatWindow, SIGNAL(callConnected(MessageType)),
+            this, SLOT(callConnected(MessageType)));
     connect(this, SIGNAL(callPhaseChanged(bool)),
             pChatWindow, SLOT(callPhaseChanged(bool)));
     pChatWindow->callPhaseChanged(callPhase != CP_Idle);

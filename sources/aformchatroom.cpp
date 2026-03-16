@@ -555,6 +555,7 @@ void lmFormChatRoom::createSmileyMenu(void) {
 
 void lmFormChatRoom::createToolBar(void) {
 	QToolBar* pLeftBar = new QToolBar(ui.wgtToolBar);
+    ui.wgtToolBar->setStyleSheet("QToolBar::separator { background: transparent; margin: 0; }");
 	pLeftBar->setStyleSheet("QToolBar { border: 0px }");
 	pLeftBar->setIconSize(QSize(16, 16));
 	ui.toolBarLayout->addWidget(pLeftBar);

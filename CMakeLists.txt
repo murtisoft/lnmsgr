@@ -17,7 +17,7 @@ endif()
 #   Sending messages from old to new, no losses. New to any... lots of decryption errors / lost messages. great.
 
 #A sends file to B, while its pending confirmation, if B appears offline, A will show transfer interrupted, while B can still download the file.
-#There seems to be more connection issues if a client's username includes unicode characters like "ü".
+#There seems to be more connection issues if a client's username includes unicode characters like "ü". (only OS account name)
 #Colorschemes need more attention.
 #File transfers dont have a timestamp parameter, but they generate their own for now. Should change this.
 #Right now "User is online" Toast notification cant display avatar, because the file arrives too late. Persistent avatar cache and contact list might solve it.
