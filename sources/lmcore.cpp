@@ -600,13 +600,11 @@ void lmCore::callConnected(MessageType type) {
     pMainWindow->stopLoopSound();
     if (type == MT_Video) return; // TODO Video streaming.
     for (lmFormChat* w : chatWindows) {
-        if (w->isVisible()) {
             User* pUser = pMessaging->getUser(&w->peerId);
             if (pUser) {
                 if (!m_audioStream) m_audioStream = new lmAudioStream(this);
                 m_audioStream->start(QHostAddress(pUser->address),
                                    pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt());
-            }
             break;
         }
     }
@@ -637,7 +635,7 @@ void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pM
         break;
     case SO_Accept:
         callConnected(type);
-        break;
+        return;      //Prevents double calling, therefore breaking socket binding.
     case SO_Decline:
     case SO_Abort:
     case SO_Error:
