@@ -16,7 +16,7 @@ PRODUCTVERSION ${PROJECT_VERSION_MAJOR},${PROJECT_VERSION_MINOR},${PROJECT_VERSI
     BLOCK \"VarFileInfo\" { VALUE \"Translation\", 0x409, 1200 }
 }")
 
-file(GLOB LanMessenger_SOURCES
+file(GLOB LanMessenger_SOURCES CONFIGURE_DEPENDS
     "sources/*.cpp" "sources/*.h" "sources/*.ui"
 )
 
@@ -43,7 +43,7 @@ target_link_libraries(LanMessenger PRIVATE
     ${OPUS_DIR}/build/Release/libopus.a
 )
 
-file(GLOB LanMessenger_LANGUAGES "${CMAKE_SOURCE_DIR}/resources/languages/*.ts")
+file(GLOB LanMessenger_LANGUAGES CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/resources/languages/*.ts")
 qt6_add_translations(LanMessenger
     TS_FILES ${LanMessenger_LANGUAGES}
     RESOURCE_PREFIX "/translations"

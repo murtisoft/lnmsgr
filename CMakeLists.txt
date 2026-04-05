@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LanMessenger VERSION 2026.7.0 LANGUAGES CXX)
+project(LanMessenger VERSION 2026.8.0 LANGUAGES CXX)
 include("resources/cmake/common.cmake")
 if(WIN32)
     include("resources/cmake/win.cmake")

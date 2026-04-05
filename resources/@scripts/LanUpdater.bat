@@ -35,6 +35,7 @@ if "%size1%" NEQ "%size2%" (
 :sync
 echo Syncing...
 taskkill /f /im LanMessenger.exe /t >nul 2>&1
+timeout /t 1 /nobreak >nul
 copy /y "%remote%" "%local%" >nul 2>&1
 set "last_synced=%remote_time%"
 start "" "%local%"

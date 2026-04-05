@@ -15,7 +15,7 @@ Why LAN Messenger? (2026)
 * Internet independent. Feel the joy of asking a peer: "Is the internet working?"
 * Nudging. Annoy your friends shamelessly!
 * 1 on 1 Encrypted communications.
-* Voice chat. (Eventually)
+* Voice chat.
 * Video chat/desktop sharing (Eventually)
 * Multi platform (Eventually - older linux & mac versions are compatible.)
 
