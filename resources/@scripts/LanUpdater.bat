@@ -1,7 +1,7 @@
 @echo off
 ::================================================================================================
 ::	This script is for syncing executables after compile, between the development computer,
-::	and test computer. For easy testing over Lan. I assumed git bash wasnt installed, there.
+::	and test computer. For easy testing over Lan. I assumed git bash wasnt installed there.
 ::	Edit the variables given at the top to your liking.
 ::	Drop it into the executable directory on remote machine and run.
 ::================================================================================================
@@ -36,7 +36,7 @@ if "%size1%" NEQ "%size2%" (
 echo Syncing...
 taskkill /f /im LanMessenger.exe /t >nul 2>&1
 timeout /t 1 /nobreak >nul
-copy /y "%remote%" "%local%" >nul 2>&1
+copy /y "%remote%" "%local%"
 set "last_synced=%remote_time%"
 start "" "%local%"
 

@@ -1,10 +1,10 @@
 Notes
 ===========================
-Encryption has been a headache to fix, unfortunately. I hope to fix it eventually, but in the meantime, you should realize messages (including nudges) might fail to encrypt or decrypt, practically "disappearing". Broadcasts, file transfers, public chats or chatrooms are not affected, as they are not encrypted.
+I think I have finally managed to solve encryption and unicode issues. (for the last time, hopefully)
 
 I would like to maintain compatibility between this and old versions, while adding more in the future. 
 
-I would also discourage translators from contributing for now, the interface is constantly changing.
+I would discourage translators from contributing for now, the interface is constantly changing.
 
 Why LAN Messenger? (2026)
 ============================
@@ -15,7 +15,7 @@ Why LAN Messenger? (2026)
 * Internet independent. Feel the joy of asking a peer: "Is the internet working?"
 * Nudging. Annoy your friends shamelessly!
 * 1 on 1 Encrypted communications.
-* Voice chat.
+* Voice chat. (Rudimentary, but working)
 * Video chat/desktop sharing (Eventually)
 * Multi platform (Eventually - older linux & mac versions are compatible.)
 

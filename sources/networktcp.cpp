@@ -198,12 +198,12 @@ void lmNetworkTcp::socket_readyRead(void) {
 	QByteArray buffer = socket->read(64);
 	if(buffer.startsWith("MSG")) {
 		//	read user id from socket and assign socket to correct message stream
-		QString userId(buffer.mid(3)); // 3 is length of "MSG"
+        QString userId = QString::fromLocal8Bit(buffer.mid(3)); // 3 is length of "MSG"
 		addMsgSocket(&userId, socket);
 	} else if(buffer.startsWith("FILE")) {
 		//	read transfer id from socket and assign socket to correct file receiver
-        QString id(buffer.mid(4, 32)); // 4 is length of "FILE", 32 is length of File Id
-        QString userId(buffer.mid(36));
+        QString id = QString::fromLocal8Bit(buffer.mid(4, 32)); // 4 is length of "FILE", 32 is length of File Id
+        QString userId = QString::fromLocal8Bit(buffer.mid(36));
         addFileSocket(&id, &userId, socket);
 	}
 }

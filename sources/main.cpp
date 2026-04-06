@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
         return 2;
 #else
     if(!QSslSocket::supportsSsl()) {
-        if(QMessageBox::critical(nullptr, IDA_TITLE, "Messenger does not find ssl at startup. Probably missing openssl dll. Quit application?", QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes)
+        if(QMessageBox::critical(nullptr, IDA_TITLE, "Messenger can not find ssl at startup. Probably missing openssl dll. Quit application?", QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes)
             return 3;
     }
 #endif

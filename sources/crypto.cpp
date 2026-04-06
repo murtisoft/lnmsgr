@@ -19,11 +19,11 @@
 **
 ****************************************************************************/
 
-#include "crypto.h"
 #include "zdebuglog.h"
+#include "crypto.h"
 
 lmCrypto::lmCrypto(void) {
-    pKey = nullptr;
+    pKey = NULL;
     encryptMap.clear();
     decryptMap.clear();
     bits = 1024;       //This has to be 1024, otherwise it will crash older clients <=1.2.39
@@ -32,139 +32,158 @@ lmCrypto::lmCrypto(void) {
 
 lmCrypto::~lmCrypto(void) {
     EVP_PKEY_free(pKey);
+}
 
-    // Free all allocated encryption contexts
-    foreach (EVP_CIPHER_CTX* ctx, encryptMap) {
-        EVP_CIPHER_CTX_free(ctx);
+// helper to safely replace a context in a map (hopefully finally solving context orphaning issues.)
+void replaceCtx(QMap<QString, EVP_CIPHER_CTX*>& map, const QString& userId, EVP_CIPHER_CTX* newCtx) {
+    if (map.contains(userId)) {
+        EVP_CIPHER_CTX_free(map.value(userId));
     }
-    encryptMap.clear();
-
-    // Free all allocated decryption contexts
-    foreach (EVP_CIPHER_CTX* ctx, decryptMap) {
-        EVP_CIPHER_CTX_free(ctx);
-    }
-    decryptMap.clear();
+    map.insert(userId, newCtx);
 }
 
 //	creates an RSA key pair and returns the string representation of the public key
-QByteArray lmCrypto::generateRSA() {
-    EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, nullptr);
-    if (!ctx) return QByteArray();
-
+QByteArray lmCrypto::generateRSA(void) {
+    EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new_from_name(NULL, "RSA", NULL);
     EVP_PKEY_keygen_init(ctx);
     EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, bits);
-    EVP_PKEY_keygen(ctx, &pKey);
+
+    BIGNUM* bn = BN_new();
+    BN_set_word(bn, exponent);
+    EVP_PKEY_CTX_set1_rsa_keygen_pubexp(ctx, bn);
+    BN_free(bn);
+
+    EVP_PKEY_generate(ctx, &pKey);
     EVP_PKEY_CTX_free(ctx);
 
     BIO* bio = BIO_new(BIO_s_mem());
-    if (PEM_write_bio_RSAPublicKey(bio, EVP_PKEY_get0_RSA(pKey))) {     // for compatibility with older clients
-        publicKey.resize(BIO_pending(bio));
-        BIO_read(bio, publicKey.data(), publicKey.size());
-    }
+    PEM_write_bio_RSAPublicKey(bio, EVP_PKEY_get0_RSA(pKey));           // for compatibility with older clients
+    int keylen = BIO_pending(bio);
+    char* pem_key = (char*)calloc(keylen + 1, 1);
+    BIO_read(bio, pem_key, keylen);
+    publicKey = QByteArray(pem_key, keylen);
+    BIO_free_all(bio);
+    free(pem_key);
 
-    BIO_free(bio);
     return publicKey;
 }
 
 //	generates a random aes key and iv, and encrypts it with the public key
 QByteArray lmCrypto::generateAES(QString* lpszUserId, QByteArray& pubKey) {
-    BIO* bio = BIO_new_mem_buf(pubKey.data(), pubKey.length());
-    EVP_PKEY* peerPubKey = PEM_read_bio_PUBKEY(bio, nullptr, nullptr, nullptr);
-    BIO_free(bio);
+    char* pemKey = pubKey.data();
+    BIO* bio = BIO_new_mem_buf(pemKey, pubKey.length());
+    RSA* r = PEM_read_bio_RSAPublicKey(bio, NULL, NULL, NULL);          // for compatibility with older clients
+    BIO_free_all(bio);
+    EVP_PKEY* rsa = EVP_PKEY_new();
+    EVP_PKEY_assign_RSA(rsa, r);                                        // for compatibility with older clients
 
-    unsigned char keyIv[48]; // 32 (key) + 16 (iv)
-    RAND_bytes(keyIv, 48);
+    int keyDataLen = 32;
+    unsigned char* keyData = (unsigned char*)malloc(keyDataLen);
+    RAND_bytes(keyData, keyDataLen);
 
-    EVP_CIPHER_CTX *ectx = EVP_CIPHER_CTX_new(), *dctx = EVP_CIPHER_CTX_new();
-    EVP_EncryptInit_ex(ectx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
-    EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
+    int keyLen = 32;
+    int ivLen = EVP_CIPHER_iv_length(EVP_aes_256_cbc());
+    int keyIvLen = keyLen + ivLen;
+    unsigned char* keyIv = (unsigned char*)malloc(keyIvLen);
 
-    encryptMap.insert(*lpszUserId, ectx);
-    decryptMap.insert(*lpszUserId, dctx);
+    int rounds = 5;
+    keyLen = EVP_BytesToKey(EVP_aes_256_cbc(), EVP_sha1(), NULL, keyData, keyDataLen, rounds, keyIv, keyIv + keyLen);
 
-    EVP_PKEY_CTX* encCtx = EVP_PKEY_CTX_new(peerPubKey, nullptr);
-    EVP_PKEY_encrypt_init(encCtx);
-    EVP_PKEY_CTX_set_rsa_padding(encCtx, RSA_PKCS1_OAEP_PADDING);
+    EVP_CIPHER_CTX* ectx = EVP_CIPHER_CTX_new();
+    EVP_CIPHER_CTX* dctx = EVP_CIPHER_CTX_new();
+    EVP_EncryptInit_ex(ectx, EVP_aes_256_cbc(), NULL, keyIv, keyIv + keyLen);
+    replaceCtx(encryptMap, *lpszUserId, ectx);
+    EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), NULL, keyIv, keyIv + keyLen);
+    replaceCtx(decryptMap, *lpszUserId, dctx);
 
-    size_t outlen;
-    EVP_PKEY_encrypt(encCtx, nullptr, &outlen, keyIv, 48);
-    QByteArray encryptedKeyIv(outlen, 0);
-    EVP_PKEY_encrypt(encCtx, (unsigned char*)encryptedKeyIv.data(), &outlen, keyIv, 48);
+    EVP_PKEY_CTX* rsaCtx = EVP_PKEY_CTX_new(rsa, NULL);
+    EVP_PKEY_encrypt_init(rsaCtx);
+    EVP_PKEY_CTX_set_rsa_padding(rsaCtx, RSA_PKCS1_OAEP_PADDING);
 
-    EVP_PKEY_CTX_free(encCtx);
-    EVP_PKEY_free(peerPubKey);
-    return encryptedKeyIv;
+    size_t eKeyIvLen = 0;
+    EVP_PKEY_encrypt(rsaCtx, NULL, &eKeyIvLen, keyIv, keyIvLen);
+    unsigned char* eKeyIv = (unsigned char*)malloc(eKeyIvLen);
+    EVP_PKEY_encrypt(rsaCtx, eKeyIv, &eKeyIvLen, keyIv, keyIvLen);
+
+    QByteArray baKeyIv((char*)eKeyIv, eKeyIvLen);
+
+    EVP_PKEY_CTX_free(rsaCtx);
+    EVP_PKEY_free(rsa);  // also frees r
+    free(keyIv);
+    free(eKeyIv);
+    free(keyData);
+
+    return baKeyIv;
 }
 
 //	decrypts the aes key and iv with the private key
 void lmCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
-    EVP_PKEY_CTX* decCtx = EVP_PKEY_CTX_new(pKey, nullptr);
-    EVP_PKEY_decrypt_init(decCtx);
-    EVP_PKEY_CTX_set_rsa_padding(decCtx, RSA_PKCS1_OAEP_PADDING);
+    EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new(pKey, NULL);
+    EVP_PKEY_decrypt_init(ctx);
+    EVP_PKEY_CTX_set_rsa_padding(ctx, RSA_PKCS1_OAEP_PADDING);
 
-    size_t outlen;
-    EVP_PKEY_decrypt(decCtx, nullptr, &outlen, (unsigned char*)aesKeyIv.data(), aesKeyIv.length());
+    size_t keyIvLen = 0;
+    EVP_PKEY_decrypt(ctx, NULL, &keyIvLen, (unsigned char*)aesKeyIv.data(), aesKeyIv.length());
+    unsigned char* keyIv = (unsigned char*)malloc(keyIvLen);
+    EVP_PKEY_decrypt(ctx, keyIv, &keyIvLen, (unsigned char*)aesKeyIv.data(), aesKeyIv.length());
+    EVP_PKEY_CTX_free(ctx);
 
-    unsigned char keyIv[48];
-    if (EVP_PKEY_decrypt(decCtx, keyIv, &outlen, (unsigned char*)aesKeyIv.data(), aesKeyIv.length()) <= 0) {
-        lmDebugLog::write("Error: RSA Decryption of AES key failed");
-        EVP_PKEY_CTX_free(decCtx);
-        return;
-    }
-    EVP_PKEY_CTX_free(decCtx);
-
-    EVP_CIPHER_CTX *ectx = EVP_CIPHER_CTX_new();
-    EVP_CIPHER_CTX *dctx = EVP_CIPHER_CTX_new();
-
-    EVP_EncryptInit_ex(ectx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
-    EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), nullptr, keyIv, keyIv + 32);
-
-    encryptMap.insert(*lpszUserId, ectx);
-    decryptMap.insert(*lpszUserId, dctx);
+    int keyLen = 32;
+    EVP_CIPHER_CTX* ectx = EVP_CIPHER_CTX_new();
+    EVP_CIPHER_CTX* dctx = EVP_CIPHER_CTX_new();
+    EVP_EncryptInit_ex(ectx, EVP_aes_256_cbc(), NULL, keyIv, keyIv + keyLen);
+    replaceCtx(encryptMap, *lpszUserId, ectx);
+    EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), NULL, keyIv, keyIv + keyLen);
+    replaceCtx(decryptMap, *lpszUserId, dctx);
+    free(keyIv);
 }
 
 QByteArray lmCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
-    EVP_CIPHER_CTX* ctx = encryptMap.value(*lpszUserId);
-    if (!ctx) return QByteArray();
-
-    QByteArray out(clearData.length() + AES_BLOCK_SIZE, 0);
-    if (out.isEmpty()) {
+    int outLen = clearData.length() + AES_BLOCK_SIZE;
+    unsigned char* outBuffer = (unsigned char*)malloc(outLen);
+    if (outBuffer == NULL) {
         lmDebugLog::write("Error: Buffer not allocated");
         return QByteArray();
     }
+    int foutLen = 0;
 
-    int len = 0, flen = 0;
-    EVP_EncryptInit_ex(ctx, nullptr, nullptr, nullptr, nullptr);
-
-    if (!EVP_EncryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)clearData.data(), clearData.length()) ||
-        !EVP_EncryptFinal_ex(ctx, (unsigned char*)out.data() + len, &flen)) {
-        lmDebugLog::write("Error: Message encryption failed");
-        return QByteArray();
+    EVP_CIPHER_CTX* ctx = encryptMap.value(*lpszUserId);
+    if (EVP_EncryptInit_ex(ctx, NULL, NULL, NULL, NULL)) {
+        if (EVP_EncryptUpdate(ctx, outBuffer, &outLen, (unsigned char*)clearData.data(), clearData.length())) {
+            if (EVP_EncryptFinal_ex(ctx, outBuffer + outLen, &foutLen)) {
+                outLen += foutLen;
+                QByteArray byteArray((char*)outBuffer, outLen);
+                free(outBuffer);
+                return byteArray;
+            }
+        }
     }
-
-    out.resize(len + flen);
-    return out;
+    lmDebugLog::write("Error: Message encryption failed");
+    free(outBuffer);
+    return QByteArray();
 }
 
 QByteArray lmCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData) {
-    EVP_CIPHER_CTX* ctx = decryptMap.value(*lpszUserId);
-    if (!ctx) return QByteArray();
-
-    QByteArray out(cipherData.length(), 0);
-    if (out.isEmpty() && cipherData.length() > 0) {
+    int outLen = cipherData.length();
+    unsigned char* outBuffer = (unsigned char*)malloc(outLen);
+    if (outBuffer == NULL) {
         lmDebugLog::write("Error: Buffer not allocated");
         return QByteArray();
     }
+    int foutLen = 0;
 
-    int len = 0, flen = 0;
-    EVP_DecryptInit_ex(ctx, nullptr, nullptr, nullptr, nullptr);
-
-    if (!EVP_DecryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)cipherData.data(), cipherData.length()) ||
-        !EVP_DecryptFinal_ex(ctx, (unsigned char*)out.data() + len, &flen)) {
-        lmDebugLog::write("Error: Message decryption failed");
-        return QByteArray();
+    EVP_CIPHER_CTX* ctx = decryptMap.value(*lpszUserId);
+    if (EVP_DecryptInit_ex(ctx, NULL, NULL, NULL, NULL)) {
+        if (EVP_DecryptUpdate(ctx, outBuffer, &outLen, (unsigned char*)cipherData.data(), cipherData.length())) {
+            if (EVP_DecryptFinal_ex(ctx, outBuffer + outLen, &foutLen)) {
+                outLen += foutLen;
+                QByteArray byteArray((char*)outBuffer, outLen);
+                free(outBuffer);
+                return byteArray;
+            }
+        }
     }
-
-    out.resize(len + flen);
-    return out;
+    lmDebugLog::write("Error: Message decryption failed");
+    free(outBuffer);
+    return QByteArray();
 }
