@@ -22,8 +22,44 @@
 
 #include "zdebuglog.h"
 #include "messaging.h"
-#include "message.h"
 #include "definitionsdir.h"
+
+QString lmMessaging::addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, MessageXml* pMessage) {
+    if(!pMessage)
+        pMessage = new MessageXml();
+
+    // remove time stamp from message
+    pMessage->removeHeader(XN_TIME);
+
+    pMessage->addHeader(XN_FROM, *lpszLocalId);
+    if(lpszPeerId)
+        pMessage->addHeader(XN_TO, *lpszPeerId);
+    pMessage->addHeader(XN_MESSAGEID, QString::number(id));
+    pMessage->addHeader(XN_TYPE, MessageTypeNames[type]);
+
+    return pMessage->toString();
+}
+
+bool lmMessaging::getHeader(QString* lpszMessage, MessageHeader** ppHeader, MessageXml** ppMessage) {
+    *ppMessage = new MessageXml(*lpszMessage);
+    if(!((*ppMessage)->isValid()))
+        return false;
+
+    // add time stamp to message
+    (*ppMessage)->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
+
+    int type = Helper::indexOf(MessageTypeNames, MT_Max, (*ppMessage)->header(XN_TYPE));
+    if(type < 0)
+        return false;
+
+    *ppHeader = new MessageHeader(
+        (MessageType)type,
+        (*ppMessage)->header(XN_MESSAGEID).toLongLong(),
+        (*ppMessage)->header(XN_FROM));
+    return true;
+}
+
+
 
 //	A broadcast is to be sent
 void lmMessaging::sendBroadcast(MessageType type, MessageXml* pMessage) {
@@ -84,7 +120,7 @@ void lmMessaging::sendMessage(MessageType type, QString* lpszUserId, MessageXml*
 void lmMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) {
 	MessageHeader* pMsgHeader = NULL;
 	MessageXml* pMessage = NULL;
-	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
+    if(!getHeader(lpszData, &pMsgHeader, &pMessage)) {
 		lmDebugLog::write("Warning: Broadcast header parse failed");
 		return;
 	}
@@ -96,7 +132,7 @@ void lmMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) {
 void lmMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
 	MessageHeader* pMsgHeader = NULL;
 	MessageXml* pMessage = NULL;
-	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
+    if(!getHeader(lpszData, &pMsgHeader, &pMessage)) {
 		lmDebugLog::write("Warning: Message header parse failed");
 		return;
 	}
@@ -127,7 +163,7 @@ void lmMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserId
 	xmlMessage.addData(XN_NOTE, localUser->note);
     xmlMessage.addData(XN_USERCAPS, QString::number(localUser->caps));
 	xmlMessage.addData(XN_QUERYOP, QueryOpNames[op]);
-	QString szMessage = Message::addHeader(type, msgId, &localUser->id, lpszUserId, &xmlMessage);
+    QString szMessage = addHeader(type, msgId, &localUser->id, lpszUserId, &xmlMessage);
 	pNetwork->sendMessage(lpszUserId, lpszAddress, &szMessage);
 }
 
@@ -142,7 +178,7 @@ void lmMessaging::prepareBroadcast(MessageType type, MessageXml* pMessage) {
     }
 
 	lmDebugLog::write("Sending broadcast type " + QString::number(type));
-	QString szMessage = Message::addHeader(type, msgId, &localUser->id, NULL, pMessage);
+    QString szMessage = addHeader(type, msgId, &localUser->id, NULL, pMessage);
 	pNetwork->sendBroadcast(&szMessage);
 	lmDebugLog::write("Broadcast sending done");
 }
@@ -219,7 +255,7 @@ void lmMessaging::prepareMessage(MessageType type, qint64 msgId, bool retry, QSt
 
 	lmDebugLog::write("Sending message type " + QString::number(type) + " to user " + receiver->id
 		+ " at " + receiver->address);
-	QString szMessage = Message::addHeader(type, msgId, &localUser->id, lpszUserId, pMessage);
+    QString szMessage = addHeader(type, msgId, &localUser->id, lpszUserId, pMessage);
 	pNetwork->sendMessage(&receiver->id, &receiver->address, &szMessage);
 	lmDebugLog::write("Message sending done");
 }

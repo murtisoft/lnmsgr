@@ -33,13 +33,13 @@
 #include <QTextStream>
 #include <qevent.h>
 #include "ui_aformchat.h"
-#include "shared.h"
+#include "shareduifunctions.h"
 #include "definitionssettings.h"
 #include "widgetchatlog.h"
 #include "widgetleftovers.h"
 #include "widgetimagepicker.h"
 #include "soundplayer.h"
-#include "definitionschat.h"
+#include "definitionsui.h"
 #include "xmlhandler.h"
 #include <QAudioSource>
 #include <QAudioFormat>

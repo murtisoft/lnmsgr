@@ -1,46 +1,46 @@
 @echo off
 ::================================================================================================
-::	This script is for syncing executables after compile, between the development computer,
+::	This script is for Syncing executables after compile, between the development computer,
 ::	and test computer. For easy testing over Lan. I assumed git bash wasnt installed there.
 ::	Edit the variables given at the top to your liking.
-::	Drop it into the executable directory on remote machine and run.
+::	Drop it into the executable directory on Remote machine and run.
 ::================================================================================================
-set "remote=\\Murticom-2026\e\_qtprojects\LanMessenger\build\Debug\LanMessenger.exe"
-set "local=%~dp0LanMessenger.exe"
+set "Remote=\\Murticom-2026\e\_qtprojects\LanMessenger\build\Debug\LanMessenger.exe"
+set "Local=%~dp0LanMessenger.exe"
 ::================================================================================================
 
-:loop
+:Loop
 cls
-if not exist "%remote%" goto wait
-for %%A in ("%remote%") do set "remote_time=%%~tA"
-if "%remote_time%" EQU "%last_synced%" goto wait
+if not exist "%Remote%" goto Wait
+for %%A in ("%Remote%") do set "RemoteTime=%%~tA"
+if "%RemoteTime%" EQU "%LastSynced%" goto Wait
 
-if not exist "%local%" goto check_stable
-for %%A in ("%local%") do set "local_time=%%~tA"
-if "%remote_time%" EQU "%local_time%" (
-    set "last_synced=%remote_time%"
-    goto wait
+if not exist "%Local%" goto CheckStable
+for %%A in ("%Local%") do set "LocalTime=%%~tA"
+if "%RemoteTime%" EQU "%LocalTime%" (
+    set "LastSynced=%RemoteTime%"
+    goto Wait
 )
 
 
-:check_stable
-for %%A in ("%remote%") do set "size1=%%~zA"
+:CheckStable
+for %%A in ("%Remote%") do set "Size1=%%~zA"
 timeout /t 2 /nobreak >nul
-for %%A in ("%remote%") do set "size2=%%~zA"
-if "%size1%" NEQ "%size2%" (
+for %%A in ("%Remote%") do set "Size2=%%~zA"
+if "%Size1%" NEQ "%Size2%" (
     echo Still compiling...
-    goto check_stable
+    goto CheckStable
 )
 
-:sync
+:Sync
 echo Syncing...
 taskkill /f /im LanMessenger.exe /t >nul 2>&1
 timeout /t 1 /nobreak >nul
-copy /y "%remote%" "%local%"
-set "last_synced=%remote_time%"
-start "" "%local%"
+copy /y "%Remote%" "%Local%"
+set "LastSynced=%RemoteTime%"
+start "" "%Local%"
 
-:wait
+:Wait
 echo Waiting for changes.
 timeout /t 3 /nobreak >nul
-goto loop
+goto Loop

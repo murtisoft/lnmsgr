@@ -27,9 +27,9 @@
 #include <qstylehints.h>
 #include "aformsettings.h"
 #include "soundplayer.h"
-#include "history.h"
-#include "translations.h"
-#include "strings.h"
+#include "historydatabase.h"
+#include "translationloader.h"
+#include "translatabletext.h"
 #include "definitionsdir.h"
 
 lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {

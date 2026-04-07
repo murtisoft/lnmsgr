@@ -23,10 +23,10 @@
 #include <QMessageBox>
 #include "aformbroadcast.h"
 #include "widgetimagepicker.h"
-#include "definitionschat.h"
-#include "chathelper.h"
-#include "strings.h"
-#include "shared.h"
+#include "definitionsui.h"
+#include "sharedchatfunctions.h"
+#include "translatabletext.h"
+#include "shareduifunctions.h"
 
 //	constructor
 lmFormBroadcast::lmFormBroadcast(QWidget *parent) : QWidget(parent) {

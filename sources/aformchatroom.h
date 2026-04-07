@@ -33,7 +33,7 @@
 #include <QTextStream>
 #include <qevent.h>
 #include "ui_aformchatroom.h"
-#include "shared.h"
+#include "shareduifunctions.h"
 #include "definitionssettings.h"
 #include "widgetchatlog.h"
 #include "widgetleftovers.h"

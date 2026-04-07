@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "shared.h"
+#include "shareduifunctions.h"
 #include <QPainter.h>
 #include <qapplication.h>
 #include <qicon.h>

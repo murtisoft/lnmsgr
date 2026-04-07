@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef STRINGS_H
-#define STRINGS_H
+#ifndef TRANSLATABLETEXT_H
+#define TRANSLATABLETEXT_H
 
 #include <QStringList>
 #include <QCoreApplication>
@@ -54,4 +54,4 @@ private:
 	static QStringList m_userListView;
 };
 
-#endif // STRINGS_H
+#endif // TRANSLATABLETEXT_H

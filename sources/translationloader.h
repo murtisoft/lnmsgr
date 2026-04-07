@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,26 +20,37 @@
 ****************************************************************************/
 
 
-#ifndef MESSAGE_H
-#define MESSAGE_H
+#ifndef TRANSLATIONLOADER_H
+#define TRANSLATIONLOADER_H
 
-#include <QString>
+#include <QApplication>
+#include <QHash>
 #include <QStringList>
-#include "shared.h"
-#include "xmlhandler.h"
 
-enum MessagHeaderMember {
-	MH_AppId = 0,
-	MH_Type,
-	MH_Id,
-	MH_UserId,
-	MH_Max
-};
+class QDir;
+class QTranslator;
 
-class Message {
+typedef QHash<QString, QTranslator*> Translators;
+
+class Application : public QApplication {
+    Q_OBJECT
+
 public:
-	static QString addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, MessageXml* pMessage);
-	static bool getHeader(QString* lpszMessage, MessageHeader** ppHeader, MessageXml** ppMessage);
+    explicit Application(const QString& id, int& argc, char** argv);
+    ~Application(void);
+
+    static void loadTranslations(const QString& dir);
+    static void loadTranslations(const QDir& dir);
+    static const QStringList availableLanguages();
+
+public slots:
+    static void setLanguage(const QString& locale);
+
+private:
+    static QTranslator* current;
+    static QTranslator* sysCurrent;
+    static Translators translators;
+    static Translators sysTranslators;
 };
 
-#endif // MESSAGE_H
+#endif // TRANSLATIONLOADER_H

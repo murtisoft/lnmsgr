@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef CHATHELPER_H
-#define CHATHELPER_H
+#ifndef SHAREDCHATFUNCTIONS_H
+#define SHAREDCHATFUNCTIONS_H
 
 #include <QTextBlockUserData>
 #include "xmlhandler.h"
@@ -62,4 +62,4 @@ public:
 	static void decodeSmileys(QString* lpszMessage);
 };
 
-#endif // CHATHELPER_H
+#endif // SHAREDCHATFUNCTIONS_H

@@ -19,7 +19,7 @@
 **
 ****************************************************************************/
 
-#include "translations.h"
+#include "translationloader.h"
 #include "lmcore.h"
 #include "definitionsdir.h"
 #include <QResource>

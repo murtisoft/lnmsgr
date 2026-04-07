@@ -26,10 +26,10 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QTcpServer>
-#include "shared.h"
+#include "shareduifunctions.h"
 #include "definitionssettings.h"
 #include "networkstreamer.h"
-#include "crypto.h"
+#include "opensslhandler.h"
 
 class lmNetworkTcp : public QObject {
 	Q_OBJECT

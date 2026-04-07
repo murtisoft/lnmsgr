@@ -5,20 +5,21 @@
 #	Edit the variables given at the top to your liking or shorten output via exclusion list.
 #	The rest of the script should work fine on any system.
 #================================================================================================
-SYSTEM="//Win 11, Qt Creator 18.0.1, Qt 6.10.1, MinGW 64 bit, Cmake"
-OUTPUT=~/Desktop/LanMessenger2026.cpp
-SOURCES=../../sources
-EXCLUDE=(
+System="//Win 11, Qt Creator 18.0.1, Qt 6.10.1, MinGW 64 bit, Cmake"
+Sources=../../sources
+Output=~/Desktop/LanMsg.cpp
+SplitAtLine=			#Leave it empty not to split
+Exclude=(
     "aformabout.cpp"			"aformbroadcast.cpp"			"aformchatroom.cpp"
 	"aformhistory.cpp"			"aformsettings.cpp"				"aformtransfer.cpp"
-	"aformuserinfo.cpp"			"aformuserselect.cpp"	
-	"chathelper.cpp"			"crypto.cpp"				
+	"aformuserinfo.cpp"			"aformuserselect.cpp"
 	"definitionssettings.cpp"
-	"filemodelview.cpp"
-	"history.cpp"
+	"fileprogresspie.cpp"
+	"historydatabase.cpp"
 	"main.cpp"
-	"shared.cpp"				"soundplayer.cpp"				"strings.cpp"
-	"translations.cpp"
+	"opensslhandler.cpp"
+	"sharedchatfunctions.cpp"	"shareduifunctions.cpp"			"soundplayer.cpp"
+	"translatabletext.cpp"		"translationloader.cpp"
 	"widgetimagepicker.cpp"		"widgetleftovers.cpp"			"widgetmsgbrowser.cpp"
 	"widgettransferlist.cpp"	"widgetusertree.cpp"
 	"xmlhandler.cpp"
@@ -28,10 +29,10 @@ EXCLUDE=(
 #================================================================================================
 
 shopt -s extglob
-pat=$(IFS='|'; echo "${EXCLUDE[*]}")
-cd $SOURCES
+pat=$(IFS='|'; echo "${Exclude[*]}")
+cd $Sources
 {
-    echo "$SYSTEM"
+    echo "$System"
 for f in !($pat); do
     [[ -d "$f" ]] && continue
 		[[ -d "$f" || $f =~ $PATTERN ]] && continue
@@ -46,4 +47,16 @@ for f in !($pat); do
                 print 
             }' "$f"
     done
-} > "$OUTPUT"
+} > "$Output"
+
+if [[ -n "$SplitAtLine" ]]; then
+    total=$(wc -l < "$Output")
+    parts=$(( (total + SplitAtLine - 1) / SplitAtLine ))
+    base="${Output%.*}"
+    ext="${Output##*.}"
+    split -l "$SplitAtLine" --numeric-suffixes=1 --suffix-length=${#parts} "$Output" "${base}_part"
+    for f in "${base}_part"*; do
+        mv "$f" "${f}.${ext}"
+    done
+    rm "$Output"
+fi

@@ -38,7 +38,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include "ui_aformmain.h"
-#include "shared.h"
+#include "shareduifunctions.h"
 #include "definitionssettings.h"
 #include "soundplayer.h"
 #include "xmlhandler.h"

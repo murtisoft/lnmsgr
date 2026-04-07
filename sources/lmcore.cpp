@@ -25,8 +25,8 @@
 #include <utilapiset.h>
 #include "zdebuglog.h"
 #include "lmcore.h"
-#include "translations.h"
-#include "strings.h"
+#include "translationloader.h"
+#include "translatabletext.h"
 #include "definitionsdir.h"
 
 lmCore::lmCore(void) {

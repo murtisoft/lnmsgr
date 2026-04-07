@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef SHARED_H
-#define SHARED_H
+#ifndef SHAREDUIFUNCTIONS_H
+#define SHAREDUIFUNCTIONS_H
 
 #include <QString>
 #include <QDateTime>
@@ -120,4 +120,4 @@ struct MessageHeader {
     }
 };
 
-#endif // SHARED_H
+#endif // SHAREDUIFUNCTIONS_H

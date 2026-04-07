@@ -23,7 +23,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QDesktopServices>
-#include "history.h"
+#include "historydatabase.h"
 #include "definitionssettings.h"
 
 QString History::historyFile(void) {

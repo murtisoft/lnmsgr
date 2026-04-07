@@ -21,8 +21,8 @@
 
 
 #include "aformchatroom.h"
-#include "chathelper.h"
-#include "history.h"
+#include "sharedchatfunctions.h"
+#include "historydatabase.h"
 
 QString GroupId = "PARTICIPANTS";
 

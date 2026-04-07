@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef HISTORY_H
-#define HISTORY_H
+#ifndef HISTORYDATABASE_H
+#define HISTORYDATABASE_H
 
 #include <QString>
 #include <QFile>
@@ -105,4 +105,4 @@ public:
             return text(column).toLower() > other.text(column).toLower();
     }
 };
-#endif // HISTORY_H
+#endif // HISTORYDATABASE_H

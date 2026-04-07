@@ -27,7 +27,7 @@
 #include <qmath.h>
 #include "definitionsui.h"
 #include "widgetimagepicker.h"
-#include "shared.h"
+#include "shareduifunctions.h"
 
 lmImagePicker::lmImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex)
 	: QTableWidget(parent)

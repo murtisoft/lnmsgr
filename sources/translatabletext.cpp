@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 
-#include "strings.h"
+#include "translatabletext.h"
 
 QString lmStrings::m_appName;
 QString lmStrings::m_appDesc;

@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 #include "zdebuglog.h"
-#include "crypto.h"
+#include "opensslhandler.h"
 
 lmCrypto::lmCrypto(void) {
     pKey = NULL;

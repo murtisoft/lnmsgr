@@ -26,7 +26,7 @@
 #include <QUrl>
 #include "aformtransfer.h"
 #include "definitionsdir.h"
-#include "shared.h"
+#include "shareduifunctions.h"
 
 lmFormTransfer::lmFormTransfer(QWidget *parent) : QWidget(parent) {
 	ui.setupUi(this);

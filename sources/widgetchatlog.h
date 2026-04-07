@@ -23,9 +23,9 @@
 #ifndef WIDGETCHATLOG_H
 #define WIDGETCHATLOG_H
 
-#include "shared.h"
-#include "definitionschat.h"
-#include "chathelper.h"
+#include "shareduifunctions.h"
+#include "definitionsui.h"
+#include "sharedchatfunctions.h"
 #include "xmlhandler.h"
 #include "widgetmsgbrowser.h"
 

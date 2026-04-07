@@ -29,7 +29,7 @@
 #include <qevent.h>
 #include "ui_aformhistory.h"
 #include "definitionssettings.h"
-#include "history.h"
+#include "historydatabase.h"
 #include "widgetchatlog.h"
 
 class lmFormHistory : public QWidget

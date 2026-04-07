@@ -22,7 +22,7 @@
 
 #include "definitionssettings.h"
 #include "definitionsdir.h"
-#include "shared.h"
+#include "shareduifunctions.h"
 
 lmSettingsBase::lmSettingsBase(void) : QSettings() {
 }

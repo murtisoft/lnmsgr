@@ -23,8 +23,8 @@
 #include <QFile>
 #include <QDataStream>
 #include <qregularexpression.h>
-#include "chathelper.h"
-#include "definitionschat.h"
+#include "sharedchatfunctions.h"
+#include "definitionsui.h"
 
 QDataStream &operator << (QDataStream &out, const SingleMessage &message) {
     out << qint32(message.type) << message.userId << message.userName << message.message.toString()

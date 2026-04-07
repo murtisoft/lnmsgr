@@ -21,7 +21,7 @@
 
 #include <QFile>
 #include "aformabout.h"
-#include "strings.h"
+#include "translatabletext.h"
 #include "definitionsui.h"
 
 //	constructor

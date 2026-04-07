@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -19,8 +19,8 @@
 **
 ****************************************************************************/
 
-#ifndef CRYPTO_H
-#define CRYPTO_H
+#ifndef OPENSSLHANDLER_H
+#define OPENSSLHANDLER_H
 
 #include <QMap>
 #include <QString>
@@ -54,4 +54,4 @@ private:
     long exponent;
 };
 
-#endif // CRYPTO_H
+#endif // OPENSSLHANDLER_H

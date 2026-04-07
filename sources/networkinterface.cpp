@@ -21,7 +21,7 @@
 
 
 #include "zdebuglog.h"
-#include "network.h"
+#include "networkinterface.h"
 
 lmNetwork::lmNetwork(void) {
 	pUdpNetwork = new lmNetworkUdp();

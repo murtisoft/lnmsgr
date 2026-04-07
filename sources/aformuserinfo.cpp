@@ -21,8 +21,8 @@
 
 
 #include "aformuserinfo.h"
-#include "strings.h"
-#include "shared.h"
+#include "translatabletext.h"
+#include "shareduifunctions.h"
 
 lmFormUserInfo::lmFormUserInfo(QWidget *parent) : QDialog(parent) {
 	ui.setupUi(this);

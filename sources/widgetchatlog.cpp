@@ -27,7 +27,7 @@
 #include "widgetchatlog.h"
 #include <QRegularExpression>
 #include <QLocale>
-#include "chathelper.h"
+#include "sharedchatfunctions.h"
 #include "definitionsdir.h"
 
 const QString acceptOp("accept");
@@ -278,7 +278,7 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 		for(int index = 0; index < messageLog.count(); index++) {
 			SingleMessage msg = messageLog.at(index);
 			if(msg.type == MT_Message || msg.type == MT_GroupMessage) {
-				time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
+                time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
 				QString messageText = msg.message.data(XN_MESSAGE);
 				decodeMessage(&messageText, true);
                 QString htmlMsg =
@@ -299,7 +299,7 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 		for(int index = 0; index < messageLog.count(); index++) {
 			SingleMessage msg = messageLog.at(index);
 			if(msg.type == MT_Message || msg.type == MT_GroupMessage) {
-				time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
+                time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
 				QString textMsg =
 					msg.userName + " [" + QLocale().toString(time.time(), QLocale::ShortFormat) + "]:\n" +
 					msg.message.data(XN_MESSAGE) + "\n\n";

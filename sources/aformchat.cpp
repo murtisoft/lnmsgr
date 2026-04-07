@@ -25,8 +25,8 @@
 #include <QMimeData>
 #include <qpropertyanimation.h>
 #include "aformchat.h"
-#include "chathelper.h"
-#include "history.h"
+#include "sharedchatfunctions.h"
+#include "historydatabase.h"
 #include "definitionsdir.h"
 
 const qint64 pauseTime = 5000;

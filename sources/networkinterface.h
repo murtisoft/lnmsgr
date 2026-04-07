@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** This file is part of LAN Messenger.
 **
@@ -20,8 +20,8 @@
 ****************************************************************************/
 
 
-#ifndef NETWORK_H
-#define NETWORK_H
+#ifndef NETWORKINTERFACE_H
+#define NETWORKINTERFACE_H
 
 #include <QObject>
 #include <QNetworkAddressEntry>
@@ -29,7 +29,7 @@
 #include <QTimer>
 #include "networkudp.h"
 #include "networktcp.h"
-#include "crypto.h"
+#include "opensslhandler.h"
 #include "definitionssettings.h"
 #include "xmlhandler.h"
 
@@ -97,4 +97,4 @@ private:
 	QNetworkInterface		networkInterface;
 };
 
-#endif // NETWORK_H
+#endif // NETWORKINTERFACE_H

@@ -28,9 +28,9 @@
 #include <QNetworkAddressEntry>
 #include <QHostAddress>
 #include <QList>
-#include "shared.h"
+#include "shareduifunctions.h"
 #include "definitionssettings.h"
-#include "crypto.h"
+#include "opensslhandler.h"
 
 class lmNetworkUdp : public QObject {
 	Q_OBJECT

@@ -25,11 +25,11 @@
 #include <QUrl>
 #include "aformmain.h"
 #include "widgetchatlog.h"
-#include "history.h"
+#include "historydatabase.h"
 #include <cstdlib>
 #include <qstylehints.h>
 #include "widgetimagepicker.h"
-#include "strings.h"
+#include "translatabletext.h"
 #include "definitionsdir.h"
 
 

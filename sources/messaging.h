@@ -25,11 +25,20 @@
 
 #include <QObject>
 #include <QTimer>
-#include "shared.h"
-#include "network.h"
+#include <QString>
+#include <QStringList>
+#include "shareduifunctions.h"
+#include "networkinterface.h"
 #include "definitionssettings.h"
 #include "xmlhandler.h"
 
+enum MessagHeaderMember {
+    MH_AppId = 0,
+    MH_Type,
+    MH_Id,
+    MH_UserId,
+    MH_Max
+};
 
 struct PendingMsg {
 	qint64 msgId;
@@ -148,6 +157,8 @@ public:
 	void updateGroupMap(QString oldGroup, QString newGroup);
 	void saveGroups(void);
 	int userCount(void);
+    static QString addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, MessageXml* pMessage);
+    static bool getHeader(QString* lpszMessage, MessageHeader** ppHeader, MessageXml** ppMessage);
 
 	User* localUser;
 	QList<User> userList;
