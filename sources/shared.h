@@ -116,6 +116,7 @@ public:
 	static QString boolToString(bool value);
 	static bool stringToBool(const QString& value);
 	static bool copyFile(const QString& source, const QString& destination);
+    static void changeColorScheme(int index);
 };
 
 #endif // SHARED_H

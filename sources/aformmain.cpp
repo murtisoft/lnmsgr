@@ -140,22 +140,8 @@ void lmFormMain::start(void) {
 	setAvatar();
 	pTrayIcon->setVisible(showSysTray);
 
-    int colorSchemeIndex = pSettings->value(IDS_COLORSCHEME, IDS_COLORSCHEME_VAL).toInt();  //TODO I should tidy this up.
-    switch (colorSchemeIndex) {
-    case 0:
-        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Unknown);
-        break;
-    case 1:
-        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Light);
-        break;
-    case 2:
-        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Dark);
-        break;
-    default:
-        break;
-    }
-    QEvent event(QEvent::ThemeChange);
-    QCoreApplication::sendEvent(qApp, &event);
+    int colorSchemeIndex = pSettings->value(IDS_COLORSCHEME, IDS_COLORSCHEME_VAL).toInt();
+    Helper::changeColorScheme(colorSchemeIndex);
 
 	if(pSettings->value(IDS_AUTOSHOW, IDS_AUTOSHOW_VAL).toBool())
 		show();

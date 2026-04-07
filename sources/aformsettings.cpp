@@ -598,24 +598,6 @@ void lmFormSettings::loadSettings(void) {
     ui.rdbCmdEnter->setChecked(pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
 }
 
-void lmFormSettings::changeColorScheme(int index){
-    switch (index) {
-    case 0:
-        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Unknown);
-        break;
-    case 1:
-        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Light);
-        break;
-    case 2:
-        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Dark);
-        break;
-    default:
-        break;
-    }
-    QEvent event(QEvent::ThemeChange);
-    QCoreApplication::sendEvent(qApp, &event);
-}
-
 void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_VERSION, IDA_VERSION);
 
@@ -718,7 +700,7 @@ void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_FILESTORAGEPATH, ui.txtFilePath->text(), IDS_FILESTORAGEPATH_VAL);
 
     int colorSchemeIndex = ui.cboTheme->currentIndex();
-    changeColorScheme(colorSchemeIndex);
+    Helper::changeColorScheme(colorSchemeIndex);
     pSettings->setValue(IDS_COLORSCHEME, colorSchemeIndex, IDS_COLORSCHEME_VAL);
     pSettings->setValue(IDS_USERLISTVIEW, ui.cboUserListView->currentIndex(), IDS_USERLISTVIEW_VAL);
     pSettings->setValue(IDS_STATUSTOOLTIP, ui.chkUserListToolTip->isChecked(), IDS_STATUSTOOLTIP_VAL);

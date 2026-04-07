@@ -21,6 +21,8 @@
 
 
 #include "shared.h"
+#include <qapplication.h>
+#include <qstylehints.h>
 #ifdef Q_OS_WIN
 #include <Windows.h>
 #include <lmcons.h>
@@ -145,4 +147,22 @@ bool Helper::copyFile(const QString& source, const QString& destination) {
 	destFile.close();
 
 	return true;
+}
+
+void Helper::changeColorScheme(int index){
+    switch (index) {
+    case 0:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Unknown);
+        break;
+    case 1:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Light);
+        break;
+    case 2:
+        qApp->styleHints()->setColorScheme(Qt::ColorScheme::Dark);
+        break;
+    default:
+        break;
+    }
+    QEvent event(QEvent::ThemeChange);
+    QCoreApplication::sendEvent(qApp, &event);
 }
