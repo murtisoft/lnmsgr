@@ -26,7 +26,6 @@
 #include <QObject>
 #include <QTimer>
 #include "shared.h"
-#include "message.h"
 #include "network.h"
 #include "definitionssettings.h"
 #include "xmlhandler.h"

@@ -28,7 +28,6 @@
 #include <QDataStream>
 #include <QDateTime>
 #include <QList>
-#include "definitionssettings.h"
 #include <QTreeWidget>
 #include "definitionsui.h"
 

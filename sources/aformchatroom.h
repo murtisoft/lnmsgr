@@ -35,14 +35,10 @@
 #include "ui_aformchatroom.h"
 #include "shared.h"
 #include "definitionssettings.h"
-#include "history.h"
 #include "widgetchatlog.h"
 #include "widgetleftovers.h"
 #include "widgetimagepicker.h"
 #include "soundplayer.h"
-#include "definitionschat.h"
-#include "chathelper.h"
-#include "definitionsdir.h"
 #include "xmlhandler.h"
 
 class lmFormChatRoom : public QWidget

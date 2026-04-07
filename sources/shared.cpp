@@ -21,7 +21,9 @@
 
 
 #include "shared.h"
+#include <QPainter.h>
 #include <qapplication.h>
+#include <qicon.h>
 #include <qstylehints.h>
 #ifdef Q_OS_WIN
 #include <Windows.h>
@@ -165,4 +167,19 @@ void Helper::changeColorScheme(int index){
     }
     QEvent event(QEvent::ThemeChange);
     QCoreApplication::sendEvent(qApp, &event);
+}
+
+//Renders emojis to a pixmap so they can be used as an icon. Unicode, so every OS has its own flavor.
+//Using colorful emojis, i am deliberately avoiding garbage monochrome brutalist iconpacks of the last decade and a half.
+//Man, i could write a fucking manifesto about this...
+QIcon Helper::renderEmoji(const QString& emoji, int size) {
+    QPixmap pixmap(size, size);
+    pixmap.fill(Qt::transparent);
+
+    QPainter painter(&pixmap);
+    QFont font = painter.font();
+    font.setPointSize(qRound(size * 0.7));
+    painter.setFont(font);
+    painter.drawText(pixmap.rect(), Qt::AlignCenter, emoji);
+    return QIcon(pixmap);
 }

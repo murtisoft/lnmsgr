@@ -24,6 +24,7 @@
 #include <QDir>
 #include <QDesktopServices>
 #include "history.h"
+#include "definitionssettings.h"
 
 QString History::historyFile(void) {
 	lmSettings settings;

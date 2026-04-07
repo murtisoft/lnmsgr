@@ -30,7 +30,6 @@
 #include <QToolButton>
 #include <QLabel>
 #include <QLineEdit>
-#include "definitionsui.h"
 
 class lmToolButton : public QToolButton {
 public:

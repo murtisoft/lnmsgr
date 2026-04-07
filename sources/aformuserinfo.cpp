@@ -21,7 +21,8 @@
 
 
 #include "aformuserinfo.h"
-#include "chathelper.h"
+#include "strings.h"
+#include "shared.h"
 
 lmFormUserInfo::lmFormUserInfo(QWidget *parent) : QDialog(parent) {
 	ui.setupUi(this);
@@ -81,7 +82,7 @@ void lmFormUserInfo::setUIText(void) {
     QString filePath = userInfo.data(XN_AVATAR);
 	//	if image not found, use the default avatar image for this user
     if(!QFile::exists(filePath)) {
-        ui.lblAvatar->setPixmap(ChatHelper::renderEmoji(avtEmoji[20], 48).pixmap(48, 48)); //Hidden Default Avatar
+        ui.lblAvatar->setPixmap(Helper::renderEmoji(avtEmoji[20], 48).pixmap(48, 48)); //Hidden Default Avatar
     } else {
         ui.lblAvatar->setPixmap(QPixmap(filePath));
     }

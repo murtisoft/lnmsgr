@@ -19,10 +19,10 @@
 **
 ****************************************************************************/
 
-
+#include <QDirIterator>
 #include "zdebuglog.h"
 #include "messaging.h"
-#include <QDirIterator>
+#include "definitionsdir.h"
 
 void lmMessaging::receiveProgress(QString* lpszUserId, QString* lpszData) {
     MessageXml xmlMessage(*lpszData);

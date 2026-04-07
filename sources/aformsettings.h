@@ -35,13 +35,8 @@
 #include <QFontDialog>
 #include <QDesktopServices>
 #include "ui_aformsettings.h"
-#include "shared.h"
 #include "definitionssettings.h"
-#include "history.h"
-#include "definitionsdir.h"
-#include "translations.h"
 #include "widgetchatlog.h"
-#include "soundplayer.h"
 
 
 class lmFormSettings : public QDialog {

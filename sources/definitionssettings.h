@@ -26,7 +26,8 @@
 #include <QSettings>
 #include <QtWidgets/QApplication>
 #include <QDir>
-#include "shared.h"
+#include <QStandardPaths>
+#include "definitions.h"
 
 //	Application settings definitions and default values
 #define IDS_VERSION				"Application/Version"

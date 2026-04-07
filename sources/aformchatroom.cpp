@@ -22,6 +22,7 @@
 
 #include "aformchatroom.h"
 #include "chathelper.h"
+#include "history.h"
 
 QString GroupId = "PARTICIPANTS";
 
@@ -563,14 +564,14 @@ void lmFormChatRoom::createToolBar(void) {
 	pLeftBar->addSeparator();
 
 	pbtnSmiley = new lmToolButton(pLeftBar);
-    pbtnSmiley->setIcon(ChatHelper::renderEmoji(Icons::Smiley,16));
+    pbtnSmiley->setIcon(Helper::renderEmoji(Icons::Smiley,16));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pLeftBar->addWidget(pbtnSmiley);
 
 	pLeftBar->addSeparator();
 
-    pSaveAction = pLeftBar->addAction(ChatHelper::renderEmoji(Icons::Save,16), "&Save As...", this, SLOT(btnSave_clicked()));
+    pSaveAction = pLeftBar->addAction(Helper::renderEmoji(Icons::Save,16), "&Save As...", this, SLOT(btnSave_clicked()));
 	pSaveAction->setShortcut(QKeySequence::Save);
 	pSaveAction->setEnabled(false);
 
@@ -585,7 +586,7 @@ void lmFormChatRoom::createToolBar(void) {
 		pContactsBar->setIconSize(QSize(24, 24));
 		ui.contactsBarLayout->addWidget(pContactsBar);
 
-        addContactAction = pContactsBar->addAction(ChatHelper::renderEmoji(Icons::Plus,16), "&Add Contacts...",
+        addContactAction = pContactsBar->addAction(Helper::renderEmoji(Icons::Plus,16), "&Add Contacts...",
 												   this, SLOT(addContactAction_triggered()));
 
 		QToolButton* pButton = (QToolButton*)pContactsBar->widgetForAction(addContactAction);

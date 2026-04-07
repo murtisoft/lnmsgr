@@ -28,6 +28,7 @@
 #include <QRegularExpression>
 #include <QLocale>
 #include "chathelper.h"
+#include "definitionsdir.h"
 
 const QString acceptOp("accept");
 const QString declineOp("decline");

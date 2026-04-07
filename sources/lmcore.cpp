@@ -25,6 +25,9 @@
 #include <utilapiset.h>
 #include "zdebuglog.h"
 #include "lmcore.h"
+#include "translations.h"
+#include "strings.h"
+#include "definitionsdir.h"
 
 lmCore::lmCore(void) {
 	pMessaging = new lmMessaging();

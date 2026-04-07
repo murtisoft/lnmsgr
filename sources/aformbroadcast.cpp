@@ -22,6 +22,11 @@
 #include <QActionGroup>
 #include <QMessageBox>
 #include "aformbroadcast.h"
+#include "widgetimagepicker.h"
+#include "definitionschat.h"
+#include "chathelper.h"
+#include "strings.h"
+#include "shared.h"
 
 //	constructor
 lmFormBroadcast::lmFormBroadcast(QWidget *parent) : QWidget(parent) {
@@ -275,7 +280,7 @@ void lmFormBroadcast::createToolBar(void) {
 
 	//	create the smiley tool button
 	pbtnSmiley = new lmToolButton(pToolBar);
-    pbtnSmiley->setIcon(ChatHelper::renderEmoji(Icons::Smiley,16));
+    pbtnSmiley->setIcon(Helper::renderEmoji(Icons::Smiley,16));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pToolBar->addWidget(pbtnSmiley);

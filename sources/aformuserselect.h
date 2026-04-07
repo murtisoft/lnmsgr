@@ -25,7 +25,6 @@
 
 #include <QDialog>
 #include "ui_aformuserselect.h"
-#include "shared.h"
 #include "definitionssettings.h"
 
 class lmFormUserSelect : public QDialog

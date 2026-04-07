@@ -27,7 +27,7 @@
 #include <qmath.h>
 #include "definitionsui.h"
 #include "widgetimagepicker.h"
-#include "chathelper.h"
+#include "shared.h"
 
 lmImagePicker::lmImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex)
 	: QTableWidget(parent)
@@ -75,7 +75,7 @@ lmImagePicker::lmImagePicker(QWidget *parent, QList<QString>* source, int picSiz
                 if (val.startsWith(":/")) {
                     item->setIcon(QIcon(val)); //Legacy Embedded PNG (for custom application icon smiley.)
                 } else {
-                    item->setIcon(ChatHelper::renderEmoji(val, picSize));
+                    item->setIcon(Helper::renderEmoji(val, picSize));
                 }
 				item->setData(TypeRole, 1);
 				item->setSizeHint(QSize(picSize, picSize));

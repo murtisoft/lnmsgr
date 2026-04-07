@@ -28,6 +28,10 @@
 #include "history.h"
 #include <cstdlib>
 #include <qstylehints.h>
+#include "widgetimagepicker.h"
+#include "strings.h"
+#include "definitionsdir.h"
+
 
 lmFormMain::lmFormMain(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
 	ui.setupUi(this);
@@ -775,44 +779,44 @@ void lmFormMain::createMainMenu(void) {
     // Messenger menu
     pFileMenu = pMainMenu->addMenu("&Messenger");
 
-    chatRoomAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Plus,16)),"&New Chat Room", this);
+    chatRoomAction = new QAction(QIcon(Helper::renderEmoji(Icons::Plus,16)),"&New Chat Room", this);
     chatRoomAction->setShortcut(QKeySequence::New);
     connect(chatRoomAction, &QAction::triggered, this, &lmFormMain::chatRoomAction_triggered);
     pFileMenu->addAction(chatRoomAction);
 
-    publicChatAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Public,16)), "&Public Chat", this);
+    publicChatAction = new QAction(QIcon(Helper::renderEmoji(Icons::Public,16)), "&Public Chat", this);
     connect(publicChatAction, &QAction::triggered, this, &lmFormMain::publicChatAction_triggered);
     pFileMenu->addAction(publicChatAction);
 
     pFileMenu->addSeparator();
 
-    refreshAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Refresh,16)), "&Refresh contacts list", this);
+    refreshAction = new QAction(QIcon(Helper::renderEmoji(Icons::Refresh,16)), "&Refresh contacts list", this);
     refreshAction->setShortcut(QKeySequence::Refresh);
     connect(refreshAction, &QAction::triggered, this, &lmFormMain::refreshAction_triggered);
     pFileMenu->addAction(refreshAction);
 
     pFileMenu->addSeparator();
 
-    exitAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Close,16)), "E&xit", this);
+    exitAction = new QAction(QIcon(Helper::renderEmoji(Icons::Close,16)), "E&xit", this);
     connect(exitAction, &QAction::triggered, this, &lmFormMain::trayExitAction_triggered);
     pFileMenu->addAction(exitAction);
 
     // Tools menu
     pToolsMenu = pMainMenu->addMenu("&Tools");
 
-    historyAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::History,16)), "&History", this);
+    historyAction = new QAction(QIcon(Helper::renderEmoji(Icons::History,16)), "&History", this);
     historyAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_H));
     connect(historyAction, &QAction::triggered, this, &lmFormMain::trayHistoryAction_triggered);
     pToolsMenu->addAction(historyAction);
 
-    transferAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Transfer,16)), "File &Transfers", this);
+    transferAction = new QAction(QIcon(Helper::renderEmoji(Icons::Transfer,16)), "File &Transfers", this);
     transferAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
     connect(transferAction, &QAction::triggered, this, &lmFormMain::trayFileAction_triggered);
     pToolsMenu->addAction(transferAction);
 
     pToolsMenu->addSeparator();
 
-    settingsAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Settings,16)), "&Preferences", this);
+    settingsAction = new QAction(QIcon(Helper::renderEmoji(Icons::Settings,16)), "&Preferences", this);
     settingsAction->setShortcut(QKeySequence::Preferences);
     connect(settingsAction, &QAction::triggered, this, &lmFormMain::traySettingsAction_triggered);
     pToolsMenu->addAction(settingsAction);
@@ -821,11 +825,11 @@ void lmFormMain::createMainMenu(void) {
     pHelpMenu = pMainMenu->addMenu("&Help");
 
     QString text = "%1 &online";
-    onlineAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Web,16)), text.arg(lmStrings::appName()), this);
+    onlineAction = new QAction(QIcon(Helper::renderEmoji(Icons::Web,16)), text.arg(lmStrings::appName()), this);
     connect(onlineAction, &QAction::triggered, this, &lmFormMain::homePageAction_triggered);
     pHelpMenu->addAction(onlineAction);
 
-    aboutAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Info,16)), "&About", this);
+    aboutAction = new QAction(QIcon(Helper::renderEmoji(Icons::Info,16)), "&About", this);
     connect(aboutAction, &QAction::triggered, this, &lmFormMain::trayAboutAction_triggered);
     pHelpMenu->addAction(aboutAction);
 
@@ -852,27 +856,27 @@ void lmFormMain::createTrayMenu(void) {
 
     pTrayMenu->addSeparator();
 
-    trayHistoryAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::History,16)), "&History", this);
+    trayHistoryAction = new QAction(QIcon(Helper::renderEmoji(Icons::History,16)), "&History", this);
     connect(trayHistoryAction, &QAction::triggered, this, &lmFormMain::trayHistoryAction_triggered);
     pTrayMenu->addAction(trayHistoryAction);
 
-    trayTransferAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Transfer,16)), "File &Transfers", this);
+    trayTransferAction = new QAction(QIcon(Helper::renderEmoji(Icons::Transfer,16)), "File &Transfers", this);
     connect(trayTransferAction, &QAction::triggered, this, &lmFormMain::trayFileAction_triggered);
     pTrayMenu->addAction(trayTransferAction);
 
     pTrayMenu->addSeparator();
 
-    traySettingsAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Settings,16)), "&Preferences", this);
+    traySettingsAction = new QAction(QIcon(Helper::renderEmoji(Icons::Settings,16)), "&Preferences", this);
     connect(traySettingsAction, &QAction::triggered, this, &lmFormMain::traySettingsAction_triggered);
     pTrayMenu->addAction(traySettingsAction);
 
-    trayAboutAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Info,16)), "&About", this);
+    trayAboutAction = new QAction(QIcon(Helper::renderEmoji(Icons::Info,16)), "&About", this);
     connect(trayAboutAction, &QAction::triggered, this, &lmFormMain::trayAboutAction_triggered);
     pTrayMenu->addAction(trayAboutAction);
 
     pTrayMenu->addSeparator();
 
-    trayExitAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Close,16)), "E&xit", this);
+    trayExitAction = new QAction(QIcon(Helper::renderEmoji(Icons::Close,16)), "E&xit", this);
     connect(trayExitAction, &QAction::triggered, this, &lmFormMain::trayExitAction_triggered);
     pTrayMenu->addAction(trayExitAction);
 
@@ -982,29 +986,29 @@ void lmFormMain::createToolBar(void) {
     ui.toolBarLayout->addWidget(pToolBar);
     pToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
 
-    toolChatAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Chat,20)), "&Conversation", this);
+    toolChatAction = new QAction(QIcon(Helper::renderEmoji(Icons::Chat,20)), "&Conversation", this);
     connect(toolChatAction, &QAction::triggered, this, &lmFormMain::userConversationAction_triggered);
     toolChatAction->setEnabled(false);
     pToolBar->addAction(toolChatAction);
 
-    toolFileAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::File,20)), "Send &File", this);
+    toolFileAction = new QAction(QIcon(Helper::renderEmoji(Icons::File,20)), "Send &File", this);
     connect(toolFileAction, &QAction::triggered, this, &lmFormMain::userFileAction_triggered);
     toolFileAction->setEnabled(false);
     pToolBar->addAction(toolFileAction);
 
     pToolBar->addSeparator();
 
-    toolBroadcastAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Broadcast,20)), "Send &Broadcast Message", this);
+    toolBroadcastAction = new QAction(QIcon(Helper::renderEmoji(Icons::Broadcast,20)), "Send &Broadcast Message", this);
     connect(toolBroadcastAction, &QAction::triggered, this, &lmFormMain::userBroadcastAction_triggered);
     pToolBar->addAction(toolBroadcastAction);
 
     pToolBar->addSeparator();
 
-    toolChatRoomAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Plus,20)), "&New Chat Room", this);
+    toolChatRoomAction = new QAction(QIcon(Helper::renderEmoji(Icons::Plus,20)), "&New Chat Room", this);
     connect(toolChatRoomAction, &QAction::triggered, this, &lmFormMain::chatRoomAction_triggered);
     pToolBar->addAction(toolChatRoomAction);
 
-    toolPublicChatAction = new QAction(QIcon(ChatHelper::renderEmoji(Icons::Public,20)), "&Public Chat", this);
+    toolPublicChatAction = new QAction(QIcon(Helper::renderEmoji(Icons::Public,20)), "&Public Chat", this);
     connect(toolPublicChatAction, &QAction::triggered, this, &lmFormMain::publicChatAction_triggered);
     pToolBar->addAction(toolPublicChatAction);
 
@@ -1135,9 +1139,9 @@ void lmFormMain::setAvatar(QString fileName) {
                 loadFromStdPath = true;
             }
 			else
-                avatar = ChatHelper::renderEmoji(avtEmoji[20], 48).pixmap(48, 48); //Hidden Default Avatar
+                avatar = Helper::renderEmoji(avtEmoji[20], 48).pixmap(48, 48); //Hidden Default Avatar
 		} else
-            avatar = ChatHelper::renderEmoji(avtEmoji[nAvatar], 48).pixmap(48, 48);
+            avatar = Helper::renderEmoji(avtEmoji[nAvatar], 48).pixmap(48, 48);
 	}
 
     if(!loadFromStdPath) {
@@ -1233,7 +1237,7 @@ void lmFormMain::setUserAvatar(QString* lpszUserId, QString *lpszFilePath) {
 
     QPixmap avatar;
     if(!lpszFilePath || !QFile::exists(*lpszFilePath))
-        avatar = ChatHelper::renderEmoji(avtEmoji[20], 48).pixmap(48, 48); //Hidden Default Avatar
+        avatar = Helper::renderEmoji(avtEmoji[20], 48).pixmap(48, 48); //Hidden Default Avatar
     else
         avatar.load(*lpszFilePath);
     avatar = avatar.scaled(QSize(32, 32), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);

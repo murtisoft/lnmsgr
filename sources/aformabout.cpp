@@ -21,6 +21,8 @@
 
 #include <QFile>
 #include "aformabout.h"
+#include "strings.h"
+#include "definitionsui.h"
 
 //	constructor
 lmFormAbout::lmFormAbout(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {

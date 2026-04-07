@@ -22,6 +22,8 @@
 
 #include "zdebuglog.h"
 #include "networktcp.h"
+#include "xmlhandler.h"
+#include "networkdatagram.h"
 
 lmNetworkTcp::lmNetworkTcp(void) {
 	sendList.clear();

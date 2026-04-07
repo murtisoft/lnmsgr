@@ -29,7 +29,6 @@
 #include <QHostAddress>
 #include <QList>
 #include "shared.h"
-#include "networkdatagram.h"
 #include "definitionssettings.h"
 #include "crypto.h"
 

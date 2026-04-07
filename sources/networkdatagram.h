@@ -26,7 +26,6 @@
 #include <QString>
 #include <QStringList>
 #include "shared.h"
-#include "xmlhandler.h"
 
 enum DatagramHeaderMember
 {

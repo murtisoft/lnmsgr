@@ -25,9 +25,7 @@
 
 #include <QDialog>
 #include "ui_aformuserinfo.h"
-#include "shared.h"
 #include "definitionssettings.h"
-#include "definitionsdir.h"
 #include "xmlhandler.h"
 
 class lmFormUserInfo : public QDialog

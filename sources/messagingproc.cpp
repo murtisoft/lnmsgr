@@ -22,6 +22,8 @@
 
 #include "zdebuglog.h"
 #include "messaging.h"
+#include "message.h"
+#include "definitionsdir.h"
 
 //	A broadcast is to be sent
 void lmMessaging::sendBroadcast(MessageType type, MessageXml* pMessage) {

@@ -24,8 +24,6 @@
 #define CHATHELPER_H
 
 #include <QTextBlockUserData>
-#include "definitionsui.h"
-#include "definitionschat.h"
 #include "xmlhandler.h"
 
 class QTextBlockData : public QTextBlockUserData
@@ -62,7 +60,6 @@ public:
 	static void makeHtmlSafe(QString* lpszMessage);
 	static void encodeSmileys(QString* lpszMessage);
 	static void decodeSmileys(QString* lpszMessage);
-    static QIcon renderEmoji(const QString& emoji, int size = 32);
 };
 
 #endif // CHATHELPER_H

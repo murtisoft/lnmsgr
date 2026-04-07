@@ -77,10 +77,6 @@ public:
             QStandardPaths::AppDataLocation) + "/" LANGDIR);
 	}
 
-	static QString resThemeDir(void) {
-        return ":/" THEMEDIR;
-	}
-
 	static QString sysThemeDir(void) {
         return QDir::toNativeSeparators(QDir::currentPath() + "/" THEMEDIR);
 	}

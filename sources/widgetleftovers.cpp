@@ -21,7 +21,6 @@
 
 
 #include <QApplication>
-#include "strings.h"
 #include "widgetleftovers.h"
 
 lmToolButton::lmToolButton(QWidget* parent) : QToolButton(parent) {

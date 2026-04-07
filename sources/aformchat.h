@@ -35,19 +35,15 @@
 #include "ui_aformchat.h"
 #include "shared.h"
 #include "definitionssettings.h"
-#include "history.h"
 #include "widgetchatlog.h"
 #include "widgetleftovers.h"
 #include "widgetimagepicker.h"
 #include "soundplayer.h"
 #include "definitionschat.h"
-#include "chathelper.h"
-#include "definitionsdir.h"
 #include "xmlhandler.h"
 #include <QAudioSource>
 #include <QAudioFormat>
 #include <QMediaDevices>
-#include "networkudp.h"
 
 class lmFormChat : public QWidget {
 	Q_OBJECT

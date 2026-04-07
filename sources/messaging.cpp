@@ -19,7 +19,6 @@
 **
 ****************************************************************************/
 
-
 #include "messaging.h"
 #include "definitionsdir.h"
 #include "zdebuglog.h"

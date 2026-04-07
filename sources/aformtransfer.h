@@ -31,9 +31,7 @@
 #include <QToolButton>
 #include <qevent.h>
 #include "ui_aformtransfer.h"
-#include "shared.h"
 #include "definitionssettings.h"
-#include "definitionsdir.h"
 #include "soundplayer.h"
 #include "xmlhandler.h"
 

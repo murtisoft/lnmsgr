@@ -27,7 +27,6 @@
 #include <QTcpSocket>
 #include <QTcpServer>
 #include "shared.h"
-#include "networkdatagram.h"
 #include "definitionssettings.h"
 #include "networkstreamer.h"
 #include "crypto.h"

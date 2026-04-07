@@ -23,6 +23,7 @@
 #ifndef NETWORKSTREAMER_H
 #define NETWORKSTREAMER_H
 
+#include "definitions.h"
 #include <QTcpSocket>
 #include <QTcpServer>
 #include <QTimer>
@@ -33,7 +34,6 @@
 #include <QAudioSink>
 #include <QMediaDevices>
 #include <QAudioFormat>
-#include "shared.h"
 
 
 class lmAudioStream : public QObject {
@@ -77,7 +77,7 @@ class FileSender : public QObject {
 public:
 	FileSender(void);
     FileSender(QString szId, QString szLocalId, QString szPeerId, QString szFilePath, QString szFileName, qint64 nFileSize,
-		QString szAddress, int nPort, FileType nType);
+        QString szAddress, int nPort, FileType nType);
 	~FileSender(void);
 
 	void init(void);

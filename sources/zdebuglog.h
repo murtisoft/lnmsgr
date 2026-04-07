@@ -27,7 +27,6 @@
 #include <QTextStream>
 #include <QDateTime>
 #include <QDir>
-#include "definitionsdir.h"
 
 class lmDebugLog {
 public:

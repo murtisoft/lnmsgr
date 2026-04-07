@@ -25,8 +25,6 @@
 
 #include <QString>
 #include <qdir.h>
-#include "definitions.h"
-#include "strings.h"
 
 
 namespace Icons { //New Emoji Icons.

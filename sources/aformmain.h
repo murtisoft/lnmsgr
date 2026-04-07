@@ -40,9 +40,7 @@
 #include "ui_aformmain.h"
 #include "shared.h"
 #include "definitionssettings.h"
-#include "widgetimagepicker.h"
 #include "soundplayer.h"
-#include "definitionsdir.h"
 #include "xmlhandler.h"
 
 class lmFormMain : public QWidget {

@@ -25,7 +25,8 @@
 #include <QScreen>
 #include <QUrl>
 #include "aformtransfer.h"
-#include "chathelper.h"
+#include "definitionsdir.h"
+#include "shared.h"
 
 lmFormTransfer::lmFormTransfer(QWidget *parent) : QWidget(parent) {
 	ui.setupUi(this);
@@ -302,12 +303,12 @@ void lmFormTransfer::createToolBar(void) {
 	pToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 	ui.toolBarLayout->addWidget(pToolBar);
 
-    pactCancel = pToolBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Stop,16)), "Cancel",
+    pactCancel = pToolBar->addAction(QIcon(Helper::renderEmoji(Icons::Stop,16)), "Cancel",
 		this, SLOT(btnCancel_clicked()));
 	pToolBar->addSeparator();
-    pactShowFolder = pToolBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::ShowFolder,16)), "Show In Folder",
+    pactShowFolder = pToolBar->addAction(QIcon(Helper::renderEmoji(Icons::ShowFolder,16)), "Show In Folder",
 		this, SLOT(btnShowFolder_clicked()));
-    pactRemove = pToolBar->addAction(QIcon(ChatHelper::renderEmoji(Icons::Close,16)), "Remove From List",
+    pactRemove = pToolBar->addAction(QIcon(Helper::renderEmoji(Icons::Close,16)), "Remove From List",
 		this, SLOT(btnRemove_clicked()));
 }
 

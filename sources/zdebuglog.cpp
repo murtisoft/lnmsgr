@@ -21,6 +21,8 @@
 
 
 #include "zdebuglog.h"
+#include "definitions.h"
+#include "definitionsdir.h"
 
 bool lmDebugLog::traceMode;
 QString lmDebugLog::fileName;

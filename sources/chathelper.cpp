@@ -22,10 +22,9 @@
 
 #include <QFile>
 #include <QDataStream>
-#include <QPainter.h>
-#include <qicon.h>
 #include <qregularexpression.h>
 #include "chathelper.h"
+#include "definitionschat.h"
 
 QDataStream &operator << (QDataStream &out, const SingleMessage &message) {
     out << qint32(message.type) << message.userId << message.userName << message.message.toString()
@@ -81,21 +80,6 @@ void ChatHelper::decodeSmileys(QString* lpszMessage) {
             lpszMessage->replace(code, "&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;", Qt::CaseInsensitive);
         }
     }
-}
-
-//Renders emojis to a pixmap so they can be used as an icon. Unicode, so every OS has its own flavor.
-//Using colorful emojis, i am deliberately avoiding garbage monochrome brutalist iconpacks of the last decade and a half.
-//Man, i could write a fucking manifesto about this...
-QIcon ChatHelper::renderEmoji(const QString& emoji, int size) {
-    QPixmap pixmap(size, size);
-    pixmap.fill(Qt::transparent);
-
-    QPainter painter(&pixmap);
-    QFont font = painter.font();
-    font.setPointSize(qRound(size * 0.7));
-    painter.setFont(font);
-    painter.drawText(pixmap.rect(), Qt::AlignCenter, emoji);
-    return QIcon(pixmap);
 }
 
 QTextBlockData::QTextBlockData(QString id)

@@ -27,7 +27,6 @@
 #include "definitionschat.h"
 #include "chathelper.h"
 #include "xmlhandler.h"
-#include "definitionsdir.h"
 #include "widgetmsgbrowser.h"
 
 enum OutputFormat{ HtmlFormat, TextFormat };

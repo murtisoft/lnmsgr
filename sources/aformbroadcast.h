@@ -28,12 +28,8 @@
 #include <QMenu>
 #include <qevent.h>
 #include "ui_aformbroadcast.h"
-#include "shared.h"
 #include "definitionssettings.h"
-#include "widgetimagepicker.h"
 #include "widgetleftovers.h"
-#include "definitionschat.h"
-#include "chathelper.h"
 #include "xmlhandler.h"
 
 class lmFormBroadcast : public QWidget
