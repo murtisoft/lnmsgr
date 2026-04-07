@@ -59,6 +59,7 @@ lmCore::lmCore(void) {
     pAboutDialog = nullptr;
     pBroadcastWindow = nullptr;
     pTimer = nullptr;
+    pSoundPlayer = new lmSoundPlayer();
 }
 
 lmCore::~lmCore(void) {
@@ -601,12 +602,15 @@ void lmCore::callConnected(MessageType type) {
     if (type == MT_Video) return; // TODO Video streaming.
     for (lmFormChat* w : chatWindows) {
             User* pUser = pMessaging->getUser(&w->peerId);
-            if (pUser) {
-                if (!m_audioStream) m_audioStream = new lmAudioStream(this);
-                m_audioStream->start(QHostAddress(pUser->address),
-                                   pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt());
-            break;
+        if (!m_audioStream) {
+            m_audioStream = new lmAudioStream(this);
+            connect(m_audioStream, &lmAudioStream::micStateChanged, this, [this](bool active) {
+                pSoundPlayer->play(active ? SE_MicOn : SE_MicOff);
+            });
         }
+        m_audioStream->start(QHostAddress(pUser->address),
+                             pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt());
+        break;
     }
 }
 

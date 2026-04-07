@@ -45,6 +45,7 @@ void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort) {
     m_source = new QAudioSource(QMediaDevices::defaultAudioInput(), fmt, this);
     m_input  = m_source->start();
 
+    emit micStateChanged(true);
     connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onReadyRead);
 
     // Receive UDP, play to default speaker
@@ -81,6 +82,7 @@ void lmAudioStream::onReadyRead() {
 }
 
 void lmAudioStream::stop() {
+    emit micStateChanged(false);
     if (m_source) { m_source->stop(); delete m_source; m_source = nullptr; }
     if (m_sink)   { m_sink->stop();   delete m_sink;   m_sink   = nullptr; }
     if (m_sendSock) { m_sendSock->close(); delete m_sendSock; m_sendSock = nullptr; }

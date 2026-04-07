@@ -9,11 +9,21 @@ SYSTEM="//Win 11, Qt Creator 18.0.1, Qt 6.10.1, MinGW 64 bit, Cmake"
 OUTPUT=~/Desktop/LanMessenger2026.cpp
 SOURCES=../../sources
 EXCLUDE=(
-    "aformabout.cpp"	"aformbroadcast.cpp"	"aformchatroom.cpp"
-	"aformhistory.cpp"	"aformsettings.cpp"		"aformtransfer.cpp"
-	"aformuserinfo.cpp"	"aformuserselect.cpp"	"strings.cpp"
-	"translations.cpp"	"history.cpp"			"filemodelview.cpp"
-    "*.h"				"*.ui"
+    "aformabout.cpp"			"aformbroadcast.cpp"			"aformchatroom.cpp"
+	"aformhistory.cpp"			"aformsettings.cpp"				"aformtransfer.cpp"
+	"aformuserinfo.cpp"			"aformuserselect.cpp"	
+	"chathelper.cpp"			"crypto.cpp"				
+	"definitionssettings.cpp"
+	"filemodelview.cpp"
+	"history.cpp"
+	"main.cpp"
+	"shared.cpp"				"soundplayer.cpp"				"strings.cpp"
+	"translations.cpp"
+	"widgetimagepicker.cpp"		"widgetleftovers.cpp"			"widgetmsgbrowser.cpp"
+	"widgettransferlist.cpp"	"widgetusertree.cpp"
+	"xmlhandler.cpp"
+	"zdebuglog.cpp"
+    "*.h"						"*.ui"
 )
 #================================================================================================
 

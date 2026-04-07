@@ -38,6 +38,10 @@
 
 class lmAudioStream : public QObject {
     Q_OBJECT
+
+signals:
+    void micStateChanged(bool active);
+
 public:
     explicit lmAudioStream(QObject* parent = nullptr);
     ~lmAudioStream();
@@ -57,6 +61,7 @@ private:
     QUdpSocket*    m_recvSock = nullptr;
     QHostAddress   m_peerAddress;
     quint16        m_port    = 0;
+    bool           m_micActive = false;
 
     static constexpr quint16 AUDIO_PORT_OFFSET = 1; // udpPort + 1
 };

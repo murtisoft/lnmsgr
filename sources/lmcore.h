@@ -43,6 +43,7 @@
 #include "aformabout.h"
 #include "aformbroadcast.h"
 #include "networkstreamer.h"
+#include "soundplayer.h"
 
 class lmCore : public QObject {
 	Q_OBJECT
@@ -131,6 +132,7 @@ private:
 	int								refreshTime;
 	MessageXml*						pInitParams;
     lmAudioStream*                  m_audioStream = nullptr;
+    lmSoundPlayer*                  pSoundPlayer;
 };
 
 #endif // LMCORE_H
