@@ -146,7 +146,7 @@ void lmFormHistory::displayList(void) {
 		ui.tvMsgList->addTopLevelItem(pItem);
 	}
 
-	ui.tvMsgList->sortByColumn(1, Qt::DescendingOrder);
+    ui.tvMsgList->sortByColumn(1, Qt::AscendingOrder);
 
 	if(ui.tvMsgList->topLevelItemCount() > 0)
 		ui.tvMsgList->setCurrentItem(ui.tvMsgList->topLevelItem(0));

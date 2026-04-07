@@ -269,12 +269,10 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 	QDateTime time;
 
 	if(format == HtmlFormat) {
-		QString html =
-			"<html><head><style type='text/css'>"\
-			"*{font-size: 9pt;} body {-webkit-nbsp-mode: space; word-wrap: break-word;}"\
-			"span.salutation {float:left; font-weight: bold;} span.time {float: right;}"\
-			"span.message {clear: both; display: block;} p {border-bottom: 1px solid #CCC;}"\
-			"</style></head><body>";
+        QString html =
+            "<html><head><style type='text/css'>"\
+            "*{font-size: 9pt;}"\
+            "</style></head><body>";
 
 		for(int index = 0; index < messageLog.count(); index++) {
 			SingleMessage msg = messageLog.at(index);
@@ -282,10 +280,13 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 				time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
 				QString messageText = msg.message.data(XN_MESSAGE);
 				decodeMessage(&messageText, true);
-				QString htmlMsg =
-					"<p><span class='salutation'>" + msg.userName + ":</span>"\
-					"<span class='time'>" + QLocale().toString(time.time(), QLocale::ShortFormat) + "</span>"\
-					"<span class='message'>" + messageText + "</span></p>";
+                QString htmlMsg =
+                    "<table width='100%'><tr>"
+                    "<td style='font-weight: bold;'>" + msg.userName + ":</td>"
+                                     "<td style='text-align: right; white-space: nowrap;'>" + QLocale().toString(time.time(), QLocale::ShortFormat) + "</td>"
+                                                                              "</tr><tr>"
+                                                                              "<td colspan='2' style='border-bottom: 1px solid rgb(127,127,127);; padding-bottom: 2px;'>" + messageText + "</td>"
+                                    "</tr></table>";
 				html.append(htmlMsg);
 			}
 		}

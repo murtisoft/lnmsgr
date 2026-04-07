@@ -109,16 +109,12 @@ int History::save(QString user, QDateTime date, QString* lpszData) {
 }
 
 qint64 History::insertData(QDataStream* pStream, QString* lpszData) {
-	qint64 lastPos = pStream->device()->size();
-	pStream->device()->seek(lastPos);
-
-	QByteArray data = lpszData->toUtf8();
-	
-	*pStream << QString(HC_DTMARKER);
-	*pStream << data.length();
-	*pStream << data;
-
-	return lastPos;
+    qint64 lastPos = pStream->device()->size();
+    pStream->device()->seek(lastPos);
+    QByteArray data = lpszData->toUtf8();
+    *pStream << QString(HC_DTMARKER);
+    *pStream << data;
+    return lastPos;
 }
 
 qint64 History::insertIndex(QDataStream* pStream, qint64 dataPos, QString user, QDateTime date) {
@@ -181,31 +177,20 @@ QList<MsgInfo> History::getList(void) {
 }
 
 QString History::getMessage(qint64 offset) {
-	QString data;
-
-	lmSettings settings;
-	QString path = historyFile();
-
-	if(!QFile::exists(path))
-		return data;
-
-	QFile file(path);
-	if(!file.open(QIODevice::ReadOnly))
-		return data;
-
-	QDataStream stream(&file);
-
-	QString marker;
-	int length;
-	QByteArray buffer;
-
-	stream.device()->seek(offset);
-	stream >> marker;
-	stream >> length;
-	stream >> buffer;
-	
-	data = QString::fromUtf8(buffer, buffer.length());
-
-	file.close();
-	return data;
+    QString data;
+    QString path = historyFile();
+    if(!QFile::exists(path))
+        return data;
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
+        return data;
+    QDataStream stream(&file);
+    QString marker;
+    QByteArray buffer;
+    stream.device()->seek(offset);
+    stream >> marker;
+    stream >> buffer;
+    data = QString::fromUtf8(buffer);
+    file.close();
+    return data;
 }

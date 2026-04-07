@@ -189,13 +189,17 @@ const int itemViewHeight[] = {36, 20};
 #endif
 
 struct Templates {
-    QString inMsg       = [] { QFile file(":/templates/old_content.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
-    QString inNextMsg   = [] { QFile file(":/templates/old_nextcontent.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
-    QString pubMsg      = [] { QFile file(":/templates/old_broadcast.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
-    QString sysMsg      = [] { QFile file(":/templates/old_status.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
-    QString sysNextMsg  = [] { QFile file(":/templates/old_nextstatus.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
-    QString reqMsg      = [] { QFile file(":/templates/old_request.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
-    QString stateMsg    = [] { QFile file(":/templates/old_status.html"); return file.open(QFile::ReadOnly) ? file.readAll() : ""; }();
+    static QString load(const char* path) {
+        QFile f(path); return f.open(QFile::ReadOnly) ? f.readAll() : "";
+    }
+
+    QString inMsg      = load(":/templates/old_content.html");
+    QString inNextMsg  = load(":/templates/old_nextcontent.html");
+    QString pubMsg     = load(":/templates/old_broadcast.html");
+    QString sysMsg     = load(":/templates/old_status.html");
+    QString sysNextMsg = load(":/templates/old_nextstatus.html");
+    QString reqMsg     = load(":/templates/old_request.html");
+    QString stateMsg   = load(":/templates/old_status.html");
 };
 
 #endif // DEFINITIONSUI_H
