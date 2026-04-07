@@ -66,8 +66,6 @@ public:
 	void settingsChanged(bool init = false);
     void showTrayMessage(TrayMessageType type, QString szMessage, QString szTitle = QString(), TrayMessageIcon icon = TMI_Info, const QPixmap &avatar = QPixmap());
     QList<QTreeWidgetItem*> getContactsList(void);
-    void playLoopSound(SoundEvent event);
-    void stopLoopSound();
 
 signals:
 	void appExiting(void);

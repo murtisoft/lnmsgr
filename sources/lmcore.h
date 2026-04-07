@@ -53,6 +53,8 @@ public:
 	~lmCore(void);
 	void init(const QString& szCommandArgs);
 	bool start(void);
+    void playLoopSound(SoundEvent event);
+    void stopLoopSound();
     CallPhase callPhase = CP_Idle;
 
 public slots:
@@ -108,8 +110,6 @@ private:
 	void showPublicChatWindow(bool show, bool alert = false, bool open = false);
     QStringList showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList);
 	void showPortConflictMessage(void);
-    void playLoopSound(SoundEvent event);
-    void stopLoopSound();
 
     lmSettings*                     pSettings;
 	QTimer*							pTimer;

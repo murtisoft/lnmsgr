@@ -588,17 +588,29 @@ void lmCore::processMessage(MessageType type, QString* lpszUserId, MessageXml* p
 	}
 }
 
+void lmCore::playLoopSound(SoundEvent event)
+{
+    if (pSoundPlayer)
+        pSoundPlayer->playLoop(event);
+}
+
+void lmCore::stopLoopSound()
+{
+    if (pSoundPlayer)
+        pSoundPlayer->stopLoop();
+}
+
 void lmCore::callRequested(MessageType type) {
     if (callPhase != CP_Idle) return; // busy
     callPhase = CP_Calling;
     emit callPhaseChanged(callPhase != CP_Idle);
-    pMainWindow->playLoopSound(SE_RingOut);
+    playLoopSound(SE_RingOut);
 }
 
 void lmCore::callConnected(MessageType type) {
     callPhase = CP_Connected;
     emit callPhaseChanged(callPhase != CP_Idle);
-    pMainWindow->stopLoopSound();
+    stopLoopSound();
     if (type == MT_Video) return; // TODO Video streaming.
     for (lmFormChat* w : chatWindows) {
             User* pUser = pMessaging->getUser(&w->peerId);
@@ -617,7 +629,7 @@ void lmCore::callConnected(MessageType type) {
 void lmCore::callEnded(MessageType type) {
     callPhase = CP_Idle;
     emit callPhaseChanged(callPhase != CP_Idle);
-    pMainWindow->stopLoopSound();
+    stopLoopSound();
 
     if (m_audioStream) { m_audioStream->stop(); delete m_audioStream; m_audioStream = nullptr; }
 }
@@ -635,7 +647,7 @@ void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pM
         }
         callPhase = CP_Ringing;
         emit callPhaseChanged(true);
-        pMainWindow->playLoopSound(SE_RingIn);
+        playLoopSound(SE_RingIn);
         break;
     case SO_Accept:
         callConnected(type);
