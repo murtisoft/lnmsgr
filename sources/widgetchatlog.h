@@ -78,8 +78,6 @@ protected:
     void scrollToEnd(QTextCursor &cursor);
 
 private slots:
-    // TOD0
-    //void log_linkClicked(QUrl url);
 	void log_linkHovered(const QString& link, const QString& title, const QString& textContent);
 	void showContextMenu(const QPoint& pos);
 	void copyAction_triggered(void);
@@ -115,6 +113,7 @@ private:
     QString getFileTempId(MessageXml* pMessage) const;
     QString getStreamTempId(StreamMode mode, QString streamId) const;
     QString getStreamTempId(MessageXml* pMessage) const;
+    void onLinkHovered(const QUrl& url);
 
 	QMap<QString, MessageXml> sendFileMap;
 	QMap<QString, MessageXml> receiveFileMap;
@@ -124,6 +123,7 @@ private:
 	QAction* copyAction;
 	QAction* copyLinkAction;
 	QAction* selectAllAction;
+    QString hoveredLink;
 	bool linkHovered;
 	bool outStyle;
 	bool autoScroll;

@@ -24,9 +24,10 @@
 #include <QAction>
 #include <QScrollBar>
 #include <QTextBlock>
-#include "widgetchatlog.h"
 #include <QRegularExpression>
 #include <QLocale>
+#include <QClipboard>
+#include "widgetchatlog.h"
 #include "sharedchatfunctions.h"
 #include "definitionsdir.h"
 
@@ -35,11 +36,8 @@ inline constexpr char declineOp[] = "decline";
 inline constexpr char cancelOp[] = "cancel";
 
 lmChatLog::lmChatLog(QWidget *parent) : MessageBrowser (parent) {
-// TOD0
-//	connect(this, SIGNAL(linkClicked(QUrl)), this, SLOT(log_linkClicked(QUrl)));
-//	connect(this->page(), SIGNAL(linkHovered(QString, QString, QString)),
-//			this, SLOT(log_linkHovered(QString, QString, QString)));
 
+    connect(this, &QTextBrowser::highlighted, this, &lmChatLog::onLinkHovered);
     connect(this, SIGNAL(anchorClicked(QUrl)), this, SLOT(onAnchorClicked(QUrl)));
 
 	createContextMenu();
@@ -470,12 +468,15 @@ void lmChatLog::log_linkHovered(const QString& link, const QString& title, const
 	linkHovered = !link.isEmpty();
 }
 
+void lmChatLog::onLinkHovered(const QUrl& url) {
+    linkHovered = !url.isEmpty();
+    hoveredLink = url.toString();
+}
+
 void lmChatLog::showContextMenu(const QPoint& pos) {
     QTextCursor cursor = textCursor();
     copyAction->setEnabled(cursor.selectionStart() != cursor.selectionEnd());
-	copyLinkAction->setEnabled(linkHovered);
-	//	Copy Link is currently hidden since it performs the same action as regular Copy
-    copyLinkAction->setVisible(false);
+    copyLinkAction->setEnabled(linkHovered);
     selectAllAction->setEnabled(!document()->isEmpty());
 	contextMenu->exec(mapToGlobal(pos));
 }
@@ -485,8 +486,7 @@ void lmChatLog::copyAction_triggered(void) {
 }
 
 void lmChatLog::copyLinkAction_triggered(void) {
-//  TOD0
-//	pageAction(QWebPage::CopyLinkToClipboard)->trigger();
+    QGuiApplication::clipboard()->setText(hoveredLink);
 }
 
 void lmChatLog::selectAllAction_triggered(void) {
@@ -1058,66 +1058,72 @@ void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	if(!useDefaults && trimMessage)
 		*lpszMessage = lpszMessage->trimmed();
 
+    // normalize backslash UNC to forward slash, which means you cant type backspace unfortunately.
+    lpszMessage->replace(QRegularExpression(R"(\\\\)"), "//");
+    lpszMessage->replace(QRegularExpression(R"(\\)"), "/");
+
 	//	The url detection regexps only work with plain text, so link detection is done before
 	//	making the text html safe. The converted links are given a "data-isLink" custom
 	//	attribute to differentiate them from the message content
     if(useDefaults || allowLinks) {
-        static const QRegularExpression urlRegex(
-            "((?:(?:https?|ftp|file)://|www\\.|ftp\\.)[-A-Z0-9+&@#/%=~_|$?!:,.]*[A-Z0-9+&@#/%=~_|$])",
+        static const QRegularExpression regexURL(   //for a URL to be converted into a link, it needs to have http://, https://, ftp:// or www.
+            R"(((?:https?|ftp)://[-A-Z0-9+&@#/%=~_|$?!:,.]*[-A-Z0-9+&@#/%=~_|$]|www\.[-A-Z0-9+&@#/%=~_|$?!:,.]*[-A-Z0-9+&@#/%=~_|$]))",
             QRegularExpression::CaseInsensitiveOption
             );
 
-        lpszMessage->replace(urlRegex, "<a data-isLink='true' href='\\1'>\\1</a>");
+        lpszMessage->replace(regexURL, "<a data-isLink='true' href='\\1'>\\1</a>");
         lpszMessage->replace("<a data-isLink='true' href='www", "<a data-isLink='true' href='http://www");
 
-        if(!useDefaults && pathToLink) {
-            static const QRegularExpression pathRegex(
-                "((\\\\\\\\[\\w-]+\\\\[^\\\\/:*?<>|\"]+)((?:\\\\[^\\\\/:*?<>|\"]+)*\\\\?)$)"
-                );
-            lpszMessage->replace(pathRegex, "<a data-isLink='true' href='file:\\1'>\\1</a>");
+if(!useDefaults && pathToLink) {
+    static const QRegularExpression regexUNC(  //Quoted UNC greedy, allows spaces | Unquoted UNC conservative, no spaces
+        R"~((")((?://|\\\\)[^"]+)"|(?<![:'"<\/])((?://|\\\\)[^\s/:*?<>|"'\\]+(?:[/\\][^\s/:*?<>|"'\\ ]*)*[/\\]?))~"
+        );
 
+    QString result;
+    int lastEnd = 0;
+    auto it = regexUNC.globalMatch(*lpszMessage);
+    while(it.hasNext()) {
+        auto m = it.next();
+        result += lpszMessage->mid(lastEnd, m.capturedStart() - lastEnd);
+        QString path = m.captured(2).isEmpty() ? m.captured(3) : m.captured(2);
+        result += QString("<a data-isLink='true' href='file:%1'>%1</a>").arg(path);
+        lastEnd = m.capturedEnd();
+    }
+    result += lpszMessage->mid(lastEnd);
+    *lpszMessage = result;
+    }
+    }
 
-        /*   ===Regex graveyard===
-        //		lpszMessage->replace(QRegularExpression("(((https|http|ftp|file|smb):[/][/]|www.)[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)"),
-        //							 "<a href='\\1'>\\1</a>");
-        lpszMessage->replace(
-            QRegularExpression("((?:(?:https?|ftp|file)://|www\\.|ftp\\.)[-A-Z0-9+&@#/%=~_|$?!:,.]*[A-Z0-9+&@#/%=~_|$])",
-                               QRegularExpression::CaseInsensitiveOption),
-            "<a data-isLink='true' href='\\1'>\\1</a>");
-        lpszMessage->replace("<a data-isLink='true' href='www", "<a data-isLink='true' href='http://www");
-
-        if(!useDefaults && pathToLink)
-            lpszMessage->replace(QRegularExpression("((\\\\\\\\[\\w-]+\\\\[^\\\\/:*?<>|""]+)((?:\\\\[^\\\\/:*?<>|""]+)*\\\\?)$)"),
-                                 "<a data-isLink='true' href='file:\\1'>\\1</a>");*/
-        }}
-
+qDebug().noquote() << "\r\n" << QString(*lpszMessage).replace("\n", "\r\n") << "\r\n";
 /*  TODO This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
 TEST CASES
-00 \\Murticom-2026\e\ss.png   pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the file.
-01 //Murticom-2026/e/ss.png   pathToLink
-   \\Murticom-2026\e/ss.png
-   \\Murticom-2026\e\S p a c e.png
-   \\Murticom-2026\e\Ünıcöde.png
-   smb:// for linux.
-   %WINDIR%
-   %USERPROFILE%\Documents\%USERNAME%_log.txt
-02 \\Murticom-2026\e\         pathToLink   Shows up as link, just opens file explorer, which is incorrect. It needs to open the correct directory.
-03 //Murticom-2026/e/         pathToLink
-04 \\Murticom-2026\e          pathToLink   Entire line disappears
-05 //Murticom-2026/e          pathToLink
-06 \\192.168.0.10\e           pathToLink   Shows up as plain text
-07 //192.168.0.10/e           pathToLink
-08 https://github.com         allowLinks   Works as expected
-   https://google.com/search?q=qt+6
-   (https://google.com)
-09 www.github.com             allowLinks   Works as expected
-10 github.com                 allowLinks   Shows up as plain text
-   v3.beta.github.com
-11 192.168.0.10               allowLinks   Shows up as plain text
-12 192.168.0.10:1111          allowLinks   Shows up as plain text
-13 ftp.debian.org             allowLinks   Works, but tries to open in file explorer instead of browser
-14 file:///E:/ss.png          This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
-15 file:///E:/_qtprojects     This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
+00 \\Murticom-2026\e\ss.png         pathToLink      Works as expected
+01 //Murticom-2026/e/ss.png         pathToLink      Works as expected
+02 \\Murticom-2026\e/ss.png         pathToLink      Works as expected
+03 \\Murticom-2026\e\S p a c e.png  ----------      Not covered, breaks at first space.
+04 "\\Murticom-2026\e\S p a c e.png"pathToLink      Works as expected
+05 \\Murticom-2026\e\Ünıcöde.png    pathToLink      Works as expected
+06 smb:// for linux.                                Havent decided yet
+07 %WINDIR%                                         Havent decided yet
+08 %USERPROFILE%\Documents\%USERNAME%_log.txt       Havent decided yet
+09 \\Murticom-2026\e\               pathToLink      Works as expected
+10 //Murticom-2026/e/               pathToLink      Works as expected
+11 \\Murticom-2026\e                pathToLink      Works as expected
+12 //Murticom-2026/e                pathToLink      Works as expected
+13 \\192.168.0.10\e                 pathToLink      Works as expected
+14 //192.168.0.10/e                 pathToLink      Works as expected
+15 https://github.com               allowLinks      Works as expected
+16 https://google.com/search?q=qt+6 allowLinks      Works as expected
+17 (https://google.com)             allowLinks      Works as expected
+18 www.github.com                   allowLinks      Works as expected
+19 github.com                       ----------      Not covered, Shows up as plain text
+20 v3.beta.github.com               ----------      Not covered, Shows up as plain text
+21 192.168.0.10                     ----------      Not covered, Shows up as plain text
+22 192.168.0.10:1111                ----------      Not covered, Shows up as plain text
+23 http://192.168.0.20:1111/        allowLinks      Works as expected
+24 ftp.debian.org                   ----------      Not covered, Shows up as plain text
+25 file:///E:/ss.png                ----------      This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
+26 file:///E:/_qtprojects           ----------      This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
 */
 
 
