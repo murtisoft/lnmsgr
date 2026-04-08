@@ -81,8 +81,8 @@ void lmNetworkTcp::addConnection(QString* lpszUserId, QString* lpszAddress) {
 	MsgStream* msgStream = new MsgStream(localId, *lpszUserId, *lpszAddress, tcpPort);
 	connect(msgStream, SIGNAL(connectionLost(QString*)), 
 		this, SLOT(msgStream_connectionLost(QString*)));
-	connect(msgStream, SIGNAL(messageReceived(QString*, QString*, QByteArray&)),
-		this, SLOT(receiveMessage(QString*, QString*, QByteArray&)));
+    connect(msgStream, SIGNAL(messageReceived(QString*,QString*,QByteArray&)),
+        this, SLOT(receiveMessage(QString*,QString*,QByteArray&)));
 	
 	//	if connecting to own machine, this stream will be stored in local message stream, else in list
 	if(lpszUserId->compare(localId) == 0)
@@ -128,8 +128,8 @@ void lmNetworkTcp::initSendFile(QString* lpszReceiverId, QString* lpszAddress, Q
 
     FileSender* sender = new FileSender(xmlMessage.data(XN_FILEID), localId, *lpszReceiverId, xmlMessage.data(XN_FILEPATH),
 		xmlMessage.data(XN_FILENAME), xmlMessage.data(XN_FILESIZE).toLongLong(), *lpszAddress, tcpPort, (FileType)type);
-	connect(sender, SIGNAL(progressUpdated(FileMode, FileOp, FileType, QString*, QString*, QString*)),
-		this, SLOT(update(FileMode, FileOp, FileType, QString*, QString*, QString*)));
+    connect(sender, SIGNAL(progressUpdated(FileMode,FileOp,FileType,QString*,QString*,QString*)),
+        this, SLOT(update(FileMode,FileOp,FileType,QString*,QString*,QString*)));
 	sendList.prepend(sender);
     sender->init();
 }
@@ -140,8 +140,8 @@ void lmNetworkTcp::initReceiveFile(QString* lpszSenderId, QString* lpszAddress, 
 
 	FileReceiver* receiver = new FileReceiver(xmlMessage.data(XN_FILEID), *lpszSenderId, xmlMessage.data(XN_FILEPATH), 
 		xmlMessage.data(XN_FILENAME), xmlMessage.data(XN_FILESIZE).toLongLong(), *lpszAddress, tcpPort, (FileType)type);
-	connect(receiver, SIGNAL(progressUpdated(FileMode, FileOp, FileType, QString*, QString*, QString*)),
-		this, SLOT(update(FileMode, FileOp, FileType, QString*, QString*, QString*)));
+    connect(receiver, SIGNAL(progressUpdated(FileMode,FileOp,FileType,QString*,QString*,QString*)),
+        this, SLOT(update(FileMode,FileOp,FileType,QString*,QString*,QString*)));
 	receiveList.prepend(receiver);
 }
 
@@ -294,8 +294,8 @@ void lmNetworkTcp::addMsgSocket(QString* lpszUserId, QTcpSocket* pSocket) {
 	MsgStream* msgStream = new MsgStream(localId, *lpszUserId, address, tcpPort);
 	connect(msgStream, SIGNAL(connectionLost(QString*)), 
 		this, SLOT(msgStream_connectionLost(QString*)));
-	connect(msgStream, SIGNAL(messageReceived(QString*, QString*, QByteArray&)),
-		this, SLOT(receiveMessage(QString*, QString*, QByteArray&)));
+    connect(msgStream, SIGNAL(messageReceived(QString*,QString*,QByteArray&)),
+        this, SLOT(receiveMessage(QString*,QString*,QByteArray&)));
 	messageMap.insert(*lpszUserId, msgStream);
 	msgStream->init(pSocket);
 
@@ -308,7 +308,6 @@ void lmNetworkTcp::sendPublicKey(QString* lpszUserId) {
 	MsgStream* msgStream = messageMap.value(*lpszUserId);
 	if(msgStream) {
 		QByteArray publicKey = crypto->publicKey;
-		QString sh = DatagramTypeNames[DT_PublicKey];
 		Datagram::addHeader(DT_PublicKey, publicKey);
 		msgStream->sendMessage(publicKey);
 	}

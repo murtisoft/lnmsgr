@@ -85,8 +85,8 @@ void lmFormSettings::init(void) {
         QString language = QLocale::languageToString(locale.language());
         languages.insert(language, langCode);
     }
-    for(int index = 0; index < languages.count(); index++)
-        ui.cboLanguage->addItem(languages.keys().value(index), languages.values().value(index));
+    for (auto it = languages.cbegin(); it != languages.cend(); ++it)
+        ui.cboLanguage->addItem(it.key(), it.value());
 
     for(int index = 0; index < FS_COUNT; index++)
         ui.cboFontSize->addItem(lmStrings::fontSize()[index], index);
@@ -530,10 +530,10 @@ void lmFormSettings::loadSettings(void) {
     ui.chkPublicMessagePop->setChecked(pSettings->value(IDS_PUBMESSAGEPOP, IDS_PUBMESSAGEPOP_VAL).toBool());
     ui.chkEmoticon->setChecked(pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool());
     ui.chkMessageTime->setChecked(pSettings->value(IDS_MESSAGETIME, IDS_MESSAGETIME_VAL).toBool());
-    emit chkMessageTime_toggled(pSettings->value(IDS_MESSAGETIME, IDS_MESSAGETIME_VAL).toBool());
+    chkMessageTime_toggled(pSettings->value(IDS_MESSAGETIME, IDS_MESSAGETIME_VAL).toBool());
     ui.chkMessageDate->setChecked(pSettings->value(IDS_MESSAGEDATE, IDS_MESSAGEDATE_VAL).toBool());
     ui.chkAllowLinks->setChecked(pSettings->value(IDS_ALLOWLINKS, IDS_ALLOWLINKS_VAL).toBool());
-    emit chkAllowLinks_toggled(pSettings->value(IDS_ALLOWLINKS, IDS_ALLOWLINKS_VAL).toBool());
+    chkAllowLinks_toggled(pSettings->value(IDS_ALLOWLINKS, IDS_ALLOWLINKS_VAL).toBool());
     ui.chkPathToLink->setChecked(pSettings->value(IDS_PATHTOLINK, IDS_PATHTOLINK_VAL).toBool());
     ui.chkTrimMessage->setChecked(pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool());
     ui.chkClearOnClose->setChecked(pSettings->value(IDS_CLEARONCLOSE, IDS_CLEARONCLOSE_VAL).toBool());
@@ -585,7 +585,7 @@ void lmFormSettings::loadSettings(void) {
 
     ui.chkAutoFile->setChecked(pSettings->value(IDS_AUTOFILE, IDS_AUTOFILE_VAL).toBool());
     ui.chkAutoShowFile->setChecked(pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool());
-    emit chkAutoShowFile_toggled(pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool());
+    chkAutoShowFile_toggled(pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool());
     ui.rdbFileTop->setChecked(pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
     ui.rdbFileBottom->setChecked(!pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
     ui.txtFilePath->setText(DefinitionsDir::fileStorageDir());

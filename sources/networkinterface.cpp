@@ -26,16 +26,16 @@
 lmNetwork::lmNetwork(void) {
 	pUdpNetwork = new lmNetworkUdp();
 	pTcpNetwork = new lmNetworkTcp();
-	connect(pUdpNetwork, SIGNAL(broadcastReceived(DatagramHeader*, QString*)), 
-		this, SLOT(udp_receiveBroadcast(DatagramHeader*, QString*)));
-	connect(pTcpNetwork, SIGNAL(newConnection(QString*, QString*)),
-		this, SLOT(tcp_newConnection(QString*, QString*)));
+    connect(pUdpNetwork, SIGNAL(broadcastReceived(DatagramHeader*,QString*)),
+        this, SLOT(udp_receiveBroadcast(DatagramHeader*,QString*)));
+    connect(pTcpNetwork, SIGNAL(newConnection(QString*,QString*)),
+        this, SLOT(tcp_newConnection(QString*,QString*)));
 	connect(pTcpNetwork, SIGNAL(connectionLost(QString*)),
 		this, SLOT(tcp_connectionLost(QString*)));
-	connect(pTcpNetwork, SIGNAL(messageReceived(DatagramHeader*, QString*)), 
-		this, SLOT(tcp_receiveMessage(DatagramHeader*, QString*)));
-	connect(pTcpNetwork, SIGNAL(progressReceived(QString*, QString*)),
-		this, SLOT(tcp_receiveProgress(QString*, QString*)));
+    connect(pTcpNetwork, SIGNAL(messageReceived(DatagramHeader*,QString*)),
+        this, SLOT(tcp_receiveMessage(DatagramHeader*,QString*)));
+    connect(pTcpNetwork, SIGNAL(progressReceived(QString*,QString*)),
+        this, SLOT(tcp_receiveProgress(QString*,QString*)));
 	pTimer = NULL;
 	pCrypto = new lmCrypto();
 	ipAddress = QString();

@@ -28,19 +28,19 @@
 
 
 namespace Icons { //New Emoji Icons.
-const QString Close         = "❌️";    const QString History       = "🕙️";    const QString Info          = "ℹ️";
-const QString File          = "📄️";    const QString Transfer      = "📥️";    const QString Font          = "✒️";
-const QString FontColor     = "🖍️";    const QString Smiley        = "🤪️";    const QString Save          = "💾️";
-const QString Stop          = "🚫️";    const QString Folder        = "📁️";    const QString ShowFolder    = "📂️";
-const QString Broadcast     = "📢️";    const QString Plus          = "➕️";    const QString Refresh       = "♻️";
-const QString Web           = "🌍️";    const QString Chat          = "💬️";    const QString Play          = "▶️️️️";
-const QString Public        = "👨‍👩‍👧‍👦️";    const QString Alert         = "⚠️";    const QString VoiceSet      = "🎙️️";
-const QString Microphone    = "🎤️️";    const QString Speaker       = "🎧️️";    const QString Telephone     = "📞️️";
-const QString Camera        = "📷️️️";    const QString Screenshot    = "📷️️";    const QString Nudge         = "🛎️️️";
-const QString Settings      = "⚙️";    const QString GeneralSet    = "🖥️";    const QString AccountSet    = "👨‍👩‍👦️";
-const QString MessageSet    = "📨️";    const QString HistorySet    = "🕙️";    const QString AlertSet      = "⚠️";
-const QString NetworkSet    = "🔗️";    const QString TransferSet   = "📥️";    const QString ThemeSet      = "🎨️";
-const QString HotkeySet     = "⌨️";    const QString HangUp        = "📵";
+inline constexpr char Close[]         = "❌️";    inline constexpr char History[]       = "🕙️";    inline constexpr char Info[]          = "ℹ️";
+inline constexpr char File[]          = "📄️";    inline constexpr char Transfer[]      = "📥️";    inline constexpr char Font[]          = "✒️";
+inline constexpr char FontColor[]     = "🖍️";    inline constexpr char Smiley[]        = "🤪️";    inline constexpr char Save[]          = "💾️";
+inline constexpr char Stop[]          = "🚫️";    inline constexpr char Folder[]        = "📁️";    inline constexpr char ShowFolder[]    = "📂️";
+inline constexpr char Broadcast[]     = "📢️";    inline constexpr char Plus[]          = "➕️";    inline constexpr char Refresh[]       = "♻️";
+inline constexpr char Web[]           = "🌍️";    inline constexpr char Chat[]          = "💬️";    inline constexpr char Play[]          = "▶️️️️";
+inline constexpr char Public[]        = "👨‍👩‍👧‍👦️";    inline constexpr char Alert[]         = "⚠️";    inline constexpr char VoiceSet[]      = "🎙️️";
+inline constexpr char Microphone[]    = "🎤️️";    inline constexpr char Speaker[]       = "🎧️️";    inline constexpr char Telephone[]     = "📞️️";
+inline constexpr char Camera[]        = "📷️️️";    inline constexpr char Screenshot[]    = "📷️️";    inline constexpr char Nudge[]         = "🛎️️️";
+inline constexpr char Settings[]      = "⚙️";    inline constexpr char GeneralSet[]    = "🖥️";    inline constexpr char AccountSet[]    = "👨‍👩‍👦️";
+inline constexpr char MessageSet[]    = "📨️";    inline constexpr char HistorySet[]    = "🕙️";    inline constexpr char AlertSet[]      = "⚠️";
+inline constexpr char NetworkSet[]    = "🔗️";    inline constexpr char TransferSet[]   = "📥️";    inline constexpr char ThemeSet[]      = "🎨️";
+inline constexpr char HotkeySet[]     = "⌨️";    inline constexpr char HangUp[]        = "📵";
 }
 
 //	Resource name definitions

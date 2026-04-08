@@ -28,7 +28,6 @@ QString lmStrings::m_autoConn;
 QStringList lmStrings::m_fontSize;
 QStringList lmStrings::m_statusDesc;
 QStringList lmStrings::m_soundDesc;
-QStringList lmStrings::m_awayTimeDesc;
 QStringList lmStrings::m_userListView;
 
 lmStrings::lmStrings(void) {
@@ -44,7 +43,6 @@ void lmStrings::retranslate(void) {
 	m_fontSize.clear();
 	m_statusDesc.clear();
 	m_soundDesc.clear();
-	m_awayTimeDesc.clear();
 	m_userListView.clear();
 }
 
@@ -113,20 +111,6 @@ const QStringList lmStrings::soundDesc(void) {
         m_soundDesc.append(tr("Talking while microphone muted"));
 	}
 	return m_soundDesc;
-}
-
-const QStringList lmStrings::awayTimeDesc(void) {
-    if(m_awayTimeDesc.isEmpty()) {
-        m_awayTimeDesc.append(tr("5 minutes"));
-        m_awayTimeDesc.append(tr("10 minutes"));
-        m_awayTimeDesc.append(tr("15 minutes"));
-        m_awayTimeDesc.append(tr("20 minutes"));
-        m_awayTimeDesc.append(tr("30 minutes"));
-        m_awayTimeDesc.append(tr("45 minutes"));
-        m_awayTimeDesc.append(tr("60 minutes"));
-        m_awayTimeDesc.append(tr("Never"));
-    }
-    return m_awayTimeDesc;
 }
 
 const QStringList lmStrings::userListView(void) {

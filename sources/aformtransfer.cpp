@@ -36,8 +36,8 @@ lmFormTransfer::lmFormTransfer(QWidget *parent) : QWidget(parent) {
 
 	connect(ui.lvTransferList, SIGNAL(currentRowChanged(int)),
 		this, SLOT(lvTransferList_currentRowChanged(int)));
-	connect(ui.lvTransferList, SIGNAL(activated(const QModelIndex&)),
-		this, SLOT(lvTransferList_activated(const QModelIndex&)));
+    connect(ui.lvTransferList, SIGNAL(activated(QModelIndex)),
+        this, SLOT(lvTransferList_activated(QModelIndex)));
 	connect(ui.btnClear, SIGNAL(clicked()), this, SLOT(btnClear_clicked()));
 
     ui.lvTransferList->installEventFilter(this);

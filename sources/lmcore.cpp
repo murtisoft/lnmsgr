@@ -31,26 +31,26 @@
 
 lmCore::lmCore(void) {
 	pMessaging = new lmMessaging();
-	connect(pMessaging, SIGNAL(messageReceived(MessageType, QString*, MessageXml*)), 
-		this, SLOT(receiveMessage(MessageType, QString*, MessageXml*)));
+    connect(pMessaging, SIGNAL(messageReceived(MessageType,QString*,MessageXml*)),
+        this, SLOT(receiveMessage(MessageType,QString*,MessageXml*)));
 	connect(pMessaging, SIGNAL(connectionStateChanged()), this, SLOT(connectionStateChanged()));
 	pMainWindow = new lmFormMain();
 	connect(pMainWindow, SIGNAL(appExiting()), this, SLOT(exitApp()));
 	connect(pMainWindow, SIGNAL(chatStarting(QString*)), this, SLOT(startChat(QString*)));
 	connect(pMainWindow, SIGNAL(chatRoomStarting(QString*)), this, SLOT(startChatRoom(QString*)));
-	connect(pMainWindow, SIGNAL(messageSent(MessageType, QString*, MessageXml*)), 
-		this, SLOT(sendMessage(MessageType, QString*, MessageXml*)));
+    connect(pMainWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
+        this, SLOT(sendMessage(MessageType,QString*,MessageXml*)));
 	connect(pMainWindow, SIGNAL(showTransfers()), this, SLOT(showTransfers()));
 	connect(pMainWindow, SIGNAL(showHistory()), this, SLOT(showHistory()));
 	connect(pMainWindow, SIGNAL(showSettings()), this, SLOT(showSettings()));
 	connect(pMainWindow, SIGNAL(showAbout()), this, SLOT(showAbout()));
 	connect(pMainWindow, SIGNAL(showBroadcast()), this, SLOT(showBroadcast()));
 	connect(pMainWindow, SIGNAL(showPublicChat()), this, SLOT(showPublicChat()));
-	connect(pMainWindow, SIGNAL(groupUpdated(GroupOp, QVariant, QVariant)),
-			this, SLOT(updateGroup(GroupOp, QVariant, QVariant)));
+    connect(pMainWindow, SIGNAL(groupUpdated(GroupOp,QVariant,QVariant)),
+        this, SLOT(updateGroup(GroupOp,QVariant,QVariant)));
 	pPublicChatWindow = new lmFormChatRoom();
-	connect(pPublicChatWindow, SIGNAL(messageSent(MessageType, QString*, MessageXml*)),
-		this, SLOT(sendMessage(MessageType, QString*, MessageXml*)));
+    connect(pPublicChatWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
+        this, SLOT(sendMessage(MessageType,QString*,MessageXml*)));
 	connect(pPublicChatWindow, SIGNAL(chatStarting(QString*)), this, SLOT(startChat(QString*)));
 	chatWindows.clear();
 	chatRoomWindows.clear();
@@ -121,7 +121,7 @@ bool lmCore::start(void) {
 	pMainWindow->start();
 	
 	pTimer = new QTimer(this);
-	connect(pTimer, SIGNAL(timeout(void)), this, SLOT(timer_timeout(void)));
+    connect(pTimer, SIGNAL(timeout()), this, SLOT(timer_timeout()));
 	//	Set the timer to trigger 10 seconds after the application starts. After the
 	//	first trigger, the timeout period will be decided by user settings.
 	adaptiveRefresh = false;
@@ -307,8 +307,6 @@ void lmCore::startChatRoom(QString* lpszThreadId) {
 }
 
 void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
-	QString data;
-
 	switch(type) {
 	case MT_Broadcast:
 	case MT_UserName:
@@ -466,8 +464,8 @@ void lmCore::showAbout(void) {
 void lmCore::showBroadcast(void) {
 	if(!pBroadcastWindow) {
 		pBroadcastWindow = new lmFormBroadcast();
-		connect(pBroadcastWindow, SIGNAL(messageSent(MessageType, QString*, MessageXml*)),
-			this, SLOT(sendMessage(MessageType, QString*, MessageXml*)));
+        connect(pBroadcastWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
+            this, SLOT(sendMessage(MessageType,QString*,MessageXml*)));
 		pBroadcastWindow->init(pMessaging->isConnected());
 	}
 
@@ -848,10 +846,10 @@ void lmCore::processPublicMessage(MessageType type, QString* lpszUserId, Message
 void lmCore::createTransferWindow(void) {
     if(!pTransferWindow) {
         pTransferWindow = new lmFormTransfer();
-        connect(pTransferWindow, SIGNAL(messageSent(MessageType, QString*, MessageXml*)),
-            this, SLOT(sendMessage(MessageType, QString*, MessageXml*)));
-        connect(pTransferWindow, SIGNAL(showTrayMessage(TrayMessageType, QString, QString, TrayMessageIcon)),
-            this, SLOT(showTrayMessage(TrayMessageType, QString, QString, TrayMessageIcon)));
+        connect(pTransferWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
+            this, SLOT(sendMessage(MessageType,QString*,MessageXml*)));
+        connect(pTransferWindow, SIGNAL(showTrayMessage(TrayMessageType,QString,QString,TrayMessageIcon)),
+            this, SLOT(showTrayMessage(TrayMessageType,QString,QString,TrayMessageIcon)));
         pTransferWindow->init();
     }
 }
@@ -908,8 +906,8 @@ void lmCore::createChatWindow(QString* lpszUserId) {
 	chatWindows.append(pChatWindow);
 	User* pLocalUser = pMessaging->localUser;
 	User* pRemoteUser = pMessaging->getUser(lpszUserId);
-	connect(pChatWindow, SIGNAL(messageSent(MessageType, QString*, MessageXml*)), 
-		this, SLOT(sendMessage(MessageType, QString*, MessageXml*)));
+    connect(pChatWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
+        this, SLOT(sendMessage(MessageType,QString*,MessageXml*)));
 	connect(pChatWindow, SIGNAL(showHistory()), this, SLOT(showHistory()));
 	connect(pChatWindow, SIGNAL(showTransfers()), this, SLOT(showTransfers()));
 	connect(pChatWindow, SIGNAL(closed(QString*)), this, SLOT(chatWindow_closed(QString*)));
@@ -945,8 +943,8 @@ void lmCore::createChatRoomWindow(QString* lpszThreadId) {
 	lmFormChatRoom* pChatRoomWindow = new lmFormChatRoom();
 	chatRoomWindows.append(pChatRoomWindow);
 	User* pLocalUser = pMessaging->localUser;
-	connect(pChatRoomWindow, SIGNAL(messageSent(MessageType, QString*, MessageXml*)),
-		this, SLOT(sendMessage(MessageType, QString*, MessageXml*)));
+    connect(pChatRoomWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
+        this, SLOT(sendMessage(MessageType,QString*,MessageXml*)));
     connect(pChatRoomWindow, SIGNAL(contactsAdding(QStringList*)),
         this, SLOT(addContacts(QStringList*)));
 	connect(pChatRoomWindow, SIGNAL(chatStarting(QString*)), this, SLOT(startChat(QString*)));

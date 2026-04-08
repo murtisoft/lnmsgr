@@ -44,8 +44,8 @@ lmFormHistory::lmFormHistory(QWidget *parent, Qt::WindowFlags flags) : QWidget(p
     QRect scr = screen->geometry();
     move(scr.center() - rect().center());
 
-	connect(ui.tvMsgList, SIGNAL(currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)),
-		this, SLOT(tvMsgList_currentItemChanged(QTreeWidgetItem*, QTreeWidgetItem*)));
+    connect(ui.tvMsgList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
+        this, SLOT(tvMsgList_currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
 	connect(ui.btnClearHistory, SIGNAL(clicked()), this, SLOT(btnClearHistory_clicked()));
 
     ui.tvMsgList->installEventFilter(this);

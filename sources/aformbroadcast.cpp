@@ -44,8 +44,8 @@ lmFormBroadcast::lmFormBroadcast(QWidget *parent) : QWidget(parent) {
 
 	connect(ui.btnSelectAll, SIGNAL(clicked()), this, SLOT(btnSelectAll_clicked()));
 	connect(ui.btnSelectNone, SIGNAL(clicked()), this, SLOT(btnSelectNone_clicked()));
-	connect(ui.tvUserList, SIGNAL(itemChanged(QTreeWidgetItem*, int)), 
-		this, SLOT(tvUserList_itemChanged(QTreeWidgetItem*, int)));
+    connect(ui.tvUserList, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+        this, SLOT(tvUserList_itemChanged(QTreeWidgetItem*,int)));
 	connect(ui.btnSend, SIGNAL(clicked()), this, SLOT(btnSend_clicked()));
 
 	//	event filters for handling keyboard input

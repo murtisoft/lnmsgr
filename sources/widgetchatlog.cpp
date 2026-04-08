@@ -30,9 +30,9 @@
 #include "sharedchatfunctions.h"
 #include "definitionsdir.h"
 
-const QString acceptOp("accept");
-const QString declineOp("decline");
-const QString cancelOp("cancel");
+inline constexpr char acceptOp[] = "accept";
+inline constexpr char declineOp[] = "decline";
+inline constexpr char cancelOp[] = "cancel";
 
 lmChatLog::lmChatLog(QWidget *parent) : MessageBrowser (parent) {
 // TOD0
@@ -40,7 +40,7 @@ lmChatLog::lmChatLog(QWidget *parent) : MessageBrowser (parent) {
 //	connect(this->page(), SIGNAL(linkHovered(QString, QString, QString)),
 //			this, SLOT(log_linkHovered(QString, QString, QString)));
 
-    connect(this, SIGNAL(anchorClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
+    connect(this, SIGNAL(anchorClicked(QUrl)), this, SLOT(onAnchorClicked(QUrl)));
 
 	createContextMenu();
 
@@ -145,7 +145,7 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 		caption = tr("This message was not delivered to %1:");
         fontStyle = getFontStyle(&font, true);
 		decodeMessage(&message);
-        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Alert+"</span>");
+        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Alert));
 		html.replace("%sender%", caption.arg(*lpszUserName));
 		html.replace("%style%", fontStyle);
 		html.replace("%message%", message);
@@ -154,7 +154,7 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 		break;
 	case MT_Error:
         html = templates.sysMsg;
-        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Alert+"</span>");
+        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Alert));
 		html.replace("%sender%", tr("Your message was not sent."));
 		html.replace("%message%", "");
         appendMessageLog(&html, type);
@@ -554,7 +554,6 @@ void lmChatLog::insertMessageLog(QTextCursor cursor, QString &html, MessageType 
     frameFormat.setPadding(0);
     frameFormat.setBorder(0);
     QTextFrame *frame = cursor.insertFrame(frameFormat);
-    frame->frameFormat().setMargin(0);
     frame->firstCursorPosition().insertHtml(html);
 
     QTextBlock block = frame->firstCursorPosition().block();
@@ -593,7 +592,7 @@ void lmChatLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QStr
 
     QString html = templates.pubMsg;
 	QString caption = tr("Broadcast message from %1:");
-    html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Broadcast+"</span>");
+    html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Broadcast));
 	html.replace("%sender%", caption.arg(*lpszUserName));
 
     QString timeStr = getTimeString(pTime);
@@ -720,18 +719,17 @@ QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserName,
     QString html;
     QString caption;
     QString streamId = pMessage->data(XN_STREAMID);
-    QString szStatus;
     QString streamType;
     html = templates.reqMsg;
 
     switch(type) {
     case MT_Audio:
         streamType = "audio";
-        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Telephone+"</span>");
+        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Telephone));
         break;
     case MT_Video:
         streamType = "video";
-        html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::Camera+"</span>");
+        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Camera));
         break;
     default:
         throw std::logic_error("lmChatLog::getStreamMessageText: not yet implemented");
@@ -830,7 +828,7 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, M
     }
 
     html = templates.reqMsg;
-    html.replace("%icon%", "<span style='font-size:32px;'>"+Icons::File+"</span>");
+    html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File));
 
     //This type of message doesnt come with a timestamp, but I want one anyway.
     if (messageDate) {
@@ -1064,6 +1062,22 @@ void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	//	making the text html safe. The converted links are given a "data-isLink" custom
 	//	attribute to differentiate them from the message content
     if(useDefaults || allowLinks) {
+        static const QRegularExpression urlRegex(
+            "((?:(?:https?|ftp|file)://|www\\.|ftp\\.)[-A-Z0-9+&@#/%=~_|$?!:,.]*[A-Z0-9+&@#/%=~_|$])",
+            QRegularExpression::CaseInsensitiveOption
+            );
+
+        lpszMessage->replace(urlRegex, "<a data-isLink='true' href='\\1'>\\1</a>");
+        lpszMessage->replace("<a data-isLink='true' href='www", "<a data-isLink='true' href='http://www");
+
+        if(!useDefaults && pathToLink) {
+            static const QRegularExpression pathRegex(
+                "((\\\\\\\\[\\w-]+\\\\[^\\\\/:*?<>|\"]+)((?:\\\\[^\\\\/:*?<>|\"]+)*\\\\?)$)"
+                );
+            lpszMessage->replace(pathRegex, "<a data-isLink='true' href='file:\\1'>\\1</a>");
+
+
+        /*   ===Regex graveyard===
         //		lpszMessage->replace(QRegularExpression("(((https|http|ftp|file|smb):[/][/]|www.)[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)"),
         //							 "<a href='\\1'>\\1</a>");
         lpszMessage->replace(
@@ -1074,8 +1088,8 @@ void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 
         if(!useDefaults && pathToLink)
             lpszMessage->replace(QRegularExpression("((\\\\\\\\[\\w-]+\\\\[^\\\\/:*?<>|""]+)((?:\\\\[^\\\\/:*?<>|""]+)*\\\\?)$)"),
-                                 "<a data-isLink='true' href='file:\\1'>\\1</a>");
-    }
+                                 "<a data-isLink='true' href='file:\\1'>\\1</a>");*/
+        }}
 
 /*  TODO This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
 TEST CASES

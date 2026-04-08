@@ -25,16 +25,16 @@
 
 lmMessaging::lmMessaging(void) {
 	pNetwork = new lmNetwork();
-	connect(pNetwork, SIGNAL(broadcastReceived(DatagramHeader*, QString*)), 
-		this, SLOT(receiveBroadcast(DatagramHeader*, QString*)));
-	connect(pNetwork, SIGNAL(messageReceived(DatagramHeader*, QString*)), 
-		this, SLOT(receiveMessage(DatagramHeader*, QString*)));
-	connect(pNetwork, SIGNAL(newConnection(QString*, QString*)), 
-		this, SLOT(newConnection(QString*, QString*)));
+    connect(pNetwork, SIGNAL(broadcastReceived(DatagramHeader*,QString*)),
+        this, SLOT(receiveBroadcast(DatagramHeader*,QString*)));
+    connect(pNetwork, SIGNAL(messageReceived(DatagramHeader*,QString*)),
+        this, SLOT(receiveMessage(DatagramHeader*,QString*)));
+    connect(pNetwork, SIGNAL(newConnection(QString*,QString*)),
+        this, SLOT(newConnection(QString*,QString*)));
 	connect(pNetwork, SIGNAL(connectionLost(QString*)),
 		this, SLOT(connectionLost(QString*)));
-	connect(pNetwork, SIGNAL(progressReceived(QString*, QString*)),
-		this, SLOT(receiveProgress(QString*, QString*)));
+    connect(pNetwork, SIGNAL(progressReceived(QString*,QString*)),
+        this, SLOT(receiveProgress(QString*,QString*)));
 	connect(pNetwork, SIGNAL(connectionStateChanged()), this, SLOT(network_connectionStateChanged()));
     localUser = NULL;
 	userList.clear();

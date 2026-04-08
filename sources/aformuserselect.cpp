@@ -28,8 +28,8 @@ lmFormUserSelect::lmFormUserSelect(QWidget *parent) : QDialog(parent) {
 	setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
 	connect(ui.btnOK, SIGNAL(clicked()), this, SLOT(btnOK_clicked()));
-	connect(ui.tvUserList, SIGNAL(itemChanged(QTreeWidgetItem*, int)),
-		this, SLOT(tvUserList_itemChanged(QTreeWidgetItem*, int)));
+    connect(ui.tvUserList, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+        this, SLOT(tvUserList_itemChanged(QTreeWidgetItem*,int)));
 
 	parentToggling = false;
 	childToggling = false;

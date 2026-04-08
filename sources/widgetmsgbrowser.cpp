@@ -30,7 +30,7 @@ MessageBrowser::MessageBrowser(QWidget* parent)
     setOpenLinks(false);
     setOpenExternalLinks(true);
 
-    connect(this, SIGNAL(anchorClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
+    connect(this, SIGNAL(anchorClicked(QUrl)), this, SLOT(onAnchorClicked(QUrl)));
 }
 
 MessageBrowser::~MessageBrowser()

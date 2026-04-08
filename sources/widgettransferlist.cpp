@@ -19,10 +19,11 @@
 **
 ****************************************************************************/
 
-#include <QtGui>
 #include <QPixmap>
 #include <QFileInfo>
 #include <math.h>
+#include <qdir.h>
+#include <qpainter.h>
 #include "widgettransferlist.h"
 
 /****************************************************************************

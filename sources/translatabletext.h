@@ -40,7 +40,6 @@ public:
 	static const QStringList fontSize(void);
 	static const QStringList statusDesc(void);
 	static const QStringList soundDesc(void);
-	static const QStringList awayTimeDesc(void);
 	static const QStringList userListView(void);
 
 private:
@@ -50,7 +49,6 @@ private:
 	static QStringList m_fontSize;
 	static QStringList m_statusDesc;
 	static QStringList m_soundDesc;
-	static QStringList m_awayTimeDesc;
 	static QStringList m_userListView;
 };
 
