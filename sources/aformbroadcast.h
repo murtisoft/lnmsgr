@@ -27,9 +27,9 @@
 #include <QToolBar>
 #include <QMenu>
 #include <qevent.h>
+#include <qtoolbutton.h>
 #include "ui_aformbroadcast.h"
 #include "definitionssettings.h"
-#include "widgetleftovers.h"
 #include "xmlhandler.h"
 
 class lmFormBroadcast : public QWidget
@@ -72,7 +72,7 @@ private:
 	Ui::BroadcastWindow ui;
     lmSettings*     pSettings;
     QToolBar*       pToolBar;
-    lmToolButton*   pbtnSmiley;
+    QToolButton*    pbtnSmiley;
     int             fontSizeVal;
     int             nSmiley;
     bool            bConnected;

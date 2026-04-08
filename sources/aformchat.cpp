@@ -542,9 +542,10 @@ void lmFormChat::createToolBar(void) {
 
 	pLeftBar->addSeparator();
 
-	pbtnSmiley = new lmToolButton(pLeftBar);
+    pbtnSmiley = new QToolButton(pLeftBar);
     pbtnSmiley->setIcon(QIcon(Helper::renderEmoji(Icons::Smiley,16)));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
+    pbtnSmiley->setStyleSheet("QToolButton::menu-indicator { image: none; }");
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pLeftBar->addWidget(pbtnSmiley);
 

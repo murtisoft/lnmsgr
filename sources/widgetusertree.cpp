@@ -174,7 +174,7 @@ void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 			QVariant note = pItem->data(0, SubtextRole);
 			if(!note.isNull()) {
 				QString userNote = note.toString();
-                painter->setPen(QPen(GRAY_TEXT_COLOR));
+                painter->setPen(QColor::fromRgb(127, 127, 127));
 				textFlags = Qt::AlignLeft | Qt::AlignBottom;
 				text = painter->fontMetrics().elidedText(userNote, Qt::ElideRight, textRect.width());
 				painter->drawText(textRect, textFlags, text);

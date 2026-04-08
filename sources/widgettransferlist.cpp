@@ -28,7 +28,7 @@
 
 /****************************************************************************
 **	Class: FileView
-**	Description: Takes care of rendering the pie chart
+**	Description: Takes care of rendering the pie graph
 ****************************************************************************/
 FileView::FileView(QString id) {
     position = 0;

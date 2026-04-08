@@ -36,7 +36,6 @@
 #include "shareduifunctions.h"
 #include "definitionssettings.h"
 #include "widgetchatlog.h"
-#include "widgetleftovers.h"
 #include "widgetimagepicker.h"
 #include "soundplayer.h"
 #include "xmlhandler.h"
@@ -116,7 +115,7 @@ private:
 	QAction* userChatAction;
 	QAction* userFileAction;
 	QAction* userInfoAction;
-	lmToolButton* pbtnSmiley;
+    QToolButton* pbtnSmiley;
 	QAction* pSaveAction;
 	QMenu* pSmileyMenu;
 	lmImagePickerAction* pSmileyAction;

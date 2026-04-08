@@ -36,7 +36,6 @@
 #include "shareduifunctions.h"
 #include "definitionssettings.h"
 #include "widgetchatlog.h"
-#include "widgetleftovers.h"
 #include "widgetimagepicker.h"
 #include "soundplayer.h"
 #include "definitionsui.h"
@@ -130,7 +129,7 @@ private:
 	Ui::ChatWindow ui;
 	lmSettings* pSettings;
 	lmChatLog* pMessageLog;
-	lmToolButton* pbtnSmiley;
+    QToolButton* pbtnSmiley;
 	QAction* pFileAction;
     QAction* pFolderAction;
 	QAction* pSaveAction;

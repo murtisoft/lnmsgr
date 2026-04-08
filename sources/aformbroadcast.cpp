@@ -279,9 +279,10 @@ void lmFormBroadcast::createToolBar(void) {
 	pSmileyMenu->addAction(pSmileyAction);
 
 	//	create the smiley tool button
-	pbtnSmiley = new lmToolButton(pToolBar);
+    pbtnSmiley = new QToolButton(pToolBar);
     pbtnSmiley->setIcon(Helper::renderEmoji(Icons::Smiley,16));
 	pbtnSmiley->setPopupMode(QToolButton::InstantPopup);
+    pbtnSmiley->setStyleSheet("QToolButton::menu-indicator { image: none; }");
 	pbtnSmiley->setMenu(pSmileyMenu);
 	pToolBar->addWidget(pbtnSmiley);
 }

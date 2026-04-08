@@ -44,8 +44,8 @@ lmFormMain::lmFormMain(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
 		this, SLOT(tvUserList_itemDragDropped(QTreeWidgetItem*)));
 	connect(ui.tvUserList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
 		this, SLOT(tvUserList_currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
-	connect(ui.txtNote, SIGNAL(returnPressed()), this, SLOT(txtNote_returnPressed()));
-	connect(ui.txtNote, SIGNAL(lostFocus()), this, SLOT(txtNote_lostFocus()));
+    connect(ui.txtNote, &QLineEdit::returnPressed, this, &lmFormMain::txtNote_returnPressed);
+    connect(ui.txtNote, &QLineEdit::editingFinished, this, &lmFormMain::txtNote_lostFocus);
 
     ui.txtNote->installEventFilter(this);
     ui.tvUserList->installEventFilter(this);
@@ -104,6 +104,7 @@ void lmFormMain::init(User* pLocalUser, QList<Group>* pGroupList, bool connected
 	setUIText();
 
 	initGroups(pGroupList);
+    ui.tvUserList->setFocus();
 }
 
 void lmFormMain::moveEvent(QMoveEvent *event) {
@@ -426,7 +427,7 @@ void lmFormMain::createToast(const QString& title, const QString& msg, TrayMessa
     bodyLayout->addStretch();
     mainLayout->addLayout(bodyLayout);
 
-    toast->setFixedWidth(265);
+    toast->setFixedWidth(300);
     toast->adjustSize();
 
     QRect geo = QGuiApplication::primaryScreen()->availableGeometry();
