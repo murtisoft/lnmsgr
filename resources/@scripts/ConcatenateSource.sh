@@ -14,7 +14,6 @@ Exclude=(
 	"aformhistory.cpp"			"aformsettings.cpp"				"aformtransfer.cpp"
 	"aformuserinfo.cpp"			"aformuserselect.cpp"
 	"definitionssettings.cpp"
-	"fileprogresspie.cpp"
 	"historydatabase.cpp"
 	"main.cpp"
 	"opensslhandler.cpp"

@@ -350,16 +350,18 @@ QPixmap lmFormTransfer::getIcon(QString filePath) {
 	QPixmap icon;
 
 	if(QFile::exists(filePath))
-		icon = iconProvider.icon(fileInfo).pixmap(32, 32);
+        icon = iconProvider.icon(fileInfo).pixmap(48, 48);
 	else {
 		QString fileName = fileInfo.fileName();
 		QString path = QDir::temp().absoluteFilePath(fileName);
 		QFile file(path);
-		file.open(QIODevice::WriteOnly);
+
+        if (file.open(QIODevice::WriteOnly)) {
 		file.close();
-		icon = iconProvider.icon(QFileInfo(path)).pixmap(32, 32);
+        icon = iconProvider.icon(QFileInfo(path)).pixmap(48, 48);
 		QFile::remove(path);
-	}
+        }
+    }
 
 	return icon;
 }

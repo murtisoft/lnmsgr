@@ -615,7 +615,7 @@ void lmCore::callConnected(MessageType type) {
     emit callPhaseChanged(callPhase != CP_Idle);
     stopLoopSound();
     if (type == MT_Video) return; // TODO Video streaming.
-    for (lmFormChat* w : chatWindows) {
+    for (lmFormChat* w : std::as_const(chatWindows)) {   //TODO Attaching call to whatever window is wrong, but i am lazy and its working
             User* pUser = pMessaging->getUser(&w->peerId);
         if (!m_audioStream) {
             m_audioStream = new lmAudioStream(this);

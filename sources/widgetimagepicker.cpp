@@ -102,7 +102,7 @@ void lmImagePicker::mouseReleaseEvent(QMouseEvent* e) {
 
         QMenu* pMenu = qobject_cast<QMenu*>(this->parent());
         if (pMenu) {
-            pMenu->actions()[actionIndex]->trigger();
+            pMenu->actions().at(actionIndex)->trigger();
             pMenu->close();
         }
     }
@@ -161,7 +161,7 @@ QWidget* lmImagePickerAction::createWidget(QWidget* parent) {
     QMenu* menu = (QMenu*)parent;
     int index = 0;
     for(; index < menu->actions().count(); index++)
-        if(menu->actions()[index] == this)
+        if(menu->actions().at(index) == this)
             break;
     lmImagePicker* widget = new lmImagePicker(parent, source, picSize, columns, selected, index);
     return widget;

@@ -84,7 +84,7 @@ void lmFormBroadcast::init(bool connected) {
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 	fontSizeVal = pSettings->value(IDS_FONTSIZE, IDS_FONTSIZE_VAL).toInt();
-	pFontGroup->actions()[fontSizeVal]->setChecked(true);
+    pFontGroup->actions().at(fontSizeVal)->setChecked(true);
 	int viewType = pSettings->value(IDS_USERLISTVIEW, IDS_USERLISTVIEW_VAL).toInt();
 	ui.tvUserList->setView((UserListView)viewType);
 
@@ -294,7 +294,7 @@ void lmFormBroadcast::setUIText(void) {
 	pbtnSmiley->setToolTip(tr("Insert Smiley"));
 
 	for(int index = 0; index < pFontGroup->actions().count(); index++)
-		pFontGroup->actions()[index]->setText(lmStrings::fontSize()[index]);
+        pFontGroup->actions().at(index)->setText(lmStrings::fontSize()[index]);
 }
 
 //	send the broadcast message to all selected users

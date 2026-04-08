@@ -85,7 +85,7 @@ void lmFormMain::init(User* pLocalUser, QList<Group>* pGroupList, bool connected
 	//	if status is not recognized, default to available
 	index = qMax(index, 0);
 	btnStatus->setIcon(QIcon(QPixmap(statusPic[index], "PNG")));
-	statusGroup->actions()[index]->setChecked(true);
+    statusGroup->actions().at(index)->setChecked(true);
     QFont font = ui.lblUserName->font();
 	int fontSize = ui.lblUserName->fontInfo().pixelSize();
 	fontSize += (fontSize * 0.1);
@@ -607,19 +607,19 @@ void lmFormMain::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos)
 
     if(pItem->data(0, TypeRole).toString().compare("Group") == 0) {
         for(int index = 0; index < pGroupMenu->actions().count(); index++)
-            pGroupMenu->actions()[index]->setData(pItem->data(0, IdRole));
+            pGroupMenu->actions().at(index)->setData(pItem->data(0, IdRole));
 
 		bool defGroup = (pItem->data(0, IdRole).toString().compare(GRP_DEFAULT_ID) == 0);
-        pGroupMenu->actions()[3]->setEnabled(!defGroup);
+        pGroupMenu->actions().at(3)->setEnabled(!defGroup);
         pGroupMenu->exec(pos);
     } else if(pItem->data(0, TypeRole).toString().compare("User") == 0) {
         for(int index = 0; index < pUserMenu->actions().count(); index++)
-            pUserMenu->actions()[index]->setData(pItem->data(0, IdRole));
+            pUserMenu->actions().at(index)->setData(pItem->data(0, IdRole));
 
         bool fileCap = ((pItem->data(0, CapsRole).toUInt() & UC_File) == UC_File);
-        pUserMenu->actions()[1]->setEnabled(fileCap);
+        pUserMenu->actions().at(1)->setEnabled(fileCap);
         bool folderCap = ((pItem->data(0, CapsRole).toUInt() & UC_Folder) == UC_Folder);
-        pUserMenu->actions()[2]->setEnabled(folderCap);
+        pUserMenu->actions().at(2)->setEnabled(folderCap);
         pUserMenu->exec(pos);
     }
 }
@@ -1063,7 +1063,7 @@ void lmFormMain::setUIText(void) {
 	toolPublicChatAction->setText(tr("&Public Chat"));
 
 	for(int index = 0; index < statusGroup->actions().count(); index++)
-		statusGroup->actions()[index]->setText(lmStrings::statusDesc()[index]);
+        statusGroup->actions().at(index)->setText(lmStrings::statusDesc()[index]);
 	
 	ui.lblUserName->setText(pLocalUser->name);	// in case of retranslation
 	if(statusGroup->checkedAction())

@@ -528,7 +528,7 @@ void lmFormChatRoom::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& 
 
 	if(pItem->data(0, TypeRole).toString().compare("User") == 0) {
 		for(int index = 0; index < pUserMenu->actions().count(); index++)
-			pUserMenu->actions()[index]->setData(pItem->data(0, IdRole));
+            pUserMenu->actions().at(index)->setData(pItem->data(0, IdRole));
 
 		QString szUserId = pItem->data(0, IdRole).toString();
 		// do not show context menu for local user
