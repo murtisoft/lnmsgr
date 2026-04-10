@@ -844,17 +844,17 @@ void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
 void lmFormChat::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
-// TOD0
+// TOD0 lmFormChat::showStatus
 //	int relScrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) -
 //			pMessageLog->page()->mainFrame()->scrollBarValue(Qt::Vertical);
 
 	//ui.lblInfo->setStyleSheet("QLabel { background-color:white; }");
 	if(infoFlag & IT_Disconnected) {
-		ui.lblInfo->setText("<span style='color:rgb(96,96,96);'>" + tr("You are no longer connected.") + "</span>");
+        ui.lblInfo->setText("<span style='color:rgb(127,127,127);'>" + tr("You are no longer connected.") + "</span>");
 		ui.lblInfo->setVisible(true);
 	} else if(!groupMode && (infoFlag & IT_Offline))  {
 		QString msg = tr("%1 is offline.");
-		ui.lblInfo->setText("<span style='color:rgb(96,96,96);'>" + msg.arg(peerNames.value(peerId)) + "</span>");
+        ui.lblInfo->setText("<span style='color:rgb(127,127,127);'>" + msg.arg(peerNames.value(peerId)) + "</span>");
 		ui.lblInfo->setVisible(true);
 	} else if(!groupMode && (infoFlag & IT_Away)) {
 		QString msg = tr("%1 is away.");
@@ -869,7 +869,7 @@ void lmFormChat::showStatus(int flag, bool add) {
 		ui.lblInfo->setVisible(false);
 	}
 
-// TOD0
+// TOD0 lmFormChat::showStatus
 //	int scrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) - relScrollPos;
 //	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }

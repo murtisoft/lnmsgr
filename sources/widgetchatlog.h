@@ -27,17 +27,17 @@
 #include "definitionsui.h"
 #include "sharedchatfunctions.h"
 #include "xmlhandler.h"
-#include "widgetmsgbrowser.h"
+#include <qtextbrowser.h>
 
 enum OutputFormat{ HtmlFormat, TextFormat };
 
-class lmChatLog : public MessageBrowser
+class lmChatLog : public QTextBrowser
 {
     Q_OBJECT
 
 public:
     lmChatLog(QWidget *parent = nullptr);
-    ~lmChatLog(void) override;
+    ~lmChatLog(void) ;
 
     void initMessageLog(bool clearLog = true);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage,

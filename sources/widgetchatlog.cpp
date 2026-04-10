@@ -35,7 +35,7 @@ inline constexpr char acceptOp[] = "accept";
 inline constexpr char declineOp[] = "decline";
 inline constexpr char cancelOp[] = "cancel";
 
-lmChatLog::lmChatLog(QWidget *parent) : MessageBrowser (parent) {
+lmChatLog::lmChatLog(QWidget *parent) : QTextBrowser (parent) {
 
     connect(this, &QTextBrowser::highlighted, this, &lmChatLog::onLinkHovered);
     connect(this, SIGNAL(anchorClicked(QUrl)), this, SLOT(onAnchorClicked(QUrl)));
@@ -386,7 +386,7 @@ void lmChatLog::changeEvent(QEvent* event) {
 
 void lmChatLog::resizeEvent(QResizeEvent *event)
 {
-    MessageBrowser::resizeEvent(event);
+    QTextBrowser::resizeEvent(event);
 
     if(autoScroll) {
         QTextCursor cursor = textCursor();
