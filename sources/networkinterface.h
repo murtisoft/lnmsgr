@@ -91,7 +91,7 @@ private:
 	lmSettings*			pSettings;
 	lmNetworkUdp*			pUdpNetwork;
 	lmNetworkTcp*			pTcpNetwork;
-	lmCrypto*				pCrypto;
+	lmOpenSSL*				pCrypto;
 	QTimer*					pTimer;
     QString					interfaceName;
 	QNetworkInterface		networkInterface;

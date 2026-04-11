@@ -30,11 +30,11 @@
 #include <openssl/rand.h>
 #include <openssl/aes.h>
 
-class lmCrypto
+class lmOpenSSL
 {
 public:
-    lmCrypto();
-    ~lmCrypto();
+    lmOpenSSL();
+    ~lmOpenSSL();
 
     QByteArray generateRSA();
     QByteArray generateAES(QString* lpszUserId, QByteArray& pubKey);

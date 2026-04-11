@@ -117,6 +117,7 @@ private:
 	void setMessageFont(QFont& font);
 	void setChatState(ChatState newChatState);
     void updateButtonStates();
+    bool handleClipboardPaste(void);
     void nudge(bool send = false);
 
 	QString localName;

@@ -43,7 +43,7 @@ public:
 	void start(void);
 	void stop(void);
 	void setLocalId(QString* lpszLocalId);
-	void setCrypto(lmCrypto* pCrypto);
+	void setCrypto(lmOpenSSL* pCrypto);
 	void sendBroadcast(QString* lpszData);
 	void settingsChanged(void);
 	void setMulticastInterface(const QNetworkInterface& networkInterface);
@@ -68,7 +68,7 @@ private:
 	lmSettings*		pSettings;
 	QUdpSocket*			pUdpReceiver;
 	QUdpSocket*			pUdpSender;
-	lmCrypto*			pCrypto;
+	lmOpenSSL*			pCrypto;
 
 	bool				isRunning;
     quint16				nUdpPort;

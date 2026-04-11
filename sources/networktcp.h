@@ -42,7 +42,7 @@ public:
 	void start(void);
 	void stop(void);
 	void setLocalId(QString* lpszLocalId);
-	void setCrypto(lmCrypto* pCrypto);
+	void setCrypto(lmOpenSSL* pCrypto);
 	void addConnection(QString* lpszUserId, QString* lpszAddress);
 	void sendMessage(QString* lpszReceiverId, QString* lpszData);
 	void initSendFile(QString* lpszReceiverId, QString* lpszAddress, QString* lpszData);
@@ -83,7 +83,7 @@ private:
 	bool					  isRunning;
 	int						  tcpPort;
 	QString					  localId;
-	lmCrypto*				  crypto;
+	lmOpenSSL*				  crypto;
 	QHostAddress			  ipAddress;
 };
 

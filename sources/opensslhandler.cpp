@@ -22,7 +22,7 @@
 #include "zdebuglog.h"
 #include "opensslhandler.h"
 
-lmCrypto::lmCrypto(void) {
+lmOpenSSL::lmOpenSSL(void) {
     pKey = NULL;
     encryptMap.clear();
     decryptMap.clear();
@@ -30,7 +30,7 @@ lmCrypto::lmCrypto(void) {
     exponent = 65537;
 }
 
-lmCrypto::~lmCrypto(void) {
+lmOpenSSL::~lmOpenSSL(void) {
     EVP_PKEY_free(pKey);
 }
 
@@ -43,7 +43,7 @@ void replaceCtx(QMap<QString, EVP_CIPHER_CTX*>& map, const QString& userId, EVP_
 }
 
 //	creates an RSA key pair and returns the string representation of the public key
-QByteArray lmCrypto::generateRSA(void) {
+QByteArray lmOpenSSL::generateRSA(void) {
     EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new_from_name(NULL, "RSA", NULL);
     EVP_PKEY_keygen_init(ctx);
     EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, bits);
@@ -69,7 +69,7 @@ QByteArray lmCrypto::generateRSA(void) {
 }
 
 //	generates a random aes key and iv, and encrypts it with the public key
-QByteArray lmCrypto::generateAES(QString* lpszUserId, QByteArray& pubKey) {
+QByteArray lmOpenSSL::generateAES(QString* lpszUserId, QByteArray& pubKey) {
     char* pemKey = pubKey.data();
     BIO* bio = BIO_new_mem_buf(pemKey, pubKey.length());
     RSA* r = PEM_read_bio_RSAPublicKey(bio, NULL, NULL, NULL);          // for compatibility with older clients
@@ -117,7 +117,7 @@ QByteArray lmCrypto::generateAES(QString* lpszUserId, QByteArray& pubKey) {
 }
 
 //	decrypts the aes key and iv with the private key
-void lmCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
+void lmOpenSSL::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
     EVP_PKEY_CTX* ctx = EVP_PKEY_CTX_new(pKey, NULL);
     EVP_PKEY_decrypt_init(ctx);
     EVP_PKEY_CTX_set_rsa_padding(ctx, RSA_PKCS1_OAEP_PADDING);
@@ -138,7 +138,7 @@ void lmCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
     free(keyIv);
 }
 
-QByteArray lmCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
+QByteArray lmOpenSSL::encrypt(QString* lpszUserId, QByteArray& clearData) {
     int outLen = clearData.length() + AES_BLOCK_SIZE;
     unsigned char* outBuffer = (unsigned char*)malloc(outLen);
     if (outBuffer == NULL) {
@@ -163,7 +163,7 @@ QByteArray lmCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
     return QByteArray();
 }
 
-QByteArray lmCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData) {
+QByteArray lmOpenSSL::decrypt(QString* lpszUserId, QByteArray& cipherData) {
     int outLen = cipherData.length();
     unsigned char* outBuffer = (unsigned char*)malloc(outLen);
     if (outBuffer == NULL) {

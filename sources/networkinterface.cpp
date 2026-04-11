@@ -37,7 +37,7 @@ lmNetwork::lmNetwork(void) {
     connect(pTcpNetwork, SIGNAL(progressReceived(QString*,QString*)),
         this, SLOT(tcp_receiveProgress(QString*,QString*)));
 	pTimer = NULL;
-	pCrypto = new lmCrypto();
+	pCrypto = new lmOpenSSL();
 	ipAddress = QString();
 	subnetMask = QString();
 	networkInterface = QNetworkInterface();

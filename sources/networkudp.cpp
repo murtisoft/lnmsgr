@@ -75,7 +75,7 @@ void lmNetworkUdp::setLocalId(QString* lpszLocalId) {
 	localId = *lpszLocalId;
 }
 
-void lmNetworkUdp::setCrypto(lmCrypto* pCrypto) {
+void lmNetworkUdp::setCrypto(lmOpenSSL* pCrypto) {
 	this->pCrypto = pCrypto;
 }
 

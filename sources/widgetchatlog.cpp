@@ -1062,8 +1062,7 @@ void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 		*lpszMessage = lpszMessage->trimmed();
 
     // normalize backslash UNC to forward slash, which means you cant type backspace unfortunately.
-    lpszMessage->replace(QRegularExpression(R"(\\\\)"), "//");
-    lpszMessage->replace(QRegularExpression(R"(\\)"), "/");
+    lpszMessage->replace('\\', '/');
 
 	//	The url detection regexps only work with plain text, so link detection is done before
 	//	making the text html safe. The converted links are given a "data-isLink" custom
@@ -1100,33 +1099,33 @@ if(!useDefaults && pathToLink) {
 qDebug().noquote() << "\r\n" << QString(*lpszMessage).replace("\n", "\r\n") << "\r\n";
 /*  TODO This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
 TEST CASES
-00 \\Murticom-2026\e\ss.png         pathToLink      Works as expected
-01 //Murticom-2026/e/ss.png         pathToLink      Works as expected
-02 \\Murticom-2026\e/ss.png         pathToLink      Works as expected
-03 \\Murticom-2026\e\S p a c e.png  ----------      Not covered, breaks at first space.
-04 "\\Murticom-2026\e\S p a c e.png"pathToLink      Works as expected
-05 \\Murticom-2026\e\Ünıcöde.png    pathToLink      Works as expected
-06 smb:// for linux.                                Havent decided yet
-07 %WINDIR%                                         Havent decided yet
-08 %USERPROFILE%\Documents\%USERNAME%_log.txt       Havent decided yet
-09 \\Murticom-2026\e\               pathToLink      Works as expected
-10 //Murticom-2026/e/               pathToLink      Works as expected
-11 \\Murticom-2026\e                pathToLink      Works as expected
-12 //Murticom-2026/e                pathToLink      Works as expected
-13 \\192.168.0.10\e                 pathToLink      Works as expected
-14 //192.168.0.10/e                 pathToLink      Works as expected
-15 https://github.com               allowLinks      Works as expected
-16 https://google.com/search?q=qt+6 allowLinks      Works as expected
-17 (https://google.com)             allowLinks      Works as expected
-18 www.github.com                   allowLinks      Works as expected
-19 github.com                       ----------      Not covered, Shows up as plain text
-20 v3.beta.github.com               ----------      Not covered, Shows up as plain text
-21 192.168.0.10                     ----------      Not covered, Shows up as plain text
-22 192.168.0.10:1111                ----------      Not covered, Shows up as plain text
-23 http://192.168.0.20:1111/        allowLinks      Works as expected
-24 ftp.debian.org                   ----------      Not covered, Shows up as plain text
-25 file:///E:/ss.png                ----------      This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
-26 file:///E:/_qtprojects           ----------      This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
+00 \\Murticom-2026\e\ss.png             pathToLink      Works as expected
+01 //Murticom-2026/e/ss.png             pathToLink      Works as expected
+02 \\Murticom-2026\e/ss.png             pathToLink      Works as expected
+03 \\Murticom-2026\e\S p a c e.png      ----------      Not covered, breaks at first space.
+04 "\\Murticom-2026\e\S p a c e.png"    pathToLink      Works as expected
+05 \\Murticom-2026\e\Ünıcöde.png        pathToLink      Works as expected
+06 smb:// for linux.                                    Havent decided yet
+07 %WINDIR%                                             Havent decided yet
+08 %USERPROFILE%\Documents\%USERNAME%_log.txt           Havent decided yet
+09 \\Murticom-2026\e\                   pathToLink      Works as expected
+10 //Murticom-2026/e/                   pathToLink      Works as expected
+11 \\Murticom-2026\e                    pathToLink      Works as expected
+12 //Murticom-2026/e                    pathToLink      Works as expected
+13 \\192.168.0.10\e                     pathToLink      Works as expected
+14 //192.168.0.10/e                     pathToLink      Works as expected
+15 https://github.com                   allowLinks      Works as expected
+16 https://google.com/search?q=qt+6     allowLinks      Works as expected
+17 (https://google.com)                 allowLinks      Works as expected
+18 www.github.com                       allowLinks      Works as expected
+19 github.com                           ----------      Not covered, Shows up as plain text
+20 v3.beta.github.com                   ----------      Not covered, Shows up as plain text
+21 192.168.0.10                         ----------      Not covered, Shows up as plain text
+22 192.168.0.10:1111                    ----------      Not covered, Shows up as plain text
+23 http://192.168.0.20:1111/            allowLinks      Works as expected
+24 ftp.debian.org                       ----------      Not covered, Shows up as plain text
+25 file:///E:/ss.png                    ----------      This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
+26 file:///E:/_qtprojects               ----------      This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
 */
 
 

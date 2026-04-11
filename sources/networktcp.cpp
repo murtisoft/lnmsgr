@@ -66,7 +66,7 @@ void lmNetworkTcp::setLocalId(QString* lpszLocalId) {
 	localId = *lpszLocalId;
 }
 
-void lmNetworkTcp::setCrypto(lmCrypto* pCrypto) {
+void lmNetworkTcp::setCrypto(lmOpenSSL* pCrypto) {
 	crypto = pCrypto;
 }
 
