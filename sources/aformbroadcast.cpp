@@ -149,6 +149,10 @@ bool lmFormBroadcast::eventFilter(QObject* pObject, QEvent* pEvent) {
 			close();
 			return true;
 		} else if((pKeyEvent->key() == Qt::Key_Return || pKeyEvent->key() == Qt::Key_Enter) && pObject == ui.txtMessage) {
+            if (pKeyEvent->modifiers() & Qt::ShiftModifier) {  //Shift Enter always adds a newline regardless of setting.
+                ui.txtMessage->insertPlainText("\n");
+                return true;
+            }
 			bool keyMod = ((pKeyEvent->modifiers() & Qt::ControlModifier) == Qt::ControlModifier);
 			if(keyMod == sendKeyMod) {
 				sendMessage();

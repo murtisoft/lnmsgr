@@ -372,6 +372,10 @@ bool lmFormChatRoom::eventFilter(QObject* pObject, QEvent* pEvent) {
 		QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
         if(pObject == ui.txtMessage) {
             if(pKeyEvent->key() == Qt::Key_Return || pKeyEvent->key() == Qt::Key_Enter) {
+                if (pKeyEvent->modifiers() & Qt::ShiftModifier) {  //Shift Enter always adds a newline regardless of setting.
+                    ui.txtMessage->insertPlainText("\n");
+                    return true;
+                }
                 bool keyMod = ((pKeyEvent->modifiers() & Qt::ControlModifier) == Qt::ControlModifier);
                 if(keyMod == sendKeyMod) {
                     sendMessage();

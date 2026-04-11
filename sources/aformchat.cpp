@@ -23,6 +23,7 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QMimeData>
+#include <qclipboard.h>
 #include <qpropertyanimation.h>
 #include "aformchat.h"
 #include "sharedchatfunctions.h"
@@ -326,6 +327,49 @@ void lmFormChat::settingsChanged(void) {
 bool lmFormChat::eventFilter(QObject* pObject, QEvent* pEvent) {
     if(pEvent->type() == QEvent::KeyPress) {
         QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
+
+        if (pObject == ui.txtMessage) { //todo pasting files and image snippets into txtbox / either side being offline should prevent this
+            if (pKeyEvent->matches(QKeySequence::Paste)) {
+                const QMimeData* mimeData = QApplication::clipboard()->mimeData();
+
+                if (mimeData && mimeData->hasUrls()) {
+                    QList<QUrl> urls = mimeData->urls();
+                    bool fileHandled = false;
+
+                    foreach(const QUrl &url, urls) {
+                        if (url.isLocalFile()) {
+                            QString path = url.toLocalFile();
+                            QFileInfo fileInfo(path);
+
+                            if (fileInfo.exists()) {
+                                if (fileInfo.isFile()) {
+                                    sendFile(&path);
+                                    fileHandled = true;
+                                } else if (fileInfo.isDir()) {
+                                    sendFolder(&path);
+                                    fileHandled = true;
+                                }
+                            }
+                        }
+                    }
+                    // If we found and sent files, stop the text from being pasted
+                    if (fileHandled) return true;
+                }else if (mimeData && mimeData->hasImage()) {
+                    QImage img = qvariant_cast<QImage>(mimeData->imageData());
+                    if (!img.isNull()) {
+                        // Create a unique filename for the snippet
+                        QString tempPath = QDir::tempPath() + "/snippet_" +
+                                           QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png";
+
+                        if (img.save(tempPath, "PNG")) {
+                            sendFile(&tempPath);
+                            return true; // Prevent any text fallback
+                        }
+                    }
+                }
+            }}
+
+
         if(pObject == ui.txtMessage) {
             if(pKeyEvent->key() == Qt::Key_Return || pKeyEvent->key() == Qt::Key_Enter) {
 

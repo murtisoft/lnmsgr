@@ -37,6 +37,9 @@ inline constexpr char cancelOp[] = "cancel";
 
 lmChatLog::lmChatLog(QWidget *parent) : QTextBrowser (parent) {
 
+    setOpenLinks(false);
+    setOpenExternalLinks(true);
+
     connect(this, &QTextBrowser::highlighted, this, &lmChatLog::onLinkHovered);
     connect(this, SIGNAL(anchorClicked(QUrl)), this, SLOT(onAnchorClicked(QUrl)));
 
