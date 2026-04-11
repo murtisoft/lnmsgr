@@ -1,4 +1,6 @@
-file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/win32.rc" #==============================================================================<< Windows specific resource
+#————————————————————————————————————————————————<< Windows specific resource >>—————————————————————————————————————————————————
+#————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/win32.rc"
 "#include <windows.h>
 IDI_MAIN_ICON ICON \"${CMAKE_CURRENT_SOURCE_DIR}/resources/icons/lanmsg_win.ico\"
 1 VERSIONINFO
@@ -16,19 +18,21 @@ PRODUCTVERSION ${PROJECT_VERSION_MAJOR},${PROJECT_VERSION_MINOR},${PROJECT_VERSI
     BLOCK \"VarFileInfo\" { VALUE \"Translation\", 0x409, 1200 }
 }")
 
+#———————————————————————————————————————————————————————<< cmakelists >>—————————————————————————————————————————————————————————
+#————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 file(GLOB LanMessenger_SOURCES CONFIGURE_DEPENDS
     "sources/*.cpp" "sources/*.h" "sources/*.ui"
 )
 
-add_executable(LanMessenger #============================================================================================================<< Executable
+add_executable(LanMessenger #———————————————————————————————————————————————————————————————————————————————————————<< Executable
     WIN32
     ${LanMessenger_SOURCES}
     "${CMAKE_CURRENT_BINARY_DIR}/win32.rc"
     resources/resources.qrc
 )
 
-set(OPUS_DIR "C:/Qt/Tools/opus-1.6")          #libopus 1.6
-set(OPENSSL_DIR "C:/Qt/Tools/OpenSSL-Win64")  #Win64OpenSSL-3_6_0
+set(OPUS_DIR "C:/Qt/Tools/opus-1.6")          #——————————————————————————————————————————————————————————————————————<< libopus 1.6 path
+set(OPENSSL_DIR "C:/Qt/Tools/OpenSSL-Win64")  #——————————————————————————————————————————————————————————————————————<< Win64OpenSSL-3_6_0 path
 target_include_directories(LanMessenger PRIVATE
     ${CMAKE_SOURCE_DIR}/sources
     ${OPENSSL_DIR}/include

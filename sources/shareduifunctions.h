@@ -48,7 +48,7 @@ public:
 	static bool stringToBool(const QString& value);
 	static bool copyFile(const QString& source, const QString& destination);
     static void changeColorScheme(int index);
-    static QIcon renderEmoji(const QString& emoji, int size = 32);
+    static QIcon renderEmoji(const QString& emoji, int size = 32, bool strikethrough = false);
 };
 
 struct User {

@@ -184,7 +184,8 @@
           </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(127, 127, 127);
-background-color: transparent;</string>
+background-color: transparent;
+placeholder-text-color: rgb(127, 127, 127);</string>
           </property>
           <property name="placeholderText">
            <string>Type a note</string>
@@ -340,7 +341,7 @@ background-color: transparent;</string>
   <customwidget>
    <class>lmWidgetUserTree</class>
    <extends>QTreeWidget</extends>
-   <header>widgetusertree.h</header>
+   <header location="global">widgetusertree.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

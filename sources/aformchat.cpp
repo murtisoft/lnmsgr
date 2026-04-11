@@ -62,6 +62,10 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
 	ui.lblInfo->setVisible(false);
     pMessageLog->installEventFilter(this);
 	ui.txtMessage->installEventFilter(this);
+    ui.btnAddContact->setIcon(QIcon(Helper::renderEmoji(Icons::Plus,24)));
+    ui.btnMicrophone->setIcon(QIcon(Helper::renderEmoji(Icons::Microphone,24)));
+    ui.btnSpeaker->setIcon(QIcon(Helper::renderEmoji(Icons::Speaker,24)));
+    ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder,24,1)));
 	infoFlag = IT_Ok;
 
 	localId = QString();
@@ -147,6 +151,41 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
     pMessageLog->initMessageLog();
     if(!clearOnClose)
         pMessageLog->restoreMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
+
+
+    //====================================================================================TODO TEMPORARY
+    // 1. Local user
+    lmWidgetUserTreeUserItem *pLocalItem = new lmWidgetUserTreeUserItem();
+    pLocalItem->setData(0, IdRole, pLocalUser->id);
+    pLocalItem->setData(0, TypeRole, "User");
+    pLocalItem->setText(0, pLocalUser->name);
+    pLocalItem->setData(0, AvatarRole, QIcon(pLocalUser->avatarPath));
+    updateStatusImage(pLocalItem, &pLocalUser->status);
+    ui.tvUserListLocal->addTopLevelItem(pLocalItem);
+
+    // 2. Peer
+    lmWidgetUserTreeUserItem *pPeerItem = new lmWidgetUserTreeUserItem();
+    pPeerItem->setData(0, IdRole, pRemoteUser->id);
+    pPeerItem->setData(0, TypeRole, "User");
+    pPeerItem->setText(0, pRemoteUser->name);
+    pPeerItem->setData(0, AvatarRole, QIcon(pRemoteUser->avatarPath));
+    updateStatusImage(pPeerItem, &pRemoteUser->status);
+    ui.tvUserListPeers->addTopLevelItem(pPeerItem);
+
+    // 3. Formatting
+    ui.tvUserListLocal->setInteractive(false);
+    ui.tvUserListPeers->setInteractive(false);
+    ui.tvUserListLocal->setView(ULV_Detailed);
+    ui.tvUserListPeers->setView(ULV_Detailed);
+    ui.tvUserListLocal->setRootIsDecorated(false);
+    ui.tvUserListPeers->setRootIsDecorated(false);
+    ui.tvUserListLocal->setHeaderHidden(true);
+    ui.tvUserListPeers->setHeaderHidden(true);
+    ui.tvUserListLocal->setSelectionMode(QAbstractItemView::NoSelection);
+    ui.tvUserListPeers->setSelectionMode(QAbstractItemView::NoSelection);
+    ui.tvUserListLocal->setFocusPolicy(Qt::NoFocus);
+    ui.tvUserListPeers->setFocusPolicy(Qt::NoFocus);
+    //====================================================================================TODO TEMPORARY
 }
 
 void lmFormChat::stop(void) {
@@ -398,7 +437,7 @@ bool lmFormChat::handleClipboardPaste(void) {
     } else if (mimeData->hasImage()) {
         QImage img = qvariant_cast<QImage>(mimeData->imageData());
         if (!img.isNull()) {
-            QString tempPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/snip_" +
+            QString tempPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/Snip_" +
                                QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png";
             if (img.save(tempPath, "PNG")) {
                 QString currentStatus = peerStatuses.value(peerId);
@@ -645,6 +684,7 @@ void lmFormChat::createToolBar(void) {
 	ui.lblDividerTop->setAutoFillBackground(true);
 	ui.lblDividerBottom->setBackgroundRole(QPalette::Dark);
 	ui.lblDividerBottom->setAutoFillBackground(true);
+
 }
 
 void lmFormChat::btnVideo_clicked() {
@@ -948,6 +988,12 @@ QString lmFormChat::getWindowTitle(void) {
 void lmFormChat::setMessageFont(QFont& font) {
 	ui.txtMessage->setFont(font);
 	ui.txtMessage->setFontPointSize(font.pointSize());
+}
+
+void lmFormChat::updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus) {
+    int index = Helper::statusIndexFromCode(*lpszStatus);
+    if(index != -1)
+        pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
 }
 
 void lmFormChat::setChatState(ChatState newChatState) {

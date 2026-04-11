@@ -48,7 +48,7 @@ public:
 	explicit lmFormChatRoom(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
 	~lmFormChatRoom();
 
-	void init(User* pLocalUser, bool connected, QString thread = QString());  // ✅
+    void init(User* pLocalUser, bool connected, QString thread = QString());
 	void show(void);
 	void stop(void);
 	void addUser(User* pUser);

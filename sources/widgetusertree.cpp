@@ -82,7 +82,7 @@ void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 		painter->fillRect(itemRect, palette.window());
 
 		//	Fill the background of the item with highlight color, and draw a border with a darker shade
-		QColor fillColor = palette.color(QPalette::Highlight);
+        QColor fillColor = palette.color(QPalette::Highlight);
 		QColor borderColor = fillColor.darker(130);
 		painter->setPen(QPen(borderColor));
 		painter->setBrush(QBrush(fillColor));
@@ -95,8 +95,8 @@ void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 			drawCheckBox(painter, palette, checkBoxRect, pItem->checkState(0));
 
 		//	Draw the expand/collapse arrow
-		painter->setBrush(QBrush(palette.color(QPalette::HighlightedText)));
-		painter->setPen(QPen(palette.color(QPalette::HighlightedText)));
+        painter->setBrush(QBrush(palette.color(QPalette::HighlightedText)));
+        painter->setPen(QPen(palette.color(QPalette::HighlightedText)));
 		QPoint points[3];
 		if(option.state.testFlag(QStyle::State_Children) && option.state.testFlag(QStyle::State_Open)) {
 			points[0] = QPoint(checkBoxRect.right() + 4, itemRect.top() + ((itemRect.height() - 4) / 2));
@@ -117,7 +117,7 @@ void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 		//	Leave a padding of 5px on left and right
 		int leftPad = checkBoxRect.width() > 0 ? checkBoxRect.right() + 16 : 16;
 		QRect textRect = itemRect.adjusted(leftPad, padding, -5, -padding);
-		painter->setPen(QPen(palette.color(QPalette::HighlightedText)));
+        painter->setPen(QPen(palette.color(QPalette::HighlightedText)));
 		QString text = painter->fontMetrics().elidedText(name, Qt::ElideRight, textRect.width());
 		painter->drawText(textRect, textFlags, text);
 	} else if(type == "User") {
@@ -207,6 +207,7 @@ lmWidgetUserTree::lmWidgetUserTree(QWidget* parent) : QTreeWidget(parent) {
 	setItemDelegate(itemDelegate);
 
 	isCheckable = false;
+    isInteractive = true;
 	viewType = ULV_Detailed;
 }
 
@@ -234,6 +235,7 @@ void lmWidgetUserTree::setView(UserListView view) {
 }
 
 void lmWidgetUserTree::mousePressEvent(QMouseEvent* event) {
+    if(!isInteractive) return;
 	if(event->button() == Qt::LeftButton) {
 		QTreeWidgetItem* item = itemAt(event->position().toPoint());
 
@@ -345,3 +347,14 @@ void lmWidgetUserTree::keyPressEvent(QKeyEvent* event) {
 	}
 }
 
+QSize lmWidgetUserTree::sizeHint() const {
+    int totalHeight = frameWidth() * 2;
+    qDebug() << "frameWidth:" << frameWidth() << "topLevelCount:" << topLevelItemCount();
+    for(int i = 0; i < topLevelItemCount(); i++) {
+        QTreeWidgetItem* item = topLevelItem(i);
+        bool isGroup = dynamic_cast<lmWidgetUserTreeGroupItem*>(item);
+        qDebug() << "item" << i << "isGroup:" << isGroup << "expanded:" << item->isExpanded() << "children:" << item->childCount() << "text:" << item->text(0);
+    }
+    qDebug() << "total:" << totalHeight;
+    return QSize(QTreeWidget::sizeHint().width(), totalHeight);
+}

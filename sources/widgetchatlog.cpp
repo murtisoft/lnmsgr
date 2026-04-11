@@ -1096,7 +1096,7 @@ if(!useDefaults && pathToLink) {
     }
     }
 
-qDebug().noquote() << "\r\n" << QString(*lpszMessage).replace("\n", "\r\n") << "\r\n";
+//qDebug().noquote() << "\r\n" << QString(*lpszMessage).replace("\n", "\r\n") << "\r\n";
 /*  TODO This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
 TEST CASES
 00 \\Murticom-2026\e\ss.png             pathToLink      Works as expected
@@ -1156,6 +1156,17 @@ TEST CASES
 
 void lmChatLog::processMessageText(QString* lpszMessageText, bool useDefaults) {
 	ChatHelper::makeHtmlSafe(lpszMessageText);
+
+    static const QRegularExpression hrRegex("^(-{2,}|={2,}|_{2,})$");       //place a horizontal rule into chatlog replacing a line of --
+    QStringList lines = lpszMessageText->split('\n');
+    for (QString& line : lines) {
+        line.replace(hrRegex,
+                     "<table width='100%' style='margin-top:0.5em;'>"
+                     "<tr><td style='font-size:1px; background-color:rgb(127,127,127);'></td></tr>"
+                     "</table>");
+    }
+    *lpszMessageText = lines.join('\n');
+
 	//	if smileys are enabled, replace text emoticons with corresponding images
 	if(!useDefaults && showSmiley)
 		ChatHelper::decodeSmileys(lpszMessageText);

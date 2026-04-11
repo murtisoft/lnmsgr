@@ -29,14 +29,14 @@
 
 namespace Icons { //New Emoji Icons.
 inline constexpr char Close[]         = "❌️";    inline constexpr char History[]       = "🕙️";    inline constexpr char Info[]          = "ℹ️";
-inline constexpr char File[]          = "📄️";    inline constexpr char Transfer[]      = "📥️";    inline constexpr char Font[]          = "✒️";
-inline constexpr char FontColor[]     = "🖍️";    inline constexpr char Smiley[]        = "🤪️";    inline constexpr char Save[]          = "💾️";
+inline constexpr char File[]          = "📄️";    inline constexpr char Transfer[]      = "📥️";
+inline constexpr char Smiley[]        = "🤪️";    inline constexpr char Save[]          = "💾️";
 inline constexpr char Stop[]          = "🚫️";    inline constexpr char Folder[]        = "📁️";    inline constexpr char ShowFolder[]    = "📂️";
 inline constexpr char Broadcast[]     = "📢️";    inline constexpr char Plus[]          = "➕️";    inline constexpr char Refresh[]       = "♻️";
 inline constexpr char Web[]           = "🌍️";    inline constexpr char Chat[]          = "💬️";    inline constexpr char Play[]          = "▶️️️️";
 inline constexpr char Public[]        = "👨‍👩‍👧‍👦️";    inline constexpr char Alert[]         = "⚠️";    inline constexpr char VoiceSet[]      = "🎙️️";
 inline constexpr char Microphone[]    = "🎤️️";    inline constexpr char Speaker[]       = "🎧️️";    inline constexpr char Telephone[]     = "📞️️";
-inline constexpr char Camera[]        = "📷️️️";    inline constexpr char Screenshot[]    = "📷️️";    inline constexpr char Nudge[]         = "🛎️️️";
+inline constexpr char Camera[]        = "📷️️️";    inline constexpr char Camcorder[]     = "📹️️";    inline constexpr char Nudge[]         = "🛎️️️";
 inline constexpr char Settings[]      = "⚙️";    inline constexpr char GeneralSet[]    = "🖥️";    inline constexpr char AccountSet[]    = "👨‍👩‍👦️";
 inline constexpr char MessageSet[]    = "📨️";    inline constexpr char HistorySet[]    = "🕙️";    inline constexpr char AlertSet[]      = "⚠️";
 inline constexpr char NetworkSet[]    = "🔗️";    inline constexpr char TransferSet[]   = "📥️";    inline constexpr char ThemeSet[]      = "🎨️";

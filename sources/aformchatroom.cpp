@@ -587,7 +587,7 @@ void lmFormChatRoom::createToolBar(void) {
 
 	if(groupMode) {
 		QToolBar* pContactsBar = new QToolBar(ui.wgtContactsBar);
-		pContactsBar->setStyleSheet("QToolBar { border: 0px }");
+        pContactsBar->setStyleSheet("QToolBar { border: 0px }");
 		pContactsBar->setIconSize(QSize(24, 24));
 		ui.contactsBarLayout->addWidget(pContactsBar);
 

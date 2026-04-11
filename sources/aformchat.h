@@ -115,6 +115,7 @@ private:
 	void showStatus(int flag, bool add);
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
+    void updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus);
 	void setChatState(ChatState newChatState);
     void updateButtonStates();
     bool handleClipboardPaste(void);

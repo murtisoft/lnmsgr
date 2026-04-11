@@ -172,14 +172,39 @@ void Helper::changeColorScheme(int index){
 //Renders emojis to a pixmap so they can be used as an icon. Unicode, so every OS has its own flavor.
 //Using colorful emojis, i am deliberately avoiding garbage monochrome brutalist iconpacks of the last decade and a half.
 //Man, i could write a fucking manifesto about this...
-QIcon Helper::renderEmoji(const QString& emoji, int size) {
+QIcon Helper::renderEmoji(const QString& emoji, int size, bool strikethrough) {
+    QPixmap temp(size * 2, size * 2);
+    temp.fill(Qt::transparent);
+    QPainter p(&temp);
+    QFont font = p.font();
+    font.setPointSize(qRound(size * 0.7));
+    p.setFont(font);
+    p.drawText(temp.rect(), Qt::AlignCenter, emoji);
+    p.end();                                                                        //Render to a double size canvas
+
+    QImage img = temp.toImage();
+    int top = img.height(), bottom = 0, left = img.width(), right = 0;
+    for (int y = 0; y < img.height(); y++)
+        for (int x = 0; x < img.width(); x++)
+            if (qAlpha(img.pixel(x, y)) > 0) {
+                top = qMin(top, y); bottom = qMax(bottom, y);
+                left = qMin(left, x); right = qMax(right, x);
+            }
+
+    QPixmap cropped = temp.copy(left, top, right - left + 1, bottom - top + 1);
+
     QPixmap pixmap(size, size);
     pixmap.fill(Qt::transparent);
-
     QPainter painter(&pixmap);
-    QFont font = painter.font();
-    font.setPointSize(qRound(size * 0.7));
-    painter.setFont(font);
-    painter.drawText(pixmap.rect(), Qt::AlignCenter, emoji);
+    int ox = (size - cropped.width()) / 2;
+    int oy = (size - cropped.height()) / 2;
+    painter.drawPixmap(ox, oy, cropped);                                            //Center and crop to actual canvas.
+                                                                                    //Because centering vector emojis is goddamn impossible.
+    if (strikethrough) {
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setPen(QPen(Qt::red, qMax(2, size / 12), Qt::SolidLine, Qt::RoundCap));
+        painter.drawLine(pixmap.rect().topLeft(), pixmap.rect().bottomRight());
+    }
+
     return QIcon(pixmap);
 }
