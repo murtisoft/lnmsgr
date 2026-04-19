@@ -30,7 +30,6 @@
 #include "historydatabase.h"
 #include "definitionsdir.h"
 
-const qint64 pauseTime = 5000;
 
 lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
 	ui.setupUi(this);
@@ -45,6 +44,9 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
     connect(ui.btnSend, SIGNAL(clicked()), this, SLOT(btnSend_clicked()));
 	connect(pMessageLog, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
 			this, SLOT(log_sendMessage(MessageType,QString*,MessageXml*)));
+    connect(ui.btnMicrophone, &QPushButton::clicked, this, &lmFormChat::btnMicrophone_toggle);
+    connect(ui.btnSpeaker,    &QPushButton::clicked, this, &lmFormChat::btnSpeaker_toggle);
+    connect(ui.btnCamera,     &QPushButton::clicked, this, &lmFormChat::btnCamera_toggle);
 
 	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
 			ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
@@ -65,7 +67,7 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
     ui.btnAddContact->setIcon(QIcon(Helper::renderEmoji(Icons::Plus,24)));
     ui.btnMicrophone->setIcon(QIcon(Helper::renderEmoji(Icons::Microphone,24)));
     ui.btnSpeaker->setIcon(QIcon(Helper::renderEmoji(Icons::Speaker,24)));
-    ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder,24,1)));
+    ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder,24)));
 	infoFlag = IT_Ok;
 
 	localId = QString();
@@ -125,6 +127,32 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 
 	pSoundPlayer = new lmSoundPlayer();
 
+    ui.tvUserListPeers->setIconSize(QSize(16, 16));
+    ui.tvUserListPeers->header()->setSectionsMovable(false);
+    ui.tvUserListPeers->header()->setStretchLastSection(false);
+    ui.tvUserListPeers->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    lmWidgetUserTreeGroupItem *pGroupRemote = new lmWidgetUserTreeGroupItem();
+    pGroupRemote->setData(0, IdRole, GroupId);
+    pGroupRemote->setData(0, TypeRole, "Group");
+    pGroupRemote->setText(0, "Participants");
+    pGroupRemote->setSizeHint(0, QSize(0, 0));         //Setting it to 0,0 instead of 0,22 is a bodge to hide the participants group.
+    ui.tvUserListPeers->addTopLevelItem(pGroupRemote);
+    ui.tvUserListPeers->expandAll();
+
+    ui.tvUserListLocal->setIconSize(QSize(16, 16));
+    ui.tvUserListLocal->header()->setSectionsMovable(false);
+    ui.tvUserListLocal->header()->setStretchLastSection(false);
+    ui.tvUserListLocal->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    lmWidgetUserTreeGroupItem *pGroupLocal = new lmWidgetUserTreeGroupItem();
+    pGroupLocal->setData(0, IdRole, GroupId);
+    pGroupLocal->setData(0, TypeRole, "Group");
+    pGroupLocal->setText(0, "Participants");
+    pGroupLocal->setSizeHint(0, QSize(0, 0));         //bodge to hide the group.
+    ui.tvUserListLocal->addTopLevelItem(pGroupLocal);
+    ui.tvUserListLocal->expandAll();
+
 	pSettings = new lmSettings();
     restoreGeometry(pSettings->value(IDS_WINDOWCHAT).toByteArray());
     ui.hSplitter->restoreState(pSettings->value(IDS_SPLITTERCHATH).toByteArray());
@@ -152,40 +180,27 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
     if(!clearOnClose)
         pMessageLog->restoreMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
 
+    int viewType = pSettings->value(IDS_USERLISTVIEW, IDS_USERLISTVIEW_VAL).toInt();
+    ui.tvUserListPeers->setView((UserListView)viewType);
 
-    //====================================================================================TODO TEMPORARY
-    // 1. Local user
-    lmWidgetUserTreeUserItem *pLocalItem = new lmWidgetUserTreeUserItem();
-    pLocalItem->setData(0, IdRole, pLocalUser->id);
-    pLocalItem->setData(0, TypeRole, "User");
-    pLocalItem->setText(0, pLocalUser->name);
-    pLocalItem->setData(0, AvatarRole, QIcon(pLocalUser->avatarPath));
-    updateStatusImage(pLocalItem, &pLocalUser->status);
-    ui.tvUserListLocal->addTopLevelItem(pLocalItem);
+    ui.btnAddContact->setVisible(false);
+    addUser(pLocalUser);
+    addUser(pRemoteUser);
+}
 
-    // 2. Peer
-    lmWidgetUserTreeUserItem *pPeerItem = new lmWidgetUserTreeUserItem();
-    pPeerItem->setData(0, IdRole, pRemoteUser->id);
-    pPeerItem->setData(0, TypeRole, "User");
-    pPeerItem->setText(0, pRemoteUser->name);
-    pPeerItem->setData(0, AvatarRole, QIcon(pRemoteUser->avatarPath));
-    updateStatusImage(pPeerItem, &pRemoteUser->status);
-    ui.tvUserListPeers->addTopLevelItem(pPeerItem);
+void lmFormChat::btnMicrophone_toggle() {
+    micActive = !micActive;
+    ui.btnMicrophone->setIcon(QIcon(Helper::renderEmoji(Icons::Microphone, 24, micActive ? 0 : 1)));
+}
 
-    // 3. Formatting
-    ui.tvUserListLocal->setInteractive(false);
-    ui.tvUserListPeers->setInteractive(false);
-    ui.tvUserListLocal->setView(ULV_Detailed);
-    ui.tvUserListPeers->setView(ULV_Detailed);
-    ui.tvUserListLocal->setRootIsDecorated(false);
-    ui.tvUserListPeers->setRootIsDecorated(false);
-    ui.tvUserListLocal->setHeaderHidden(true);
-    ui.tvUserListPeers->setHeaderHidden(true);
-    ui.tvUserListLocal->setSelectionMode(QAbstractItemView::NoSelection);
-    ui.tvUserListPeers->setSelectionMode(QAbstractItemView::NoSelection);
-    ui.tvUserListLocal->setFocusPolicy(Qt::NoFocus);
-    ui.tvUserListPeers->setFocusPolicy(Qt::NoFocus);
-    //====================================================================================TODO TEMPORARY
+void lmFormChat::btnSpeaker_toggle() {
+    speakerActive = !speakerActive;
+    ui.btnSpeaker->setIcon(QIcon(Helper::renderEmoji(Icons::Speaker, 24, speakerActive ? 0 : 1)));
+}
+
+void lmFormChat::btnCamera_toggle() {
+    cameraActive = !cameraActive;
+    ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder, 24, cameraActive ? 0 : 1)));
 }
 
 void lmFormChat::stop(void) {
@@ -205,6 +220,125 @@ void lmFormChat::stop(void) {
     pSettings->setValue(IDS_WINDOWCHAT, saveGeometry());
     pSettings->setValue(IDS_SPLITTERCHATH, ui.hSplitter->saveState());
     pSettings->setValue(IDS_SPLITTERCHATV, ui.vSplitter->saveState());
+}
+
+void lmFormChat::addUser(User* pUser) {
+    if(!pUser)
+        return;
+
+    // Do not add user if user's version is 1.2.10 or less. These versions do not
+    // support Public Chat feature.
+    if(Helper::compareVersions(pUser->version, "1.2.10") <= 0)
+        return;
+
+    bool isLocal = (pUser->id.compare(localId) == 0);
+    lmWidgetUserTree* pTree = isLocal ? ui.tvUserListLocal : ui.tvUserListPeers;
+
+    // Check if already added in the correct tree
+    if(getUserItem(&pUser->id, pTree))
+        return;
+
+    if(!isLocal) {
+        peerIds.insert(pUser->id, pUser->id);
+        peerNames.insert(pUser->id, pUser->name);
+    }
+
+    int index = Helper::statusIndexFromCode(pUser->status);
+    lmWidgetUserTreeUserItem *pItem = new lmWidgetUserTreeUserItem();
+    pItem->setData(0, IdRole, pUser->id);
+    pItem->setData(0, TypeRole, "User");
+    pItem->setData(0, StatusRole, index);
+    pItem->setData(0, SubtextRole, pUser->note);
+    pItem->setText(0, pUser->name);
+    if(index != -1)
+        pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
+
+    lmWidgetUserTreeGroupItem* pGroupItem = (lmWidgetUserTreeGroupItem*)getGroupItem(&GroupId, pTree);
+    pGroupItem->addChild(pItem);
+    pGroupItem->sortChildren(0, Qt::AscendingOrder);
+
+    // this should be called after item has been added to tree
+    setUserAvatar(&pUser->id, &pUser->avatarPath);
+
+    if(groupMode && !isLocal) {
+        MessageXml xmlMessage;
+        xmlMessage.addData(XN_THREAD, threadId);
+        xmlMessage.addData(XN_GROUPMSGOP, GroupMsgOpNames[GMO_Join]);
+        appendMessageLog(MT_Join, &pUser->id, &pUser->name, &xmlMessage);
+        setWindowTitle(getWindowTitle());
+        emit messageSent(MT_GroupMessage, NULL, &xmlMessage);
+    }
+}
+
+void lmFormChat::updateUser(User* pUser) {
+    if(!pUser)
+        return;
+    QTreeWidgetItem* pItem = getUserItem(&pUser->id, ui.tvUserListLocal);
+    if(!pItem)
+        pItem = getUserItem(&pUser->id, ui.tvUserListPeers);
+    if(pItem) {
+        updateStatusImage(pItem, &pUser->status);
+        pItem->setData(0, StatusRole, Helper::statusIndexFromCode(pUser->status));
+        pItem->setData(0, SubtextRole, pUser->note);
+        pItem->setText(0, pUser->name);
+        pItem->parent()->sortChildren(0, Qt::AscendingOrder);
+    }
+    if(groupMode)
+        setWindowTitle(getWindowTitle());
+}
+
+void lmFormChat::removeUser(QString* lpszUserId) {
+    QTreeWidgetItem* pItem = getUserItem(lpszUserId, ui.tvUserListLocal);
+    if(!pItem)
+        pItem = getUserItem(lpszUserId, ui.tvUserListPeers);
+    if(!pItem)
+        return;
+    QTreeWidgetItem* pGroup = pItem->parent();
+    pGroup->removeChild(pItem);
+    QString userId = peerIds.value(*lpszUserId);
+    QString userName = peerNames.value(*lpszUserId);
+    peerIds.remove(*lpszUserId);
+    peerNames.remove(*lpszUserId);
+    if(groupMode) {
+        MessageXml xmlMessage;
+        xmlMessage.addData(XN_THREAD, threadId);
+        xmlMessage.addData(XN_GROUPMSGOP, GroupMsgOpNames[GMO_Leave]);
+        appendMessageLog(MT_Leave, &userId, &userName, &xmlMessage);
+        setWindowTitle(getWindowTitle());
+    }
+}
+
+QTreeWidgetItem* lmFormChat::getUserItem(QString* lpszUserId, lmWidgetUserTree* pTree) {
+    for(int topIndex = 0; topIndex < pTree->topLevelItemCount(); topIndex++) {
+        for(int index = 0; index < pTree->topLevelItem(topIndex)->childCount(); index++) {
+            QTreeWidgetItem* pItem = pTree->topLevelItem(topIndex)->child(index);
+            if(pItem->data(0, IdRole).toString().compare(*lpszUserId) == 0)
+                return pItem;
+        }
+    }
+    return NULL;
+}
+
+QTreeWidgetItem* lmFormChat::getGroupItem(QString* lpszGroupId, lmWidgetUserTree* pTree) {
+    for(int topIndex = 0; topIndex < pTree->topLevelItemCount(); topIndex++) {
+        QTreeWidgetItem* pItem = pTree->topLevelItem(topIndex);
+        if(pItem->data(0, IdRole).toString().compare(*lpszGroupId) == 0)
+            return pItem;
+    }
+    return NULL;
+}
+
+void lmFormChat::setUserAvatar(QString* lpszUserId, QString* lpszFilePath) {
+    QTreeWidgetItem* pUserItem = getUserItem(lpszUserId, ui.tvUserListLocal);
+    if(!pUserItem)
+        pUserItem = getUserItem(lpszUserId, ui.tvUserListPeers);
+    if(!pUserItem || !lpszFilePath)
+        return;
+    QPixmap avatar(*lpszFilePath);
+    if(avatar.isNull()) return;
+    avatar = avatar.scaled(QSize(32, 32), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+    pUserItem->setData(0, AvatarRole, QIcon(avatar));
+    pMessageLog->updateAvatar(lpszUserId, lpszFilePath);
 }
 
 void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
@@ -250,14 +384,17 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
                 pMessageLog->abortPendingFileOperations();   //Behave the same as actually going offline.
 			peerStatuses.insert(senderId, data);
             updateButtonStates();
+
+            QTreeWidgetItem* pItem = getUserItem(&senderId, ui.tvUserListPeers);    //Bandaid fix for remote user going offline status update.
+            if(pItem) updateStatusImage(pItem, &data);
 		}
 		break;
     case MT_Avatar:
-		data = pMessage->data(XN_FILEPATH);
-		// this message may come with or without user id. NULL user id means avatar change
-		// by local user, while non NULL user id means avatar change by a peer.
-		pMessageLog->updateAvatar(&senderId, &data);
-		break;
+        data = pMessage->data(XN_FILEPATH);
+        // this message may come with or without user id. NULL user id means avatar change
+        // by local user, while non NULL user id means avatar change by a peer.
+        setUserAvatar(&senderId, &data);
+        break;
 	case MT_UserName:
 		data = pMessage->data(XN_NAME);
         if(peerNames.contains(senderId)) {
@@ -265,7 +402,7 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
             pMessageLog->peerName = data;
         }
 		pMessageLog->updateUserName(&senderId, &data);
-		break;
+        break;
 	case MT_Failed:
 		appendMessageLog(type, lpszUserId, &senderName, pMessage);
 		break;
@@ -326,6 +463,9 @@ void lmFormChat::updateButtonStates() {
     pAudioAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Audio));
     pVideoAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Video));
     pHangUpAction->setEnabled(peerOnline && bCallBusy && (peerCaps.value(peerId) & UC_Video));;
+    ui.btnMicrophone->setEnabled(peerOnline && bCallBusy && (currentCallType == MT_Audio || currentCallType == MT_Video));
+    ui.btnSpeaker->setEnabled(peerOnline && bCallBusy && (currentCallType == MT_Audio || currentCallType == MT_Video));
+    ui.btnCamera->setEnabled(peerOnline && bCallBusy && (currentCallType == MT_Audio || currentCallType == MT_Video));
 }
 
 void lmFormChat::connectionStateChanged(bool connected) {
@@ -343,6 +483,7 @@ void lmFormChat::settingsChanged(void) {
 	pSoundPlayer->settingsChanged();
 	if(localName.compare(pLocalUser->name) != 0) {
 		localName = pLocalUser->name;
+        updateUser(pLocalUser);
 		pMessageLog->updateUserName(&localId, &localName);
 	}
 
@@ -883,9 +1024,9 @@ void lmFormChat::processStreamOp(MessageType type, MessageXml *pMessage) {
     switch(streamOp) {
     case SO_Accept:
         if (type == MT_Audio) {
-            emit callConnected(type);  // future: init PCM/Opus
+            emit callConnected(type);
         } else if (type == MT_Video) {
-            emit callConnected(type);  // future: init VPX+Opus mux
+            emit callConnected(type);  // TODO init VPX+Opus mux
         }
         break;
     case SO_Decline:
@@ -976,13 +1117,7 @@ QString lmFormChat::getWindowTitle(void) {
 	}
 
 	//	remove the final comma and space
-	title.remove(title.length() - 2, 2);
-	title.append(" - ");
-	title.append(tr("Conversation"));
-    title.append(" (");
-    title.append(tr("Encrypted"));
-    title.append(")");
-	return title;
+    return title.left(title.length() - 2) + " - " + tr("Conversation") + " (" + tr("Encrypted") + ")";
 }
 
 void lmFormChat::setMessageFont(QFont& font) {

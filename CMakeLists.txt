@@ -22,7 +22,7 @@ endif()
 #Implement group setting
 #Add opus voice chat
 #Add vp8 video chat / desktop sharing
-#Merge chat, public chat, group chat, tsransfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
+#Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
 
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
@@ -42,3 +42,6 @@ endif()
 #File transfers dont have a timestamp parameter, but they generate their own.
 #Chatwindows save their geometry even when they are maximized, that should be temporary.
 #Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work.
+#While A and B are in a call, C calling one of them will end their call. Their chatlog wont show anything, but C will show call declined.
+#While A and B are in a call, a chatwindow with C will have hangup button enabled, but the button wont do anything.
+#Remote user going stealth doesnt remove them from chatroom.

@@ -53,6 +53,9 @@ public:
 
 	void init(User* pLocalUser, User* pRemoteUser, bool connected);
     void stop(void);
+    void addUser(User* pUser);
+    void updateUser(User* pUser);
+    void removeUser(QString* lpszUserId);
 	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(bool connected);
 	void settingsChanged(void);
@@ -116,10 +119,17 @@ private:
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
     void updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus);
+    QTreeWidgetItem* getUserItem(QString* lpszUserId, lmWidgetUserTree *pTree);
+    QTreeWidgetItem* getGroupItem(QString* lpszGroupId, lmWidgetUserTree *pTree);
+    void setUserAvatar(QString* lpszUserId, QString* lpszFilePath = 0);
 	void setChatState(ChatState newChatState);
     void updateButtonStates();
+    void updateUserLists();
     bool handleClipboardPaste(void);
     void nudge(bool send = false);
+    void btnMicrophone_toggle();
+    void btnSpeaker_toggle();
+    void btnCamera_toggle();
 
 	QString localName;
 	QHash<QString, QString> peerNames;
@@ -158,6 +168,12 @@ private:
     bool bCallBusy = false;
     QString currentCallId;
     MessageType currentCallType;
+    QString GroupId = "PARTICIPANTS";
+    const qint64 pauseTime = 3000;
+
+    bool micActive = true;
+    bool speakerActive = true;
+    bool cameraActive = true;
 };
 
 #endif // AFORMCHAT_H

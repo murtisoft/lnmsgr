@@ -1,10 +1,10 @@
 Notes
 ===========================
-I think I have finally managed to solve encryption and unicode issues. (for the last time, hopefully)
+Project related todo list and known issues are written down in main cmakelists. Any help would be much appreciated. Also, could someone please populate cmake scripts for linux and mac? Pretty please?
 
 I would like to maintain compatibility between this and old versions, while adding more in the future. 
 
-I would discourage translators from contributing for now, the interface is constantly changing.
+Translators are discouraged from contributing for now, the interface is frequently changing.
 
 Why LAN Messenger? (2026)
 ============================

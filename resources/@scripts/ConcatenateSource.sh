@@ -8,18 +8,24 @@
 System="//Win 11, Qt Creator 18.0.1, Qt 6.10.1, MinGW 64 bit, Cmake"
 Sources=../../sources
 Output=~/Desktop/LanMsg.cpp
-SplitAtLine=			#Leave it empty not to split
-Exclude=(
-    "aformabout.cpp"			"aformbroadcast.cpp"			"aformchatroom.cpp"
-	"aformhistory.cpp"			"aformsettings.cpp"				"aformtransfer.cpp"
-	"aformuserinfo.cpp"			"aformuserselect.cpp"
+SplitAtLine=0			#Set to 0 to disable splitting.
+Exclude=(				#➤Add a character to disable exclusion
+	"aformabout.cpp"				"aformbroadcast.cpp"			"➤aformchat.cpp"
+	"aformchatroom.cpp"				"aformhistory.cpp"				"➤aformmain.cpp"
+	"aformsettings.cpp"				"aformtransfer.cpp"				"aformuserinfo.cpp"
+	"aformuserselect.cpp"
 	"definitionssettings.cpp"
 	"historydatabase.cpp"
-	"main.cpp"
-	"opensslhandler.cpp"
-	"sharedchatfunctions.cpp"	"shareduifunctions.cpp"			"soundplayer.cpp"
-	"translatabletext.cpp"		"translationloader.cpp"
-	"widgetimagepicker.cpp"		"widgettransferlist.cpp"		"widgetusertree.cpp"
+	"➤lmcore.cpp"
+	"main.cpp"						"messaging.cpp"					"messagingfileproc.cpp"
+	"messagingproc.cpp"
+	"➤networkdatagram.cpp"			"networkinterface.cpp"			"➤networkstreamer.cpp"
+	"networktcp.cpp"				"networkudp.cpp"
+	"opensslhandler.cpp"			"opushandler.cpp"
+	"sharedchatfunctions.cpp"		"shareduifunctions.cpp"			"soundplayer.cpp"
+	"translatabletext.cpp"			"translationloader.cpp"
+	"widgetchatlog.cpp"				"widgetimagepicker.cpp"			"widgettransferlist.cpp"
+	"widgetusertree.cpp"
 	"xmlhandler.cpp"
 	"zdebuglog.cpp"
     "*.h"						"*.ui"
@@ -33,7 +39,6 @@ cd $Sources
     echo "$System"
 for f in !($pat); do
     [[ -d "$f" ]] && continue
-		[[ -d "$f" || $f =~ $PATTERN ]] && continue
         echo "//File: $f"
 		# Removes block comments, inline comments, empty lines and includes
         awk '
@@ -47,11 +52,18 @@ for f in !($pat); do
     done
 } > "$Output"
 
-if [[ -n "$SplitAtLine" ]]; then
+if [[ "$SplitAtLine" -gt 0 ]]; then
     total=$(wc -l < "$Output")
     parts=$(( (total + SplitAtLine - 1) / SplitAtLine ))
     base="${Output%.*}"
     ext="${Output##*.}"
+	if [[ $(( (total + SplitAtLine - 1) / SplitAtLine )) -gt 10 ]]; then
+		echo    "Error: Would create too many files ($parts). Maximum is 10."
+		echo    "Increase SplitAtLine."
+		echo    ""
+		read -p "Press enter to continue..."
+		exit 1
+	fi
     split -l "$SplitAtLine" --numeric-suffixes=1 --suffix-length=${#parts} "$Output" "${base}_part"
     for f in "${base}_part"*; do
         mv "$f" "${f}.${ext}"

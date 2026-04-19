@@ -327,6 +327,7 @@ void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMes
 		pMessaging->sendMessage(type, lpszUserId, pMessage);
 		processPublicMessage(type, lpszUserId, pMessage);
 		routeGroupMessage(type, lpszUserId, pMessage);
+        routeMessage(type, lpszUserId, pMessage);
 		break;
 	case MT_Refresh:
 		pMessaging->update();
@@ -530,12 +531,12 @@ void lmCore::processMessage(MessageType type, QString* lpszUserId, MessageXml* p
 		pMainWindow->addUser(pMessaging->getUser(lpszUserId));
 		processPublicMessage(type, lpszUserId, pMessage);
 		break;
-	case MT_Depart:
-		pMainWindow->removeUser(lpszUserId);
+    case MT_Depart:
+        pMainWindow->removeUser(lpszUserId);
         processPublicMessage(type, lpszUserId, pMessage);
         routeMessage(type, lpszUserId, pMessage);
-		routeGroupMessage(type, lpszUserId, pMessage);
-		break;
+        routeGroupMessage(type, lpszUserId, pMessage);
+        break;
 	case MT_Status:
 	case MT_UserName:
 	case MT_Note:
@@ -682,54 +683,59 @@ void lmCore::processFile(MessageType type, QString *lpszUserId, MessageXml* pMes
 }
 
 void lmCore::routeMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
-	bool windowExists = false;
+    bool windowExists = false;
     bool needsNotice = (type == MT_Message || type == MT_Broadcast || type == MT_Failed
-        || (type == MT_File && pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
-        || (type == MT_Folder && pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
-        || (type == MT_Audio  && pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request])
-        || (type == MT_Video  && pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request])
-        || type == MT_GroupMessage);
+                        || (type == MT_File && pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
+                        || (type == MT_Folder && pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
+                        || (type == MT_Audio  && pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request])
+                        || (type == MT_Video  && pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request])
+                        || type == MT_GroupMessage);
 
-	//	If no specific user is specified, send this message to all windows
-	if(!lpszUserId) {
-		for(int index = 0; index < chatWindows.count(); index++) {
-			chatWindows[index]->receiveMessage(type, lpszUserId, pMessage);
-		}
-	} else {
+    //	If no specific user is specified, send this message to all windows
+    if(!lpszUserId) {
+        for(int index = 0; index < chatWindows.count(); index++) {
+            if(type == MT_Status || type == MT_Note)
+                chatWindows[index]->updateUser(pMessaging->localUser);
+            chatWindows[index]->receiveMessage(type, lpszUserId, pMessage);
+        }
+    } else {
         QString threadId = pMessage ? pMessage->data(XN_THREAD) : QString();
-		
-		switch(type) {
+        switch(type) {
         case MT_Avatar:
-		case MT_Status:
-		case MT_UserName:
-			for(int index = 0; index < chatWindows.count(); index++)
+        case MT_Status:
+        case MT_Note:
+        case MT_UserName:
+            for(int index = 0; index < chatWindows.count(); index++)
                 if(chatWindows[index]->peerIds.contains(*lpszUserId)
-                        || chatWindows[index]->localId.compare(*lpszUserId) == 0)
-					chatWindows[index]->receiveMessage(type, lpszUserId, pMessage);
-			break;
-		default:
-			for(int index = 0; index < chatWindows.count(); index++) {
+                    || chatWindows[index]->localId.compare(*lpszUserId) == 0) {
+                    if(type != MT_Avatar)
+                        chatWindows[index]->updateUser(pMessaging->getUser(lpszUserId));
+                    chatWindows[index]->receiveMessage(type, lpszUserId, pMessage);
+                }
+            break;
+        default:
+            for(int index = 0; index < chatWindows.count(); index++) {
                 if(chatWindows[index]->peerIds.contains(*lpszUserId)
-                        && chatWindows[index]->threadId == threadId) {
-					chatWindows[index]->receiveMessage(type, lpszUserId, pMessage);
-					if(needsNotice)
-						showChatWindow(chatWindows[index], messageTop, needsNotice);
-					windowExists = true;
-					break;
-				}
-			}
-			break;
-		}
-	}
+                    && chatWindows[index]->threadId == threadId) {
+                    chatWindows[index]->receiveMessage(type, lpszUserId, pMessage);
+                    if(needsNotice)
+                        showChatWindow(chatWindows[index], messageTop, needsNotice);
+                    windowExists = true;
+                    break;
+                }
+            }
+            break;
+        }
+    }
 
-	//	create a new window if no chat window with this user exists and the
-	//	incoming message is of type that needs notice
-	if(!windowExists && needsNotice) {
-		createChatWindow(lpszUserId);
-		chatWindows.last()->receiveMessage(type, lpszUserId, pMessage);
-		if(needsNotice)
-			showChatWindow(chatWindows.last(), messageTop, needsNotice);
-	}
+    //	create a new window if no chat window with this user exists and the
+    //	incoming message is of type that needs notice
+    if(!windowExists && needsNotice) {
+        createChatWindow(lpszUserId);
+        chatWindows.last()->receiveMessage(type, lpszUserId, pMessage);
+        if(needsNotice)
+            showChatWindow(chatWindows.last(), messageTop, needsNotice);
+    }
 }
 
 void lmCore::routeGroupMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {

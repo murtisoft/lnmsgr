@@ -77,7 +77,6 @@ public:
 	void setCheckable(bool enable);
 	UserListView view(void);
 	void setView(UserListView view);
-    void setInteractive(bool enable) { isInteractive = enable; }
     QSize sizeHint() const;
 
 signals:
@@ -100,8 +99,9 @@ private:
 	QTreeWidgetItem* dragItem;
 	bool expanded;
 	bool isCheckable;
-    bool isInteractive;
 	UserListView viewType;
+    void rowsInserted(const QModelIndex& parent, int start, int end);
+    void rowsRemoved(const QModelIndex& parent, int first, int last);
 };
 
 #endif // WIDGETUSERTREE_H

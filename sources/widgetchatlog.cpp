@@ -1061,7 +1061,7 @@ void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	if(!useDefaults && trimMessage)
 		*lpszMessage = lpszMessage->trimmed();
 
-    // normalize backslash UNC to forward slash, which means you cant type backspace unfortunately.
+    // normalize backslash UNC to forward slash, which means you cant type backslash unfortunately.
     lpszMessage->replace('\\', '/');
 
 	//	The url detection regexps only work with plain text, so link detection is done before
@@ -1097,21 +1097,21 @@ if(!useDefaults && pathToLink) {
     }
 
 //qDebug().noquote() << "\r\n" << QString(*lpszMessage).replace("\n", "\r\n") << "\r\n";
-/*  TODO This part needs expansion. OH MY GOD WHAT A NIGHTMARE!
+/*  TODO This part needs expansion.
 TEST CASES
-00 \\Murticom-2026\e\ss.png             pathToLink      Works as expected
-01 //Murticom-2026/e/ss.png             pathToLink      Works as expected
-02 \\Murticom-2026\e/ss.png             pathToLink      Works as expected
-03 \\Murticom-2026\e\S p a c e.png      ----------      Not covered, breaks at first space.
-04 "\\Murticom-2026\e\S p a c e.png"    pathToLink      Works as expected
-05 \\Murticom-2026\e\Ünıcöde.png        pathToLink      Works as expected
+00 \\Share\e\Image.png                  pathToLink      Works as expected
+01 //Share/e/Image.png                  pathToLink      Works as expected
+02 \\Share\e/Image.png                  pathToLink      Works as expected
+03 \\Share\e\I m a g e.png              ----------      Not covered, breaks at first space.
+04 "\\Share\e\I m a g e.png"            pathToLink      Works as expected
+05 \\Share\e\Ünıcöde.png                pathToLink      Works as expected
 06 smb:// for linux.                                    Havent decided yet
 07 %WINDIR%                                             Havent decided yet
-08 %USERPROFILE%\Documents\%USERNAME%_log.txt           Havent decided yet
-09 \\Murticom-2026\e\                   pathToLink      Works as expected
-10 //Murticom-2026/e/                   pathToLink      Works as expected
-11 \\Murticom-2026\e                    pathToLink      Works as expected
-12 //Murticom-2026/e                    pathToLink      Works as expected
+08 %USERPROFILE%\Folder\%USERNAME%_log.txt              Havent decided yet
+09 \\Share\e\                           pathToLink      Works as expected
+10 //Share/e/                           pathToLink      Works as expected
+11 \\Share\e                            pathToLink      Works as expected
+12 //Share/e                            pathToLink      Works as expected
 13 \\192.168.0.10\e                     pathToLink      Works as expected
 14 //192.168.0.10/e                     pathToLink      Works as expected
 15 https://github.com                   allowLinks      Works as expected
@@ -1124,7 +1124,7 @@ TEST CASES
 22 192.168.0.10:1111                    ----------      Not covered, Shows up as plain text
 23 http://192.168.0.20:1111/            allowLinks      Works as expected
 24 ftp.debian.org                       ----------      Not covered, Shows up as plain text
-25 file:///E:/ss.png                    ----------      This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
+25 file:///E:/Image.png                 ----------      This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
 26 file:///E:/_qtprojects               ----------      This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
 */
 

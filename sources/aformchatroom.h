@@ -97,8 +97,8 @@ private:
 	QString getWindowTitle(void);
 	void setMessageFont(QFont& font);
 	void updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus);
-	QTreeWidgetItem* getUserItem(QString* lpszUserId);
-	QTreeWidgetItem* getGroupItem(QString* lpszGroupId);
+    QTreeWidgetItem* getUserItem(QString* lpszUserId, lmWidgetUserTree* pTree);
+    QTreeWidgetItem* getGroupItem(QString* lpszGroupId, lmWidgetUserTree* pTree);
 	void setUserAvatar(QString* lpszUserId, QString* lpszFilePath = 0);
 
 	QString localId;
@@ -128,6 +128,7 @@ private:
 	lmSoundPlayer* pSoundPlayer;
 	bool dataSaved;
 	bool windowLoaded;
+    QString GroupId = "PARTICIPANTS";
 };
 
 #endif // AFORMCHATROOM_H

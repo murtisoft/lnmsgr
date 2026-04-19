@@ -24,16 +24,15 @@
 #include "sharedchatfunctions.h"
 #include "historydatabase.h"
 
-QString GroupId = "PARTICIPANTS";
 
 lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags) {
 	ui.setupUi(this);
 	setAcceptDrops(true);
 
-    connect(ui.tvUserList, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+    connect(ui.tvUserListPeers, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
         this, SLOT(tvUserList_itemActivated(QTreeWidgetItem*,int)));
-    connect(ui.tvUserList, SIGNAL(itemContextMenu(QTreeWidgetItem*,QPoint&)),
+    connect(ui.tvUserListPeers, SIGNAL(itemContextMenu(QTreeWidgetItem*,QPoint&)),
         this, SLOT(tvUserList_itemContextMenu(QTreeWidgetItem*,QPoint&)));
 
 	pMessageLog = new lmChatLog(ui.wgtLog);
@@ -59,8 +58,9 @@ lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
 	ui.lblInfo->setAutoFillBackground(true);
 	ui.lblInfo->setVisible(false);
     pMessageLog->installEventFilter(this);
-    ui.tvUserList->installEventFilter(this);
+    ui.tvUserListPeers->installEventFilter(this);
 	ui.txtMessage->installEventFilter(this);
+    ui.btnAddContact->setIcon(QIcon(Helper::renderEmoji(Icons::Plus,24)));
 	infoFlag = IT_Ok;
 	dataSaved = false;
 	windowLoaded = false;
@@ -96,18 +96,31 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
 
 	pSoundPlayer = new lmSoundPlayer();
 
-	ui.tvUserList->setIconSize(QSize(16, 16));
-    ui.tvUserList->header()->setSectionsMovable(false);
-	ui.tvUserList->header()->setStretchLastSection(false);
-    ui.tvUserList->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui.tvUserListPeers->setIconSize(QSize(16, 16));
+    ui.tvUserListPeers->header()->setSectionsMovable(false);
+    ui.tvUserListPeers->header()->setStretchLastSection(false);
+    ui.tvUserListPeers->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 
-	lmWidgetUserTreeGroupItem *pItem = new lmWidgetUserTreeGroupItem();
-	pItem->setData(0, IdRole, GroupId);
-	pItem->setData(0, TypeRole, "Group");
-	pItem->setText(0, "Participants");
-	pItem->setSizeHint(0, QSize(0, 22));
-	ui.tvUserList->addTopLevelItem(pItem);
-	ui.tvUserList->expandAll();
+    lmWidgetUserTreeGroupItem *pGroupRemote = new lmWidgetUserTreeGroupItem();
+    pGroupRemote->setData(0, IdRole, GroupId);
+    pGroupRemote->setData(0, TypeRole, "Group");
+    pGroupRemote->setText(0, "Participants");
+    pGroupRemote->setSizeHint(0, QSize(0, 0));         //Setting it to 0,0 instead of 0,22 is a bodge to hide the participants group.
+    ui.tvUserListPeers->addTopLevelItem(pGroupRemote);
+    ui.tvUserListPeers->expandAll();
+
+    ui.tvUserListLocal->setIconSize(QSize(16, 16));
+    ui.tvUserListLocal->header()->setSectionsMovable(false);
+    ui.tvUserListLocal->header()->setStretchLastSection(false);
+    ui.tvUserListLocal->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    lmWidgetUserTreeGroupItem *pGroupLocal = new lmWidgetUserTreeGroupItem();
+    pGroupLocal->setData(0, IdRole, GroupId);
+    pGroupLocal->setData(0, TypeRole, "Group");
+    pGroupLocal->setText(0, "Participants");
+    pGroupLocal->setSizeHint(0, QSize(0, 0));         //bodge to hide the group.
+    ui.tvUserListLocal->addTopLevelItem(pGroupLocal);
+    ui.tvUserListLocal->expandAll();
 
 	pSettings = new lmSettings();
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
@@ -123,11 +136,9 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
 	font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 
-
     restoreGeometry(pSettings->value(IDS_WINDOWPUBLICCHAT).toByteArray());
     ui.vSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATV).toByteArray());
     ui.hSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATH).toByteArray());
-
 
 	setUIText();
 
@@ -137,13 +148,13 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
     pMessageLog->initMessageLog();
 
 	int viewType = pSettings->value(IDS_USERLISTVIEW, IDS_USERLISTVIEW_VAL).toInt();
-	ui.tvUserList->setView((UserListView)viewType);
+    ui.tvUserListPeers->setView((UserListView)viewType);
 
 	//	Destroy the window when it closes if in group mode
 	setAttribute(Qt::WA_DeleteOnClose, groupMode);
 
 	//	Add the local user as a participant
-	addUser(pLocalUser);
+    addUser(pLocalUser);
 }
 
 void lmFormChatRoom::show(void) {
@@ -171,109 +182,107 @@ void lmFormChatRoom::stop(void) {
 }
 
 void lmFormChatRoom::addUser(User* pUser) {
-	if(!pUser)
-		return;
+    if(!pUser)
+        return;
 
-	// Do not add user if user's version is 1.2.10 or less. These versions do not
-	// support Public Chat feature.
-	if(Helper::compareVersions(pUser->version, "1.2.10") <= 0)
-		return;
+    // Do not add user if user's version is 1.2.10 or less. These versions do not
+    // support Public Chat feature.
+    if(Helper::compareVersions(pUser->version, "1.2.10") <= 0)
+        return;
 
-	//	Do not add user if user is already in the list of participants
-	if(peerIds.contains(pUser->id))
-		return;
+    bool isLocal = (pUser->id.compare(localId) == 0);
+    lmWidgetUserTree* pTree = isLocal ? ui.tvUserListLocal : ui.tvUserListPeers;
 
-	peerIds.insert(pUser->id, pUser->id);
-	peerNames.insert(pUser->id, pUser->name);
+    // Check if already added in the correct tree
+    if(getUserItem(&pUser->id, pTree))
+        return;
 
-	int index = Helper::statusIndexFromCode(pUser->status);
+    if(!isLocal) {
+        peerIds.insert(pUser->id, pUser->id);
+        peerNames.insert(pUser->id, pUser->name);
+    }
 
-	lmWidgetUserTreeUserItem *pItem = new lmWidgetUserTreeUserItem();
-	pItem->setData(0, IdRole, pUser->id);
-	pItem->setData(0, TypeRole, "User");
-	pItem->setData(0, StatusRole, index);
-	pItem->setData(0, SubtextRole, pUser->note);
-	pItem->setText(0, pUser->name);
+    int index = Helper::statusIndexFromCode(pUser->status);
+    lmWidgetUserTreeUserItem *pItem = new lmWidgetUserTreeUserItem();
+    pItem->setData(0, IdRole, pUser->id);
+    pItem->setData(0, TypeRole, "User");
+    pItem->setData(0, StatusRole, index);
+    pItem->setData(0, SubtextRole, pUser->note);
+    pItem->setText(0, pUser->name);
+    if(index != -1)
+        pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
 
-	if(index != -1)
-		pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
+    lmWidgetUserTreeGroupItem* pGroupItem = (lmWidgetUserTreeGroupItem*)getGroupItem(&GroupId, pTree);
+    pGroupItem->addChild(pItem);
+    pGroupItem->sortChildren(0, Qt::AscendingOrder);
 
-	lmWidgetUserTreeGroupItem* pGroupItem = (lmWidgetUserTreeGroupItem*)getGroupItem(&GroupId);
-	pGroupItem->addChild(pItem);
-	pGroupItem->sortChildren(0, Qt::AscendingOrder);
-
-	// this should be called after item has been added to tree
+    // this should be called after item has been added to tree
     setUserAvatar(&pUser->id, &pUser->avatarPath);
 
-	if(groupMode) {
-		MessageXml xmlMessage;
-		xmlMessage.addData(XN_THREAD, threadId);
-		xmlMessage.addData(XN_GROUPMSGOP, GroupMsgOpNames[GMO_Join]);
+    if(groupMode && !isLocal) {
+        MessageXml xmlMessage;
+        xmlMessage.addData(XN_THREAD, threadId);
+        xmlMessage.addData(XN_GROUPMSGOP, GroupMsgOpNames[GMO_Join]);
+        appendMessageLog(MT_Join, &pUser->id, &pUser->name, &xmlMessage);
+        setWindowTitle(getWindowTitle());
+        emit messageSent(MT_GroupMessage, NULL, &xmlMessage);
+    }
 
-		appendMessageLog(MT_Join, &pUser->id, &pUser->name, &xmlMessage);
-		setWindowTitle(getWindowTitle());
-		emit messageSent(MT_GroupMessage, NULL, &xmlMessage);
-	}
-
-	//	Local user cannot participate in public chat if status is offline
-	if(!groupMode && pUser->id.compare(localId) == 0) {
-		bool offline = (statusType[Helper::statusIndexFromCode(pUser->status)] == StatusTypeOffline);
-		ui.txtMessage->setEnabled(!offline);
-		ui.txtMessage->setFocus();
-	}
+    //	Local user cannot participate in public chat if status is offline
+    if(isLocal) {
+        bool offline = (statusType[Helper::statusIndexFromCode(pUser->status)] == StatusTypeOffline);
+        ui.txtMessage->setEnabled(!offline);
+        ui.txtMessage->setFocus();
+    }
 }
 
 void lmFormChatRoom::updateUser(User* pUser) {
-	if(!pUser)
-		return;
+    if(!pUser)
+        return;
+    QTreeWidgetItem* pItem = getUserItem(&pUser->id, ui.tvUserListLocal);
+    if(!pItem)
+        pItem = getUserItem(&pUser->id, ui.tvUserListPeers);
+    if(pItem) {
+        updateStatusImage(pItem, &pUser->status);
+        pItem->setData(0, StatusRole, Helper::statusIndexFromCode(pUser->status));
+        pItem->setData(0, SubtextRole, pUser->note);
+        pItem->setText(0, pUser->name);
+        pItem->parent()->sortChildren(0, Qt::AscendingOrder);
+    }
+    if(groupMode)
+        setWindowTitle(getWindowTitle());
 
-	QTreeWidgetItem* pItem = getUserItem(&pUser->id);
-	if(pItem) {
-		updateStatusImage(pItem, &pUser->status);
-		pItem->setData(0, StatusRole, Helper::statusIndexFromCode(pUser->status));
-		pItem->setData(0, SubtextRole, pUser->note);
-		pItem->setText(0, pUser->name);
-		QTreeWidgetItem* pGroupItem = pItem->parent();
-		pGroupItem->sortChildren(0, Qt::AscendingOrder);
-	}
-
-	if(groupMode)
-		setWindowTitle(getWindowTitle());
-
-	//	Local user cannot participate in public chat if status is offline
-	if(!groupMode && pUser->id.compare(localId) == 0) {
-		bool offline = (statusType[Helper::statusIndexFromCode(pUser->status)] == StatusTypeOffline);
-		ui.txtMessage->setEnabled(!offline);
-		ui.txtMessage->setFocus();
-	}
+    //	Local user cannot participate in public chat if status is offline
+    if(pUser->id.compare(localId) == 0) {
+        bool offline = (statusType[Helper::statusIndexFromCode(pUser->status)] == StatusTypeOffline);
+        ui.txtMessage->setEnabled(!offline);
+        ui.txtMessage->setFocus();
+    }
 }
 
 void lmFormChatRoom::removeUser(QString* lpszUserId) {
-	QTreeWidgetItem* pItem = getUserItem(lpszUserId);
-	if(!pItem)
-		return;
+    QTreeWidgetItem* pItem = getUserItem(lpszUserId, ui.tvUserListLocal);
+    if(!pItem)
+        pItem = getUserItem(lpszUserId, ui.tvUserListPeers);
+    if(!pItem)
+        return;
+    QTreeWidgetItem* pGroup = pItem->parent();
+    pGroup->removeChild(pItem);
+    QString userId = peerIds.value(*lpszUserId);
+    QString userName = peerNames.value(*lpszUserId);
+    peerIds.remove(*lpszUserId);
+    peerNames.remove(*lpszUserId);
+    if(groupMode) {
+        MessageXml xmlMessage;
+        xmlMessage.addData(XN_THREAD, threadId);
+        xmlMessage.addData(XN_GROUPMSGOP, GroupMsgOpNames[GMO_Leave]);
+        appendMessageLog(MT_Leave, &userId, &userName, &xmlMessage);
+        setWindowTitle(getWindowTitle());
+    }
 
-	QTreeWidgetItem* pGroup = pItem->parent();
-	pGroup->removeChild(pItem);
-
-	QString userId = peerIds.value(*lpszUserId);
-	QString userName = peerNames.value(*lpszUserId);
-
-	peerIds.remove(*lpszUserId);
-	peerNames.remove(*lpszUserId);
-
-	if(groupMode) {
-		MessageXml xmlMessage;
-		xmlMessage.addData(XN_THREAD, threadId);
-		xmlMessage.addData(XN_GROUPMSGOP, GroupMsgOpNames[GMO_Leave]);
-
-		appendMessageLog(MT_Leave, &userId, &userName, &xmlMessage);
-		setWindowTitle(getWindowTitle());
-	}
-
-	// If the local user is removed for some reason, prevent sending any further messages
-	if(userId.compare(localId) == 0)
-		ui.txtMessage->setEnabled(false);
+    // If the local user is removed for some reason, prevent sending any further messages
+    if(userId.compare(localId) == 0)
+        ui.txtMessage->setEnabled(false);
 }
 
 void lmFormChatRoom::receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
@@ -353,7 +362,7 @@ void lmFormChatRoom::settingsChanged(void) {
 	}
 
 	int viewType = pSettings->value(IDS_USERLISTVIEW, IDS_USERLISTVIEW_VAL).toInt();
-	ui.tvUserList->setView((UserListView)viewType);
+    ui.tvUserListPeers->setView((UserListView)viewType);
 }
 
 void lmFormChatRoom::selectContacts(QStringList* selectedContacts) {
@@ -432,12 +441,12 @@ void lmFormChatRoom::closeEvent(QCloseEvent* pEvent) {
 }
 
 void lmFormChatRoom::userConversationAction_triggered(void) {
-	QString userId = ui.tvUserList->currentItem()->data(0, IdRole).toString();
+    QString userId = ui.tvUserListPeers->currentItem()->data(0, IdRole).toString();
 	emit chatStarting(&userId);
 }
 
 void lmFormChatRoom::userFileAction_triggered(void) {
-	QString userId = ui.tvUserList->currentItem()->data(0, IdRole).toString();
+    QString userId = ui.tvUserListPeers->currentItem()->data(0, IdRole).toString();
 	QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
 	QString fileName = QFileDialog::getOpenFileName(this, QString(), dir);
 	if(!fileName.isEmpty()) {
@@ -451,7 +460,7 @@ void lmFormChatRoom::userFileAction_triggered(void) {
 }
 
 void lmFormChatRoom::userInfoAction_triggered(void) {
-	QString userId = ui.tvUserList->currentItem()->data(0, IdRole).toString();
+    QString userId = ui.tvUserListPeers->currentItem()->data(0, IdRole).toString();
 	MessageXml xmlMessage;
 	xmlMessage.addData(XN_QUERYOP, QueryOpNames[QO_Get]);
 	emit messageSent(MT_Query, &userId, &xmlMessage);
@@ -585,27 +594,18 @@ void lmFormChatRoom::createToolBar(void) {
 	ui.lblDividerBottom->setBackgroundRole(QPalette::Dark);
 	ui.lblDividerBottom->setAutoFillBackground(true);
 
-	if(groupMode) {
-		QToolBar* pContactsBar = new QToolBar(ui.wgtContactsBar);
-        pContactsBar->setStyleSheet("QToolBar { border: 0px }");
-		pContactsBar->setIconSize(QSize(24, 24));
-		ui.contactsBarLayout->addWidget(pContactsBar);
-
-        addContactAction = pContactsBar->addAction(Helper::renderEmoji(Icons::Plus,16), "&Add Contacts...",
-												   this, SLOT(addContactAction_triggered()));
-
-		QToolButton* pButton = (QToolButton*)pContactsBar->widgetForAction(addContactAction);
-		pButton->setAutoRaise(false);
-	}
+    if(groupMode) {
+        ui.btnAddContact->setEnabled(true);
+        connect(ui.btnAddContact, &QAbstractButton::clicked, this, &lmFormChatRoom::addContactAction_triggered);
+    } else {
+        ui.btnAddContact->setVisible(false);
+    }
 }
 
 void lmFormChatRoom::setUIText(void) {
 	ui.retranslateUi(this);
 
 	setWindowTitle(getWindowTitle());
-
-	QTreeWidgetItem* pGroupItem = getGroupItem(&GroupId);
-	pGroupItem->setText(0, tr("Participants"));
 
 	userChatAction->setText(tr("&Conversation"));
 	userFileAction->setText(tr("Send &File"));
@@ -615,8 +615,7 @@ void lmFormChatRoom::setUIText(void) {
 	pSaveAction->setToolTip(tr("Save this conversation"));
 
 	if(groupMode) {
-		addContactAction->setText(tr("&Add Contacts..."));
-		addContactAction->setToolTip(tr("Add people to this conversation"));
+        ui.btnAddContact->setToolTip(tr("Add people to this conversation"));
 	}
 
 	showStatus(IT_Ok, true);	//	this will force the info label to retranslate
@@ -729,35 +728,34 @@ void lmFormChatRoom::updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStat
 		pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
 }
 
-QTreeWidgetItem* lmFormChatRoom::getUserItem(QString* lpszUserId) {
-	for(int topIndex = 0; topIndex < ui.tvUserList->topLevelItemCount(); topIndex++) {
-		for(int index = 0; index < ui.tvUserList->topLevelItem(topIndex)->childCount(); index++) {
-			QTreeWidgetItem* pItem = ui.tvUserList->topLevelItem(topIndex)->child(index);
-			if(pItem->data(0, IdRole).toString().compare(*lpszUserId) == 0)
-				return pItem;
-		}
-	}
-
-	return NULL;
+QTreeWidgetItem* lmFormChatRoom::getUserItem(QString* lpszUserId, lmWidgetUserTree* pTree) {
+    for(int topIndex = 0; topIndex < pTree->topLevelItemCount(); topIndex++) {
+        for(int index = 0; index < pTree->topLevelItem(topIndex)->childCount(); index++) {
+            QTreeWidgetItem* pItem = pTree->topLevelItem(topIndex)->child(index);
+            if(pItem->data(0, IdRole).toString().compare(*lpszUserId) == 0)
+                return pItem;
+        }
+    }
+    return NULL;
 }
 
-QTreeWidgetItem* lmFormChatRoom::getGroupItem(QString* lpszGroupId) {
-	for(int topIndex = 0; topIndex < ui.tvUserList->topLevelItemCount(); topIndex++) {
-		QTreeWidgetItem* pItem = ui.tvUserList->topLevelItem(topIndex);
-		if(pItem->data(0, IdRole).toString().compare(*lpszGroupId) == 0)
-			return pItem;
-	}
-
-	return NULL;
+QTreeWidgetItem* lmFormChatRoom::getGroupItem(QString* lpszGroupId, lmWidgetUserTree* pTree) {
+    for(int topIndex = 0; topIndex < pTree->topLevelItemCount(); topIndex++) {
+        QTreeWidgetItem* pItem = pTree->topLevelItem(topIndex);
+        if(pItem->data(0, IdRole).toString().compare(*lpszGroupId) == 0)
+            return pItem;
+    }
+    return NULL;
 }
 
 void lmFormChatRoom::setUserAvatar(QString* lpszUserId, QString* lpszFilePath) {
-    QTreeWidgetItem* pUserItem = getUserItem(lpszUserId);
+    QTreeWidgetItem* pUserItem = getUserItem(lpszUserId, ui.tvUserListLocal);
+    if(!pUserItem)
+        pUserItem = getUserItem(lpszUserId, ui.tvUserListPeers);
     if(!pUserItem || !lpszFilePath)
-		return;
-
+        return;
     QPixmap avatar(*lpszFilePath);
-    if (avatar.isNull())  return;
+    if(avatar.isNull()) return;
     avatar = avatar.scaled(QSize(32, 32), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     pUserItem->setData(0, AvatarRole, QIcon(avatar));
     pMessageLog->updateAvatar(lpszUserId, lpszFilePath);

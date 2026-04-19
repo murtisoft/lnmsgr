@@ -24,7 +24,7 @@
 
 lmWidgetUserTreeItem::lmWidgetUserTreeItem() : QTreeWidgetItem(UserType + 1) {
 	//	make item not user checkable
-	setFlags(flags() & ~Qt::ItemIsUserCheckable);
+    setFlags(flags() & ~Qt::ItemIsUserCheckable);
 }
 
 QRect lmWidgetUserTreeItem::checkBoxRect(const QRect& itemRect) {
@@ -84,8 +84,8 @@ void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 		//	Fill the background of the item with highlight color, and draw a border with a darker shade
         QColor fillColor = palette.color(QPalette::Highlight);
 		QColor borderColor = fillColor.darker(130);
-		painter->setPen(QPen(borderColor));
-		painter->setBrush(QBrush(fillColor));
+        painter->setPen(QPen(borderColor));
+        painter->setBrush(QBrush(fillColor));
 		itemRect.adjust(1, 1, -2, -1);
 		painter->drawRect(itemRect);
 
@@ -207,8 +207,10 @@ lmWidgetUserTree::lmWidgetUserTree(QWidget* parent) : QTreeWidget(parent) {
 	setItemDelegate(itemDelegate);
 
 	isCheckable = false;
-    isInteractive = true;
 	viewType = ULV_Detailed;
+
+    connect(this, &QTreeWidget::itemExpanded, this, &lmWidgetUserTree::updateGeometry);
+    connect(this, &QTreeWidget::itemCollapsed, this, &lmWidgetUserTree::updateGeometry);
 }
 
 bool lmWidgetUserTree::checkable(void) {
@@ -235,7 +237,6 @@ void lmWidgetUserTree::setView(UserListView view) {
 }
 
 void lmWidgetUserTree::mousePressEvent(QMouseEvent* event) {
-    if(!isInteractive) return;
 	if(event->button() == Qt::LeftButton) {
 		QTreeWidgetItem* item = itemAt(event->position().toPoint());
 
@@ -253,7 +254,10 @@ void lmWidgetUserTree::mousePressEvent(QMouseEvent* event) {
 			}
 			else if(dynamic_cast<lmWidgetUserTreeUserItem*>(item)) {
 				dragUser = true;
-				parentId = dragItem->parent()->data(0, IdRole).toString();
+                if(dragItem->parent())
+                    parentId = dragItem->parent()->data(0, IdRole).toString();
+                else
+                    parentId.clear();
 			}
 		}
 	}
@@ -347,14 +351,27 @@ void lmWidgetUserTree::keyPressEvent(QKeyEvent* event) {
 	}
 }
 
+void lmWidgetUserTree::rowsInserted(const QModelIndex& parent, int start, int end) {
+    QTreeWidget::rowsInserted(parent, start, end);
+    updateGeometry();
+}
+
+void lmWidgetUserTree::rowsRemoved(const QModelIndex& parent, int first, int last) {
+    QTreeWidget::rowsRemoved(parent, first, last);
+    updateGeometry();
+}
+
 QSize lmWidgetUserTree::sizeHint() const {
     int totalHeight = frameWidth() * 2;
-    qDebug() << "frameWidth:" << frameWidth() << "topLevelCount:" << topLevelItemCount();
     for(int i = 0; i < topLevelItemCount(); i++) {
         QTreeWidgetItem* item = topLevelItem(i);
-        bool isGroup = dynamic_cast<lmWidgetUserTreeGroupItem*>(item);
-        qDebug() << "item" << i << "isGroup:" << isGroup << "expanded:" << item->isExpanded() << "children:" << item->childCount() << "text:" << item->text(0);
+        if(item->childCount() > 0) {
+            totalHeight += item->sizeHint(0).height();
+            if(item->isExpanded())
+                totalHeight += item->childCount() * itemViewHeight[viewType];
+        } else {
+            totalHeight += itemViewHeight[viewType];
+        }
     }
-    qDebug() << "total:" << totalHeight;
     return QSize(QTreeWidget::sizeHint().width(), totalHeight);
 }

@@ -5,7 +5,7 @@
 ::	Edit the variables given at the top to your liking.
 ::	Drop it into the executable directory on Remote machine and run.
 ::================================================================================================
-set "Remote=\\Murticom-2026\e\_qtprojects\LanMessenger\build\Debug\LanMessenger.exe"
+set "Remote=\\192.168.0.10\e\_qtprojects\LanMessenger\build\Debug\LanMessenger.exe"
 set "Local=%~dp0LanMessenger.exe"
 ::================================================================================================
 

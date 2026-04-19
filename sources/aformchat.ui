@@ -237,7 +237,7 @@
        <item>
         <widget class="lmWidgetUserTree" name="tvUserListPeers">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -245,7 +245,7 @@
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>38</height>
+           <height>40</height>
           </size>
          </property>
          <property name="horizontalScrollBarPolicy">
@@ -405,27 +405,32 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>38</height>
+           <height>40</height>
           </size>
          </property>
-         <property name="baseSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
          </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
+         <property name="indentation">
+          <number>0</number>
          </property>
+         <property name="animated">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <attribute name="headerVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string notr="true">Contacts</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>
