@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LanMessenger VERSION 2026.11.0 LANGUAGES CXX)
+project(LanMessenger VERSION 2026.12.0 LANGUAGES CXX)
 include("resources/cmake/common.cmake")
 if(WIN32)
     include("resources/cmake/win.cmake")
@@ -41,9 +41,11 @@ endif()
 #Broadcasts arent logged into history.
 #Within the chatlog, first line of every message has its collusion box shadowed by the table above. I have found no solution other than leaving 1 line gap.
 #File transfers dont have a timestamp parameter, but they generate their own.
-#Chatwindows save their geometry even when they are maximized, that should be temporary.
 #Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work.
 #While A and B are in a call, C calling one of them will end their call. Their chatlog wont show anything, but C will show call declined.
 #While A and B are in a call, a chatwindow with C will have hangup button enabled, but the button wont do anything.
 #Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.
 #Disabling some sound effects doesnt work.
+#Some console parameters arent listed, some arent working properly.
+#Files and images can be pasted into the chatbox now, but the option in the context menu remains disabled. only Ctrl V works.
+#Vertical size hint (Auto sizing) for userlistview (public chat/chatroom) needs more work.

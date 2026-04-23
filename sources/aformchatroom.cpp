@@ -174,7 +174,7 @@ void lmFormChatRoom::stop(void) {
 		dataSaved = true;
 	}
 
-    if(windowLoaded) {
+    if(windowLoaded && !isMaximized()) {
 		pSettings->setValue(IDS_WINDOWPUBLICCHAT, saveGeometry());
 		pSettings->setValue(IDS_SPLITTERPUBLICCHATV, ui.vSplitter->saveState());
 		pSettings->setValue(IDS_SPLITTERPUBLICCHATH, ui.hSplitter->saveState());
@@ -426,6 +426,13 @@ void lmFormChatRoom::changeEvent(QEvent* pEvent) {
 }
 
 void lmFormChatRoom::closeEvent(QCloseEvent* pEvent) {
+    if(isMaximized()){                                                         //This is here because group chat doesnt stop the window, just hides it.
+        restoreGeometry(pSettings->value(IDS_WINDOWPUBLICCHAT).toByteArray());
+    }else{
+        pSettings->setValue(IDS_WINDOWPUBLICCHAT, saveGeometry());
+        pSettings->setValue(IDS_SPLITTERPUBLICCHATV, ui.vSplitter->saveState());
+        pSettings->setValue(IDS_SPLITTERPUBLICCHATH, ui.hSplitter->saveState());
+    }
 	if(groupMode) {
 		MessageXml xmlMessage;
 		xmlMessage.addData(XN_THREAD, threadId);

@@ -228,9 +228,11 @@ void lmFormChat::stop(void) {
             pMessageLog->saveMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));
         }
 	}
-    pSettings->setValue(IDS_WINDOWCHAT, saveGeometry());
-    pSettings->setValue(IDS_SPLITTERCHATH, ui.hSplitter->saveState());
-    pSettings->setValue(IDS_SPLITTERCHATV, ui.vSplitter->saveState());
+    if (!isMaximized()) {
+        pSettings->setValue(IDS_WINDOWCHAT, saveGeometry());
+        pSettings->setValue(IDS_SPLITTERCHATH, ui.hSplitter->saveState());
+        pSettings->setValue(IDS_SPLITTERCHATV, ui.vSplitter->saveState());
+    }
 }
 
 void lmFormChat::addUser(User* pUser) {
