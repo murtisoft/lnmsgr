@@ -189,18 +189,29 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 }
 
 void lmFormChat::btnMicrophone_toggle() {
-    micActive = !micActive;
-    ui.btnMicrophone->setIcon(QIcon(Helper::renderEmoji(Icons::Microphone, 24, micActive ? 0 : 1)));
+    micMuted = !micMuted;
+    ui.btnMicrophone->setIcon(QIcon(Helper::renderEmoji(Icons::Microphone, 24, micMuted ? 1 : 0)));
+    emit micToggled(micMuted);
 }
 
 void lmFormChat::btnSpeaker_toggle() {
-    speakerActive = !speakerActive;
-    ui.btnSpeaker->setIcon(QIcon(Helper::renderEmoji(Icons::Speaker, 24, speakerActive ? 0 : 1)));
+    speakerMuted = !speakerMuted;
+    ui.btnSpeaker->setIcon(QIcon(Helper::renderEmoji(Icons::Speaker, 24, speakerMuted ? 1 : 0)));
+    emit speakerToggled(speakerMuted);
 }
 
 void lmFormChat::btnCamera_toggle() {
-    cameraActive = !cameraActive;
-    ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder, 24, cameraActive ? 0 : 1)));
+    camMuted = !camMuted;
+    ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder, 24, camMuted ? 1 : 0)));
+}
+
+void lmFormChat::resetToggleButtons() {
+    micMuted = false;
+    speakerMuted = false;
+    camMuted = false;
+    ui.btnMicrophone->setIcon(QIcon(Helper::renderEmoji(Icons::Microphone, 24, 0)));
+    ui.btnSpeaker->setIcon(QIcon(Helper::renderEmoji(Icons::Speaker, 24, 0)));
+    ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder, 24)));
 }
 
 void lmFormChat::stop(void) {
@@ -445,6 +456,8 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 
 void lmFormChat::callPhaseChanged(bool busy) {
     bCallBusy = busy;
+    if (!busy)
+        resetToggleButtons();
     updateButtonStates();
 }
 

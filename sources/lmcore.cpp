@@ -618,9 +618,16 @@ void lmCore::callConnected(MessageType type) {
             User* pUser = pMessaging->getUser(&w->peerId);
         if (!m_audioStream) {
             m_audioStream = new lmAudioStream(this);
-            connect(m_audioStream, &lmAudioStream::micStateChanged, this, [this](bool active) {
-                pSoundPlayer->play(active ? SE_MicOn : SE_MicOff);
+            connect(m_audioStream, &lmAudioStream::micMuted, this, [this](bool muted) {
+                pSoundPlayer->play(muted ? SE_MicOff : SE_MicOn);
             });
+            connect(m_audioStream, &lmAudioStream::speakerMuted, this, [this](bool muted) {
+                pSoundPlayer->play(muted ? SE_SpeakerOff : SE_SpeakerOn);
+            });
+            connect(w, &lmFormChat::micToggled,
+                    m_audioStream, &lmAudioStream::setMicMuted);
+            connect(w, &lmFormChat::speakerToggled,
+                    m_audioStream, &lmAudioStream::setSpeakerMuted);
         }
         m_audioStream->start(QHostAddress(pUser->address),
                              pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt());

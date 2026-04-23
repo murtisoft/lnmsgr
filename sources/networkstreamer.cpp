@@ -45,7 +45,7 @@ void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort) {
     m_source = new QAudioSource(QMediaDevices::defaultAudioInput(), fmt, this);
     m_input  = m_source->start();
 
-    emit micStateChanged(true);
+    emit micMuted(false);
     connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onReadyRead);
 
     // Receive UDP, play to default speaker
@@ -82,7 +82,7 @@ void lmAudioStream::onReadyRead() {
 }
 
 void lmAudioStream::stop() {
-    emit micStateChanged(false);
+    emit micMuted(true);
     if (m_source) { m_source->stop(); delete m_source; m_source = nullptr; }
     if (m_sink)   { m_sink->stop();   delete m_sink;   m_sink   = nullptr; }
     if (m_sendSock) { m_sendSock->close(); delete m_sendSock; m_sendSock = nullptr; }
@@ -90,6 +90,22 @@ void lmAudioStream::stop() {
     m_input = m_output = nullptr;
 }
 
+void lmAudioStream::setMicMuted(bool muted) {
+    if (!m_source) return;
+    m_micMuted = muted;
+    muted ? m_source->suspend() : m_source->resume();
+    emit micMuted(muted);
+}
+
+void lmAudioStream::setSpeakerMuted(bool muted) {
+    if (!m_sink) return;
+    m_speakerMuted = muted;
+    muted ? m_sink->suspend() : m_sink->resume();
+    emit speakerMuted(muted);
+}
+
+void lmAudioStream::setCamMuted(bool muted) {
+}
 
 /****************************************************************************
 ** Class: FileSender

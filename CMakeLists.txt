@@ -15,6 +15,7 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for TODO within the project. 15 year old ones are renamed to TOD0
 
+#Call toggle buttons enabling/disabling needs work.
 #Unify font size setting.
 #Remove chat groups, instead add roles, set by peers themselves, which will act like global grouping.
 
@@ -44,4 +45,5 @@ endif()
 #Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work.
 #While A and B are in a call, C calling one of them will end their call. Their chatlog wont show anything, but C will show call declined.
 #While A and B are in a call, a chatwindow with C will have hangup button enabled, but the button wont do anything.
-#Remote user going stealth doesnt remove them from chatroom.
+#Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.
+#Disabling some sound effects doesnt work.

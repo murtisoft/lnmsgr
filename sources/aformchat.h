@@ -78,6 +78,8 @@ signals:
     void callRequested(MessageType type);
     void callConnected(MessageType type);
     void callEnded(MessageType type);
+    void micToggled(bool muted);
+    void speakerToggled(bool muted);
 
 protected:
 	bool eventFilter(QObject* pObject, QEvent* pEvent);
@@ -130,6 +132,7 @@ private:
     void btnMicrophone_toggle();
     void btnSpeaker_toggle();
     void btnCamera_toggle();
+    void resetToggleButtons();
 
 	QString localName;
 	QHash<QString, QString> peerNames;
@@ -171,9 +174,9 @@ private:
     QString GroupId = "PARTICIPANTS";
     const qint64 pauseTime = 3000;
 
-    bool micActive = true;
-    bool speakerActive = true;
-    bool cameraActive = true;
+    bool micMuted = false;
+    bool speakerMuted = false;
+    bool camMuted = false;
 };
 
 #endif // AFORMCHAT_H

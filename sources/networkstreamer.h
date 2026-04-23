@@ -40,7 +40,9 @@ class lmAudioStream : public QObject {
     Q_OBJECT
 
 signals:
-    void micStateChanged(bool active);
+    void micMuted(bool muted);
+    void speakerMuted(bool muted);
+    void camMuted(bool muted);
 
 public:
     explicit lmAudioStream(QObject* parent = nullptr);
@@ -48,6 +50,11 @@ public:
 
     void start(const QHostAddress& peerAddress, quint16 port);
     void stop();
+
+public slots:
+    void setMicMuted(bool muted);
+    void setSpeakerMuted(bool muted);
+    void setCamMuted(bool muted);
 
 private slots:
     void onReadyRead();
@@ -61,7 +68,9 @@ private:
     QUdpSocket*    m_recvSock = nullptr;
     QHostAddress   m_peerAddress;
     quint16        m_port    = 0;
-    bool           m_micActive = false;
+    bool           m_micMuted = false;
+    bool           m_speakerMuted = false;
+    bool           m_camMuted = false;
 
     static constexpr quint16 AUDIO_PORT_OFFSET = 1; // udpPort + 1
 };
