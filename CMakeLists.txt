@@ -13,10 +13,12 @@ endif()
 
 #——————————————————————————————————————————————————————————<< TO DO >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#Search for TODO within the project. 15 year old ones are renamed to TOD0
+#Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
-#Call toggle buttons enabling/disabling needs work.
+#Call toggle buttons enabling/disabling needs work. Buttons are enabled early, because the callphase is passed as a boolean.
 #Unify font size setting.
+#Get rid of all MessageBox errors. They interrupt user flow, they are unnecessary and dated.
+#Thinking of switching png to webp, but not sure how painful the transition will be.
 #Remove chat groups, instead add roles, set by peers themselves, which will act like global grouping.
 
 #Implement voice&video settings
@@ -24,7 +26,7 @@ endif()
 #Add opus voice chat
 #Add vp8 video chat / desktop sharing
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
-
+#    Encryption in the program only works 1 on 1. That kinda hinders those plans.
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

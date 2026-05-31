@@ -488,7 +488,7 @@ void MsgStream::bytesWritten(qint64 bytes) {
 		lmDebugLog::write("Warning: Socket write overrun");
 
 
-    // TOD0 handle situation when entire message is not written to stream in one write operation
+    //TOD0 handle situation when entire message is not written to stream in one write operation
 	//	The following code is not functional currently, hence commented out.
 	/*outData = outData.mid(outDataLen);
 	socket->write(outData);*/

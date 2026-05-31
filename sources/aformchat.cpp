@@ -1041,7 +1041,7 @@ void lmFormChat::processStreamOp(MessageType type, MessageXml *pMessage) {
         if (type == MT_Audio) {
             emit callConnected(type);
         } else if (type == MT_Video) {
-            emit callConnected(type);  // TODO init VPX+Opus mux
+            emit callConnected(type);  //TODO init VPX+Opus mux
         }
         break;
     case SO_Decline:
@@ -1092,7 +1092,7 @@ void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
 void lmFormChat::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
-// TOD0 lmFormChat::showStatus
+//TOD0 lmFormChat::showStatus
 //	int relScrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) -
 //			pMessageLog->page()->mainFrame()->scrollBarValue(Qt::Vertical);
 
@@ -1117,7 +1117,7 @@ void lmFormChat::showStatus(int flag, bool add) {
 		ui.lblInfo->setVisible(false);
 	}
 
-// TOD0 lmFormChat::showStatus
+//TOD0 lmFormChat::showStatus
 //	int scrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) - relScrollPos;
 //	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }

@@ -15,7 +15,7 @@ Exclude=(				#➤Add a character to disable exclusion
 	"aformsettings.cpp"				"aformtransfer.cpp"				"aformuserinfo.cpp"
 	"aformuserselect.cpp"
 	"definitionssettings.cpp"
-	"historydatabase.cpp"
+	"historydatabase.cpp"			"hotkeyhandler.cpp"
 	"➤lmcore.cpp"
 	"main.cpp"						"messaging.cpp"					"messagingfileproc.cpp"
 	"messagingproc.cpp"

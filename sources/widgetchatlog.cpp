@@ -1086,18 +1086,18 @@ if(!useDefaults && pathToLink) {
     auto it = regexUNC.globalMatch(*lpszMessage);
     while(it.hasNext()) {
         auto m = it.next();
-        result += lpszMessage->mid(lastEnd, m.capturedStart() - lastEnd);
+        result += lpszMessage->sliced(lastEnd, m.capturedStart() - lastEnd);
         QString path = m.captured(2).isEmpty() ? m.captured(3) : m.captured(2);
         result += QString("<a data-isLink='true' href='file:%1'>%1</a>").arg(path);
         lastEnd = m.capturedEnd();
     }
-    result += lpszMessage->mid(lastEnd);
+    result += lpszMessage->sliced(lastEnd);
     *lpszMessage = result;
     }
     }
 
 //qDebug().noquote() << "\r\n" << QString(*lpszMessage).replace("\n", "\r\n") << "\r\n";
-/*  TODO This part needs expansion.
+/*  //TODO This part needs expansion.
 TEST CASES
 00 \\Share\e\Image.png                  pathToLink      Works as expected
 01 //Share/e/Image.png                  pathToLink      Works as expected

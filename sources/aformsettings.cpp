@@ -98,7 +98,7 @@ void lmFormSettings::init(void) {
         pListItem->setCheckState(IDS_SOUNDEVENT_VAL);
     }
 
-    //=========================================================TODO  Find a permanent spot for this.
+    //=========================================================//TODO  Find a permanent spot for this.
     ui.cboMicDevice->addItem("Default Communication Device",
                              QVariant::fromValue(QMediaDevices::defaultAudioInput()));
 
