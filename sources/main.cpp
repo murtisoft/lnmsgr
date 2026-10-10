@@ -27,6 +27,10 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QSslSocket>
+#include <QDir>
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
 
 //	Define a unique application id. This is a combination of two GUIDs
 const QString appId = "93fab548-2cf5-4a1e-8758-a416a5ec2120-6fc5009f-84e8-4489-a444-7f934bcf9166";
@@ -58,29 +62,55 @@ int showSwitches(void) {
 int main(int argc, char *argv[]) {
     Application application(appId, argc, argv);
 
-    // Single instance check
-    QLocalSocket socket;
-    socket.connectToServer(appId);
-    if (socket.waitForConnected(500)) {
-        // Only show message if user is not just checking for /inst via command line
-        bool isInstSwitch = false;
-        for (int i = 0; i < argc; i++) {
-            if (QString(argv[i]).compare("/inst", Qt::CaseInsensitive) == 0) {
-                isInstSwitch = true;
-                break;
-            }
-        }
+    QApplication::setApplicationName(IDA_PRODUCT);
+    QApplication::setOrganizationName(IDA_COMPANY);
+    QApplication::setOrganizationDomain(IDA_DOMAIN);
 
-        if (!isInstSwitch) {
-            QMessageBox::critical(NULL, IDA_TITLE, QObject::tr("You can only run a single instance of this program."));
-        }
-        return 0;
+    QString messageList;
+    QStringList arguments = QApplication::arguments();
+    bool instSwitch = false;
+
+    for(int index = 0; index < arguments.count(); index++) {
+        if(arguments.at(index).compare("/?", Qt::CaseInsensitive) == 0)
+            return showSwitches();
+        else if(arguments.at(index).compare("/inst", Qt::CaseInsensitive) == 0)
+            instSwitch = true;
+        else
+            messageList += arguments.at(index) + "\n";
     }
+
+    // Single instance check. If another instance is running, hand our command
+    // line over to it (an empty message just brings its window forward) and exit silently.
+    {
+        QLocalSocket socket;
+        socket.connectToServer(appId);
+        if (socket.waitForConnected(500)) {
+            if (instSwitch)
+                return 1;   // /inst: an instance is already running
+
+#ifdef Q_OS_WIN
+            AllowSetForegroundWindow(ASFW_ANY);   // let the running instance take focus
+#endif
+            // argument 0 is the executable path, only the switches are sent
+            QStringList switches = arguments.mid(1);
+            switches.removeAll(QString());
+            socket.write(switches.join("\n").toUtf8());
+            socket.flush();
+            socket.waitForBytesWritten(1000);
+            socket.disconnectFromServer();
+            if (socket.state() != QLocalSocket::UnconnectedState)
+                socket.waitForDisconnected(1000);
+            return 0;
+        }
+    }
+
+    if (instSwitch)
+        return 0;   // /inst: no instance is running
 
     // Mark this as the running instance
     QLocalServer server;
     if (!server.listen(appId)) {
-        QLocalServer::removeServer(appId);
+        QLocalServer::removeServer(appId);   // stale socket from a crashed instance
         server.listen(appId);
     }
 
@@ -93,22 +123,7 @@ int main(int argc, char *argv[]) {
     QApplication::setLibraryPaths(QStringList(dir.absolutePath()));
 #endif
 
-    QApplication::setApplicationName(IDA_PRODUCT);
-    QApplication::setOrganizationName(IDA_COMPANY);
-    QApplication::setOrganizationDomain(IDA_DOMAIN);
     QApplication::setWindowIcon(QIcon(IDR_APPICON));
-
-    QString messageList;
-    QStringList arguments = QApplication::arguments();
-
-    for(int index = 0; index < arguments.count(); index++) {
-        if(arguments.at(index).compare("/?", Qt::CaseInsensitive) == 0)
-            return showSwitches();
-        else if(arguments.at(index).compare("/inst", Qt::CaseInsensitive) == 0)
-            return 0;
-        else
-            messageList += arguments.at(index) + "\n";
-    }
 
     application.loadTranslations(DefinitionsDir::resLangDir());
     application.loadTranslations(DefinitionsDir::sysLangDir());
@@ -136,6 +151,23 @@ int main(int argc, char *argv[]) {
 #endif
 
     QObject::connect(&application, SIGNAL(aboutToQuit()), &core, SLOT(aboutToExit()));
+
+    // Receive command lines (or a plain "bring me forward") from later instances
+    QObject::connect(&server, &QLocalServer::newConnection, &server, [&server, &core]() {
+        while (QLocalSocket* client = server.nextPendingConnection()) {
+            auto buffer = new QByteArray;
+            QObject::connect(client, &QLocalSocket::readyRead, client, [client, buffer]() {
+                buffer->append(client->readAll());
+            });
+            QObject::connect(client, &QLocalSocket::disconnected, client, [client, buffer, &core]() {
+                buffer->append(client->readAll());
+                QString message = QString::fromUtf8(*buffer);
+                delete buffer;
+                client->deleteLater();
+                core.receiveAppMessage(message);
+            });
+        }
+    });
 
     return application.exec();
 }
