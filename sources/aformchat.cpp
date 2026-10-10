@@ -23,6 +23,8 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QMimeData>
+#include <QMenu>
+#include <QContextMenuEvent>
 #include <qclipboard.h>
 #include <qpropertyanimation.h>
 #include "aformchat.h"
@@ -64,6 +66,7 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
 	ui.lblInfo->setVisible(false);
     pMessageLog->installEventFilter(this);
 	ui.txtMessage->installEventFilter(this);
+	ui.txtMessage->viewport()->installEventFilter(this);	//	context menu events arrive here
     ui.btnAddContact->setIcon(QIcon(Helper::renderEmoji(Icons::Plus,24)));
     ui.btnMicrophone->setIcon(QIcon(Helper::renderEmoji(Icons::Microphone,24)));
     ui.btnSpeaker->setIcon(QIcon(Helper::renderEmoji(Icons::Speaker,24)));
@@ -519,7 +522,40 @@ void lmFormChat::settingsChanged(void) {
 	}
 }
 
+//	True if the clipboard holds something handleClipboardPaste() sends as a file, instead of text.
+static bool clipboardHasSendable(const QMimeData* mimeData) {
+    if (!mimeData) return false;
+    if (mimeData->hasUrls()) {
+        foreach(const QUrl &url, mimeData->urls())
+            if (url.isLocalFile()) return true;
+        return false;
+    }
+    return mimeData->hasImage();
+}
+
 bool lmFormChat::eventFilter(QObject* pObject, QEvent* pEvent) {
+    if(pEvent->type() == QEvent::ContextMenu && pObject == ui.txtMessage->viewport()) {
+        //  The standard menu only enables Paste for text. Files and images are pasted by
+        //  handleClipboardPaste(), same as Ctrl+V, so enable and route Paste to it for those.
+        QContextMenuEvent* pMenuEvent = static_cast<QContextMenuEvent*>(pEvent);
+        QMenu* menu = ui.txtMessage->createStandardContextMenu(pMenuEvent->pos());
+        if (clipboardHasSendable(QApplication::clipboard()->mimeData())) {
+            const QString pasteText = QCoreApplication::translate("QWidgetTextControl", "&Paste");
+            foreach(QAction* action, menu->actions()) {
+                if (!action->text().startsWith(pasteText)) continue;
+                action->setEnabled(true);
+                QObject::disconnect(action, &QAction::triggered, nullptr, nullptr);   //drop the built-in paste
+                connect(action, &QAction::triggered, this, [this]() {
+                    if (!handleClipboardPaste()) ui.txtMessage->paste();
+                });
+                break;
+            }
+        }
+        menu->setAttribute(Qt::WA_DeleteOnClose);
+        menu->popup(pMenuEvent->globalPos());
+        return true;
+    }
+
     if(pEvent->type() == QEvent::KeyPress) {
         QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
 

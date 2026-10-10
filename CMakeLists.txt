@@ -48,6 +48,4 @@ endif()
 #While A and B are in a call, a chatwindow with C will have hangup button enabled, but the button wont do anything.
 #Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.
 #Disabling some sound effects doesnt work.
-#Some console parameters arent listed, some arent working properly.
-#Files and images can be pasted into the chatbox now, but the option in the context menu remains disabled. only Ctrl V works.
 #Vertical size hint (Auto sizing) for userlistview (public chat/chatroom) needs more work.
