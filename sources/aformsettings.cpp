@@ -519,7 +519,7 @@ void lmFormSettings::loadSettings(void) {
     }
 
     ui.txtUserName->setText(pSettings->value(IDS_USERNAME, IDS_USERNAME_VAL).toString());
-    ui.txtUserGroup->setText(pSettings->value(IDS_USERGROUP, IDS_USERGROUP_VAL).toString());
+    ui.txtUserGroup->setText(Helper::normalizeGroupName(pSettings->value(IDS_USERGROUP, IDS_USERGROUP_VAL).toString()));
     ui.txtFirstName->setText(pSettings->value(IDS_USERFIRSTNAME, IDS_USERFIRSTNAME_VAL).toString());
     ui.txtLastName->setText(pSettings->value(IDS_USERLASTNAME, IDS_USERLASTNAME_VAL).toString());
     ui.txtAbout->setPlainText(pSettings->value(IDS_USERABOUT, IDS_USERABOUT_VAL).toString());
@@ -616,7 +616,10 @@ void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_LANGUAGE, langCode, IDS_LANGUAGE_VAL);
 
     pSettings->setValue(IDS_USERNAME, ui.txtUserName->text(), IDS_USERNAME_VAL);
-    pSettings->setValue(IDS_USERGROUP, ui.txtUserGroup->text(), IDS_USERGROUP_VAL);
+    //  groups are case insensitive and capitalized per word, show the user what peers will see
+    QString userGroup = Helper::normalizeGroupName(ui.txtUserGroup->text());
+    ui.txtUserGroup->setText(userGroup);
+    pSettings->setValue(IDS_USERGROUP, userGroup, IDS_USERGROUP_VAL);
     pSettings->setValue(IDS_USERFIRSTNAME, ui.txtFirstName->text(), IDS_USERFIRSTNAME_VAL);
     pSettings->setValue(IDS_USERLASTNAME, ui.txtLastName->text(), IDS_USERLASTNAME_VAL);
     pSettings->setValue(IDS_USERABOUT, ui.txtAbout->toPlainText(), IDS_USERABOUT_VAL);

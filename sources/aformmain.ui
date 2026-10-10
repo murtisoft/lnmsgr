@@ -307,10 +307,10 @@ placeholder-text-color: rgb(127, 127, 127);</string>
       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
      </property>
      <property name="dragEnabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="dragDropMode">
-      <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
+      <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
      </property>
      <property name="defaultDropAction">
       <enum>Qt::DropAction::MoveAction</enum>

@@ -38,8 +38,6 @@ lmMessaging::lmMessaging(void) {
 	connect(pNetwork, SIGNAL(connectionStateChanged()), this, SLOT(network_connectionStateChanged()));
     localUser = NULL;
 	userList.clear();
-	groupList.clear();
-	userGroupMap.clear();
 	receivedList.clear();
 	pendingList.clear();
     fileList.clear();
@@ -72,11 +70,10 @@ void lmMessaging::init(MessageXml *pInitParams) {
 	int nAvatar = pSettings->value(IDS_AVATAR, IDS_AVATAR_VAL).toInt();
 	QString userNote = pSettings->value(IDS_NOTE, IDS_NOTE_VAL).toString();
     uint userCaps = UC_File | UC_GroupMessage | UC_Folder | UC_Nudge | UC_Audio | UC_Video;
+    QString userGroup = Helper::normalizeGroupName(pSettings->value(IDS_USERGROUP, IDS_USERGROUP_VAL).toString());
     localUser = new User(userId, IDA_VERSION, pNetwork->ipAddress, userName, userStatus,
-                         QString(), nAvatar, userNote, DefinitionsDir::avatarFile(),
+                         userGroup, nAvatar, userNote, DefinitionsDir::avatarFile(),
                          QString::number(userCaps));
-
-	loadGroups();
 
 	nTimeout = pSettings->value(IDS_TIMEOUT, IDS_TIMEOUT_VAL).toInt() * 1000;
 	nMaxRetry = pSettings->value(IDS_MAXRETRIES, IDS_MAXRETRIES_VAL).toInt();
@@ -111,7 +108,8 @@ void lmMessaging::stop(void) {
 	pSettings->setValue(IDS_STATUS, localUser->status);
 	pSettings->setValue(IDS_AVATAR, localUser->avatar);
 
-	saveGroups();
+	//	make sure the correct version is set in the preferences file
+	pSettings->setValue(IDS_VERSION, IDA_VERSION);
 
 	lmDebugLog::write("Messaging stopped");
 }
@@ -148,82 +146,15 @@ void lmMessaging::settingsChanged(void) {
 		xmlMessage.addData(XN_NAME, userName);
 		sendMessage(MT_UserName, NULL, &xmlMessage);
 	}
-}
 
-void lmMessaging::updateGroup(GroupOp op, QVariant value1, QVariant value2) {
-	switch(op) {
-	case GO_New:
-		groupList.append(Group(value1.toString(), value2.toString()));
-		break;
-	case GO_Rename:
-		for(int index = 0; index < groupList.count(); index++) {
-			if(groupList[index].id.compare(value1.toString()) == 0) {
-				groupList[index].name = value2.toString();
-				break;
-			}
-		}
-		break;
-	case GO_Move:
-		for(int index = 0; index < groupList.count(); index++) {
-			if(groupList[index].id.compare(value1.toString()) == 0) {
-				groupList.move(index, value2.toInt());
-				break;
-			}
-		}
-		break;
-	case GO_Delete:
-		for(int index = 0; index < groupList.count(); index++) {
-			if(groupList[index].id.compare(value1.toString()) == 0) {
-				groupList.removeAt(index);
-				break;
-			}
-		}
-		break;
-	default:
-		break;
+	//	the group is reported to everyone the same way as the user name
+	QString userGroup = Helper::normalizeGroupName(pSettings->value(IDS_USERGROUP, IDS_USERGROUP_VAL).toString());
+	if(localUser->group.compare(userGroup) != 0) {
+		localUser->group = userGroup;
+		MessageXml xmlMessage;
+		xmlMessage.addData(XN_GROUP, userGroup);
+		sendMessage(MT_Group, NULL, &xmlMessage);
 	}
-
-	saveGroups();
-}
-
-void lmMessaging::updateGroupMap(QString oldGroup, QString newGroup) {
-	QMap<QString, QString>::const_iterator index = userGroupMap.constBegin();
-	while (index != userGroupMap.constEnd()) {
-		if(((QString)index.value()).compare(oldGroup) == 0)
-			userGroupMap.insert(index.key(), newGroup);
-		++index;
-	}
-}
-
-//	save groups and group mapping
-void lmMessaging::saveGroups(void) {
-	QSettings groupSettings(DefinitionsDir::groupFile(), QSettings::IniFormat);
-	groupSettings.beginWriteArray(IDS_GROUPHDR);
-	for(int index = 0; index < groupList.count(); index++) {
-		groupSettings.setArrayIndex(index);
-		groupSettings.setValue(IDS_GROUP, groupList[index].id);
-		groupSettings.setValue(IDS_GROUPNAME, groupList[index].name);
-	}
-	groupSettings.endArray();
-
-	groupSettings.beginWriteArray(IDS_GROUPMAPHDR);
-	QMapIterator<QString, QString> i(userGroupMap);
-	int count = 0;
-	while(i.hasNext()) {
-		groupSettings.setArrayIndex(count);
-		i.next();
-		groupSettings.setValue(IDS_USER, i.key());
-		groupSettings.setValue(IDS_GROUP, i.value());
-		count++;
-	}
-	groupSettings.endArray();
-
-	groupSettings.sync();
-
-	// make sure the correct version is set in the preferences file
-	// so the group settings will not be wrongly migrated next time
-	// application starts
-	pSettings->setValue(IDS_VERSION, IDA_VERSION);
 }
 
 int lmMessaging::userCount(void) {
@@ -266,36 +197,6 @@ QString lmMessaging::getUserName(void) {
 	return userName;
 }
 
-void lmMessaging::loadGroups(void) {
-	bool defaultFound = false;
-
-	QSettings groupSettings(DefinitionsDir::groupFile(), QSettings::IniFormat);
-	int size = groupSettings.beginReadArray(IDS_GROUPHDR);
-	for(int index = 0; index < size; index++) {
-		groupSettings.setArrayIndex(index);
-		QString groupId = groupSettings.value(IDS_GROUP).toString();
-		QString group = groupSettings.value(IDS_GROUPNAME).toString();
-		groupList.append(Group(groupId, group));
-		// check if the default group is present in the group list
-		if(groupId.compare(GRP_DEFAULT_ID) == 0)
-			defaultFound = true;
-	}
-	groupSettings.endArray();
-
-	if(groupList.count() == 0 || !defaultFound)
-		groupList.append(Group(GRP_DEFAULT_ID, GRP_DEFAULT));
-
-	size = groupSettings.beginReadArray(IDS_GROUPMAPHDR);
-	for(int index = 0; index < size; index++)
-	{
-		groupSettings.setArrayIndex(index);
-		QString user = groupSettings.value(IDS_USER).toString();
-		QString group = groupSettings.value(IDS_GROUP).toString();
-		userGroupMap.insert(user, group);
-	}
-	groupSettings.endArray();
-}
-
 void lmMessaging::getUserInfo(MessageXml* pMessage) {
 	QString firstName = pSettings->value(IDS_USERFIRSTNAME, IDS_USERFIRSTNAME_VAL).toString();
 	QString lastName = pSettings->value(IDS_USERLASTNAME, IDS_USERLASTNAME_VAL).toString();
@@ -319,19 +220,17 @@ void lmMessaging::getUserInfo(MessageXml* pMessage) {
 }
 
 bool lmMessaging::addUser(QString szUserId, QString szVersion, QString szAddress, QString szName, QString szStatus,
-                           QString szAvatar, QString szNote, QString szCaps) {
+                           QString szGroup, QString szAvatar, QString szNote, QString szCaps) {
 	for(int index = 0; index < userList.count(); index++)
 		if(userList[index].id.compare(szUserId) == 0)
 			return false;
 
 	lmDebugLog::write("Adding new user: " + szUserId + ", " + szVersion + ", " + szAddress);
 
-	if(!userGroupMap.contains(szUserId) || !groupList.contains(Group(userGroupMap.value(szUserId))))
-		userGroupMap.insert(szUserId, GRP_DEFAULT_ID);
-
 	int nAvatar = szAvatar.isNull() ? -1 : szAvatar.toInt();
 
-    userList.append(User(szUserId, szVersion, szAddress, szName, szStatus, userGroupMap[szUserId],
+    //	the user reports their own group, peers without one end up in the default group
+    userList.append(User(szUserId, szVersion, szAddress, szName, szStatus, Helper::normalizeGroupName(szGroup),
                          nAvatar, szNote, QString(), szCaps));
 	if(!szStatus.isNull()) {
 		MessageXml xmlMessage;
@@ -390,11 +289,15 @@ void lmMessaging::updateUser(MessageType type, QString szUserId, QString szUserD
 			emit messageReceived(MT_Note, &szUserId, &updateMsg);
 		}
 		break;
-	case MT_Group:
-		pUser->group = szUserData;
-		userGroupMap.insert(pUser->id, pUser->group);
-		saveGroups();
+	case MT_Group: {
+		QString group = Helper::normalizeGroupName(szUserData);
+		if(pUser->group.compare(group) != 0) {
+			pUser->group = group;
+			updateMsg.addData(XN_GROUP, pUser->group);
+			emit messageReceived(MT_Group, &szUserId, &updateMsg);
+		}
 		break;
+	}
     case MT_Avatar:
         pUser->avatarPath = szUserData;
         break;

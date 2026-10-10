@@ -126,6 +126,19 @@ QString Helper::boolToString(bool value) {
     return value ? LM_TRUE : LM_FALSE;
 }
 
+//	Group names are case insensitive and always shown with the first letter of every word capitalized.
+//	So "it dept", "IT DEPT" and "It  Dept " all become "It Dept". An empty name becomes the default group.
+//	QString::toLower/toUpper are used on purpose, they do not depend on the system locale, so every peer
+//	comes up with the same name for the same input.
+QString Helper::normalizeGroupName(const QString& name) {
+	QStringList words = name.simplified().toLower().split(' ', Qt::SkipEmptyParts);
+	for(QString& word : words)
+		word[0] = word.at(0).toUpper();
+
+	QString result = words.join(' ');
+	return result.isEmpty() ? QString(GRP_DEFAULT) : result;
+}
+
 bool Helper::stringToBool(const QString& value) {
     return value.compare(LM_TRUE) == 0 ? true : false;
 }

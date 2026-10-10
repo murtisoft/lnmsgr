@@ -153,16 +153,12 @@ public:
 	void sendBroadcast(MessageType type, MessageXml* pMessage);
 	void sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void settingsChanged(void);
-	void updateGroup(GroupOp op, QVariant value1, QVariant value2);
-	void updateGroupMap(QString oldGroup, QString newGroup);
-	void saveGroups(void);
 	int userCount(void);
     static QString addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, MessageXml* pMessage);
     static bool getHeader(QString* lpszMessage, MessageHeader** ppHeader, MessageXml** ppMessage);
 
 	User* localUser;
 	QList<User> userList;
-	QList<Group> groupList;
 
 signals:
 	void messageReceived(MessageType type, QString* lpszUserId, MessageXml* pMessage);
@@ -180,7 +176,6 @@ private slots:
 private:
 	QString createUserId(QString* lpszAddress, QString* lpszUserName);
 	QString getUserName(void);
-	void loadGroups(void);
 	void getUserInfo(MessageXml* pMessage);
 	void sendUserData(MessageType type, QueryOp op, QString* lpszUserId, QString* lpszAddress);
 	void prepareBroadcast(MessageType type, MessageXml* pMessage);
@@ -191,7 +186,7 @@ private:
 	void processMessage(MessageHeader* pHeader, MessageXml* pMessage);
 	void processFile(MessageHeader* pHeader, MessageXml* pMessage);
     void processFolder(MessageHeader* pHeader, MessageXml* pMessage);
-    bool addUser(QString szUserId, QString szVersion, QString szAddress, QString szName, QString szStatus, QString szAvatar, QString szNote, QString szCaps);
+    bool addUser(QString szUserId, QString szVersion, QString szAddress, QString szName, QString szStatus, QString szGroup, QString szAvatar, QString szNote, QString szCaps);
 	void updateUser(MessageType type, QString szUserId, QString szUserData);
 	void removeUser(QString szUserId);
 	bool addReceivedMsg(qint64 msgId, QString userId);
@@ -219,7 +214,6 @@ private:
 	int					nTimeout;
 	int					nMaxRetry;
 	bool				loopback;
-	QMap<QString, QString> userGroupMap;
 };
 
 #endif // MESSAGING_H

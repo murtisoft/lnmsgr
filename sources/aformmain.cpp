@@ -36,12 +36,14 @@
 lmFormMain::lmFormMain(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
 	ui.setupUi(this);
 
+	//	users are grouped by what they report themselves, they cannot be dragged around
+	ui.tvUserList->setDragEnabled(false);
+	ui.tvUserList->setDragDropMode(QAbstractItemView::NoDragDrop);
+
     connect(ui.tvUserList, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
         this, SLOT(tvUserList_itemActivated(QTreeWidgetItem*,int)));
     connect(ui.tvUserList, SIGNAL(itemContextMenu(QTreeWidgetItem*,QPoint&)),
         this, SLOT(tvUserList_itemContextMenu(QTreeWidgetItem*,QPoint&)));
-	connect(ui.tvUserList, SIGNAL(itemDragDropped(QTreeWidgetItem*)),
-		this, SLOT(tvUserList_itemDragDropped(QTreeWidgetItem*)));
 	connect(ui.tvUserList, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
 		this, SLOT(tvUserList_currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
     connect(ui.txtNote, &QLineEdit::returnPressed, this, &lmFormMain::txtNote_returnPressed);
@@ -56,7 +58,7 @@ lmFormMain::lmFormMain(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
 lmFormMain::~lmFormMain(void) {
 }
 
-void lmFormMain::init(User* pLocalUser, QList<Group>* pGroupList, bool connected) {
+void lmFormMain::init(User* pLocalUser, bool connected) {
 	setWindowIcon(QIcon(IDR_APPICON));
 
 	this->pLocalUser = pLocalUser;
@@ -70,7 +72,6 @@ void lmFormMain::init(User* pLocalUser, QList<Group>* pGroupList, bool connected
 	createTrayIcon();
 	connectionStateChanged(connected);
 
-	createGroupMenu();
 	createUserMenu();
 
 	ui.lblDividerTop->setBackgroundRole(QPalette::Highlight);
@@ -103,7 +104,7 @@ void lmFormMain::init(User* pLocalUser, QList<Group>* pGroupList, bool connected
 	settingsChanged(true);
 	setUIText();
 
-	initGroups(pGroupList);
+	loadGroupExpansion();
     ui.tvUserList->setFocus();
 }
 
@@ -180,10 +181,20 @@ void lmFormMain::stop(void) {
 		pSettings->setValue(IDS_MINIMIZEMSG, showMinimizeMsg, IDS_MINIMIZEMSG_VAL);
 	}
 
-	pSettings->beginWriteArray(IDS_GROUPEXPHDR);
+	//	save the expanded state of the groups by name. Groups that are currently visible are
+	//	added to the ones that were remembered when they went away.
 	for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++) {
-		pSettings->setArrayIndex(index);
-		pSettings->setValue(IDS_GROUP, ui.tvUserList->topLevelItem(index)->isExpanded());
+		QTreeWidgetItem* pGroupItem = ui.tvUserList->topLevelItem(index);
+		groupExpanded.insert(pGroupItem->data(0, IdRole).toString(), pGroupItem->isExpanded());
+	}
+	pSettings->beginWriteArray(IDS_GROUPEXPHDR);
+	int groupIndex = 0;
+	QHashIterator<QString, bool> groupIterator(groupExpanded);
+	while(groupIterator.hasNext()) {
+		groupIterator.next();
+		pSettings->setArrayIndex(groupIndex++);
+		pSettings->setValue(IDS_GROUPNAME, groupIterator.key());
+		pSettings->setValue(IDS_GROUP, groupIterator.value());
 	}
 	pSettings->endArray();
 
@@ -236,8 +247,11 @@ void lmFormMain::addUser(User* pUser) {
 	if(index != -1)
 		pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
 
-	lmWidgetUserTreeGroupItem* pGroupItem = (lmWidgetUserTreeGroupItem*)getGroupItem(&pUser->group);
-	pGroupItem->addChild(pItem);
+	//	the group exists only while it has users in it
+	QTreeWidgetItem* pGroupItem = getGroupItem(pUser->group);
+	if(!pGroupItem)
+		pGroupItem = createGroupItem(pUser->group);
+	static_cast<lmWidgetUserTreeGroupItem*>(pGroupItem)->addChild(pItem);
 	pGroupItem->sortChildren(0, Qt::AscendingOrder);
 
 	// this should be called after item has been added to tree
@@ -266,6 +280,15 @@ void lmFormMain::updateUser(User* pUser) {
 		if(statusToolTip)
 			pItem->setToolTip(0, lmStrings::statusDesc()[index]);
 		QTreeWidgetItem* pGroupItem = pItem->parent();
+		if(pGroupItem->data(0, IdRole).toString().compare(pUser->group) != 0) {
+			//	the user reported a different group, move them there
+			pGroupItem->removeChild(pItem);
+			removeGroupIfEmpty(pGroupItem);
+			pGroupItem = getGroupItem(pUser->group);
+			if(!pGroupItem)
+				pGroupItem = createGroupItem(pUser->group);
+			static_cast<lmWidgetUserTreeGroupItem*>(pGroupItem)->addChild(pItem);
+		}
 		pGroupItem->sortChildren(0, Qt::AscendingOrder);
 	}
 }
@@ -277,6 +300,7 @@ void lmFormMain::removeUser(QString* lpszUserId) {
 		
 	QTreeWidgetItem* pGroup = pItem->parent();
 	pGroup->removeChild(pItem);
+	removeGroupIfEmpty(pGroup);
 
 	if(isHidden() || !isActiveWindow()) {
 		QString msg = tr("%1 is offline.");
@@ -606,14 +630,8 @@ void lmFormMain::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos)
     if(!pItem)
         return;
 
-    if(pItem->data(0, TypeRole).toString().compare("Group") == 0) {
-        for(int index = 0; index < pGroupMenu->actions().count(); index++)
-            pGroupMenu->actions().at(index)->setData(pItem->data(0, IdRole));
-
-		bool defGroup = (pItem->data(0, IdRole).toString().compare(GRP_DEFAULT_ID) == 0);
-        pGroupMenu->actions().at(3)->setEnabled(!defGroup);
-        pGroupMenu->exec(pos);
-    } else if(pItem->data(0, TypeRole).toString().compare("User") == 0) {
+    //	groups have no menu, they only exist because users report them
+    if(pItem->data(0, TypeRole).toString().compare("User") == 0) {
         for(int index = 0; index < pUserMenu->actions().count(); index++)
             pUserMenu->actions().at(index)->setData(pItem->data(0, IdRole));
 
@@ -625,94 +643,11 @@ void lmFormMain::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos)
     }
 }
 
-void lmFormMain::tvUserList_itemDragDropped(QTreeWidgetItem* pItem) {
-    if(dynamic_cast<lmWidgetUserTreeUserItem*>(pItem)) {
-        QString szUserId = pItem->data(0, IdRole).toString();
-        QString szMessage = pItem->parent()->data(0, IdRole).toString();
-        sendMessage(MT_Group, &szUserId, &szMessage);
-		QTreeWidgetItem* pGroupItem = pItem->parent();
-		pGroupItem->sortChildren(0, Qt::AscendingOrder);
-    }
-	else if(dynamic_cast<lmWidgetUserTreeGroupItem*>(pItem)) {
-		int index = ui.tvUserList->indexOfTopLevelItem(pItem);
-		QString groupId = pItem->data(0, IdRole).toString();
-		emit groupUpdated(GO_Move, groupId, index);
-	}
-}
-
 void lmFormMain::tvUserList_currentItemChanged(QTreeWidgetItem *pCurrent, QTreeWidgetItem *pPrevious) {
 	Q_UNUSED(pPrevious);
 	bool bEnabled = (pCurrent && pCurrent->data(0, TypeRole).toString().compare("User") == 0);
 	toolChatAction->setEnabled(bEnabled);
 	toolFileAction->setEnabled(bEnabled);
-}
-
-void lmFormMain::groupAddAction_triggered(void) {
-	QString groupName = QInputDialog::getText(this, tr("Add New Group"), tr("Enter a name for the group"));
-
-	if(groupName.isNull())
-		return;
-
-	if(getGroupItemByName(&groupName)) {
-		QString msg = tr("A group named '%1' already exists. Please enter a different name.");
-		QMessageBox::warning(this, lmStrings::appName(), msg.arg(groupName));
-		return;
-	}
-
-	//generate a group id that is not assigned to any existing group
-	QString groupId;
-	do {
-		groupId = Helper::getUuid();
-	} while(getGroupItem(&groupId));
-	
-	emit groupUpdated(GO_New, groupId, groupName);
-	lmWidgetUserTreeGroupItem *pItem = new lmWidgetUserTreeGroupItem();
-	pItem->setData(0, IdRole, groupId);
-	pItem->setData(0, TypeRole, "Group");
-	pItem->setText(0, groupName);
-	pItem->setSizeHint(0, QSize(0, 20));
-	ui.tvUserList->addTopLevelItem(pItem);
-	//	set the item as expanded after adding it to the treeview, else wont work
-	pItem->setExpanded(true);
-}
-
-void lmFormMain::groupRenameAction_triggered(void) {
-	QTreeWidgetItem* pGroupItem = ui.tvUserList->currentItem();
-	QString groupId = pGroupItem->data(0, IdRole).toString();
-	QString oldName = pGroupItem->data(0, Qt::DisplayRole).toString();
-	QString newName = QInputDialog::getText(this, tr("Rename Group"), 
-		tr("Enter a new name for the group"), QLineEdit::Normal, oldName);
-
-	if(newName.isNull() || newName.compare(oldName) == 0)
-		return;
-
-	if(getGroupItemByName(&newName)) {
-		QString msg = tr("A group named '%1' already exists. Please enter a different name.");
-		QMessageBox::warning(this, lmStrings::appName(), msg.arg(newName));
-		return;
-	}
-
-	emit groupUpdated(GO_Rename, groupId, newName);
-	pGroupItem->setText(0, newName);
-}
-
-void lmFormMain::groupDeleteAction_triggered(void) {
-	QTreeWidgetItem* pGroupItem = ui.tvUserList->currentItem();
-	QString groupId = pGroupItem->data(0, IdRole).toString();
-	QString defGroupId = GRP_DEFAULT_ID;
-	QTreeWidgetItem* pDefGroupItem = getGroupItem(&defGroupId);
-	while(pGroupItem->childCount()) {
-		QTreeWidgetItem* pUserItem = pGroupItem->child(0);
-		pGroupItem->removeChild(pUserItem);
-		pDefGroupItem->addChild(pUserItem);
-        QString szUserId = pUserItem->data(0, IdRole).toString();
-        QString szMessage = pUserItem->parent()->data(0, IdRole).toString();
-        sendMessage(MT_Group, &szUserId, &szMessage);
-	}
-	pDefGroupItem->sortChildren(0, Qt::AscendingOrder);
-
-	emit groupUpdated(GO_Delete, groupId, QVariant());
-	ui.tvUserList->takeTopLevelItem(ui.tvUserList->indexOfTopLevelItem(pGroupItem));
 }
 
 void lmFormMain::userConversationAction_triggered(void) {
@@ -926,24 +861,6 @@ void lmFormMain::createAvatarMenu(void) {
 	ui.btnAvatar->setMenu(pAvatarMenu);
 }
 
-void lmFormMain::createGroupMenu(void) {
-    pGroupMenu = new QMenu(this);
-
-    groupAddAction = new QAction("Add &New Group", this);
-    connect(groupAddAction, &QAction::triggered, this, &lmFormMain::groupAddAction_triggered);
-    pGroupMenu->addAction(groupAddAction);
-
-    pGroupMenu->addSeparator();
-
-    groupRenameAction = new QAction("&Rename This Group", this);
-    connect(groupRenameAction, &QAction::triggered, this, &lmFormMain::groupRenameAction_triggered);
-    pGroupMenu->addAction(groupRenameAction);
-
-    groupDeleteAction = new QAction("&Delete This Group", this);
-    connect(groupDeleteAction, &QAction::triggered, this, &lmFormMain::groupDeleteAction_triggered);
-    pGroupMenu->addAction(groupDeleteAction);
-}
-
 void lmFormMain::createUserMenu(void) {
     pUserMenu = new QMenu(this);
 
@@ -1048,9 +965,6 @@ void lmFormMain::setUIText(void) {
 	traySettingsAction->setText(tr("&Preferences"));
 	trayAboutAction->setText(tr("&About"));
 	trayExitAction->setText(tr("E&xit"));
-	groupAddAction->setText(tr("Add &New Group"));
-	groupRenameAction->setText(tr("&Rename This Group"));
-	groupDeleteAction->setText(tr("&Delete This Group"));
 	userChatAction->setText(tr("&Conversation"));
 	userBroadcastAction->setText(tr("Send &Broadcast Message"));
 	userFileAction->setText(tr("Send &File"));
@@ -1090,23 +1004,14 @@ void lmFormMain::showMinimizeMessage(void) {
 	}
 }
 
-void lmFormMain::initGroups(QList<Group>* pGroupList) {
-	for(int index = 0; index < pGroupList->count(); index++) {
-		lmWidgetUserTreeGroupItem *pItem = new lmWidgetUserTreeGroupItem();
-		pItem->setData(0, IdRole, pGroupList->value(index).id);
-		pItem->setData(0, TypeRole, "Group");
-		pItem->setText(0, pGroupList->value(index).name);
-		pItem->setSizeHint(0, QSize(0, 22));
-		ui.tvUserList->addTopLevelItem(pItem);
-	}
-
-	ui.tvUserList->expandAll();
-	// size will be either number of items in group expansion list or number of top level items in
-	// treeview control, whichever is less. This is to  eliminate arary out of bounds error.
-	int size = qMin(pSettings->beginReadArray(IDS_GROUPEXPHDR), ui.tvUserList->topLevelItemCount());
+void lmFormMain::loadGroupExpansion(void) {
+	int size = pSettings->beginReadArray(IDS_GROUPEXPHDR);
 	for(int index = 0; index < size; index++) {
 		pSettings->setArrayIndex(index);
-		ui.tvUserList->topLevelItem(index)->setExpanded(pSettings->value(IDS_GROUP).toBool());
+		QString groupName = pSettings->value(IDS_GROUPNAME).toString();
+		if(groupName.isEmpty())
+			continue;
+		groupExpanded.insert(groupName, pSettings->value(IDS_GROUP).toBool());
 	}
 	pSettings->endArray();
 }
@@ -1167,24 +1072,42 @@ QTreeWidgetItem* lmFormMain::getUserItem(QString* lpszUserId) {
 	return NULL;
 }
 
-QTreeWidgetItem* lmFormMain::getGroupItem(QString* lpszGroupId) {
+//	Group names are normalized, so an exact comparison is also a case insensitive one
+QTreeWidgetItem* lmFormMain::getGroupItem(const QString& groupName) {
 	for(int topIndex = 0; topIndex < ui.tvUserList->topLevelItemCount(); topIndex++) {
 		QTreeWidgetItem* pItem = ui.tvUserList->topLevelItem(topIndex);
-		if(pItem->data(0, IdRole).toString().compare(*lpszGroupId) == 0)
+		if(pItem->data(0, IdRole).toString().compare(groupName) == 0)
 			return pItem;
 	}
 
 	return NULL;
 }
 
-QTreeWidgetItem* lmFormMain::getGroupItemByName(QString* lpszGroupName) {
-	for(int topIndex = 0; topIndex < ui.tvUserList->topLevelItemCount(); topIndex++) {
-		QTreeWidgetItem* pItem = ui.tvUserList->topLevelItem(topIndex);
-		if(pItem->data(0, Qt::DisplayRole).toString().compare(*lpszGroupName) == 0)
-			return pItem;
-	}
+QTreeWidgetItem* lmFormMain::createGroupItem(const QString& groupName) {
+	lmWidgetUserTreeGroupItem *pItem = new lmWidgetUserTreeGroupItem();
+	pItem->setData(0, IdRole, groupName);
+	pItem->setData(0, TypeRole, "Group");
+	pItem->setText(0, groupName);
+	pItem->setSizeHint(0, QSize(0, 22));
 
-	return NULL;
+	//	keep the groups in alphabetical order
+	int position = 0;
+	while(position < ui.tvUserList->topLevelItemCount() &&
+			ui.tvUserList->topLevelItem(position)->text(0).localeAwareCompare(groupName) < 0)
+		position++;
+	ui.tvUserList->insertTopLevelItem(position, pItem);
+	//	set the expanded state after adding the item to the treeview, else wont work
+	pItem->setExpanded(groupExpanded.value(groupName, true));
+
+	return pItem;
+}
+
+void lmFormMain::removeGroupIfEmpty(QTreeWidgetItem* pGroupItem) {
+	if(!pGroupItem || pGroupItem->childCount() > 0)
+		return;
+
+	groupExpanded.insert(pGroupItem->data(0, IdRole).toString(), pGroupItem->isExpanded());
+	delete ui.tvUserList->takeTopLevelItem(ui.tvUserList->indexOfTopLevelItem(pGroupItem));
 }
 
 void lmFormMain::sendMessage(MessageType type, QString* lpszUserId, QString* lpszMessage) {
@@ -1198,9 +1121,6 @@ void lmFormMain::sendMessage(MessageType type, QString* lpszUserId, QString* lps
 		xmlMessage.addData(XN_NOTE, *lpszMessage);
 		break;
 	case MT_Refresh:
-		break;
-	case MT_Group:
-		xmlMessage.addData(XN_GROUP, *lpszMessage);
 		break;
     case MT_File:
     case MT_Folder:

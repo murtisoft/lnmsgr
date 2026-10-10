@@ -46,8 +46,6 @@ lmCore::lmCore(void) {
 	connect(pMainWindow, SIGNAL(showAbout()), this, SLOT(showAbout()));
 	connect(pMainWindow, SIGNAL(showBroadcast()), this, SLOT(showBroadcast()));
 	connect(pMainWindow, SIGNAL(showPublicChat()), this, SLOT(showPublicChat()));
-    connect(pMainWindow, SIGNAL(groupUpdated(GroupOp,QVariant,QVariant)),
-        this, SLOT(updateGroup(GroupOp,QVariant,QVariant)));
 	pPublicChatWindow = new lmFormChatRoom();
     connect(pPublicChatWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
         this, SLOT(sendMessage(MessageType,QString*,MessageXml*)));
@@ -93,7 +91,7 @@ void lmCore::init(const QStringList& options) {
     lmDebugLog::write("Settings loaded");
 
 	pMessaging->init(pInitParams);
-	pMainWindow->init(pMessaging->localUser, &pMessaging->groupList, pMessaging->isConnected());
+	pMainWindow->init(pMessaging->localUser, pMessaging->isConnected());
 	pPublicChatWindow->init(pMessaging->localUser, pMessaging->isConnected());
 }
 
@@ -305,7 +303,6 @@ void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMes
 	case MT_PublicMessage:
 	case MT_GroupMessage:
 	case MT_Query:
-	case MT_Group:
 	case MT_ChatState:
 	case MT_Version:
     case MT_File:
@@ -489,10 +486,6 @@ void lmCore::showTrayMessage(TrayMessageType type, QString szMessage, QString sz
 	pMainWindow->showTrayMessage(type, szMessage, szTitle, icon);
 }
 
-void lmCore::updateGroup(GroupOp op, QVariant value1, QVariant value2) {
-	pMessaging->updateGroup(op, value1, value2);
-}
-
 void lmCore::addContacts(QStringList* pExcludList) {
     lmFormChatRoom* chatRoomWindow = static_cast<lmFormChatRoom*>(sender());
     QStringList selectedContacts = showSelectContacts(chatRoomWindow, UC_GroupMessage, pExcludList);
@@ -536,6 +529,10 @@ void lmCore::processMessage(MessageType type, QString* lpszUserId, MessageXml* p
 		processPublicMessage(type, lpszUserId, pMessage);
 		routeMessage(type, lpszUserId, pMessage);
 		routeGroupMessage(type, lpszUserId, pMessage);
+		break;
+	case MT_Group:
+		//	only the main window cares, the user moves to the group they reported
+		pMainWindow->updateUser(pMessaging->getUser(lpszUserId));
 		break;
 	case MT_Avatar:
         pMainWindow->receiveMessage(type, lpszUserId, pMessage);

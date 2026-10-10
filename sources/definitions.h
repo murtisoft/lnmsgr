@@ -61,10 +61,10 @@ enum MessageType {
     MT_Status,          MT_Avatar,          MT_UserName,        MT_Ping,            MT_Message,
     MT_GroupMessage,    MT_PublicMessage,   MT_File,            MT_Acknowledge,     MT_Failed,
     MT_Error,           MT_OldVersion,      MT_Query,           MT_Info,            MT_ChatState,
-    MT_Note,            MT_Folder,          MT_Audio,           MT_Video,
+    MT_Note,            MT_Folder,          MT_Audio,           MT_Video,           MT_Group,
     //**************  These are used only for local communication between layers  **************
-    MT_Group,           MT_Version,         MT_WebFailed,       MT_Refresh,         MT_Join,
-    MT_Leave,           MT_Max,
+    MT_Version,         MT_WebFailed,       MT_Refresh,         MT_Join,            MT_Leave,
+    MT_Max,
 };
 
 const QString MessageTypeNames[] = {
@@ -72,10 +72,9 @@ const QString MessageTypeNames[] = {
     "status",           "avatar",           "name",             "ping",             "message",
     "groupmessage",     "publicmessage",    "file",             "acknowledge",      "failed",
     "error",            "oldversion",       "query",            "info",             "chatstate",
-    "note",             "folder",           "audio",            "video",
+    "note",             "folder",           "audio",            "video",            "group",
     //**************  These are used only for local communication between layers  **************
-    "group",            "version",          "webfailed",        "refresh",          "join",
-    "leave",
+    "version",          "webfailed",        "refresh",          "join",             "leave",
 };
 
 enum FileMode {
@@ -162,11 +161,6 @@ const QString GroupMsgOpNames[] = {
     "leave",
 };
 
-enum GroupOp {
-    GO_None = 0,        GO_New,             GO_Rename,          GO_Move,            GO_Delete,
-    GO_Max,
-};
-
 enum TrayMessageType {
     TM_Connection,      TM_Status,          TM_Transfer,        TM_Minimize,        TM_Max,
 };
@@ -221,7 +215,6 @@ enum CallPhase {
 };
 
 #define GRP_DEFAULT		"General"
-#define GRP_DEFAULT_ID	"1CD75C10048C4E65F6082539A32DC111"
 
 #define AUTO_CONNECTION	"Auto"
 

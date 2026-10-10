@@ -30,6 +30,7 @@
 #include <QToolBar>
 #include <QAction>
 #include <QActionGroup>
+#include <QHash>
 #include <QIcon>
 #include <qevent.h>
 #include <QTreeWidget>
@@ -50,7 +51,7 @@ public:
     lmFormMain(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
 	~lmFormMain(void);
 
-	void init(User* pLocalUser, QList<Group>* pGroupList, bool connected);
+	void init(User* pLocalUser, bool connected);
     void start(void);
 	void show(void);
 	void restore(void);
@@ -78,7 +79,6 @@ signals:
 	void showAbout(void);
 	void showBroadcast(void);
 	void showPublicChat(void);
-	void groupUpdated(GroupOp op, QVariant value1, QVariant value2);
 
 protected:
     bool eventFilter(QObject* pObject, QEvent* pEvent);
@@ -105,11 +105,7 @@ private slots:
 	void trayMessage_clicked(void);
 	void tvUserList_itemActivated(QTreeWidgetItem* pItem, int column);
     void tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos);
-	void tvUserList_itemDragDropped(QTreeWidgetItem* pItem);
 	void tvUserList_currentItemChanged(QTreeWidgetItem* pCurrent, QTreeWidgetItem* pPrevious);
-	void groupAddAction_triggered(void);
-	void groupRenameAction_triggered(void);
-	void groupDeleteAction_triggered(void);
 	void userConversationAction_triggered(void);
 	void userBroadcastAction_triggered(void);
 	void userFileAction_triggered(void);
@@ -124,17 +120,17 @@ private:
 	void createTrayIcon(void);
 	void createStatusMenu(void);
 	void createAvatarMenu(void);
-	void createGroupMenu(void);
 	void createUserMenu(void);
 	void createToolBar(void);
 	void setUIText(void);
 	void showMinimizeMessage(void);
-	void initGroups(QList<Group>* pGroupList);
+	void loadGroupExpansion(void);
 	void updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus);
 	void setAvatar(QString fileName = QString());
 	QTreeWidgetItem* getUserItem(QString* lpszUserId);
-	QTreeWidgetItem* getGroupItem(QString* lpszGroupId);
-	QTreeWidgetItem* getGroupItemByName(QString* lpszGroupName);
+	QTreeWidgetItem* getGroupItem(const QString& groupName);
+	QTreeWidgetItem* createGroupItem(const QString& groupName);
+	void removeGroupIfEmpty(QTreeWidgetItem* pGroupItem);
 	void sendMessage(MessageType type, QString* lpszUserId, QString* lpszMessage);
 	void sendAvatar(QString* lpszUserId);
     void setUserAvatar(QString* lpszUserId, QString* lpszFilePath);
@@ -143,6 +139,7 @@ private:
     void createToast(const QString& title, const QString& msg, TrayMessageIcon icon , const QPixmap &avatar = QPixmap());
 
 	Ui::MainWindow ui;
+	QHash<QString, bool> groupExpanded;	//	expanded state of the groups, by name. Groups come and go with the users
 	lmSettings* pSettings;
 	QMenuBar* pMainMenu;
 	QSystemTrayIcon* pTrayIcon;
@@ -152,7 +149,6 @@ private:
 	QMenu* pHelpMenu;
 	QMenu* pStatusMenu;
 	QMenu* pAvatarMenu;
-	QMenu* pGroupMenu;
 	QMenu* pUserMenu;
 	QToolButton* btnStatus;
 	QAction* toolChatAction;
@@ -193,9 +189,6 @@ private:
 	QAction* traySettingsAction;
 	QAction* trayAboutAction;
 	QAction* trayExitAction;
-	QAction* groupAddAction;
-	QAction* groupRenameAction;
-	QAction* groupDeleteAction;
 	QAction* userChatAction;
 	QAction* userBroadcastAction;
 	QAction* userFileAction;

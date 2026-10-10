@@ -26,7 +26,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QTreeWidget>
 #include <QMouseEvent>
-#include <QDragMoveEvent>
 #include <QString>
 #include <QtWidgets/QStyledItemDelegate>
 #include <QPainter>
@@ -80,24 +79,15 @@ public:
     QSize sizeHint() const;
 
 signals:
-	void itemDragDropped(QTreeWidgetItem* item);
     void itemContextMenu(QTreeWidgetItem* item, QPoint& pos);
 
 protected:
-	void mousePressEvent(QMouseEvent* event);
-	void dragMoveEvent(QDragMoveEvent* event);
-	void dropEvent(QDropEvent* event);
     void contextMenuEvent(QContextMenuEvent *event);
 	void mouseReleaseEvent(QMouseEvent* event);
 	void keyPressEvent(QKeyEvent* event);
 
 private:
 	lmWidgetUserTreeDelegate* itemDelegate;
-	bool dragGroup;
-	bool dragUser;
-	QString parentId;
-	QTreeWidgetItem* dragItem;
-	bool expanded;
 	bool isCheckable;
 	UserListView viewType;
     void rowsInserted(const QModelIndex& parent, int start, int end);

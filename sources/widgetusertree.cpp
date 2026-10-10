@@ -209,6 +209,11 @@ lmWidgetUserTree::lmWidgetUserTree(QWidget* parent) : QTreeWidget(parent) {
 	isCheckable = false;
 	viewType = ULV_Detailed;
 
+	//	Users cannot be moved around, they are grouped by what they report themselves
+	setDragEnabled(false);
+	setAcceptDrops(false);
+	setDragDropMode(QAbstractItemView::NoDragDrop);
+
     connect(this, &QTreeWidget::itemExpanded, this, &lmWidgetUserTree::updateGeometry);
     connect(this, &QTreeWidget::itemCollapsed, this, &lmWidgetUserTree::updateGeometry);
 }
@@ -234,77 +239,6 @@ void lmWidgetUserTree::setView(UserListView view) {
 		for(int childIndex = 0; childIndex < item->childCount(); childIndex++)
 			item->child(childIndex)->setSizeHint(0, QSize(0, itemViewHeight[viewType]));
 	}
-}
-
-void lmWidgetUserTree::mousePressEvent(QMouseEvent* event) {
-	if(event->button() == Qt::LeftButton) {
-		QTreeWidgetItem* item = itemAt(event->position().toPoint());
-
-		dragGroup = false;
-		dragUser = false;
-		dragItem = NULL;
-		parentId.clear();
-		expanded = false;
-
-		if(item) {
-			dragItem = item;
-			if(dynamic_cast<lmWidgetUserTreeGroupItem*>(item)) {
-				dragGroup = true;
-				expanded = dragItem->isExpanded();
-			}
-			else if(dynamic_cast<lmWidgetUserTreeUserItem*>(item)) {
-				dragUser = true;
-                if(dragItem->parent())
-                    parentId = dragItem->parent()->data(0, IdRole).toString();
-                else
-                    parentId.clear();
-			}
-		}
-	}
-
-	QTreeWidget::mousePressEvent(event);
-}
-
-void lmWidgetUserTree::dragMoveEvent(QDragMoveEvent* event) {
-	QTreeWidget::dragMoveEvent(event);
-
-	QTreeWidgetItem* item = itemAt(event->position().toPoint());
-	bool accept = false;
-
-	if(dragUser) {
-		if(item && dynamic_cast<lmWidgetUserTreeGroupItem*>(item) && visualItemRect(item).contains(event->position().toPoint(), true))
-			accept = true;
-	}
-	else if(dragGroup) {
-		if(!item || (dynamic_cast<lmWidgetUserTreeGroupItem*>(item) && !visualItemRect(item).contains(event->position().toPoint(), true)))
-			accept = true;
-	}
-
-	accept ? event->accept() : event->ignore();
-}
-
-void lmWidgetUserTree::dropEvent(QDropEvent* event) {
-	QTreeWidget::dropEvent(event);
-
-	if(dragUser) {
-		if(!dragItem->parent()) {
-		//	user item dragged to group level. revert
-			for(int index = 0; index < topLevelItemCount(); index++) {
-				QTreeWidgetItem* parentItem = topLevelItem(index);
-				if(parentItem->data(0, IdRole).toString().compare(parentId) == 0) {
-					takeTopLevelItem(indexOfTopLevelItem(dragItem));
-					parentItem->addChild(dragItem);
-					return;
-				}
-			}
-		}
-	}
-	else if(dragGroup) {
-		dragItem->setExpanded(expanded);
-	}
-
-	if(dragItem)
-		emit itemDragDropped(dragItem);
 }
 
 void lmWidgetUserTree::contextMenuEvent(QContextMenuEvent* event) {

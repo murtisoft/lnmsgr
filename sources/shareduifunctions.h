@@ -46,6 +46,7 @@ public:
 	static int compareVersions(const QString& version1, const QString& version2);
 	static QString boolToString(bool value);
 	static bool stringToBool(const QString& value);
+	static QString normalizeGroupName(const QString& name);
 	static bool copyFile(const QString& source, const QString& destination);
     static void changeColorScheme(int index);
     static QIcon renderEmoji(const QString& emoji, int size = 32, bool strikethrough = false);
@@ -77,22 +78,6 @@ struct User {
         this->avatarPath = szAvatarPath;
         this->caps = szCaps.toUInt();
     }
-};
-
-struct Group {
-    QString id;
-    QString name;
-
-    Group(void) {}
-    Group(QString szId) {
-        this->id = szId;
-    }
-    Group(QString szId, QString szName) {
-        this->id = szId;
-        this->name = szName;
-    }
-
-    bool operator == (const Group& v) const { return (this->id.compare(v.id) == 0); }
 };
 
 struct DatagramHeader {
