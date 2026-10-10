@@ -6,7 +6,7 @@
 #	The rest of the script should work fine on any system.
 #================================================================================================
 SevenZip="/c/Program Files/7-Zip/7z.exe"
-WinDeployQt="/c/Qt/6.10.1/mingw_64/bin/windeployqt.exe"
+WinDeployQt="/c/Qt/6.12.0/mingw_64/bin/windeployqt.exe"
 OpenSSL="/c/Qt/Tools/OpenSSL-Win64"
 ProjectDir="../../"
 #================================================================================================
