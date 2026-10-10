@@ -1,6 +1,6 @@
 Notes
 ===========================
-Project related todo list and known issues are written down in main cmakelists. Any help would be much appreciated. Also, could someone please populate cmake scripts for linux and mac? Pretty please?
+Project related todo list and known issues are written down in main cmakelists.
 
 I would like to maintain compatibility between this and old versions, while adding more in the future. 
 

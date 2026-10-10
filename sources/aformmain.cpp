@@ -105,6 +105,8 @@ void lmFormMain::init(User* pLocalUser, bool connected) {
 	setUIText();
 
 	loadGroupExpansion();
+	//	the default group is always shown, even when empty
+	createGroupItem(GRP_DEFAULT);
     ui.tvUserList->setFocus();
 }
 
@@ -1104,6 +1106,9 @@ QTreeWidgetItem* lmFormMain::createGroupItem(const QString& groupName) {
 
 void lmFormMain::removeGroupIfEmpty(QTreeWidgetItem* pGroupItem) {
 	if(!pGroupItem || pGroupItem->childCount() > 0)
+		return;
+	//	the default group is never removed
+	if(pGroupItem->data(0, IdRole).toString().compare(GRP_DEFAULT) == 0)
 		return;
 
 	groupExpanded.insert(pGroupItem->data(0, IdRole).toString(), pGroupItem->isExpanded());
