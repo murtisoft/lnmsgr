@@ -42,20 +42,35 @@
 #include "networkstreamer.h"
 #include "soundplayer.h"
 
+//	Command line options, as passed between main() and lmCore (and between instances).
+//	These are the parsed, canonical forms of the --switches, not raw user input.
+#define LM_OPT_TRACE			"trace"
+#define LM_OPT_PORT				"port"		//	sent as "port=<number>"
+#define LM_OPT_CONFIG			"config"		//	sent as "config=<absolute path>"
+#define LM_OPT_LOOPBACK			"loopback"
+#define LM_OPT_AUTOSTART		"autostart"	//	sent as "autostart=true" or "autostart=false"
+#define LM_OPT_RESET_HISTORY	"reset-history"
+#define LM_OPT_RESET_FILEHIST	"reset-file-history"
+#define LM_OPT_RESET_CONFIG		"reset-config"
+#define LM_OPT_TERMINATE		"terminate"
+#define LM_OPT_EXIT_AFTER_ARGS	"exit-after-args"
+#define LM_OPT_NEW				"new"		//	internal: this is a freshly started instance
+
 class lmCore : public QObject {
 	Q_OBJECT
 
 public:
 	lmCore(void);
 	~lmCore(void);
-	void init(const QString& szCommandArgs);
+	void init(const QStringList& options);
+	QStringList startupWarnings;	//	non-fatal problems found while starting, for the caller to report
 	bool start(void);
     void playLoopSound(SoundEvent event);
     void stopLoopSound();
     CallPhase callPhase = CP_Idle;
 
 public slots:
-	bool receiveAppMessage(const QString& szMessage);
+	bool receiveAppMessage(const QStringList& options);
 
 signals:
     void callPhaseChanged(bool);

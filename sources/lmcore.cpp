@@ -68,32 +68,22 @@ lmCore::lmCore(void) {
 lmCore::~lmCore(void) {
 }
 
-void lmCore::init(const QString& szCommandArgs) {
+void lmCore::init(const QStringList& options) {
 	//	prevent auto app exit when last visible window is closed
 	qApp->setQuitOnLastWindowClosed(false);
 
-	QStringList arguments = szCommandArgs.split("\n", Qt::SkipEmptyParts);
-	//	remove duplicates
-	arguments = QSet<QString>(arguments.begin(), arguments.end()).values();
-
 	pInitParams = new MessageXml();
     pInitParams->addData(XN_LOGFILE, DefinitionsDir::freeLogFile()); //Define path no matter what so logging can be initialized later.
-	if(arguments.contains("/silent", Qt::CaseInsensitive))
-        pInitParams->addData(XN_SILENTMODE, LM_TRUE);
-    if(arguments.contains("/trace", Qt::CaseInsensitive)) {
+    if(options.contains(LM_OPT_TRACE)) {
         pInitParams->addData(XN_TRACEMODE, LM_TRUE);     //Commandline argument will override UI setting.
 	}
-	for(int index = 0; index < arguments.count(); index++) {
-		if(arguments.at(index).startsWith("/port=", Qt::CaseInsensitive)) {
-			QString port = arguments.at(index).mid(QString("/port=").length());
-			pInitParams->addData(XN_PORT, port);
-			continue;
-		}
-		if(arguments.at(index).startsWith("/config=", Qt::CaseInsensitive)) {
-			QString configFile = arguments.at(index).mid(QString("/config=").length());
-			pInitParams->addData(XN_CONFIG, configFile);
-			continue;
-		}
+	const QString portPrefix = QString(LM_OPT_PORT) + "=";
+	const QString configPrefix = QString(LM_OPT_CONFIG) + "=";
+	for(const QString& option : options) {
+		if(option.startsWith(portPrefix))
+			pInitParams->addData(XN_PORT, option.mid(portPrefix.length()));
+		else if(option.startsWith(configPrefix))
+			pInitParams->addData(XN_CONFIG, option.mid(configPrefix.length()));
 	}
 
     lmDebugLog::init(pInitParams->data(XN_LOGFILE) , Helper::stringToBool(pInitParams->data(XN_TRACEMODE)));
@@ -142,18 +132,19 @@ void lmCore::loadSettings(void) {
             lmDebugLog::write("Debug logging started via loadSettings");
     }};
 
-	bool silent = Helper::stringToBool(pInitParams->data(XN_SILENTMODE));
-	if(!pSettings->migrateSettings() && !silent) {
-		// settings were reset. Show an alert if not in silent mode
-		QString message = tr("Your preferences file is corrupt or invalid.\n\n%1 is unable to recover your settings.");
-		QMessageBox::warning(NULL, lmStrings::appName(), message.arg(lmStrings::appName()));
+	auto warn = [this](const QString& message) {
+		startupWarnings << message;
+		lmDebugLog::write(message);
+	};
+	if(!pSettings->migrateSettings()) {
+		// settings were reset
+		warn(tr("Your preferences file is corrupt or invalid. %1 is unable to recover your settings.").arg(lmStrings::appName()));
 	}
 	if(pInitParams->dataExists(XN_CONFIG)) {
 		QString configFile = pInitParams->data(XN_CONFIG);
-		if(!pSettings->loadFromConfig(configFile) && !silent) {
-			QString message = tr("Preferences could not be imported from '%1'.\n\n"\
-								 "File may not exist, or may not be compatible with this version of %2.");
-			QMessageBox::warning(NULL, lmStrings::appName(), message.arg(configFile, lmStrings::appName()));
+		if(!pSettings->loadFromConfig(configFile)) {
+			warn(tr("Preferences could not be imported from '%1'. File may not exist, or may not be compatible with this version of %2.")
+				.arg(configFile, lmStrings::appName()));
 		}
 	}
 	lang = pSettings->value(IDS_LANGUAGE, IDS_LANGUAGE_VAL).toString();
@@ -352,51 +343,52 @@ void lmCore::receiveMessage(MessageType type, QString* lpszUserId, MessageXml* p
 	processMessage(type, lpszUserId, pMessage);
 }
 
-bool lmCore::receiveAppMessage(const QString& szMessage) {
+bool lmCore::receiveAppMessage(const QStringList& options) {
 	bool doNotExit = true;
 
-	if(szMessage.isEmpty()) {
+	//	no options means another instance was started plainly, just bring the window forward
+	if(options.isEmpty()) {
 		pMainWindow->restore();
 		return doNotExit;
 	}
 
-	QStringList messageList = szMessage.split("\n", Qt::SkipEmptyParts);
-	//	remove duplicates
-	messageList = QSet<QString>(messageList.begin(), messageList.end()).values();
-
-	if(messageList.contains("/new", Qt::CaseInsensitive)) {
-		if(messageList.contains("/loopback", Qt::CaseInsensitive))
+	if(options.contains(LM_OPT_NEW)) {
+		if(options.contains(LM_OPT_LOOPBACK))
 			pMessaging->setLoopback(true);
 	}
-	if(messageList.contains("/nohistory", Qt::CaseInsensitive)) {
+	if(options.contains(LM_OPT_RESET_HISTORY)) {
 		QFile::remove(History::historyFile());
 		if(pHistoryWindow)
 			pHistoryWindow->updateList();
 	}
-	if(messageList.contains("/nofilehistory", Qt::CaseInsensitive)) {
+	if(options.contains(LM_OPT_RESET_FILEHIST)) {
 		QFile::remove(DefinitionsDir::transferHistory());
 		if(pTransferWindow)
 			pTransferWindow->updateList();
 	}
-	if(messageList.contains("/noconfig", Qt::CaseInsensitive)) {
+	if(options.contains(LM_OPT_RESET_CONFIG)) {
 		QFile::remove(DefinitionsDir::avatarFile());
 		QFile::remove(pSettings->fileName());
 		pSettings->sync();
 		settingsChanged();
 	}
-	if(messageList.contains("/sync", Qt::CaseInsensitive)) {
-		bool autoStart = pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool();
-		lmSettings::setAutoStart(autoStart);
+	const QString autoStartPrefix = QString(LM_OPT_AUTOSTART) + "=";
+	for(const QString& option : options) {
+		if(!option.startsWith(autoStartPrefix))
+			continue;
+		bool on = option.mid(autoStartPrefix.length()) == "true";
+		pSettings->setValue(IDS_AUTOSTART, on, IDS_AUTOSTART_VAL);
+		pSettings->sync();
+		lmSettings::setAutoStart(on);
+		if(!options.contains(LM_OPT_NEW))
+			settingsChanged();	//	let a running instance refresh its UI
 	}
-	if(messageList.contains("/unsync", Qt::CaseInsensitive)) {
-		lmSettings::setAutoStart(false);
-	}
-	if(messageList.contains("/term", Qt::CaseInsensitive)) {
+	if(options.contains(LM_OPT_TERMINATE)) {
 		doNotExit = false;
 		exitApp();
 	}
-	if(messageList.contains("/quit", Qt::CaseInsensitive)) {
-		doNotExit  = false;
+	if(options.contains(LM_OPT_EXIT_AFTER_ARGS)) {
+		doNotExit = false;
 	}
 
 	return doNotExit;
