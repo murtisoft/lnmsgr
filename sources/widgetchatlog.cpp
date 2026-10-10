@@ -1061,9 +1061,6 @@ void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	if(!useDefaults && trimMessage)
 		*lpszMessage = lpszMessage->trimmed();
 
-    // normalize backslash UNC to forward slash, which means you cant type backslash unfortunately.
-    lpszMessage->replace('\\', '/');
-
 	//	The url detection regexps only work with plain text, so link detection is done before
 	//	making the text html safe. The converted links are given a "data-isLink" custom
 	//	attribute to differentiate them from the message content
@@ -1088,7 +1085,10 @@ if(!useDefaults && pathToLink) {
         auto m = it.next();
         result += lpszMessage->sliced(lastEnd, m.capturedStart() - lastEnd);
         QString path = m.captured(2).isEmpty() ? m.captured(3) : m.captured(2);
-        result += QString("<a data-isLink='true' href='file:%1'>%1</a>").arg(path);
+        //  Only the link target is normalized to forward slashes, the message text keeps what was typed.
+        QString href = path;
+        href.replace('\\', '/');
+        result += QString("<a data-isLink='true' href='file:%1'>%2</a>").arg(href, path);
         lastEnd = m.capturedEnd();
     }
     result += lpszMessage->sliced(lastEnd);
