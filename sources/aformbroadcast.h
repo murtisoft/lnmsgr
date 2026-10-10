@@ -43,6 +43,7 @@ public:
 	void init(bool connected);
 	void stop(void);
 	void show(QList<QTreeWidgetItem*>* pGroupList = 0);
+	void refreshUsers(QList<QTreeWidgetItem*>* pGroupList);
 	void connectionStateChanged(bool connected);
 	void settingsChanged(void);
 
@@ -61,6 +62,7 @@ private slots:
 	void btnSelectNone_clicked(void);
 	void tvUserList_itemChanged(QTreeWidgetItem* item, int column);
 	void btnSend_clicked(void);
+	void txtMessage_textChanged(void);
 
 private:
 	void createToolBar(void);
@@ -68,6 +70,9 @@ private:
 	void sendMessage(void);
 	void encodeMessage(QString* lpszMessage);
 	void showStatus(int flag, bool add);
+	int countSelectedUsers(void);
+	QString sendBlockReason(void);
+	void updateSendState(void);
 
 	Ui::BroadcastWindow ui;
     lmSettings*     pSettings;

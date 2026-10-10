@@ -79,6 +79,7 @@ signals:
 	void showAbout(void);
 	void showBroadcast(void);
 	void showPublicChat(void);
+	void userListChanged(void);
 
 protected:
     bool eventFilter(QObject* pObject, QEvent* pEvent);

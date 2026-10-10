@@ -45,6 +45,7 @@ lmCore::lmCore(void) {
 	connect(pMainWindow, SIGNAL(showSettings()), this, SLOT(showSettings()));
 	connect(pMainWindow, SIGNAL(showAbout()), this, SLOT(showAbout()));
 	connect(pMainWindow, SIGNAL(showBroadcast()), this, SLOT(showBroadcast()));
+	connect(pMainWindow, SIGNAL(userListChanged()), this, SLOT(refreshBroadcastUsers()));
 	connect(pMainWindow, SIGNAL(showPublicChat()), this, SLOT(showPublicChat()));
 	pPublicChatWindow = new lmFormChatRoom();
     connect(pPublicChatWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
@@ -465,6 +466,15 @@ void lmCore::showBroadcast(void) {
 	} else {
 		pBroadcastWindow->show();
 	}
+}
+
+//	keep the broadcast window's user list in sync with the main window
+void lmCore::refreshBroadcastUsers(void) {
+	if(!pBroadcastWindow || pBroadcastWindow->isHidden())
+		return;
+
+	QList<QTreeWidgetItem*> contactsList = pMainWindow->getContactsList();
+	pBroadcastWindow->refreshUsers(&contactsList);
 }
 
 void lmCore::showPublicChat() {

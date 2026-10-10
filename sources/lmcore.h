@@ -88,6 +88,7 @@ private slots:
 	void showHistory(void);
 	void showSettings(void);
 	void showAbout(void);
+	void refreshBroadcastUsers(void);
 	void showBroadcast(void);
 	void showPublicChat();
 	void historyCleared(void);

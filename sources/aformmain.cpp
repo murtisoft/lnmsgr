@@ -266,6 +266,9 @@ void lmFormMain::addUser(User* pUser) {
 	}
 
 	sendAvatar(&pUser->id);
+
+	//	let interested windows (e.g. broadcast) refresh their user lists
+	emit userListChanged();
 }
 
 void lmFormMain::updateUser(User* pUser) {
@@ -303,6 +306,7 @@ void lmFormMain::removeUser(QString* lpszUserId) {
 	QTreeWidgetItem* pGroup = pItem->parent();
 	pGroup->removeChild(pItem);
 	removeGroupIfEmpty(pGroup);
+	emit userListChanged();
 
 	if(isHidden() || !isActiveWindow()) {
 		QString msg = tr("%1 is offline.");

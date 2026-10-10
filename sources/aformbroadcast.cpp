@@ -20,7 +20,7 @@
 ****************************************************************************/
 
 #include <QActionGroup>
-#include <QMessageBox>
+#include <QSet>
 #include "aformbroadcast.h"
 #include "widgetimagepicker.h"
 #include "definitionsui.h"
@@ -47,6 +47,7 @@ lmFormBroadcast::lmFormBroadcast(QWidget *parent) : QWidget(parent) {
     connect(ui.tvUserList, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
         this, SLOT(tvUserList_itemChanged(QTreeWidgetItem*,int)));
 	connect(ui.btnSend, SIGNAL(clicked()), this, SLOT(btnSend_clicked()));
+	connect(ui.txtMessage, SIGNAL(textChanged()), this, SLOT(txtMessage_textChanged()));
 
 	//	event filters for handling keyboard input
 	ui.txtMessage->installEventFilter(this);
@@ -61,6 +62,7 @@ lmFormBroadcast::lmFormBroadcast(QWidget *parent) : QWidget(parent) {
 
 	parentToggling = false;
 	childToggling = false;
+	bConnected = false;
 }
 
 lmFormBroadcast::~lmFormBroadcast() {
@@ -90,7 +92,6 @@ void lmFormBroadcast::init(bool connected) {
 
 	//	show a message if not connected
 	bConnected = connected;
-	ui.btnSend->setEnabled(bConnected);
 	if(!bConnected)
 		showStatus(IT_Disconnected, true);
 
@@ -124,13 +125,53 @@ void lmFormBroadcast::show(QList<QTreeWidgetItem*>* pGroupList) {
 	ui.tvUserList->expandAll();
 
 	btnSelectAll_clicked();
+	updateSendState();
     QWidget::show();
+}
+
+//	rebuild the user tree while keeping the current selection
+//	users that were not in the list before are left unchecked
+void lmFormBroadcast::refreshUsers(QList<QTreeWidgetItem*>* pGroupList) {
+	if(!pGroupList)
+		return;
+
+	//	remember who is currently checked
+	QSet<QString> checkedIds;
+	for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++) {
+		QTreeWidgetItem* pGroup = ui.tvUserList->topLevelItem(index);
+		for(int childIndex = 0; childIndex < pGroup->childCount(); childIndex++) {
+			QTreeWidgetItem* pChild = pGroup->child(childIndex);
+			if(pChild->checkState(0) == Qt::Checked)
+				checkedIds.insert(pChild->data(0, IdRole).toString());
+		}
+	}
+
+	//	populate the tree, check states are set before the items join the tree
+	//	so that itemChanged is not triggered
+	ui.tvUserList->clear();
+	for(int index = 0; index < pGroupList->count(); index++) {
+		QTreeWidgetItem* pItem = pGroupList->value(index);
+		int nChecked = 0;
+		for(int childIndex = 0; childIndex < pItem->childCount(); childIndex++) {
+			QTreeWidgetItem* pChild = pItem->child(childIndex);
+			bool checked = checkedIds.contains(pChild->data(0, IdRole).toString());
+			pChild->setCheckState(0, checked ? Qt::Checked : Qt::Unchecked);
+			if(checked)
+				nChecked++;
+		}
+		bool allChecked = (pItem->childCount() > 0 && nChecked == pItem->childCount());
+		pItem->setCheckState(0, allChecked ? Qt::Checked : Qt::Unchecked);
+		ui.tvUserList->addTopLevelItem(pItem);
+	}
+	ui.tvUserList->expandAll();
+
+	updateSendState();
 }
 
 void lmFormBroadcast::connectionStateChanged(bool connected) {
 	bConnected = connected;
-	ui.btnSend->setEnabled(bConnected);
 	bConnected ? showStatus(IT_Disconnected, false) : showStatus(IT_Disconnected, true);
+	updateSendState();
 }
 
 void lmFormBroadcast::settingsChanged(void) {
@@ -246,10 +287,16 @@ void lmFormBroadcast::tvUserList_itemChanged(QTreeWidgetItem* item, int column) 
 		parent->setCheckState(0, check);
 		childToggling = false;
 	}
+
+	updateSendState();
 }
 
 void lmFormBroadcast::btnSend_clicked(void) {
 	sendMessage();
+}
+
+void lmFormBroadcast::txtMessage_textChanged(void) {
+	updateSendState();
 }
 
 //	create toolbar and add buttons
@@ -300,16 +347,17 @@ void lmFormBroadcast::setUIText(void) {
 
 	for(int index = 0; index < pFontGroup->actions().count(); index++)
         pFontGroup->actions().at(index)->setText(lmStrings::fontSize()[index]);
+
+	updateSendState();
 }
 
 //	send the broadcast message to all selected users
 void lmFormBroadcast::sendMessage(void) {
-	//	return if text box is empty
-	if(ui.txtMessage->document()->isEmpty())
+	//	do nothing if sending is currently blocked (the send button explains why)
+	if(!sendBlockReason().isEmpty())
 		return;
 
-	//	send only if connected
-	if(bConnected) {
+	{
 		QString szHtmlMessage(ui.txtMessage->toHtml());
 		encodeMessage(&szHtmlMessage);
 		QTextDocument docMessage;
@@ -317,7 +365,6 @@ void lmFormBroadcast::sendMessage(void) {
 		QString szMessage(docMessage.toPlainText());
 		
 		//	send broadcast
-		int sendCount = 0;
 		MessageXml xmlMessage;
 		xmlMessage.addData(XN_BROADCAST, szMessage);
 		for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++) {
@@ -326,15 +373,8 @@ void lmFormBroadcast::sendMessage(void) {
 				if(item->checkState(0) == Qt::Checked) {
                     QString szUserId = item->data(0, IdRole).toString();
 					emit messageSent(MT_Broadcast, &szUserId, &xmlMessage);
-					sendCount++;
 				}
 			}
-		}
-
-		if(sendCount == 0) {
-			QMessageBox::warning(this, tr("No recipient selected"), 
-				tr("Please select at least one recipient to send a broadcast."));
-			return;
 		}
 
 		ui.txtMessage->clear();
@@ -346,6 +386,36 @@ void lmFormBroadcast::sendMessage(void) {
 void lmFormBroadcast::encodeMessage(QString* lpszMessage) {
 	//	replace all emoticon images with corresponding text code
 	ChatHelper::encodeSmileys(lpszMessage);
+}
+
+//	count the checked users in the tree
+int lmFormBroadcast::countSelectedUsers(void) {
+	int count = 0;
+	for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++) {
+		QTreeWidgetItem* pGroup = ui.tvUserList->topLevelItem(index);
+		for(int childIndex = 0; childIndex < pGroup->childCount(); childIndex++)
+			if(pGroup->child(childIndex)->checkState(0) == Qt::Checked)
+				count++;
+	}
+	return count;
+}
+
+//	returns why the broadcast cannot be sent right now, or an empty string if it can
+QString lmFormBroadcast::sendBlockReason(void) {
+	if(!bConnected)
+		return tr("You are not connected. Broadcast message cannot be sent.");
+	if(countSelectedUsers() == 0)
+		return tr("Select at least one recipient to send a broadcast.");
+	if(ui.txtMessage->document()->isEmpty())
+		return tr("Type a message to send.");
+	return QString();
+}
+
+//	enable or disable the send button and explain the reason in its tooltip
+void lmFormBroadcast::updateSendState(void) {
+	QString reason = sendBlockReason();
+	ui.btnSend->setEnabled(reason.isEmpty());
+	ui.btnSend->setToolTip(reason);
 }
 
 //	show a message depending on the connection state
