@@ -68,7 +68,7 @@ public:
 
 public slots:
     void btnHangUp_clicked();
-    void callPhaseChanged(bool busy);
+    void callPhaseChanged(CallPhase phase);
 
 signals:
 	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
@@ -169,8 +169,9 @@ private:
 	qint64 snapKeyStroke;
 	bool dataSaved;
     bool bCallBusy = false;
+    CallPhase callPhase = CP_Idle;
     QString currentCallId;
-    MessageType currentCallType;
+    MessageType currentCallType = MT_Message;
     QString GroupId = "PARTICIPANTS";
     const qint64 pauseTime = 3000;
 

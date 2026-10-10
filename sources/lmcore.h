@@ -73,7 +73,7 @@ public slots:
 	bool receiveAppMessage(const QStringList& options);
 
 signals:
-    void callPhaseChanged(bool);
+    void callPhaseChanged(CallPhase phase);
 
 private slots:
 	void exitApp(void);

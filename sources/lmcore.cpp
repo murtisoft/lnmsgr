@@ -604,13 +604,13 @@ void lmCore::stopLoopSound()
 void lmCore::callRequested(MessageType type) {
     if (callPhase != CP_Idle) return; // busy
     callPhase = CP_Calling;
-    emit callPhaseChanged(callPhase != CP_Idle);
+    emit callPhaseChanged(callPhase);
     playLoopSound(SE_RingOut);
 }
 
 void lmCore::callConnected(MessageType type) {
     callPhase = CP_Connected;
-    emit callPhaseChanged(callPhase != CP_Idle);
+    emit callPhaseChanged(callPhase);
     stopLoopSound();
     if (type == MT_Video) return; //TODO Video streaming.
     for (lmFormChat* w : std::as_const(chatWindows)) {   //TODO Attaching call to whatever window is wrong, but i am lazy and its working
@@ -636,7 +636,7 @@ void lmCore::callConnected(MessageType type) {
 
 void lmCore::callEnded(MessageType type) {
     callPhase = CP_Idle;
-    emit callPhaseChanged(callPhase != CP_Idle);
+    emit callPhaseChanged(callPhase);
     stopLoopSound();
 
     if (m_audioStream) { m_audioStream->stop(); delete m_audioStream; m_audioStream = nullptr; }
@@ -654,7 +654,7 @@ void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pM
             return;
         }
         callPhase = CP_Ringing;
-        emit callPhaseChanged(true);
+        emit callPhaseChanged(callPhase);
         playLoopSound(SE_RingIn);
         break;
     case SO_Accept:
@@ -930,9 +930,9 @@ void lmCore::createChatWindow(QString* lpszUserId) {
             this, SLOT(callEnded(MessageType)));
     connect(pChatWindow, SIGNAL(callConnected(MessageType)),
             this, SLOT(callConnected(MessageType)));
-    connect(this, SIGNAL(callPhaseChanged(bool)),
-            pChatWindow, SLOT(callPhaseChanged(bool)));
-    pChatWindow->callPhaseChanged(callPhase != CP_Idle);
+    connect(this, SIGNAL(callPhaseChanged(CallPhase)),
+            pChatWindow, SLOT(callPhaseChanged(CallPhase)));
+    pChatWindow->callPhaseChanged(callPhase);
 }
 
 void lmCore::showChatWindow(lmFormChat* chatWindow, bool show, bool alert) {

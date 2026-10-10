@@ -459,9 +459,10 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 	}
 }
 
-void lmFormChat::callPhaseChanged(bool busy) {
-    bCallBusy = busy;
-    if (!busy)
+void lmFormChat::callPhaseChanged(CallPhase phase) {
+    callPhase = phase;
+    bCallBusy = (phase != CP_Idle);
+    if (phase != CP_Connected)
         resetToggleButtons();
     updateButtonStates();
 }
@@ -481,9 +482,10 @@ void lmFormChat::updateButtonStates() {
     pAudioAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Audio));
     pVideoAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Video));
     pHangUpAction->setEnabled(peerOnline && bCallBusy && (peerCaps.value(peerId) & UC_Video));;
-    ui.btnMicrophone->setEnabled(peerOnline && bCallBusy && (currentCallType == MT_Audio || currentCallType == MT_Video));
-    ui.btnSpeaker->setEnabled(peerOnline && bCallBusy && (currentCallType == MT_Audio || currentCallType == MT_Video));
-    ui.btnCamera->setEnabled(peerOnline && bCallBusy && (currentCallType == MT_Audio || currentCallType == MT_Video));
+    bool inCall = peerOnline && callPhase == CP_Connected && !currentCallId.isEmpty();
+    ui.btnMicrophone->setEnabled(inCall && (currentCallType == MT_Audio || currentCallType == MT_Video));
+    ui.btnSpeaker->setEnabled(inCall && (currentCallType == MT_Audio || currentCallType == MT_Video));
+    ui.btnCamera->setEnabled(inCall && currentCallType == MT_Video);
 }
 
 void lmFormChat::connectionStateChanged(bool connected) {
