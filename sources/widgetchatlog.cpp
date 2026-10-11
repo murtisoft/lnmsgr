@@ -549,21 +549,56 @@ void lmChatLog::replaceMessageLog(MessageType type, QString id, QString html)
     }
 }
 
+//	Shrinks an empty paragraph to a fixed height (px)
+static void collapseEmptyBlock(QTextDocument* pDoc, QTextBlock block, int height, bool rootOnly)
+{
+    if(!block.isValid() || !block.text().isEmpty())
+        return;
+
+    QTextCursor c(block);
+    if(rootOnly && c.currentFrame() != pDoc->rootFrame())
+        return;
+
+    QTextBlockFormat blockFormat;
+    blockFormat.setTopMargin(0);
+    blockFormat.setBottomMargin(0);
+    blockFormat.setLineHeight(height, QTextBlockFormat::FixedHeight);
+    QTextCharFormat charFormat;
+    charFormat.setFontPointSize(1);
+    c.setBlockFormat(blockFormat);
+    c.setBlockCharFormat(charFormat);
+}
+
 void lmChatLog::insertMessageLog(QTextCursor cursor, QString &html, MessageType type, QTextBlockData *data)
 {
+    const int messageGap = 6;   //	px between messages
+
     QTextFrameFormat frameFormat;
     frameFormat.setMargin(0);
-    frameFormat.setTopMargin(-12);
+    frameFormat.setTopMargin(0);
     frameFormat.setPadding(0);
     frameFormat.setBorder(0);
+
+    //	don't let a previously collapsed block pass its tiny format on to the new message
+    cursor.setBlockFormat(QTextBlockFormat());
+    cursor.setBlockCharFormat(QTextCharFormat());
+
     QTextFrame *frame = cursor.insertFrame(frameFormat);
     frame->firstCursorPosition().insertHtml(html);
 
-    QTextBlock block = frame->firstCursorPosition().block();
+    QTextBlock firstBlock = frame->firstCursorPosition().block();
+    QTextBlock lastBlock = frame->lastCursorPosition().block();
 
-    block.setUserState(type);
+    //	empty paragraph kept inside the frame after the last table
+    if(lastBlock != firstBlock)
+        collapseEmptyBlock(document(), lastBlock, 1, false);
+    //	empty root paragraphs on either side of the frame become the gap between messages
+    collapseEmptyBlock(document(), firstBlock.previous(), messageGap, true);
+    collapseEmptyBlock(document(), lastBlock.next(), messageGap, true);
+
+    firstBlock.setUserState(type);
     if(data != nullptr)
-        block.setUserData(data);
+        firstBlock.setUserData(data);
 }
 
 bool lmChatLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &id) const

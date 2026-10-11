@@ -37,7 +37,6 @@ endif()
 #"User is online" Toast notification cant display avatar, because the file arrives too late.
 #"User is offline" Toast notification displays a lower res avatar.
 #Broadcasts arent logged into history.
-#Within the chatlog, first line of every message has its collusion box shadowed by the table above. I have found no solution other than leaving 1 line gap.
 #File transfers dont have a timestamp parameter, but they generate their own.
 #Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work.
 #While A and B are in a call, C calling one of them will end their call. Their chatlog wont show anything, but C will show call declined.
