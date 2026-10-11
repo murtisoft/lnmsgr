@@ -31,12 +31,14 @@
 #include "definitionssettings.h"
 
 #define TRANSFERHISTORY		"transfers.lst"
-#define CACHEDIR			"cache"
+#define CACHEDIR			"Cache"
+#define AVATARDIR			"Avatars"
+#define SETTINGSFILE		"Settings.ini"
 #define LANGDIR				"translations"
 #define THEMEDIR			"templates"
 #define GROUPFILE			"group.cfg"
 #define AVATARFILE			"avt_local.png"
-#define LOGDIR				"logs"
+#define LOGDIR				"DebugLogs"
 #define TEMPCONFIG			"lmtmpconf.ini"
 
 class DefinitionsDir {
@@ -58,6 +60,16 @@ public:
 	static QString cacheDir(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
             QStandardPaths::AppDataLocation) + "/" CACHEDIR);
+	}
+
+	static QString avatarDir(void) {
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::AppDataLocation) + "/" AVATARDIR);
+	}
+
+	static QString settingsFile(void) {
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::AppDataLocation) + "/" SETTINGSFILE);
 	}
 
 	static QString libDir(void) {

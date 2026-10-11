@@ -641,8 +641,9 @@ bool lmFormChat::handleClipboardPaste(void) {
     } else if (mimeData->hasImage()) {
         QImage img = qvariant_cast<QImage>(mimeData->imageData());
         if (!img.isNull()) {
-            QString tempPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/Snip_" +
-                               QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png";
+            QDir().mkpath(DefinitionsDir::cacheDir());
+            QString tempPath = QDir(DefinitionsDir::cacheDir()).absoluteFilePath("Snip_" +
+                               QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png");
             if (img.save(tempPath, "PNG")) {
                 QString currentStatus = peerStatuses.value(peerId);
                 int statusIndex = Helper::statusIndexFromCode(currentStatus);

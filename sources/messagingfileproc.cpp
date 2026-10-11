@@ -328,7 +328,8 @@ bool lmMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString* 
                         emit messageReceived(MT_File, lpszUserId, &xmlMessage);
                         break;
                     case FT_Avatar:
-                        cacheDir = QDir(DefinitionsDir::cacheDir());
+                        QDir().mkpath(DefinitionsDir::avatarDir());
+                        cacheDir = QDir(DefinitionsDir::avatarDir());
                         fileName = "avt_" + *lpszUserId + "_part.png";
                         filePath = cacheDir.absoluteFilePath(fileName);
                         fileList[index].name = fileName;
@@ -391,7 +392,8 @@ bool lmMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString* 
                 } else {
                     switch(fileType) {
                     case FT_Avatar:
-                        cacheDir = QDir(DefinitionsDir::cacheDir());
+                        QDir().mkpath(DefinitionsDir::avatarDir());
+                        cacheDir = QDir(DefinitionsDir::avatarDir());
                         fileName = "avt_" + *lpszUserId + ".png";
                         filePath = cacheDir.absoluteFilePath(fileName);
                         QFile::remove(filePath);

@@ -45,6 +45,10 @@ void lmSettingsBase::setValue(const QString& key, const QVariant& value, const Q
         remove(key);
 }
 
+//	settings are stored in <AppDataLocation>/Settings.ini
+lmSettings::lmSettings(void) : lmSettingsBase(DefinitionsDir::settingsFile(), QSettings::IniFormat) {
+}
+
 //	migrate settings from older versions to new format
 //	Returns false if existing settings cannot be migrated, else true
 bool lmSettings::migrateSettings(void) {

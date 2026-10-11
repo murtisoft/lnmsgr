@@ -20,7 +20,6 @@ endif()
 #Thinking of switching png to webp, but not sure how painful the transition will be.
 
 #Implement voice&video settings
-#Add opus voice chat
 #Add vp8 video chat / desktop sharing
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
 #    Encryption in the program only works 1 on 1. That kinda hinders those plans.
@@ -31,7 +30,6 @@ endif()
 #SetUItext functions dont handle newer controls, switching translations will require a restart.
 #Setting migration function doesnt handle newly added ones.
 #Some older, and all new buttons dont have Alt underlines. Is this even needed in the %CurrentYear%?
-#Colorscheme switching: Main window status selector arrow doesnt change color. Chatlog widget contents lag behind, but switch fine after clicking on widget once.
 #"User is online" Toast notification cant display avatar, because the file arrives too late.
 #"User is offline" Toast notification displays a lower res avatar.
 #Broadcasts arent logged into history.

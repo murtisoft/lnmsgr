@@ -26,7 +26,7 @@
 //	Information about the application
 #include <qobject.h>
 #define IDA_TITLE		"LAN Messenger"
-#define IDA_PRODUCT		"LAN Messenger 2026"
+#define IDA_PRODUCT		"LM2026"
 #define IDA_COMPANY		"LAN Messenger"
 #define IDA_VERSION     PROJECT_VERSION   //Passed from cmake.
 #define IDA_DESCRIPTION	"LAN Messenger is a free peer-to-peer messaging application for intra-network communication "\

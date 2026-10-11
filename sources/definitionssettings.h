@@ -190,7 +190,7 @@ public:
 
 class lmSettings : public lmSettingsBase {
 public:
-	lmSettings(void) : lmSettingsBase(QSettings::IniFormat, QSettings::UserScope, IDA_COMPANY, IDA_PRODUCT) {}
+	lmSettings(void);
 	~lmSettings(void) {}
 
 	bool migrateSettings(void);
