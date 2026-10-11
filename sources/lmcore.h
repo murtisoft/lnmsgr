@@ -41,6 +41,7 @@
 #include "aformbroadcast.h"
 #include "networkstreamer.h"
 #include "soundplayer.h"
+#include "hotkeyhandler.h"
 
 //	Command line options, as passed between main() and lmCore (and between instances).
 //	These are the parsed, canonical forms of the --switches, not raw user input.
@@ -100,6 +101,8 @@ private slots:
     void callRequested(MessageType type);
     void callConnected(MessageType type);
     void callEnded(MessageType type);
+    void hotkeyTriggered(lmHotkeyHandler::Action action);
+    void hotkeyRegistrationFailed(lmHotkeyHandler::Action action, const QKeySequence& sequence, const QString& reason);
 
 private:
 	void stop(void);
@@ -122,6 +125,7 @@ private:
 	void showPublicChatWindow(bool show, bool alert = false, bool open = false);
     QStringList showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList);
 	void showPortConflictMessage(void);
+    lmFormChat* callWindow(void) const;
 
     lmSettings*                     pSettings;
 	QTimer*							pTimer;
@@ -146,6 +150,7 @@ private:
     lmAudioStream*                  m_audioStream = nullptr;
     QString                         callPeerId;     // user the current call (calling/ringing/connected) is with
     lmSoundPlayer*                  pSoundPlayer;
+    lmHotkeyHandler*                pHotkeys;
 };
 
 #endif // LMCORE_H

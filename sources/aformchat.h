@@ -70,6 +70,10 @@ public:
 public slots:
     void btnHangUp_clicked();
     void callPhaseChanged(CallPhase phase);
+    //  Same as pressing the call buttons. Do nothing unless a call is connected. Used by the global hotkeys.
+    void toggleMicrophone();
+    void toggleSpeaker();
+    void toggleCamera();
 
 signals:
 	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);
@@ -81,6 +85,7 @@ signals:
     void callEnded(MessageType type);
     void micToggled(bool muted);
     void speakerToggled(bool muted);
+    void camToggled(bool muted);
 
 protected:
 	bool eventFilter(QObject* pObject, QEvent* pEvent);

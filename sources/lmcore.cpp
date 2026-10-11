@@ -62,6 +62,9 @@ lmCore::lmCore(void) {
     pBroadcastWindow = nullptr;
     pTimer = nullptr;
     pSoundPlayer = new lmSoundPlayer();
+    pHotkeys = new lmHotkeyHandler(this);
+    connect(pHotkeys, &lmHotkeyHandler::triggered, this, &lmCore::hotkeyTriggered);
+    connect(pHotkeys, &lmHotkeyHandler::registrationFailed, this, &lmCore::hotkeyRegistrationFailed);
 }
 
 lmCore::~lmCore(void) {
@@ -108,6 +111,7 @@ bool lmCore::start(void) {
 	}
 
 	pMainWindow->start();
+	pHotkeys->loadSettings(pSettings);	//	after the main window, a conflict is reported as a toast
 	
 	pTimer = new QTimer(this);
     connect(pTimer, SIGNAL(timeout()), this, SLOT(timer_timeout()));
@@ -182,6 +186,7 @@ void lmCore::settingsChanged(void) {
 	pTimer->setInterval(refreshTime);
 	bool autoStart = pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool();
 	lmSettings::setAutoStart(autoStart);
+	pHotkeys->loadSettings(pSettings);
 	QString appLang = pSettings->value(IDS_LANGUAGE, IDS_LANGUAGE_VAL).toString();
 	if(appLang.compare(lang) != 0) {
 		lang = appLang;
@@ -202,6 +207,7 @@ void lmCore::settingsChanged(void) {
 }
 
 void lmCore::stop(void) {
+	pHotkeys->clear();
 	for(int index = 0; index < chatWindows.count(); index++) {
         chatWindows[index]->btnHangUp_clicked();
 		chatWindows[index]->stop();
@@ -443,10 +449,15 @@ void lmCore::showSettings(void) {
 		pSettingsDialog = new lmFormSettings(pMainWindow);
 		connect(pSettingsDialog, SIGNAL(historyCleared()), this, SLOT(historyCleared()));
 		connect(pSettingsDialog, SIGNAL(fileHistoryCleared()), this, SLOT(fileHistoryCleared()));
+		//	While a hotkey is being recorded, release the global ones. Otherwise the system would swallow
+		//	the very combination the user is trying to (re)assign.
+		connect(pSettingsDialog, &lmFormSettings::hotkeyCaptureChanged, pHotkeys, &lmHotkeyHandler::setSuspended);
 		pSettingsDialog->init();
 	}
 
-	if(pSettingsDialog->exec())
+	bool accepted = pSettingsDialog->exec();
+	pHotkeys->setSuspended(false);	//	in case the dialog closed while recording
+	if(accepted)
 		settingsChanged();
 }
 
@@ -656,6 +667,38 @@ void lmCore::callEnded(MessageType type) {
 
     callPeerId.clear();
     if (m_audioStream) { m_audioStream->stop(); delete m_audioStream; m_audioStream = nullptr; }
+}
+
+//  The chat window that owns the connected call, or nullptr when there is none.
+lmFormChat* lmCore::callWindow(void) const {
+    if (callPhase != CP_Connected)
+        return nullptr;
+    for (lmFormChat* cw : std::as_const(chatWindows)) {
+        if (!cw->groupMode && cw->peerId == callPeerId)
+            return cw;
+    }
+    return nullptr;
+}
+
+//  Global hotkeys press the call buttons of the active call window, so the buttons, icons and sounds
+//  behave exactly as if the user had clicked them. Outside of a call there is nothing to toggle.
+void lmCore::hotkeyTriggered(lmHotkeyHandler::Action action) {
+    lmFormChat* w = callWindow();
+    if (!w)
+        return;
+    switch (action) {
+    case lmHotkeyHandler::HK_Mic:       w->toggleMicrophone(); break;
+    case lmHotkeyHandler::HK_Speaker:   w->toggleSpeaker();    break;
+    case lmHotkeyHandler::HK_Camera:    w->toggleCamera();     break;
+    default:                                                   break;
+    }
+}
+
+void lmCore::hotkeyRegistrationFailed(lmHotkeyHandler::Action action, const QKeySequence& sequence, const QString& reason) {
+    QString message = tr("The %1 hotkey (%2) is not active: %3")
+        .arg(lmHotkeyHandler::actionName(action), sequence.toString(QKeySequence::NativeText), reason);
+    lmDebugLog::write(message);
+    showTrayMessage(TM_Connection, message, tr("Hotkey"), TMI_Warning);
 }
 
 void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage) {
@@ -976,6 +1019,10 @@ void lmCore::createChatWindow(QString* lpszUserId) {
     connect(this, SIGNAL(callPhaseChanged(CallPhase)),
             pChatWindow, SLOT(callPhaseChanged(CallPhase)));
     pChatWindow->callPhaseChanged(callPhase);
+    //  Mic and speaker sounds come from the audio stream. There is no video stream yet, so play the camera ones here.
+    connect(pChatWindow, &lmFormChat::camToggled, this, [this](bool muted) {
+        pSoundPlayer->play(muted ? SE_CamOff : SE_CamOn);
+    });
 }
 
 void lmCore::showChatWindow(lmFormChat* chatWindow, bool show, bool alert) {

@@ -206,6 +206,22 @@ void lmFormChat::btnSpeaker_toggle() {
 void lmFormChat::btnCamera_toggle() {
     camMuted = !camMuted;
     ui.btnCamera->setIcon(QIcon(Helper::renderEmoji(Icons::Camcorder, 24, camMuted ? 1 : 0)));
+    emit camToggled(camMuted);
+}
+
+void lmFormChat::toggleMicrophone() {
+    if(ui.btnMicrophone->isEnabled())
+        ui.btnMicrophone->click();
+}
+
+void lmFormChat::toggleSpeaker() {
+    if(ui.btnSpeaker->isEnabled())
+        ui.btnSpeaker->click();
+}
+
+void lmFormChat::toggleCamera() {
+    if(ui.btnCamera->isEnabled())
+        ui.btnCamera->click();
 }
 
 void lmFormChat::resetToggleButtons() {

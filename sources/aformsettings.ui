@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>9</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2352,6 +2352,114 @@ Settings on this page dont work for the time being.</string>
                </layout>
               </item>
              </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="grpCallHotkeys">
+           <property name="title">
+            <string>Calls</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_callhotkeys">
+            <item>
+             <widget class="QCheckBox" name="chkGlobalHotkeys">
+              <property name="text">
+               <string>Enable global hotkeys</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblHotkeyDesc">
+              <property name="text">
+               <string>Hotkeys control the active call, and work even when %1 is not the focused window.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QWidget" name="wdgCallHotkeys" native="true">
+              <layout class="QGridLayout" name="gridLayout_callhotkeys" columnstretch="0,1,0">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item row="0" column="0">
+                <widget class="QLabel" name="lblMicHotkey">
+                 <property name="text">
+                  <string>Toggle microphone:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QKeySequenceEdit" name="keyMicHotkey"/>
+               </item>
+               <item row="0" column="2">
+                <widget class="QPushButton" name="btnMicHotkeyDefault">
+                 <property name="text">
+                  <string>Default</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="lblSpeakerHotkey">
+                 <property name="text">
+                  <string>Toggle speaker:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QKeySequenceEdit" name="keySpeakerHotkey"/>
+               </item>
+               <item row="1" column="2">
+                <widget class="QPushButton" name="btnSpeakerHotkeyDefault">
+                 <property name="text">
+                  <string>Default</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="lblCameraHotkey">
+                 <property name="text">
+                  <string>Toggle camera:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QKeySequenceEdit" name="keyCameraHotkey"/>
+               </item>
+               <item row="2" column="2">
+                <widget class="QPushButton" name="btnCameraHotkeyDefault">
+                 <property name="text">
+                  <string>Default</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblHotkeyWarning">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>

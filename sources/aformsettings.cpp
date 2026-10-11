@@ -69,6 +69,27 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
     connect(ui.btnPlaySound, SIGNAL(clicked()), this, SLOT(btnPlaySound_clicked()));
     connect(ui.btnSoundPath, SIGNAL(clicked()), this, SLOT(btnSoundPath_clicked()));
     connect(ui.btnResetSounds, SIGNAL(clicked()), this, SLOT(btnResetSounds_clicked()));
+
+    hotkeyEdits[lmHotkeyHandler::HK_Mic] = ui.keyMicHotkey;
+    hotkeyEdits[lmHotkeyHandler::HK_Speaker] = ui.keySpeakerHotkey;
+    hotkeyEdits[lmHotkeyHandler::HK_Camera] = ui.keyCameraHotkey;
+    QPushButton* hotkeyDefaults[lmHotkeyHandler::HK_Max] = {
+        ui.btnMicHotkeyDefault, ui.btnSpeakerHotkeyDefault, ui.btnCameraHotkeyDefault
+    };
+    for(int index = 0; index < lmHotkeyHandler::HK_Max; index++) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+        hotkeyEdits[index]->setMaximumSequenceLength(1);    // one combination, not a chord
+        hotkeyEdits[index]->setClearButtonEnabled(true);    // clearing leaves the action without a hotkey
+#endif
+        connect(hotkeyEdits[index], &QKeySequenceEdit::keySequenceChanged, this, &lmFormSettings::validateHotkeys);
+        connect(hotkeyDefaults[index], &QPushButton::clicked, this, [this, index]() {
+            hotkeyEdits[index]->setKeySequence(lmHotkeyHandler::defaultSequence(lmHotkeyHandler::Action(index)));
+        });
+    }
+    connect(ui.chkGlobalHotkeys, &QCheckBox::toggled, this, &lmFormSettings::chkGlobalHotkeys_toggled);
+    connect(qApp, &QApplication::focusChanged, this, &lmFormSettings::application_focusChanged);
+    ui.lblHotkeyWarning->setStyleSheet("color: #d9534f;");
+    ui.lblHotkeyWarning->hide();
 }
 
 lmFormSettings::~lmFormSettings(void) {
@@ -440,6 +461,58 @@ void lmFormSettings::btnResetSounds_clicked(void) {
     lvSounds_currentRowChanged(ui.lvSounds->currentRow());
 }
 
+void lmFormSettings::chkGlobalHotkeys_toggled(bool checked) {
+    ui.wdgCallHotkeys->setEnabled(checked);
+    validateHotkeys();
+}
+
+void lmFormSettings::application_focusChanged(QWidget* old, QWidget* now) {
+    Q_UNUSED(old);
+
+    bool capturing = false;
+    for(QKeySequenceEdit* edit : hotkeyEdits) {
+        //  The editor's focus goes to its inner line edit, so check for children too.
+        if(now && (now == edit || edit->isAncestorOf(now))) {
+            capturing = true;
+            break;
+        }
+    }
+    if(capturing != hotkeyCapturing) {
+        hotkeyCapturing = capturing;
+        emit hotkeyCaptureChanged(capturing);
+    }
+}
+
+//  Shows what is wrong with the hotkeys, if anything, and blocks OK until it is fixed.
+void lmFormSettings::validateHotkeys(void) {
+    QString problem;
+    if(lmHotkeyHandler::isSupported() && ui.chkGlobalHotkeys->isChecked()) {
+        for(int index = 0; index < lmHotkeyHandler::HK_Max && problem.isEmpty(); index++) {
+            const QKeySequence sequence = hotkeyEdits[index]->keySequence();
+            if(sequence.isEmpty())
+                continue;
+
+            const QString name = lmHotkeyHandler::actionName(lmHotkeyHandler::Action(index));
+            const QString reason = lmHotkeyHandler::validate(sequence);
+            if(!reason.isEmpty()) {
+                problem = tr("%1: %2").arg(name, reason);
+                break;
+            }
+            for(int other = 0; other < index; other++) {
+                if(hotkeyEdits[other]->keySequence() == sequence) {
+                    problem = tr("%1 and %2 cannot share the same hotkey.")
+                                  .arg(lmHotkeyHandler::actionName(lmHotkeyHandler::Action(other)), name);
+                    break;
+                }
+            }
+        }
+    }
+    ui.lblHotkeyWarning->setText(problem);
+    ui.lblHotkeyWarning->setVisible(!problem.isEmpty());
+    ui.btnOK->setEnabled(problem.isEmpty());
+    ui.btnOK->setToolTip(problem);
+}
+
 void lmFormSettings::setPageHeaderStyle(QLabel* pLabel) {
     QFont font = pLabel->font();
     int fontSize = pLabel->fontInfo().pixelSize();
@@ -457,6 +530,7 @@ void lmFormSettings::setUIText(void) {
     ui.chkAutoStart->setText(ui.chkAutoStart->text().arg(lmStrings::appName()));
     ui.chkAutoShow->setText(ui.chkAutoShow->text().arg(lmStrings::appName()));
     ui.lblFinePrint->setText(ui.lblFinePrint->text().arg(lmStrings::appName()));
+    ui.lblHotkeyDesc->setText(ui.lblHotkeyDesc->text().arg(lmStrings::appName()));
 
     if(!QSystemTrayIcon::isSystemTrayAvailable()) {
         ui.grpSysTray->setEnabled(false);
@@ -469,6 +543,10 @@ void lmFormSettings::setUIText(void) {
     if(!lmSoundPlayer::isAvailable()) {
         ui.grpSounds->setEnabled(false);
         ui.grpSounds->setTitle(tr("Sounds (Not Available)"));
+    }
+    if(!lmHotkeyHandler::isSupported()) {
+        ui.grpCallHotkeys->setEnabled(false);
+        ui.grpCallHotkeys->setTitle(tr("Calls (Not Available)"));
     }
 
     for(int index = 0; index < ui.cboFontSize->count(); index++)
@@ -599,6 +677,11 @@ void lmFormSettings::loadSettings(void) {
 
     ui.rdbEnter->setChecked(!pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
     ui.rdbCmdEnter->setChecked(pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
+
+    ui.chkGlobalHotkeys->setChecked(pSettings->value(IDS_GLOBALHOTKEYS, IDS_GLOBALHOTKEYS_VAL).toBool());
+    for(int index = 0; index < lmHotkeyHandler::HK_Max; index++)
+        hotkeyEdits[index]->setKeySequence(lmHotkeyHandler::loadSequence(pSettings, lmHotkeyHandler::Action(index)));
+    chkGlobalHotkeys_toggled(ui.chkGlobalHotkeys->isChecked());
 }
 
 void lmFormSettings::saveSettings(void) {
@@ -712,6 +795,9 @@ void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_STATUSTOOLTIP, ui.chkUserListToolTip->isChecked(), IDS_STATUSTOOLTIP_VAL);
 
     pSettings->setValue(IDS_SENDKEYMOD, ui.rdbCmdEnter->isChecked(), IDS_SENDKEYMOD_VAL);
+    pSettings->setValue(IDS_GLOBALHOTKEYS, ui.chkGlobalHotkeys->isChecked(), IDS_GLOBALHOTKEYS_VAL);
+    for(int index = 0; index < lmHotkeyHandler::HK_Max; index++)
+        lmHotkeyHandler::saveSequence(pSettings, lmHotkeyHandler::Action(index), hotkeyEdits[index]->keySequence());
 
     pSettings->sync();
 }

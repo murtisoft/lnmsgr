@@ -154,6 +154,14 @@
 #define IDS_STATUSTOOLTIP_VAL	false
 #define IDS_SENDKEYMOD			"Hotkeys/SendKeyMod"
 #define IDS_SENDKEYMOD_VAL		false
+#define IDS_GLOBALHOTKEYS		"Hotkeys/GlobalEnabled"
+#define IDS_GLOBALHOTKEYS_VAL	true
+#define IDS_HOTKEYMIC			"Hotkeys/MicToggle"
+#define IDS_HOTKEYMIC_VAL		"Ctrl+Alt+Z"	//	Portable key sequence text, see QKeySequence::PortableText
+#define IDS_HOTKEYSPEAKER		"Hotkeys/SpeakerToggle"
+#define IDS_HOTKEYSPEAKER_VAL	"Ctrl+Alt+X"
+#define IDS_HOTKEYCAMERA		"Hotkeys/CameraToggle"
+#define IDS_HOTKEYCAMERA_VAL	"Ctrl+Alt+C"
 #define IDS_STATUS				"User/Status"
 #define IDS_STATUS_VAL			statusCode[0]
 #define IDS_AVATAR				"User/Avatar"

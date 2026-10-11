@@ -196,6 +196,14 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 
 	value = extSettings.value(IDS_SENDKEYMOD);
 	if(value.isValid())	setValue(IDS_SENDKEYMOD, value);
+	value = extSettings.value(IDS_GLOBALHOTKEYS);
+	if(value.isValid())	setValue(IDS_GLOBALHOTKEYS, value);
+	value = extSettings.value(IDS_HOTKEYMIC);
+	if(value.isValid())	setValue(IDS_HOTKEYMIC, value);
+	value = extSettings.value(IDS_HOTKEYSPEAKER);
+	if(value.isValid())	setValue(IDS_HOTKEYSPEAKER, value);
+	value = extSettings.value(IDS_HOTKEYCAMERA);
+	if(value.isValid())	setValue(IDS_HOTKEYCAMERA, value);
 
 	setValue(IDS_VERSION, IDA_VERSION);
 	sync();

@@ -37,6 +37,8 @@
 #include "ui_aformsettings.h"
 #include "definitionssettings.h"
 #include "widgetchatlog.h"
+#include "hotkeyhandler.h"
+#include <QKeySequenceEdit>
 
 
 class lmFormSettings : public QDialog {
@@ -53,6 +55,9 @@ public:
 signals:
 	void historyCleared(void);
 	void fileHistoryCleared(void);
+	//	true while one of the hotkey editors has focus. Global hotkeys must be released meanwhile, or the
+	//	system swallows the key combination before the editor gets to see it.
+	void hotkeyCaptureChanged(bool capturing);
 
 protected:
 	void changeEvent(QEvent* pEvent);
@@ -82,6 +87,8 @@ private slots:
 	void btnPlaySound_clicked(void);
 	void btnSoundPath_clicked(void);
 	void btnResetSounds_clicked(void);
+	void chkGlobalHotkeys_toggled(bool checked);
+	void application_focusChanged(QWidget* old, QWidget* now);
 
 
 private:
@@ -90,6 +97,7 @@ private:
 	void loadSettings(void);
 	void saveSettings(void);
     void insertStatusMessageinLog();
+    void validateHotkeys(void);
 
 	Ui::SettingsDialog ui;
 	lmSettings* pSettings;
@@ -101,6 +109,8 @@ private:
 	lmChatLog* pMessageLog;
     int statusTimerId;
     int statusNow;
+    QKeySequenceEdit* hotkeyEdits[lmHotkeyHandler::HK_Max];
+    bool hotkeyCapturing = false;
 };
 
 #endif // AFORMSETTINGS_H

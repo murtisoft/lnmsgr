@@ -42,6 +42,7 @@ target_include_directories(LanMessenger PRIVATE
 target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake project version into code.
 target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia
+    user32                                                #——————————————————————————————————————————————————<< RegisterHotKey (hotkeyhandler.cpp)
     ${OPENSSL_DIR}/lib/VC/x64/MT/libssl.lib
     ${OPENSSL_DIR}/lib/VC/x64/MT/libcrypto.lib
     ${OPUS_DIR}/build/Release/libopus.a
