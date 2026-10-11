@@ -918,12 +918,16 @@ void lmFormChat::btnAudio_clicked() {
 
 void lmFormChat::btnHangUp_clicked() {
     if (currentCallId.isEmpty()) return;
+    //  Work on copies: sending the abort makes lmCore end the call right away, and callPhaseChanged(CP_Idle)
+    //  then clears currentCallId. Using it afterwards left the chatlog entry stuck on its Cancel link.
+    const QString callId = currentCallId;
+    const MessageType callType = currentCallType;
     MessageXml sendXml;
-    sendXml.addData(XN_STREAMID, currentCallId);
+    sendXml.addData(XN_STREAMID, callId);
     sendXml.addData(XN_STREAMOP, StreamOpNames[SO_Abort]);
-    emit messageSent(currentCallType, &peerId, &sendXml);
-    updateStreamMessage(SO_Abort, currentCallId);
-    emit callEnded(currentCallType);
+    emit messageSent(callType, &peerId, &sendXml);
+    updateStreamMessage(SO_Abort, callId);
+    emit callEnded(callType);
     currentCallId.clear();
 }
 
