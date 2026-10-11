@@ -191,12 +191,9 @@ QByteArray lmOpenSSL::decrypt(QString* lpszUserId, QByteArray& cipherData) {
 }
 
 //	derives a 256-bit voice key from the text session key and a per-stream random salt
-QByteArray lmOpenSSL::deriveVoiceKey(const QString& userId, const QByteArray& salt) {
-    QByteArray session = sessionKeys.value(userId);
-    if(session.isEmpty()) {
-        lmDebugLog::write("Error: No session key for voice");
+QByteArray lmOpenSSL::deriveVoiceKey(const QByteArray& session, const QByteArray& salt) {
+    if(session.isEmpty())
         return QByteArray();
-    }
     QByteArray msg = QByteArray("lm-voice-v1") + salt;
     unsigned char out[EVP_MAX_MD_SIZE];
     unsigned int outLen = 0;

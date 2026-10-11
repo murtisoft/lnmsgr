@@ -45,9 +45,12 @@ public:
 
     //  Per-packet encryption for datagrams (voice). Uses the same session key as text,
     //  but is stateless so lost or reordered packets do not break decryption.
-    QByteArray deriveVoiceKey(const QString& userId, const QByteArray& salt);
-    QByteArray sealPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& clearData);
-    QByteArray openPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& cipherData);
+    //  sessionKey() must be called from the thread that owns this object; the static helpers
+    //  below touch no shared state and are safe to use from an audio thread.
+    QByteArray sessionKey(const QString& userId) const { return sessionKeys.value(userId); }
+    static QByteArray deriveVoiceKey(const QByteArray& sessionKey, const QByteArray& salt);
+    static QByteArray sealPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& clearData);
+    static QByteArray openPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& cipherData);
 
     QByteArray publicKey;
 

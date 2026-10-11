@@ -30,6 +30,7 @@
 #include <QFile>
 #include <QObject>
 #include <QUdpSocket>
+#include <QThread>
 #include <QAudioSource>
 #include <QAudioSink>
 #include <QMediaDevices>
@@ -47,6 +48,8 @@ signals:
     void camMuted(bool muted);
 
 public:
+    //  The stream runs on its own thread (capture, encode, encrypt, network, decode, playback),
+    //  so UI work on the main thread cannot stall the audio. The object must have no parent.
     explicit lmAudioStream(QObject* parent = nullptr);
     ~lmAudioStream();
 
@@ -63,6 +66,11 @@ private slots:
     void onNetReadyRead();
 
 private:
+    void doStart(const QHostAddress& peerAddress, quint16 udpPort, const QByteArray& sessionKey);
+    void doStop();
+
+    QThread*       m_thread  = nullptr;
+    QByteArray     m_sessionKey;
     QAudioSource*  m_source  = nullptr;
     QAudioSink*    m_sink    = nullptr;
     QIODevice*     m_input   = nullptr;
@@ -76,8 +84,6 @@ private:
     bool           m_camMuted = false;
 
     lmOpusHandler  m_opus;
-    lmOpenSSL*     m_crypto = nullptr;
-    QString        m_peerId;
 
     // transmit side: random salt per call start, unique key per salt
     QByteArray     m_txSalt;

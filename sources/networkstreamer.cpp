@@ -29,9 +29,35 @@
 #include <QtEndian>
 #include <openssl/rand.h>
 
-lmAudioStream::lmAudioStream(QObject* parent) : QObject(parent) {}
+lmAudioStream::lmAudioStream(QObject* parent) : QObject(nullptr) {
+    Q_UNUSED(parent);   // an object with a parent cannot be moved to another thread
+    m_thread = new QThread;
+    moveToThread(m_thread);
+    m_thread->start(QThread::HighPriority);
+}
 
-lmAudioStream::~lmAudioStream() { stop(); }
+lmAudioStream::~lmAudioStream() {
+    stop();
+    m_thread->quit();
+    m_thread->wait();
+    delete m_thread;
+}
+
+//  Called from the main thread. The session key is read here, since the crypto object belongs to it.
+void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort, lmOpenSSL* crypto, const QString& peerId) {
+    QByteArray key = crypto ? crypto->sessionKey(peerId) : QByteArray();
+    QMetaObject::invokeMethod(this, [this, peerAddress, udpPort, key]() {
+        doStart(peerAddress, udpPort, key);
+    }, Qt::QueuedConnection);
+}
+
+//  Blocks until the audio thread has released the devices and sockets.
+void lmAudioStream::stop() {
+    if(QThread::currentThread() == m_thread)
+        doStop();
+    else
+        QMetaObject::invokeMethod(this, [this]() { doStop(); }, Qt::BlockingQueuedConnection);
+}
 
 //  Voice packet: "AUDIOO" | salt(8) | seq(4, big endian) | AES-256-GCM(opus frame) + tag(16)
 //  salt+seq are authenticated as additional data.
@@ -40,22 +66,21 @@ static const int VOICE_SALT = 8;
 static const int VOICE_SEQ = 4;
 static const int VOICE_TAG = 16;
 
-void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort, lmOpenSSL* crypto, const QString& peerId) {
-    stop();
+void lmAudioStream::doStart(const QHostAddress& peerAddress, quint16 udpPort, const QByteArray& sessionKey) {
+    doStop();
 
     m_peerAddress = peerAddress;
     m_port = udpPort + AUDIO_PORT_OFFSET;
-    m_crypto = crypto;
-    m_peerId = peerId;
+    m_sessionKey = sessionKey;
 
-    if(!m_crypto || !m_opus.init()) {
-        lmDebugLog::write("Error: Voice call could not start (crypto/opus unavailable)");
+    if(m_sessionKey.isEmpty() || !m_opus.init()) {
+        lmDebugLog::write("Error: Voice call could not start (no session key or opus unavailable)");
         return;
     }
 
     m_txSalt.resize(VOICE_SALT);
     RAND_bytes((unsigned char*)m_txSalt.data(), VOICE_SALT);
-    m_txKey = m_crypto->deriveVoiceKey(m_peerId, m_txSalt);
+    m_txKey = lmOpenSSL::deriveVoiceKey(m_sessionKey, m_txSalt);
     if(m_txKey.isEmpty()) {
         lmDebugLog::write("Error: Voice call could not start (no session key)");
         m_opus.shutdown();
@@ -106,7 +131,7 @@ void lmAudioStream::onMicReadyRead() {
         qToBigEndian<quint32>(seq, seqBytes.data());
 
         QByteArray aad = m_txSalt + seqBytes;
-        QByteArray cipher = m_crypto->sealPacket(m_txKey, seq, aad, frame);
+        QByteArray cipher = lmOpenSSL::sealPacket(m_txKey, seq, aad, frame);
         if(cipher.isEmpty())
             continue;
 
@@ -138,11 +163,11 @@ void lmAudioStream::onNetReadyRead() {
         if(!newStream && m_rxHasSeq && seq <= m_rxLastSeq)
             continue;   // duplicate, replayed or late packet
 
-        QByteArray key = newStream ? m_crypto->deriveVoiceKey(m_peerId, salt) : m_rxKey;
+        QByteArray key = newStream ? lmOpenSSL::deriveVoiceKey(m_sessionKey, salt) : m_rxKey;
         if(key.isEmpty())
             continue;
 
-        QByteArray frame = m_crypto->openPacket(key, seq, aad, cipher);
+        QByteArray frame = lmOpenSSL::openPacket(key, seq, aad, cipher);
         if(frame.isEmpty())
             continue;   // failed authentication, drop
 
@@ -170,7 +195,7 @@ void lmAudioStream::onNetReadyRead() {
     }
 }
 
-void lmAudioStream::stop() {
+void lmAudioStream::doStop() {
     if(m_source || m_sink)
         emit micMuted(true);
     if (m_source) { m_source->stop(); delete m_source; m_source = nullptr; }
@@ -181,6 +206,7 @@ void lmAudioStream::stop() {
     m_opus.shutdown();
     m_txKey.clear();
     m_rxKey.clear();
+    m_sessionKey.clear();
 }
 
 void lmAudioStream::setMicMuted(bool muted) {

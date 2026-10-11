@@ -623,7 +623,7 @@ void lmCore::callConnected(MessageType type) {
     for (lmFormChat* w : std::as_const(chatWindows)) {   //TODO Attaching call to whatever window is wrong, but i am lazy and its working
             User* pUser = pMessaging->getUser(&w->peerId);
         if (!m_audioStream) {
-            m_audioStream = new lmAudioStream(this);
+            m_audioStream = new lmAudioStream();     // no parent: it runs on its own thread
             connect(m_audioStream, &lmAudioStream::micMuted, this, [this](bool muted) {
                 pSoundPlayer->play(muted ? SE_MicOff : SE_MicOn);
             });
