@@ -629,7 +629,8 @@ void lmCore::callConnected(MessageType type) {
                     m_audioStream, &lmAudioStream::setSpeakerMuted);
         }
         m_audioStream->start(QHostAddress(pUser->address),
-                             pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt());
+                             pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt(),
+                             pMessaging->crypto(), pUser->id);
         break;
     }
 }

@@ -95,6 +95,7 @@ QByteArray lmOpenSSL::generateAES(QString* lpszUserId, QByteArray& pubKey) {
     replaceCtx(encryptMap, *lpszUserId, ectx);
     EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), NULL, keyIv, keyIv + keyLen);
     replaceCtx(decryptMap, *lpszUserId, dctx);
+    sessionKeys.insert(*lpszUserId, QByteArray((char*)keyIv, keyIvLen));
 
     EVP_PKEY_CTX* rsaCtx = EVP_PKEY_CTX_new(rsa, NULL);
     EVP_PKEY_encrypt_init(rsaCtx);
@@ -135,6 +136,7 @@ void lmOpenSSL::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
     replaceCtx(encryptMap, *lpszUserId, ectx);
     EVP_DecryptInit_ex(dctx, EVP_aes_256_cbc(), NULL, keyIv, keyIv + keyLen);
     replaceCtx(decryptMap, *lpszUserId, dctx);
+    sessionKeys.insert(*lpszUserId, QByteArray((char*)keyIv, (int)keyIvLen));
     free(keyIv);
 }
 
@@ -186,4 +188,78 @@ QByteArray lmOpenSSL::decrypt(QString* lpszUserId, QByteArray& cipherData) {
     lmDebugLog::write("Error: Message decryption failed");
     free(outBuffer);
     return QByteArray();
+}
+
+//	derives a 256-bit voice key from the text session key and a per-stream random salt
+QByteArray lmOpenSSL::deriveVoiceKey(const QString& userId, const QByteArray& salt) {
+    QByteArray session = sessionKeys.value(userId);
+    if(session.isEmpty()) {
+        lmDebugLog::write("Error: No session key for voice");
+        return QByteArray();
+    }
+    QByteArray msg = QByteArray("lm-voice-v1") + salt;
+    unsigned char out[EVP_MAX_MD_SIZE];
+    unsigned int outLen = 0;
+    if(!HMAC(EVP_sha256(), session.constData(), session.length(),
+             (const unsigned char*)msg.constData(), msg.length(), out, &outLen) || outLen != 32)
+        return QByteArray();
+    return QByteArray((char*)out, outLen);
+}
+
+//	AES-256-GCM, nonce built from the packet sequence number. Key must be unique per
+//	sender/stream (see deriveVoiceKey), so a sequence number is never reused with a key.
+//	Returns ciphertext followed by a 16 byte tag.
+QByteArray lmOpenSSL::sealPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& clearData) {
+    if(key.length() != 32)
+        return QByteArray();
+    unsigned char nonce[12] = {0};
+    nonce[8] = (seq >> 24) & 0xFF; nonce[9] = (seq >> 16) & 0xFF; nonce[10] = (seq >> 8) & 0xFF; nonce[11] = seq & 0xFF;
+
+    EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
+    QByteArray out(clearData.length() + 16, 0);
+    int len = 0, total = 0;
+    bool ok = ctx
+        && EVP_EncryptInit_ex(ctx, EVP_aes_256_gcm(), NULL, NULL, NULL)
+        && EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, 12, NULL)
+        && EVP_EncryptInit_ex(ctx, NULL, NULL, (const unsigned char*)key.constData(), nonce)
+        && EVP_EncryptUpdate(ctx, NULL, &len, (const unsigned char*)aad.constData(), aad.length())
+        && EVP_EncryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)clearData.constData(), clearData.length());
+    total = len;
+    ok = ok && EVP_EncryptFinal_ex(ctx, (unsigned char*)out.data() + total, &len);
+    total += len;
+    ok = ok && EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_GET_TAG, 16, out.data() + total);
+    EVP_CIPHER_CTX_free(ctx);
+    if(!ok) {
+        lmDebugLog::write("Error: Voice encryption failed");
+        return QByteArray();
+    }
+    out.resize(total + 16);
+    return out;
+}
+
+//	Returns empty if authentication fails.
+QByteArray lmOpenSSL::openPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& cipherData) {
+    if(key.length() != 32 || cipherData.length() <= 16)
+        return QByteArray();
+    unsigned char nonce[12] = {0};
+    nonce[8] = (seq >> 24) & 0xFF; nonce[9] = (seq >> 16) & 0xFF; nonce[10] = (seq >> 8) & 0xFF; nonce[11] = seq & 0xFF;
+
+    int clearLen = cipherData.length() - 16;
+    QByteArray tag = cipherData.right(16);
+    EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
+    QByteArray out(clearLen, 0);
+    int len = 0, total = 0;
+    bool ok = ctx
+        && EVP_DecryptInit_ex(ctx, EVP_aes_256_gcm(), NULL, NULL, NULL)
+        && EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, 12, NULL)
+        && EVP_DecryptInit_ex(ctx, NULL, NULL, (const unsigned char*)key.constData(), nonce)
+        && EVP_DecryptUpdate(ctx, NULL, &len, (const unsigned char*)aad.constData(), aad.length())
+        && EVP_DecryptUpdate(ctx, (unsigned char*)out.data(), &len, (const unsigned char*)cipherData.constData(), clearLen);
+    total = len;
+    ok = ok && EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG, 16, tag.data())
+        && EVP_DecryptFinal_ex(ctx, (unsigned char*)out.data() + total, &len);
+    EVP_CIPHER_CTX_free(ctx);
+    if(!ok)
+        return QByteArray();
+    return out;
 }

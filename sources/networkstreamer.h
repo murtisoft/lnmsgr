@@ -34,6 +34,8 @@
 #include <QAudioSink>
 #include <QMediaDevices>
 #include <QAudioFormat>
+#include "opushandler.h"
+#include "opensslhandler.h"
 
 
 class lmAudioStream : public QObject {
@@ -48,7 +50,7 @@ public:
     explicit lmAudioStream(QObject* parent = nullptr);
     ~lmAudioStream();
 
-    void start(const QHostAddress& peerAddress, quint16 port);
+    void start(const QHostAddress& peerAddress, quint16 port, lmOpenSSL* crypto, const QString& peerId);
     void stop();
 
 public slots:
@@ -57,7 +59,8 @@ public slots:
     void setCamMuted(bool muted);
 
 private slots:
-    void onReadyRead();
+    void onMicReadyRead();
+    void onNetReadyRead();
 
 private:
     QAudioSource*  m_source  = nullptr;
@@ -71,6 +74,21 @@ private:
     bool           m_micMuted = false;
     bool           m_speakerMuted = false;
     bool           m_camMuted = false;
+
+    lmOpusHandler  m_opus;
+    lmOpenSSL*     m_crypto = nullptr;
+    QString        m_peerId;
+
+    // transmit side: random salt per call start, unique key per salt
+    QByteArray     m_txSalt;
+    QByteArray     m_txKey;
+    quint32        m_txSeq = 0;
+
+    // receive side
+    QByteArray     m_rxSalt;
+    QByteArray     m_rxKey;
+    quint32        m_rxLastSeq = 0;
+    bool           m_rxHasSeq = false;
 
     static constexpr quint16 AUDIO_PORT_OFFSET = 1; // udpPort + 1
 };

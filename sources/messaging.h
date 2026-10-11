@@ -150,6 +150,7 @@ public:
 	bool canReceive(void);
 	void setLoopback(bool on);
 	User* getUser(QString* lpszUserId);
+	lmOpenSSL* crypto(void) { return pNetwork->crypto(); }
 	void sendBroadcast(MessageType type, MessageXml* pMessage);
 	void sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void settingsChanged(void);

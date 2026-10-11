@@ -52,6 +52,7 @@ public:
 	void initReceiveFile(QString* lpszSenderId, QString* lpszAddress, QString* lpszData);
 	void fileOperation(FileMode mode, QString* lpszUserId, QString* lpszData);
 	void settingsChanged(void);
+	lmOpenSSL* crypto(void) { return pCrypto; }
 
 	QString	ipAddress;
 	QString	subnetMask;

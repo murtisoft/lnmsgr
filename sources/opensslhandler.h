@@ -29,6 +29,7 @@
 #include <openssl/pem.h>
 #include <openssl/rand.h>
 #include <openssl/aes.h>
+#include <openssl/hmac.h>
 
 class lmOpenSSL
 {
@@ -42,6 +43,12 @@ public:
     QByteArray encrypt(QString* lpszUserId, QByteArray& clearData);
     QByteArray decrypt(QString* lpszUserId, QByteArray& cipherData);
 
+    //  Per-packet encryption for datagrams (voice). Uses the same session key as text,
+    //  but is stateless so lost or reordered packets do not break decryption.
+    QByteArray deriveVoiceKey(const QString& userId, const QByteArray& salt);
+    QByteArray sealPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& clearData);
+    QByteArray openPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& cipherData);
+
     QByteArray publicKey;
 
 private:
@@ -49,6 +56,7 @@ private:
 
     QMap<QString, EVP_CIPHER_CTX*> encryptMap;
     QMap<QString, EVP_CIPHER_CTX*> decryptMap;
+    QMap<QString, QByteArray> sessionKeys;
 
     int bits;
     long exponent;

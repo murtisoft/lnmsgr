@@ -26,29 +26,61 @@
 #include "zdebuglog.h"
 #include "networkstreamer.h"
 #include "networkdatagram.h"
+#include <QtEndian>
+#include <openssl/rand.h>
 
 lmAudioStream::lmAudioStream(QObject* parent) : QObject(parent) {}
 
 lmAudioStream::~lmAudioStream() { stop(); }
 
-void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort) {
+//  Voice packet: "AUDIOO" | salt(8) | seq(4, big endian) | AES-256-GCM(opus frame) + tag(16)
+//  salt+seq are authenticated as additional data.
+static const int VOICE_HDR = 6;
+static const int VOICE_SALT = 8;
+static const int VOICE_SEQ = 4;
+static const int VOICE_TAG = 16;
+
+void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort, lmOpenSSL* crypto, const QString& peerId) {
+    stop();
+
     m_peerAddress = peerAddress;
     m_port = udpPort + AUDIO_PORT_OFFSET;
+    m_crypto = crypto;
+    m_peerId = peerId;
+
+    if(!m_crypto || !m_opus.init()) {
+        lmDebugLog::write("Error: Voice call could not start (crypto/opus unavailable)");
+        return;
+    }
+
+    m_txSalt.resize(VOICE_SALT);
+    RAND_bytes((unsigned char*)m_txSalt.data(), VOICE_SALT);
+    m_txKey = m_crypto->deriveVoiceKey(m_peerId, m_txSalt);
+    if(m_txKey.isEmpty()) {
+        lmDebugLog::write("Error: Voice call could not start (no session key)");
+        m_opus.shutdown();
+        return;
+    }
+    m_txSeq = 0;
+    m_rxSalt.clear();
+    m_rxKey.clear();
+    m_rxHasSeq = false;
 
     QAudioFormat fmt;
-    fmt.setSampleRate(44100);
-    fmt.setChannelCount(1);
+    fmt.setSampleRate(lmOpusHandler::SampleRate);
+    fmt.setChannelCount(lmOpusHandler::Channels);
     fmt.setSampleFormat(QAudioFormat::Int16);
 
-    // Record from default mic, send over UDP
+    // Record from default mic, encode, encrypt, send over UDP
     m_sendSock = new QUdpSocket(this);
     m_source = new QAudioSource(QMediaDevices::defaultAudioInput(), fmt, this);
     m_input  = m_source->start();
 
     emit micMuted(false);
-    connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onReadyRead);
+    if(m_input)
+        connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onMicReadyRead);
 
-    // Receive UDP, play to default speaker
+    // Receive UDP, decrypt, decode, play to default speaker
     m_recvSock = new QUdpSocket(this);
     m_recvSock->bind(QHostAddress::AnyIPv4, m_port,
                      QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
@@ -56,38 +88,99 @@ void lmAudioStream::start(const QHostAddress& peerAddress, quint16 udpPort) {
     m_sink   = new QAudioSink(QMediaDevices::defaultAudioOutput(), fmt, this);
     m_output = m_sink->start();
 
-    connect(m_recvSock, &QUdpSocket::readyRead, this, &lmAudioStream::onReadyRead);
+    connect(m_recvSock, &QUdpSocket::readyRead, this, &lmAudioStream::onNetReadyRead);
 }
 
-void lmAudioStream::onReadyRead() {
-    QObject* src = sender();
+void lmAudioStream::onMicReadyRead() {
+    if(!m_input || !m_sendSock)
+        return;
 
-    if (src == m_input) {
-        // Mic data → send to peer
-        QByteArray pcm = m_input->readAll();
-        if (pcm.isEmpty()) return;
-        Datagram::addHeader(DT_Audio, pcm);
-        m_sendSock->writeDatagram(pcm, m_peerAddress, m_port);
-    } else if (src == m_recvSock) {
-        // Received from peer → play
-        while (m_recvSock->hasPendingDatagrams()) {
-            QByteArray dg;
-            dg.resize(m_recvSock->pendingDatagramSize());
-            m_recvSock->readDatagram(dg.data(), dg.size());
-            QByteArray pcm = Datagram::getData(dg);
-            if (m_output && !pcm.isEmpty())
-                m_output->write(pcm);
+    QByteArray pcm = m_input->readAll();
+    if(pcm.isEmpty())
+        return;
+
+    const QList<QByteArray> frames = m_opus.encode(pcm);
+    for(const QByteArray& frame : frames) {
+        quint32 seq = m_txSeq++;
+        QByteArray seqBytes(VOICE_SEQ, 0);
+        qToBigEndian<quint32>(seq, seqBytes.data());
+
+        QByteArray aad = m_txSalt + seqBytes;
+        QByteArray cipher = m_crypto->sealPacket(m_txKey, seq, aad, frame);
+        if(cipher.isEmpty())
+            continue;
+
+        QByteArray dg = DatagramTypeNames[DT_Audio].toLocal8Bit() + aad + cipher;
+        m_sendSock->writeDatagram(dg, m_peerAddress, m_port);
+    }
+}
+
+void lmAudioStream::onNetReadyRead() {
+    if(!m_recvSock)
+        return;
+
+    const QByteArray hdr = DatagramTypeNames[DT_Audio].toLocal8Bit();
+
+    while(m_recvSock->hasPendingDatagrams()) {
+        QByteArray dg;
+        dg.resize(m_recvSock->pendingDatagramSize());
+        m_recvSock->readDatagram(dg.data(), dg.size());
+
+        if(dg.size() <= VOICE_HDR + VOICE_SALT + VOICE_SEQ + VOICE_TAG || !dg.startsWith(hdr))
+            continue;
+
+        QByteArray salt = dg.mid(VOICE_HDR, VOICE_SALT);
+        quint32 seq = qFromBigEndian<quint32>(dg.constData() + VOICE_HDR + VOICE_SALT);
+        QByteArray aad = dg.mid(VOICE_HDR, VOICE_SALT + VOICE_SEQ);
+        QByteArray cipher = dg.mid(VOICE_HDR + VOICE_SALT + VOICE_SEQ);
+
+        bool newStream = (salt != m_rxSalt);
+        if(!newStream && m_rxHasSeq && seq <= m_rxLastSeq)
+            continue;   // duplicate, replayed or late packet
+
+        QByteArray key = newStream ? m_crypto->deriveVoiceKey(m_peerId, salt) : m_rxKey;
+        if(key.isEmpty())
+            continue;
+
+        QByteArray frame = m_crypto->openPacket(key, seq, aad, cipher);
+        if(frame.isEmpty())
+            continue;   // failed authentication, drop
+
+        if(newStream) {
+            m_rxSalt = salt;
+            m_rxKey = key;
+            m_rxHasSeq = false;
         }
+
+        // conceal a few lost frames to keep timing smooth
+        if(m_rxHasSeq) {
+            quint32 lost = seq - m_rxLastSeq - 1;
+            for(quint32 i = 0; i < lost && i < 3; i++) {
+                QByteArray plc = m_opus.decodeLost();
+                if(m_output && !plc.isEmpty())
+                    m_output->write(plc);
+            }
+        }
+        m_rxLastSeq = seq;
+        m_rxHasSeq = true;
+
+        QByteArray pcm = m_opus.decode(frame);
+        if(m_output && !pcm.isEmpty())
+            m_output->write(pcm);
     }
 }
 
 void lmAudioStream::stop() {
-    emit micMuted(true);
+    if(m_source || m_sink)
+        emit micMuted(true);
     if (m_source) { m_source->stop(); delete m_source; m_source = nullptr; }
     if (m_sink)   { m_sink->stop();   delete m_sink;   m_sink   = nullptr; }
     if (m_sendSock) { m_sendSock->close(); delete m_sendSock; m_sendSock = nullptr; }
     if (m_recvSock) { m_recvSock->close(); delete m_recvSock; m_recvSock = nullptr; }
     m_input = m_output = nullptr;
+    m_opus.shutdown();
+    m_txKey.clear();
+    m_rxKey.clear();
 }
 
 void lmAudioStream::setMicMuted(bool muted) {
