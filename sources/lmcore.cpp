@@ -620,26 +620,33 @@ void lmCore::callConnected(MessageType type) {
     emit callPhaseChanged(callPhase);
     stopLoopSound();
     if (type == MT_Video) return; //TODO Video streaming.
-    for (lmFormChat* w : std::as_const(chatWindows)) {   //TODO Attaching call to whatever window is wrong, but i am lazy and its working
-            User* pUser = pMessaging->getUser(&w->peerId);
-        if (!m_audioStream) {
-            m_audioStream = new lmAudioStream();     // no parent: it runs on its own thread
-            connect(m_audioStream, &lmAudioStream::micMuted, this, [this](bool muted) {
-                pSoundPlayer->play(muted ? SE_MicOff : SE_MicOn);
-            });
-            connect(m_audioStream, &lmAudioStream::speakerMuted, this, [this](bool muted) {
-                pSoundPlayer->play(muted ? SE_SpeakerOff : SE_SpeakerOn);
-            });
-            connect(w, &lmFormChat::micToggled,
-                    m_audioStream, &lmAudioStream::setMicMuted);
-            connect(w, &lmFormChat::speakerToggled,
-                    m_audioStream, &lmAudioStream::setSpeakerMuted);
+    //  Attach the call to the chat window of the call peer
+    lmFormChat* w = nullptr;
+    for (lmFormChat* cw : std::as_const(chatWindows)) {
+        if (!cw->groupMode && cw->peerId == callPeerId) {
+            w = cw;
+            break;
         }
-        m_audioStream->start(QHostAddress(pUser->address),
-                             pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt(),
-                             pMessaging->crypto(), pUser->id);
-        break;
     }
+    User* pUser = pMessaging->getUser(&callPeerId);
+    if (!w || !pUser) return;
+
+    if (!m_audioStream) {
+        m_audioStream = new lmAudioStream();     // no parent: it runs on its own thread
+        connect(m_audioStream, &lmAudioStream::micMuted, this, [this](bool muted) {
+            pSoundPlayer->play(muted ? SE_MicOff : SE_MicOn);
+        });
+        connect(m_audioStream, &lmAudioStream::speakerMuted, this, [this](bool muted) {
+            pSoundPlayer->play(muted ? SE_SpeakerOff : SE_SpeakerOn);
+        });
+        connect(w, &lmFormChat::micToggled,
+                m_audioStream, &lmAudioStream::setMicMuted);
+        connect(w, &lmFormChat::speakerToggled,
+                m_audioStream, &lmAudioStream::setSpeakerMuted);
+    }
+    m_audioStream->start(QHostAddress(pUser->address),
+                         pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt(),
+                         pMessaging->crypto(), pUser->id);
 }
 
 void lmCore::callEnded(MessageType type) {
