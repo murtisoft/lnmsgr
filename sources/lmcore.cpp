@@ -326,10 +326,17 @@ void lmCore::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMes
         pMessaging->sendMessage(type, lpszUserId, pMessage);
         {
             int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
-            if(streamOp == SO_Abort || streamOp == SO_Decline)
-                callEnded(type);
-            else if(streamOp == SO_Accept)
-                callConnected(type);
+            bool isCallPeer = lpszUserId && *lpszUserId == callPeerId;
+            if(streamOp == SO_Request) {
+                if(lpszUserId && callPeerId.isEmpty())
+                    callPeerId = *lpszUserId;
+            } else if(isCallPeer) {
+                //  only messages to the user we are in a call with may change the call state
+                if(streamOp == SO_Abort || streamOp == SO_Decline)
+                    callEnded(type);
+                else if(streamOp == SO_Accept)
+                    callConnected(type);
+            }
         }
         break;
 	default:
@@ -640,20 +647,48 @@ void lmCore::callEnded(MessageType type) {
     emit callPhaseChanged(callPhase);
     stopLoopSound();
 
+    callPeerId.clear();
     if (m_audioStream) { m_audioStream->stop(); delete m_audioStream; m_audioStream = nullptr; }
 }
 
 void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage) {
     int streamOp = Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
+
+    //  While busy, ignore call state messages from anyone but our call peer
+    if(streamOp != SO_Request && callPhase != CP_Idle && *lpszUserId != callPeerId)
+        return;
+
     switch(streamOp) {
     case SO_Request:
         if(callPhase != CP_Idle) {  //Auto decline if busy
             MessageXml xml;
             xml.addData(XN_STREAMOP, StreamOpNames[SO_Decline]);
             xml.addData(XN_STREAMID, pMessage->data(XN_STREAMID));
-            sendMessage(type, lpszUserId, &xml);
+            //  send directly: going through sendMessage() would end our ongoing call
+            pMessaging->sendMessage(type, lpszUserId, &xml);
+
+            //  let the local user see the declined call in the chat with the caller
+            MessageXml logXml;
+            logXml.addData(XN_STREAMID, pMessage->data(XN_STREAMID));
+            logXml.addData(XN_STREAMOP, StreamOpNames[SO_Decline]);
+            logXml.addData(XN_STREAMMODE, StreamModeNames[SM_In]);
+            lmFormChat* pWindow = nullptr;
+            for(int index = 0; index < chatWindows.count(); index++) {
+                if(chatWindows[index]->peerIds.contains(*lpszUserId)
+                    && chatWindows[index]->threadId == pMessage->data(XN_THREAD)) {
+                    pWindow = chatWindows[index];
+                    break;
+                }
+            }
+            if(!pWindow) {
+                createChatWindow(lpszUserId);
+                pWindow = chatWindows.last();
+            }
+            pWindow->showMissedCall(type, lpszUserId, &logXml);
+            showChatWindow(pWindow, messageTop, true);
             return;
         }
+        callPeerId = *lpszUserId;
         callPhase = CP_Ringing;
         emit callPhaseChanged(callPhase);
         playLoopSound(SE_RingIn);

@@ -449,6 +449,7 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
         if(pMessage->data(XN_STREAMOP) == StreamOpNames[SO_Request]) {
             currentCallId = pMessage->data(XN_STREAMID);  // ADD THIS
             currentCallType = type;
+            updateButtonStates();
             appendMessageLog(type, lpszUserId, &senderName, pMessage);
         } else {
             processStreamOp(type, pMessage);
@@ -459,9 +460,17 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 	}
 }
 
+//  Logs a call request that was auto-declined (we were busy). Does not touch call state.
+void lmFormChat::showMissedCall(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
+    QString senderName = peerNames.value(*lpszUserId);
+    appendMessageLog(type, lpszUserId, &senderName, pMessage);
+}
+
 void lmFormChat::callPhaseChanged(CallPhase phase) {
     callPhase = phase;
     bCallBusy = (phase != CP_Idle);
+    if (phase == CP_Idle)
+        currentCallId.clear();      // call is over (or was never ours), drop stale id
     if (phase != CP_Connected)
         resetToggleButtons();
     updateButtonStates();
@@ -481,7 +490,8 @@ void lmFormChat::updateButtonStates() {
     pNudgeAction->setEnabled(peerOnline && (peerCaps.value(peerId) & UC_Nudge));
     pAudioAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Audio));
     pVideoAction->setEnabled(peerOnline && !bCallBusy && (peerCaps.value(peerId) & UC_Video));
-    pHangUpAction->setEnabled(peerOnline && bCallBusy && (peerCaps.value(peerId) & UC_Video));;
+    // only the window that owns the call can hang it up
+    pHangUpAction->setEnabled(peerOnline && bCallBusy && !currentCallId.isEmpty() && (peerCaps.value(peerId) & UC_Video));
     bool inCall = peerOnline && callPhase == CP_Connected && !currentCallId.isEmpty();
     ui.btnMicrophone->setEnabled(inCall && (currentCallType == MT_Audio || currentCallType == MT_Video));
     ui.btnSpeaker->setEnabled(inCall && (currentCallType == MT_Audio || currentCallType == MT_Video));
@@ -901,10 +911,11 @@ void lmFormChat::btnHangUp_clicked() {
 }
 
 void lmFormChat::startCall(MessageType type) {
-    if (!bConnected) return;
+    if (!bConnected || bCallBusy) return;
     emit callRequested(type);
     currentCallId = QString::number(QDateTime::currentMSecsSinceEpoch());
     currentCallType = type;
+    updateButtonStates();
     QString pName = peerNames.value(peerId);
 
     MessageXml localXml;

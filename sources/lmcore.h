@@ -144,6 +144,7 @@ private:
 	int								refreshTime;
 	MessageXml*						pInitParams;
     lmAudioStream*                  m_audioStream = nullptr;
+    QString                         callPeerId;     // user the current call (calling/ringing/connected) is with
     lmSoundPlayer*                  pSoundPlayer;
 };
 
