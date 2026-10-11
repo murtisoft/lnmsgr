@@ -317,6 +317,22 @@ void lmChatLog::setAutoScroll(bool enable) {
 }
 
 void lmChatLog::abortPendingFileOperations(void) {
+    //  Interrupts every transfer still waiting for confirmation, on both sides. Besides updating
+    //  the local log, an abort message is sent to the peer so that its log is interrupted too and
+    //  the transfer can no longer be accepted, declined or cancelled there.
+    auto sendAbort = [this](MessageXml fileData, FileMode mode) {
+        //  Only folder requests carry a file count
+        bool isFolder = !fileData.data(XN_FILECOUNT).isEmpty();
+        MessageXml xmlMessage;
+        xmlMessage.addData(XN_MODE, FileModeNames[mode]);
+        xmlMessage.addData(XN_FILETYPE, FileTypeNames[isFolder ? FT_Folder : FT_Normal]);
+        xmlMessage.addData(XN_FILEOP, FileOpNames[FO_Abort]);
+        xmlMessage.addData(XN_FILEID, fileData.data(XN_FILEID));
+        if(isFolder)
+            xmlMessage.addData(XN_FOLDERID, fileData.data(XN_FILEID));
+        emit messageSent(isFolder ? MT_Folder : MT_File, &peerId, &xmlMessage);
+    };
+
     QMap<QString, MessageXml>::iterator sIndex = sendFileMap.begin();
     while(sIndex != sendFileMap.end()) {
         MessageXml fileData = sIndex.value();
@@ -325,6 +341,7 @@ void lmChatLog::abortPendingFileOperations(void) {
             updateFileMessage(FM_Send, FO_Abort, fileData.data(XN_FILEID));
             sIndex.value().removeData(XN_FILEOP);
             sIndex.value().addData(XN_FILEOP, FileOpNames[FO_Abort]);
+            sendAbort(fileData, FM_Send);
         }
         sIndex++;
     }
@@ -336,6 +353,7 @@ void lmChatLog::abortPendingFileOperations(void) {
             updateFileMessage(FM_Receive, FO_Abort, fileData.data(XN_FILEID));
             rIndex.value().removeData(XN_FILEOP);
             rIndex.value().addData(XN_FILEOP, FileOpNames[FO_Abort]);
+            sendAbort(fileData, FM_Receive);
         }
         rIndex++;
     }

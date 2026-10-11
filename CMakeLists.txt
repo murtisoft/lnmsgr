@@ -27,8 +27,6 @@ endif()
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#A sends file to B, while its pending confirmation, if B appears offline, A will show transfer interrupted, while B can still download the file.
-#A sends file to B, while its pending confirmation, if A appears offline, B will show transfer interrupted, while A can still cancel.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #SetUItext functions dont handle newer controls, switching translations will require a restart.
 #Setting migration function doesnt handle newly added ones.
