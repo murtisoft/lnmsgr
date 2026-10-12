@@ -24,6 +24,8 @@
 #include <QSystemTrayIcon>
 #include <QLocale>
 #include <QMessageBox>
+#include <QToolTip>
+#include <QTimer>
 #include <qstylehints.h>
 #include "aformsettings.h"
 #include "soundplayer.h"
@@ -31,6 +33,7 @@
 #include "translationloader.h"
 #include "translatabletext.h"
 #include "definitionsdir.h"
+#include "audiolevel.h"
 
 lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
     ui.setupUi(this);
@@ -87,12 +90,23 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
         });
     }
     connect(ui.chkGlobalHotkeys, &QCheckBox::toggled, this, &lmFormSettings::chkGlobalHotkeys_toggled);
+    connect(ui.cboMicDevice, &QComboBox::activated, this, &lmFormSettings::cboMicDevice_activated);
+    connect(ui.btnTestMic, &QPushButton::clicked, this, &lmFormSettings::btnTestMic_clicked);
+    pMediaDevices = new QMediaDevices(this);
+    connect(pMediaDevices, &QMediaDevices::audioInputsChanged, this, &lmFormSettings::populateMicDevices);
     connect(qApp, &QApplication::focusChanged, this, &lmFormSettings::application_focusChanged);
     ui.lblHotkeyWarning->setStyleSheet("color: #d9534f;");
     ui.lblHotkeyWarning->hide();
 }
 
 lmFormSettings::~lmFormSettings(void) {
+    closeMicTestSource();
+}
+
+//  Every way out of the dialog ends up here, make sure the microphone is released.
+void lmFormSettings::done(int result) {
+    setMicTesting(false);
+    QDialog::done(result);
 }
 
 void lmFormSettings::init(void) {
@@ -120,13 +134,7 @@ void lmFormSettings::init(void) {
     }
 
     //=========================================================//TODO  Find a permanent spot for this.
-    ui.cboMicDevice->addItem("Default Communication Device",
-                             QVariant::fromValue(QMediaDevices::defaultAudioInput()));
-
-    const auto devices = QMediaDevices::audioInputs();
-    for (const QAudioDevice &device : devices) {
-        ui.cboMicDevice->addItem(device.description(), QVariant::fromValue(device));
-    }
+    //  Microphones are listed by populateMicDevices(), it also reacts to devices coming and going.
 
     ui.cboCamDevice->addItem("Still Image", QVariant("still_image"));
 
@@ -234,6 +242,9 @@ void lmFormSettings::timerEvent(QTimerEvent *event)
 
 void lmFormSettings::lvCategories_currentRowChanged(int currentRow) {
     ui.stackedWidget->setCurrentIndex(currentRow);
+    //  Only listen while the user is looking at the meter.
+    if(micTesting && ui.stackedWidget->currentWidget() != ui.pageVoiceVideo)
+        setMicTesting(false);
 }
 
 void lmFormSettings::btnOk_clicked(void) {
@@ -461,6 +472,133 @@ void lmFormSettings::btnResetSounds_clicked(void) {
     lvSounds_currentRowChanged(ui.lvSounds->currentRow());
 }
 
+void lmFormSettings::cboMicDevice_activated(int index) {
+    micDeviceId = ui.cboMicDevice->itemData(index).toByteArray();
+    micDeviceName = ui.cboMicDevice->itemData(index, Qt::UserRole + 1).toString();
+    if(micTesting)
+        setMicTesting(true);    // carry on with the new device
+}
+
+void lmFormSettings::btnTestMic_clicked(void) {
+    setMicTesting(!micTesting);
+}
+
+//  The chosen microphone, or a null device when it is not connected. Unlike a call, the test does not
+//  fall back to the default one: testing a different microphone than the one picked would only mislead.
+QAudioDevice lmFormSettings::chosenMicDevice(void) const {
+    if(micDeviceId.isEmpty())
+        return QMediaDevices::defaultAudioInput();
+    const auto devices = QMediaDevices::audioInputs();
+    for(const QAudioDevice& device : devices)
+        if(device.id() == micDeviceId)
+            return device;
+    return QAudioDevice();
+}
+
+bool lmFormSettings::openMicTestSource(void) {
+    closeMicTestSource();
+
+    const QAudioDevice device = chosenMicDevice();
+    if(device.isNull())
+        return false;
+
+    QAudioFormat format;
+    format.setSampleRate(48000);
+    format.setChannelCount(1);
+    format.setSampleFormat(QAudioFormat::Int16);
+    if(!device.isFormatSupported(format))
+        format = device.preferredFormat();
+
+    pMicTestSource = new QAudioSource(device, format, this);
+    micTestFormat = format;
+    connect(pMicTestSource, &QAudioSource::stateChanged, this, &lmFormSettings::onMicTestStateChanged);
+    pMicTestInput = pMicTestSource->start();
+    if(!pMicTestInput) {
+        closeMicTestSource();
+        return false;
+    }
+    connect(pMicTestInput, &QIODevice::readyRead, this, &lmFormSettings::onMicTestReadyRead);
+    return true;
+}
+
+void lmFormSettings::closeMicTestSource(void) {
+    if(pMicTestSource) {
+        pMicTestSource->disconnect(this);
+        pMicTestSource->stop();
+        delete pMicTestSource;
+        pMicTestSource = nullptr;
+    }
+    pMicTestInput = nullptr;
+}
+
+//  Starts, restarts (on the current device) or stops the test. The test only runs when asked for, so the
+//  system's "microphone in use" indicator is not on just because the dialog is open.
+void lmFormSettings::setMicTesting(bool on) {
+    if(on) {
+        if(!openMicTestSource()) {
+            if(!micTesting)     // the user pressed the button, tell them why nothing happens
+                QToolTip::showText(ui.btnTestMic->mapToGlobal(QPoint(0, ui.btnTestMic->height())),
+                                   tr("The microphone is not available."), ui.btnTestMic);
+            on = false;
+        }
+    } else {
+        closeMicTestSource();
+    }
+
+    if(!on)
+        ui.sldMicThreshold->resetLevel();
+    ui.btnTestMic->setText(on ? tr("Stop") : micTestIdleText);
+    if(on != micTesting) {
+        micTesting = on;
+        emit micTestChanged(on);
+    }
+}
+
+void lmFormSettings::onMicTestReadyRead(void) {
+    if(!pMicTestInput)
+        return;
+    const QByteArray data = pMicTestInput->readAll();
+    if(!data.isEmpty())
+        ui.sldMicThreshold->setLevel(lmAudioLevel::rmsDbfs(data, micTestFormat.sampleFormat()));
+}
+
+//  The device stopped by itself, most likely unplugged.
+void lmFormSettings::onMicTestStateChanged(QAudio::State state) {
+    if(state == QAudio::StoppedState && pMicTestSource && pMicTestSource->error() != QAudio::NoError)
+        QTimer::singleShot(0, this, [this]() { setMicTesting(false); });    // not from inside its own signal
+}
+
+//  Lists the microphones and selects the chosen one. Runs again whenever a device is plugged in or removed.
+//  The chosen device stays in the list even when it is not connected, so that pressing OK doesn't
+//  silently forget it. Calls use the default microphone until it is back.
+void lmFormSettings::populateMicDevices(void) {
+    const QSignalBlocker blocker(ui.cboMicDevice);
+    ui.cboMicDevice->clear();
+    ui.cboMicDevice->addItem(tr("Default Communication Device"), QByteArray());
+
+    int selected = micDeviceId.isEmpty() ? 0 : -1;
+    const auto devices = QMediaDevices::audioInputs();
+    for(const QAudioDevice& device : devices) {
+        ui.cboMicDevice->addItem(device.description(), device.id());
+        const int row = ui.cboMicDevice->count() - 1;
+        ui.cboMicDevice->setItemData(row, device.description(), Qt::UserRole + 1);
+        if(selected < 0 && device.id() == micDeviceId) {
+            selected = row;
+            micDeviceName = device.description();   // names can change, keep it current
+        }
+    }
+    if(selected < 0) {
+        const QString name = micDeviceName.isEmpty() ? tr("Unknown device") : micDeviceName;
+        ui.cboMicDevice->addItem(tr("%1 (Not connected)").arg(name), micDeviceId);
+        selected = ui.cboMicDevice->count() - 1;
+        ui.cboMicDevice->setItemData(selected, name, Qt::UserRole + 1);
+    }
+    ui.cboMicDevice->setCurrentIndex(selected);
+
+    if(micTesting)
+        setMicTesting(true);    // the list changed: carries on, or stops if the microphone is gone
+}
+
 void lmFormSettings::chkGlobalHotkeys_toggled(bool checked) {
     ui.wdgCallHotkeys->setEnabled(checked);
     validateHotkeys();
@@ -531,6 +669,9 @@ void lmFormSettings::setUIText(void) {
     ui.chkAutoShow->setText(ui.chkAutoShow->text().arg(lmStrings::appName()));
     ui.lblFinePrint->setText(ui.lblFinePrint->text().arg(lmStrings::appName()));
     ui.lblHotkeyDesc->setText(ui.lblHotkeyDesc->text().arg(lmStrings::appName()));
+    micTestIdleText = ui.btnTestMic->text();
+    if(micTesting)
+        ui.btnTestMic->setText(tr("Stop"));
 
     if(!QSystemTrayIcon::isSystemTrayAvailable()) {
         ui.grpSysTray->setEnabled(false);
@@ -678,6 +819,11 @@ void lmFormSettings::loadSettings(void) {
     ui.rdbEnter->setChecked(!pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
     ui.rdbCmdEnter->setChecked(pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool());
 
+    micDeviceId = pSettings->value(IDS_MICDEVICE, IDS_MICDEVICE_VAL).toString().toUtf8();
+    micDeviceName = pSettings->value(IDS_MICDEVICENAME, IDS_MICDEVICENAME_VAL).toString();
+    populateMicDevices();
+    ui.sldMicThreshold->setValue(pSettings->value(IDS_MICTHRESHOLD, IDS_MICTHRESHOLD_VAL).toInt());
+
     ui.chkGlobalHotkeys->setChecked(pSettings->value(IDS_GLOBALHOTKEYS, IDS_GLOBALHOTKEYS_VAL).toBool());
     for(int index = 0; index < lmHotkeyHandler::HK_Max; index++)
         hotkeyEdits[index]->setKeySequence(lmHotkeyHandler::loadSequence(pSettings, lmHotkeyHandler::Action(index)));
@@ -795,6 +941,9 @@ void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_STATUSTOOLTIP, ui.chkUserListToolTip->isChecked(), IDS_STATUSTOOLTIP_VAL);
 
     pSettings->setValue(IDS_SENDKEYMOD, ui.rdbCmdEnter->isChecked(), IDS_SENDKEYMOD_VAL);
+    pSettings->setValue(IDS_MICDEVICE, QString::fromUtf8(micDeviceId), IDS_MICDEVICE_VAL);
+    pSettings->setValue(IDS_MICDEVICENAME, micDeviceId.isEmpty() ? QString() : micDeviceName, IDS_MICDEVICENAME_VAL);
+    pSettings->setValue(IDS_MICTHRESHOLD, ui.sldMicThreshold->value(), IDS_MICTHRESHOLD_VAL);
     pSettings->setValue(IDS_GLOBALHOTKEYS, ui.chkGlobalHotkeys->isChecked(), IDS_GLOBALHOTKEYS_VAL);
     for(int index = 0; index < lmHotkeyHandler::HK_Max; index++)
         lmHotkeyHandler::saveSequence(pSettings, lmHotkeyHandler::Action(index), hotkeyEdits[index]->keySequence());

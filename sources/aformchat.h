@@ -58,6 +58,7 @@ public:
     void removeUser(QString* lpszUserId);
 	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(bool connected);
+    bool isMicrophoneMuted(void) const { return micMuted; }
     void showMissedCall(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void settingsChanged(void);
 

@@ -65,6 +65,11 @@ lmCore::lmCore(void) {
     pHotkeys = new lmHotkeyHandler(this);
     connect(pHotkeys, &lmHotkeyHandler::triggered, this, &lmCore::hotkeyTriggered);
     connect(pHotkeys, &lmHotkeyHandler::registrationFailed, this, &lmCore::hotkeyRegistrationFailed);
+    pMediaDevices = new QMediaDevices(this);
+    connect(pMediaDevices, &QMediaDevices::audioInputsChanged, this, [this]() {
+        if (m_audioStream)
+            m_audioStream->refreshMicDevice();      // unplugged or plugged in during a call
+    });
 }
 
 lmCore::~lmCore(void) {
@@ -187,6 +192,8 @@ void lmCore::settingsChanged(void) {
 	bool autoStart = pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool();
 	lmSettings::setAutoStart(autoStart);
 	pHotkeys->loadSettings(pSettings);
+	if(m_audioStream)
+		m_audioStream->setMicDevice(micDeviceSetting());	//	switch microphone mid-call
 	QString appLang = pSettings->value(IDS_LANGUAGE, IDS_LANGUAGE_VAL).toString();
 	if(appLang.compare(lang) != 0) {
 		lang = appLang;
@@ -452,11 +459,13 @@ void lmCore::showSettings(void) {
 		//	While a hotkey is being recorded, release the global ones. Otherwise the system would swallow
 		//	the very combination the user is trying to (re)assign.
 		connect(pSettingsDialog, &lmFormSettings::hotkeyCaptureChanged, pHotkeys, &lmHotkeyHandler::setSuspended);
+		connect(pSettingsDialog, &lmFormSettings::micTestChanged, this, &lmCore::micTestChanged);
 		pSettingsDialog->init();
 	}
 
 	bool accepted = pSettingsDialog->exec();
 	pHotkeys->setSuspended(false);	//	in case the dialog closed while recording
+	micTestChanged(false);			//	and while testing the microphone
 	if(accepted)
 		settingsChanged();
 }
@@ -650,11 +659,21 @@ void lmCore::callConnected(MessageType type) {
         connect(m_audioStream, &lmAudioStream::speakerMuted, this, [this](bool muted) {
             pSoundPlayer->play(muted ? SE_SpeakerOff : SE_SpeakerOn);
         });
-        connect(w, &lmFormChat::micToggled,
+        connect(m_audioStream, &lmAudioStream::micDeviceChanged, this, [this](const QString& name, bool fallback) {
+            if (!fallback)
+                return;
+            QString message = name.isEmpty()
+                ? tr("No microphone is available. Your voice cannot be sent.")
+                : tr("Your selected microphone is not available. Using %1 instead.").arg(name);
+            lmDebugLog::write(message);
+            showTrayMessage(TM_Connection, message, tr("Microphone"), TMI_Warning);
+        });
+        connect(w, &lmFormChat::micToggled,
                 m_audioStream, &lmAudioStream::setMicMuted);
         connect(w, &lmFormChat::speakerToggled,
                 m_audioStream, &lmAudioStream::setSpeakerMuted);
     }
+    m_audioStream->setMicDevice(micDeviceSetting());     // queued ahead of start(), so the call opens the right device
     m_audioStream->start(QHostAddress(pUser->address),
                          pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt(),
                          pMessaging->crypto(), pUser->id);
@@ -667,6 +686,27 @@ void lmCore::callEnded(MessageType type) {
 
     callPeerId.clear();
     if (m_audioStream) { m_audioStream->stop(); delete m_audioStream; m_audioStream = nullptr; }
+}
+
+//  The microphone test in preferences listens to the microphone, and during a call that must not reach the other
+//  side. So the call microphone is muted for the duration of the test, and restored afterwards.
+void lmCore::micTestChanged(bool testing) {
+    if (testing) {
+        lmFormChat* w = callWindow();
+        if (w && !w->isMicrophoneMuted()) {
+            w->toggleMicrophone();
+            micMutedByTest = true;
+        }
+    } else if (micMutedByTest) {
+        micMutedByTest = false;
+        lmFormChat* w = callWindow();
+        if (w && w->isMicrophoneMuted())
+            w->toggleMicrophone();
+    }
+}
+
+QByteArray lmCore::micDeviceSetting(void) const {
+    return pSettings->value(IDS_MICDEVICE, IDS_MICDEVICE_VAL).toString().toUtf8();
 }
 
 //  The chat window that owns the connected call, or nullptr when there is none.

@@ -204,6 +204,12 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 	if(value.isValid())	setValue(IDS_HOTKEYSPEAKER, value);
 	value = extSettings.value(IDS_HOTKEYCAMERA);
 	if(value.isValid())	setValue(IDS_HOTKEYCAMERA, value);
+	value = extSettings.value(IDS_MICDEVICE);
+	if(value.isValid())	setValue(IDS_MICDEVICE, value);
+	value = extSettings.value(IDS_MICDEVICENAME);
+	if(value.isValid())	setValue(IDS_MICDEVICENAME, value);
+	value = extSettings.value(IDS_MICTHRESHOLD);
+	if(value.isValid())	setValue(IDS_MICTHRESHOLD, value);
 
 	setValue(IDS_VERSION, IDA_VERSION);
 	sync();

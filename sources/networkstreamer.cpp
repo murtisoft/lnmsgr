@@ -59,6 +59,107 @@ void lmAudioStream::stop() {
         QMetaObject::invokeMethod(this, [this]() { doStop(); }, Qt::BlockingQueuedConnection);
 }
 
+void lmAudioStream::setMicDevice(const QByteArray& deviceId) {
+    QMetaObject::invokeMethod(this, [this, deviceId]() {
+        if(deviceId == m_micDeviceId)
+            return;
+        m_micDeviceId = deviceId;
+        if(m_sendSock)          // a call is running, switch now
+            startInput();
+    }, Qt::QueuedConnection);
+}
+
+void lmAudioStream::refreshMicDevice() {
+    QMetaObject::invokeMethod(this, [this]() {
+        if(!m_sendSock)
+            return;
+        bool fallback = false;
+        const QAudioDevice device = resolveInputDevice(&fallback);
+        if(device.isNull()) {
+            if(m_source)
+                startInput();   // everything was unplugged, this releases the dead source and reports it
+            return;
+        }
+        //  Still the right device and still capturing: nothing to do. Otherwise the device we use is gone,
+        //  or the one the user picked is back, or the system default changed.
+        if(m_source && device.id() == m_inputId && m_source->state() != QAudio::StoppedState)
+            return;
+        startInput();
+    }, Qt::QueuedConnection);
+}
+
+//  The device the user picked, or the default one when that is not available. Null if there is no input at all.
+QAudioDevice lmAudioStream::resolveInputDevice(bool* pFallback) const {
+    *pFallback = false;
+    if(!m_micDeviceId.isEmpty()) {
+        const QList<QAudioDevice> inputs = QMediaDevices::audioInputs();
+        for(const QAudioDevice& device : inputs)
+            if(device.id() == m_micDeviceId)
+                return device;
+        *pFallback = true;
+    }
+    return QMediaDevices::defaultAudioInput();
+}
+
+void lmAudioStream::stopInput() {
+    if(m_source) {
+        m_source->disconnect(this);
+        m_source->stop();
+        delete m_source;
+        m_source = nullptr;
+    }
+    m_input = nullptr;
+    m_inputId.clear();
+}
+
+//  (Re)starts capturing. Keeps the mute state, so switching microphones mid-call doesn't unmute anyone.
+void lmAudioStream::startInput() {
+    stopInput();
+
+    bool fallback = false;
+    const QAudioDevice device = resolveInputDevice(&fallback);
+    if(device.isNull()) {
+        lmDebugLog::write("Warning: no audio input device available");
+        reportInput(QString(), true);
+        return;
+    }
+    if(!device.isFormatSupported(m_format))
+        lmDebugLog::write("Warning: audio input '" + device.description() + "' does not list the voice format as supported");
+
+    m_source = new QAudioSource(device, m_format, this);
+    connect(m_source, &QAudioSource::stateChanged, this, &lmAudioStream::onMicStateChanged);
+    m_input = m_source->start();
+    m_inputId = device.id();
+    if(m_input)
+        connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onMicReadyRead);
+    if(m_micMuted)
+        m_source->suspend();
+    if(fallback)
+        lmDebugLog::write("Warning: selected microphone not available, using '" + device.description() + "'");
+    reportInput(device.description(), fallback);
+}
+
+//  Tell the user only once per situation, not on every restart.
+void lmAudioStream::reportInput(const QString& name, bool fallback) {
+    if(fallback && (!m_fallbackReported || name != m_fallbackName))
+        emit micDeviceChanged(name, true);
+    m_fallbackReported = fallback;
+    m_fallbackName = fallback ? name : QString();
+}
+
+//  A capture that stopped by itself with an error usually means the device was unplugged.
+void lmAudioStream::onMicStateChanged(QAudio::State state) {
+    if(state != QAudio::StoppedState || !m_source || m_source->error() == QAudio::NoError)
+        return;
+    lmDebugLog::write("Warning: microphone capture stopped with an error");
+    if(++m_inputRestarts > 3)       // reset as soon as audio flows again, this only stops a restart loop
+        return;
+    QMetaObject::invokeMethod(this, [this]() {
+        if(m_sendSock)
+            startInput();
+    }, Qt::QueuedConnection);
+}
+
 //  Voice packet: "AUDIOO" | salt(8) | seq(4, big endian) | AES-256-GCM(opus frame) + tag(16)
 //  salt+seq are authenticated as additional data.
 static const int VOICE_HDR = 6;
@@ -96,14 +197,13 @@ void lmAudioStream::doStart(const QHostAddress& peerAddress, quint16 udpPort, co
     fmt.setChannelCount(lmOpusHandler::Channels);
     fmt.setSampleFormat(QAudioFormat::Int16);
 
-    // Record from default mic, encode, encrypt, send over UDP
+    // Record from the selected mic (default if none picked), encode, encrypt, send over UDP
+    m_format = fmt;
+    m_inputRestarts = 0;
     m_sendSock = new QUdpSocket(this);
-    m_source = new QAudioSource(QMediaDevices::defaultAudioInput(), fmt, this);
-    m_input  = m_source->start();
+    startInput();
 
     emit micMuted(false);
-    if(m_input)
-        connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onMicReadyRead);
 
     // Receive UDP, decrypt, decode, play to default speaker
     m_recvSock = new QUdpSocket(this);
@@ -123,6 +223,7 @@ void lmAudioStream::onMicReadyRead() {
     QByteArray pcm = m_input->readAll();
     if(pcm.isEmpty())
         return;
+    m_inputRestarts = 0;
 
     const QList<QByteArray> frames = m_opus.encode(pcm);
     for(const QByteArray& frame : frames) {
@@ -198,11 +299,13 @@ void lmAudioStream::onNetReadyRead() {
 void lmAudioStream::doStop() {
     if(m_source || m_sink)
         emit micMuted(true);
-    if (m_source) { m_source->stop(); delete m_source; m_source = nullptr; }
+    stopInput();
     if (m_sink)   { m_sink->stop();   delete m_sink;   m_sink   = nullptr; }
     if (m_sendSock) { m_sendSock->close(); delete m_sendSock; m_sendSock = nullptr; }
     if (m_recvSock) { m_recvSock->close(); delete m_recvSock; m_recvSock = nullptr; }
-    m_input = m_output = nullptr;
+    m_output = nullptr;
+    m_fallbackReported = false;
+    m_fallbackName.clear();
     m_opus.shutdown();
     m_txKey.clear();
     m_rxKey.clear();
@@ -210,8 +313,8 @@ void lmAudioStream::doStop() {
 }
 
 void lmAudioStream::setMicMuted(bool muted) {
+    m_micMuted = muted;     // remembered even without a microphone, so it applies once there is one
     if (!m_source) return;
-    m_micMuted = muted;
     muted ? m_source->suspend() : m_source->resume();
     emit micMuted(muted);
 }

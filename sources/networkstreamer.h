@@ -35,6 +35,7 @@
 #include <QAudioSink>
 #include <QMediaDevices>
 #include <QAudioFormat>
+#include <QAudioDevice>
 #include "opushandler.h"
 #include "opensslhandler.h"
 
@@ -46,6 +47,9 @@ signals:
     void micMuted(bool muted);
     void speakerMuted(bool muted);
     void camMuted(bool muted);
+    //  The microphone in use changed, or could not be the one the user picked. fallback is true when the picked
+    //  device is unavailable. An empty name means there is no microphone at all.
+    void micDeviceChanged(const QString& deviceName, bool fallback);
 
 public:
     //  The stream runs on its own thread (capture, encode, encrypt, network, decode, playback),
@@ -56,6 +60,12 @@ public:
     void start(const QHostAddress& peerAddress, quint16 port, lmOpenSSL* crypto, const QString& peerId);
     void stop();
 
+    //  Microphone to capture from, QAudioDevice::id(). Empty means the system default. Can be called before
+    //  start() and during a call, the capture is switched on the fly. A missing device falls back to the default.
+    void setMicDevice(const QByteArray& deviceId);
+    //  Re-check the microphone. Call it when the list of audio devices changed (unplugged / plugged in).
+    void refreshMicDevice();
+
 public slots:
     void setMicMuted(bool muted);
     void setSpeakerMuted(bool muted);
@@ -64,15 +74,26 @@ public slots:
 private slots:
     void onMicReadyRead();
     void onNetReadyRead();
+    void onMicStateChanged(QAudio::State state);
 
 private:
     void doStart(const QHostAddress& peerAddress, quint16 udpPort, const QByteArray& sessionKey);
     void doStop();
+    void startInput();
+    void stopInput();
+    QAudioDevice resolveInputDevice(bool* pFallback) const;
+    void reportInput(const QString& name, bool fallback);
 
     QThread*       m_thread  = nullptr;
     QByteArray     m_sessionKey;
     QAudioSource*  m_source  = nullptr;
     QAudioSink*    m_sink    = nullptr;
+    QAudioFormat   m_format;
+    QByteArray     m_micDeviceId;           // what the user asked for, empty = default
+    QByteArray     m_inputId;               // device actually in use
+    int            m_inputRestarts = 0;     // consecutive restarts after a capture error
+    bool           m_fallbackReported = false;
+    QString        m_fallbackName;
     QIODevice*     m_input   = nullptr;
     QIODevice*     m_output  = nullptr;
     QUdpSocket*    m_sendSock = nullptr;

@@ -24,6 +24,7 @@
 #define AFORMSETTINGS_H
 
 #include <QMediaDevices>
+#include <QAudioSource>
 #include <QAudioDevice>
 #include <QCameraDevice>
 
@@ -51,6 +52,7 @@ public:
 	void init(void);
 	void settingsChanged(void);
     void changeColorScheme(int index);
+    void done(int result) override;
 
 signals:
 	void historyCleared(void);
@@ -58,6 +60,8 @@ signals:
 	//	true while one of the hotkey editors has focus. Global hotkeys must be released meanwhile, or the
 	//	system swallows the key combination before the editor gets to see it.
 	void hotkeyCaptureChanged(bool capturing);
+	//	true while the microphone test is running. During a call the call microphone is muted meanwhile.
+	void micTestChanged(bool testing);
 
 protected:
 	void changeEvent(QEvent* pEvent);
@@ -88,6 +92,10 @@ private slots:
 	void btnSoundPath_clicked(void);
 	void btnResetSounds_clicked(void);
 	void chkGlobalHotkeys_toggled(bool checked);
+	void cboMicDevice_activated(int index);
+	void btnTestMic_clicked(void);
+	void onMicTestReadyRead(void);
+	void onMicTestStateChanged(QAudio::State state);
 	void application_focusChanged(QWidget* old, QWidget* now);
 
 
@@ -98,6 +106,11 @@ private:
 	void saveSettings(void);
     void insertStatusMessageinLog();
     void validateHotkeys(void);
+    void populateMicDevices(void);
+    QAudioDevice chosenMicDevice(void) const;
+    void setMicTesting(bool on);
+    bool openMicTestSource(void);
+    void closeMicTestSource(void);
 
 	Ui::SettingsDialog ui;
 	lmSettings* pSettings;
@@ -111,6 +124,14 @@ private:
     int statusNow;
     QKeySequenceEdit* hotkeyEdits[lmHotkeyHandler::HK_Max];
     bool hotkeyCapturing = false;
+    QMediaDevices* pMediaDevices = nullptr;
+    QByteArray micDeviceId;     // QAudioDevice::id() of the chosen microphone, empty = default
+    QString micDeviceName;      // its last known name, so it can be shown while unplugged
+    QAudioSource* pMicTestSource = nullptr;
+    QIODevice* pMicTestInput = nullptr;
+    QAudioFormat micTestFormat;
+    bool micTesting = false;
+    QString micTestIdleText;    // caption of the test button while it is not running
 };
 
 #endif // AFORMSETTINGS_H

@@ -162,6 +162,12 @@
 #define IDS_HOTKEYSPEAKER_VAL	"Ctrl+Alt+X"
 #define IDS_HOTKEYCAMERA		"Hotkeys/CameraToggle"
 #define IDS_HOTKEYCAMERA_VAL	"Ctrl+Alt+C"
+#define IDS_MICDEVICE			"Voice/MicDevice"	//	QAudioDevice::id(), empty = system default
+#define IDS_MICDEVICE_VAL		""
+#define IDS_MICDEVICENAME		"Voice/MicDeviceName"	//	last known name, to show a device that is not connected
+#define IDS_MICDEVICENAME_VAL	""
+#define IDS_MICTHRESHOLD		"Voice/MicThreshold"	//	voice activation threshold in dBFS
+#define IDS_MICTHRESHOLD_VAL	-40
 #define IDS_STATUS				"User/Status"
 #define IDS_STATUS_VAL			statusCode[0]
 #define IDS_AVATAR				"User/Avatar"
