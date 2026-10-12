@@ -32,20 +32,23 @@ add_executable(LanMessenger #—————————————————
 )
 
 set(OPUS_DIR "C:/Qt/Tools/opus-1.6")          #——————————————————————————————————————————————————————————————————————<< libopus 1.6 path
+set(VPX_DIR "C:/Qt/Tools/libvpx-1.7")          #——————————————————————————————————————————————————————————————————————<< libvpx 1.7 path
 set(OPENSSL_DIR "C:/Qt/Tools/OpenSSL-Win64")  #——————————————————————————————————————————————————————————————————————<< Win64OpenSSL-3_6_0 path
 target_include_directories(LanMessenger PRIVATE
     ${CMAKE_SOURCE_DIR}/sources
     ${OPENSSL_DIR}/include
     ${OPUS_DIR}/include
+    ${VPX_DIR}/include/vpx
 )
 
 target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake project version into code.
 target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia
-    user32                                                #——————————————————————————————————————————————————<< RegisterHotKey (hotkeyhandler.cpp)
+    user32
     ${OPENSSL_DIR}/lib/VC/x64/MT/libssl.lib
     ${OPENSSL_DIR}/lib/VC/x64/MT/libcrypto.lib
     ${OPUS_DIR}/build/Release/libopus.a
+    ${VPX_DIR}/lib/libvpx.a
 )
 
 file(GLOB LanMessenger_LANGUAGES CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/resources/languages/*.ts")

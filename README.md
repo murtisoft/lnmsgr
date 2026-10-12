@@ -30,4 +30,7 @@ This project was compiled on Windows 11 with;
 	* For compiled binaries: slproweb.com/products/Win32OpenSSL.html
 * Libopus (C:/Qt/Tools/opus-1.6)
 	* Compile the project into (/build/release)
+* Libvpx (C:\Qt\Tools\libvpx-1.7)
+	* MSYS2 has prebuilt MinGW libvpx https://repo.msys2.org/mingw/mingw64/
+	* find the latest .tar.zst and extract it
 

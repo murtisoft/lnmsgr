@@ -6,8 +6,8 @@
         <file alias="logo128">images/logo128.png</file>
         <file alias="logo48">images/logo48.png</file>
         <file alias="logo16">images/logo16.png</file>
-		<file alias="smiley_70">images/smiley_70.png</file>
-		<file alias="status_away">images/status_away.png</file>
+        <file alias="smiley_70">images/smiley_70.png</file>
+        <file alias="status_away">images/status_away.png</file>
         <file alias="status_busy">images/status_busy.png</file>
         <file alias="status_nodisturb">images/status_nodisturb.png</file>
         <file alias="status_offline">images/status_offline.png</file>
@@ -20,12 +20,13 @@
         <file alias="license_openssl">credits/license_openssl.html</file>
         <file alias="license_opus">credits/license_opus.html</file>
         <file alias="license_qt">credits/license_qt.html</file>
+		<file alias="license_vpx">credits/license_vpx.html</file>
     </qresource>
     <qresource prefix="/templates">
         <file alias="msg_header.html">templates/msg_header.html</file>
-		<file alias="msg_body.html">templates/msg_body.html</file>
-		<file alias="msg_request.html">templates/msg_request.html</file>
-		<file alias="msg_warning.html">templates/msg_warning.html</file>
+        <file alias="msg_body.html">templates/msg_body.html</file>
+        <file alias="msg_request.html">templates/msg_request.html</file>
+        <file alias="msg_warning.html">templates/msg_warning.html</file>
         <file alias="old_broadcast.html">templates/old_broadcast.html</file>
         <file alias="old_content.html">templates/old_content.html</file>
         <file alias="old_nextcontent.html">templates/old_nextcontent.html</file>
