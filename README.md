@@ -1,10 +1,12 @@
+![Co-authored with Claude](https://img.shields.io/badge/Co--authored%20with-Claude-D97757?logo=anthropic&logoColor=white)
+---
+
 Notes
 ===========================
 Project related todo list and known issues are written down in main cmakelists.
 
 I would like to maintain compatibility between this and old versions, while adding more in the future. 
 
-Translators are discouraged from contributing for now, the interface is frequently changing.
 
 Why LAN Messenger? (2026)
 ============================

@@ -23,6 +23,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QMouseEvent>
+#include <QWheelEvent>
 #include <QToolTip>
 #include "widgetthresholdslider.h"
 
@@ -62,6 +63,30 @@ void lmWidgetThresholdSlider::setLevel(float dbfs) {
 void lmWidgetThresholdSlider::resetLevel(void) {
 	m_level = MinDb;
 	m_clock.invalidate();
+	update();
+}
+
+void lmWidgetThresholdSlider::setThresholdVisible(bool visible) {
+	if(visible == m_thresholdVisible)
+		return;
+	m_thresholdVisible = visible;
+	setFocusPolicy(visible ? Qt::StrongFocus : Qt::NoFocus);
+	updateToolTip();
+	update();
+}
+
+void lmWidgetThresholdSlider::setExternalTrigger(bool used) {
+	if(used == m_externalTrigger)
+		return;
+	m_externalTrigger = used;
+	m_triggered = false;
+	update();
+}
+
+void lmWidgetThresholdSlider::setTriggered(bool triggered) {
+	if(triggered == m_triggered)
+		return;
+	m_triggered = triggered;
 	update();
 }
 
@@ -107,13 +132,15 @@ void lmWidgetThresholdSlider::paintEvent(QPaintEvent*) {
 		painter.save();
 		painter.setClipPath(clip);
 		painter.setPen(Qt::NoPen);
-		const bool passing = m_level >= value();
+		const bool passing = m_externalTrigger ? m_triggered : (!m_thresholdVisible || m_level >= value());
 		painter.setBrush(!isEnabled() ? color(QPalette::Mid) : (passing ? kActiveColor : kQuietColor));
 		painter.drawRect(QRectF(track.left(), track.top(), levelX - track.left(), track.height()));
 		painter.restore();
 	}
 
 	//	knob
+	if(!m_thresholdVisible)
+		return;
 	const qreal knobX = dbToX(value());
 	const QRectF knob(knobX - kKnobWidth / 2.0, track.top() - kKnobOverhang, kKnobWidth, track.height() + 2 * kKnobOverhang);
 	painter.setPen(QPen(hasFocus() && isEnabled() ? color(QPalette::Highlight) : color(QPalette::Window), hasFocus() ? 2 : 1));
@@ -122,7 +149,7 @@ void lmWidgetThresholdSlider::paintEvent(QPaintEvent*) {
 }
 
 void lmWidgetThresholdSlider::mousePressEvent(QMouseEvent* pEvent) {
-	if(pEvent->button() != Qt::LeftButton) {
+	if(pEvent->button() != Qt::LeftButton || !m_thresholdVisible) {
 		pEvent->ignore();
 		return;
 	}
@@ -150,6 +177,13 @@ void lmWidgetThresholdSlider::mouseReleaseEvent(QMouseEvent* pEvent) {
 	pEvent->accept();
 }
 
+void lmWidgetThresholdSlider::wheelEvent(QWheelEvent* pEvent) {
+	if(m_thresholdVisible)
+		QSlider::wheelEvent(pEvent);
+	else
+		pEvent->ignore();
+}
+
 //	Anywhere on the bar is a valid target, the knob jumps there.
 void lmWidgetThresholdSlider::setValueFromPosition(qreal x) {
 	const QRectF track = trackRect();
@@ -160,5 +194,5 @@ void lmWidgetThresholdSlider::setValueFromPosition(qreal x) {
 }
 
 void lmWidgetThresholdSlider::updateToolTip(void) {
-	setToolTip(tr("%1 dB").arg(value()));
+	setToolTip(m_thresholdVisible ? tr("%1 dB").arg(value()) : QString());
 }

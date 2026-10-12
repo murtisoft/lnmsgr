@@ -92,6 +92,14 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
     connect(ui.chkGlobalHotkeys, &QCheckBox::toggled, this, &lmFormSettings::chkGlobalHotkeys_toggled);
     connect(ui.cboMicDevice, &QComboBox::activated, this, &lmFormSettings::cboMicDevice_activated);
     connect(ui.btnTestMic, &QPushButton::clicked, this, &lmFormSettings::btnTestMic_clicked);
+    connect(ui.cboMicActivation, &QComboBox::currentIndexChanged, this, &lmFormSettings::updateActivationUi);
+    //  Mimics the tail that push to talk transmits after the key is let go
+    pPttTestTimer = new QTimer(this);
+    pPttTestTimer->setSingleShot(true);
+    pPttTestTimer->setInterval(MIC_PTT_RELEASE_MS);
+    connect(pPttTestTimer, &QTimer::timeout, this, [this]() { ui.sldMicThreshold->setTriggered(false); });
+    ui.lblMicWarning->setStyleSheet("color: #d9534f;");
+    ui.lblMicWarning->hide();
     pMediaDevices = new QMediaDevices(this);
     connect(pMediaDevices, &QMediaDevices::audioInputsChanged, this, &lmFormSettings::populateMicDevices);
     connect(qApp, &QApplication::focusChanged, this, &lmFormSettings::application_focusChanged);
@@ -545,13 +553,28 @@ void lmFormSettings::setMicTesting(bool on) {
         closeMicTestSource();
     }
 
-    if(!on)
+    if(!on) {
         ui.sldMicThreshold->resetLevel();
+        pPttTestTimer->stop();
+        ui.sldMicThreshold->setTriggered(false);
+    }
     ui.btnTestMic->setText(on ? tr("Stop") : micTestIdleText);
     if(on != micTesting) {
         micTesting = on;
         emit micTestChanged(on);
     }
+}
+
+bool lmFormSettings::testPushToTalk(bool down) {
+    if(!micTesting || ui.cboMicActivation->currentIndex() != MA_PushToTalk)
+        return false;
+    if(down) {
+        pPttTestTimer->stop();
+        ui.sldMicThreshold->setTriggered(true);
+    } else {
+        pPttTestTimer->start();
+    }
+    return true;
 }
 
 void lmFormSettings::onMicTestReadyRead(void) {
@@ -621,34 +644,59 @@ void lmFormSettings::application_focusChanged(QWidget* old, QWidget* now) {
     }
 }
 
+//  Push to talk is the microphone hotkey, held down. The slider only has a threshold knob for voice activation,
+//  and the microphone hotkey changes its name when it is push to talk.
+void lmFormSettings::updateActivationUi(void) {
+    const int mode = ui.cboMicActivation->currentIndex();
+    ui.sldMicThreshold->setThresholdVisible(mode == MA_VoiceActivity);
+    ui.sldMicThreshold->setExternalTrigger(mode == MA_PushToTalk);
+    pPttTestTimer->stop();
+    ui.lblMicHotkey->setText(mode == MA_PushToTalk ? tr("Push to talk:") : micHotkeyIdleText);
+    validateHotkeys();
+}
+
 //  Shows what is wrong with the hotkeys, if anything, and blocks OK until it is fixed.
 void lmFormSettings::validateHotkeys(void) {
     QString problem;
-    if(lmHotkeyHandler::isSupported() && ui.chkGlobalHotkeys->isChecked()) {
-        for(int index = 0; index < lmHotkeyHandler::HK_Max && problem.isEmpty(); index++) {
-            const QKeySequence sequence = hotkeyEdits[index]->keySequence();
-            if(sequence.isEmpty())
-                continue;
+    QString pttProblem;
+    if(lmHotkeyHandler::isSupported()) {
+        if(ui.chkGlobalHotkeys->isChecked()) {
+            for(int index = 0; index < lmHotkeyHandler::HK_Max && problem.isEmpty(); index++) {
+                const QKeySequence sequence = hotkeyEdits[index]->keySequence();
+                if(sequence.isEmpty())
+                    continue;
 
-            const QString name = lmHotkeyHandler::actionName(lmHotkeyHandler::Action(index));
-            const QString reason = lmHotkeyHandler::validate(sequence);
-            if(!reason.isEmpty()) {
-                problem = tr("%1: %2").arg(name, reason);
-                break;
-            }
-            for(int other = 0; other < index; other++) {
-                if(hotkeyEdits[other]->keySequence() == sequence) {
-                    problem = tr("%1 and %2 cannot share the same hotkey.")
-                                  .arg(lmHotkeyHandler::actionName(lmHotkeyHandler::Action(other)), name);
+                const QString name = lmHotkeyHandler::actionName(lmHotkeyHandler::Action(index));
+                const QString reason = lmHotkeyHandler::validate(sequence);
+                if(!reason.isEmpty()) {
+                    problem = tr("%1: %2").arg(name, reason);
                     break;
+                }
+                for(int other = 0; other < index; other++) {
+                    if(hotkeyEdits[other]->keySequence() == sequence) {
+                        problem = tr("%1 and %2 cannot share the same hotkey.")
+                                      .arg(lmHotkeyHandler::actionName(lmHotkeyHandler::Action(other)), name);
+                        break;
+                    }
                 }
             }
         }
+        //  Without a key there would be no way to talk.
+        if(ui.cboMicActivation->currentIndex() == MA_PushToTalk) {
+            if(!ui.chkGlobalHotkeys->isChecked())
+                pttProblem = tr("Push to talk needs global hotkeys. Enable them on the Hotkeys page.");
+            else if(hotkeyEdits[lmHotkeyHandler::HK_Mic]->keySequence().isEmpty())
+                pttProblem = tr("Push to talk needs a key. Set one on the Hotkeys page.");
+        }
     }
-    ui.lblHotkeyWarning->setText(problem);
-    ui.lblHotkeyWarning->setVisible(!problem.isEmpty());
-    ui.btnOK->setEnabled(problem.isEmpty());
-    ui.btnOK->setToolTip(problem);
+
+    const QString shown = problem.isEmpty() ? pttProblem : problem;
+    ui.lblHotkeyWarning->setText(shown);
+    ui.lblHotkeyWarning->setVisible(!shown.isEmpty());
+    ui.lblMicWarning->setText(pttProblem);
+    ui.lblMicWarning->setVisible(!pttProblem.isEmpty());
+    ui.btnOK->setEnabled(shown.isEmpty());
+    ui.btnOK->setToolTip(shown);
 }
 
 void lmFormSettings::setPageHeaderStyle(QLabel* pLabel) {
@@ -670,6 +718,7 @@ void lmFormSettings::setUIText(void) {
     ui.lblFinePrint->setText(ui.lblFinePrint->text().arg(lmStrings::appName()));
     ui.lblHotkeyDesc->setText(ui.lblHotkeyDesc->text().arg(lmStrings::appName()));
     micTestIdleText = ui.btnTestMic->text();
+    micHotkeyIdleText = ui.lblMicHotkey->text();
     if(micTesting)
         ui.btnTestMic->setText(tr("Stop"));
 
@@ -708,6 +757,8 @@ void lmFormSettings::setUIText(void) {
     ui.rdbEnter->setText("Enter");
     ui.rdbCmdEnter->setText("Ctrl + Enter");
 #endif
+
+    updateActivationUi();
 
     //	set minimum possible size
     layout()->setSizeConstraint(QLayout::SetMinimumSize);
@@ -823,6 +874,7 @@ void lmFormSettings::loadSettings(void) {
     micDeviceName = pSettings->value(IDS_MICDEVICENAME, IDS_MICDEVICENAME_VAL).toString();
     populateMicDevices();
     ui.sldMicThreshold->setValue(pSettings->value(IDS_MICTHRESHOLD, IDS_MICTHRESHOLD_VAL).toInt());
+    ui.cboMicActivation->setCurrentIndex(qBound(0, pSettings->value(IDS_MICACTIVATION, IDS_MICACTIVATION_VAL).toInt(), int(MA_Max) - 1));
 
     ui.chkGlobalHotkeys->setChecked(pSettings->value(IDS_GLOBALHOTKEYS, IDS_GLOBALHOTKEYS_VAL).toBool());
     for(int index = 0; index < lmHotkeyHandler::HK_Max; index++)
@@ -944,6 +996,7 @@ void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_MICDEVICE, QString::fromUtf8(micDeviceId), IDS_MICDEVICE_VAL);
     pSettings->setValue(IDS_MICDEVICENAME, micDeviceId.isEmpty() ? QString() : micDeviceName, IDS_MICDEVICENAME_VAL);
     pSettings->setValue(IDS_MICTHRESHOLD, ui.sldMicThreshold->value(), IDS_MICTHRESHOLD_VAL);
+    pSettings->setValue(IDS_MICACTIVATION, ui.cboMicActivation->currentIndex(), IDS_MICACTIVATION_VAL);
     pSettings->setValue(IDS_GLOBALHOTKEYS, ui.chkGlobalHotkeys->isChecked(), IDS_GLOBALHOTKEYS_VAL);
     for(int index = 0; index < lmHotkeyHandler::HK_Max; index++)
         lmHotkeyHandler::saveSequence(pSettings, lmHotkeyHandler::Action(index), hotkeyEdits[index]->keySequence());

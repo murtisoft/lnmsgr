@@ -42,6 +42,13 @@ public:
 	//	Current input level in dBFS. Smoothed here: rises at once, falls gradually.
 	void setLevel(float dbfs);
 	void resetLevel(void);
+	//	Without a threshold (any activation mode but voice activity) the knob is hidden and cannot be moved,
+	//	only the level bar remains.
+	void setThresholdVisible(bool visible);
+	//	Push to talk: the bar is green only while the key is held (setTriggered), grey otherwise, instead of
+	//	following the level against a threshold. The level is still drawn.
+	void setExternalTrigger(bool used);
+	void setTriggered(bool triggered);
 
 	QSize sizeHint(void) const override;
 	QSize minimumSizeHint(void) const override;
@@ -51,6 +58,7 @@ protected:
 	void mousePressEvent(QMouseEvent* pEvent) override;
 	void mouseMoveEvent(QMouseEvent* pEvent) override;
 	void mouseReleaseEvent(QMouseEvent* pEvent) override;
+	void wheelEvent(QWheelEvent* pEvent) override;
 
 private:
 	QRectF trackRect(void) const;
@@ -59,6 +67,9 @@ private:
 	void updateToolTip(void);
 
 	float m_level = MinDb;
+	bool m_thresholdVisible = true;
+	bool m_externalTrigger = false;
+	bool m_triggered = false;
 	QElapsedTimer m_clock;
 };
 

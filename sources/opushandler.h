@@ -41,6 +41,8 @@ public:
     bool init(int bitrate = 96000);
     void shutdown();
     bool isReady() const;
+    //  Forgets buffered PCM that has not made a full frame yet. Used when the audio is deliberately cut off.
+    void discardPending() { pending.clear(); }
 
     //  Buffers raw PCM and returns one Opus packet per complete 20 ms frame.
     QList<QByteArray> encode(const QByteArray& pcm);

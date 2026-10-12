@@ -103,6 +103,7 @@ private slots:
     void callEnded(MessageType type);
     void micTestChanged(bool testing);
     void hotkeyTriggered(lmHotkeyHandler::Action action);
+    void hotkeyReleased(lmHotkeyHandler::Action action);
     void hotkeyRegistrationFailed(lmHotkeyHandler::Action action, const QKeySequence& sequence, const QString& reason);
 
 private:
@@ -128,6 +129,8 @@ private:
 	void showPortConflictMessage(void);
     lmFormChat* callWindow(void) const;
     QByteArray micDeviceSetting(void) const;
+    int micActivationSetting(void) const;
+    void applyMicActivation(void);
 
     lmSettings*                     pSettings;
 	QTimer*							pTimer;
@@ -153,6 +156,7 @@ private:
     QString                         callPeerId;     // user the current call (calling/ringing/connected) is with
     lmSoundPlayer*                  pSoundPlayer;
     lmHotkeyHandler*                pHotkeys;
+    bool                            pttSoundPlayed = false;      // push to talk went down with a sound, so it comes up with one
     bool                            micMutedByTest = false;     // the call mic was muted for the preferences mic test
     QMediaDevices*                  pMediaDevices;   // main thread, tells the call when mics come and go
 };

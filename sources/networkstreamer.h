@@ -65,6 +65,10 @@ public:
     void setMicDevice(const QByteArray& deviceId);
     //  Re-check the microphone. Call it when the list of audio devices changed (unplugged / plugged in).
     void refreshMicDevice();
+    //  When the microphone transmits, MicActivation, and the voice activation threshold in dBFS. Safe at any time.
+    void setMicActivation(int mode, int thresholdDb);
+    //  Push to talk: key down / up. Only matters in push to talk mode.
+    void setPushToTalk(bool down);
 
 public slots:
     void setMicMuted(bool muted);
@@ -83,6 +87,9 @@ private:
     void stopInput();
     QAudioDevice resolveInputDevice(bool* pFallback) const;
     void reportInput(const QString& name, bool fallback);
+    void sendPackets(const QList<QByteArray>& packets);
+    void processGatedFrame(const QByteArray& frame);
+    void resetGate();
 
     QThread*       m_thread  = nullptr;
     QByteArray     m_sessionKey;
@@ -94,6 +101,15 @@ private:
     int            m_inputRestarts = 0;     // consecutive restarts after a capture error
     bool           m_fallbackReported = false;
     QString        m_fallbackName;
+
+    // transmit gate for push to talk / voice activation, works on whole 20 ms frames
+    int            m_activation = MA_Continuous;
+    int            m_thresholdDb = -40;
+    bool           m_pttDown = false;
+    bool           m_gateOpen = false;
+    int            m_holdFrames = 0;        // frames left to keep transmitting after the trigger ended
+    QByteArray     m_gateBuf;               // captured audio that is not a whole frame yet
+    QList<QByteArray> m_preroll;            // the last quiet frames, sent when speech starts so no word is cut off
     QIODevice*     m_input   = nullptr;
     QIODevice*     m_output  = nullptr;
     QUdpSocket*    m_sendSock = nullptr;

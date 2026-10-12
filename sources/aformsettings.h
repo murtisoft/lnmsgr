@@ -25,6 +25,7 @@
 
 #include <QMediaDevices>
 #include <QAudioSource>
+#include <QTimer>
 #include <QAudioDevice>
 #include <QCameraDevice>
 
@@ -53,6 +54,10 @@ public:
 	void settingsChanged(void);
     void changeColorScheme(int index);
     void done(int result) override;
+    bool isMicTesting(void) const { return micTesting; }
+    //  The push to talk key went down / up while the microphone test is running. The bar flashes green meanwhile,
+    //  like the real thing would transmit. Returns false when there is no push to talk test going on.
+    bool testPushToTalk(bool down);
 
 signals:
 	void historyCleared(void);
@@ -106,6 +111,7 @@ private:
 	void saveSettings(void);
     void insertStatusMessageinLog();
     void validateHotkeys(void);
+    void updateActivationUi(void);
     void populateMicDevices(void);
     QAudioDevice chosenMicDevice(void) const;
     void setMicTesting(bool on);
@@ -131,7 +137,9 @@ private:
     QIODevice* pMicTestInput = nullptr;
     QAudioFormat micTestFormat;
     bool micTesting = false;
+    QTimer* pPttTestTimer = nullptr;
     QString micTestIdleText;    // caption of the test button while it is not running
+    QString micHotkeyIdleText;  // caption of the microphone hotkey while it is not push to talk
 };
 
 #endif // AFORMSETTINGS_H

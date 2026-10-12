@@ -19,7 +19,7 @@ endif()
 #Get rid of all MessageBox errors. They interrupt user flow, they are unnecessary and dated.
 #Thinking of switching png to webp, but not sure how painful the transition will be.
 
-#Implement voice&video settings
+#Implement video settings
 #Add vp8 video chat / desktop sharing
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
 #    Encryption in the program only works 1 on 1. That kinda hinders those plans.

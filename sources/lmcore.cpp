@@ -64,6 +64,7 @@ lmCore::lmCore(void) {
     pSoundPlayer = new lmSoundPlayer();
     pHotkeys = new lmHotkeyHandler(this);
     connect(pHotkeys, &lmHotkeyHandler::triggered, this, &lmCore::hotkeyTriggered);
+    connect(pHotkeys, &lmHotkeyHandler::released, this, &lmCore::hotkeyReleased);
     connect(pHotkeys, &lmHotkeyHandler::registrationFailed, this, &lmCore::hotkeyRegistrationFailed);
     pMediaDevices = new QMediaDevices(this);
     connect(pMediaDevices, &QMediaDevices::audioInputsChanged, this, [this]() {
@@ -192,8 +193,10 @@ void lmCore::settingsChanged(void) {
 	bool autoStart = pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool();
 	lmSettings::setAutoStart(autoStart);
 	pHotkeys->loadSettings(pSettings);
-	if(m_audioStream)
+	if(m_audioStream) {
 		m_audioStream->setMicDevice(micDeviceSetting());	//	switch microphone mid-call
+		applyMicActivation();
+	}
 	QString appLang = pSettings->value(IDS_LANGUAGE, IDS_LANGUAGE_VAL).toString();
 	if(appLang.compare(lang) != 0) {
 		lang = appLang;
@@ -674,6 +677,7 @@ void lmCore::callConnected(MessageType type) {
                 m_audioStream, &lmAudioStream::setSpeakerMuted);
     }
     m_audioStream->setMicDevice(micDeviceSetting());     // queued ahead of start(), so the call opens the right device
+    applyMicActivation();
     m_audioStream->start(QHostAddress(pUser->address),
                          pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt(),
                          pMessaging->crypto(), pUser->id);
@@ -705,6 +709,15 @@ void lmCore::micTestChanged(bool testing) {
     }
 }
 
+int lmCore::micActivationSetting(void) const {
+    return qBound(0, pSettings->value(IDS_MICACTIVATION, IDS_MICACTIVATION_VAL).toInt(), int(MA_Max) - 1);
+}
+
+void lmCore::applyMicActivation(void) {
+    if (m_audioStream)
+        m_audioStream->setMicActivation(micActivationSetting(), pSettings->value(IDS_MICTHRESHOLD, IDS_MICTHRESHOLD_VAL).toInt());
+}
+
 QByteArray lmCore::micDeviceSetting(void) const {
     return pSettings->value(IDS_MICDEVICE, IDS_MICDEVICE_VAL).toString().toUtf8();
 }
@@ -723,14 +736,50 @@ lmFormChat* lmCore::callWindow(void) const {
 //  Global hotkeys press the call buttons of the active call window, so the buttons, icons and sounds
 //  behave exactly as if the user had clicked them. Outside of a call there is nothing to toggle.
 void lmCore::hotkeyTriggered(lmHotkeyHandler::Action action) {
+    //  While the microphone test in preferences runs, it owns the microphone hotkey. That is where push to talk
+    //  can be tried out, and a toggle must not unmute a call microphone that is muted for the test.
+    if (action == lmHotkeyHandler::HK_Mic && pSettingsDialog && pSettingsDialog->isMicTesting()) {
+        if (pSettingsDialog->testPushToTalk(true)) {
+            pSoundPlayer->play(SE_MicOn);
+            pttSoundPlayed = true;
+        }
+        return;
+    }
+
     lmFormChat* w = callWindow();
     if (!w)
         return;
     switch (action) {
-    case lmHotkeyHandler::HK_Mic:       w->toggleMicrophone(); break;
+    case lmHotkeyHandler::HK_Mic:
+        //  Push to talk uses the microphone hotkey as a button to hold. The microphone itself stays unmuted.
+        if (micActivationSetting() == MA_PushToTalk) {
+            if (m_audioStream) {
+                m_audioStream->setPushToTalk(true);
+                if (!w->isMicrophoneMuted()) {      // muted by hand, nothing is going out, so don't pretend
+                    pSoundPlayer->play(SE_MicOn);
+                    pttSoundPlayed = true;
+                }
+            }
+        } else {
+            w->toggleMicrophone();
+        }
+        break;
     case lmHotkeyHandler::HK_Speaker:   w->toggleSpeaker();    break;
     case lmHotkeyHandler::HK_Camera:    w->toggleCamera();     break;
     default:                                                   break;
+    }
+}
+
+void lmCore::hotkeyReleased(lmHotkeyHandler::Action action) {
+    if (action != lmHotkeyHandler::HK_Mic)
+        return;
+    if (pSettingsDialog && pSettingsDialog->isMicTesting())
+        pSettingsDialog->testPushToTalk(false);
+    if (m_audioStream)
+        m_audioStream->setPushToTalk(false);
+    if (pttSoundPlayed) {
+        pttSoundPlayed = false;
+        pSoundPlayer->play(SE_MicOff);
     }
 }
 

@@ -24,6 +24,7 @@
 
 #include <array>
 #include <QObject>
+#include <QTimer>
 #include <QAbstractNativeEventFilter>
 #include <QKeySequence>
 #include <QString>
@@ -72,6 +73,9 @@ public:
 
 signals:
 	void triggered(lmHotkeyHandler::Action action);
+	//	The keys of a hotkey that fired are let go again. This is what makes push to talk possible, the system
+	//	only reports the press. Also sent for hotkeys still held when they get unregistered, so nothing stays "pressed".
+	void released(lmHotkeyHandler::Action action);
 	//	A hotkey could not be registered, usually because another application owns it.
 	void registrationFailed(lmHotkeyHandler::Action action, const QKeySequence& sequence, const QString& reason);
 
@@ -83,12 +87,19 @@ private:
 	void unregisterAll(void);
 	bool registerNative(Action action, const QKeySequence& sequence, QString* pReason);
 	void unregisterNative(Action action);
+	void beginHold(Action action);
+	bool isHeld(Action action) const;
+	void pollHeld(void);
 
 	bool m_enabled = false;
 	bool m_suspended = false;
 	std::array<QKeySequence, HK_Max> m_sequences;
 	std::array<bool, HK_Max> m_registered{};
 	std::array<bool, HK_Max> m_failureReported{};
+	std::array<bool, HK_Max> m_held{};
+	std::array<unsigned, HK_Max> m_nativeMods{};
+	std::array<unsigned, HK_Max> m_nativeKey{};
+	QTimer* m_releaseTimer = nullptr;
 };
 
 #endif // HOTKEYHANDLER_H

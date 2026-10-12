@@ -210,6 +210,8 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 	if(value.isValid())	setValue(IDS_MICDEVICENAME, value);
 	value = extSettings.value(IDS_MICTHRESHOLD);
 	if(value.isValid())	setValue(IDS_MICTHRESHOLD, value);
+	value = extSettings.value(IDS_MICACTIVATION);
+	if(value.isValid())	setValue(IDS_MICACTIVATION, value);
 
 	setValue(IDS_VERSION, IDA_VERSION);
 	sync();

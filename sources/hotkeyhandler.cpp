@@ -167,11 +167,15 @@ bool isKeySupported(Qt::Key) {
 }   // namespace
 
 lmHotkeyHandler::lmHotkeyHandler(QObject* parent) : QObject(parent) {
+    m_releaseTimer = new QTimer(this);
+    m_releaseTimer->setInterval(15);
+    connect(m_releaseTimer, &QTimer::timeout, this, &lmHotkeyHandler::pollHeld);
     if(QCoreApplication::instance())
         QCoreApplication::instance()->installNativeEventFilter(this);
 }
 
 lmHotkeyHandler::~lmHotkeyHandler(void) {
+    blockSignals(true);     // whoever listens may already be half destroyed
     unregisterAll();
     if(QCoreApplication::instance())
         QCoreApplication::instance()->removeNativeEventFilter(this);
@@ -303,7 +307,37 @@ void lmHotkeyHandler::refresh(void) {
     }
 }
 
+void lmHotkeyHandler::beginHold(Action action) {
+    m_held[action] = true;
+    if(!m_releaseTimer->isActive())
+        m_releaseTimer->start();
+}
+
+void lmHotkeyHandler::pollHeld(void) {
+    bool any = false;
+    for(int index = 0; index < HK_Max; index++) {
+        if(!m_held[index])
+            continue;
+        if(isHeld(Action(index))) {
+            any = true;
+        } else {
+            m_held[index] = false;
+            emit released(Action(index));
+        }
+    }
+    if(!any)
+        m_releaseTimer->stop();
+}
+
 void lmHotkeyHandler::unregisterAll(void) {
+    //  A key that is still down will never be seen coming up once it is unregistered.
+    m_releaseTimer->stop();
+    for(int index = 0; index < HK_Max; index++) {
+        if(m_held[index]) {
+            m_held[index] = false;
+            emit released(Action(index));
+        }
+    }
     for(int index = 0; index < HK_Max; index++) {
         if(m_registered[index])
             unregisterNative(Action(index));
@@ -328,6 +362,26 @@ bool lmHotkeyHandler::registerNative(Action action, const QKeySequence& sequence
             : tr("Windows refused the hotkey (error %1).").arg(error);
         return false;
     }
+    m_nativeMods[action] = mods;
+    m_nativeKey[action] = vk;
+    return true;
+}
+
+//  The system only says when a hotkey was pressed. To find out when it is let go, look at the keyboard
+//  state every few milliseconds for as long as it is held. Cheap, and only runs while a hotkey is down.
+bool lmHotkeyHandler::isHeld(Action action) const {
+    auto down = [](int key) { return (GetAsyncKeyState(key) & 0x8000) != 0; };
+    const UINT mods = m_nativeMods[action];
+    if(!down(int(m_nativeKey[action])))
+        return false;
+    if((mods & MOD_CONTROL) && !down(VK_CONTROL))
+        return false;
+    if((mods & MOD_ALT) && !down(VK_MENU))
+        return false;
+    if((mods & MOD_SHIFT) && !down(VK_SHIFT))
+        return false;
+    if((mods & MOD_WIN) && !down(VK_LWIN) && !down(VK_RWIN))
+        return false;
     return true;
 }
 
@@ -351,7 +405,12 @@ bool lmHotkeyHandler::nativeEventFilter(const QByteArray& eventType, void* messa
 
     //  Queue it, so whatever the slot does (sounds, UI) doesn't run inside the native message pump.
     const Action action = Action(index);
-    QMetaObject::invokeMethod(this, [this, action]() { emit triggered(action); }, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, [this, action]() {
+        if(!m_registered[action])
+            return;
+        emit triggered(action);
+        beginHold(action);
+    }, Qt::QueuedConnection);
     if(result)
         *result = 0;
     return true;
@@ -365,6 +424,10 @@ bool lmHotkeyHandler::registerNative(Action, const QKeySequence&, QString* pReas
 }
 
 void lmHotkeyHandler::unregisterNative(Action) {
+}
+
+bool lmHotkeyHandler::isHeld(Action) const {
+    return false;
 }
 
 bool lmHotkeyHandler::nativeEventFilter(const QByteArray&, void*, qintptr*) {

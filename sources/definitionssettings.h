@@ -166,6 +166,8 @@
 #define IDS_MICDEVICE_VAL		""
 #define IDS_MICDEVICENAME		"Voice/MicDeviceName"	//	last known name, to show a device that is not connected
 #define IDS_MICDEVICENAME_VAL	""
+#define IDS_MICACTIVATION		"Voice/MicActivation"	//	MicActivation
+#define IDS_MICACTIVATION_VAL	MA_Continuous
 #define IDS_MICTHRESHOLD		"Voice/MicThreshold"	//	voice activation threshold in dBFS
 #define IDS_MICTHRESHOLD_VAL	-40
 #define IDS_STATUS				"User/Status"

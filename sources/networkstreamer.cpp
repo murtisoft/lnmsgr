@@ -26,6 +26,7 @@
 #include "zdebuglog.h"
 #include "networkstreamer.h"
 #include "networkdatagram.h"
+#include "audiolevel.h"
 #include <QtEndian>
 #include <openssl/rand.h>
 
@@ -216,6 +217,31 @@ void lmAudioStream::doStart(const QHostAddress& peerAddress, quint16 udpPort, co
     connect(m_recvSock, &QUdpSocket::readyRead, this, &lmAudioStream::onNetReadyRead);
 }
 
+void lmAudioStream::setMicActivation(int mode, int thresholdDb) {
+    QMetaObject::invokeMethod(this, [this, mode, thresholdDb]() {
+        const bool changed = (mode != m_activation);
+        m_activation = mode;
+        m_thresholdDb = thresholdDb;
+        if(changed)
+            resetGate();
+    }, Qt::QueuedConnection);
+}
+
+void lmAudioStream::setPushToTalk(bool down) {
+    QMetaObject::invokeMethod(this, [this, down]() {
+        m_pttDown = down;
+    }, Qt::QueuedConnection);
+}
+
+void lmAudioStream::resetGate() {
+    m_pttDown = false;
+    m_gateOpen = false;
+    m_holdFrames = 0;
+    m_gateBuf.clear();
+    m_preroll.clear();
+    m_opus.discardPending();
+}
+
 void lmAudioStream::onMicReadyRead() {
     if(!m_input || !m_sendSock)
         return;
@@ -225,7 +251,70 @@ void lmAudioStream::onMicReadyRead() {
         return;
     m_inputRestarts = 0;
 
-    const QList<QByteArray> frames = m_opus.encode(pcm);
+    if(m_activation == MA_Continuous) {
+        sendPackets(m_opus.encode(pcm));
+        return;
+    }
+
+    //  Push to talk and voice activation: decide per 20 ms frame whether it is sent.
+    m_gateBuf.append(pcm);
+    if(m_gateBuf.size() > lmOpusHandler::FrameBytes * 50)     // capture stalled and piled up, drop it
+        m_gateBuf.clear();
+    while(m_gateBuf.size() >= lmOpusHandler::FrameBytes) {
+        const QByteArray frame = m_gateBuf.left(lmOpusHandler::FrameBytes);
+        m_gateBuf.remove(0, lmOpusHandler::FrameBytes);
+        processGatedFrame(frame);
+    }
+}
+
+//  Gate timing, in 20 ms frames.
+static const int VAD_HOLD_FRAMES = 12;      // keep sending 240 ms after the voice dropped below the threshold
+static const int PTT_RELEASE_FRAMES = MIC_PTT_RELEASE_MS / 20;     // and a little after the key was let go
+static const int PREROLL_FRAMES = 5;        // 100 ms of lead-in for voice activation, the first syllable is quieter than the threshold
+
+void lmAudioStream::processGatedFrame(const QByteArray& frame) {
+    bool open = false;
+    if(m_activation == MA_PushToTalk) {
+        if(m_pttDown) {
+            m_holdFrames = PTT_RELEASE_FRAMES;
+            open = true;
+        } else if(m_holdFrames > 0) {
+            m_holdFrames--;
+            open = true;
+        }
+    } else {    // MA_VoiceActivity
+        if(lmAudioLevel::rmsDbfs(frame, QAudioFormat::Int16) >= m_thresholdDb) {
+            m_holdFrames = VAD_HOLD_FRAMES;
+            open = true;
+        } else if(m_holdFrames > 0) {
+            m_holdFrames--;
+            open = true;
+        }
+    }
+
+    if(!open) {
+        m_gateOpen = false;
+        if(m_activation == MA_VoiceActivity) {
+            m_preroll.append(frame);
+            while(m_preroll.size() > PREROLL_FRAMES)
+                m_preroll.removeFirst();
+        }
+        return;
+    }
+
+    QList<QByteArray> packets;
+    if(!m_gateOpen) {
+        //  Speech starts: begin with the lead-in. Push to talk has none, you only transmit what you say after pressing.
+        for(const QByteArray& quiet : std::as_const(m_preroll))
+            packets += m_opus.encode(quiet);
+        m_preroll.clear();
+        m_gateOpen = true;
+    }
+    packets += m_opus.encode(frame);
+    sendPackets(packets);
+}
+
+void lmAudioStream::sendPackets(const QList<QByteArray>& frames) {
     for(const QByteArray& frame : frames) {
         quint32 seq = m_txSeq++;
         QByteArray seqBytes(VOICE_SEQ, 0);
@@ -304,6 +393,7 @@ void lmAudioStream::doStop() {
     if (m_sendSock) { m_sendSock->close(); delete m_sendSock; m_sendSock = nullptr; }
     if (m_recvSock) { m_recvSock->close(); delete m_recvSock; m_recvSock = nullptr; }
     m_output = nullptr;
+    resetGate();
     m_fallbackReported = false;
     m_fallbackName.clear();
     m_opus.shutdown();

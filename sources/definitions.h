@@ -167,6 +167,12 @@ enum TrayMessageType {
 enum TrayMessageIcon {
     TMI_Info,           TMI_Warning,        TMI_Error,          TMI_Max,
 };
+//	When the microphone transmits. The order is the order of the items in the preferences combo box.
+enum MicActivation {
+    MA_Continuous,      MA_PushToTalk,      MA_VoiceActivity,   MA_Max,
+};
+//	How long push to talk keeps transmitting after the key is let go, so the end of the last word isn't clipped.
+#define MIC_PTT_RELEASE_MS	160
 
 //	User status definitions
 enum StatusType {
