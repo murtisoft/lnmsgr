@@ -27,6 +27,7 @@
 #include "networkstreamer.h"
 #include "networkdatagram.h"
 #include "audiolevel.h"
+#include "definitionssettings.h"
 #include <QtEndian>
 #include <openssl/rand.h>
 
@@ -133,8 +134,6 @@ void lmAudioStream::startInput() {
     m_inputId = device.id();
     if(m_input)
         connect(m_input, &QIODevice::readyRead, this, &lmAudioStream::onMicReadyRead);
-    if(m_micMuted)
-        m_source->suspend();
     if(fallback)
         lmDebugLog::write("Warning: selected microphone not available, using '" + device.description() + "'");
     reportInput(device.description(), fallback);
@@ -242,6 +241,37 @@ void lmAudioStream::resetGate() {
     m_opus.discardPending();
 }
 
+//  Muted talk detection, in 20 ms frames.
+static const int MUTED_TALK_FRAMES = 50;            // about a second of speech (pauses count down) before the reminder
+static const int MUTED_TALK_COOLDOWN_MS = 5000;     // and not more often than this
+static const int MUTED_TALK_DEFAULT_DB = IDS_MICTHRESHOLD_VAL;  // the user's threshold only exists for voice activation
+
+void lmAudioStream::processMutedAudio(const QByteArray& pcm) {
+    //  Continuous and push to talk have no threshold setting, so they use the default one.
+    const int thresholdDb = (m_activation == MA_VoiceActivity) ? m_thresholdDb : MUTED_TALK_DEFAULT_DB;
+    m_muteBuf.append(pcm);
+    if(m_muteBuf.size() > lmOpusHandler::FrameBytes * 50)
+        m_muteBuf.clear();
+    while(m_muteBuf.size() >= lmOpusHandler::FrameBytes) {
+        const QByteArray frame = m_muteBuf.left(lmOpusHandler::FrameBytes);
+        m_muteBuf.remove(0, lmOpusHandler::FrameBytes);
+
+        if(lmAudioLevel::rmsDbfs(frame, QAudioFormat::Int16) >= thresholdDb)
+            m_mutedTalkFrames++;
+        else if(m_mutedTalkFrames > 0)
+            m_mutedTalkFrames--;
+
+        if(m_mutedTalkFrames >= MUTED_TALK_FRAMES) {
+            m_mutedTalkFrames = 0;
+            if(!m_mutedTalkNotified || m_mutedTalkTimer.hasExpired(MUTED_TALK_COOLDOWN_MS)) {
+                m_mutedTalkNotified = true;
+                m_mutedTalkTimer.restart();
+                emit mutedTalk();
+            }
+        }
+    }
+}
+
 void lmAudioStream::onMicReadyRead() {
     if(!m_input || !m_sendSock)
         return;
@@ -250,6 +280,12 @@ void lmAudioStream::onMicReadyRead() {
     if(pcm.isEmpty())
         return;
     m_inputRestarts = 0;
+
+    //  Muted: the capture keeps running only to notice talking, nothing is encoded or sent.
+    if(m_micMuted) {
+        processMutedAudio(pcm);
+        return;
+    }
 
     if(m_activation == MA_Continuous) {
         sendPackets(m_opus.encode(pcm));
@@ -396,6 +432,9 @@ void lmAudioStream::doStop() {
     resetGate();
     m_fallbackReported = false;
     m_fallbackName.clear();
+    m_muteBuf.clear();
+    m_mutedTalkFrames = 0;
+    m_mutedTalkNotified = false;
     m_opus.shutdown();
     m_txKey.clear();
     m_rxKey.clear();
@@ -404,8 +443,11 @@ void lmAudioStream::doStop() {
 
 void lmAudioStream::setMicMuted(bool muted) {
     m_micMuted = muted;     // remembered even without a microphone, so it applies once there is one
+    //  The capture is not suspended, it keeps running while muted to detect talking. Its audio is dropped.
+    resetGate();
+    m_muteBuf.clear();
+    m_mutedTalkFrames = 0;
     if (!m_source) return;
-    muted ? m_source->suspend() : m_source->resume();
     emit micMuted(muted);
 }
 

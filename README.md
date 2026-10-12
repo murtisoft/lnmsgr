@@ -1,5 +1,4 @@
 ![Co-authored with Claude](https://img.shields.io/badge/Co--authored%20with-Claude-D97757?logo=anthropic&logoColor=white)
----
 
 Notes
 ===========================

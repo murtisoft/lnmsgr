@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1041,7 +1041,7 @@
                 <property name="text">
                  <string>Video Preview Placeholder
 
-Settings on this page dont work for the time being.</string>
+Camera settings dont work for the time being.</string>
                 </property>
                </widget>
               </item>

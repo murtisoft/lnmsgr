@@ -31,6 +31,7 @@
 #include <QObject>
 #include <QUdpSocket>
 #include <QThread>
+#include <QElapsedTimer>
 #include <QAudioSource>
 #include <QAudioSink>
 #include <QMediaDevices>
@@ -50,6 +51,8 @@ signals:
     //  The microphone in use changed, or could not be the one the user picked. fallback is true when the picked
     //  device is unavailable. An empty name means there is no microphone at all.
     void micDeviceChanged(const QString& deviceName, bool fallback);
+    //  The user keeps talking while the microphone is muted. Emitted at most once per cooldown.
+    void mutedTalk();
 
 public:
     //  The stream runs on its own thread (capture, encode, encrypt, network, decode, playback),
@@ -90,6 +93,7 @@ private:
     void sendPackets(const QList<QByteArray>& packets);
     void processGatedFrame(const QByteArray& frame);
     void resetGate();
+    void processMutedAudio(const QByteArray& pcm);
 
     QThread*       m_thread  = nullptr;
     QByteArray     m_sessionKey;
@@ -117,6 +121,10 @@ private:
     QHostAddress   m_peerAddress;
     quint16        m_port    = 0;
     bool           m_micMuted = false;
+    QByteArray     m_muteBuf;               // muted capture that is not a whole frame yet
+    int            m_mutedTalkFrames = 0;   // loud frames heard while muted
+    QElapsedTimer  m_mutedTalkTimer;        // time since the last reminder
+    bool           m_mutedTalkNotified = false;
     bool           m_speakerMuted = false;
     bool           m_camMuted = false;
 

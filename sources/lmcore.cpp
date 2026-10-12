@@ -662,6 +662,11 @@ void lmCore::callConnected(MessageType type) {
         connect(m_audioStream, &lmAudioStream::speakerMuted, this, [this](bool muted) {
             pSoundPlayer->play(muted ? SE_SpeakerOff : SE_SpeakerOn);
         });
+        connect(m_audioStream, &lmAudioStream::mutedTalk, this, [this]() {
+            //  The microphone test mutes the call microphone on purpose, talking then is expected.
+            if (!micMutedByTest)
+                pSoundPlayer->play(SE_MutedTalk);
+        });
         connect(m_audioStream, &lmAudioStream::micDeviceChanged, this, [this](const QString& name, bool fallback) {
             if (!fallback)
                 return;

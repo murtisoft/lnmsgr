@@ -49,7 +49,7 @@ endif()
 #Window popup and focus behaves unreliably, sometimes demanding immediate attention, causing frustration.
 #File transfers should be displayed nested inside a regular message with timestamps.
 #   Known filetypes should send webp preview as icon. Other types use sender file icon as preview
-#File transfer window save icons as webp.
+#File transfer window should save icons as webp.
 #Keep quotes around enclosed links in chatlog. (link parsing)
 
 
