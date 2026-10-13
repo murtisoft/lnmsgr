@@ -746,39 +746,15 @@
          <item>
           <widget class="QGroupBox" name="grpMsgFont">
            <property name="title">
-            <string>Message Font (Local)</string>
+            <string>Chat Text</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_13">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
-              <item>
-               <widget class="QPushButton" name="btnFont">
-                <property name="text">
-                 <string>Change Font...</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_6">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_10">
               <item>
                <widget class="QLabel" name="lblFontSize">
                 <property name="text">
-                 <string>Incoming message text size:</string>
+                 <string>Chat text size:</string>
                 </property>
                </widget>
               </item>
@@ -806,6 +782,13 @@
                </widget>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblFontSizeNote">
+              <property name="text">
+               <string>Only applies to new chat windows.</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -2574,7 +2557,6 @@
   <tabstop>chkPathToLink</tabstop>
   <tabstop>chkTrimMessage</tabstop>
   <tabstop>chkClearOnClose</tabstop>
-  <tabstop>btnFont</tabstop>
   <tabstop>cboFontSize</tabstop>
   <tabstop>chkHistory</tabstop>
   <tabstop>btnClearHistory</tabstop>

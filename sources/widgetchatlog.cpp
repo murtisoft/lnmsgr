@@ -144,7 +144,7 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 		font.fromString(pMessage->data(XN_FONT));
         html = templates.sysMsg;
 		caption = tr("This message was not delivered to %1:");
-        fontStyle = getFontStyle(&font, true);
+        fontStyle = getFontStyle(&font);
 		decodeMessage(&message);
         html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Alert));
 		html.replace("%sender%", caption.arg(*lpszUserName));
@@ -669,7 +669,7 @@ void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QStrin
 
 	decodeMessage(lpszMessage);
 
-    QString fontStyle = getFontStyle(pFont, localUser);
+    QString fontStyle = getFontStyle(pFont);
 
 	if(lpszUserId->compare(lastId) != 0) {
         html = localUser ? templates.inMsg : templates.inMsg;
@@ -722,7 +722,7 @@ void lmChatLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, 
 
 	decodeMessage(lpszMessage);
 
-    QString fontStyle = getFontStyle(pFont, localUser);
+    QString fontStyle = getFontStyle(pFont);
 
 	if(lpszUserId->compare(lastId) != 0) {
 		outStyle = !outStyle;
@@ -982,18 +982,15 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, M
     return html;
 }
 
-QString lmChatLog::getFontStyle(QFont* pFont, bool size) {
+QString lmChatLog::getFontStyle(QFont* pFont) {
 	QString style = "font-family:\"" + pFont->family() + "\"; ";
 	if(pFont->italic())
 		style.append("font-style:italic; ");
 	if(pFont->bold())
 		style.append("font-weight:bold; ");
 
-	if(size) {
-		style.append("font-size:" + QString::number(pFont->pointSize()) + "pt; ");
-	}
-	else
-		style.append(fontStyle[fontSizeVal] + " ");
+	//	the chat text size setting, the same for your messages and the others'
+	style.append(fontStyle[qBound(FS_SMALL, fontSizeVal, FS_LARGE)] + " ");
 
 	if(pFont->strikeOut())
 		style.append("text-decoration:line-through; ");

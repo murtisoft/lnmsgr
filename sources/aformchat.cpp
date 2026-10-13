@@ -170,7 +170,7 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 	pMessageLog->pathToLink = pSettings->value(IDS_PATHTOLINK, IDS_PATHTOLINK_VAL).toBool();
 	pMessageLog->trimMessage = pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool();
 	QFont font = QApplication::font();
-	font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
+	font.setPointSizeF(fontPointSizes[qBound(FS_SMALL, pMessageLog->fontSizeVal, FS_LARGE)]);
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
     clearOnClose = pSettings->value(IDS_CLEARONCLOSE, IDS_CLEARONCLOSE_VAL).toBool();
 
@@ -1225,7 +1225,7 @@ QString lmFormChat::getWindowTitle(void) {
 
 void lmFormChat::setMessageFont(QFont& font) {
 	ui.txtMessage->setFont(font);
-	ui.txtMessage->setFontPointSize(font.pointSize());
+	ui.txtMessage->setFontPointSize(font.pointSizeF());
 }
 
 void lmFormChat::updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus) {

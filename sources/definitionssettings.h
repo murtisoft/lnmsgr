@@ -91,8 +91,6 @@
 #define IDS_MESSAGETOP_VAL		true
 #define IDS_PUBMESSAGEPOP		"Messages/PubMessagePop"
 #define IDS_PUBMESSAGEPOP_VAL	true
-#define IDS_FONT				"Messages/Font"
-#define IDS_FONT_VAL			QApplication::font().toString()
 #define IDS_COLOR				"Messages/Color"
 #define IDS_COLOR_VAL			QApplication::palette().text().color().name()
 #define IDS_FONTSIZE			"Messages/FontSize"

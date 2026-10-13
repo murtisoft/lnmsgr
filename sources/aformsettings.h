@@ -40,7 +40,6 @@
 #include <QDialog>
 #include <QListWidget>
 #include <QFileDialog>
-#include <QFontDialog>
 #include <QDesktopServices>
 #include "ui_aformsettings.h"
 #include "definitionssettings.h"
@@ -92,7 +91,6 @@ private slots:
 	void chkSound_toggled(bool checked);
 	void chkAutoShowFile_toggled(bool checked);
 	void btnViewFiles_clicked(void);
-	void btnFont_clicked(void);
 	void btnReset_clicked(void);
 	void cboTheme_currentIndexChanged(int index);
 	void lvBroadcasts_currentRowChanged(int index);
@@ -132,7 +130,6 @@ private:
 	Ui::SettingsDialog ui;
 	lmSettings* pSettings;
 	int fontSize;
-	QFont font;
 	QIntValidator* pPortValidator;
 	QRegularExpression ipRegExp;
     QRegularExpressionValidator* pIpValidator;

@@ -68,6 +68,8 @@ enum ItemDataRole {
 #define FS_COUNT	3
 //const QString fontSize[] = {"Small text", "Medium text", "Large text"};
 const QString fontStyle[] = {"font-size:8.25pt;", "font-size:9pt;", "font-size:10.5pt;"};
+//	the same sizes as numbers, for the message input box
+const double fontPointSizes[] = {8.25, 9.0, 10.5};
 
 //	status image definitions
 #define IDR_AVAILABLE		":/images/status_online"

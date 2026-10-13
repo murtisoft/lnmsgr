@@ -129,8 +129,6 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 	if(value.isValid())	setValue(IDS_PATHTOLINK, value);
 	value = extSettings.value(IDS_TRIMMESSAGE);
 	if(value.isValid())	setValue(IDS_TRIMMESSAGE, value);
-	value = extSettings.value(IDS_FONT);
-	if(value.isValid())	setValue(IDS_FONT, value);
 	value = extSettings.value(IDS_COLOR);
 	if(value.isValid())	setValue(IDS_COLOR, value);
 	value = extSettings.value(IDS_FONTSIZE);

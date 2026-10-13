@@ -100,7 +100,7 @@ private:
         QFont* pFont, MessageType messageType);
     QString getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
     QString getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
-    QString getFontStyle(QFont* pFont,  bool size = false);
+    QString getFontStyle(QFont* pFont);
 	QString getFileStatusMessage(FileMode mode, FileOp op);
 	QString getChatStateMessage(ChatState chatState);
 	QString getChatRoomMessage(GroupMsgOp op);

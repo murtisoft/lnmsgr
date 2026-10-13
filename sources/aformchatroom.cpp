@@ -133,7 +133,7 @@ void lmFormChatRoom::init(User* pLocalUser, bool connected, QString thread) {
 	pMessageLog->pathToLink = pSettings->value(IDS_PATHTOLINK, IDS_PATHTOLINK_VAL).toBool();
 	pMessageLog->trimMessage = pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool();
 	QFont font = QApplication::font();
-	font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
+	font.setPointSizeF(fontPointSizes[qBound(FS_SMALL, pMessageLog->fontSizeVal, FS_LARGE)]);
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 
     restoreGeometry(pSettings->value(IDS_WINDOWPUBLICCHAT).toByteArray());
@@ -726,7 +726,7 @@ QString lmFormChatRoom::getWindowTitle(void) {
 
 void lmFormChatRoom::setMessageFont(QFont& font) {
 	ui.txtMessage->setFont(font);
-	ui.txtMessage->setFontPointSize(font.pointSize());
+	ui.txtMessage->setFontPointSize(font.pointSizeF());
 }
 
 void lmFormChatRoom::updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus) {

@@ -63,7 +63,6 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
     connect(ui.btnViewFiles, SIGNAL(clicked()), this, SLOT(btnViewFiles_clicked()));
     connect(ui.chkSound, SIGNAL(toggled(bool)), this, SLOT(chkSound_toggled(bool)));
     connect(ui.chkAutoShowFile, SIGNAL(toggled(bool)), this, SLOT(chkAutoShowFile_toggled(bool)));
-    connect(ui.btnFont, SIGNAL(clicked()), this, SLOT(btnFont_clicked()));
     connect(ui.btnReset, SIGNAL(clicked()), this, SLOT(btnReset_clicked()));
     connect(ui.cboTheme, SIGNAL(currentIndexChanged(int)), this, SLOT(cboTheme_currentIndexChanged(int)));
     connect(ui.lvBroadcasts, SIGNAL(currentRowChanged(int)), this, SLOT(lvBroadcasts_currentRowChanged(int)));
@@ -155,7 +154,6 @@ void lmFormSettings::init(void) {
         ui.cboUserListView->addItem(lmStrings::userListView()[index], index);
 
     fontSize = 0;
-    font = QApplication::font();
     ui.lvCategories->setCurrentRow(0);
 
     setWindowIcon(QIcon(IDR_APPICON));
@@ -318,13 +316,6 @@ void lmFormSettings::chkAutoShowFile_toggled(bool checked) {
 
 void lmFormSettings::btnViewFiles_clicked(void) {
     QDesktopServices::openUrl(QUrl::fromLocalFile(ui.txtFilePath->text()));
-}
-
-void lmFormSettings::btnFont_clicked(void) {
-    bool ok;
-    QFont newFont = QFontDialog::getFont(&ok, font, this, tr("Select Font"));
-    if(ok)
-        font = newFont;
 }
 
 void lmFormSettings::btnReset_clicked(void) {
@@ -885,7 +876,6 @@ void lmFormSettings::loadSettings(void) {
     ui.chkPathToLink->setChecked(pSettings->value(IDS_PATHTOLINK, IDS_PATHTOLINK_VAL).toBool());
     ui.chkTrimMessage->setChecked(pSettings->value(IDS_TRIMMESSAGE, IDS_TRIMMESSAGE_VAL).toBool());
     ui.chkClearOnClose->setChecked(pSettings->value(IDS_CLEARONCLOSE, IDS_CLEARONCLOSE_VAL).toBool());
-    font.fromString(pSettings->value(IDS_FONT, IDS_FONT_VAL).toString());
     fontSize = pSettings->value(IDS_FONTSIZE, IDS_FONTSIZE_VAL).toInt();
     fontSize = qMin(FS_LARGE, qMax(FS_SMALL, fontSize));
     ui.cboFontSize->setCurrentIndex(fontSize);
@@ -996,7 +986,6 @@ void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_PATHTOLINK, ui.chkPathToLink->isChecked(), IDS_PATHTOLINK_VAL);
     pSettings->setValue(IDS_TRIMMESSAGE, ui.chkTrimMessage->isChecked(), IDS_TRIMMESSAGE_VAL);
     pSettings->setValue(IDS_CLEARONCLOSE, ui.chkClearOnClose->isChecked(), IDS_CLEARONCLOSE_VAL);
-    pSettings->setValue(IDS_FONT, font.toString(), IDS_FONT_VAL);
     pSettings->setValue(IDS_FONTSIZE, ui.cboFontSize->currentIndex(), IDS_FONTSIZE_VAL);
 
     pSettings->setValue(IDS_HISTORY, ui.chkHistory->isChecked(), IDS_HISTORY_VAL);

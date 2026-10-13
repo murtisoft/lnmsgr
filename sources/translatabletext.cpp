@@ -72,9 +72,9 @@ const QString lmStrings::autoConn(void) {
 
 const QStringList lmStrings::fontSize(void) {
 	if(m_fontSize.isEmpty()) {
-		m_fontSize.append(tr("Small text"));
-		m_fontSize.append(tr("Medium text"));
-		m_fontSize.append(tr("Large text"));
+		m_fontSize.append(tr("Small (8.25pt)"));
+		m_fontSize.append(tr("Medium (9pt)"));
+		m_fontSize.append(tr("Large (10.5pt)"));
 	}
 	return m_fontSize;
 }
