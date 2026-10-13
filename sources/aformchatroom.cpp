@@ -560,10 +560,10 @@ void lmFormChatRoom::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& 
 void lmFormChatRoom::createUserMenu(void) {
 	pUserMenu = new QMenu(this);
 
-	userChatAction = pUserMenu->addAction("&Conversation", this, SLOT(userConversationAction_triggered()));
-	userFileAction = pUserMenu->addAction("Send &File", this, SLOT(userFileAction_triggered()));
+	userChatAction = pUserMenu->addAction("Conversation", this, SLOT(userConversationAction_triggered()));
+	userFileAction = pUserMenu->addAction("Send File", this, SLOT(userFileAction_triggered()));
 	pUserMenu->addSeparator();
-	userInfoAction = pUserMenu->addAction("Get &Information", this, SLOT(userInfoAction_triggered()));
+	userInfoAction = pUserMenu->addAction("Get Information", this, SLOT(userInfoAction_triggered()));
 }
 
 void lmFormChatRoom::createSmileyMenu(void) {
@@ -592,7 +592,7 @@ void lmFormChatRoom::createToolBar(void) {
 
 	pLeftBar->addSeparator();
 
-    pSaveAction = pLeftBar->addAction(Helper::renderEmoji(Icons::Save,16), "&Save As...", this, SLOT(btnSave_clicked()));
+    pSaveAction = pLeftBar->addAction(Helper::renderEmoji(Icons::Save,16), "Save As...", this, SLOT(btnSave_clicked()));
 	pSaveAction->setShortcut(QKeySequence::Save);
 	pSaveAction->setEnabled(false);
 
@@ -614,11 +614,11 @@ void lmFormChatRoom::setUIText(void) {
 
 	setWindowTitle(getWindowTitle());
 
-	userChatAction->setText(tr("&Conversation"));
-	userFileAction->setText(tr("Send &File"));
-	userInfoAction->setText(tr("Get &Information"));
+	userChatAction->setText(tr("Conversation"));
+	userFileAction->setText(tr("Send File"));
+	userInfoAction->setText(tr("Get Information"));
 	pbtnSmiley->setToolTip(tr("Insert Smiley"));
-	pSaveAction->setText(tr("&Save As..."));
+	pSaveAction->setText(tr("Save As..."));
 	pSaveAction->setToolTip(tr("Save this conversation"));
 
 	if(groupMode) {

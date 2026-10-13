@@ -881,17 +881,17 @@ void lmFormChat::createToolBar(void) {
 
 	pLeftBar->addSeparator();
 
-    pFileAction = pLeftBar->addAction(QIcon(Helper::renderEmoji(Icons::File,16)), "Send A &File...", this, SLOT(btnFile_clicked()));
+    pFileAction = pLeftBar->addAction(QIcon(Helper::renderEmoji(Icons::File,16)), "Send A File...", this, SLOT(btnFile_clicked()));
 	pFileAction->setShortcut(QKeySequence::Open);
     bool fileCap = ((peerCaps.value(peerId) & UC_File) == UC_File);
     pFileAction->setEnabled(fileCap);
-    pFolderAction = pLeftBar->addAction(QIcon(Helper::renderEmoji(Icons::Folder,16)), "Send A Fol&der...", this, SLOT(btnFolder_clicked()));
+    pFolderAction = pLeftBar->addAction(QIcon(Helper::renderEmoji(Icons::Folder,16)), "Send A Folder...", this, SLOT(btnFolder_clicked()));
     bool folderCap = ((peerCaps.value(peerId) & UC_Folder) == UC_Folder);
     pFolderAction->setEnabled(folderCap);
 
     pLeftBar->addSeparator();
 
-    pSaveAction = pLeftBar->addAction(QIcon(Helper::renderEmoji(Icons::Save,16)), "&Save As...", this, SLOT(btnSave_clicked()));
+    pSaveAction = pLeftBar->addAction(QIcon(Helper::renderEmoji(Icons::Save,16)), "Save As...", this, SLOT(btnSave_clicked()));
 	pSaveAction->setShortcut(QKeySequence::Save);
 	pSaveAction->setEnabled(false);
 
@@ -914,9 +914,9 @@ void lmFormChat::createToolBar(void) {
 	pRightBar->setLayoutDirection(Qt::RightToLeft);
 	ui.toolBarLayout->addWidget(pRightBar);
 
-    pHistoryAction = pRightBar->addAction(QIcon(Helper::renderEmoji(Icons::History,16)), "&History", this, SLOT(btnHistory_clicked()));
+    pHistoryAction = pRightBar->addAction(QIcon(Helper::renderEmoji(Icons::History,16)), "History", this, SLOT(btnHistory_clicked()));
 	pHistoryAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_H));
-    pTransferAction = pRightBar->addAction(QIcon(Helper::renderEmoji(Icons::Transfer,16)), "File &Transfers", this, SLOT(btnTransfers_clicked()));
+    pTransferAction = pRightBar->addAction(QIcon(Helper::renderEmoji(Icons::Transfer,16)), "File Transfers", this, SLOT(btnTransfers_clicked()));
 	pTransferAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
 
 	ui.lblDividerTop->setBackgroundRole(QPalette::Light);
@@ -1035,11 +1035,11 @@ void lmFormChat::setUIText(void) {
 	pRightBar->setLayoutDirection((QApplication::layoutDirection() == Qt::LeftToRight ? Qt::RightToLeft : Qt::LeftToRight));
 
 	pbtnSmiley->setToolTip(tr("Insert Smiley"));
-	pFileAction->setText(tr("Send A &File..."));
-    pFolderAction->setText(tr("Send A Fol&der..."));
-	pSaveAction->setText(tr("&Save As..."));
-	pHistoryAction->setText(tr("&History"));
-	pTransferAction->setText(tr("File &Transfers"));
+	pFileAction->setText(tr("Send A File..."));
+    pFolderAction->setText(tr("Send A Folder..."));
+	pSaveAction->setText(tr("Save As..."));
+	pHistoryAction->setText(tr("History"));
+	pTransferAction->setText(tr("File Transfers"));
 	if(!groupMode) {
 		QString toolTip = tr("Send a file to %1");
 		pFileAction->setToolTip(toolTip.arg(peerNames.value(peerId)));

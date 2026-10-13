@@ -23,7 +23,6 @@ endif()
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #SetUItext functions dont handle newer controls, switching translations will require a restart.
 #Setting migration function doesnt handle newly added ones.
-#Some older, and all new buttons dont have Alt underlines. Is this even needed in the %CurrentYear%?
 
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
