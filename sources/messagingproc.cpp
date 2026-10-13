@@ -355,8 +355,7 @@ void lmMessaging::processMessage(MessageHeader* pHeader, MessageXml* pMessage) {
 			msgId = pMessage->data(XN_MESSAGEID);
 			removePendingMsg(msgId.toLongLong());
             //  Add the path to the user's avatar image stored locally
-            data = "avt_" + pHeader->userId + ".png";
-            data = QDir(DefinitionsDir::avatarDir()).absoluteFilePath(data);
+            data = DefinitionsDir::userAvatarFile(pHeader->userId);
             pMessage->addData(XN_AVATAR, data);
 			emit messageReceived(pHeader->type, &pHeader->userId, pMessage);
 		}

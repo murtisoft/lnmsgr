@@ -23,19 +23,18 @@ endif()
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#User is typing status label is at the top now.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #SetUItext functions dont handle newer controls, switching translations will require a restart.
 #Setting migration function doesnt handle newly added ones.
 #Some older, and all new buttons dont have Alt underlines. Is this even needed in the %CurrentYear%?
-#"User is online" Toast notification cant display avatar, because the file arrives too late.
-#"User is offline" Toast notification displays a lower res avatar.
 #Broadcasts arent logged into history.
 #File transfers dont have a timestamp parameter, but they generate their own.
 #Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work. Window sizes remain in use, and get resaved.
 #Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.
 #Disabling some sound effects doesnt work.
 #Vertical size hint (Auto sizing) for userlistview (public chat/chatroom) needs more work.
-
+#Avatar changes while appearing offline is sent to peers anyway.
 
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

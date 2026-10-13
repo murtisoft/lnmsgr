@@ -229,9 +229,14 @@ bool lmMessaging::addUser(QString szUserId, QString szVersion, QString szAddress
 
 	int nAvatar = szAvatar.isNull() ? -1 : szAvatar.toInt();
 
+    //	the avatar of this user from an earlier session, until the current one arrives
+    QString avatarPath = DefinitionsDir::userAvatarFile(szUserId);
+    if(!QFile::exists(avatarPath))
+        avatarPath = QString();
+
     //	the user reports their own group, peers without one end up in the default group
     userList.append(User(szUserId, szVersion, szAddress, szName, szStatus, Helper::normalizeGroupName(szGroup),
-                         nAvatar, szNote, QString(), szCaps));
+                         nAvatar, szNote, avatarPath, szCaps));
 	if(!szStatus.isNull()) {
 		MessageXml xmlMessage;
 		xmlMessage.addHeader(XN_FROM, szUserId);

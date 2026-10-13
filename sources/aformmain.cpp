@@ -311,9 +311,10 @@ void lmFormMain::removeUser(QString* lpszUserId) {
 	if(isHidden() || !isActiveWindow()) {
 		QString msg = tr("%1 is offline.");
 
-        // Retrieve the QIcon from AvatarRole and convert to Pixmap
-        QIcon avtIcon = pItem->data(0, AvatarRole).value<QIcon>();
-        QPixmap avatar = avtIcon.pixmap(48, 48);
+        //  The cached avatar file is full size, the icon in the tree is only 32 pixels
+        QPixmap avatar(DefinitionsDir::userAvatarFile(*lpszUserId));
+        if(avatar.isNull())
+            avatar = Helper::renderEmoji(avtEmoji[20], 48).pixmap(48, 48);    // Hidden Default Avatar
 
         showTrayMessage(TM_Status, msg.arg(pItem->text(0)), QString(), TMI_Info, avatar);
         pSoundPlayer->play(SE_UserOffline);

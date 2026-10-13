@@ -393,9 +393,7 @@ bool lmMessaging::updateFileTransfer(FileMode fileMode, FileOp fileOp, QString* 
                     switch(fileType) {
                     case FT_Avatar:
                         QDir().mkpath(DefinitionsDir::avatarDir());
-                        cacheDir = QDir(DefinitionsDir::avatarDir());
-                        fileName = "avt_" + *lpszUserId + ".png";
-                        filePath = cacheDir.absoluteFilePath(fileName);
+                        filePath = DefinitionsDir::userAvatarFile(*lpszUserId);
                         QFile::remove(filePath);
                         QFile::rename(fileList[index].path, filePath);
                         fileList[index].path = filePath;

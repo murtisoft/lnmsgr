@@ -67,6 +67,11 @@ public:
             QStandardPaths::AppDataLocation) + "/" AVATARDIR);
 	}
 
+	//	The cached avatar of another user, as received from them. May not exist.
+	static QString userAvatarFile(const QString& userId) {
+        return QDir(avatarDir()).absoluteFilePath("avt_" + userId + ".png");
+	}
+
 	static QString settingsFile(void) {
         return QDir::toNativeSeparators(QStandardPaths::writableLocation(
             QStandardPaths::AppDataLocation) + "/" SETTINGSFILE);
