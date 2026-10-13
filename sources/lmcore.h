@@ -91,6 +91,7 @@ private slots:
 	void showSettings(void);
 	void showAbout(void);
 	void refreshBroadcastUsers(void);
+	void refreshSelectUsers(void);
 	void showBroadcast(void);
 	void showPublicChat();
 	void historyCleared(void);
@@ -127,6 +128,7 @@ private:
 	void showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool alert = false, bool add = false);
 	void showPublicChatWindow(bool show, bool alert = false, bool open = false);
     QStringList showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList);
+    void filterContactsList(QList<QTreeWidgetItem*>* pContactsList, uint caps, const QStringList& excludeList);
 	void showPortConflictMessage(void);
     lmFormChat* callWindow(void) const;
     QByteArray micDeviceSetting(void) const;
@@ -146,6 +148,8 @@ private:
 	QPointer<lmFormUserInfo>		pUserInfoWindow;
 	QPointer<lmFormChatRoom>		pPublicChatWindow;
     QPointer<lmFormUserSelect>      pUserSelectDialog;
+    uint                            selectCaps;
+    QStringList                     selectExclude;
     QPointer<lmFormAbout>           pAboutDialog;
     QPointer<lmFormBroadcast>       pBroadcastWindow;
 	bool							messageTop;

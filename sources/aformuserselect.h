@@ -36,6 +36,7 @@ public:
 	~lmFormUserSelect();
 
 	void init(QList<QTreeWidgetItem*>* pContactsList);
+	void refreshUsers(QList<QTreeWidgetItem*>* pContactsList);
 
 	QStringList selectedContacts;
 

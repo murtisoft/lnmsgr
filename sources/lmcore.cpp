@@ -47,6 +47,7 @@ lmCore::lmCore(void) {
 	connect(pMainWindow, SIGNAL(showAbout()), this, SLOT(showAbout()));
 	connect(pMainWindow, SIGNAL(showBroadcast()), this, SLOT(showBroadcast()));
 	connect(pMainWindow, SIGNAL(userListChanged()), this, SLOT(refreshBroadcastUsers()));
+	connect(pMainWindow, SIGNAL(userListChanged()), this, SLOT(refreshSelectUsers()));
 	connect(pMainWindow, SIGNAL(showPublicChat()), this, SLOT(showPublicChat()));
 	pPublicChatWindow = new lmFormChatRoom();
     connect(pPublicChatWindow, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
@@ -59,6 +60,7 @@ lmCore::lmCore(void) {
     pSettingsDialog = nullptr;
     pUserInfoWindow = nullptr;
     pUserSelectDialog = nullptr;
+    selectCaps = 0;
     pAboutDialog = nullptr;
     pBroadcastWindow = nullptr;
     pTimer = nullptr;
@@ -1223,29 +1225,32 @@ void lmCore::showPublicChatWindow(bool show, bool alert, bool open) {
 	}
 }
 
-QStringList lmCore::showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList) {
-	QStringList selectedContacts;
-	pUserSelectDialog = new lmFormUserSelect(parent);
-
-	QList<QTreeWidgetItem*> contactsList = pMainWindow->getContactsList();
-	for(int index = 0; index < contactsList.count(); index++) {
-		QTreeWidgetItem* pItem = contactsList.value(index);
+//	remove the users that do not have the required capabilities or are excluded
+void lmCore::filterContactsList(QList<QTreeWidgetItem*>* pContactsList, uint caps, const QStringList& excludeList) {
+	for(int index = 0; index < pContactsList->count(); index++) {
+		QTreeWidgetItem* pItem = pContactsList->value(index);
 		for(int childIndex = 0; childIndex < pItem->childCount(); childIndex++) {
 			QTreeWidgetItem* pChildItem = pItem->child(childIndex);
 			QString userId = pChildItem->data(0, IdRole).toString();
 			User* pUser = pMessaging->getUser(&userId);
-            if((pUser->caps & caps) != caps) {
-				pItem->removeChild(pChildItem);
+			if(!pUser || (pUser->caps & caps) != caps || excludeList.contains(userId)) {
+				delete pItem->takeChild(childIndex);
 				childIndex--;
-				continue;
-			}
-			if(excludeList->contains(userId)) {
-				pItem->removeChild(pChildItem);
-				childIndex--;
-				continue;
 			}
 		}
 	}
+}
+
+QStringList lmCore::showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList) {
+	QStringList selectedContacts;
+	pUserSelectDialog = new lmFormUserSelect(parent);
+
+	//	remember the filter so the list can be refreshed while the dialog is open
+	selectCaps = caps;
+	selectExclude = *excludeList;
+
+	QList<QTreeWidgetItem*> contactsList = pMainWindow->getContactsList();
+	filterContactsList(&contactsList, selectCaps, selectExclude);
 
 	pUserSelectDialog->init(&contactsList);
 	if(pUserSelectDialog->exec())
@@ -1253,6 +1258,16 @@ QStringList lmCore::showSelectContacts(QWidget* parent, uint caps, QStringList* 
 	pUserSelectDialog->deleteLater();
 
 	return selectedContacts;
+}
+
+//	keep the contact selection dialog's user list in sync with the main window
+void lmCore::refreshSelectUsers(void) {
+	if(!pUserSelectDialog || pUserSelectDialog->isHidden())
+		return;
+
+	QList<QTreeWidgetItem*> contactsList = pMainWindow->getContactsList();
+	filterContactsList(&contactsList, selectCaps, selectExclude);
+	pUserSelectDialog->refreshUsers(&contactsList);
 }
 
 void lmCore::showPortConflictMessage(void) {

@@ -21,6 +21,7 @@
 
 
 #include "aformuserselect.h"
+#include <QSet>
 
 lmFormUserSelect::lmFormUserSelect(QWidget *parent) : QDialog(parent) {
 	ui.setupUi(this);
@@ -65,6 +66,47 @@ void lmFormUserSelect::init(QList<QTreeWidgetItem*>* pContactsList) {
 	selectedContacts.clear();
 	selectedCount = 0;
 	setUIText();
+}
+
+//	rebuild the user tree while keeping the current selection
+//	users that were not in the list before are left unchecked
+//	the items in the list are taken over by the tree
+void lmFormUserSelect::refreshUsers(QList<QTreeWidgetItem*>* pContactsList) {
+	if(!pContactsList)
+		return;
+
+	//	remember who is currently checked
+	QSet<QString> checkedIds;
+	for(int index = 0; index < ui.tvUserList->topLevelItemCount(); index++) {
+		QTreeWidgetItem* pGroup = ui.tvUserList->topLevelItem(index);
+		for(int childIndex = 0; childIndex < pGroup->childCount(); childIndex++) {
+			QTreeWidgetItem* pChild = pGroup->child(childIndex);
+			if(pChild->checkState(0) == Qt::Checked)
+				checkedIds.insert(pChild->data(0, IdRole).toString());
+		}
+	}
+
+	//	check states are set before the items join the tree so that itemChanged is not triggered
+	selectedCount = 0;
+	ui.tvUserList->clear();
+	for(int index = 0; index < pContactsList->count(); index++) {
+		QTreeWidgetItem* pItem = pContactsList->value(index);
+		int nChecked = 0;
+		for(int childIndex = 0; childIndex < pItem->childCount(); childIndex++) {
+			QTreeWidgetItem* pChild = pItem->child(childIndex);
+			bool checked = checkedIds.contains(pChild->data(0, IdRole).toString());
+			pChild->setCheckState(0, checked ? Qt::Checked : Qt::Unchecked);
+			if(checked)
+				nChecked++;
+		}
+		bool allChecked = (pItem->childCount() > 0 && nChecked == pItem->childCount());
+		pItem->setCheckState(0, allChecked ? Qt::Checked : Qt::Unchecked);
+		selectedCount += nChecked;
+		ui.tvUserList->addTopLevelItem(pItem);
+	}
+	ui.tvUserList->expandAll();
+
+	ui.btnOK->setEnabled(selectedCount > 0);
 }
 
 void lmFormUserSelect::changeEvent(QEvent* pEvent) {
