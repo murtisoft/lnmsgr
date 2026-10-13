@@ -103,7 +103,7 @@ void lmCore::init(const QStringList& options) {
 			pInitParams->addData(XN_CONFIG, option.mid(configPrefix.length()));
 	}
 
-    lmDebugLog::init(pInitParams->data(XN_LOGFILE) , Helper::stringToBool(pInitParams->data(XN_TRACEMODE)));
+    lmDebugLog::init(pInitParams->data(XN_LOGFILE), Helper::stringToBool(pInitParams->data(XN_TRACEMODE)));
     lmDebugLog::write("Application initialized");
 
     loadSettings();
@@ -144,11 +144,8 @@ bool lmCore::start(void) {
 void lmCore::loadSettings(void) {
 	pSettings = new lmSettings();
 
-    if(!Helper::stringToBool(pInitParams->data(XN_TRACEMODE))){          //No /trace argument from console
-        if(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool()){   //Debuglog setting from UI
-            lmDebugLog::init(pInitParams->data(XN_LOGFILE) , true);
-            lmDebugLog::write("Debug logging started via loadSettings");
-    }};
+    if(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool())
+        lmDebugLog::setEnabled(true);    //--trace may already have enabled it for this session
 
 	auto warn = [this](const QString& message) {
 		startupWarnings << message;
@@ -216,15 +213,6 @@ void lmCore::settingsChanged(void) {
 		lmStrings::retranslate();
 	}
 
-    if(!Helper::stringToBool(pInitParams->data(XN_TRACEMODE))){          //No /trace argument from console
-        if(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool()){   //Debuglog setting from UI
-            if (!lmDebugLog::check()){
-                lmDebugLog::init(pInitParams->data(XN_LOGFILE) , true);
-                lmDebugLog::write("Debug logging started via settingsChanged");}
-        }else {
-            lmDebugLog::stop("Debug logging stopped via settingsChanged");
-            }
-    }
 }
 
 void lmCore::stop(void) {

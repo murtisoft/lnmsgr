@@ -28,6 +28,7 @@
 #include <QTimer>
 #include <qstylehints.h>
 #include "aformsettings.h"
+#include "zdebuglog.h"
 #include "soundplayer.h"
 #include "historydatabase.h"
 #include "translationloader.h"
@@ -842,7 +843,7 @@ void lmFormSettings::loadSettings(void) {
     ui.chkAutoStart->setChecked(pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool());
 #endif
     ui.chkAutoShow->setChecked(pSettings->value(IDS_AUTOSHOW, IDS_AUTOSHOW_VAL).toBool());
-    ui.chklmDebugLog->setChecked(pSettings->value(IDS_DEBUGLOG, IDS_DEBUGLOG_VAL).toBool());
+    ui.chklmDebugLog->setChecked(lmDebugLog::isEnabled());    //Live state, so it also reflects --trace
     ui.chkSysTray->setChecked(pSettings->value(IDS_SYSTRAY, IDS_SYSTRAY_VAL).toBool());
     ui.chkMinimizeTray->setChecked(pSettings->value(IDS_MINIMIZETRAY, IDS_MINIMIZETRAY_VAL).toBool());
     ui.chkSingleClickTray->setChecked(pSettings->value(IDS_SINGLECLICKTRAY, IDS_SINGLECLICKTRAY_VAL).toBool());
@@ -958,7 +959,10 @@ void lmFormSettings::saveSettings(void) {
 
     pSettings->setValue(IDS_AUTOSTART, ui.chkAutoStart->isChecked(), IDS_AUTOSTART_VAL);
     pSettings->setValue(IDS_AUTOSHOW, ui.chkAutoShow->isChecked(), IDS_AUTOSHOW_VAL);
-    pSettings->setValue(IDS_DEBUGLOG, ui.chklmDebugLog->isChecked(), IDS_DEBUGLOG_VAL);
+    if(ui.chklmDebugLog->isChecked() != lmDebugLog::isEnabled()) {    //Untouched box must not persist a --trace session
+        pSettings->setValue(IDS_DEBUGLOG, ui.chklmDebugLog->isChecked(), IDS_DEBUGLOG_VAL);
+        lmDebugLog::setEnabled(ui.chklmDebugLog->isChecked());
+    }
     pSettings->setValue(IDS_SYSTRAY, ui.chkSysTray->isChecked(), IDS_SYSTRAY_VAL);
     pSettings->setValue(IDS_MINIMIZETRAY, ui.chkMinimizeTray->isChecked(), IDS_MINIMIZETRAY_VAL);
     pSettings->setValue(IDS_SINGLECLICKTRAY, ui.chkSingleClickTray->isChecked(), IDS_SINGLECLICKTRAY_VAL);

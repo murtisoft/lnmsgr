@@ -24,7 +24,7 @@
 #include "definitions.h"
 #include "definitionsdir.h"
 
-bool lmDebugLog::traceMode;
+std::atomic<bool> lmDebugLog::enabled{false};
 QString lmDebugLog::fileName;
 
 lmDebugLog::lmDebugLog(void) {
@@ -33,24 +33,41 @@ lmDebugLog::lmDebugLog(void) {
 lmDebugLog::~lmDebugLog(void) {
 }
 
-void lmDebugLog::init(QString fileName, bool traceMode) {
-    lmDebugLog::traceMode = traceMode;
+static const char* const LOG_SEPARATOR = "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-";
+
+void lmDebugLog::init(QString fileName, bool trace) {
     lmDebugLog::fileName = fileName;
 
-    QDir dir(DefinitionsDir::logDir());
-    QStringList logs = dir.entryList({"*.log"}, QDir::Files, QDir::Time);
+    if (trace)      //Command line only sets the starting state of this session.
+        setEnabled(true);
+}
 
-    while (logs.count() >= 3) {
-        dir.remove(logs.takeLast());  //Delete all logs except last 3.
+void lmDebugLog::setEnabled(bool enable) {
+    if (enable == enabled)
+        return;
+
+    if (enable) {
+        QDir dir(DefinitionsDir::logDir());
+        QStringList logs = dir.entryList({"*.log"}, QDir::Files, QDir::Time);
+        while (logs.count() >= 3)
+            dir.remove(logs.takeLast());  //Delete all logs except last 3.
+
+        enabled = true;
+        write(QString(LOG_SEPARATOR) + "\n"
+              "         " IDA_TITLE " " IDA_VERSION " application log\n" + LOG_SEPARATOR);
+    } else {
+        write("Debug logging stopped");
+        write(LOG_SEPARATOR);
+        enabled = false;
     }
+}
 
-    write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"\
-          "         " IDA_TITLE " " IDA_VERSION " application log\n"\
-          "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+bool lmDebugLog::isEnabled() {
+    return enabled;
 }
 
 void lmDebugLog::write(const QString& string, bool verbose) {
-    if(!traceMode || !verbose)
+    if(!enabled || !verbose)
         return;
 
     QDir logDir(DefinitionsDir::logDir());
@@ -68,15 +85,4 @@ void lmDebugLog::write(const QString& string, bool verbose) {
         stream << timeStamp << stringList[index] << "\n";
 
     file.close();
-}
-
-void lmDebugLog::stop(const QString& string) {
-    if (!traceMode) return;
-    write(string);
-    write("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-    lmDebugLog::traceMode = false;
-}
-
-bool lmDebugLog::check(){
-    return lmDebugLog::traceMode;
 }

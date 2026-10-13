@@ -27,19 +27,20 @@
 #include <QTextStream>
 #include <QDateTime>
 #include <QDir>
+#include <atomic>
 
 class lmDebugLog {
 public:
 	lmDebugLog(void);
 	~lmDebugLog(void);
 
-    static void init(QString fileName, bool traceMode);
+    static void init(QString fileName, bool trace);
+    static void setEnabled(bool enable);
+    static bool isEnabled();
     static void write(const QString& string, bool verbose = true);
-    static void stop(const QString& string);
-    static bool check();
 
 private:
-	static bool traceMode;
+	static std::atomic<bool> enabled;
 	static QString fileName;
 };
 
