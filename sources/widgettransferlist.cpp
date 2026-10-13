@@ -20,6 +20,9 @@
 ****************************************************************************/
 
 #include <QPixmap>
+#include <QImage>
+#include <QColorSpace>
+#include <QBuffer>
 #include <QFileInfo>
 #include <math.h>
 #include <qdir.h>
@@ -137,9 +140,37 @@ void FileView::paint(QPainter* painter, const QRect& rect, const QPalette& palet
     painter->restore();
 }
 
+//	Icons are stored as webp. The image is converted to sRGB and its color space is then cleared,
+//	so no ICC profile gets embedded (about 4KB per icon).
+static const quint32 HISTORY_MAGIC = 0x4C4D5458;    //	"LMTX"
+static const quint32 HISTORY_VERSION = 1;
+
+static QByteArray iconToWebp(const QPixmap& icon) {
+    QByteArray bytes;
+    if(icon.isNull())
+        return bytes;
+
+    //	convertedToColorSpace() returns a null image when the source has no profile, which is the
+    //	case for most pixmap icons. Those are already sRGB, so only convert when a profile exists.
+    QImage image = icon.toImage();
+    if(image.colorSpace().isValid())
+        image.convertToColorSpace(QColorSpace::SRgb);
+    image.setColorSpace(QColorSpace());
+
+    QBuffer buffer(&bytes);
+    buffer.open(QIODevice::WriteOnly);
+    if(!image.save(&buffer, "WEBP", 10))  //————————————————————————————————————————————————————————————————————————————————  Webp Quality
+        bytes.clear();
+    return bytes;
+}
+
+static QPixmap iconFromWebp(const QByteArray& bytes) {
+    return QPixmap::fromImage(QImage::fromData(bytes, "WEBP"));
+}
+
 QDataStream &operator << (QDataStream &out, const FileView &view) {
     out << view.id << qint32(view.mode) << view.filePath << view.userName << view.fileDisplay
-        << qint32(view.state) << view.icon;
+        << qint32(view.state) << iconToWebp(view.icon);
     return out;
 }
 
@@ -150,15 +181,15 @@ QDataStream &operator >> (QDataStream &in, FileView &view) {
     QString userName;
     QString fileDisplay;
     qint32 state;
-    QPixmap icon;
-    in >> id >> mode >> filePath >> userName >> fileDisplay >> state >> icon;
+    QByteArray iconData;
+    in >> id >> mode >> filePath >> userName >> fileDisplay >> state >> iconData;
     view = FileView(id);
     view.mode = (FileView::TransferMode)mode;
     view.filePath = filePath;
     view.userName = userName;
     view.fileDisplay = fileDisplay;
     view.state = (FileView::TransferState)state;
-    view.icon = icon;
+    view.icon = iconFromWebp(iconData);
     return in;
 }
 
@@ -317,6 +348,7 @@ void FileModel::itemChanged(int position) {
     emit dataChanged(index, index);
 }
 
+//	The history is not critical, so an unrecognized or damaged file is deleted instead of read.
 void FileModel::loadData(QString filePath) {
     transferList.clear();
 
@@ -325,9 +357,21 @@ void FileModel::loadData(QString filePath) {
         return;
 
     QDataStream stream(&file);
-    stream >> transferList;
+    stream.setVersion(QDataStream::Qt_6_0);
 
+    quint32 magic = 0;
+    quint32 version = 0;
+    stream >> magic >> version;
+    if(stream.status() == QDataStream::Ok && magic == HISTORY_MAGIC && version == HISTORY_VERSION)
+        stream >> transferList;
+
+    bool valid = stream.status() == QDataStream::Ok && magic == HISTORY_MAGIC && version == HISTORY_VERSION;
     file.close();
+
+    if(!valid) {
+        transferList.clear();
+        QFile::remove(filePath);
+    }
 }
 
 void FileModel::saveData(QString filePath) {
@@ -343,7 +387,8 @@ void FileModel::saveData(QString filePath) {
         return;
 
     QDataStream stream(&file);
-    stream << transferList;
+    stream.setVersion(QDataStream::Qt_6_0);
+    stream << HISTORY_MAGIC << HISTORY_VERSION << transferList;
 
     file.close();
 }

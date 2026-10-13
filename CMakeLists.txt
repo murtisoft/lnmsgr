@@ -15,24 +15,22 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
-#File transfer window should save icons as webp.
+#User is typing status label is at the top now.
+#Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work. Window dimensions remain in use, and get resaved.
+#Disabling some sound effects doesnt work.
+#Vertical size hint (Auto sizing) for userlistview (public chat/chatroom) needs more work.
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Loopback prtscr snip sending writes 0 byte file. Loopback calls get interrupted.
 #Window popup and focus behaves unreliably, sometimes demanding immediate attention, causing frustration.
-#User is typing status label is at the top now.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #SetUItext functions dont handle newer controls, switching translations will require a restart.
 #Setting migration function doesnt handle newly added ones.
 #Some older, and all new buttons dont have Alt underlines. Is this even needed in the %CurrentYear%?
-#Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work. Window sizes remain in use, and get resaved.
-#Disabling some sound effects doesnt work.
-#Vertical size hint (Auto sizing) for userlistview (public chat/chatroom) needs more work.
 
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#webp: convert the image to sRGB, then clear its color space so no ICC profile is embedded (saves 4KB)
 #lblName and txtNote Elided text functionality was removed, bring it back?
 #File transfers should be displayed nested inside a regular message with timestamps.
 #Known filetypes should send webp preview as icon. Other types use sender file icon as preview
