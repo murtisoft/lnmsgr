@@ -16,11 +16,9 @@ endif()
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
 #Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work. Window dimensions remain in use, and get resaved.
-#Disabling some sound effects doesnt work.
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#Loopback prtscr snip sending writes 0 byte file. Loopback calls get interrupted.
 #Window popup and focus behaves unreliably, sometimes demanding immediate attention, causing frustration.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #SetUItext functions dont handle newer controls, switching translations will require a restart.

@@ -88,6 +88,10 @@ void lmSoundPlayer::play(SoundEvent event) {
 }
 
 void lmSoundPlayer::settingsChanged(void) {
+	for(int index = 0; index < SE_Max; index++) {
+		eventState[index] = Qt::Checked;
+		sounds[index] = soundFile[index];
+	}
 	int size = qMin(pSettings->beginReadArray(IDS_SOUNDEVENTHDR), (int)SE_Max);
 	for(int index = 0; index < size; index++) {
 		pSettings->setArrayIndex(index);

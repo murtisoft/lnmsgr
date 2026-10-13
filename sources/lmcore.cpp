@@ -174,6 +174,8 @@ void lmCore::loadSettings(void) {
 
 void lmCore::settingsChanged(void) {
 	pMessaging->settingsChanged();
+	if(pSoundPlayer)
+		pSoundPlayer->settingsChanged();
 	pMainWindow->settingsChanged();
 	if(pPublicChatWindow)
 		pPublicChatWindow->settingsChanged();
