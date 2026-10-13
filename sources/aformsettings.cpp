@@ -34,6 +34,9 @@
 #include "translatabletext.h"
 #include "definitionsdir.h"
 #include "audiolevel.h"
+#include <QPainter>
+#include <QScreen>
+#include <QGuiApplication>
 
 lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog(parent, flags) {
     ui.setupUi(this);
@@ -91,6 +94,7 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
     }
     connect(ui.chkGlobalHotkeys, &QCheckBox::toggled, this, &lmFormSettings::chkGlobalHotkeys_toggled);
     connect(ui.cboMicDevice, &QComboBox::activated, this, &lmFormSettings::cboMicDevice_activated);
+    connect(ui.cboCamDevice, &QComboBox::activated, this, &lmFormSettings::cboCamDevice_activated);
     connect(ui.btnTestMic, &QPushButton::clicked, this, &lmFormSettings::btnTestMic_clicked);
     connect(ui.cboMicActivation, &QComboBox::currentIndexChanged, this, &lmFormSettings::updateActivationUi);
     //  Mimics the tail that push to talk transmits after the key is let go
@@ -101,7 +105,12 @@ lmFormSettings::lmFormSettings(QWidget *parent, Qt::WindowFlags flags) : QDialog
     ui.lblMicWarning->setStyleSheet("color: #d9534f;");
     ui.lblMicWarning->hide();
     pMediaDevices = new QMediaDevices(this);
+    pCamSession = new QMediaCaptureSession(this);
+    pCamSession->setVideoOutput(ui.vidCamPreview);
     connect(pMediaDevices, &QMediaDevices::audioInputsChanged, this, &lmFormSettings::populateMicDevices);
+    connect(pMediaDevices, &QMediaDevices::videoInputsChanged, this, &lmFormSettings::populateCamDevices);
+    connect(qApp, &QGuiApplication::screenAdded, this, &lmFormSettings::populateCamDevices);
+    connect(qApp, &QGuiApplication::screenRemoved, this, &lmFormSettings::populateCamDevices);
     connect(qApp, &QApplication::focusChanged, this, &lmFormSettings::application_focusChanged);
     ui.lblHotkeyWarning->setStyleSheet("color: #d9534f;");
     ui.lblHotkeyWarning->hide();
@@ -114,6 +123,7 @@ lmFormSettings::~lmFormSettings(void) {
 //  Every way out of the dialog ends up here, make sure the microphone is released.
 void lmFormSettings::done(int result) {
     setMicTesting(false);
+    stopCamPreview();
     QDialog::done(result);
 }
 
@@ -140,23 +150,6 @@ void lmFormSettings::init(void) {
         pListItem->setData(Qt::UserRole, soundFile[index]);
         pListItem->setCheckState(IDS_SOUNDEVENT_VAL);
     }
-
-    //=========================================================//TODO  Find a permanent spot for this.
-    //  Microphones are listed by populateMicDevices(), it also reacts to devices coming and going.
-
-    ui.cboCamDevice->addItem("Still Image", QVariant("still_image"));
-
-    const auto screens = QGuiApplication::screens();
-    for (int i = 0; i < screens.size(); ++i) {
-        ui.cboCamDevice->addItem(QString("Desktop %1").arg(i + 1),
-                                 QVariant::fromValue(screens[i]));
-    }
-
-    const auto cameras = QMediaDevices::videoInputs();
-    for (const QCameraDevice &camera : cameras) {
-        ui.cboCamDevice->addItem(camera.description(), QVariant::fromValue(camera));
-    }
-    //=========================================================
 
     for(int index = 0; index < ULV_Max; index++)
         ui.cboUserListView->addItem(lmStrings::userListView()[index], index);
@@ -223,6 +216,12 @@ void lmFormSettings::changeEvent(QEvent* pEvent) {
     QDialog::changeEvent(pEvent);
 }
 
+//  The avatar may have been changed since the last time the dialog was open.
+void lmFormSettings::showEvent(QShowEvent* pEvent) {
+    QDialog::showEvent(pEvent);
+    updateCamPreview();
+}
+
 void lmFormSettings::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == statusTimerId) {
@@ -253,6 +252,7 @@ void lmFormSettings::lvCategories_currentRowChanged(int currentRow) {
     //  Only listen while the user is looking at the meter.
     if(micTesting && ui.stackedWidget->currentWidget() != ui.pageVoiceVideo)
         setMicTesting(false);
+    updateCamPreview();
 }
 
 void lmFormSettings::btnOk_clicked(void) {
@@ -622,6 +622,114 @@ void lmFormSettings::populateMicDevices(void) {
         setMicTesting(true);    // the list changed: carries on, or stops if the microphone is gone
 }
 
+//  Same idea as the microphones: the chosen source stays in the list while it is not connected, so that
+//  pressing OK doesn't silently forget it.
+void lmFormSettings::populateCamDevices(void) {
+    const QSignalBlocker blocker(ui.cboCamDevice);
+    ui.cboCamDevice->clear();
+
+    int selected = camDeviceKey.isEmpty() ? 0 : -1;
+    auto addDevice = [&](const QString& text, const QString& key) {
+        ui.cboCamDevice->addItem(text, key);
+        const int row = ui.cboCamDevice->count() - 1;
+        ui.cboCamDevice->setItemData(row, text, Qt::UserRole + 1);
+        if(selected < 0 && key == camDeviceKey) {
+            selected = row;
+            camDeviceName = text;   // names can change, keep it current
+        }
+    };
+
+    addDevice(tr("Still Image"), QString());
+    const auto screens = QGuiApplication::screens();
+    for(int index = 0; index < screens.size(); index++)
+        addDevice(tr("Desktop %1").arg(index + 1), "screen:" + screens[index]->name());
+    const auto cameras = QMediaDevices::videoInputs();
+    for(const QCameraDevice& camera : cameras)
+        addDevice(camera.description(), "camera:" + QString::fromUtf8(camera.id()));
+
+    if(selected < 0) {
+        const QString name = camDeviceName.isEmpty() ? tr("Unknown device") : camDeviceName;
+        ui.cboCamDevice->addItem(tr("%1 (Not connected)").arg(name), camDeviceKey);
+        selected = ui.cboCamDevice->count() - 1;
+        ui.cboCamDevice->setItemData(selected, name, Qt::UserRole + 1);
+    }
+    ui.cboCamDevice->setCurrentIndex(selected);
+    updateCamPreview();
+}
+
+void lmFormSettings::cboCamDevice_activated(int index) {
+    camDeviceKey = ui.cboCamDevice->itemData(index).toString();
+    camDeviceName = ui.cboCamDevice->itemData(index, Qt::UserRole + 1).toString();
+    updateCamPreview();
+}
+
+//  Desktops and cameras are only opened while the Voice & Video page is showing, so the camera light is
+//  not on for a hidden page. A source that is not connected leaves the preview black.
+void lmFormSettings::updateCamPreview(void) {
+    stopCamPreview();
+    if(!isVisible() || ui.stackedWidget->currentWidget() != ui.pageVoiceVideo)
+        return;
+
+    if(camDeviceKey.startsWith("screen:")) {
+        for(QScreen* candidate : QGuiApplication::screens()) {
+            if("screen:" + candidate->name() != camDeviceKey)
+                continue;
+            pScreenCapture = new QScreenCapture(this);
+            pScreenCapture->setScreen(candidate);
+            pCamSession->setScreenCapture(pScreenCapture);
+            pScreenCapture->start();
+        }
+    } else if(camDeviceKey.startsWith("camera:")) {
+        for(const QCameraDevice& candidate : QMediaDevices::videoInputs()) {
+            if("camera:" + QString::fromUtf8(candidate.id()) != camDeviceKey)
+                continue;
+            pCamera = new QCamera(candidate, this);
+            pCamSession->setCamera(pCamera);
+            pCamera->start();
+        }
+    } else {
+        //  QVideoWidget has no still image, so hand it a frame
+        const QImage image = stillImage();
+        QVideoFrame frame(QVideoFrameFormat(image.size(), QVideoFrameFormat::pixelFormatFromImageFormat(image.format())));
+        if(frame.map(QVideoFrame::WriteOnly)) {
+            for(int row = 0; row < image.height(); row++)
+                memcpy(frame.bits(0) + row * frame.bytesPerLine(0), image.constScanLine(row), image.bytesPerLine());
+            frame.unmap();
+            ui.vidCamPreview->videoSink()->setVideoFrame(frame);
+        }
+    }
+}
+
+void lmFormSettings::stopCamPreview(void) {
+    if(pCamera) {
+        pCamera->stop();
+        pCamSession->setCamera(nullptr);
+        delete pCamera;
+        pCamera = nullptr;
+    }
+    if(pScreenCapture) {
+        pScreenCapture->stop();
+        pCamSession->setScreenCapture(nullptr);
+        delete pScreenCapture;
+        pScreenCapture = nullptr;
+    }
+    ui.vidCamPreview->videoSink()->setVideoFrame(QVideoFrame());
+}
+
+//  The local avatar centered on a black 720p frame, what is sent when no camera or desktop is shared.
+QImage lmFormSettings::stillImage(void) const {
+    constexpr int StillWidth = 1280, StillHeight = 720, StillAvatarSize = 240;
+    QImage image(StillWidth, StillHeight, QImage::Format_ARGB32_Premultiplied);
+    image.fill(Qt::black);
+    const QImage avatar(DefinitionsDir::avatarFile());
+    if(!avatar.isNull()) {
+        const QImage scaled = avatar.scaled(StillAvatarSize, StillAvatarSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QPainter painter(&image);
+        painter.drawImage((StillWidth - scaled.width()) / 2, (StillHeight - scaled.height()) / 2, scaled);
+    }
+    return image;
+}
+
 void lmFormSettings::chkGlobalHotkeys_toggled(bool checked) {
     ui.wdgCallHotkeys->setEnabled(checked);
     validateHotkeys();
@@ -873,6 +981,9 @@ void lmFormSettings::loadSettings(void) {
     micDeviceId = pSettings->value(IDS_MICDEVICE, IDS_MICDEVICE_VAL).toString().toUtf8();
     micDeviceName = pSettings->value(IDS_MICDEVICENAME, IDS_MICDEVICENAME_VAL).toString();
     populateMicDevices();
+    camDeviceKey = pSettings->value(IDS_CAMDEVICE, IDS_CAMDEVICE_VAL).toString();
+    camDeviceName = pSettings->value(IDS_CAMDEVICENAME, IDS_CAMDEVICENAME_VAL).toString();
+    populateCamDevices();
     ui.sldMicThreshold->setValue(pSettings->value(IDS_MICTHRESHOLD, IDS_MICTHRESHOLD_VAL).toInt());
     ui.cboMicActivation->setCurrentIndex(qBound(0, pSettings->value(IDS_MICACTIVATION, IDS_MICACTIVATION_VAL).toInt(), int(MA_Max) - 1));
 
@@ -995,6 +1106,8 @@ void lmFormSettings::saveSettings(void) {
     pSettings->setValue(IDS_SENDKEYMOD, ui.rdbCmdEnter->isChecked(), IDS_SENDKEYMOD_VAL);
     pSettings->setValue(IDS_MICDEVICE, QString::fromUtf8(micDeviceId), IDS_MICDEVICE_VAL);
     pSettings->setValue(IDS_MICDEVICENAME, micDeviceId.isEmpty() ? QString() : micDeviceName, IDS_MICDEVICENAME_VAL);
+    pSettings->setValue(IDS_CAMDEVICE, camDeviceKey, IDS_CAMDEVICE_VAL);
+    pSettings->setValue(IDS_CAMDEVICENAME, camDeviceKey.isEmpty() ? QString() : camDeviceName, IDS_CAMDEVICENAME_VAL);
     pSettings->setValue(IDS_MICTHRESHOLD, ui.sldMicThreshold->value(), IDS_MICTHRESHOLD_VAL);
     pSettings->setValue(IDS_MICACTIVATION, ui.cboMicActivation->currentIndex(), IDS_MICACTIVATION_VAL);
     pSettings->setValue(IDS_GLOBALHOTKEYS, ui.chkGlobalHotkeys->isChecked(), IDS_GLOBALHOTKEYS_VAL);

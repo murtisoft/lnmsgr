@@ -1031,17 +1031,12 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QVideoWidget" name="vidCamPreview">
                 <property name="minimumSize">
                  <size>
-                  <width>300</width>
-                  <height>169</height>
+                  <width>320</width>
+                  <height>180</height>
                  </size>
-                </property>
-                <property name="text">
-                 <string>Video Preview Placeholder
-
-Camera settings dont work for the time being.</string>
                 </property>
                </widget>
               </item>
@@ -2551,6 +2546,11 @@ Camera settings dont work for the time being.</string>
    <class>lmWidgetThresholdSlider</class>
    <extends>QSlider</extends>
    <header>widgetthresholdslider.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QVideoWidget</class>
+   <extends>QWidget</extends>
+   <header>QVideoWidget</header>
   </customwidget>
  </customwidgets>
  <tabstops>

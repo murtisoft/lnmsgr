@@ -28,6 +28,12 @@
 #include <QTimer>
 #include <QAudioDevice>
 #include <QCameraDevice>
+#include <QCamera>
+#include <QScreenCapture>
+#include <QMediaCaptureSession>
+#include <QVideoWidget>
+#include <QVideoSink>
+#include <QVideoFrame>
 
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
@@ -70,6 +76,7 @@ signals:
 
 protected:
 	void changeEvent(QEvent* pEvent);
+    void showEvent(QShowEvent* pEvent) override;
     void timerEvent(QTimerEvent *event);
 
 private slots:
@@ -98,6 +105,7 @@ private slots:
 	void btnResetSounds_clicked(void);
 	void chkGlobalHotkeys_toggled(bool checked);
 	void cboMicDevice_activated(int index);
+	void cboCamDevice_activated(int index);
 	void btnTestMic_clicked(void);
 	void onMicTestReadyRead(void);
 	void onMicTestStateChanged(QAudio::State state);
@@ -117,6 +125,10 @@ private:
     void setMicTesting(bool on);
     bool openMicTestSource(void);
     void closeMicTestSource(void);
+    void populateCamDevices(void);
+    void updateCamPreview(void);
+    void stopCamPreview(void);
+    QImage stillImage(void) const;
 
 	Ui::SettingsDialog ui;
 	lmSettings* pSettings;
@@ -139,6 +151,11 @@ private:
     bool micTesting = false;
     QTimer* pPttTestTimer = nullptr;
     QString micTestIdleText;    // caption of the test button while it is not running
+    QMediaCaptureSession* pCamSession = nullptr;
+    QCamera* pCamera = nullptr;
+    QScreenCapture* pScreenCapture = nullptr;
+    QString camDeviceKey;       // see IDS_CAMDEVICE, empty = still image
+    QString camDeviceName;      // its last known name, so it can be shown while unplugged
     QString micHotkeyIdleText;  // caption of the microphone hotkey while it is not push to talk
 };
 

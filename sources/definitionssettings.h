@@ -170,6 +170,10 @@
 #define IDS_MICACTIVATION_VAL	MA_Continuous
 #define IDS_MICTHRESHOLD		"Voice/MicThreshold"	//	voice activation threshold in dBFS
 #define IDS_MICTHRESHOLD_VAL	-40
+#define IDS_CAMDEVICE			"Video/CamDevice"	//	"screen:<QScreen::name()>" or "camera:<QCameraDevice::id()>", empty = still image
+#define IDS_CAMDEVICE_VAL		""
+#define IDS_CAMDEVICENAME		"Video/CamDeviceName"	//	last known name, to show a device that is not connected
+#define IDS_CAMDEVICENAME_VAL	""
 #define IDS_STATUS				"User/Status"
 #define IDS_STATUS_VAL			statusCode[0]
 #define IDS_AVATAR				"User/Avatar"

@@ -212,6 +212,10 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 	if(value.isValid())	setValue(IDS_MICTHRESHOLD, value);
 	value = extSettings.value(IDS_MICACTIVATION);
 	if(value.isValid())	setValue(IDS_MICACTIVATION, value);
+	value = extSettings.value(IDS_CAMDEVICE);
+	if(value.isValid())	setValue(IDS_CAMDEVICE, value);
+	value = extSettings.value(IDS_CAMDEVICENAME);
+	if(value.isValid())	setValue(IDS_CAMDEVICENAME, value);
 
 	setValue(IDS_VERSION, IDA_VERSION);
 	sync();
