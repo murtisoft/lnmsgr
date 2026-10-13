@@ -820,6 +820,12 @@ void lmFormSettings::setUIText(void) {
 
     cboTheme_currentIndexChanged(ui.cboTheme->currentIndex());
 
+    //	device lists contain translated entries, rebuild them (on first run loadSettings fills them)
+    if(ui.cboMicDevice->count() > 0)
+        populateMicDevices();
+    if(ui.cboCamDevice->count() > 0)
+        populateCamDevices();
+
 #ifdef Q_OS_MAC
     ui.rdbEnter->setText("Return");
     ui.rdbCmdEnter->setText(QString(QChar(0x2318)) + " + Return"); // U+2318 is the hex code for Bowen Knot symbol

@@ -1038,6 +1038,10 @@ void lmFormChat::setUIText(void) {
 	pFileAction->setText(tr("Send A File..."));
     pFolderAction->setText(tr("Send A Folder..."));
 	pSaveAction->setText(tr("Save As..."));
+	pNudgeAction->setText(tr("Nudge"));
+	pAudioAction->setText(tr("Voice Call"));
+	pVideoAction->setText(tr("Video Call"));
+	pHangUpAction->setText(tr("Hang Up"));
 	pHistoryAction->setText(tr("History"));
 	pTransferAction->setText(tr("File Transfers"));
 	if(!groupMode) {

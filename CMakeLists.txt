@@ -15,13 +15,14 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
-#Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work. Window dimensions remain in use, and get resaved.
+#Resetting preferences cannot reset chatwindow geometry, due to how resetting and saving work. Window dimensions remain in use, and get resaved.
+#Window dimension saving while maximized or snapped to half screen needs rechecking.
+#Windows should pop up on whichever screen the main window was last at.
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Window popup and focus behaves unreliably, sometimes demanding immediate attention, causing frustration.
 #Some links that do display fine in chatlog, dont display correctly in history window.
-#SetUItext functions dont handle newer controls, switching translations will require a restart.
 #Setting migration function doesnt handle newly added ones.
 
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
@@ -37,3 +38,4 @@ endif()
 #Thinking of switching png to webp, but not sure how painful the transition will be.
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
 #    Encryption in the program only works 1 on 1. That kinda hinders those plans.
+#   I dont think that this is possible anymore without BTFOing the compatibility entirely so... no go.
