@@ -21,6 +21,8 @@
 
 
 #include "widgetusertree.h"
+#include <QTimer>
+#include <qheaderview.h>
 
 lmWidgetUserTreeItem::lmWidgetUserTreeItem() : QTreeWidgetItem(UserType + 1) {
 	//	make item not user checkable
@@ -216,6 +218,17 @@ lmWidgetUserTree::lmWidgetUserTree(QWidget* parent) : QTreeWidget(parent) {
 
     connect(this, &QTreeWidget::itemExpanded, this, &lmWidgetUserTree::updateGeometry);
     connect(this, &QTreeWidget::itemCollapsed, this, &lmWidgetUserTree::updateGeometry);
+    //  Refresh the size hint on every model change. Deferred so it runs after the view has
+    //  finished processing the change (this is more reliable than the rowsInserted/rowsRemoved overrides).
+    auto refresh = [this]() {
+        updateGeometry();
+        QTimer::singleShot(0, this, [this]() { updateGeometry(); });
+    };
+    connect(model(), &QAbstractItemModel::rowsInserted, this, refresh);
+    connect(model(), &QAbstractItemModel::rowsRemoved, this, refresh);
+    connect(model(), &QAbstractItemModel::dataChanged, this, refresh);
+    connect(model(), &QAbstractItemModel::layoutChanged, this, refresh);
+    connect(model(), &QAbstractItemModel::modelReset, this, refresh);
 }
 
 bool lmWidgetUserTree::checkable(void) {
@@ -239,6 +252,8 @@ void lmWidgetUserTree::setView(UserListView view) {
 		for(int childIndex = 0; childIndex < item->childCount(); childIndex++)
 			item->child(childIndex)->setSizeHint(0, QSize(0, itemViewHeight[viewType]));
 	}
+
+	updateGeometry();
 }
 
 void lmWidgetUserTree::contextMenuEvent(QContextMenuEvent* event) {
@@ -295,17 +310,45 @@ void lmWidgetUserTree::rowsRemoved(const QModelIndex& parent, int first, int las
     updateGeometry();
 }
 
+int lmWidgetUserTree::rowHeightFor(QTreeWidgetItem* item) const {
+    //  An explicit size hint wins. A 0 height is valid and is used to hide a group row.
+    QSize hint = item->sizeHint(0);
+    if(hint.isValid() && hint.height() >= 0)
+        return hint.height();
+
+    if(item->data(0, TypeRole).toString() == "User")
+        return itemViewHeight[viewType];
+
+    return fontMetrics().height() + 8;
+}
+
 QSize lmWidgetUserTree::sizeHint() const {
+    //  Height is the sum of the rows that are actually visible: top level rows (a hidden
+    //  group contributes 0) plus the children of every expanded top level row.
     int totalHeight = frameWidth() * 2;
+    if(!isHeaderHidden())
+        totalHeight += header()->sizeHint().height();
+
     for(int i = 0; i < topLevelItemCount(); i++) {
         QTreeWidgetItem* item = topLevelItem(i);
-        if(item->childCount() > 0) {
-            totalHeight += item->sizeHint(0).height();
-            if(item->isExpanded())
-                totalHeight += item->childCount() * itemViewHeight[viewType];
-        } else {
-            totalHeight += itemViewHeight[viewType];
+        if(item->isHidden())
+            continue;
+        totalHeight += rowHeightFor(item);
+        if(item->isExpanded()) {
+            for(int j = 0; j < item->childCount(); j++) {
+                if(!item->child(j)->isHidden())
+                    totalHeight += rowHeightFor(item->child(j));
+            }
         }
     }
-    return QSize(QTreeWidget::sizeHint().width(), totalHeight);
+
+    //  Never report 0, so the widget does not collapse completely while the list is empty
+    return QSize(QTreeWidget::sizeHint().width(), qMax(totalHeight, frameWidth() * 2 + 1));
+}
+
+QSize lmWidgetUserTree::minimumSizeHint() const {
+    //  Allow the layout to shrink the list (it will scroll) but keep at least one row visible
+    QSize base = QTreeWidget::minimumSizeHint();
+    int oneRow = frameWidth() * 2 + itemViewHeight[viewType];
+    return QSize(base.width(), qMin(sizeHint().height(), oneRow));
 }

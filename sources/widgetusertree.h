@@ -77,6 +77,7 @@ public:
 	UserListView view(void);
 	void setView(UserListView view);
     QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
 signals:
     void itemContextMenu(QTreeWidgetItem* item, QPoint& pos);
@@ -87,6 +88,7 @@ protected:
 	void keyPressEvent(QKeyEvent* event);
 
 private:
+	int rowHeightFor(QTreeWidgetItem* item) const;
 	lmWidgetUserTreeDelegate* itemDelegate;
 	bool isCheckable;
 	UserListView viewType;

@@ -18,7 +18,6 @@ endif()
 #User is typing status label is at the top now.
 #Resetting all settings cannot reset chatwindow geometry, due to how resetting and saving work. Window dimensions remain in use, and get resaved.
 #Disabling some sound effects doesnt work.
-#Vertical size hint (Auto sizing) for userlistview (public chat/chatroom) needs more work.
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
