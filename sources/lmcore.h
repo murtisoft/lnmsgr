@@ -40,6 +40,7 @@
 #include "aformabout.h"
 #include "aformbroadcast.h"
 #include "networkstreamer.h"
+#include "videocapture.h"
 #include "soundplayer.h"
 #include "hotkeyhandler.h"
 
@@ -129,6 +130,7 @@ private:
 	void showPortConflictMessage(void);
     lmFormChat* callWindow(void) const;
     QByteArray micDeviceSetting(void) const;
+    QString camDeviceSetting(void) const;
     int micActivationSetting(void) const;
     void applyMicActivation(void);
 
@@ -153,6 +155,8 @@ private:
 	int								refreshTime;
 	MessageXml*						pInitParams;
     lmAudioStream*                  m_audioStream = nullptr;
+    lmVideoStream*                  m_videoStream = nullptr;
+    lmVideoCapture*                 m_videoCapture = nullptr;   // main thread, feeds the video stream
     QString                         callPeerId;     // user the current call (calling/ringing/connected) is with
     lmSoundPlayer*                  pSoundPlayer;
     lmHotkeyHandler*                pHotkeys;

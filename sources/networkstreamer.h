@@ -38,6 +38,9 @@
 #include <QAudioFormat>
 #include <QAudioDevice>
 #include "opushandler.h"
+#include "ovpxhandler.h"
+#include <QImage>
+#include <QAtomicInt>
 #include "opensslhandler.h"
 
 
@@ -72,6 +75,9 @@ public:
     void setMicActivation(int mode, int thresholdDb);
     //  Push to talk: key down / up. Only matters in push to talk mode.
     void setPushToTalk(bool down);
+    //  Whether starting and ending the call announce themselves with the microphone on / off sounds (micMuted).
+    //  On by default. A video call turns it off, it has its own camera sounds. Call it before start().
+    void setCallSounds(bool enabled);
 
 public slots:
     void setMicMuted(bool muted);
@@ -121,6 +127,7 @@ private:
     QHostAddress   m_peerAddress;
     quint16        m_port    = 0;
     bool           m_micMuted = false;
+    bool           m_callSounds = true;
     QByteArray     m_muteBuf;               // muted capture that is not a whole frame yet
     int            m_mutedTalkFrames = 0;   // loud frames heard while muted
     QElapsedTimer  m_mutedTalkTimer;        // time since the last reminder
@@ -144,6 +151,75 @@ private:
     static constexpr quint16 AUDIO_PORT_OFFSET = 1; // udpPort + 1
 };
 
+
+/****************************************************************************
+** Class: lmVideoStream
+** Description: Video of a call. One TCP connection per direction: every side listens for the video of the
+**              peer and connects to the peer's listener to send its own, so there are no roles to negotiate.
+**              Frames are VP8 (see lmVpxHandler) and encrypted with the session key, like the voice packets.
+**              Being a reliable stream there is no loss handling, a frame is simply not encoded while the
+**              connection cannot keep up.
+****************************************************************************/
+class lmVideoStream : public QObject {
+    Q_OBJECT
+
+signals:
+    //  A decoded frame of the peer. Emitted from the video thread, connect it to a receiver on another thread
+    //  and it is delivered queued.
+    void frameReceived(const QImage& image);
+
+public:
+    //  Runs on its own thread (encode, decode, encrypt, network), so the UI is never stalled by video.
+    //  The object must have no parent.
+    explicit lmVideoStream(QObject* parent = nullptr);
+    ~lmVideoStream();
+
+    void start(const QHostAddress& peerAddress, quint16 udpPort, lmOpenSSL* crypto, const QString& peerId);
+    //  Blocks until the video thread has released the sockets.
+    void stop();
+    //  A frame of the local video, any size, it is fitted to 1280x720. Safe to call from any thread at any
+    //  rate: a frame is dropped when the previous one is still waiting to be encoded.
+    void sendFrame(const QImage& image);
+    //  The next frame sent is a keyframe, e.g. after the source was switched.
+    void requestKeyframe();
+
+private slots:
+    void onNewConnection();
+    void onRxReadyRead();
+    void onTxConnected();
+    void onTxDisconnected();
+    void tryConnect();
+
+private:
+    void doStart(const QHostAddress& peerAddress, quint16 udpPort, const QByteArray& sessionKey);
+    void doStop();
+    void doSendFrame(const QImage& image);
+    void closeRx();
+
+    QThread*       m_thread  = nullptr;
+    QByteArray     m_sessionKey;
+    QHostAddress   m_peerAddress;
+    quint16        m_port    = 0;
+    lmVpxHandler   m_vpx;
+    QAtomicInt     m_pending;               // a frame is waiting to be encoded
+    // transmit side
+    QTcpSocket*    m_txSock  = nullptr;
+    QTimer*        m_connectTimer = nullptr;
+    bool           m_txReady = false;       // connected, handshake sent
+    QByteArray     m_txSalt;
+    QByteArray     m_txKey;
+    quint32        m_txSeq   = 0;
+    // receive side
+    QTcpServer*    m_server  = nullptr;
+    QTcpSocket*    m_rxSock  = nullptr;
+    QByteArray     m_rxBuf;
+    bool           m_rxHandshaken = false;
+    QByteArray     m_rxSalt;
+    QByteArray     m_rxKey;
+    quint32        m_rxLastSeq = 0;
+    bool           m_rxHasSeq = false;
+    static constexpr quint16 VIDEO_PORT_OFFSET = 2; // udpPort + 2, TCP
+};
 
 /****************************************************************************
 ** Class: FileSender

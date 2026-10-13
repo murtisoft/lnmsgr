@@ -512,6 +512,24 @@ void lmFormChat::updateButtonStates() {
     ui.btnMicrophone->setEnabled(inCall && (currentCallType == MT_Audio || currentCallType == MT_Video));
     ui.btnSpeaker->setEnabled(inCall && (currentCallType == MT_Audio || currentCallType == MT_Video));
     ui.btnCamera->setEnabled(inCall && currentCallType == MT_Video);
+    //  Hidden widgets take no space, the video views only exist during a video call
+    const bool videoCall = inCall && currentCallType == MT_Video;
+    ui.vidRemote->setVisible(videoCall);
+    ui.vidLocal->setVisible(videoCall);
+    if(!videoCall) {
+        ui.vidRemote->clear();      // no stale picture at the start of the next call
+        ui.vidLocal->clear();
+    }
+}
+
+void lmFormChat::showLocalVideo(const QImage& image) {
+    if(ui.vidLocal->isVisible())
+        ui.vidLocal->showImage(image);
+}
+
+void lmFormChat::showRemoteVideo(const QImage& image) {
+    if(ui.vidRemote->isVisible())
+        ui.vidRemote->showImage(image);
 }
 
 void lmFormChat::connectionStateChanged(bool connected) {

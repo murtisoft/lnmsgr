@@ -203,7 +203,8 @@ void lmAudioStream::doStart(const QHostAddress& peerAddress, quint16 udpPort, co
     m_sendSock = new QUdpSocket(this);
     startInput();
 
-    emit micMuted(false);
+    if(m_callSounds)
+        emit micMuted(false);
 
     // Receive UDP, decrypt, decode, play to default speaker
     m_recvSock = new QUdpSocket(this);
@@ -223,6 +224,12 @@ void lmAudioStream::setMicActivation(int mode, int thresholdDb) {
         m_thresholdDb = thresholdDb;
         if(changed)
             resetGate();
+    }, Qt::QueuedConnection);
+}
+
+void lmAudioStream::setCallSounds(bool enabled) {
+    QMetaObject::invokeMethod(this, [this, enabled]() {
+        m_callSounds = enabled;
     }, Qt::QueuedConnection);
 }
 
@@ -422,7 +429,7 @@ void lmAudioStream::onNetReadyRead() {
 }
 
 void lmAudioStream::doStop() {
-    if(m_source || m_sink)
+    if(m_callSounds && (m_source || m_sink))
         emit micMuted(true);
     stopInput();
     if (m_sink)   { m_sink->stop();   delete m_sink;   m_sink   = nullptr; }
@@ -459,6 +466,231 @@ void lmAudioStream::setSpeakerMuted(bool muted) {
 }
 
 void lmAudioStream::setCamMuted(bool muted) {
+}
+
+/****************************************************************************
+** Class: lmVideoStream
+** Description: Video of a call, see the header.
+**
+** Stream: "VIDEOO" | salt(8), once, when the connection opens, then for every frame
+**         length(4, big endian, counts what follows) | seq(4, big endian) | AES-256-GCM(VP8 frame) + tag(16)
+**         salt+seq are authenticated as additional data.
+****************************************************************************/
+static const int VIDEO_HDR = 6;
+static const int VIDEO_SALT = 8;
+static const int VIDEO_LEN = 4;
+static const int VIDEO_SEQ = 4;
+static const int VIDEO_TAG = 16;
+static const int VIDEO_MAX_FRAME = 2 * 1024 * 1024;     // anything bigger is not from us
+static const qint64 VIDEO_MAX_BACKLOG = 512 * 1024;     // unsent bytes, about two seconds of video
+static const int VIDEO_RETRY_MS = 500;
+
+lmVideoStream::lmVideoStream(QObject* parent) : QObject(nullptr) {
+    Q_UNUSED(parent);   // an object with a parent cannot be moved to another thread
+    m_thread = new QThread;
+    moveToThread(m_thread);
+    m_thread->start();
+}
+
+lmVideoStream::~lmVideoStream() {
+    stop();
+    m_thread->quit();
+    m_thread->wait();
+    delete m_thread;
+}
+
+//  Called from the main thread. The session key is read here, since the crypto object belongs to it.
+void lmVideoStream::start(const QHostAddress& peerAddress, quint16 udpPort, lmOpenSSL* crypto, const QString& peerId) {
+    QByteArray key = crypto ? crypto->sessionKey(peerId) : QByteArray();
+    QMetaObject::invokeMethod(this, [this, peerAddress, udpPort, key]() {
+        doStart(peerAddress, udpPort, key);
+    }, Qt::QueuedConnection);
+}
+
+void lmVideoStream::stop() {
+    if(QThread::currentThread() == m_thread)
+        doStop();
+    else
+        QMetaObject::invokeMethod(this, [this]() { doStop(); }, Qt::BlockingQueuedConnection);
+}
+
+void lmVideoStream::sendFrame(const QImage& image) {
+    if(image.isNull() || !m_pending.testAndSetRelaxed(0, 1))
+        return;
+    QMetaObject::invokeMethod(this, [this, image]() { doSendFrame(image); }, Qt::QueuedConnection);
+}
+
+void lmVideoStream::requestKeyframe() {
+    QMetaObject::invokeMethod(this, [this]() { m_vpx.requestKeyframe(); }, Qt::QueuedConnection);
+}
+
+void lmVideoStream::doStart(const QHostAddress& peerAddress, quint16 udpPort, const QByteArray& sessionKey) {
+    doStop();
+
+    m_peerAddress = peerAddress;
+    m_port = udpPort + VIDEO_PORT_OFFSET;
+    m_sessionKey = sessionKey;
+
+    if(m_sessionKey.isEmpty() || !m_vpx.init()) {
+        lmDebugLog::write("Error: Video call could not start (no session key or VP8 unavailable)");
+        return;
+    }
+
+    m_txSalt.resize(VIDEO_SALT);
+    RAND_bytes((unsigned char*)m_txSalt.data(), VIDEO_SALT);
+    m_txKey = lmOpenSSL::deriveVideoKey(m_sessionKey, m_txSalt);
+    if(m_txKey.isEmpty()) {
+        lmDebugLog::write("Error: Video call could not start (no session key)");
+        m_vpx.shutdown();
+        return;
+    }
+    m_txSeq = 0;
+    m_txReady = false;
+
+    //  Receive: the peer connects to us
+    m_server = new QTcpServer(this);
+    connect(m_server, &QTcpServer::newConnection, this, &lmVideoStream::onNewConnection);
+    if(!m_server->listen(QHostAddress::Any, m_port))
+        lmDebugLog::write("Error: Video could not listen on port " + QString::number(m_port));
+
+    //  Send: we connect to the peer. It may not be listening yet, so keep trying until it does.
+    m_txSock = new QTcpSocket(this);
+    m_txSock->setSocketOption(QAbstractSocket::LowDelayOption, 1);
+    connect(m_txSock, &QTcpSocket::connected, this, &lmVideoStream::onTxConnected);
+    connect(m_txSock, &QTcpSocket::disconnected, this, &lmVideoStream::onTxDisconnected);
+    m_connectTimer = new QTimer(this);
+    m_connectTimer->setInterval(VIDEO_RETRY_MS);
+    connect(m_connectTimer, &QTimer::timeout, this, &lmVideoStream::tryConnect);
+    m_connectTimer->start();
+    tryConnect();
+}
+
+void lmVideoStream::doStop() {
+    if(m_connectTimer) { m_connectTimer->stop(); delete m_connectTimer; m_connectTimer = nullptr; }
+    if(m_txSock) { m_txSock->disconnect(this); m_txSock->abort(); delete m_txSock; m_txSock = nullptr; }
+    closeRx();
+    if(m_server) { m_server->close(); delete m_server; m_server = nullptr; }
+    m_txReady = false;
+    m_vpx.shutdown();
+    m_txKey.clear();
+    m_sessionKey.clear();
+    m_pending.storeRelaxed(0);
+}
+
+void lmVideoStream::closeRx() {
+    if(m_rxSock) { m_rxSock->disconnect(this); m_rxSock->abort(); delete m_rxSock; m_rxSock = nullptr; }
+    m_rxBuf.clear();
+    m_rxHandshaken = false;
+    m_rxKey.clear();
+    m_rxSalt.clear();
+    m_rxHasSeq = false;
+}
+
+void lmVideoStream::tryConnect() {
+    if(m_txSock && m_txSock->state() == QAbstractSocket::UnconnectedState)
+        m_txSock->connectToHost(m_peerAddress, m_port);
+}
+
+void lmVideoStream::onTxConnected() {
+    m_txSock->write(DatagramTypeNames[DT_Video].toLocal8Bit() + m_txSalt);
+    m_txReady = true;
+    m_vpx.requestKeyframe();    // the peer has to start on a keyframe
+}
+
+void lmVideoStream::onTxDisconnected() {
+    m_txReady = false;          // the timer connects again
+}
+
+void lmVideoStream::doSendFrame(const QImage& image) {
+    m_pending.storeRelaxed(0);
+    //  Not encoding at all while the connection is down or behind keeps the encoder and the peer's decoder in step
+    if(!m_txReady || !m_vpx.isReady() || m_txSock->bytesToWrite() > VIDEO_MAX_BACKLOG)
+        return;
+
+    const QByteArray frame = m_vpx.encode(image);
+    if(frame.isEmpty())
+        return;
+
+    quint32 seq = m_txSeq++;
+    QByteArray seqBytes(VIDEO_SEQ, 0);
+    qToBigEndian<quint32>(seq, seqBytes.data());
+    QByteArray cipher = lmOpenSSL::sealPacket(m_txKey, seq, m_txSalt + seqBytes, frame);
+    if(cipher.isEmpty())
+        return;
+
+    QByteArray lenBytes(VIDEO_LEN, 0);
+    qToBigEndian<quint32>(quint32(VIDEO_SEQ + cipher.size()), lenBytes.data());
+    m_txSock->write(lenBytes + seqBytes + cipher);
+}
+
+void lmVideoStream::onNewConnection() {
+    while(QTcpSocket* socket = m_server->nextPendingConnection()) {
+        //  Only the peer of the call may send us video, and one connection at a time
+        if(!socket->peerAddress().isEqual(m_peerAddress, QHostAddress::ConvertV4MappedToIPv4)) {
+            socket->abort();
+            socket->deleteLater();
+            continue;
+        }
+        closeRx();
+        m_rxSock = socket;
+        m_rxSock->setParent(this);
+        connect(m_rxSock, &QTcpSocket::readyRead, this, &lmVideoStream::onRxReadyRead);
+    }
+}
+
+void lmVideoStream::onRxReadyRead() {
+    if(!m_rxSock)
+        return;
+    m_rxBuf.append(m_rxSock->readAll());
+
+    if(!m_rxHandshaken) {
+        if(m_rxBuf.size() < VIDEO_HDR + VIDEO_SALT)
+            return;
+        if(!m_rxBuf.startsWith(DatagramTypeNames[DT_Video].toLocal8Bit())) {
+            closeRx();
+            return;
+        }
+        m_rxSalt = m_rxBuf.mid(VIDEO_HDR, VIDEO_SALT);
+        m_rxKey = lmOpenSSL::deriveVideoKey(m_sessionKey, m_rxSalt);
+        if(m_rxKey.isEmpty()) {
+            closeRx();
+            return;
+        }
+        m_rxBuf.remove(0, VIDEO_HDR + VIDEO_SALT);
+        m_rxHandshaken = true;
+    }
+
+    while(true) {
+        if(m_rxBuf.size() < VIDEO_LEN)
+            break;
+        const quint32 length = qFromBigEndian<quint32>(m_rxBuf.constData());
+        if(length <= quint32(VIDEO_SEQ + VIDEO_TAG) || length > quint32(VIDEO_MAX_FRAME)) {
+            lmDebugLog::write("Warning: Video stream is not valid, closing it");
+            closeRx();
+            return;
+        }
+        if(m_rxBuf.size() < VIDEO_LEN + int(length))
+            break;
+        const quint32 seq = qFromBigEndian<quint32>(m_rxBuf.constData() + VIDEO_LEN);
+        const QByteArray seqBytes = m_rxBuf.mid(VIDEO_LEN, VIDEO_SEQ);
+        const QByteArray cipher = m_rxBuf.mid(VIDEO_LEN + VIDEO_SEQ, int(length) - VIDEO_SEQ);
+        m_rxBuf.remove(0, VIDEO_LEN + int(length));
+
+        if(m_rxHasSeq && seq <= m_rxLastSeq)
+            continue;   // replayed
+        const QByteArray frame = lmOpenSSL::openPacket(m_rxKey, seq, m_rxSalt + seqBytes, cipher);
+        if(frame.isEmpty()) {
+            lmDebugLog::write("Warning: Video frame failed authentication, closing the stream");
+            closeRx();
+            return;
+        }
+        m_rxLastSeq = seq;
+        m_rxHasSeq = true;
+
+        const QImage image = m_vpx.decode(frame);
+        if(!image.isNull())
+            emit frameReceived(image);
+    }
 }
 
 /****************************************************************************

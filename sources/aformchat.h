@@ -75,6 +75,9 @@ public slots:
     void toggleMicrophone();
     void toggleSpeaker();
     void toggleCamera();
+    //  The video views of a video call, hidden unless there is one.
+    void showLocalVideo(const QImage& image);
+    void showRemoteVideo(const QImage& image);
 
 signals:
 	void messageSent(MessageType type, QString* lpszUserId, MessageXml* pMessage);

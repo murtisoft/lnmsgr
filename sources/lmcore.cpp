@@ -22,6 +22,7 @@
 
 #include <QMessageBox>
 #include <QTranslator>
+#include <QGuiApplication>
 #include <utilapiset.h>
 #include "zdebuglog.h"
 #include "lmcore.h"
@@ -71,6 +72,14 @@ lmCore::lmCore(void) {
         if (m_audioStream)
             m_audioStream->refreshMicDevice();      // unplugged or plugged in during a call
     });
+    //  Cameras and desktops come and go during a call too
+    auto refreshVideo = [this]() {
+        if (m_videoCapture)
+            m_videoCapture->refresh();
+    };
+    connect(pMediaDevices, &QMediaDevices::videoInputsChanged, this, refreshVideo);
+    connect(qGuiApp, &QGuiApplication::screenAdded, this, refreshVideo);
+    connect(qGuiApp, &QGuiApplication::screenRemoved, this, refreshVideo);
 }
 
 lmCore::~lmCore(void) {
@@ -197,6 +206,8 @@ void lmCore::settingsChanged(void) {
 		m_audioStream->setMicDevice(micDeviceSetting());	//	switch microphone mid-call
 		applyMicActivation();
 	}
+	if(m_videoCapture)
+		m_videoCapture->setSource(camDeviceSetting());	//	switch camera or desktop mid-call
 	QString appLang = pSettings->value(IDS_LANGUAGE, IDS_LANGUAGE_VAL).toString();
 	if(appLang.compare(lang) != 0) {
 		lang = appLang;
@@ -642,7 +653,6 @@ void lmCore::callConnected(MessageType type) {
     callPhase = CP_Connected;
     emit callPhaseChanged(callPhase);
     stopLoopSound();
-    if (type == MT_Video) return; //TODO Video streaming.
     //  Attach the call to the chat window of the call peer
     lmFormChat* w = nullptr;
     for (lmFormChat* cw : std::as_const(chatWindows)) {
@@ -682,10 +692,32 @@ void lmCore::callConnected(MessageType type) {
                 m_audioStream, &lmAudioStream::setSpeakerMuted);
     }
     m_audioStream->setMicDevice(micDeviceSetting());     // queued ahead of start(), so the call opens the right device
+    m_audioStream->setCallSounds(type != MT_Video);      // a video call starts and ends with the camera sounds
     applyMicActivation();
     m_audioStream->start(QHostAddress(pUser->address),
                          pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt(),
                          pMessaging->crypto(), pUser->id);
+
+    //  A video call carries the voice above plus video. Both sides use the same ports, see lmVideoStream.
+    if (type != MT_Video)
+        return;
+    if (!m_videoStream) {
+        m_videoStream = new lmVideoStream();     // no parent: it runs on its own thread
+        m_videoCapture = new lmVideoCapture(this);
+        connect(m_videoStream, &lmVideoStream::frameReceived, w, &lmFormChat::showRemoteVideo);
+        connect(m_videoCapture, &lmVideoCapture::frameCaptured, w, &lmFormChat::showLocalVideo);
+        connect(m_videoCapture, &lmVideoCapture::frameCaptured, this, [this](const QImage& image) {
+            if (m_videoStream)
+                m_videoStream->sendFrame(image);
+        });
+        connect(w, &lmFormChat::camToggled, m_videoCapture, &lmVideoCapture::setMuted);
+    }
+    m_videoStream->start(QHostAddress(pUser->address),
+                         pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt(),
+                         pMessaging->crypto(), pUser->id);
+    m_videoCapture->setSource(camDeviceSetting());
+    m_videoCapture->start();
+    pSoundPlayer->play(SE_CamOn);
 }
 
 void lmCore::callEnded(MessageType type) {
@@ -695,6 +727,10 @@ void lmCore::callEnded(MessageType type) {
 
     callPeerId.clear();
     if (m_audioStream) { m_audioStream->stop(); delete m_audioStream; m_audioStream = nullptr; }
+    if (m_videoStream)
+        pSoundPlayer->play(SE_CamOff);
+    if (m_videoCapture) { m_videoCapture->stop(); delete m_videoCapture; m_videoCapture = nullptr; }
+    if (m_videoStream) { m_videoStream->stop(); delete m_videoStream; m_videoStream = nullptr; }
 }
 
 //  The microphone test in preferences listens to the microphone, and during a call that must not reach the other
@@ -721,6 +757,10 @@ int lmCore::micActivationSetting(void) const {
 void lmCore::applyMicActivation(void) {
     if (m_audioStream)
         m_audioStream->setMicActivation(micActivationSetting(), pSettings->value(IDS_MICTHRESHOLD, IDS_MICTHRESHOLD_VAL).toInt());
+}
+
+QString lmCore::camDeviceSetting(void) const {
+    return pSettings->value(IDS_CAMDEVICE, IDS_CAMDEVICE_VAL).toString();
 }
 
 QByteArray lmCore::micDeviceSetting(void) const {

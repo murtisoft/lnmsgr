@@ -128,7 +128,6 @@ private:
     void populateCamDevices(void);
     void updateCamPreview(void);
     void stopCamPreview(void);
-    QImage stillImage(void) const;
 
 	Ui::SettingsDialog ui;
 	lmSettings* pSettings;

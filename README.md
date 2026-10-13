@@ -17,7 +17,7 @@ Why LAN Messenger? (2026)
 * Nudging. Annoy your friends shamelessly!
 * 1 on 1 Encrypted communications.
 * Voice chat. (Opus 96kbps auto, encrypted)
-* Video chat/desktop sharing (Eventually)
+* Video chat/desktop sharing (VP8 720p 30fps 2000kbps, encrypted)
 * Multi platform (Eventually - older linux & mac versions are compatible.)
 
 How to compile LAN Messenger on Windows

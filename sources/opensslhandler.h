@@ -49,6 +49,7 @@ public:
     //  below touch no shared state and are safe to use from an audio thread.
     QByteArray sessionKey(const QString& userId) const { return sessionKeys.value(userId); }
     static QByteArray deriveVoiceKey(const QByteArray& sessionKey, const QByteArray& salt);
+    static QByteArray deriveVideoKey(const QByteArray& sessionKey, const QByteArray& salt);
     static QByteArray sealPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& clearData);
     static QByteArray openPacket(const QByteArray& key, quint32 seq, const QByteArray& aad, const QByteArray& cipherData);
 

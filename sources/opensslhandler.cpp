@@ -203,6 +203,19 @@ QByteArray lmOpenSSL::deriveVoiceKey(const QByteArray& session, const QByteArray
     return QByteArray((char*)out, outLen);
 }
 
+//	Same as deriveVoiceKey, but a different key for video so that the two never share a key.
+QByteArray lmOpenSSL::deriveVideoKey(const QByteArray& session, const QByteArray& salt) {
+    if(session.isEmpty())
+        return QByteArray();
+    QByteArray msg = QByteArray("lm-video-v1") + salt;
+    unsigned char out[EVP_MAX_MD_SIZE];
+    unsigned int outLen = 0;
+    if(!HMAC(EVP_sha256(), session.constData(), session.length(),
+             (const unsigned char*)msg.constData(), msg.length(), out, &outLen) || outLen != 32)
+        return QByteArray();
+    return QByteArray((char*)out, outLen);
+}
+
 //	AES-256-GCM, nonce built from the packet sequence number. Key must be unique per
 //	sender/stream (see deriveVoiceKey), so a sequence number is never reused with a key.
 //	Returns ciphertext followed by a 16 byte tag.

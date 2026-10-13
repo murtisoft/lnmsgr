@@ -1031,7 +1031,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QVideoWidget" name="vidCamPreview">
+               <widget class="lmWidgetVideoView" name="vidCamPreview">
                 <property name="minimumSize">
                  <size>
                   <width>320</width>
@@ -2548,9 +2548,9 @@
    <header>widgetthresholdslider.h</header>
   </customwidget>
   <customwidget>
-   <class>QVideoWidget</class>
-   <extends>QWidget</extends>
-   <header>QVideoWidget</header>
+   <class>lmWidgetVideoView</class>
+   <extends>QVideoWidget</extends>
+   <header>widgetvideoview.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -34,7 +34,7 @@
 #include "translatabletext.h"
 #include "definitionsdir.h"
 #include "audiolevel.h"
-#include <QPainter>
+#include "videocapture.h"
 #include <QScreen>
 #include <QGuiApplication>
 
@@ -642,10 +642,10 @@ void lmFormSettings::populateCamDevices(void) {
     addDevice(tr("Still Image"), QString());
     const auto screens = QGuiApplication::screens();
     for(int index = 0; index < screens.size(); index++)
-        addDevice(tr("Desktop %1").arg(index + 1), "screen:" + screens[index]->name());
+        addDevice(tr("Desktop %1").arg(index + 1), lmVideoCapture::screenKey(screens[index]));
     const auto cameras = QMediaDevices::videoInputs();
     for(const QCameraDevice& camera : cameras)
-        addDevice(camera.description(), "camera:" + QString::fromUtf8(camera.id()));
+        addDevice(camera.description(), lmVideoCapture::cameraKey(camera));
 
     if(selected < 0) {
         const QString name = camDeviceName.isEmpty() ? tr("Unknown device") : camDeviceName;
@@ -670,33 +670,17 @@ void lmFormSettings::updateCamPreview(void) {
     if(!isVisible() || ui.stackedWidget->currentWidget() != ui.pageVoiceVideo)
         return;
 
-    if(camDeviceKey.startsWith("screen:")) {
-        for(QScreen* candidate : QGuiApplication::screens()) {
-            if("screen:" + candidate->name() != camDeviceKey)
-                continue;
-            pScreenCapture = new QScreenCapture(this);
-            pScreenCapture->setScreen(candidate);
-            pCamSession->setScreenCapture(pScreenCapture);
-            pScreenCapture->start();
-        }
-    } else if(camDeviceKey.startsWith("camera:")) {
-        for(const QCameraDevice& candidate : QMediaDevices::videoInputs()) {
-            if("camera:" + QString::fromUtf8(candidate.id()) != camDeviceKey)
-                continue;
-            pCamera = new QCamera(candidate, this);
-            pCamSession->setCamera(pCamera);
-            pCamera->start();
-        }
-    } else {
-        //  QVideoWidget has no still image, so hand it a frame
-        const QImage image = stillImage();
-        QVideoFrame frame(QVideoFrameFormat(image.size(), QVideoFrameFormat::pixelFormatFromImageFormat(image.format())));
-        if(frame.map(QVideoFrame::WriteOnly)) {
-            for(int row = 0; row < image.height(); row++)
-                memcpy(frame.bits(0) + row * frame.bytesPerLine(0), image.constScanLine(row), image.bytesPerLine());
-            frame.unmap();
-            ui.vidCamPreview->videoSink()->setVideoFrame(frame);
-        }
+    if(QScreen* pScreen = lmVideoCapture::screenForKey(camDeviceKey)) {
+        pScreenCapture = new QScreenCapture(this);
+        pScreenCapture->setScreen(pScreen);
+        pCamSession->setScreenCapture(pScreenCapture);
+        pScreenCapture->start();
+    } else if(const QCameraDevice device = lmVideoCapture::cameraForKey(camDeviceKey); !device.isNull()) {
+        pCamera = new QCamera(device, this);
+        pCamSession->setCamera(pCamera);
+        pCamera->start();
+    } else if(camDeviceKey.isEmpty()) {
+        ui.vidCamPreview->showImage(lmVideoCapture::stillImage());
     }
 }
 
@@ -714,20 +698,6 @@ void lmFormSettings::stopCamPreview(void) {
         pScreenCapture = nullptr;
     }
     ui.vidCamPreview->videoSink()->setVideoFrame(QVideoFrame());
-}
-
-//  The local avatar centered on a black 720p frame, what is sent when no camera or desktop is shared.
-QImage lmFormSettings::stillImage(void) const {
-    constexpr int StillWidth = 1280, StillHeight = 720, StillAvatarSize = 240;
-    QImage image(StillWidth, StillHeight, QImage::Format_ARGB32_Premultiplied);
-    image.fill(Qt::black);
-    const QImage avatar(DefinitionsDir::avatarFile());
-    if(!avatar.isNull()) {
-        const QImage scaled = avatar.scaled(StillAvatarSize, StillAvatarSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        QPainter painter(&image);
-        painter.drawImage((StillWidth - scaled.width()) / 2, (StillHeight - scaled.height()) / 2, scaled);
-    }
-    return image;
 }
 
 void lmFormSettings::chkGlobalHotkeys_toggled(bool checked) {

@@ -47,6 +47,13 @@
          <number>0</number>
         </property>
         <item>
+         <widget class="lmWidgetVideoView" name="vidRemote">
+          <property name="visible">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QWidget" name="wgtLog" native="true">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -230,7 +237,7 @@
       </widget>
      </widget>
      <widget class="QWidget" name="layoutWidget">
-      <layout class="QVBoxLayout" name="rightLayout" stretch="0,0,0,0,0">
+      <layout class="QVBoxLayout" name="rightLayout" stretch="0,0,0,0,0,0">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -314,6 +321,13 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="lmWidgetVideoView" name="vidLocal">
+         <property name="visible">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="hLayoutToggles">
@@ -444,6 +458,11 @@
    <class>lmWidgetUserTree</class>
    <extends>QTreeWidget</extends>
    <header location="global">widgetusertree.h</header>
+  </customwidget>
+  <customwidget>
+   <class>lmWidgetVideoView</class>
+   <extends>QVideoWidget</extends>
+   <header>widgetvideoview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
