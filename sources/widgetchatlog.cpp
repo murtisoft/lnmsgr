@@ -1138,7 +1138,9 @@ if(!useDefaults && pathToLink) {
         //  Only the link target is normalized to forward slashes, the message text keeps what was typed.
         QString href = path;
         href.replace('\\', '/');
-        result += QString("<a data-isLink='true' href='file:%1'>%2</a>").arg(href, path);
+        //  Quoted paths keep their quotes in the visible text, but never in the link target.
+        QString text = m.captured(2).isEmpty() ? path : "\"" + path + "\"";
+        result += QString("<a data-isLink='true' href='file:%1'>%2</a>").arg(href, text);
         lastEnd = m.capturedEnd();
     }
     result += lpszMessage->sliced(lastEnd);

@@ -16,7 +16,6 @@ endif()
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
 #File transfer window should save icons as webp.
-#Keep quotes around enclosed links in chatlog. (link parsing)
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
