@@ -20,6 +20,10 @@ Why LAN Messenger? (2026)
 * Video chat/desktop sharing (VP8 720p 30fps 2000kbps, encrypted)
 * Multi platform (Eventually - older linux & mac versions are compatible.)
 
+User interface
+============================
+![UI](resources/UIShowcase.webp)
+
 How to compile LAN Messenger on Windows
 ============================
 This project was compiled on Windows 11 with;

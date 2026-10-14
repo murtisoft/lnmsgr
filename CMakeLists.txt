@@ -18,12 +18,12 @@ endif()
 #lblName and txtNote Elided text functionality was removed, bring it back.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #Setting migration function doesnt handle newly added ones.
-#Is there a way to handle firewall on windows, so program can access network without manual interference?
+#Is there a way to handle firewall on windows, so program can access network without manual setup?
+#All translations are a decade behind.
+#Global hotkeys can consume hotkeys for other programs. they should only be active during a call.
 
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-#Language template needs updating & All language files are decades behind.
 
 #Broadcasts arent logged into history.
 #File transfers dont have a timestamp parameter, but they generate their own.

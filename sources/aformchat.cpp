@@ -1158,7 +1158,7 @@ void lmFormChat::processStreamOp(MessageType type, MessageXml *pMessage) {
         if (type == MT_Audio) {
             emit callConnected(type);
         } else if (type == MT_Video) {
-            emit callConnected(type);  //TODO init VPX+Opus mux
+            emit callConnected(type);
         }
         break;
     case SO_Decline:
