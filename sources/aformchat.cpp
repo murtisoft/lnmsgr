@@ -995,6 +995,9 @@ void lmFormChat::nudge(bool send) {
     pNudgeAction->setEnabled(false);
     pSoundPlayer->play(SE_Nudge);
 
+    //  A window that is hidden or minimized has no position worth shaking: the animation would move it from
+    //  whatever stale position it reports and leave it there (this is how it used to land at 0,0).
+    bool onDisplay = isVisible() && !isMinimized();
     QPropertyAnimation* pAnim = new QPropertyAnimation(this, "pos");
     pAnim->setDuration(500);
 
@@ -1013,7 +1016,12 @@ void lmFormChat::nudge(bool send) {
     });
 
     pAnim->setEndValue(startPos);
-    pAnim->start(QAbstractAnimation::DeleteWhenStopped);
+    if(onDisplay)
+        pAnim->start(QAbstractAnimation::DeleteWhenStopped);
+    else {
+        pAnim->deleteLater();
+        QTimer::singleShot(5000, this, [this]() { updateButtonStates(); });  //same cooldown, since the animation's finished signal will not fire
+    }
 
     if (send){
         //Nudge Message

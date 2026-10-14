@@ -33,6 +33,10 @@
 #endif
 #include <QStringList>
 #include <QFile>
+#include <QPointer>
+#include <QScreen>
+#include <QGuiApplication>
+#include <QWidget>
 
 int Helper::indexOf(const QString array[], int size, const QString& value) {
 	for(int index = 0; index < size; index++) {
@@ -220,4 +224,31 @@ QIcon Helper::renderEmoji(const QString& emoji, int size, bool strikethrough) {
     }
 
     return QIcon(pixmap);
+}
+
+static QPointer<QScreen> s_pMainScreen;
+
+void Helper::setMainScreen(QScreen* pScreen) {
+	if(pScreen)
+		s_pMainScreen = pScreen;
+}
+
+void Helper::placeOnMainScreen(QWidget* pWindow) {
+	QScreen* pMain = s_pMainScreen;
+	if(!pWindow || !pMain || pWindow->isVisible())
+		return;
+
+	//	A window that was never moved has no position of its own yet, so the system would pick one
+	//	(usually the screen with the cursor). One that was restored from settings keeps its spot as long
+	//	as that spot is on the main window's screen.
+	if(pWindow->testAttribute(Qt::WA_Moved) && QGuiApplication::screenAt(pWindow->geometry().center()) == pMain)
+		return;
+
+	QRect avail = pMain->availableGeometry();
+	QSize size = pWindow->size().boundedTo(avail.size());
+	if(size != pWindow->size())
+		pWindow->resize(size);
+	QRect rect(QPoint(0, 0), size);
+	rect.moveCenter(avail.center());
+	pWindow->move(rect.topLeft());
 }

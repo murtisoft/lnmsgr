@@ -15,8 +15,6 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
-#Windows should pop up on whichever screen the main window was last at.
-
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Window popup and focus behaves unreliably, sometimes demanding immediate attention, causing frustration.

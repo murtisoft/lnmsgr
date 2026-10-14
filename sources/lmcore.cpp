@@ -460,6 +460,8 @@ void lmCore::showHistory(void) {
 		pHistoryWindow->init();
 	}
 	
+	Helper::placeOnMainScreen(pHistoryWindow);
+
 	//	if window is minimized it, restore it to previous state
 	if(pHistoryWindow->windowState().testFlag(Qt::WindowMinimized))
 		pHistoryWindow->setWindowState(pHistoryWindow->windowState() & ~Qt::WindowMinimized);
@@ -506,6 +508,7 @@ void lmCore::showBroadcast(void) {
 		pBroadcastWindow->init(pMessaging->isConnected());
 	}
 
+	Helper::placeOnMainScreen(pBroadcastWindow);
 	if(pBroadcastWindow->isHidden()) {
 		QList<QTreeWidgetItem*> contactsList = pMainWindow->getContactsList();
 		pBroadcastWindow->show(&contactsList);
@@ -1092,6 +1095,7 @@ void lmCore::createTransferWindow(void) {
 }
 
 void lmCore::showTransferWindow(bool show) {
+	Helper::placeOnMainScreen(pTransferWindow);
 	bool autoShow = pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool();
 	bool bringToForeground = pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool();
 
@@ -1127,6 +1131,7 @@ void lmCore::showUserInfo(MessageXml* pMessage) {
 	}
 
 	pUserInfoWindow->setInfo(pMessage);
+	Helper::placeOnMainScreen(pUserInfoWindow);
 
 	//	if window is minimized it, restore it to previous state
 	if(pUserInfoWindow->windowState().testFlag(Qt::WindowMinimized))
@@ -1165,6 +1170,7 @@ void lmCore::createChatWindow(QString* lpszUserId) {
 }
 
 void lmCore::showChatWindow(lmFormChat* chatWindow, bool show, bool alert) {
+	Helper::placeOnMainScreen(chatWindow);
 	if(show) {
 		if(chatWindow->windowState().testFlag(Qt::WindowMinimized))
 			chatWindow->setWindowState(chatWindow->windowState() & ~Qt::WindowMinimized);
@@ -1194,6 +1200,7 @@ void lmCore::createChatRoomWindow(QString* lpszThreadId) {
 }
 
 void lmCore::showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool alert, bool add) {
+	Helper::placeOnMainScreen(chatRoomWindow);
 	// if show or add is specified, bring to top
 	if(show || add) {
 		if(chatRoomWindow->windowState().testFlag(Qt::WindowMinimized))
@@ -1224,6 +1231,8 @@ void lmCore::showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool 
 }
 
 void lmCore::showPublicChatWindow(bool show, bool alert, bool open) {
+	if(show || open)
+		Helper::placeOnMainScreen(pPublicChatWindow);
 	if(show) {
 		if(pPublicChatWindow->windowState().testFlag(Qt::WindowMinimized))
 			pPublicChatWindow->setWindowState(pPublicChatWindow->windowState() & ~Qt::WindowMinimized);

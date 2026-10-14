@@ -100,6 +100,7 @@ void lmFormMain::init(User* pLocalUser, bool connected) {
 	pSoundPlayer = new lmSoundPlayer();
 	pSettings = new lmSettings();
 	restoreGeometry(pSettings->value(IDS_WINDOWMAIN).toByteArray());
+	Helper::setMainScreen(QGuiApplication::screenAt(geometry().center()));
 	//	get saved settings
 	settingsChanged(true);
 	setUIText();
@@ -118,6 +119,8 @@ void lmFormMain::moveEvent(QMoveEvent *event) {
     // Get screen based on center of window
     QScreen *scr = QGuiApplication::screenAt(frame.center());
     if (!scr) return;
+    if (!isMinimized())
+        Helper::setMainScreen(scr);
 
     QRect geom = scr->availableGeometry();
 

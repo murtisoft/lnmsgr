@@ -32,6 +32,9 @@
 #include "definitionsui.h"
 #endif
 
+class QScreen;
+class QWidget;
+
 class Helper {
 public:
 	static int indexOf(const QString array[], int size, const QString& value);
@@ -50,6 +53,12 @@ public:
 	static bool copyFile(const QString& source, const QString& destination);
     static void changeColorScheme(int index);
     static QIcon renderEmoji(const QString& emoji, int size = 32, bool strikethrough = false);
+	//	The main window reports the screen it is on, so other windows can pop up there. The screen is
+	//	remembered while the main window is hidden in the tray.
+	static void setMainScreen(QScreen* pScreen);
+	//	Call right before showing a window. A window that is hidden and is not on the main window's
+	//	screen (or has no position yet) is centered on that screen. Windows already on display are left alone.
+	static void placeOnMainScreen(QWidget* pWindow);
 };
 
 struct User {
