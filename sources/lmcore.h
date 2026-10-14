@@ -124,9 +124,9 @@ private:
     void initFileTransfer(MessageType type, FileMode mode, QString* lpszUserId, MessageXml* pMessage);
 	void showUserInfo(MessageXml* pMessage);
 	void createChatWindow(QString* lpszUserId);
-	void showChatWindow(lmFormChat* chatWindow, bool show, bool alert = false);
+	void showChatWindow(lmFormChat* chatWindow, bool show, bool alert = false, bool passive = false);
 	void createChatRoomWindow(QString* lpszThreadId);
-	void showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool alert = false, bool add = false);
+	void showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool alert = false, bool add = false, bool passive = false);
 	void showPublicChatWindow(bool show, bool alert = false, bool open = false);
     QStringList showSelectContacts(QWidget* parent, uint caps, QStringList* excludeList);
     void filterContactsList(QList<QTreeWidgetItem*>* pContactsList, uint caps, const QStringList& excludeList);

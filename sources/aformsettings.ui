@@ -115,7 +115,7 @@
         <enum>QFrame::Shadow::Plain</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="pageGeneral">
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -597,7 +597,7 @@
             <item>
              <widget class="QRadioButton" name="rdbMessageTop">
               <property name="text">
-               <string>Set incoming messages foreground</string>
+               <string>Show incoming messages without grabbing focus</string>
               </property>
              </widget>
             </item>
@@ -1014,7 +1014,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="lmWidgetVideoView" name="vidCamPreview">
+               <widget class="lmWidgetVideoView" name="vidCamPreview" native="true">
                 <property name="minimumSize">
                  <size>
                   <width>320</width>
@@ -2532,7 +2532,7 @@
   </customwidget>
   <customwidget>
    <class>lmWidgetVideoView</class>
-   <extends>QVideoWidget</extends>
+   <extends>QWidget</extends>
    <header>widgetvideoview.h</header>
   </customwidget>
  </customwidgets>

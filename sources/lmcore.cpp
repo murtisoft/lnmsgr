@@ -877,7 +877,7 @@ void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pM
                 pWindow = chatWindows.last();
             }
             pWindow->showMissedCall(type, lpszUserId, &logXml);
-            showChatWindow(pWindow, messageTop, true);
+            showChatWindow(pWindow, messageTop, true, true);
             return;
         }
         callPeerId = *lpszUserId;
@@ -953,7 +953,7 @@ void lmCore::routeMessage(MessageType type, QString* lpszUserId, MessageXml* pMe
                     && chatWindows[index]->threadId == threadId) {
                     chatWindows[index]->receiveMessage(type, lpszUserId, pMessage);
                     if(needsNotice)
-                        showChatWindow(chatWindows[index], messageTop, needsNotice);
+                        showChatWindow(chatWindows[index], messageTop, needsNotice, true);
                     windowExists = true;
                     break;
                 }
@@ -968,7 +968,7 @@ void lmCore::routeMessage(MessageType type, QString* lpszUserId, MessageXml* pMe
         createChatWindow(lpszUserId);
         chatWindows.last()->receiveMessage(type, lpszUserId, pMessage);
         if(needsNotice)
-            showChatWindow(chatWindows.last(), messageTop, needsNotice);
+            showChatWindow(chatWindows.last(), messageTop, needsNotice, true);
     }
 }
 
@@ -1023,7 +1023,7 @@ void lmCore::routeGroupMessage(MessageType type, QString* lpszUserId, MessageXml
 				}
 				if(!windowExists) {
 					createChatRoomWindow(&threadId);
-					showChatRoomWindow(chatRoomWindows.last(), messageTop, true);
+					showChatRoomWindow(chatRoomWindows.last(), messageTop, true, false, true);
 				}
 			}
 			for(int index = 0; index < chatRoomWindows.count(); index++) {
@@ -1035,7 +1035,7 @@ void lmCore::routeGroupMessage(MessageType type, QString* lpszUserId, MessageXml
 						break;
 					case GMO_Message:
 						chatRoomWindows[index]->receiveMessage(type, lpszUserId, pMessage);
-						showChatRoomWindow(chatRoomWindows[index], messageTop, true);
+						showChatRoomWindow(chatRoomWindows[index], messageTop, true, false, true);
 						break;
 					case GMO_Leave:
 						chatRoomWindows[index]->removeUser(lpszUserId);
@@ -1169,13 +1169,26 @@ void lmCore::createChatWindow(QString* lpszUserId) {
     });
 }
 
-void lmCore::showChatWindow(lmFormChat* chatWindow, bool show, bool alert) {
+void lmCore::showChatWindow(lmFormChat* chatWindow, bool show, bool alert, bool passive) {
 	Helper::placeOnMainScreen(chatWindow);
 	if(show) {
+		if(passive) {
+			//	incoming message: never grab focus
+			if(chatWindow->isHidden()) {
+				chatWindow->setAttribute(Qt::WA_ShowWithoutActivating, true);
+				chatWindow->show();
+				chatWindow->setAttribute(Qt::WA_ShowWithoutActivating, false);
+			}
+			if(alert)
+				qApp->alert(chatWindow);
+			return;
+		}
 		if(chatWindow->windowState().testFlag(Qt::WindowMinimized))
 			chatWindow->setWindowState(chatWindow->windowState() & ~Qt::WindowMinimized);
-		chatWindow->show();
-		chatWindow->activateWindow();
+		{
+			chatWindow->show();
+			chatWindow->activateWindow();
+		}
 	} else {
 		if(chatWindow->isHidden())
 			chatWindow->setWindowState(chatWindow->windowState() | Qt::WindowMinimized);
@@ -1199,14 +1212,27 @@ void lmCore::createChatRoomWindow(QString* lpszThreadId) {
 	pChatRoomWindow->init(pLocalUser, pMessaging->isConnected(), *lpszThreadId);
 }
 
-void lmCore::showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool alert, bool add) {
+void lmCore::showChatRoomWindow(lmFormChatRoom* chatRoomWindow, bool show, bool alert, bool add, bool passive) {
 	Helper::placeOnMainScreen(chatRoomWindow);
 	// if show or add is specified, bring to top
 	if(show || add) {
+		if(passive) {
+			//	incoming message: never grab focus
+			if(chatRoomWindow->isHidden()) {
+				chatRoomWindow->setAttribute(Qt::WA_ShowWithoutActivating, true);
+				chatRoomWindow->show();
+				chatRoomWindow->setAttribute(Qt::WA_ShowWithoutActivating, false);
+			}
+			if(alert)
+				qApp->alert(chatRoomWindow);
+			return;
+		}
 		if(chatRoomWindow->windowState().testFlag(Qt::WindowMinimized))
 			chatRoomWindow->setWindowState(chatRoomWindow->windowState() & ~Qt::WindowMinimized);
-		chatRoomWindow->show();
-		chatRoomWindow->activateWindow();
+		{
+			chatRoomWindow->show();
+			chatRoomWindow->activateWindow();
+		}
 	} else {
 		if(chatRoomWindow->isHidden())
 			chatRoomWindow->setWindowState(chatRoomWindow->windowState() | Qt::WindowMinimized);
