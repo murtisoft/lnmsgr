@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ar_SA">
+<TS version="2.1" language="ar_SA">
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="aboutdialog.ui" line="17"/>
+        <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
         <translation>مربع حوار</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="40"/>
+        <location line="+23"/>
         <source>&lt;Logo&gt;</source>
         <translation>&lt;Logo&gt;</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="47"/>
+        <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
         <translation>&lt;Application Title&gt;</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="60"/>
+        <location line="+7"/>
+        <source>&lt;_Qt Version&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
         <source>About</source>
         <translation>حول</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="81"/>
+        <location line="+21"/>
         <source>&lt;Description&gt;</source>
         <translation>&lt;Description&gt;</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="107"/>
+        <location line="+26"/>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Thanks</source>
-        <translation>الشكر</translation>
+        <translation type="vanished">الشكر</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="136"/>
         <source>License</source>
-        <translation>الترخيص</translation>
+        <translation type="vanished">الترخيص</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="195"/>
+        <location line="+77"/>
         <source>Close</source>
         <translation>اغلاق</translation>
     </message>
@@ -47,33 +60,33 @@
 <context>
     <name>BroadcastWindow</name>
     <message>
-        <location filename="broadcastwindow.ui" line="14"/>
+        <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
         <translation>قالب</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="143"/>
+        <location line="+132"/>
         <source>Send</source>
         <translation>ارسال</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="153"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>الغاء</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="178"/>
-        <location filename="broadcastwindow.ui" line="213"/>
+        <location line="+25"/>
+        <location line="+35"/>
         <source>Send To:</source>
         <translation>ارسال الى:</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="239"/>
+        <location line="+26"/>
         <source>Select All</source>
         <translation>تحديد الكل</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="246"/>
+        <location line="+7"/>
         <source>Select None</source>
         <translation>الغاء  تحديد الكل</translation>
     </message>
@@ -81,58 +94,118 @@
 <context>
     <name>ChatRoomWindow</name>
     <message>
-        <location filename="chatroomwindow.ui" line="14"/>
+        <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
         <translation>قالب</translation>
+    </message>
+    <message>
+        <location line="+206"/>
+        <source>Send</source>
+        <translation type="unfinished">ارسال</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ChatWindow</name>
     <message>
-        <location filename="chatwindow.ui" line="14"/>
+        <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
         <translation>قالب</translation>
+    </message>
+    <message>
+        <location line="+213"/>
+        <source>Send</source>
+        <translation type="unfinished">ارسال</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>Microphone toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Speaker toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Camera toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FileView</name>
     <message>
-        <location filename="filemodelview.cpp" line="39"/>
+        <location filename="../../sources/widgettransferlist.cpp" line="+39"/>
         <source>0 bytes</source>
         <translation>0 بايت</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="40"/>
+        <location line="+1"/>
         <source>0 bytes/sec</source>
         <translation>0 بايت/ثانية</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="41"/>
+        <location line="+1"/>
         <source>Calculating time</source>
         <translation>حساب الوقت</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="79"/>
+        <location line="+38"/>
         <source>To: </source>
         <translation>الى: </translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="79"/>
+        <location line="+0"/>
         <source>From: </source>
         <translation>من: </translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="103"/>
+        <location line="+24"/>
         <source>Completed</source>
         <translation>مكتمل</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="106"/>
+        <location line="+3"/>
         <source>Canceled</source>
         <translation>ملغي</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="109"/>
+        <location line="+3"/>
         <source>Interrupted</source>
         <translation>غير صالح</translation>
     </message>
@@ -140,30 +213,28 @@
 <context>
     <name>HelpWindow</name>
     <message>
-        <location filename="helpwindow.ui" line="14"/>
         <source>Form</source>
-        <translation>قالب</translation>
+        <translation type="vanished">قالب</translation>
     </message>
     <message>
-        <location filename="helpwindow.ui" line="55"/>
         <source>Close</source>
-        <translation>اغلاق</translation>
+        <translation type="vanished">اغلاق</translation>
     </message>
 </context>
 <context>
     <name>HistoryWindow</name>
     <message>
-        <location filename="historywindow.ui" line="14"/>
+        <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
         <translation>القالب</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="76"/>
+        <location line="+62"/>
         <source>Name</source>
         <translation>الاسم</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="81"/>
+        <location line="+5"/>
         <source>Date</source>
         <translation>التاريخ</translation>
     </message>
@@ -172,12 +243,12 @@
         <translation type="obsolete">حول:فارغة</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="133"/>
+        <location line="+52"/>
         <source>Clear History</source>
         <translation>مسح التأريخ</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="156"/>
+        <location line="+23"/>
         <source>Close</source>
         <translation>اغلاق</translation>
     </message>
@@ -185,32 +256,32 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="14"/>
+        <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
         <translation>القالب</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="124"/>
+        <location line="+110"/>
         <source>Username</source>
         <translation>اسم المستخدم</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="168"/>
+        <location line="+44"/>
         <source>Status</source>
         <translation>الحالة</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="186"/>
+        <location line="+23"/>
         <source>Type a note</source>
         <translation>اكتب مذكرة</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="211"/>
+        <location line="+25"/>
         <source>Change avatar</source>
         <translation>تغيير الصورة الرمزية</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="324"/>
+        <location line="+116"/>
         <source>Contacts</source>
         <translation>الاتصالات</translation>
     </message>
@@ -220,489 +291,654 @@
     </message>
 </context>
 <context>
+    <name>QWidgetTextControl</name>
+    <message>
+        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <source>&amp;Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="settingsdialog.ui" line="17"/>
+        <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
         <translation>مربع حوار</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="59"/>
-        <location filename="settingsdialog.ui" line="141"/>
+        <location line="+42"/>
+        <location line="+96"/>
         <source>General</source>
         <translation>عام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="64"/>
-        <location filename="settingsdialog.ui" line="329"/>
+        <location line="-91"/>
+        <location line="+262"/>
         <source>Account</source>
         <translation>الحساب</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="69"/>
-        <location filename="settingsdialog.ui" line="535"/>
-        <location filename="settingsdialog.ui" line="1937"/>
+        <location line="-257"/>
+        <location line="+518"/>
+        <location line="+1690"/>
         <source>Messages</source>
         <translation>الرسائل</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="74"/>
-        <location filename="settingsdialog.ui" line="826"/>
+        <location line="-2203"/>
+        <location line="+775"/>
+        <source>Voice &amp; Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-770"/>
+        <location line="+1015"/>
         <source>History</source>
         <translation>التأريخ</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="79"/>
-        <location filename="settingsdialog.ui" line="1014"/>
+        <location line="-1010"/>
+        <location line="+1207"/>
         <source>Alerts</source>
         <translation>التنبيهات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="84"/>
-        <location filename="settingsdialog.ui" line="1223"/>
+        <location line="-1202"/>
+        <location line="+1420"/>
         <source>Network</source>
         <translation>الشبكة</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="89"/>
-        <location filename="settingsdialog.ui" line="1603"/>
+        <location line="-1415"/>
+        <location line="+1804"/>
         <source>File Transfer</source>
         <translation>نقل الملفات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="94"/>
-        <location filename="settingsdialog.ui" line="1782"/>
+        <location line="-1799"/>
+        <location line="+1990"/>
         <source>Appearance</source>
         <translation>المظهر</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="99"/>
-        <location filename="settingsdialog.ui" line="1930"/>
+        <location line="-1985"/>
+        <location line="+2166"/>
         <source>Hotkeys</source>
         <translation>مفاتيح الوصول</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="148"/>
+        <location line="-2108"/>
+        <location line="+1949"/>
         <source>System</source>
         <translation>النظام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="154"/>
+        <location line="-1943"/>
         <source>Start %1 on system startup</source>
         <translation>تشغيل %1 عند بدء تشغيل النظام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="161"/>
+        <location line="+7"/>
         <source>Show main window when %1 starts</source>
         <translation>اظهار النافذة الرئيسية عند بدء تشغيل %1</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="171"/>
+        <location line="+7"/>
+        <source>Enable Debug Logging</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
         <source>System Tray</source>
         <translation>رمز شرط المهام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="177"/>
+        <location line="+6"/>
         <source>Show system tray icon</source>
         <translation>اظهار رمز شريط الكهام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="184"/>
+        <location line="+7"/>
         <source>Minimize main window to system tray</source>
         <translation>تصغير النافذة الرئيسية لشريط المهام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="191"/>
+        <location line="+7"/>
         <source>Single click on tray icon to open</source>
         <translation>ظغطة واحدة على رمز شريط المهام لاظهار النافذة الرئيسية</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="198"/>
         <source>Show balloon notifications in tray</source>
-        <translation>اظهار علامة البالون في شريط المهام</translation>
+        <translation type="vanished">اظهار علامة البالون في شريط المهام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="205"/>
+        <location line="+14"/>
         <source>Minimize main window using tray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="215"/>
+        <location line="+10"/>
         <source>Language</source>
         <translation>اللغة</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="223"/>
+        <location line="+8"/>
         <source>Select language:</source>
         <translation>اختيار اللغة:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="336"/>
+        <location line="+89"/>
         <source>Personal</source>
         <translation>شخصي</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="344"/>
         <source>User name as seen by contacts:</source>
-        <translation>اسم المستخدم كيف يراه المستخدمين:</translation>
+        <translation type="vanished">اسم المستخدم كيف يراه المستخدمين:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="373"/>
         <source>First Name:</source>
-        <translation>الاسم الاول:</translation>
+        <translation type="vanished">الاسم الاول:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="403"/>
         <source>Last Name:</source>
-        <translation>الاسم الاخير:</translation>
+        <translation type="vanished">الاسم الاخير:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="419"/>
+        <location line="+122"/>
         <source>About:</source>
         <translation>حول:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="447"/>
+        <location line="+35"/>
         <source>Contacts</source>
         <translation>الاتصالات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="455"/>
+        <location line="+8"/>
         <source>Refresh contacts list every</source>
         <translation>تحديث قائمة الاتصالات كل</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="485"/>
+        <location line="+30"/>
         <source>seconds</source>
         <translation>ثانية</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="542"/>
+        <location line="+66"/>
         <source>Message Window</source>
         <translation>نافذة رسالة</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="548"/>
         <source>Set incoming messages foreground</source>
-        <translation>تعيين الرسائل الواردة في الخلف</translation>
+        <translation type="vanished">تعيين الرسائل الواردة في الخلف</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="555"/>
+        <location line="+13"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>تصغير الرسائل الواردة الى شريط المهام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="580"/>
+        <location line="+25"/>
         <source>Apply to public messages</source>
         <oldsource>Apply  to public messages</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="605"/>
+        <location line="+25"/>
         <source>Show emoticons in instant messages</source>
         <translation>اظهار التعبيرات في صندوق المحادثة</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="612"/>
+        <location line="+7"/>
         <source>Add time stamp to instant messages</source>
         <translation>اضافة ختم الوقت الى صندوق المحادثة</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="637"/>
+        <location line="+25"/>
         <source>Show date in time stamp</source>
         <translation>اظهار التاريخ في ختم الوقت</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="646"/>
+        <location line="+9"/>
         <source>Allow hyperlinks in instant messages</source>
         <translation>تفعيل الروابط في صندوق المحادثة</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="671"/>
+        <location line="+25"/>
         <source>Convert network paths to links</source>
         <translation>تحويل مسار الشبكة الى رابط</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="680"/>
+        <location line="+9"/>
         <source>Remove whitespace from start and end of messages</source>
         <translation>ازالة المسافات من بداية النص واخره</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="687"/>
+        <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="697"/>
         <source>Message Font</source>
-        <translation>خط الرسائل</translation>
+        <translation type="vanished">خط الرسائل</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="705"/>
         <source>Change Font...</source>
-        <translation>تغيير الخط...</translation>
+        <translation type="vanished">تغيير الخط...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="729"/>
         <source>Change Color...</source>
-        <translation>تغيير اللون...</translation>
+        <translation type="vanished">تغيير اللون...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="753"/>
         <source>Incoming message text size:</source>
-        <translation>حجم خط الرسائل الواردة:</translation>
+        <translation type="vanished">حجم خط الرسائل الواردة:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="833"/>
+        <location line="-520"/>
+        <source>Show toast notifications in tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+120"/>
+        <source>User name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>User name as seen by contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Group :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Group as seen by contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>First Name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+20"/>
+        <location line="+32"/>
+        <source>For User Information dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-45"/>
+        <source>Last Name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+165"/>
+        <source>Show incoming messages without grabbing focus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <source>Chat Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Chat text size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Only applies to new chat windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+73"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+113"/>
+        <source>Capture Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-87"/>
+        <source>Activation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Continuous Transmission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Push to Talk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Voice Activity Threshold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+126"/>
         <source>Message History</source>
         <translation>تاريخ الرسائل</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="839"/>
+        <location line="+6"/>
         <source>Keep a history of conversations</source>
         <translation>الحفاظ على تاريخ المحادثات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="848"/>
+        <location line="+9"/>
         <source>Clear Message History</source>
         <translation>مسح تاريخ الرسائل</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="873"/>
+        <location line="+25"/>
         <source>History File Location</source>
         <translation>مسار تاريخ الملفات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="879"/>
+        <location line="+6"/>
         <source>System default location</source>
         <translation>المسار الافتراضي</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="886"/>
+        <location line="+7"/>
         <source>Custom location</source>
         <translation>مسار مخصص</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="924"/>
-        <location filename="settingsdialog.ui" line="1135"/>
-        <location filename="settingsdialog.ui" line="1708"/>
+        <location line="+38"/>
+        <location line="+220"/>
+        <location line="+591"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="936"/>
+        <location line="-799"/>
         <source>File Transfer History</source>
         <translation>تاريخ نقل المفات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="942"/>
+        <location line="+6"/>
         <source>Keep a history of file transfers</source>
         <translation>الحفاظ على تأريخ نقل الملفات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="951"/>
+        <location line="+9"/>
         <source>Clear Transfer History</source>
         <translation>مسح تأريخ النقل</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1021"/>
+        <location line="+79"/>
         <source>Status Alerts</source>
         <translation>وضع تنبيهات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1027"/>
+        <location line="+6"/>
         <source>Display status alerts</source>
         <translation>عرض وضع تنبيهات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1034"/>
+        <location line="+7"/>
         <source>Suspend alerts when my status is Busy</source>
         <translation>عدم التنبيه عندما تكون الحالة مشغول</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1041"/>
+        <location line="+7"/>
         <source>Suspend alerts when my status is Do Not Disturb</source>
         <translation>عدم التنبيه عندما تكون الحالة عدم الازعاج</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1051"/>
+        <location line="+10"/>
         <source>Sounds</source>
         <translation>الاصوات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1057"/>
+        <location line="+6"/>
         <source>Provide feedback with sounds</source>
         <translation>تفعيل التنبيه مع الصوت</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1084"/>
+        <location line="+27"/>
         <source>Play sounds for these events:</source>
         <translation>تشغيل الاصوات لهذه التنبيهات:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1155"/>
+        <location line="+71"/>
         <source>Reset All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1168"/>
+        <location line="+13"/>
         <source>Suspend sounds when my status is Busy</source>
         <translation>حظر الصوت عندما تكون الحالة مشغول</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1175"/>
+        <location line="+7"/>
         <source>Suspend sound when my status is Do Not Disturb</source>
         <translation>حظر الصوت عندما تكون الحالة عدم الازعاج</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1230"/>
+        <location line="+64"/>
         <source>Connection</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1238"/>
+        <location line="+8"/>
         <source>Connection timeout (seconds):</source>
         <translation>اتصال متاخر ثواني:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1272"/>
+        <location line="+34"/>
         <source>Maximum number of retries:</source>
         <translation>اقصى عدد من المحاولات:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1307"/>
+        <location line="+35"/>
         <source>Broadcast</source>
         <oldsource>Broadcast Settings</oldsource>
         <translation>اعدادات البث</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1313"/>
+        <location line="+6"/>
         <source>Broadcast list:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1327"/>
+        <location line="+14"/>
         <source>Broadcast address:</source>
         <oldsource>Broadcast Address:</oldsource>
         <translation>عنوان البث:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1364"/>
+        <location line="+37"/>
         <source>&lt;- Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1391"/>
+        <location line="+27"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1420"/>
+        <location line="+29"/>
         <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1428"/>
+        <location line="+8"/>
         <source>Multicast address:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1471"/>
+        <location line="+43"/>
         <source>UDP Port*:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1514"/>
+        <location line="+43"/>
         <source>TCP Port*:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1558"/>
+        <location line="+44"/>
         <source>* Takes effect after you restart %1.</source>
         <translation>* ياخذ التغييرات عند اعادتك %1.</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1610"/>
+        <location line="+61"/>
         <source>Incoming File Request</source>
         <translation>طلب ملف وارد</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1616"/>
+        <location line="+6"/>
         <source>Accept and start receiving files automatically</source>
         <translation>موافقة على استقبال الملفات تلقائيا</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1623"/>
+        <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
         <translation>عرض نقل الملفات عند الارسال او الاستقبال</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1648"/>
+        <location line="+25"/>
         <source>Bring window to foreground</source>
         <translation>احضار النافذة للامام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1675"/>
+        <location line="+27"/>
         <source>Minimize window to taskbar</source>
         <translation>تصغير نافذة البرنامج لشريط المهام</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1687"/>
+        <location line="+12"/>
         <source>Store Received Files in this Folder</source>
         <translation>حفظ الملفات الواردة في هذا المجلد</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1719"/>
+        <location line="+32"/>
         <source>View Files</source>
         <translation>عرض الملفات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1789"/>
-        <source>Chat Theme</source>
-        <translation>مظهر المحادثة</translation>
+        <location line="+82"/>
+        <source>Color Scheme</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1849"/>
+        <location line="+20"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chat Theme</source>
+        <translation type="vanished">مظهر المحادثة</translation>
+    </message>
+    <message>
+        <location line="+59"/>
         <source>Contacts List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1857"/>
+        <location line="+8"/>
         <source>Contacts list view:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1882"/>
+        <location line="+25"/>
         <source>Show status as tooltip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1948"/>
+        <location line="+75"/>
         <source>Send messages using:</source>
         <translation>ارسال رسالة باستخدام:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1973"/>
+        <location line="+25"/>
         <source>&lt;Enter&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1980"/>
+        <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2041"/>
+        <location line="+27"/>
+        <source>Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Enable global hotkeys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Toggle microphone:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location line="+17"/>
+        <location line="+17"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-27"/>
+        <source>Toggle speaker:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Toggle camera:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+67"/>
         <source>Reset Preferences</source>
         <translation>اعادة ظبط التفضيلات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2061"/>
+        <location line="+20"/>
         <source>OK</source>
         <translation>موافق</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2071"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>الغاء</translation>
     </message>
@@ -710,17 +946,17 @@
 <context>
     <name>TransferWindow</name>
     <message>
-        <location filename="transferwindow.ui" line="14"/>
+        <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="transferwindow.ui" line="88"/>
+        <location line="+74"/>
         <source>Clear List</source>
         <translation>مسح القائمة</translation>
     </message>
     <message>
-        <location filename="transferwindow.ui" line="108"/>
+        <location line="+20"/>
         <source>Close</source>
         <translation>اغلاق</translation>
     </message>
@@ -728,127 +964,124 @@
 <context>
     <name>UpdateWindow</name>
     <message>
-        <location filename="updatewindow.ui" line="14"/>
         <source>Form</source>
-        <translation>القالب</translation>
+        <translation type="vanished">القالب</translation>
     </message>
     <message>
-        <location filename="updatewindow.ui" line="82"/>
         <source>Close</source>
-        <translation>اغلاق</translation>
+        <translation type="vanished">اغلاق</translation>
     </message>
     <message>
-        <location filename="updatewindow.ui" line="92"/>
         <source>Recheck Version</source>
-        <translation>اعادة التحقق من النسخة</translation>
+        <translation type="vanished">اعادة التحقق من النسخة</translation>
     </message>
 </context>
 <context>
     <name>UserInfoWindow</name>
     <message>
-        <location filename="userinfowindow.ui" line="14"/>
+        <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
         <translation>مربع الحوار</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="34"/>
+        <location line="+20"/>
         <source>&lt;Avatar&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="43"/>
+        <location line="+9"/>
         <source>&lt;User Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="50"/>
+        <location line="+7"/>
         <source>&lt;Status&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="84"/>
+        <location line="+34"/>
         <source>Personal Information</source>
         <translation>معلومات شخصية</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="94"/>
+        <location line="+10"/>
         <source>First Name:</source>
         <translation>الاسم الاول:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="101"/>
-        <location filename="userinfowindow.ui" line="122"/>
-        <location filename="userinfowindow.ui" line="160"/>
+        <location line="+7"/>
+        <location line="+21"/>
+        <location line="+38"/>
         <source>N/A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="115"/>
+        <location line="-45"/>
         <source>Last Name:</source>
         <translation>الاسم الاخير:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="138"/>
+        <location line="+23"/>
         <source>About:</source>
         <translation>حول:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="170"/>
+        <location line="+32"/>
         <source>System Information</source>
         <translation>معلومات النظام</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="176"/>
+        <location line="+6"/>
         <source>IP Address:</source>
         <translation>عنوان ip address:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="186"/>
+        <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="193"/>
+        <location line="+7"/>
         <source>Logon Name:</source>
         <translation>اسم الدخول:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="203"/>
+        <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="210"/>
+        <location line="+7"/>
         <source>Computer Name:</source>
         <translation>اسم الكمبيوتر:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="220"/>
+        <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="227"/>
+        <location line="+7"/>
         <source>Operating System:</source>
         <translation>النظام:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="237"/>
+        <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="244"/>
+        <location line="+7"/>
         <source>Messenger Version:</source>
         <translation>اصدار الماسنجر:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="254"/>
+        <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="280"/>
+        <location line="+26"/>
         <source>Close</source>
         <translation>اغلاق</translation>
     </message>
@@ -856,12 +1089,12 @@
 <context>
     <name>UserSelectDialog</name>
     <message>
-        <location filename="userselectdialog.ui" line="17"/>
+        <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
         <translation>مربع الحوار</translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="36"/>
+        <location line="+22"/>
         <source>Contacts</source>
         <translation>الاتصالات</translation>
     </message>
@@ -870,306 +1103,1269 @@
         <translation type="obsolete">.</translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="59"/>
+        <location line="+23"/>
         <source>OK</source>
         <translation>موافق</translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="69"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>الغاء</translation>
     </message>
 </context>
 <context>
+    <name>lmChatLog</name>
+    <message>
+        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <source>This message was not delivered to %1:</source>
+        <translation type="unfinished">هذه الرسالة لم تصل ل %1:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Your message was not sent.</source>
+        <translation type="unfinished">رسالة لم ترسل.</translation>
+    </message>
+    <message>
+        <location line="+491"/>
+        <source>Broadcast message from %1:</source>
+        <translation type="unfinished">تلقي رسالة من %1:</translation>
+    </message>
+    <message>
+        <location line="+161"/>
+        <source>Requesting %1 call from %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+92"/>
+        <source>Cancel</source>
+        <translation type="unfinished">الغاء</translation>
+    </message>
+    <message>
+        <location line="-89"/>
+        <location line="+28"/>
+        <source>Call in progress.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call declined.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call aborted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>%1 is requesting %2 call.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+109"/>
+        <source>Accept</source>
+        <translation type="unfinished">موافق</translation>
+    </message>
+    <message>
+        <location line="-108"/>
+        <location line="+109"/>
+        <source>Decline</source>
+        <translation type="unfinished">رفض</translation>
+    </message>
+    <message>
+        <location line="-52"/>
+        <source>Sending &apos;%1&apos; to %2.</source>
+        <translation type="unfinished">ارسال %1 الى %2.</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>%1 is sending you a file:</source>
+        <translation type="unfinished">%1 يرسل لك ملف:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 is sending you a folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 sends you a file:</source>
+        <translation type="unfinished">%1 ارسل لك ملف:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 sends you a folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+60"/>
+        <location line="+0"/>
+        <source>Accepted</source>
+        <translation type="unfinished">موافقة</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show in Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <location line="+0"/>
+        <source>Declined</source>
+        <translation type="unfinished">رفض</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+0"/>
+        <source>Canceled</source>
+        <translation type="unfinished">ملغي</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <location line="+0"/>
+        <source>Interrupted</source>
+        <translation type="unfinished">غير صالح</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+0"/>
+        <source>Completed</source>
+        <translation type="unfinished">مكتمل</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>%1 is typing...</source>
+        <translation type="unfinished">%1 يكتب الان...</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 has entered text</source>
+        <translation type="unfinished">%1 قام بادخال حروف</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>%1 has joined this conversation</source>
+        <translation type="unfinished">%1 قام بالدخول لهذه المحادثة</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 has left this conversation</source>
+        <translation type="unfinished">%1 قد غادر هذه المحادثة</translation>
+    </message>
+    <message>
+        <location line="+181"/>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;نسخ</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Select &amp;All</source>
+        <translation type="unfinished">اختيار &amp;الكل</translation>
+    </message>
+</context>
+<context>
+    <name>lmCore</name>
+    <message>
+        <location filename="../../sources/lmcore.cpp" line="+158"/>
+        <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+58"/>
+        <source>LAYOUT_DIRECTION</source>
+        <translation type="unfinished">RTL</translation>
+    </message>
+    <message>
+        <location line="+465"/>
+        <source>No microphone is available. Your voice cannot be sent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Your selected microphone is not available. Using %1 instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+146"/>
+        <source>The %1 hotkey (%2) is not active: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Hotkey</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+486"/>
+        <source>A port address conflict has been detected. %1 will close now.</source>
+        <translation type="unfinished">تعارض في المنافذ تم الكشف عليه. %1 سوف يتم الاغلاق الان.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
+        <translation type="unfinished">%1 لا يمكن التشغيل لوجود برنامج اخر يستعمل المنفذ المخصص لتشغيل مع %2.</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormAbout</name>
+    <message>
+        <location filename="../../sources/aformabout.cpp" line="+68"/>
+        <source>About %1</source>
+        <translation type="unfinished">حول %1</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormBroadcast</name>
+    <message>
+        <location filename="../../sources/aformbroadcast.cpp" line="+340"/>
+        <source>Send Broadcast Message</source>
+        <translation type="unfinished">ارسال رسالة بث</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>You are not connected. Broadcast message cannot be sent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Select at least one recipient to send a broadcast.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Type a message to send.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>You are no longer connected. Broadcast message cannot be sent.</source>
+        <translation type="unfinished">انت لم تعد متصل بث الرسالة لم يعد متاحا.</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormChat</name>
+    <message>
+        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <source>Group Conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+147"/>
+        <source>%1 says...</source>
+        <translation type="unfinished">%1 يقول...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Broadcast from %1</source>
+        <translation type="unfinished">بث من %1</translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>%1 sends a file...</source>
+        <translation type="unfinished">%1 يرسل ملف...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 sends a folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+349"/>
+        <source>Save Conversation</source>
+        <translation type="unfinished">حفظ المحادثة</translation>
+    </message>
+    <message>
+        <location line="+211"/>
+        <source>Sent a nudge!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send A File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send A Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Nudge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Voice Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Video Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Hang Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>History</source>
+        <translation type="unfinished">التأريخ</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File Transfers</source>
+        <translation type="unfinished">ارسال ملف</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Send a file to %1</source>
+        <translation type="unfinished">ارسال ملف الى %1</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Send a folder to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Save this conversation</source>
+        <translation type="unfinished">حفظ هذه المحادثة</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>View History</source>
+        <translation type="unfinished">عرض التأريخ</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>View File Transfers</source>
+        <translation type="unfinished">عرض الملفات المرسلة</translation>
+    </message>
+    <message>
+        <location line="+138"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 is offline.</source>
+        <translation type="unfinished">%1 غير متصل.</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>%1 is away.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>%1 is busy. You may be interrupting.</source>
+        <translation type="unfinished">%1 مشغول ربما تزعجه.</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Conversation</source>
+        <translation type="unfinished">محادثة</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormChatRoom</name>
+    <message>
+        <location filename="../../sources/aformchatroom.cpp" line="+190"/>
+        <source>Group Conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+133"/>
+        <source>%1 says...</source>
+        <translation type="unfinished">%1 يقول...</translation>
+    </message>
+    <message>
+        <location line="+177"/>
+        <source>Save Conversation</source>
+        <translation type="unfinished">حفظ المحادثة</translation>
+    </message>
+    <message>
+        <location line="+134"/>
+        <source>Conversation</source>
+        <translation type="unfinished">محادثة</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save this conversation</source>
+        <translation type="unfinished">حفظ هذه المحادثة</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Add people to this conversation</source>
+        <translation type="unfinished">اضافة اشخاص لهذه المحادثة</translation>
+    </message>
+    <message>
+        <location line="+70"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Chat Room</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Public Chat</source>
+        <translation type="unfinished">محادثة عامة</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormHistory</name>
+    <message>
+        <location filename="../../sources/aformhistory.cpp" line="+126"/>
+        <source>Message History</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormMain</name>
+    <message>
+        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <source>%1 is online.</source>
+        <translation type="unfinished">%1 متصل.</translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>%1 is offline.</source>
+        <translation type="unfinished">%1 غير متصل.</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>You are online.</source>
+        <translation type="unfinished">انت متصل.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+228"/>
+        <source>Select avatar picture</source>
+        <translation type="unfinished">اختيار الصورة الرمزية</translation>
+    </message>
+    <message>
+        <location line="+385"/>
+        <source>&amp;Messenger</source>
+        <translation type="unfinished">&amp;ماسنجر</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+29"/>
+        <source>&amp;New Chat Room</source>
+        <translation type="unfinished">&amp;غرفة محادثة جديدة</translation>
+    </message>
+    <message>
+        <location line="-28"/>
+        <location line="+29"/>
+        <source>&amp;Public Chat</source>
+        <translation type="unfinished">&amp;محادثة عامة</translation>
+    </message>
+    <message>
+        <location line="-28"/>
+        <source>&amp;Refresh Contacts List</source>
+        <translation type="unfinished">&amp;تحديث قائمة الاتصالات</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+16"/>
+        <source>E&amp;xit</source>
+        <translation type="unfinished">&amp;خروج</translation>
+    </message>
+    <message>
+        <location line="-15"/>
+        <source>&amp;Tools</source>
+        <translation type="unfinished">&amp;ادوات</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+10"/>
+        <source>&amp;History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+10"/>
+        <source>File &amp;Transfers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+10"/>
+        <source>&amp;Preferences</source>
+        <translation type="unfinished">&amp;تفضيلات</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished">&amp;مساعدة</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>%1 &amp;online</source>
+        <translation type="unfinished">%1 &amp;اونلاين</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+7"/>
+        <source>&amp;About</source>
+        <translation type="unfinished">&amp;حول</translation>
+    </message>
+    <message>
+        <location line="-6"/>
+        <source>&amp;Show %1</source>
+        <translation type="unfinished">&amp;عرض %1</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Status</source>
+        <translation type="unfinished">&amp;تغير الحالة</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+6"/>
+        <source>&amp;Conversation</source>
+        <translation type="unfinished">&amp;محادثة</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <location line="+7"/>
+        <source>Send &amp;Broadcast Message</source>
+        <translation type="unfinished">ارسال &amp;استقبال الرسائل</translation>
+    </message>
+    <message>
+        <location line="-6"/>
+        <location line="+5"/>
+        <source>Send &amp;File</source>
+        <translation type="unfinished">ارسال &amp;ملف</translation>
+    </message>
+    <message>
+        <location line="-4"/>
+        <source>Send Fol&amp;der</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get &amp;Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Browse for more pictures...</source>
+        <translation type="unfinished">استعراض لمزيد من ال&amp;صور...</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
+        <translation type="unfinished">%1 سوف يستمر في التشغيل الخلفي. تفعيل هذا الرمز لاستعادة نافذة البرنامج.</translation>
+    </message>
+    <message>
+        <location line="+183"/>
+        <source>%1 - Not Connected</source>
+        <translation type="unfinished">%1 - غير متصل</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormSettings</name>
+    <message>
+        <location filename="../../sources/aformsettings.cpp" line="+286"/>
+        <source>Save History</source>
+        <translation type="unfinished">تخزين التأريخ</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Select folder</source>
+        <translation type="unfinished">تحديد مجلد</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Are you sure you want to reset your %1 preferences?</source>
+        <translation type="unfinished">هل انت متأكد من اعادة ضبط اعدادات %1 الشخصية?</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Reset Preferences</source>
+        <translation type="unfinished">اعادة ظبط التفضيلات</translation>
+    </message>
+    <message>
+        <location line="+122"/>
+        <source>&lt;File Not Found&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Select sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+82"/>
+        <source>The microphone is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+240"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-201"/>
+        <source>Default Communication Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <location line="+37"/>
+        <source>Unknown device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-36"/>
+        <location line="+37"/>
+        <source>%1 (Not connected)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Still Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Desktop %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+87"/>
+        <source>Push to talk:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>%1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 and %2 cannot share the same hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Preferences</source>
+        <translation type="unfinished">التفضيلات</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>System Tray (Not Available)</source>
+        <translation type="unfinished">رمز شريط المهان غير متاح</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Status Alerts (Not Available)</source>
+        <translation type="unfinished">وضع التنبيهات غير متاح</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Sounds (Not Available)</source>
+        <translation type="unfinished">الاصوات غير متاح</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Calls (Not Available)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormTransfer</name>
+    <message>
+        <location filename="../../sources/aformtransfer.cpp" line="+177"/>
+        <source>&apos;%1&apos; has been sent to %2.</source>
+        <translation type="unfinished">%1 تم االارسال الى %2.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+15"/>
+        <source>File Transfer Completed</source>
+        <translation type="unfinished">تم ارسال الملف</translation>
+    </message>
+    <message>
+        <location line="-2"/>
+        <source>&apos;%1&apos; has been received from %2.</source>
+        <translation type="unfinished">%1 تم استقبال ملف من %2.</translation>
+    </message>
+    <message>
+        <location line="+124"/>
+        <source>File Transfers</source>
+        <translation type="unfinished">ارسال ملف</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Cancel</source>
+        <translation type="unfinished">الغاء</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show In Folder</source>
+        <translation type="unfinished">عرض في مجلد</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Remove From List</source>
+        <translation type="unfinished">ازالة من القائمة</translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Calculating time</source>
+        <translation type="unfinished">حساب الوقت</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>/sec</source>
+        <translation type="unfinished">/ثانية</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormUserInfo</name>
+    <message>
+        <location filename="../../sources/aformuserinfo.cpp" line="+77"/>
+        <source>User Information</source>
+        <translation type="unfinished">معلومات المستخدم</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormUserSelect</name>
+    <message>
+        <location filename="../../sources/aformuserselect.cpp" line="+172"/>
+        <source>Select Contacts</source>
+        <translation type="unfinished">اختيار الاتصالات</translation>
+    </message>
+</context>
+<context>
+    <name>lmHotkeyHandler</name>
+    <message>
+        <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Use a single key combination.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+138"/>
+        <source>This key cannot be used as a global hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-135"/>
+        <source>Combine the key with Ctrl, Alt or Win.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>Same combination as the %1 hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+66"/>
+        <source>Already in use by another application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Windows refused the hotkey (error %1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>Global hotkeys are not supported on this platform.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmStrings</name>
+    <message>
+        <location filename="../../sources/translatabletext.cpp" line="+51"/>
+        <source>LAN Messenger</source>
+        <translation type="unfinished">لان ماسنجر</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>LAN Messenger is a free peer-to-peer messaging application for
+intra-network communication and does not require a server.
+LAN Messenger works on essentially every popular desktop platform.
+
+You can support LAN Messenger by contributing code, translations,
+bug fixes or reports.
+Help us grow by sharing the project with others!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Small (8.25pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Medium (9pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Large (10.5pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Available</source>
+        <translation type="unfinished">متصل</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Busy</source>
+        <translation type="unfinished">مشغول</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Do Not Disturb</source>
+        <translation type="unfinished">عدم الازعاج</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Be Right Back</source>
+        <translation type="unfinished">سأعود لاحقا</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Away</source>
+        <translation type="unfinished">بعيد</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Appear Offline</source>
+        <translation type="unfinished">غير متصل</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Incoming message</source>
+        <translation type="unfinished">رسائل واردة</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>User is online</source>
+        <translation type="unfinished">المستخدم متصل</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>User is offline</source>
+        <translation type="unfinished">المستخدم غير متصل</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming file transfer</source>
+        <translation type="unfinished">ملفات واردة</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File transfer completed</source>
+        <translation type="unfinished">تم نقل الملفات</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming public message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Microphone on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Microphone off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Outgoing call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Nudge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Talking while microphone muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Detailed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Compact</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmWidgetThresholdSlider</name>
+    <message>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <source>%1 dB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>lmcAboutDialog</name>
     <message>
-        <location filename="aboutdialog.cpp" line="70"/>
         <source>About %1</source>
-        <translation>حول %1</translation>
+        <translation type="vanished">حول %1</translation>
     </message>
 </context>
 <context>
     <name>lmcBroadcastWindow</name>
     <message>
-        <location filename="broadcastwindow.cpp" line="299"/>
         <source>Send Broadcast Message</source>
-        <translation>ارسال رسالة بث</translation>
+        <translation type="vanished">ارسال رسالة بث</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="302"/>
         <source>Change Font Size</source>
-        <translation>تغيير حجم الخط</translation>
+        <translation type="vanished">تغيير حجم الخط</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="303"/>
         <source>Insert Smiley</source>
-        <translation>ادخال تعبيرات</translation>
+        <translation type="vanished">ادخال تعبيرات</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="339"/>
         <source>No recipient selected</source>
-        <translation>لا مستلم محمد</translation>
+        <translation type="vanished">لا مستلم محمد</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="340"/>
         <source>Please select at least one recipient to send a broadcast.</source>
-        <translation>الرجاء اختيار على الاقل مستلم واحد.</translation>
+        <translation type="vanished">الرجاء اختيار على الاقل مستلم واحد.</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="362"/>
         <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation>انت لم تعد متصل بث الرسالة لم يعد متاحا.</translation>
+        <translation type="vanished">انت لم تعد متصل بث الرسالة لم يعد متاحا.</translation>
     </message>
 </context>
 <context>
     <name>lmcChatRoomWindow</name>
     <message>
-        <location filename="chatroomwindow.cpp" line="165"/>
         <source>Group Conversation</source>
-        <translation>مجموعة محادثة</translation>
+        <translation type="vanished">مجموعة محادثة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="300"/>
         <source>%1 says...</source>
-        <translation>%1 يقول...</translation>
+        <translation type="vanished">%1 يقول...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="465"/>
         <source>Select Font</source>
-        <translation>اختيار الخط</translation>
+        <translation type="vanished">اختيار الخط</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="471"/>
         <source>Select Color</source>
-        <translation>اختيار اللون</translation>
+        <translation type="vanished">اختيار اللون</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="480"/>
         <source>Save Conversation</source>
-        <translation>حفظ المحادثة</translation>
+        <translation type="vanished">حفظ المحادثة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="619"/>
         <source>Participants</source>
-        <translation>المشاركون</translation>
+        <translation type="vanished">المشاركون</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="621"/>
         <source>&amp;Conversation</source>
-        <translation>&amp;محادثة</translation>
+        <translation type="vanished">&amp;محادثة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="622"/>
         <source>Send &amp;File</source>
-        <translation>ارسال &amp;ملف</translation>
+        <translation type="vanished">ارسال &amp;ملف</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="623"/>
         <source>Get &amp;Information</source>
-        <translation>احضار &amp;معلومات</translation>
+        <translation type="vanished">احضار &amp;معلومات</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="624"/>
         <source>Insert Smiley</source>
-        <translation>ادخال التعبيرات</translation>
+        <translation type="vanished">ادخال التعبيرات</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="625"/>
         <source>&amp;Save As...</source>
-        <translation>&amp;حفظ باسم...</translation>
+        <translation type="vanished">&amp;حفظ باسم...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="626"/>
         <source>Save this conversation</source>
-        <translation>حفظ هذه المحادثة</translation>
+        <translation type="vanished">حفظ هذه المحادثة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="627"/>
         <source>Change Font...</source>
-        <translation>تغيير الخط...</translation>
+        <translation type="vanished">تغيير الخط...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="628"/>
         <source>Change message font</source>
-        <translation>تغيير خط الرسالة</translation>
+        <translation type="vanished">تغيير خط الرسالة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="629"/>
         <source>Change Color...</source>
-        <translation>تغيير اللون...</translation>
+        <translation type="vanished">تغيير اللون...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="630"/>
         <source>Change message text color</source>
-        <translation>تغيير لون خط الرسالة</translation>
+        <translation type="vanished">تغيير لون خط الرسالة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="633"/>
         <source>&amp;Add Contacts...</source>
-        <translation>&amp;اضافة جهة اتصال...</translation>
+        <translation type="vanished">&amp;اضافة جهة اتصال...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="634"/>
         <source>Add people to this conversation</source>
-        <translation>اضافة اشخاص لهذه المحادثة</translation>
+        <translation type="vanished">اضافة اشخاص لهذه المحادثة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="704"/>
         <source>You are no longer connected.</source>
-        <translation>انت لم تعد متصل.</translation>
+        <translation type="vanished">انت لم تعد متصل.</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="728"/>
         <source>Conversation</source>
-        <translation>محادثة</translation>
+        <translation type="vanished">محادثة</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="730"/>
         <source>Public Chat</source>
-        <translation>محادثة عامة</translation>
+        <translation type="vanished">محادثة عامة</translation>
     </message>
 </context>
 <context>
     <name>lmcChatWindow</name>
     <message>
-        <location filename="chatwindow.cpp" line="152"/>
         <source>Group Conversation</source>
-        <translation>مجموعة المحادثة</translation>
+        <translation type="vanished">مجموعة المحادثة</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="174"/>
         <source>%1 says...</source>
-        <translation>%1 يقول...</translation>
+        <translation type="vanished">%1 يقول...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="182"/>
         <source>Broadcast from %1</source>
-        <translation>بث من %1</translation>
+        <translation type="vanished">بث من %1</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="225"/>
         <source>%1 sends a file...</source>
-        <translation>%1 يرسل ملف...</translation>
+        <translation type="vanished">%1 يرسل ملف...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="227"/>
-        <source>%1 sends a folder...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="380"/>
         <source>Select Font</source>
-        <translation>اختيار الخط</translation>
+        <translation type="vanished">اختيار الخط</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="386"/>
         <source>Select Color</source>
-        <translation>اختيار اللون</translation>
+        <translation type="vanished">اختيار اللون</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="413"/>
         <source>Save Conversation</source>
-        <translation>حفظ المحادثة</translation>
+        <translation type="vanished">حفظ المحادثة</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="530"/>
         <source>Insert Smiley</source>
-        <translation>ادخال وجوه تعبيرية</translation>
+        <translation type="vanished">ادخال وجوه تعبيرية</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="531"/>
         <source>Send A &amp;File...</source>
-        <translation>ارسال &amp;ملف...</translation>
+        <translation type="vanished">ارسال &amp;ملف...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="532"/>
-        <source>Send A Fol&amp;der...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="533"/>
         <source>&amp;Save As...</source>
-        <translation>&amp;حفظ باسم...</translation>
+        <translation type="vanished">&amp;حفظ باسم...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="534"/>
         <source>&amp;History</source>
-        <translation>&amp;تأريخ</translation>
+        <translation type="vanished">&amp;تأريخ</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="535"/>
         <source>File &amp;Transfers</source>
-        <translation>&amp;نقل ملف</translation>
+        <translation type="vanished">&amp;نقل ملف</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="537"/>
         <source>Send a file to %1</source>
-        <translation>ارسال ملف الى %1</translation>
+        <translation type="vanished">ارسال ملف الى %1</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="539"/>
-        <source>Send a folder to %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="542"/>
         <source>Save this conversation</source>
-        <translation>حفظ هذه المحادثة</translation>
+        <translation type="vanished">حفظ هذه المحادثة</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="543"/>
         <source>View History</source>
-        <translation>عرض التأريخ</translation>
+        <translation type="vanished">عرض التأريخ</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="544"/>
         <source>View File Transfers</source>
-        <translation>عرض الملفات المرسلة</translation>
+        <translation type="vanished">عرض الملفات المرسلة</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="545"/>
         <source>Change Font...</source>
-        <translation>تغيير الخط...</translation>
+        <translation type="vanished">تغيير الخط...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="546"/>
         <source>Change message font</source>
-        <translation>تغيي خط الرسالة</translation>
+        <translation type="vanished">تغيي خط الرسالة</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="547"/>
         <source>Change Color...</source>
-        <translation>تغيير اللون...</translation>
+        <translation type="vanished">تغيير اللون...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="548"/>
         <source>Change message text color</source>
-        <translation>تغيير لون خط الرسالة</translation>
+        <translation type="vanished">تغيير لون خط الرسالة</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="658"/>
         <source>You are no longer connected.</source>
-        <translation>انت لم تعد متصل.</translation>
+        <translation type="vanished">انت لم تعد متصل.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="661"/>
         <source>%1 is offline.</source>
-        <translation>%1 غير متصل.</translation>
+        <translation type="vanished">%1 غير متصل.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="665"/>
-        <source>%1 is away.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="669"/>
         <source>%1 is busy. You may be interrupting.</source>
-        <translation>%1 مشغول ربما تزعجه.</translation>
+        <translation type="vanished">%1 مشغول ربما تزعجه.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="693"/>
         <source>Conversation</source>
-        <translation>محادثة</translation>
+        <translation type="vanished">محادثة</translation>
     </message>
 </context>
 <context>
@@ -1179,34 +2375,22 @@
         <translation type="obsolete">RTL</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="149"/>
-        <source>Preferences could not be imported from &apos;%1&apos;.
-
-File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc.cpp" line="156"/>
-        <location filename="lmc.cpp" line="196"/>
         <source>LAYOUT_DIRECTION</source>
-        <translation>RTL</translation>
+        <translation type="vanished">RTL</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="969"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation>تعارض في المنافذ تم الكشف عليه. %1 سوف يتم الاغلاق الان.</translation>
+        <translation type="vanished">تعارض في المنافذ تم الكشف عليه. %1 سوف يتم الاغلاق الان.</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="971"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation>%1 لا يمكن التشغيل لوجود برنامج اخر يستعمل المنفذ المخصص لتشغيل مع %2.</translation>
+        <translation type="vanished">%1 لا يمكن التشغيل لوجود برنامج اخر يستعمل المنفذ المخصص لتشغيل مع %2.</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="143"/>
         <source>Your preferences file is corrupt or invalid.
 
 %1 is unable to recover your settings.</source>
-        <translation>ملف تفضيلاتك غير صالح او معطوب.
+        <translation type="vanished">ملف تفضيلاتك غير صالح او معطوب.
 
 %1 لايمكنه استعادة اعداداتك.</translation>
     </message>
@@ -1214,652 +2398,484 @@ File may not exist, or may not be compatible with this version of %2.</source>
 <context>
     <name>lmcHelpWindow</name>
     <message>
-        <location filename="helpwindow.cpp" line="99"/>
         <source>Help</source>
-        <translation>مساعدة</translation>
+        <translation type="vanished">مساعدة</translation>
     </message>
     <message>
-        <location filename="helpwindow.cpp" line="105"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;مرحبا في مساعد برنامج لان ماسنجر&lt;/h2&gt;&lt;h3&gt;منساعدة&lt;/h3&gt;&lt;p&gt;يمكنك الحصول على ملفات المساعدة على موقع لان ماسنجر&lt;a href=&apos;%1&apos;&gt;ويكي&lt;/a&gt; .&lt;/p&gt;&lt;p&gt;قبل السؤال على اي شي ارجو الاطلاع على&lt;a href=&apos;%2&apos;&gt;الاسئلة المجابة&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;قد تحصل بعد ذلك (ويعطي) تساعد على&lt;a href=&apos;%3&apos;&gt;منتدى الدعم&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;المساهمة في مشروع&lt;/h3&gt;&lt;p&gt;يمكنك المساعدة في هذا المشروع لان ماسنجر اعطاء بعض من وقتك لمساعدة المجتمع، بالترجمة &lt;b&gt;تعزيز&lt;/b&gt;لان ماسنجر&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;مرحبا في مساعد برنامج لان ماسنجر&lt;/h2&gt;&lt;h3&gt;منساعدة&lt;/h3&gt;&lt;p&gt;يمكنك الحصول على ملفات المساعدة على موقع لان ماسنجر&lt;a href=&apos;%1&apos;&gt;ويكي&lt;/a&gt; .&lt;/p&gt;&lt;p&gt;قبل السؤال على اي شي ارجو الاطلاع على&lt;a href=&apos;%2&apos;&gt;الاسئلة المجابة&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;قد تحصل بعد ذلك (ويعطي) تساعد على&lt;a href=&apos;%3&apos;&gt;منتدى الدعم&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;المساهمة في مشروع&lt;/h3&gt;&lt;p&gt;يمكنك المساعدة في هذا المشروع لان ماسنجر اعطاء بعض من وقتك لمساعدة المجتمع، بالترجمة &lt;b&gt;تعزيز&lt;/b&gt;لان ماسنجر&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
     <name>lmcHistoryWindow</name>
     <message>
-        <location filename="historywindow.cpp" line="128"/>
         <source>Message History</source>
-        <translation>تأريخ الرسائل</translation>
+        <translation type="vanished">تأريخ الرسائل</translation>
     </message>
 </context>
 <context>
     <name>lmcMainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="211"/>
         <source>%1 is online.</source>
-        <translation>%1 متصل.</translation>
+        <translation type="vanished">%1 متصل.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="246"/>
         <source>%1 is offline.</source>
-        <translation>%1 غير متصل.</translation>
+        <translation type="vanished">%1 غير متصل.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="267"/>
         <source>You are online.</source>
-        <translation>انت متصل.</translation>
+        <translation type="vanished">انت متصل.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1074"/>
         <source>%1 - Not Connected</source>
-        <translation>%1 - غير متصل</translation>
+        <translation type="vanished">%1 - غير متصل</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="269"/>
         <source>You are no longer connected.</source>
-        <translation>انت لم تعد على اتصال.</translation>
+        <translation type="vanished">انت لم تعد على اتصال.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="443"/>
         <source>Select avatar picture</source>
-        <translation>اختيار الصورة الرمزية</translation>
+        <translation type="vanished">اختيار الصورة الرمزية</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="564"/>
         <source>Add New Group</source>
-        <translation>اضافة مجموعة جديدة</translation>
+        <translation type="vanished">اضافة مجموعة جديدة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="564"/>
         <source>Enter a name for the group</source>
-        <translation>ادخل اسم المجموعة الجديدة</translation>
+        <translation type="vanished">ادخل اسم المجموعة الجديدة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="570"/>
-        <location filename="mainwindow.cpp" line="603"/>
         <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation>اسم المجموعة %1 موجود مسبقا الرجاء ادخال اسم مختلف.</translation>
+        <translation type="vanished">اسم المجموعة %1 موجود مسبقا الرجاء ادخال اسم مختلف.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="596"/>
         <source>Rename Group</source>
-        <translation>اعادة تسمية المجموعة</translation>
+        <translation type="vanished">اعادة تسمية المجموعة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="597"/>
         <source>Enter a new name for the group</source>
-        <translation>ادخال اسم جديد للمجموعة</translation>
+        <translation type="vanished">ادخال اسم جديد للمجموعة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="841"/>
         <source>&amp;Messenger</source>
-        <translation>&amp;ماسنجر</translation>
+        <translation type="vanished">&amp;ماسنجر</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="842"/>
-        <location filename="mainwindow.cpp" line="876"/>
         <source>&amp;New Chat Room</source>
-        <translation>&amp;غرفة محادثة جديدة</translation>
+        <translation type="vanished">&amp;غرفة محادثة جديدة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="843"/>
-        <location filename="mainwindow.cpp" line="877"/>
         <source>&amp;Public Chat</source>
-        <translation>&amp;محادثة عامة</translation>
+        <translation type="vanished">&amp;محادثة عامة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="844"/>
         <source>&amp;Refresh Contacts List</source>
-        <translation>&amp;تحديث قائمة الاتصالات</translation>
+        <translation type="vanished">&amp;تحديث قائمة الاتصالات</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="845"/>
-        <location filename="mainwindow.cpp" line="863"/>
         <source>E&amp;xit</source>
-        <translation>&amp;خروج</translation>
+        <translation type="vanished">&amp;خروج</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="846"/>
         <source>&amp;Tools</source>
-        <translation>&amp;ادوات</translation>
+        <translation type="vanished">&amp;ادوات</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="847"/>
-        <location filename="mainwindow.cpp" line="859"/>
         <source>&amp;History</source>
-        <translation>&amp;التأريخ</translation>
+        <translation type="vanished">&amp;التأريخ</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="848"/>
-        <location filename="mainwindow.cpp" line="860"/>
         <source>File &amp;Transfers</source>
-        <translation>&amp;نقل ملفات</translation>
+        <translation type="vanished">&amp;نقل ملفات</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="849"/>
-        <location filename="mainwindow.cpp" line="861"/>
         <source>&amp;Preferences</source>
-        <translation>&amp;تفضيلات</translation>
+        <translation type="vanished">&amp;تفضيلات</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="850"/>
-        <location filename="mainwindow.cpp" line="851"/>
         <source>&amp;Help</source>
-        <translation>&amp;مساعدة</translation>
+        <translation type="vanished">&amp;مساعدة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="852"/>
         <source>%1 &amp;online</source>
-        <translation>%1 &amp;اونلاين</translation>
+        <translation type="vanished">%1 &amp;اونلاين</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="854"/>
         <source>Check for &amp;Updates...</source>
-        <translation>تحقق من ال&amp;تحديثات...</translation>
+        <translation type="vanished">تحقق من ال&amp;تحديثات...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="855"/>
-        <location filename="mainwindow.cpp" line="862"/>
         <source>&amp;About</source>
-        <translation>&amp;حول</translation>
+        <translation type="vanished">&amp;حول</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="856"/>
         <source>&amp;Show %1</source>
-        <translation>&amp;عرض %1</translation>
+        <translation type="vanished">&amp;عرض %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="858"/>
         <source>&amp;Change Status</source>
-        <translation>&amp;تغير الحالة</translation>
+        <translation type="vanished">&amp;تغير الحالة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="864"/>
         <source>Add &amp;New Group</source>
-        <translation>اضافة &amp;مجموعة جديدة</translation>
+        <translation type="vanished">اضافة &amp;مجموعة جديدة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="865"/>
         <source>&amp;Rename This Group</source>
-        <translation>اعادة ت&amp;سمية المجموعة</translation>
+        <translation type="vanished">اعادة ت&amp;سمية المجموعة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="866"/>
         <source>&amp;Delete This Group</source>
-        <translation>&amp;حذف هذه المجموعة</translation>
+        <translation type="vanished">&amp;حذف هذه المجموعة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="867"/>
-        <location filename="mainwindow.cpp" line="873"/>
         <source>&amp;Conversation</source>
-        <translation>&amp;محادثة</translation>
+        <translation type="vanished">&amp;محادثة</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="868"/>
-        <location filename="mainwindow.cpp" line="875"/>
         <source>Send &amp;Broadcast Message</source>
-        <translation>ارسال &amp;استقبال الرسائل</translation>
+        <translation type="vanished">ارسال &amp;استقبال الرسائل</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="869"/>
-        <location filename="mainwindow.cpp" line="874"/>
         <source>Send &amp;File</source>
-        <translation>ارسال &amp;ملف</translation>
+        <translation type="vanished">ارسال &amp;ملف</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="870"/>
-        <source>Send Fol&amp;der</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="871"/>
         <source>Get &amp;Information</source>
-        <translation>احضار &amp;المعلومات</translation>
+        <translation type="vanished">احضار &amp;المعلومات</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="872"/>
         <source>&amp;Browse for more pictures...</source>
-        <translation>استعراض لمزيد من ال&amp;صور...</translation>
+        <translation type="vanished">استعراض لمزيد من ال&amp;صور...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="900"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation>%1 سوف يستمر في التشغيل الخلفي. تفعيل هذا الرمز لاستعادة نافذة البرنامج.</translation>
+        <translation type="vanished">%1 سوف يستمر في التشغيل الخلفي. تفعيل هذا الرمز لاستعادة نافذة البرنامج.</translation>
     </message>
 </context>
 <context>
     <name>lmcMessageLog</name>
     <message>
-        <location filename="messagelog.cpp" line="155"/>
         <source>This message was not delivered to %1:</source>
-        <translation>هذه الرسالة لم تصل ل %1:</translation>
+        <translation type="vanished">هذه الرسالة لم تصل ل %1:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="168"/>
         <source>Your message was not sent.</source>
-        <translation>رسالة لم ترسل.</translation>
+        <translation type="vanished">رسالة لم ترسل.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="472"/>
         <source>Broadcast message from %1:</source>
-        <translation>تلقي رسالة من %1:</translation>
+        <translation type="vanished">تلقي رسالة من %1:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="602"/>
         <source>Sending &apos;%1&apos; to %2.</source>
-        <translation>ارسال %1 الى %2.</translation>
+        <translation type="vanished">ارسال %1 الى %2.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="611"/>
         <source>Cancel</source>
-        <translation>الغاء</translation>
+        <translation type="vanished">الغاء</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="630"/>
         <source>%1 is sending you a file:</source>
-        <translation>%1 يرسل لك ملف:</translation>
+        <translation type="vanished">%1 يرسل لك ملف:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="632"/>
-        <source>%1 is sending you a folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="messagelog.cpp" line="639"/>
         <source>%1 sends you a file:</source>
-        <translation>%1 ارسل لك ملف:</translation>
-    </message>
-    <message>
-        <location filename="messagelog.cpp" line="641"/>
-        <source>%1 sends you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">%1 ارسل لك ملف:</translation>
     </message>
     <message>
         <source>File has been accepted automatically.</source>
         <translation type="obsolete">تم الموافقة على الملف تلقائيا.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="659"/>
         <source>Accept</source>
-        <translation>موافق</translation>
+        <translation type="vanished">موافق</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="660"/>
         <source>Decline</source>
-        <translation>رفض</translation>
+        <translation type="vanished">رفض</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="654"/>
-        <location filename="messagelog.cpp" line="711"/>
         <source>Accepted</source>
-        <translation>موافقة</translation>
+        <translation type="vanished">موافقة</translation>
     </message>
     <message>
         <source>You have accepted the file.</source>
         <translation type="obsolete">لقد وافقت على ملف.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="714"/>
         <source>Declined</source>
-        <translation>رفض</translation>
+        <translation type="vanished">رفض</translation>
     </message>
     <message>
         <source>You have declined the file.</source>
         <translation type="obsolete">لقد رفضت ملف.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="717"/>
         <source>Canceled</source>
-        <translation>ملغي</translation>
+        <translation type="vanished">ملغي</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="721"/>
         <source>Interrupted</source>
-        <translation>غير صالح</translation>
+        <translation type="vanished">غير صالح</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="724"/>
         <source>Completed</source>
-        <translation>مكتمل</translation>
+        <translation type="vanished">مكتمل</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="738"/>
         <source>%1 is typing...</source>
-        <translation>%1 يكتب الان...</translation>
+        <translation type="vanished">%1 يكتب الان...</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="741"/>
         <source>%1 has entered text</source>
-        <translation>%1 قام بادخال حروف</translation>
+        <translation type="vanished">%1 قام بادخال حروف</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="755"/>
         <source>%1 has joined this conversation</source>
-        <translation>%1 قام بالدخول لهذه المحادثة</translation>
+        <translation type="vanished">%1 قام بالدخول لهذه المحادثة</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="758"/>
         <source>%1 has left this conversation</source>
-        <translation>%1 قد غادر هذه المحادثة</translation>
+        <translation type="vanished">%1 قد غادر هذه المحادثة</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="877"/>
         <source>&amp;Copy</source>
-        <translation>&amp;نسخ</translation>
+        <translation type="vanished">&amp;نسخ</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="878"/>
         <source>Select &amp;All</source>
-        <translation>اختيار &amp;الكل</translation>
+        <translation type="vanished">اختيار &amp;الكل</translation>
     </message>
 </context>
 <context>
     <name>lmcSettingsDialog</name>
     <message>
-        <location filename="settingsdialog.cpp" line="195"/>
         <source>Save History</source>
-        <translation>تخزين التأريخ</translation>
+        <translation type="vanished">تخزين التأريخ</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="202"/>
         <source>Select folder</source>
-        <translation>تحديد مجلد</translation>
+        <translation type="vanished">تحديد مجلد</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="233"/>
         <source>Select Font</source>
-        <translation>اختيار الخط</translation>
+        <translation type="vanished">اختيار الخط</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="239"/>
         <source>Select Color</source>
-        <translation>اختيار اللون</translation>
+        <translation type="vanished">اختيار اللون</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="245"/>
         <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation>هل انت متأكد من اعادة ضبط اعدادات %1 الشخصية?</translation>
+        <translation type="vanished">هل انت متأكد من اعادة ضبط اعدادات %1 الشخصية?</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="246"/>
         <source>Reset Preferences</source>
-        <translation>اعادة ظبط التفضيلات</translation>
+        <translation type="vanished">اعادة ظبط التفضيلات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="351"/>
-        <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settingsdialog.cpp" line="365"/>
-        <source>Select sound</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settingsdialog.cpp" line="393"/>
         <source>Preferences</source>
-        <translation>التفضيلات</translation>
+        <translation type="vanished">التفضيلات</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="401"/>
         <source>System Tray (Not Available)</source>
-        <translation>رمز شريط المهان غير متاح</translation>
+        <translation type="vanished">رمز شريط المهان غير متاح</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="405"/>
         <source>Status Alerts (Not Available)</source>
-        <translation>وضع التنبيهات غير متاح</translation>
+        <translation type="vanished">وضع التنبيهات غير متاح</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="409"/>
         <source>Sounds (Not Available)</source>
-        <translation>الاصوات غير متاح</translation>
+        <translation type="vanished">الاصوات غير متاح</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="423"/>
         <source>Check for updates</source>
-        <translation>التحقق من التحديثات</translation>
+        <translation type="vanished">التحقق من التحديثات</translation>
     </message>
 </context>
 <context>
     <name>lmcStrings</name>
     <message>
-        <location filename="lmc_strings.cpp" line="55"/>
         <source>LAN Messenger</source>
-        <translation>لان ماسنجر</translation>
+        <translation type="vanished">لان ماسنجر</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="61"/>
         <source>LAN Messenger is a free peer-to-peer messaging application for
 intra-network communication and does not require a server.
 LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation>لان ماسنجر هو اتصال مجاني ند-لند برنامج محادثة 
+        <translation type="vanished">لان ماسنجر هو اتصال مجاني ند-لند برنامج محادثة 
 لشبكات الداخلية وهو لا يتطلب اتصال بالانترنت
 لان ماسنجر يشتغل على اي نظام مكتبي
 ترجمة البرنامج للعربية بواسطة عدلي المنصوري.</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="69"/>
-        <source>Automatic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="75"/>
         <source>Small text</source>
-        <translation>خط صغير</translation>
+        <translation type="vanished">خط صغير</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="76"/>
         <source>Medium text</source>
-        <translation>خط متوسط</translation>
+        <translation type="vanished">خط متوسط</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="77"/>
         <source>Large text</source>
-        <translation>خط كبير</translation>
+        <translation type="vanished">خط كبير</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="84"/>
         <source>Available</source>
-        <translation>متصل</translation>
+        <translation type="vanished">متصل</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="85"/>
         <source>Busy</source>
-        <translation>مشغول</translation>
+        <translation type="vanished">مشغول</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="86"/>
         <source>Do Not Disturb</source>
-        <translation>عدم الازعاج</translation>
+        <translation type="vanished">عدم الازعاج</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="87"/>
         <source>Be Right Back</source>
-        <translation>سأعود لاحقا</translation>
+        <translation type="vanished">سأعود لاحقا</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="88"/>
         <source>Away</source>
-        <translation>بعيد</translation>
+        <translation type="vanished">بعيد</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="89"/>
         <source>Appear Offline</source>
-        <translation>غير متصل</translation>
+        <translation type="vanished">غير متصل</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="96"/>
         <source>Incoming message</source>
-        <translation>رسائل واردة</translation>
+        <translation type="vanished">رسائل واردة</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="97"/>
         <source>User is online</source>
-        <translation>المستخدم متصل</translation>
+        <translation type="vanished">المستخدم متصل</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="98"/>
         <source>User is offline</source>
-        <translation>المستخدم غير متصل</translation>
+        <translation type="vanished">المستخدم غير متصل</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="99"/>
         <source>Incoming file transfer</source>
-        <translation>ملفات واردة</translation>
+        <translation type="vanished">ملفات واردة</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="100"/>
         <source>File transfer completed</source>
-        <translation>تم نقل الملفات</translation>
+        <translation type="vanished">تم نقل الملفات</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="101"/>
-        <source>Incoming public message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="108"/>
         <source>5 minutes</source>
-        <translation>5 دقائق</translation>
+        <translation type="vanished">5 دقائق</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="109"/>
         <source>10 minutes</source>
-        <translation>10 دقائق</translation>
+        <translation type="vanished">10 دقائق</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="110"/>
         <source>15 minutes</source>
-        <translation>15 دقيقة</translation>
+        <translation type="vanished">15 دقيقة</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="111"/>
         <source>20 minutes</source>
-        <translation>20 دقيقة</translation>
+        <translation type="vanished">20 دقيقة</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="112"/>
         <source>30 minutes</source>
-        <translation>30 دقيقة</translation>
+        <translation type="vanished">30 دقيقة</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="113"/>
         <source>45 minutes</source>
-        <translation>45 دقيقة</translation>
+        <translation type="vanished">45 دقيقة</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="114"/>
         <source>60 minutes</source>
-        <translation>60 دقيقة</translation>
+        <translation type="vanished">60 دقيقة</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="115"/>
         <source>Never</source>
-        <translation>أبدا</translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="122"/>
-        <source>Detailed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="123"/>
-        <source>Compact</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">أبدا</translation>
     </message>
 </context>
 <context>
     <name>lmcTransferWindow</name>
     <message>
-        <location filename="transferwindow.cpp" line="177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation>%1 تم االارسال الى %2.</translation>
+        <translation type="vanished">%1 تم االارسال الى %2.</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="179"/>
-        <location filename="transferwindow.cpp" line="194"/>
         <source>File Transfer Completed</source>
-        <translation>تم ارسال الملف</translation>
+        <translation type="vanished">تم ارسال الملف</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="192"/>
         <source>&apos;%1&apos; has been received from %2.</source>
-        <translation>%1 تم استقبال ملف من %2.</translation>
+        <translation type="vanished">%1 تم استقبال ملف من %2.</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="316"/>
         <source>File Transfers</source>
-        <translation>ارسال ملف</translation>
+        <translation type="vanished">ارسال ملف</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="318"/>
         <source>Cancel</source>
-        <translation>الغاء</translation>
+        <translation type="vanished">الغاء</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="319"/>
         <source>Show In Folder</source>
-        <translation>عرض في مجلد</translation>
+        <translation type="vanished">عرض في مجلد</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="320"/>
         <source>Remove From List</source>
-        <translation>ازالة من القائمة</translation>
+        <translation type="vanished">ازالة من القائمة</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="371"/>
         <source>Calculating time</source>
-        <translation>حساب الوقت</translation>
+        <translation type="vanished">حساب الوقت</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="410"/>
         <source>/sec</source>
-        <translation>/ثانية</translation>
+        <translation type="vanished">/ثانية</translation>
     </message>
 </context>
 <context>
     <name>lmcUpdateWindow</name>
     <message>
-        <location filename="updatewindow.cpp" line="132"/>
         <source>%1 updates</source>
-        <translation>%1 تحديثات</translation>
+        <translation type="vanished">%1 تحديثات</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="151"/>
         <source>Launching an update request...</source>
-        <translation>تشغيل طلب التحديثات...</translation>
+        <translation type="vanished">تشغيل طلب التحديثات...</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="154"/>
         <source>An error occured while checking for updates.</source>
-        <translation>هناك خطا اثناء التحقق من التحديثات.</translation>
+        <translation type="vanished">هناك خطا اثناء التحقق من التحديثات.</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="157"/>
         <source>The new version %1 is available on %2 web site.</source>
-        <translation>النسخة الجديدة %1 متوفرة على موقع %2.</translation>
+        <translation type="vanished">النسخة الجديدة %1 متوفرة على موقع %2.</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="160"/>
         <source>You have the latest version of %1.</source>
-        <translation>لديك اخر نسخة من %1.</translation>
+        <translation type="vanished">لديك اخر نسخة من %1.</translation>
     </message>
 </context>
 <context>
     <name>lmcUserInfoWindow</name>
     <message>
-        <location filename="userinfowindow.cpp" line="77"/>
         <source>User Information</source>
-        <translation>معلومات المستخدم</translation>
+        <translation type="vanished">معلومات المستخدم</translation>
     </message>
 </context>
 <context>
     <name>lmcUserSelectDialog</name>
     <message>
-        <location filename="userselectdialog.cpp" line="132"/>
         <source>Select Contacts</source>
-        <translation>اختيار الاتصالات</translation>
+        <translation type="vanished">اختيار الاتصالات</translation>
     </message>
 </context>
 </TS>

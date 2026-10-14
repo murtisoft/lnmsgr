@@ -55,4 +55,6 @@ file(GLOB LanMessenger_LANGUAGES CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/resource
 qt6_add_translations(LanMessenger
     TS_FILES ${LanMessenger_LANGUAGES}
     RESOURCE_PREFIX "/translations"
+    INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/sources
+    LUPDATE_OPTIONS -locations relative -source-language en -extensions cpp,h,ui
 )

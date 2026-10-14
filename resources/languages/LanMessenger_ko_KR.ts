@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ko_KR">
+<TS version="2.1" language="ko_KR">
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="aboutdialog.ui" line="17"/>
+        <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="40"/>
+        <location line="+23"/>
         <source>&lt;Logo&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="47"/>
+        <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="60"/>
+        <location line="+7"/>
+        <source>&lt;_Qt Version&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
         <source>About</source>
         <translation>정보</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="81"/>
+        <location line="+21"/>
         <source>&lt;Description&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="107"/>
+        <location line="+26"/>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Thanks</source>
-        <translation>도와주신 분</translation>
+        <translation type="vanished">도와주신 분</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="136"/>
         <source>License</source>
-        <translation>저작권</translation>
+        <translation type="vanished">저작권</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="195"/>
+        <location line="+77"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
@@ -47,33 +60,33 @@
 <context>
     <name>BroadcastWindow</name>
     <message>
-        <location filename="broadcastwindow.ui" line="14"/>
+        <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="143"/>
+        <location line="+132"/>
         <source>Send</source>
         <translation>보내기</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="153"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="239"/>
+        <location line="+86"/>
         <source>Select All</source>
         <translation>모두 선택</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="246"/>
+        <location line="+7"/>
         <source>Select None</source>
         <translation>선택 해제</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="178"/>
-        <location filename="broadcastwindow.ui" line="213"/>
+        <location line="-68"/>
+        <location line="+35"/>
         <source>Send To:</source>
         <translation>받는 사람:</translation>
     </message>
@@ -81,58 +94,118 @@
 <context>
     <name>ChatRoomWindow</name>
     <message>
-        <location filename="chatroomwindow.ui" line="14"/>
+        <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
+    </message>
+    <message>
+        <location line="+206"/>
+        <source>Send</source>
+        <translation type="unfinished">보내기</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ChatWindow</name>
     <message>
-        <location filename="chatwindow.ui" line="14"/>
+        <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
+    </message>
+    <message>
+        <location line="+213"/>
+        <source>Send</source>
+        <translation type="unfinished">보내기</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>Microphone toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Speaker toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Camera toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FileView</name>
     <message>
-        <location filename="filemodelview.cpp" line="39"/>
+        <location filename="../../sources/widgettransferlist.cpp" line="+39"/>
         <source>0 bytes</source>
         <translation>0 바이트</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="40"/>
+        <location line="+1"/>
         <source>0 bytes/sec</source>
         <translation>0 바이트/초</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="41"/>
+        <location line="+1"/>
         <source>Calculating time</source>
         <translation>예상 시간</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="79"/>
+        <location line="+38"/>
         <source>To: </source>
         <translation>받는 사람:</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="79"/>
+        <location line="+0"/>
         <source>From: </source>
         <translation>보내는 사람:</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="103"/>
+        <location line="+24"/>
         <source>Completed</source>
         <translation>완료됨</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="106"/>
+        <location line="+3"/>
         <source>Canceled</source>
         <translation>취소됨</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="109"/>
+        <location line="+3"/>
         <source>Interrupted</source>
         <translation>거절됨</translation>
     </message>
@@ -140,40 +213,34 @@
 <context>
     <name>HelpWindow</name>
     <message>
-        <location filename="helpwindow.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="helpwindow.ui" line="55"/>
         <source>Close</source>
-        <translation>취소</translation>
+        <translation type="vanished">취소</translation>
     </message>
 </context>
 <context>
     <name>HistoryWindow</name>
     <message>
-        <location filename="historywindow.ui" line="14"/>
+        <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="76"/>
+        <location line="+62"/>
         <source>Name</source>
         <translation>이름</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="81"/>
+        <location line="+5"/>
         <source>Date</source>
         <translation>날짜</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="133"/>
+        <location line="+52"/>
         <source>Clear History</source>
         <translation>대화 정리</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="156"/>
+        <location line="+23"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
@@ -181,269 +248,308 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="14"/>
+        <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="124"/>
+        <location line="+110"/>
         <source>Username</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="168"/>
+        <location line="+44"/>
         <source>Status</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="186"/>
+        <location line="+23"/>
         <source>Type a note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="211"/>
+        <location line="+25"/>
         <source>Change avatar</source>
         <translation>아바타 바꾸기</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="324"/>
+        <location line="+116"/>
         <source>Contacts</source>
         <translation>대화 상대</translation>
     </message>
 </context>
 <context>
+    <name>QWidgetTextControl</name>
+    <message>
+        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <source>&amp;Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="settingsdialog.ui" line="17"/>
+        <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1155"/>
+        <location line="+1415"/>
         <source>Reset All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1327"/>
+        <location line="+181"/>
         <source>Broadcast address:</source>
         <oldsource>Broadcast Address:</oldsource>
         <translation>전달 주소:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1364"/>
+        <location line="+37"/>
         <source>&lt;- Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1391"/>
+        <location line="+27"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1420"/>
+        <location line="+29"/>
         <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1428"/>
+        <location line="+8"/>
         <source>Multicast address:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1789"/>
         <source>Chat Theme</source>
-        <translation>대화창 테마</translation>
+        <translation type="vanished">대화창 테마</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1849"/>
+        <location line="+466"/>
         <source>Contacts List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1857"/>
+        <location line="+8"/>
         <source>Contacts list view:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1882"/>
+        <location line="+25"/>
         <source>Show status as tooltip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1948"/>
+        <location line="+75"/>
         <source>Send messages using:</source>
         <translation>메세지를 보낼 때 사용할 키:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1973"/>
+        <location line="+25"/>
         <source>&lt;Enter&gt;</source>
         <oldsource>Enter</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1980"/>
+        <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
         <oldsource>Ctrl + Enter</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2041"/>
+        <location line="+27"/>
+        <source>Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Enable global hotkeys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Toggle microphone:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location line="+17"/>
+        <location line="+17"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-27"/>
+        <source>Toggle speaker:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Toggle camera:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+67"/>
         <source>Reset Preferences</source>
         <translation>환경 설정 초기화</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2061"/>
+        <location line="+20"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2071"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="59"/>
-        <location filename="settingsdialog.ui" line="141"/>
+        <location line="-2460"/>
+        <location line="+96"/>
         <source>General</source>
         <translation>일반</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="148"/>
+        <location line="+7"/>
+        <location line="+1949"/>
         <source>System</source>
         <translation>시스템</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="154"/>
+        <location line="-1943"/>
         <source>Start %1 on system startup</source>
         <translation>시스템 시작할 때 %1를 실행함</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="161"/>
+        <location line="+7"/>
         <source>Show main window when %1 starts</source>
         <translation>%1를 시작할 때 메인창 보이기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="171"/>
+        <location line="+17"/>
         <source>System Tray</source>
         <translation>알림 영역</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="177"/>
+        <location line="+6"/>
         <source>Show system tray icon</source>
         <translation>알림 영역에 아이콘 보이기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="184"/>
+        <location line="+7"/>
         <source>Minimize main window to system tray</source>
         <translation>알림 영역에 메인창 최소화하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="191"/>
+        <location line="+7"/>
         <source>Single click on tray icon to open</source>
         <translation>원클릭으로 열기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="198"/>
         <source>Show balloon notifications in tray</source>
-        <translation>풍선 도움말 보기</translation>
+        <translation type="vanished">풍선 도움말 보기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="215"/>
+        <location line="+24"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="223"/>
+        <location line="+8"/>
         <source>Select language:</source>
         <translation>선택된 언어:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="64"/>
-        <location filename="settingsdialog.ui" line="329"/>
+        <location line="-180"/>
+        <location line="+262"/>
         <source>Account</source>
         <translation>계정</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="336"/>
+        <location line="+7"/>
         <source>Personal</source>
         <translation>개인</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="344"/>
         <source>User name as seen by contacts:</source>
-        <translation>대화 상대에 표시할 이름:</translation>
+        <translation type="vanished">대화 상대에 표시할 이름:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="373"/>
         <source>First Name:</source>
-        <translation>이름:</translation>
+        <translation type="vanished">이름:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="403"/>
         <source>Last Name:</source>
-        <translation>성:</translation>
+        <translation type="vanished">성:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="419"/>
+        <location line="+122"/>
         <source>About:</source>
         <translation>정보:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="447"/>
+        <location line="+35"/>
         <source>Contacts</source>
         <translation>대화 상대</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="455"/>
+        <location line="+8"/>
         <source>Refresh contacts list every</source>
         <translation>새로고침</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="485"/>
+        <location line="+30"/>
         <source>seconds</source>
         <translation>초</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="69"/>
-        <location filename="settingsdialog.ui" line="535"/>
-        <location filename="settingsdialog.ui" line="1937"/>
+        <location line="-459"/>
+        <location line="+518"/>
+        <location line="+1690"/>
         <source>Messages</source>
         <translation>메세지</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="542"/>
+        <location line="-1683"/>
         <source>Message Window</source>
         <translation>메세지창</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="605"/>
+        <location line="+63"/>
         <source>Show emoticons in instant messages</source>
         <translation>메세지창에 이모티콘 보이기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="612"/>
+        <location line="+7"/>
         <source>Add time stamp to instant messages</source>
         <translation>도착한 시간 보이기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="637"/>
+        <location line="+25"/>
         <source>Show date in time stamp</source>
         <translation>날짜 표시하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="548"/>
         <source>Set incoming messages foreground</source>
-        <translation>메세지가 오면 화면에 표시하기</translation>
+        <translation type="vanished">메세지가 오면 화면에 표시하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="555"/>
+        <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>메세지가 오면 작업표시줄에 최소화하가</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="697"/>
         <source>Message Font</source>
-        <translation>메세지 글꼴</translation>
+        <translation type="vanished">메세지 글꼴</translation>
     </message>
     <message>
         <source>Preview:</source>
@@ -462,257 +568,383 @@
         <translation type="obsolete">큰 글꼴</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="74"/>
-        <location filename="settingsdialog.ui" line="826"/>
+        <location line="-528"/>
+        <location line="+1015"/>
         <source>History</source>
         <translation>히스토리</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="94"/>
-        <location filename="settingsdialog.ui" line="1782"/>
+        <location line="-995"/>
+        <location line="+1990"/>
         <source>Appearance</source>
         <translation>시각 효과</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="99"/>
-        <location filename="settingsdialog.ui" line="1930"/>
+        <location line="-1985"/>
+        <location line="+2166"/>
         <source>Hotkeys</source>
         <translation>단축키</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="205"/>
+        <location line="-2044"/>
         <source>Minimize main window using tray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="580"/>
+        <location line="+406"/>
         <source>Apply to public messages</source>
         <oldsource>Apply  to public messages</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="646"/>
+        <location line="+66"/>
         <source>Allow hyperlinks in instant messages</source>
         <translation>메세지의 하이퍼링크 허용</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="671"/>
+        <location line="+25"/>
         <source>Convert network paths to links</source>
         <translation>링크의 네트워크 경로 변환</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="680"/>
+        <location line="+9"/>
         <source>Remove whitespace from start and end of messages</source>
         <translation>메세지의 시작과 끝의 공백 제거</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="687"/>
+        <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="705"/>
         <source>Change Font...</source>
-        <translation>글꼴 변경...</translation>
+        <translation type="vanished">글꼴 변경...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="729"/>
         <source>Change Color...</source>
-        <translation>색상 변경...</translation>
+        <translation type="vanished">색상 변경...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="753"/>
         <source>Incoming message text size:</source>
-        <translation>받는 메세지 글꼴 크기:</translation>
+        <translation type="vanished">받는 메세지 글꼴 크기:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="833"/>
+        <location line="+362"/>
         <source>Message History</source>
         <translation>히스토리</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="839"/>
+        <location line="+6"/>
         <source>Keep a history of conversations</source>
         <translation>대화 내용 자동 저장</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="848"/>
+        <location line="+9"/>
         <source>Clear Message History</source>
         <translation>대화 내용 삭제</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="873"/>
+        <location line="+25"/>
         <source>History File Location</source>
         <translation>대화 내용을 저장 위치</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="879"/>
+        <location line="+6"/>
         <source>System default location</source>
         <translation>시스템 기본 위치</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="886"/>
+        <location line="+7"/>
         <source>Custom location</source>
         <translation>사용자 설정 위치</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="924"/>
-        <location filename="settingsdialog.ui" line="1135"/>
-        <location filename="settingsdialog.ui" line="1708"/>
+        <location line="+38"/>
+        <location line="+220"/>
+        <location line="+591"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="936"/>
+        <location line="-799"/>
         <source>File Transfer History</source>
         <translation>파일 전송</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="942"/>
+        <location line="+6"/>
         <source>Keep a history of file transfers</source>
         <translation>파일 전송 내용 자동 저장</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="951"/>
+        <location line="+9"/>
         <source>Clear Transfer History</source>
         <translation>파일 전송 내용 삭제</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="79"/>
-        <location filename="settingsdialog.ui" line="1014"/>
+        <location line="-1135"/>
+        <location line="+1207"/>
         <source>Alerts</source>
         <translation>알림</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1021"/>
+        <location line="+7"/>
         <source>Status Alerts</source>
         <translation>상태 알림</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1027"/>
+        <location line="+6"/>
         <source>Display status alerts</source>
         <translation>상태 알림 표시하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1034"/>
+        <location line="+7"/>
         <source>Suspend alerts when my status is Busy</source>
         <translation>&apos;바쁨&apos;상태일 때 알림 해제</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1041"/>
+        <location line="+7"/>
         <source>Suspend alerts when my status is Do Not Disturb</source>
         <translation>&apos;방해 금지&apos;상태일 때 알림 해제</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1051"/>
+        <location line="+10"/>
         <source>Sounds</source>
         <translation>효과음</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1057"/>
+        <location line="+6"/>
         <source>Provide feedback with sounds</source>
         <translation>효과음 사용하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1168"/>
+        <location line="+111"/>
         <source>Suspend sounds when my status is Busy</source>
         <translation>&apos;바쁨&apos;상태일 때 효과음을 사용하지 않기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1175"/>
+        <location line="+7"/>
         <source>Suspend sound when my status is Do Not Disturb</source>
         <translation>&apos;방해 금지&apos;상태일 때 효과음을 사용하지 않기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1084"/>
+        <location line="-91"/>
         <source>Play sounds for these events:</source>
         <translation>효과음을 사용할 때:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="84"/>
-        <location filename="settingsdialog.ui" line="1223"/>
+        <location line="-1287"/>
+        <location line="+775"/>
+        <source>Voice &amp; Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-760"/>
+        <location line="+1420"/>
         <source>Network</source>
         <translation>네트워크</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1230"/>
+        <location line="-1327"/>
+        <source>Enable Debug Logging</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Show toast notifications in tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+120"/>
+        <source>User name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>User name as seen by contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Group :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Group as seen by contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>First Name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+20"/>
+        <location line="+32"/>
+        <source>For User Information dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-45"/>
+        <source>Last Name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+165"/>
+        <source>Show incoming messages without grabbing focus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <source>Chat Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Chat text size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Only applies to new chat windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+73"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+113"/>
+        <source>Capture Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-87"/>
+        <source>Activation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Continuous Transmission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Push to Talk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Voice Activity Threshold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+541"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1238"/>
+        <location line="+8"/>
         <source>Connection timeout (seconds):</source>
         <translation>연결 시간 초과(초):</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1272"/>
+        <location line="+34"/>
         <source>Maximum number of retries:</source>
         <translation>최대 재연결 시도 횟수:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1307"/>
+        <location line="+35"/>
         <source>Broadcast</source>
         <oldsource>Broadcast Settings</oldsource>
         <translation>전달 설정</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1313"/>
+        <location line="+6"/>
         <source>Broadcast list:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1471"/>
+        <location line="+158"/>
         <source>UDP Port*:</source>
         <translation>UDP 포트 (*):</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1514"/>
+        <location line="+43"/>
         <source>TCP Port*:</source>
         <translation>TCP포트 (*):</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1558"/>
+        <location line="+44"/>
         <source>* Takes effect after you restart %1.</source>
         <translation>* 표사는 %1를 재시작한 다음에 적용됩니다.</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="89"/>
-        <location filename="settingsdialog.ui" line="1603"/>
+        <location line="+252"/>
+        <source>Color Scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-2027"/>
+        <location line="+1804"/>
         <source>File Transfer</source>
         <translation>파일 전송</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1610"/>
+        <location line="+7"/>
         <source>Incoming File Request</source>
         <translation>파일 전송 요청</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1648"/>
+        <location line="+38"/>
         <source>Bring window to foreground</source>
         <translation>전송창을 화면에 표시하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1675"/>
+        <location line="+27"/>
         <source>Minimize window to taskbar</source>
         <translation>전송창을 상태표시줄에 최소화하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1616"/>
+        <location line="-59"/>
         <source>Accept and start receiving files automatically</source>
         <translation>자동으로 파일 전송을 시작하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1623"/>
+        <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
         <translation>파일을 주고 받을 때 전송창을 표시하기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1687"/>
+        <location line="+64"/>
         <source>Store Received Files in this Folder</source>
         <translation>전송된 파일을 저장할 폴더</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1719"/>
+        <location line="+32"/>
         <source>View Files</source>
         <translation>폴더 보기</translation>
     </message>
@@ -720,17 +952,17 @@
 <context>
     <name>TransferWindow</name>
     <message>
-        <location filename="transferwindow.ui" line="14"/>
+        <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="transferwindow.ui" line="88"/>
+        <location line="+74"/>
         <source>Clear List</source>
         <translation>내용 정리</translation>
     </message>
     <message>
-        <location filename="transferwindow.ui" line="108"/>
+        <location line="+20"/>
         <source>Close</source>
         <translation>취소</translation>
     </message>
@@ -738,19 +970,12 @@
 <context>
     <name>UpdateWindow</name>
     <message>
-        <location filename="updatewindow.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="updatewindow.ui" line="82"/>
         <source>Close</source>
-        <translation>취소</translation>
+        <translation type="vanished">취소</translation>
     </message>
     <message>
-        <location filename="updatewindow.ui" line="92"/>
         <source>Recheck Version</source>
-        <translation>업데이트 확인</translation>
+        <translation type="vanished">업데이트 확인</translation>
     </message>
 </context>
 <context>
@@ -807,109 +1032,109 @@
 <context>
     <name>UserInfoWindow</name>
     <message>
-        <location filename="userinfowindow.ui" line="14"/>
+        <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="34"/>
+        <location line="+20"/>
         <source>&lt;Avatar&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="43"/>
+        <location line="+9"/>
         <source>&lt;User Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="50"/>
+        <location line="+7"/>
         <source>&lt;Status&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="84"/>
+        <location line="+34"/>
         <source>Personal Information</source>
         <translation>개인 정보</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="94"/>
+        <location line="+10"/>
         <source>First Name:</source>
         <translation>이름:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="101"/>
-        <location filename="userinfowindow.ui" line="122"/>
-        <location filename="userinfowindow.ui" line="160"/>
+        <location line="+7"/>
+        <location line="+21"/>
+        <location line="+38"/>
         <source>N/A</source>
         <translation>없음</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="115"/>
+        <location line="-45"/>
         <source>Last Name:</source>
         <translation>성:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="138"/>
+        <location line="+23"/>
         <source>About:</source>
         <translation>정보:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="170"/>
+        <location line="+32"/>
         <source>System Information</source>
         <translation>시스템 정보</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="176"/>
+        <location line="+6"/>
         <source>IP Address:</source>
         <translation>IP주소:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="186"/>
+        <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="193"/>
+        <location line="+7"/>
         <source>Logon Name:</source>
         <translation>로그인 이름:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="203"/>
+        <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="210"/>
+        <location line="+7"/>
         <source>Computer Name:</source>
         <translation>컴퓨터 이름:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="220"/>
+        <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="227"/>
+        <location line="+7"/>
         <source>Operating System:</source>
         <translation>운영체제:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="237"/>
+        <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="244"/>
+        <location line="+7"/>
         <source>Messenger Version:</source>
         <translation>메신저 버전:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="254"/>
+        <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="280"/>
+        <location line="+26"/>
         <source>Close</source>
         <translation></translation>
     </message>
@@ -917,175 +1142,1174 @@
 <context>
     <name>UserSelectDialog</name>
     <message>
-        <location filename="userselectdialog.ui" line="17"/>
+        <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="36"/>
+        <location line="+22"/>
         <source>Contacts</source>
         <translation>대화 상대</translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="59"/>
+        <location line="+23"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="69"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
 </context>
 <context>
+    <name>lmChatLog</name>
+    <message>
+        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <source>This message was not delivered to %1:</source>
+        <translation type="unfinished">%1에게 전달되지 못한 메세지:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Your message was not sent.</source>
+        <translation type="unfinished">당신의 메세지는 전달되지 못했습니다.</translation>
+    </message>
+    <message>
+        <location line="+491"/>
+        <source>Broadcast message from %1:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+161"/>
+        <source>Requesting %1 call from %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+92"/>
+        <source>Cancel</source>
+        <translation type="unfinished">취소</translation>
+    </message>
+    <message>
+        <location line="-89"/>
+        <location line="+28"/>
+        <source>Call in progress.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call declined.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call aborted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>%1 is requesting %2 call.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+109"/>
+        <source>Accept</source>
+        <translation type="unfinished">허가</translation>
+    </message>
+    <message>
+        <location line="-108"/>
+        <location line="+109"/>
+        <source>Decline</source>
+        <translation type="unfinished">거부</translation>
+    </message>
+    <message>
+        <location line="-52"/>
+        <source>Sending &apos;%1&apos; to %2.</source>
+        <translation type="unfinished">%2에게 %1를 보냅니다.</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>%1 is sending you a file:</source>
+        <translation type="unfinished">%1가 보내는 파일:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 is sending you a folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 sends you a file:</source>
+        <translation type="unfinished">%1가 보낸 파일:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 sends you a folder:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+60"/>
+        <location line="+0"/>
+        <source>Accepted</source>
+        <translation type="unfinished">허가됨</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show in Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <location line="+0"/>
+        <source>Declined</source>
+        <translation type="unfinished">거부됨</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+0"/>
+        <source>Canceled</source>
+        <translation type="unfinished">취소됨</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <location line="+0"/>
+        <source>Interrupted</source>
+        <translation type="unfinished">거절됨</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+0"/>
+        <source>Completed</source>
+        <translation type="unfinished">완료됨</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>%1 is typing...</source>
+        <translation type="unfinished">%1가 메세지 작성중...</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 has entered text</source>
+        <translation type="unfinished">%1가 메세지를 작성함</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>%1 has joined this conversation</source>
+        <translation type="unfinished">%1이 대화에 참여하였습니다</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 has left this conversation</source>
+        <translation type="unfinished">%1이 대화를 마쳤습니다</translation>
+    </message>
+    <message>
+        <location line="+181"/>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;부</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Select &amp;All</source>
+        <translation type="unfinished">&amp;모두 선택</translation>
+    </message>
+</context>
+<context>
+    <name>lmCore</name>
+    <message>
+        <location filename="../../sources/lmcore.cpp" line="+158"/>
+        <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+58"/>
+        <source>LAYOUT_DIRECTION</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+465"/>
+        <source>No microphone is available. Your voice cannot be sent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Your selected microphone is not available. Using %1 instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+146"/>
+        <source>The %1 hotkey (%2) is not active: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Hotkey</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+486"/>
+        <source>A port address conflict has been detected. %1 will close now.</source>
+        <translation type="unfinished">포트 주소가 충돌되었습니다. %1를 중지합니다.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
+        <translation type="unfinished">%2가 포트를 사용하고 있어서 %1를 실행할 수 없습니다.</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormAbout</name>
+    <message>
+        <location filename="../../sources/aformabout.cpp" line="+68"/>
+        <source>About %1</source>
+        <translation type="unfinished">%1의 정보</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormBroadcast</name>
+    <message>
+        <location filename="../../sources/aformbroadcast.cpp" line="+340"/>
+        <source>Send Broadcast Message</source>
+        <translation type="unfinished">전체 메세지 보내기</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished">이모티콘 넣기</translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>You are not connected. Broadcast message cannot be sent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Select at least one recipient to send a broadcast.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Type a message to send.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>You are no longer connected. Broadcast message cannot be sent.</source>
+        <translation type="unfinished">당신과 연결되어 있지 않아서 메세지를 보낼 수 없습니다.</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormChat</name>
+    <message>
+        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <source>Group Conversation</source>
+        <translation type="unfinished">그룹 대화</translation>
+    </message>
+    <message>
+        <location line="+147"/>
+        <source>%1 says...</source>
+        <translation type="unfinished">%1의 메세지...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Broadcast from %1</source>
+        <translation type="unfinished">%1가 보내온 전체 메세지</translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>%1 sends a file...</source>
+        <translation type="unfinished">%1가 보낸 파일...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 sends a folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+349"/>
+        <source>Save Conversation</source>
+        <translation type="unfinished">대화 내용 저장하기</translation>
+    </message>
+    <message>
+        <location line="+211"/>
+        <source>Sent a nudge!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished">이모티콘 넣기</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send A File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send A Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Nudge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Voice Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Video Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Hang Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>History</source>
+        <translation type="unfinished">히스토리</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File Transfers</source>
+        <translation type="unfinished">파일 전송</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Send a file to %1</source>
+        <translation type="unfinished">%1에게 파일 보내기</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Send a folder to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Save this conversation</source>
+        <translation type="unfinished">현재 대화 내용 저장하기</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>View History</source>
+        <translation type="unfinished">대화 내용 보기</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>View File Transfers</source>
+        <translation type="unfinished">파일 전송 내용 보기</translation>
+    </message>
+    <message>
+        <location line="+138"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished">연결이 끊어졌습니다.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 is offline.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>%1 is away.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>%1 is busy. You may be interrupting.</source>
+        <translation type="unfinished">%1는 바쁩니다. 당신을 무시할 수 있습니다.</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Conversation</source>
+        <translation type="unfinished">대화</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormChatRoom</name>
+    <message>
+        <location filename="../../sources/aformchatroom.cpp" line="+190"/>
+        <source>Group Conversation</source>
+        <translation type="unfinished">그룹 대화</translation>
+    </message>
+    <message>
+        <location line="+133"/>
+        <source>%1 says...</source>
+        <translation type="unfinished">%1의 메세지...</translation>
+    </message>
+    <message>
+        <location line="+177"/>
+        <source>Save Conversation</source>
+        <translation type="unfinished">대화 내용 저장하기</translation>
+    </message>
+    <message>
+        <location line="+134"/>
+        <source>Conversation</source>
+        <translation type="unfinished">대화</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished">이모티콘 넣기</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save this conversation</source>
+        <translation type="unfinished">현재 대화 내용 저장하기</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Add people to this conversation</source>
+        <translation type="unfinished">현재 대화에 대화상대 추가</translation>
+    </message>
+    <message>
+        <location line="+70"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished">연결이 끊어졌습니다.</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Chat Room</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Public Chat</source>
+        <translation type="unfinished">공개 대화</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormHistory</name>
+    <message>
+        <location filename="../../sources/aformhistory.cpp" line="+126"/>
+        <source>Message History</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormMain</name>
+    <message>
+        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <source>%1 is online.</source>
+        <translation type="unfinished">%1와 연결됨.</translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>%1 is offline.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>You are online.</source>
+        <translation type="unfinished">당신은 온라인입니다.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished">연결이 끊어졌습니다.</translation>
+    </message>
+    <message>
+        <location line="+228"/>
+        <source>Select avatar picture</source>
+        <translation type="unfinished">아바타 그림 고르기</translation>
+    </message>
+    <message>
+        <location line="+385"/>
+        <source>&amp;Messenger</source>
+        <translation type="unfinished">메신저(&amp;M)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+29"/>
+        <source>&amp;New Chat Room</source>
+        <translation type="unfinished">&amp;새로운 대화방</translation>
+    </message>
+    <message>
+        <location line="-28"/>
+        <location line="+29"/>
+        <source>&amp;Public Chat</source>
+        <translation type="unfinished">&amp;공개 대화</translation>
+    </message>
+    <message>
+        <location line="-28"/>
+        <source>&amp;Refresh Contacts List</source>
+        <translation type="unfinished">대화 상대 새로고침(&amp;R)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+16"/>
+        <source>E&amp;xit</source>
+        <translation type="unfinished">나가기(&amp;X)</translation>
+    </message>
+    <message>
+        <location line="-15"/>
+        <source>&amp;Tools</source>
+        <translation type="unfinished">도구(&amp;T)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+10"/>
+        <source>&amp;History</source>
+        <translation type="unfinished">히스토리(&amp;H)</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+10"/>
+        <source>File &amp;Transfers</source>
+        <translation type="unfinished">파일 전송(&amp;T)</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+10"/>
+        <source>&amp;Preferences</source>
+        <translation type="unfinished">환경 설정(&amp;P)</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished">도움말(&amp;H)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>%1 &amp;online</source>
+        <translation type="unfinished">%1 사이트에 연결(&amp;O)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+7"/>
+        <source>&amp;About</source>
+        <translation type="unfinished">정보(&amp;A)</translation>
+    </message>
+    <message>
+        <location line="-6"/>
+        <source>&amp;Show %1</source>
+        <translation type="unfinished">%1 보기(&amp;S)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Status</source>
+        <translation type="unfinished">상태 바꾸기(&amp;C)</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+6"/>
+        <source>&amp;Conversation</source>
+        <translation type="unfinished">대화하기(&amp;C)</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <location line="+7"/>
+        <source>Send &amp;Broadcast Message</source>
+        <translation type="unfinished">전체 메세지 보내기(&amp;B)</translation>
+    </message>
+    <message>
+        <location line="-6"/>
+        <location line="+5"/>
+        <source>Send &amp;File</source>
+        <translation type="unfinished">파일 보내기(&amp;F)</translation>
+    </message>
+    <message>
+        <location line="-4"/>
+        <source>Send Fol&amp;der</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get &amp;Information</source>
+        <translation type="unfinished">정보 얻기(&amp;I)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Browse for more pictures...</source>
+        <translation type="unfinished">다른 그림 찾아보기(&amp;B)...</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
+        <translation type="unfinished">%1는 계속 실행중입니다. 창을 복원하려면 아이콘을 클릭하세요.</translation>
+    </message>
+    <message>
+        <location line="+183"/>
+        <source>%1 - Not Connected</source>
+        <translation type="unfinished">%1 - 연결되지 못함</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormSettings</name>
+    <message>
+        <location filename="../../sources/aformsettings.cpp" line="+286"/>
+        <source>Save History</source>
+        <translation type="unfinished">대화 내용 저장</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Select folder</source>
+        <translation type="unfinished">폴더 고르기</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Are you sure you want to reset your %1 preferences?</source>
+        <translation type="unfinished">%1의 환경 설정을 초기화 하겠습니까?</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Reset Preferences</source>
+        <translation type="unfinished">환경 설정 초기화</translation>
+    </message>
+    <message>
+        <location line="+122"/>
+        <source>&lt;File Not Found&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Select sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+82"/>
+        <source>The microphone is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+240"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-201"/>
+        <source>Default Communication Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <location line="+37"/>
+        <source>Unknown device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-36"/>
+        <location line="+37"/>
+        <source>%1 (Not connected)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Still Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Desktop %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+87"/>
+        <source>Push to talk:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>%1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 and %2 cannot share the same hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Preferences</source>
+        <translation type="unfinished">환경 설정</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>System Tray (Not Available)</source>
+        <translation type="unfinished">알림 영역(사용할 수 없음)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Status Alerts (Not Available)</source>
+        <translation type="unfinished">상태 알림(사용할 수 없음)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Sounds (Not Available)</source>
+        <translation type="unfinished">효과음(사용할 수 없음)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Calls (Not Available)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormTransfer</name>
+    <message>
+        <location filename="../../sources/aformtransfer.cpp" line="+177"/>
+        <source>&apos;%1&apos; has been sent to %2.</source>
+        <translation type="unfinished">%2에게 &apos;%1&apos;를 보냈습니다.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+15"/>
+        <source>File Transfer Completed</source>
+        <translation type="unfinished">파일 전송이 완료됨</translation>
+    </message>
+    <message>
+        <location line="-2"/>
+        <source>&apos;%1&apos; has been received from %2.</source>
+        <translation type="unfinished">%2가 &apos;%1&apos;를 보냈습니다.</translation>
+    </message>
+    <message>
+        <location line="+124"/>
+        <source>File Transfers</source>
+        <translation type="unfinished">파일 전송</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Cancel</source>
+        <translation type="unfinished">취소</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show In Folder</source>
+        <translation type="unfinished">폴더 열기</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Remove From List</source>
+        <translation type="unfinished">제거하기</translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Calculating time</source>
+        <translation type="unfinished">예상 시간</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>/sec</source>
+        <translation type="unfinished">/초</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormUserInfo</name>
+    <message>
+        <location filename="../../sources/aformuserinfo.cpp" line="+77"/>
+        <source>User Information</source>
+        <translation type="unfinished">사용자 정보</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormUserSelect</name>
+    <message>
+        <location filename="../../sources/aformuserselect.cpp" line="+172"/>
+        <source>Select Contacts</source>
+        <translation type="unfinished">대화상대 선택</translation>
+    </message>
+</context>
+<context>
+    <name>lmHotkeyHandler</name>
+    <message>
+        <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Use a single key combination.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+138"/>
+        <source>This key cannot be used as a global hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-135"/>
+        <source>Combine the key with Ctrl, Alt or Win.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>Same combination as the %1 hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+66"/>
+        <source>Already in use by another application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Windows refused the hotkey (error %1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>Global hotkeys are not supported on this platform.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmStrings</name>
+    <message>
+        <location filename="../../sources/translatabletext.cpp" line="+51"/>
+        <source>LAN Messenger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>LAN Messenger is a free peer-to-peer messaging application for
+intra-network communication and does not require a server.
+LAN Messenger works on essentially every popular desktop platform.
+
+You can support LAN Messenger by contributing code, translations,
+bug fixes or reports.
+Help us grow by sharing the project with others!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Small (8.25pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Medium (9pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Large (10.5pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Available</source>
+        <translation type="unfinished">온라인</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Busy</source>
+        <translation type="unfinished">바쁨</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Do Not Disturb</source>
+        <translation type="unfinished">방해 금지</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Be Right Back</source>
+        <translation type="unfinished">금방 돌아옴</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Away</source>
+        <translation type="unfinished">멀리 감</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Appear Offline</source>
+        <translation type="unfinished">오프라인</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Incoming message</source>
+        <translation type="unfinished">도착한 메세지</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>User is online</source>
+        <translation type="unfinished">온라인</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>User is offline</source>
+        <translation type="unfinished">오프라인</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming file transfer</source>
+        <translation type="unfinished">도착한 파일</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File transfer completed</source>
+        <translation type="unfinished">파일 전송이 완료됨</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming public message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Microphone on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Microphone off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Outgoing call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Nudge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Talking while microphone muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Detailed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Compact</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmWidgetThresholdSlider</name>
+    <message>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <source>%1 dB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>lmcAboutDialog</name>
     <message>
-        <location filename="aboutdialog.cpp" line="70"/>
         <source>About %1</source>
-        <translation>%1의 정보</translation>
+        <translation type="vanished">%1의 정보</translation>
     </message>
 </context>
 <context>
     <name>lmcBroadcastWindow</name>
     <message>
-        <location filename="broadcastwindow.cpp" line="299"/>
         <source>Send Broadcast Message</source>
-        <translation>전체 메세지 보내기</translation>
+        <translation type="vanished">전체 메세지 보내기</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="302"/>
         <source>Change Font Size</source>
-        <translation>글꼴 크기 바꾸기</translation>
+        <translation type="vanished">글꼴 크기 바꾸기</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="303"/>
         <source>Insert Smiley</source>
-        <translation>이모티콘 넣기</translation>
+        <translation type="vanished">이모티콘 넣기</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="339"/>
         <source>No recipient selected</source>
-        <translation>받을 사람이 없음</translation>
+        <translation type="vanished">받을 사람이 없음</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="340"/>
         <source>Please select at least one recipient to send a broadcast.</source>
-        <translation>메세지를 보낼 때는 받을 사람을 1명이상 선택해 주세요.</translation>
+        <translation type="vanished">메세지를 보낼 때는 받을 사람을 1명이상 선택해 주세요.</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="362"/>
         <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation>당신과 연결되어 있지 않아서 메세지를 보낼 수 없습니다.</translation>
+        <translation type="vanished">당신과 연결되어 있지 않아서 메세지를 보낼 수 없습니다.</translation>
     </message>
 </context>
 <context>
     <name>lmcChatRoomWindow</name>
     <message>
-        <location filename="chatroomwindow.cpp" line="165"/>
         <source>Group Conversation</source>
-        <translation>그룹 대화</translation>
+        <translation type="vanished">그룹 대화</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="300"/>
         <source>%1 says...</source>
-        <translation>%1의 메세지...</translation>
+        <translation type="vanished">%1의 메세지...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="465"/>
         <source>Select Font</source>
-        <translation>글꼴 고르기</translation>
+        <translation type="vanished">글꼴 고르기</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="471"/>
         <source>Select Color</source>
-        <translation>색상 고르기</translation>
+        <translation type="vanished">색상 고르기</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="480"/>
         <source>Save Conversation</source>
-        <translation>대화 내용 저장하기</translation>
+        <translation type="vanished">대화 내용 저장하기</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="619"/>
         <source>Participants</source>
-        <translation>참여자</translation>
+        <translation type="vanished">참여자</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="621"/>
         <source>&amp;Conversation</source>
-        <translation>대화하기(&amp;C)</translation>
+        <translation type="vanished">대화하기(&amp;C)</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="622"/>
         <source>Send &amp;File</source>
-        <translation>파일 보내기(&amp;F)</translation>
+        <translation type="vanished">파일 보내기(&amp;F)</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="623"/>
         <source>Get &amp;Information</source>
-        <translation>정보 얻기(&amp;I)</translation>
+        <translation type="vanished">정보 얻기(&amp;I)</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="624"/>
         <source>Insert Smiley</source>
-        <translation>이모티콘 넣기</translation>
+        <translation type="vanished">이모티콘 넣기</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="625"/>
         <source>&amp;Save As...</source>
-        <translation>다른 이름으로 저장하기(&amp;S)...</translation>
+        <translation type="vanished">다른 이름으로 저장하기(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="626"/>
         <source>Save this conversation</source>
-        <translation>현재 대화 내용 저장하기</translation>
+        <translation type="vanished">현재 대화 내용 저장하기</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="627"/>
-        <source>Change Font...</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="chatroomwindow.cpp" line="628"/>
         <source>Change message font</source>
-        <translation>메세지 글꼴 바꾸기</translation>
+        <translation type="vanished">메세지 글꼴 바꾸기</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="629"/>
-        <source>Change Color...</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="chatroomwindow.cpp" line="630"/>
         <source>Change message text color</source>
-        <translation>메세지 글꼴 색상 바꾸기</translation>
+        <translation type="vanished">메세지 글꼴 색상 바꾸기</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="633"/>
         <source>&amp;Add Contacts...</source>
         <oldsource>&amp;Add A Contact...</oldsource>
-        <translation>대화상대 &amp;추가...</translation>
+        <translation type="vanished">대화상대 &amp;추가...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="634"/>
         <source>Add people to this conversation</source>
         <oldsource>Add contacts to this conversation</oldsource>
-        <translation>현재 대화에 대화상대 추가</translation>
+        <translation type="vanished">현재 대화에 대화상대 추가</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="704"/>
         <source>You are no longer connected.</source>
-        <translation>연결이 끊어졌습니다.</translation>
+        <translation type="vanished">연결이 끊어졌습니다.</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="728"/>
         <source>Conversation</source>
-        <translation>대화</translation>
+        <translation type="vanished">대화</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="730"/>
         <source>Public Chat</source>
-        <translation>공개 대화</translation>
+        <translation type="vanished">공개 대화</translation>
     </message>
 </context>
 <context>
@@ -1099,84 +2323,56 @@
         <translation type="obsolete">글꼴 크기 바꾸기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="227"/>
-        <source>%1 sends a folder...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="530"/>
         <source>Insert Smiley</source>
-        <translation>이모티콘 넣기</translation>
+        <translation type="vanished">이모티콘 넣기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="531"/>
         <source>Send A &amp;File...</source>
-        <translation>파일 전송하기(&amp;F)...</translation>
+        <translation type="vanished">파일 전송하기(&amp;F)...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="532"/>
-        <source>Send A Fol&amp;der...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="533"/>
         <source>&amp;Save As...</source>
-        <translation>다른 이름으로 저장하기(&amp;S)...</translation>
+        <translation type="vanished">다른 이름으로 저장하기(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="534"/>
         <source>&amp;History</source>
-        <translation>히스토리(&amp;H)</translation>
+        <translation type="vanished">히스토리(&amp;H)</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="535"/>
         <source>File &amp;Transfers</source>
-        <translation>파일 전송(&amp;T)</translation>
+        <translation type="vanished">파일 전송(&amp;T)</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="537"/>
         <source>Send a file to %1</source>
-        <translation>%1에게 파일 보내기</translation>
+        <translation type="vanished">%1에게 파일 보내기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="539"/>
-        <source>Send a folder to %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="542"/>
         <source>Save this conversation</source>
-        <translation>현재 대화 내용 저장하기</translation>
+        <translation type="vanished">현재 대화 내용 저장하기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="543"/>
         <source>View History</source>
-        <translation>대화 내용 보기</translation>
+        <translation type="vanished">대화 내용 보기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="544"/>
         <source>View File Transfers</source>
-        <translation>파일 전송 내용 보기</translation>
+        <translation type="vanished">파일 전송 내용 보기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="545"/>
         <source>Change Font...</source>
-        <translation>글꼴 바꾸기...</translation>
+        <translation type="vanished">글꼴 바꾸기...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="546"/>
         <source>Change message font</source>
-        <translation>메세지 글꼴 바꾸기</translation>
+        <translation type="vanished">메세지 글꼴 바꾸기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="547"/>
         <source>Change Color...</source>
-        <translation>색상 바꾸기...</translation>
+        <translation type="vanished">색상 바꾸기...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="548"/>
         <source>Change message text color</source>
-        <translation>메세지 글꼴 색상 바꾸기</translation>
+        <translation type="vanished">메세지 글꼴 색상 바꾸기</translation>
     </message>
     <message>
         <source>You have accepted the file.</source>
@@ -1191,39 +2387,32 @@
         <translation type="obsolete">취소됨</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="380"/>
         <source>Select Font</source>
-        <translation>글꼴 고르기</translation>
+        <translation type="vanished">글꼴 고르기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="386"/>
         <source>Select Color</source>
-        <translation>색상 고르기</translation>
+        <translation type="vanished">색상 고르기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="413"/>
         <source>Save Conversation</source>
-        <translation>대화 내용 저장하기</translation>
+        <translation type="vanished">대화 내용 저장하기</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="152"/>
         <source>Group Conversation</source>
-        <translation>그룹 대화</translation>
+        <translation type="vanished">그룹 대화</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="174"/>
         <source>%1 says...</source>
-        <translation>%1의 메세지...</translation>
+        <translation type="vanished">%1의 메세지...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="182"/>
         <source>Broadcast from %1</source>
-        <translation>%1가 보내온 전체 메세지</translation>
+        <translation type="vanished">%1가 보내온 전체 메세지</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="225"/>
         <source>%1 sends a file...</source>
-        <translation>%1가 보낸 파일...</translation>
+        <translation type="vanished">%1가 보낸 파일...</translation>
     </message>
     <message>
         <source>Accepted</source>
@@ -1274,62 +2463,37 @@
         <translation type="obsolete">거부</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="658"/>
         <source>You are no longer connected.</source>
-        <translation>연결이 끊어졌습니다.</translation>
+        <translation type="vanished">연결이 끊어졌습니다.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="661"/>
         <source>%1 is offline.</source>
-        <translation>%1는 오프라인.</translation>
+        <translation type="vanished">%1는 오프라인.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="665"/>
-        <source>%1 is away.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="chatwindow.cpp" line="669"/>
         <source>%1 is busy. You may be interrupting.</source>
-        <translation>%1는 바쁩니다. 당신을 무시할 수 있습니다.</translation>
+        <translation type="vanished">%1는 바쁩니다. 당신을 무시할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="693"/>
         <source>Conversation</source>
-        <translation>대화</translation>
+        <translation type="vanished">대화</translation>
     </message>
 </context>
 <context>
     <name>lmcCore</name>
     <message>
-        <location filename="lmc.cpp" line="149"/>
-        <source>Preferences could not be imported from &apos;%1&apos;.
-
-File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc.cpp" line="156"/>
-        <location filename="lmc.cpp" line="196"/>
-        <source>LAYOUT_DIRECTION</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="lmc.cpp" line="969"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation>포트 주소가 충돌되었습니다. %1를 중지합니다.</translation>
+        <translation type="vanished">포트 주소가 충돌되었습니다. %1를 중지합니다.</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="971"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation>%2가 포트를 사용하고 있어서 %1를 실행할 수 없습니다.</translation>
+        <translation type="vanished">%2가 포트를 사용하고 있어서 %1를 실행할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="143"/>
         <source>Your preferences file is corrupt or invalid.
 
 %1 is unable to recover your settings.</source>
-        <translation>환경설정 파일이 손상되었습니다.
+        <translation type="vanished">환경설정 파일이 손상되었습니다.
 
 %1의 설정을 복구할 수 없습니다.</translation>
     </message>
@@ -1337,347 +2501,257 @@ File may not exist, or may not be compatible with this version of %2.</source>
 <context>
     <name>lmcHelpWindow</name>
     <message>
-        <location filename="helpwindow.cpp" line="99"/>
         <source>Help</source>
-        <translation>도움말</translation>
-    </message>
-    <message>
-        <location filename="helpwindow.cpp" line="105"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">도움말</translation>
     </message>
 </context>
 <context>
     <name>lmcHistoryWindow</name>
     <message>
-        <location filename="historywindow.cpp" line="128"/>
         <source>Message History</source>
-        <translation>대화 내용</translation>
+        <translation type="vanished">대화 내용</translation>
     </message>
 </context>
 <context>
     <name>lmcMainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="211"/>
         <source>%1 is online.</source>
-        <translation>%1와 연결됨.</translation>
+        <translation type="vanished">%1와 연결됨.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="246"/>
         <source>%1 is offline.</source>
-        <translation>%1외 연결이 끊어짐.</translation>
+        <translation type="vanished">%1외 연결이 끊어짐.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="267"/>
         <source>You are online.</source>
-        <translation>당신은 온라인입니다.</translation>
+        <translation type="vanished">당신은 온라인입니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1074"/>
         <source>%1 - Not Connected</source>
-        <translation>%1 - 연결되지 못함</translation>
+        <translation type="vanished">%1 - 연결되지 못함</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="269"/>
         <source>You are no longer connected.</source>
-        <translation>연결이 끊어졌습니다.</translation>
+        <translation type="vanished">연결이 끊어졌습니다.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="443"/>
         <source>Select avatar picture</source>
-        <translation>아바타 그림 고르기</translation>
+        <translation type="vanished">아바타 그림 고르기</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="564"/>
         <source>Add New Group</source>
-        <translation>새로운 그룹 만들기</translation>
+        <translation type="vanished">새로운 그룹 만들기</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="564"/>
         <source>Enter a name for the group</source>
-        <translation>그룹 이름 넣기</translation>
+        <translation type="vanished">그룹 이름 넣기</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="570"/>
-        <location filename="mainwindow.cpp" line="603"/>
         <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation>%1이란 그룹은 있습니다. 다른 이름을 지어주세요.</translation>
+        <translation type="vanished">%1이란 그룹은 있습니다. 다른 이름을 지어주세요.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="596"/>
         <source>Rename Group</source>
-        <translation>그룹 이름 바꾸기</translation>
+        <translation type="vanished">그룹 이름 바꾸기</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="597"/>
         <source>Enter a new name for the group</source>
-        <translation>새로운 그룹 이름 넣기</translation>
+        <translation type="vanished">새로운 그룹 이름 넣기</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="841"/>
         <source>&amp;Messenger</source>
-        <translation>메신저(&amp;M)</translation>
+        <translation type="vanished">메신저(&amp;M)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="842"/>
-        <location filename="mainwindow.cpp" line="876"/>
         <source>&amp;New Chat Room</source>
-        <translation>&amp;새로운 대화방</translation>
+        <translation type="vanished">&amp;새로운 대화방</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="844"/>
         <source>&amp;Refresh Contacts List</source>
-        <translation>대화 상대 새로고침(&amp;R)</translation>
+        <translation type="vanished">대화 상대 새로고침(&amp;R)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="843"/>
-        <location filename="mainwindow.cpp" line="877"/>
         <source>&amp;Public Chat</source>
-        <translation>&amp;공개 대화</translation>
+        <translation type="vanished">&amp;공개 대화</translation>
     </message>
     <message>
         <source>New Chat Room</source>
         <translation type="obsolete">새로운 대화방</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="845"/>
-        <location filename="mainwindow.cpp" line="863"/>
         <source>E&amp;xit</source>
-        <translation>나가기(&amp;X)</translation>
+        <translation type="vanished">나가기(&amp;X)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="846"/>
         <source>&amp;Tools</source>
-        <translation>도구(&amp;T)</translation>
+        <translation type="vanished">도구(&amp;T)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="847"/>
-        <location filename="mainwindow.cpp" line="859"/>
         <source>&amp;History</source>
-        <translation>히스토리(&amp;H)</translation>
+        <translation type="vanished">히스토리(&amp;H)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="848"/>
-        <location filename="mainwindow.cpp" line="860"/>
         <source>File &amp;Transfers</source>
-        <translation>파일 전송(&amp;T)</translation>
+        <translation type="vanished">파일 전송(&amp;T)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="849"/>
-        <location filename="mainwindow.cpp" line="861"/>
         <source>&amp;Preferences</source>
-        <translation>환경 설정(&amp;P)</translation>
+        <translation type="vanished">환경 설정(&amp;P)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="850"/>
-        <location filename="mainwindow.cpp" line="851"/>
         <source>&amp;Help</source>
-        <translation>도움말(&amp;H)</translation>
+        <translation type="vanished">도움말(&amp;H)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="852"/>
         <source>%1 &amp;online</source>
-        <translation>%1 사이트에 연결(&amp;O)</translation>
+        <translation type="vanished">%1 사이트에 연결(&amp;O)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="854"/>
         <source>Check for &amp;Updates...</source>
-        <translation>업데이트 확인(&amp;U)...</translation>
+        <translation type="vanished">업데이트 확인(&amp;U)...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="855"/>
-        <location filename="mainwindow.cpp" line="862"/>
         <source>&amp;About</source>
-        <translation>정보(&amp;A)</translation>
+        <translation type="vanished">정보(&amp;A)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="856"/>
         <source>&amp;Show %1</source>
-        <translation>%1 보기(&amp;S)</translation>
+        <translation type="vanished">%1 보기(&amp;S)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="858"/>
         <source>&amp;Change Status</source>
-        <translation>상태 바꾸기(&amp;C)</translation>
+        <translation type="vanished">상태 바꾸기(&amp;C)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="864"/>
         <source>Add &amp;New Group</source>
-        <translation>새 그룹 만들기(&amp;N)</translation>
+        <translation type="vanished">새 그룹 만들기(&amp;N)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="865"/>
         <source>&amp;Rename This Group</source>
-        <translation>현재 그룹 이름 바꾸기(&amp;R)</translation>
+        <translation type="vanished">현재 그룹 이름 바꾸기(&amp;R)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="866"/>
         <source>&amp;Delete This Group</source>
-        <translation>현재 그룹 지우기(&amp;D)</translation>
+        <translation type="vanished">현재 그룹 지우기(&amp;D)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="867"/>
-        <location filename="mainwindow.cpp" line="873"/>
         <source>&amp;Conversation</source>
-        <translation>대화하기(&amp;C)</translation>
+        <translation type="vanished">대화하기(&amp;C)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="868"/>
-        <location filename="mainwindow.cpp" line="875"/>
         <source>Send &amp;Broadcast Message</source>
-        <translation>전체 메세지 보내기(&amp;B)</translation>
+        <translation type="vanished">전체 메세지 보내기(&amp;B)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="869"/>
-        <location filename="mainwindow.cpp" line="874"/>
         <source>Send &amp;File</source>
-        <translation>파일 보내기(&amp;F)</translation>
+        <translation type="vanished">파일 보내기(&amp;F)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="870"/>
-        <source>Send Fol&amp;der</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="871"/>
         <source>Get &amp;Information</source>
-        <translation>정보 얻기(&amp;I)</translation>
+        <translation type="vanished">정보 얻기(&amp;I)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="872"/>
         <source>&amp;Browse for more pictures...</source>
-        <translation>다른 그림 찾아보기(&amp;B)...</translation>
+        <translation type="vanished">다른 그림 찾아보기(&amp;B)...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="900"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation>%1는 계속 실행중입니다. 창을 복원하려면 아이콘을 클릭하세요.</translation>
+        <translation type="vanished">%1는 계속 실행중입니다. 창을 복원하려면 아이콘을 클릭하세요.</translation>
     </message>
 </context>
 <context>
     <name>lmcMessageLog</name>
     <message>
-        <location filename="messagelog.cpp" line="155"/>
         <source>This message was not delivered to %1:</source>
-        <translation>%1에게 전달되지 못한 메세지:</translation>
+        <translation type="vanished">%1에게 전달되지 못한 메세지:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="168"/>
         <source>Your message was not sent.</source>
-        <translation>당신의 메세지는 전달되지 못했습니다.</translation>
+        <translation type="vanished">당신의 메세지는 전달되지 못했습니다.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="472"/>
         <source>Broadcast message from %1:</source>
-        <translation>%1가 보낸 전체 메세지:</translation>
+        <translation type="vanished">%1가 보낸 전체 메세지:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="602"/>
         <source>Sending &apos;%1&apos; to %2.</source>
-        <translation>%2에게 %1를 보냅니다.</translation>
+        <translation type="vanished">%2에게 %1를 보냅니다.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="611"/>
         <source>Cancel</source>
-        <translation>취소</translation>
+        <translation type="vanished">취소</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="630"/>
         <source>%1 is sending you a file:</source>
-        <translation>%1가 보내는 파일:</translation>
+        <translation type="vanished">%1가 보내는 파일:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="632"/>
-        <source>%1 is sending you a folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="messagelog.cpp" line="639"/>
         <source>%1 sends you a file:</source>
-        <translation>%1가 보낸 파일:</translation>
-    </message>
-    <message>
-        <location filename="messagelog.cpp" line="641"/>
-        <source>%1 sends you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">%1가 보낸 파일:</translation>
     </message>
     <message>
         <source>File has been accepted automatically.</source>
         <translation type="obsolete">파일을 자동으로 수신합니다.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="659"/>
         <source>Accept</source>
-        <translation>허가</translation>
+        <translation type="vanished">허가</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="660"/>
         <source>Decline</source>
-        <translation>거부</translation>
+        <translation type="vanished">거부</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="654"/>
-        <location filename="messagelog.cpp" line="711"/>
         <source>Accepted</source>
-        <translation>허가됨</translation>
+        <translation type="vanished">허가됨</translation>
     </message>
     <message>
         <source>You have accepted the file.</source>
         <translation type="obsolete">당신이 수신을 허가한 파일입니다.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="714"/>
         <source>Declined</source>
-        <translation>거부됨</translation>
+        <translation type="vanished">거부됨</translation>
     </message>
     <message>
         <source>You have declined the file.</source>
         <translation type="obsolete">당신이 수신을 거부한 파일입니다.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="717"/>
         <source>Canceled</source>
-        <translation>취소됨</translation>
+        <translation type="vanished">취소됨</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="721"/>
         <source>Interrupted</source>
-        <translation>거절됨</translation>
+        <translation type="vanished">거절됨</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="724"/>
         <source>Completed</source>
-        <translation>완료됨</translation>
+        <translation type="vanished">완료됨</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="738"/>
         <source>%1 is typing...</source>
-        <translation>%1가 메세지 작성중...</translation>
+        <translation type="vanished">%1가 메세지 작성중...</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="741"/>
         <source>%1 has entered text</source>
-        <translation>%1가 메세지를 작성함</translation>
+        <translation type="vanished">%1가 메세지를 작성함</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="755"/>
         <source>%1 has joined this conversation</source>
-        <translation>%1이 대화에 참여하였습니다</translation>
+        <translation type="vanished">%1이 대화에 참여하였습니다</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="758"/>
         <source>%1 has left this conversation</source>
-        <translation>%1이 대화를 마쳤습니다</translation>
+        <translation type="vanished">%1이 대화를 마쳤습니다</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="877"/>
         <source>&amp;Copy</source>
-        <translation>&amp;부</translation>
+        <translation type="vanished">&amp;부</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="878"/>
         <source>Select &amp;All</source>
-        <translation>&amp;모두 선택</translation>
+        <translation type="vanished">&amp;모두 선택</translation>
     </message>
 </context>
 <context>
@@ -1687,291 +2761,201 @@ File may not exist, or may not be compatible with this version of %2.</source>
         <translation type="obsolete">AaBbYyZz</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="195"/>
         <source>Save History</source>
-        <translation>대화 내용 저장</translation>
+        <translation type="vanished">대화 내용 저장</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="202"/>
         <source>Select folder</source>
-        <translation>폴더 고르기</translation>
+        <translation type="vanished">폴더 고르기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="233"/>
         <source>Select Font</source>
-        <translation>글꼴 고르기</translation>
+        <translation type="vanished">글꼴 고르기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="239"/>
         <source>Select Color</source>
-        <translation>색상 고르기</translation>
+        <translation type="vanished">색상 고르기</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="245"/>
         <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation>%1의 환경 설정을 초기화 하겠습니까?</translation>
+        <translation type="vanished">%1의 환경 설정을 초기화 하겠습니까?</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="246"/>
         <source>Reset Preferences</source>
-        <translation>환경 설정 초기화</translation>
+        <translation type="vanished">환경 설정 초기화</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="351"/>
-        <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settingsdialog.cpp" line="365"/>
-        <source>Select sound</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="settingsdialog.cpp" line="393"/>
         <source>Preferences</source>
-        <translation>환경 설정</translation>
+        <translation type="vanished">환경 설정</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="401"/>
         <source>System Tray (Not Available)</source>
-        <translation>알림 영역(사용할 수 없음)</translation>
+        <translation type="vanished">알림 영역(사용할 수 없음)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="405"/>
         <source>Status Alerts (Not Available)</source>
-        <translation>상태 알림(사용할 수 없음)</translation>
+        <translation type="vanished">상태 알림(사용할 수 없음)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="409"/>
         <source>Sounds (Not Available)</source>
-        <translation>효과음(사용할 수 없음)</translation>
+        <translation type="vanished">효과음(사용할 수 없음)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="423"/>
         <source>Check for updates</source>
-        <translation>업데이트 확인하기</translation>
+        <translation type="vanished">업데이트 확인하기</translation>
     </message>
 </context>
 <context>
     <name>lmcStrings</name>
     <message>
-        <location filename="lmc_strings.cpp" line="55"/>
-        <source>LAN Messenger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="61"/>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="69"/>
-        <source>Automatic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="75"/>
         <source>Small text</source>
-        <translation>작은 글꼴</translation>
+        <translation type="vanished">작은 글꼴</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="76"/>
         <source>Medium text</source>
-        <translation>중간 글꼴</translation>
+        <translation type="vanished">중간 글꼴</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="77"/>
         <source>Large text</source>
-        <translation>큰 글꼴</translation>
+        <translation type="vanished">큰 글꼴</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="84"/>
         <source>Available</source>
-        <translation>온라인</translation>
+        <translation type="vanished">온라인</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="85"/>
         <source>Busy</source>
-        <translation>바쁨</translation>
+        <translation type="vanished">바쁨</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="86"/>
         <source>Do Not Disturb</source>
-        <translation>방해 금지</translation>
+        <translation type="vanished">방해 금지</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="87"/>
         <source>Be Right Back</source>
-        <translation>금방 돌아옴</translation>
+        <translation type="vanished">금방 돌아옴</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="88"/>
         <source>Away</source>
-        <translation>멀리 감</translation>
+        <translation type="vanished">멀리 감</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="89"/>
         <source>Appear Offline</source>
-        <translation>오프라인</translation>
+        <translation type="vanished">오프라인</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="96"/>
         <source>Incoming message</source>
-        <translation>도착한 메세지</translation>
+        <translation type="vanished">도착한 메세지</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="97"/>
         <source>User is online</source>
-        <translation>온라인</translation>
+        <translation type="vanished">온라인</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="98"/>
         <source>User is offline</source>
-        <translation>오프라인</translation>
+        <translation type="vanished">오프라인</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="99"/>
         <source>Incoming file transfer</source>
-        <translation>도착한 파일</translation>
+        <translation type="vanished">도착한 파일</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="100"/>
         <source>File transfer completed</source>
-        <translation>파일 전송이 완료됨</translation>
+        <translation type="vanished">파일 전송이 완료됨</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="101"/>
-        <source>Incoming public message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="108"/>
         <source>5 minutes</source>
-        <translation>5분</translation>
+        <translation type="vanished">5분</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="109"/>
         <source>10 minutes</source>
-        <translation>10분</translation>
+        <translation type="vanished">10분</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="110"/>
         <source>15 minutes</source>
-        <translation>15분</translation>
+        <translation type="vanished">15분</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="111"/>
         <source>20 minutes</source>
-        <translation>20분</translation>
+        <translation type="vanished">20분</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="112"/>
         <source>30 minutes</source>
-        <translation>30분</translation>
+        <translation type="vanished">30분</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="113"/>
         <source>45 minutes</source>
-        <translation>45분</translation>
+        <translation type="vanished">45분</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="114"/>
         <source>60 minutes</source>
-        <translation>60분</translation>
+        <translation type="vanished">60분</translation>
     </message>
     <message>
-        <location filename="lmc_strings.cpp" line="115"/>
         <source>Never</source>
-        <translation>불가</translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="122"/>
-        <source>Detailed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="lmc_strings.cpp" line="123"/>
-        <source>Compact</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">불가</translation>
     </message>
 </context>
 <context>
     <name>lmcTransferWindow</name>
     <message>
-        <location filename="transferwindow.cpp" line="177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation>%2에게 &apos;%1&apos;를 보냈습니다.</translation>
+        <translation type="vanished">%2에게 &apos;%1&apos;를 보냈습니다.</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="179"/>
-        <location filename="transferwindow.cpp" line="194"/>
         <source>File Transfer Completed</source>
-        <translation>파일 전송이 완료됨</translation>
+        <translation type="vanished">파일 전송이 완료됨</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="192"/>
         <source>&apos;%1&apos; has been received from %2.</source>
-        <translation>%2가 &apos;%1&apos;를 보냈습니다.</translation>
+        <translation type="vanished">%2가 &apos;%1&apos;를 보냈습니다.</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="316"/>
         <source>File Transfers</source>
-        <translation>파일 전송</translation>
+        <translation type="vanished">파일 전송</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="318"/>
         <source>Cancel</source>
-        <translation>취소</translation>
+        <translation type="vanished">취소</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="319"/>
         <source>Show In Folder</source>
-        <translation>폴더 열기</translation>
+        <translation type="vanished">폴더 열기</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="320"/>
         <source>Remove From List</source>
-        <translation>제거하기</translation>
+        <translation type="vanished">제거하기</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="371"/>
         <source>Calculating time</source>
-        <translation>예상 시간</translation>
+        <translation type="vanished">예상 시간</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="410"/>
         <source>/sec</source>
-        <translation>/초</translation>
+        <translation type="vanished">/초</translation>
     </message>
 </context>
 <context>
     <name>lmcUpdateWindow</name>
     <message>
-        <location filename="updatewindow.cpp" line="132"/>
         <source>%1 updates</source>
-        <translation>%1 업데이트</translation>
+        <translation type="vanished">%1 업데이트</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="151"/>
         <source>Launching an update request...</source>
-        <translation>업데이트 요청을 시작...</translation>
+        <translation type="vanished">업데이트 요청을 시작...</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="154"/>
         <source>An error occured while checking for updates.</source>
-        <translation>업데이트를 확인하는 동안 오류가 발생했습니다.</translation>
+        <translation type="vanished">업데이트를 확인하는 동안 오류가 발생했습니다.</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="157"/>
         <source>The new version %1 is available on %2 web site.</source>
-        <translation>%2의 사이트에서 새 버전의 %1을 사용할 수 있습니다.</translation>
+        <translation type="vanished">%2의 사이트에서 새 버전의 %1을 사용할 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="160"/>
         <source>You have the latest version of %1.</source>
-        <translation>%1이 최신 버전입니다.</translation>
+        <translation type="vanished">%1이 최신 버전입니다.</translation>
     </message>
 </context>
 <context>
@@ -1984,17 +2968,15 @@ LAN Messenger works on essentially every popular desktop platform.</source>
 <context>
     <name>lmcUserInfoWindow</name>
     <message>
-        <location filename="userinfowindow.cpp" line="77"/>
         <source>User Information</source>
-        <translation>사용자 정보</translation>
+        <translation type="vanished">사용자 정보</translation>
     </message>
 </context>
 <context>
     <name>lmcUserSelectDialog</name>
     <message>
-        <location filename="userselectdialog.cpp" line="132"/>
         <source>Select Contacts</source>
-        <translation>대화상대 선택</translation>
+        <translation type="vanished">대화상대 선택</translation>
     </message>
 </context>
 </TS>

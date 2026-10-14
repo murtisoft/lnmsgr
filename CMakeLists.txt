@@ -15,15 +15,16 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 #Appearing offline has regressed.
-
-#———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
-#————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+#lblName and txtNote Elided text functionality was removed, bring it back.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #Setting migration function doesnt handle newly added ones.
+#Is there a way to handle firewall on windows, so program can access network without manual interference?
 
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#lblName and txtNote Elided text functionality was removed, bring it back?
+
+#Language template needs updating & All language files are decades behind.
+
 #Broadcasts arent logged into history.
 #File transfers dont have a timestamp parameter, but they generate their own.
 #Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.

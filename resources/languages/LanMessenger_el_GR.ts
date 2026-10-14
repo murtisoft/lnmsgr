@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="el_GR">
+<TS version="2.1" language="el_GR">
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="aboutdialog.ui" line="17"/>
+        <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="40"/>
+        <location line="+23"/>
         <source>&lt;Logo&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="47"/>
+        <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="60"/>
+        <location line="+7"/>
+        <source>&lt;_Qt Version&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
         <source>About</source>
         <translation>Σχετικά με</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="81"/>
+        <location line="+21"/>
         <source>&lt;Description&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="107"/>
+        <location line="+26"/>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Thanks</source>
-        <translation>Ευχαριστίες</translation>
+        <translation type="vanished">Ευχαριστίες</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="136"/>
         <source>License</source>
-        <translation>Άδεια</translation>
+        <translation type="vanished">Άδεια</translation>
     </message>
     <message>
-        <location filename="aboutdialog.ui" line="195"/>
+        <location line="+77"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
@@ -47,33 +60,33 @@
 <context>
     <name>BroadcastWindow</name>
     <message>
-        <location filename="broadcastwindow.ui" line="14"/>
+        <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="143"/>
+        <location line="+132"/>
         <source>Send</source>
         <translation>Αποστολή</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="153"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="239"/>
+        <location line="+86"/>
         <source>Select All</source>
         <translation>Επιλογή Όλων</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="246"/>
+        <location line="+7"/>
         <source>Select None</source>
         <translation>Καμία Επιλογή</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.ui" line="178"/>
-        <location filename="broadcastwindow.ui" line="213"/>
+        <location line="-68"/>
+        <location line="+35"/>
         <source>Send To:</source>
         <translation>Αποστολή Προς:</translation>
     </message>
@@ -81,58 +94,118 @@
 <context>
     <name>ChatRoomWindow</name>
     <message>
-        <location filename="chatroomwindow.ui" line="14"/>
+        <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
+    </message>
+    <message>
+        <location line="+206"/>
+        <source>Send</source>
+        <translation type="unfinished">Αποστολή</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ChatWindow</name>
     <message>
-        <location filename="chatwindow.ui" line="14"/>
+        <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
+    </message>
+    <message>
+        <location line="+213"/>
+        <source>Send</source>
+        <translation type="unfinished">Αποστολή</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>Microphone toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Speaker toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Camera toggle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FileView</name>
     <message>
-        <location filename="filemodelview.cpp" line="39"/>
+        <location filename="../../sources/widgettransferlist.cpp" line="+39"/>
         <source>0 bytes</source>
         <translation>0 bytes</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="40"/>
+        <location line="+1"/>
         <source>0 bytes/sec</source>
         <translation>0 bytes/sec</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="41"/>
+        <location line="+1"/>
         <source>Calculating time</source>
         <translation>Υπολογισμός χρόνου</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="79"/>
+        <location line="+38"/>
         <source>To: </source>
         <translation>Προς: </translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="79"/>
+        <location line="+0"/>
         <source>From: </source>
         <translation>Από: </translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="103"/>
+        <location line="+24"/>
         <source>Completed</source>
         <translation>Ολοκληρώθηκε</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="106"/>
+        <location line="+3"/>
         <source>Canceled</source>
         <translation>Ακυρώθηκε</translation>
     </message>
     <message>
-        <location filename="filemodelview.cpp" line="109"/>
+        <location line="+3"/>
         <source>Interrupted</source>
         <translation>Διακόπηκε</translation>
     </message>
@@ -140,40 +213,34 @@
 <context>
     <name>HelpWindow</name>
     <message>
-        <location filename="helpwindow.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="helpwindow.ui" line="55"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation type="vanished">Κλείσιμο</translation>
     </message>
 </context>
 <context>
     <name>HistoryWindow</name>
     <message>
-        <location filename="historywindow.ui" line="14"/>
+        <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="76"/>
+        <location line="+62"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="81"/>
+        <location line="+5"/>
         <source>Date</source>
         <translation>Ημερομηνία</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="133"/>
+        <location line="+52"/>
         <source>Clear History</source>
         <translation>Εκκαθάριση Ιστορικού</translation>
     </message>
     <message>
-        <location filename="historywindow.ui" line="156"/>
+        <location line="+23"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
@@ -181,522 +248,687 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="14"/>
+        <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="124"/>
+        <location line="+110"/>
         <source>Username</source>
         <translation>Όνομα χρήστη</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="168"/>
+        <location line="+44"/>
         <source>Status</source>
         <translation>Κατάσταση</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="186"/>
+        <location line="+23"/>
         <source>Type a note</source>
         <translation>Πληκτρολογήστε μια σημείωση</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="211"/>
+        <location line="+25"/>
         <source>Change avatar</source>
         <translation>Αλλαγή άβαταρ</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="324"/>
+        <location line="+116"/>
         <source>Contacts</source>
         <translation>Επαφές</translation>
     </message>
 </context>
 <context>
+    <name>QWidgetTextControl</name>
+    <message>
+        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <source>&amp;Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="settingsdialog.ui" line="17"/>
+        <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1155"/>
+        <location line="+1415"/>
         <source>Reset All</source>
         <translation>Επαναφορά Όλων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1327"/>
+        <location line="+181"/>
         <source>Broadcast address:</source>
         <oldsource>Broadcast Address:</oldsource>
         <translation>Διεύθυνση Εκπομπής:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1364"/>
+        <location line="+37"/>
         <source>&lt;- Add</source>
         <translation>&lt;- Προσθήκη</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1391"/>
+        <location line="+27"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1420"/>
+        <location line="+29"/>
         <source>Advanced</source>
         <translation>Προχωρημένες</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1428"/>
+        <location line="+8"/>
         <source>Multicast address:</source>
         <translation>Διεύθυνση πολλαπλής διανομής:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1789"/>
         <source>Chat Theme</source>
-        <translation>Θέμα Συνομιλίας</translation>
+        <translation type="vanished">Θέμα Συνομιλίας</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1849"/>
+        <location line="+466"/>
         <source>Contacts List</source>
         <translation>Λίστα Επαφών</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1857"/>
+        <location line="+8"/>
         <source>Contacts list view:</source>
         <translation>Προβολή λίστας επαφών:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1882"/>
+        <location line="+25"/>
         <source>Show status as tooltip</source>
         <translation>Εμφάνιση κατάστασης ως tooltip</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1948"/>
+        <location line="+75"/>
         <source>Send messages using:</source>
         <translation>Αποστολή μηνυμάτων χρησιμοποιώντας:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1973"/>
+        <location line="+25"/>
         <source>&lt;Enter&gt;</source>
         <oldsource>Enter</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1980"/>
+        <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
         <oldsource>Ctrl + Enter</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2041"/>
+        <location line="+27"/>
+        <source>Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Enable global hotkeys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Toggle microphone:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location line="+17"/>
+        <location line="+17"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-27"/>
+        <source>Toggle speaker:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Toggle camera:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+67"/>
         <source>Reset Preferences</source>
         <translation>Επαναφορά Προτιμήσεων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2061"/>
+        <location line="+20"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="2071"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="59"/>
-        <location filename="settingsdialog.ui" line="141"/>
+        <location line="-2460"/>
+        <location line="+96"/>
         <source>General</source>
         <translation>Γενικά</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="94"/>
-        <location filename="settingsdialog.ui" line="1782"/>
+        <location line="-56"/>
+        <location line="+1990"/>
         <source>Appearance</source>
         <translation>Εμφάνιση</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="148"/>
+        <location line="-1927"/>
+        <location line="+1949"/>
         <source>System</source>
         <translation>Σύστημα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="154"/>
+        <location line="-1943"/>
         <source>Start %1 on system startup</source>
         <translation>Εκκίνηση του %1 κατά την εκκίνηση του συστήματος</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="161"/>
+        <location line="+7"/>
         <source>Show main window when %1 starts</source>
         <translation>Εμφάνιση κεντρικού παραθύρου όταν το %1 ξεκινά</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="171"/>
+        <location line="+17"/>
         <source>System Tray</source>
         <translation>Περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="177"/>
+        <location line="+6"/>
         <source>Show system tray icon</source>
         <translation>Εμφάνιση εικονιδίου στην περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="184"/>
+        <location line="+7"/>
         <source>Minimize main window to system tray</source>
         <translation>Ελαχιστοποίηση κεντρικού παραθύρου στην περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="191"/>
+        <location line="+7"/>
         <source>Single click on tray icon to open</source>
         <translation>Μονό κλικ στο εικονίδιο για άνοιγμα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="198"/>
         <source>Show balloon notifications in tray</source>
-        <translation>Εμφάνιση ειδοποιήσεων στην περιοχή ειδοποιήσεων</translation>
+        <translation type="vanished">Εμφάνιση ειδοποιήσεων στην περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="215"/>
+        <location line="+24"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="223"/>
+        <location line="+8"/>
         <source>Select language:</source>
         <translation>Επιλογή γλώσσας:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="64"/>
-        <location filename="settingsdialog.ui" line="329"/>
+        <location line="-180"/>
+        <location line="+262"/>
         <source>Account</source>
         <translation>Λογαριασμός</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="336"/>
+        <location line="+7"/>
         <source>Personal</source>
         <translation>Προσωπικά</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="344"/>
         <source>User name as seen by contacts:</source>
-        <translation>Όνομα χρήστη όπως φαίνεται στις επαφές:</translation>
+        <translation type="vanished">Όνομα χρήστη όπως φαίνεται στις επαφές:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="373"/>
         <source>First Name:</source>
-        <translation>Όνομα</translation>
+        <translation type="vanished">Όνομα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="403"/>
         <source>Last Name:</source>
-        <translation>Επώνυμο</translation>
+        <translation type="vanished">Επώνυμο</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="419"/>
+        <location line="+122"/>
         <source>About:</source>
         <translation>Σχετικά με:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="447"/>
+        <location line="+35"/>
         <source>Contacts</source>
         <translation>Επαφές</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="455"/>
+        <location line="+8"/>
         <source>Refresh contacts list every</source>
         <translation>Ανανέωση λίστας επαφών κάθε</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="485"/>
+        <location line="+30"/>
         <source>seconds</source>
         <translation>δευτερόλεπτα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="69"/>
-        <location filename="settingsdialog.ui" line="535"/>
-        <location filename="settingsdialog.ui" line="1937"/>
+        <location line="-459"/>
+        <location line="+518"/>
+        <location line="+1690"/>
         <source>Messages</source>
         <translation>Μηνύματα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="542"/>
+        <location line="-1683"/>
         <source>Message Window</source>
         <translation>Παράθυρο Μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="605"/>
+        <location line="+63"/>
         <source>Show emoticons in instant messages</source>
         <translation>Εμφάνιση emoticon στα άμεσα μηνύματα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="612"/>
+        <location line="+7"/>
         <source>Add time stamp to instant messages</source>
         <translation>Προσθήκη χρονοσφραγίδων στα άμεσα μηνύματα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="637"/>
+        <location line="+25"/>
         <source>Show date in time stamp</source>
         <translation>Εμφάνιση ημερομηνίας στα άμεσα μηνύματα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="548"/>
         <source>Set incoming messages foreground</source>
-        <translation>Ορισμός προσκηνίου εισερχόμενων άμεσων μηνυμάτων</translation>
+        <translation type="vanished">Ορισμός προσκηνίου εισερχόμενων άμεσων μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="555"/>
+        <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>Ελαχιστοποίηση άμεσων μηνυμάτων στην γραμμή εργασιών</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="697"/>
         <source>Message Font</source>
-        <translation>Γραμματοσειρά Μηνυμάτων</translation>
+        <translation type="vanished">Γραμματοσειρά Μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="74"/>
-        <location filename="settingsdialog.ui" line="826"/>
+        <location line="-528"/>
+        <location line="+1015"/>
         <source>History</source>
         <translation>Ιστορικό</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="99"/>
-        <location filename="settingsdialog.ui" line="1930"/>
+        <location line="-990"/>
+        <location line="+2166"/>
         <source>Hotkeys</source>
         <translation>Συνδυασμοί πλήκτρων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="205"/>
+        <location line="-2044"/>
         <source>Minimize main window using tray icon</source>
         <translation>Ελαχιστοποίηση κεντρικού παραθύρου χρησιμοποιώντας το εικονίδιο</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="580"/>
+        <location line="+406"/>
         <source>Apply to public messages</source>
         <oldsource>Apply  to public messages</oldsource>
         <translation>Εφαρμογή σε δημόσια μηνύματα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="646"/>
+        <location line="+66"/>
         <source>Allow hyperlinks in instant messages</source>
         <translation>Επέτρεψε υπερσυνδέσμους σε άμεσα μηνύματα</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="671"/>
+        <location line="+25"/>
         <source>Convert network paths to links</source>
         <translation>Μετατροπή δικτυακών διαδρομών σε συνδέσμους</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="680"/>
+        <location line="+9"/>
         <source>Remove whitespace from start and end of messages</source>
         <translation>Αφαίρεση κενών από την αρχή και το τέλος των μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="687"/>
+        <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation>Εκκαθάριση μηνυμάτων όταν κλείσει το παράθυρο</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="705"/>
         <source>Change Font...</source>
-        <translation>Επιλογή Γραμματοσειράς...</translation>
+        <translation type="vanished">Επιλογή Γραμματοσειράς...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="729"/>
         <source>Change Color...</source>
-        <translation>Αλλαγή Χρώματος...</translation>
+        <translation type="vanished">Αλλαγή Χρώματος...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="753"/>
         <source>Incoming message text size:</source>
-        <translation>Μέγεθος κειμένου εισερχόμενου μηνύματος:</translation>
+        <translation type="vanished">Μέγεθος κειμένου εισερχόμενου μηνύματος:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="833"/>
+        <location line="+362"/>
         <source>Message History</source>
         <translation>Ιστορικό Μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="839"/>
+        <location line="+6"/>
         <source>Keep a history of conversations</source>
         <translation>Διατήρηση ιστορικού συνομιλιών</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="848"/>
+        <location line="+9"/>
         <source>Clear Message History</source>
         <translation>Εκκαθάριση Ιστορικού Μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="873"/>
+        <location line="+25"/>
         <source>History File Location</source>
         <translation>Τοποθεσία Αρχείου Ιστορικού</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="879"/>
+        <location line="+6"/>
         <source>System default location</source>
         <translation>Προκαθορισμένη τοποθεσία συστήματος</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="886"/>
+        <location line="+7"/>
         <source>Custom location</source>
         <translation>Προσαρμοσμένη τοποθεσία</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="924"/>
-        <location filename="settingsdialog.ui" line="1135"/>
-        <location filename="settingsdialog.ui" line="1708"/>
+        <location line="+38"/>
+        <location line="+220"/>
+        <location line="+591"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="936"/>
+        <location line="-799"/>
         <source>File Transfer History</source>
         <translation>Ιστορικό Μεταφοράς Αρχείων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="942"/>
+        <location line="+6"/>
         <source>Keep a history of file transfers</source>
         <translation>Διατήρηση ιστορικού μεταφοράς αρχείων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="951"/>
+        <location line="+9"/>
         <source>Clear Transfer History</source>
         <translation>Εκκαθάριση Ιστορικού Μεταφορών</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="79"/>
-        <location filename="settingsdialog.ui" line="1014"/>
+        <location line="-1135"/>
+        <location line="+1207"/>
         <source>Alerts</source>
         <translation>Ειδοποιήσεις</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1021"/>
+        <location line="+7"/>
         <source>Status Alerts</source>
         <translation>Ειδοποιήσεις Κατάστασης</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1027"/>
+        <location line="+6"/>
         <source>Display status alerts</source>
         <translation>Εμφάνιση ειδοποιήσεων κατάστασης</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1034"/>
+        <location line="+7"/>
         <source>Suspend alerts when my status is Busy</source>
         <translation>Αναστολή ειδοποιήσεων όταν η κατάστασή μου είναι Απασχολημένος/η</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1041"/>
+        <location line="+7"/>
         <source>Suspend alerts when my status is Do Not Disturb</source>
         <translation>Αναστολή ειδοποιήσεων όταν η κατάστασή μου είναι Μην Ενοχλείτε</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1051"/>
+        <location line="+10"/>
         <source>Sounds</source>
         <translation>Ήχοι</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1057"/>
+        <location line="+6"/>
         <source>Provide feedback with sounds</source>
         <translation>Ανατροφοδότηση με ήχους</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1168"/>
+        <location line="+111"/>
         <source>Suspend sounds when my status is Busy</source>
         <translation>Αναστολή ήχων όταν η κατάστασή μου είναι Απασχολημένος/η</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1175"/>
+        <location line="+7"/>
         <source>Suspend sound when my status is Do Not Disturb</source>
         <translation>Αναστολή ήχων όταν η κατάστασή μου είναι Μην Ενοχλείτε</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1084"/>
+        <location line="-91"/>
         <source>Play sounds for these events:</source>
         <translation>Αναπαραγωγή ήχων για τα παρακάτω συμβάντα:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="84"/>
-        <location filename="settingsdialog.ui" line="1223"/>
+        <location line="-1287"/>
+        <location line="+775"/>
+        <source>Voice &amp; Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-760"/>
+        <location line="+1420"/>
         <source>Network</source>
         <translation>Δίκτυο</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1230"/>
+        <location line="-1327"/>
+        <source>Enable Debug Logging</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Show toast notifications in tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+120"/>
+        <source>User name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>User name as seen by contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Group :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Group as seen by contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>First Name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+20"/>
+        <location line="+32"/>
+        <source>For User Information dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-45"/>
+        <source>Last Name :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+165"/>
+        <source>Show incoming messages without grabbing focus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <source>Chat Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Chat text size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Only applies to new chat windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+73"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+113"/>
+        <source>Capture Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-87"/>
+        <source>Activation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Continuous Transmission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Push to Talk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Voice Activity Threshold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+541"/>
         <source>Connection</source>
         <translation>Σύνδεση</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1238"/>
+        <location line="+8"/>
         <source>Connection timeout (seconds):</source>
         <translation>Λήξη χρόνου σύνδεσης (δευτερόλεπτα):</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1272"/>
+        <location line="+34"/>
         <source>Maximum number of retries:</source>
         <translation>Μέγιστος αριθμός δοκιμών:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1307"/>
+        <location line="+35"/>
         <source>Broadcast</source>
         <oldsource>Broadcast Settings</oldsource>
         <translation>Εκπομπή</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1313"/>
+        <location line="+6"/>
         <source>Broadcast list:</source>
         <translation>Λίστα εκπομπών:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1471"/>
+        <location line="+158"/>
         <source>UDP Port*:</source>
         <translation>Θύρα UDP*:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1514"/>
+        <location line="+43"/>
         <source>TCP Port*:</source>
         <translation>Θύρα TCP*:</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1558"/>
+        <location line="+44"/>
         <source>* Takes effect after you restart %1.</source>
         <translation>* Ενεργοποιείται μετά την επανεκκίνηση του %1.</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="89"/>
-        <location filename="settingsdialog.ui" line="1603"/>
+        <location line="+252"/>
+        <source>Color Scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-2027"/>
+        <location line="+1804"/>
         <source>File Transfer</source>
         <translation>Μεταφορά Αρχείου</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1610"/>
+        <location line="+7"/>
         <source>Incoming File Request</source>
         <translation>Εισερχόμενο Αίτημα Αρχείου</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1648"/>
+        <location line="+38"/>
         <source>Bring window to foreground</source>
         <translation>Μεταφορά παραθύρου στο προσκήνιο</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1675"/>
+        <location line="+27"/>
         <source>Minimize window to taskbar</source>
         <translation>Ελαχιστοποίηση παραθύρου στη γραμμή εργασιών</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1616"/>
+        <location line="-59"/>
         <source>Accept and start receiving files automatically</source>
         <translation>Αυτόματη αποδοχή και λήψη αρχείων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1623"/>
+        <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
         <translation>Εμφάνιση παραθύρου Μεταφοράς Αρχείου όταν στέλνεις ή λαμβάνεις αρχεία</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1687"/>
+        <location line="+64"/>
         <source>Store Received Files in this Folder</source>
         <translation>Αποθήκευση Εισερχομένων Αρχείων σε αυτό τον Φάκελο</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="1719"/>
+        <location line="+32"/>
         <source>View Files</source>
         <translation>Προβολή Αρχείων</translation>
     </message>
@@ -704,17 +936,17 @@
 <context>
     <name>TransferWindow</name>
     <message>
-        <location filename="transferwindow.ui" line="14"/>
+        <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="transferwindow.ui" line="88"/>
+        <location line="+74"/>
         <source>Clear List</source>
         <translation>Εκκαθάριση Λίστας</translation>
     </message>
     <message>
-        <location filename="transferwindow.ui" line="108"/>
+        <location line="+20"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
@@ -722,127 +954,120 @@
 <context>
     <name>UpdateWindow</name>
     <message>
-        <location filename="updatewindow.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="updatewindow.ui" line="82"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation type="vanished">Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="updatewindow.ui" line="92"/>
         <source>Recheck Version</source>
-        <translation>Επανέλεγχος Έκδοσης</translation>
+        <translation type="vanished">Επανέλεγχος Έκδοσης</translation>
     </message>
 </context>
 <context>
     <name>UserInfoWindow</name>
     <message>
-        <location filename="userinfowindow.ui" line="14"/>
+        <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="34"/>
+        <location line="+20"/>
         <source>&lt;Avatar&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="43"/>
+        <location line="+9"/>
         <source>&lt;User Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="50"/>
+        <location line="+7"/>
         <source>&lt;Status&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="84"/>
+        <location line="+34"/>
         <source>Personal Information</source>
         <translation>Προσωπικές Πληροφορίες</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="94"/>
+        <location line="+10"/>
         <source>First Name:</source>
         <translation>Όνομα:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="101"/>
-        <location filename="userinfowindow.ui" line="122"/>
-        <location filename="userinfowindow.ui" line="160"/>
+        <location line="+7"/>
+        <location line="+21"/>
+        <location line="+38"/>
         <source>N/A</source>
         <translation>Μ/Δ</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="115"/>
+        <location line="-45"/>
         <source>Last Name:</source>
         <translation>Επώνυμο</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="138"/>
+        <location line="+23"/>
         <source>About:</source>
         <translation>Σχετικά με:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="170"/>
+        <location line="+32"/>
         <source>System Information</source>
         <translation>Πληροφορίες Συστήματος</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="176"/>
+        <location line="+6"/>
         <source>IP Address:</source>
         <translation>Διεύθυνση IP:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="186"/>
+        <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="193"/>
+        <location line="+7"/>
         <source>Logon Name:</source>
         <translation>Όνομα Σύνδεσης:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="203"/>
+        <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="210"/>
+        <location line="+7"/>
         <source>Computer Name:</source>
         <translation>Όνομα Υπολογιστή:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="220"/>
+        <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="227"/>
+        <location line="+7"/>
         <source>Operating System:</source>
         <translation>Λειτουργικό Σύστημα:</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="237"/>
+        <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="244"/>
+        <location line="+7"/>
         <source>Messenger Version:</source>
         <translation>Έκδοση Messenger</translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="254"/>
+        <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userinfowindow.ui" line="280"/>
+        <location line="+26"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
@@ -850,353 +1075,1322 @@
 <context>
     <name>UserSelectDialog</name>
     <message>
-        <location filename="userselectdialog.ui" line="17"/>
+        <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="36"/>
+        <location line="+22"/>
         <source>Contacts</source>
         <translation>Επαφές</translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="59"/>
+        <location line="+23"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="userselectdialog.ui" line="69"/>
+        <location line="+10"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
 </context>
 <context>
+    <name>lmChatLog</name>
+    <message>
+        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <source>This message was not delivered to %1:</source>
+        <translation type="unfinished">Αυτό το μήνυμα δεν παραδώθηκε σε %1:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Your message was not sent.</source>
+        <translation type="unfinished">Το μήνυμά σας δεν στάλθηκε.</translation>
+    </message>
+    <message>
+        <location line="+491"/>
+        <source>Broadcast message from %1:</source>
+        <translation type="unfinished">Μήνυμα εκπομπής από %1:</translation>
+    </message>
+    <message>
+        <location line="+161"/>
+        <source>Requesting %1 call from %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+92"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Ακύρωση</translation>
+    </message>
+    <message>
+        <location line="-89"/>
+        <location line="+28"/>
+        <source>Call in progress.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call declined.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <location line="+28"/>
+        <source>Call aborted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>%1 is requesting %2 call.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+109"/>
+        <source>Accept</source>
+        <translation type="unfinished">Αποδοχή</translation>
+    </message>
+    <message>
+        <location line="-108"/>
+        <location line="+109"/>
+        <source>Decline</source>
+        <translation type="unfinished">Απόρριψη</translation>
+    </message>
+    <message>
+        <location line="-52"/>
+        <source>Sending &apos;%1&apos; to %2.</source>
+        <translation type="unfinished">Αποστολή &apos;%1&apos; σε %2.</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>%1 is sending you a file:</source>
+        <translation type="unfinished">Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 is sending you a folder:</source>
+        <translation type="unfinished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 sends you a file:</source>
+        <translation type="unfinished">Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 sends you a folder:</source>
+        <translation type="unfinished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+60"/>
+        <location line="+0"/>
+        <source>Accepted</source>
+        <translation type="unfinished">Έγινε αποδοχή</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show in Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <location line="+0"/>
+        <source>Declined</source>
+        <translation type="unfinished">Απορρίφθηκε</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+0"/>
+        <source>Canceled</source>
+        <translation type="unfinished">Ακυρώθηκε</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <location line="+0"/>
+        <source>Interrupted</source>
+        <translation type="unfinished">Διακόπηκε</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+0"/>
+        <source>Completed</source>
+        <translation type="unfinished">Ολοκληρώθηκε</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>%1 is typing...</source>
+        <translation type="unfinished">Ο/Η %1 πληκτρολογεί...</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 has entered text</source>
+        <translation type="unfinished">Ο/Η %1 έγραψε κείμενο</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>%1 has joined this conversation</source>
+        <translation type="unfinished">Ο/Η %1 συνδέθηκε σε αυτή τη συνομιλία</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 has left this conversation</source>
+        <translation type="unfinished">Ο/Η %1 έφυγε από την συνομιλία</translation>
+    </message>
+    <message>
+        <location line="+181"/>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;Αντιγραφή</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Select &amp;All</source>
+        <translation type="unfinished">Επιλογή &amp;Όλων</translation>
+    </message>
+</context>
+<context>
+    <name>lmCore</name>
+    <message>
+        <location filename="../../sources/lmcore.cpp" line="+158"/>
+        <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+58"/>
+        <source>LAYOUT_DIRECTION</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+465"/>
+        <source>No microphone is available. Your voice cannot be sent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Your selected microphone is not available. Using %1 instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+146"/>
+        <source>The %1 hotkey (%2) is not active: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Hotkey</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+486"/>
+        <source>A port address conflict has been detected. %1 will close now.</source>
+        <translation type="unfinished">Εντοπίστηκε διένεξη θύρας διευθύνσης. Το %1 θα κλείσει τώρα.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
+        <translation type="unfinished">Το %1 δεν μπορεί να ξεκινήσει γιατί μια άλλη εφαρμογή χρησιμοποιεί την θύρα που έχει ρυθμιστεί για χρήση από με το %2.</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormAbout</name>
+    <message>
+        <location filename="../../sources/aformabout.cpp" line="+68"/>
+        <source>About %1</source>
+        <translation type="unfinished">Σχετικά με %1</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormBroadcast</name>
+    <message>
+        <location filename="../../sources/aformbroadcast.cpp" line="+340"/>
+        <source>Send Broadcast Message</source>
+        <translation type="unfinished">Αποστολή Μηνύματος Εκπομπής</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished">Εισαγωγή Smiley</translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>You are not connected. Broadcast message cannot be sent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Select at least one recipient to send a broadcast.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Type a message to send.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>You are no longer connected. Broadcast message cannot be sent.</source>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος. Το μήνυμα εκπομπής δεν μπορεί να σταλεί.</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormChat</name>
+    <message>
+        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <source>Group Conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+147"/>
+        <source>%1 says...</source>
+        <translation type="unfinished">%1 λέει...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Broadcast from %1</source>
+        <translation type="unfinished">Εκπομπή από %1</translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>%1 sends a file...</source>
+        <translation type="unfinished">Ο/Η %1 στέλνει ένα αρχείο...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 sends a folder...</source>
+        <translation type="unfinished">Ο/Η %1 στέλνει ένα φάκελο</translation>
+    </message>
+    <message>
+        <location line="+349"/>
+        <source>Save Conversation</source>
+        <translation type="unfinished">Αποθήκευση Συνομιλίας</translation>
+    </message>
+    <message>
+        <location line="+211"/>
+        <source>Sent a nudge!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished">Εισαγωγή Smiley</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send A File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send A Folder...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Nudge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Voice Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Video Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Hang Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>History</source>
+        <translation type="unfinished">Ιστορικό</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File Transfers</source>
+        <translation type="unfinished">Μεταφορές Αρχείων</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Send a file to %1</source>
+        <translation type="unfinished">Αποστολή αρχείου σε %1</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Send a folder to %1</source>
+        <translation type="unfinished">Αποστολή φακέλου σε %1</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Save this conversation</source>
+        <translation type="unfinished">Αποθήκευση αυτής της συνομιλίας</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>View History</source>
+        <translation type="unfinished">Προβολή Ιστορικού</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>View File Transfers</source>
+        <translation type="unfinished">Προβολή Μεταφορών Αρχείων</translation>
+    </message>
+    <message>
+        <location line="+138"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 is offline.</source>
+        <translation type="unfinished">Ο/Η %1 είναι εκτός σύνδεσης.</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>%1 is away.</source>
+        <translation type="unfinished">Ο/Η %1 λείπει.</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>%1 is busy. You may be interrupting.</source>
+        <translation type="unfinished">Ο/Η %1 είναι απασχολημένος. Μπορεί να ενοχλείς.</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Conversation</source>
+        <translation type="unfinished">Συνομιλία</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormChatRoom</name>
+    <message>
+        <location filename="../../sources/aformchatroom.cpp" line="+190"/>
+        <source>Group Conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+133"/>
+        <source>%1 says...</source>
+        <translation type="unfinished">%1 λέει...</translation>
+    </message>
+    <message>
+        <location line="+177"/>
+        <source>Save Conversation</source>
+        <translation type="unfinished">Αποθήκευση Συνομιλίας</translation>
+    </message>
+    <message>
+        <location line="+134"/>
+        <source>Conversation</source>
+        <translation type="unfinished">Συνομιλία</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Insert Smiley</source>
+        <translation type="unfinished">Εισαγωγή Smiley</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Save this conversation</source>
+        <translation type="unfinished">Αποθήκευση αυτής της συνομιλίας</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Add people to this conversation</source>
+        <translation type="unfinished">Προσθήκη ατόμων σε αυτή τη συνομιλία</translation>
+    </message>
+    <message>
+        <location line="+70"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Chat Room</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Public Chat</source>
+        <translation type="unfinished">Δημόσια Συζήτηση</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormHistory</name>
+    <message>
+        <location filename="../../sources/aformhistory.cpp" line="+126"/>
+        <source>Message History</source>
+        <translation type="unfinished">Ιστορικό Μηνυμάτων</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormMain</name>
+    <message>
+        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <source>%1 is online.</source>
+        <translation type="unfinished">Ο/Η %1 συνδέθηκε.</translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>%1 is offline.</source>
+        <translation type="unfinished">Ο/Η %1 είναι εκτός σύνδεσης.</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>You are online.</source>
+        <translation type="unfinished">Είστε συνδεδεμένος/η</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>You are no longer connected.</source>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
+    </message>
+    <message>
+        <location line="+228"/>
+        <source>Select avatar picture</source>
+        <translation type="unfinished">Επιλογή εικόνας avatar</translation>
+    </message>
+    <message>
+        <location line="+385"/>
+        <source>&amp;Messenger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+29"/>
+        <source>&amp;New Chat Room</source>
+        <translation type="unfinished">&amp;Νέο Δωμάτιο Συζήτησης</translation>
+    </message>
+    <message>
+        <location line="-28"/>
+        <location line="+29"/>
+        <source>&amp;Public Chat</source>
+        <translation type="unfinished">&amp;Δημόσια Συζήτηση</translation>
+    </message>
+    <message>
+        <location line="-28"/>
+        <source>&amp;Refresh Contacts List</source>
+        <translation type="unfinished">&amp;Ανανέωση Λίστας Επαφών</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+16"/>
+        <source>E&amp;xit</source>
+        <translation type="unfinished">Έ&amp;ξοδος</translation>
+    </message>
+    <message>
+        <location line="-15"/>
+        <source>&amp;Tools</source>
+        <translation type="unfinished">&amp;Εργαλεία</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+10"/>
+        <source>&amp;History</source>
+        <translation type="unfinished">&amp;Ιστορικό</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+10"/>
+        <source>File &amp;Transfers</source>
+        <translation type="unfinished">&amp;Μεταφορές Αρχείων</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+10"/>
+        <source>&amp;Preferences</source>
+        <translation type="unfinished">&amp;Προτιμήσεις</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished">&amp;Βοήθεια</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>%1 &amp;online</source>
+        <translation type="unfinished">%1 στο διαδίκτ&amp;υο</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+7"/>
+        <source>&amp;About</source>
+        <translation type="unfinished">&amp;Σχετικά με</translation>
+    </message>
+    <message>
+        <location line="-6"/>
+        <source>&amp;Show %1</source>
+        <translation type="unfinished">&amp;Εμφάνιση %1</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Status</source>
+        <translation type="unfinished">&amp;Αλλαγή Κατάστασης</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+6"/>
+        <source>&amp;Conversation</source>
+        <translation type="unfinished">&amp;Συνομιλία</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <location line="+7"/>
+        <source>Send &amp;Broadcast Message</source>
+        <translation type="unfinished">Αποστολή Μηνύματος &amp;Εκπομπής</translation>
+    </message>
+    <message>
+        <location line="-6"/>
+        <location line="+5"/>
+        <source>Send &amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-4"/>
+        <source>Send Fol&amp;der</source>
+        <translation type="unfinished">Αποστολή &amp;Φακέλου</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get &amp;Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Browse for more pictures...</source>
+        <translation type="unfinished">&amp;Περιηγηθείτε για περισσότερες εικόνες...</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
+        <translation type="unfinished">Το %1 θα συνεχίσει να τρέχει στο παρασκήνιο. Πατήστε σε αυτό το εικονίδιο για να επαναφέρετε το παράθυρο της εφαρμογής.</translation>
+    </message>
+    <message>
+        <location line="+183"/>
+        <source>%1 - Not Connected</source>
+        <translation type="unfinished">%1 - Μη Συνδεδεμένος/η</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormSettings</name>
+    <message>
+        <location filename="../../sources/aformsettings.cpp" line="+286"/>
+        <source>Save History</source>
+        <translation type="unfinished">Αποθήκευση Ιστορικού</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Select folder</source>
+        <translation type="unfinished">Επιλογή φακέλου</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Are you sure you want to reset your %1 preferences?</source>
+        <translation type="unfinished">Είστε σίγουροι ότι θέλετε να αρχικοποιήσετε τις %1 προτιμήσεις σας;</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Reset Preferences</source>
+        <translation type="unfinished">Επαναφορά Προτιμήσεων</translation>
+    </message>
+    <message>
+        <location line="+122"/>
+        <source>&lt;File Not Found&gt;</source>
+        <translation type="unfinished">&lt;Το αρχείο δεν βρέθηκε&gt;</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Select sound</source>
+        <translation type="unfinished">Επιλογή ήχου</translation>
+    </message>
+    <message>
+        <location line="+82"/>
+        <source>The microphone is not available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+240"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-201"/>
+        <source>Default Communication Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <location line="+37"/>
+        <source>Unknown device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-36"/>
+        <location line="+37"/>
+        <source>%1 (Not connected)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Still Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Desktop %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+87"/>
+        <source>Push to talk:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>%1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 and %2 cannot share the same hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Preferences</source>
+        <translation type="unfinished">Προτιμήσεις</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>System Tray (Not Available)</source>
+        <translation type="unfinished">Περιοχή ειδοποιήσεων (Μη Διαθέσιμη)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Status Alerts (Not Available)</source>
+        <translation type="unfinished">Ειδοποιήσεις Κατάστασης (Μη Διαθέσιμες)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Sounds (Not Available)</source>
+        <translation type="unfinished">Ήχοι (Μη Διαθέσιμοι)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Calls (Not Available)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormTransfer</name>
+    <message>
+        <location filename="../../sources/aformtransfer.cpp" line="+177"/>
+        <source>&apos;%1&apos; has been sent to %2.</source>
+        <translation type="unfinished">Το %apos;%1&apos; έχει σταλεί σε %2.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+15"/>
+        <source>File Transfer Completed</source>
+        <translation type="unfinished">Η Μεταφορά Αρχείου Ολοκληρώθηκε</translation>
+    </message>
+    <message>
+        <location line="-2"/>
+        <source>&apos;%1&apos; has been received from %2.</source>
+        <translation type="unfinished">Το &apos;%1&apos; ελήφθη από %2.</translation>
+    </message>
+    <message>
+        <location line="+124"/>
+        <source>File Transfers</source>
+        <translation type="unfinished">Μεταφορές Αρχείων</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Ακύρωση</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show In Folder</source>
+        <translation type="unfinished">Εμφάνιση Σε Φάκελο</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Remove From List</source>
+        <translation type="unfinished">Αφαίρεση Από Λίστα</translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Calculating time</source>
+        <translation type="unfinished">Υπολογισμός χρόνου</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>/sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmFormUserInfo</name>
+    <message>
+        <location filename="../../sources/aformuserinfo.cpp" line="+77"/>
+        <source>User Information</source>
+        <translation type="unfinished">Πληροφορίες Χρήστη</translation>
+    </message>
+</context>
+<context>
+    <name>lmFormUserSelect</name>
+    <message>
+        <location filename="../../sources/aformuserselect.cpp" line="+172"/>
+        <source>Select Contacts</source>
+        <translation type="unfinished">Επιλογή Επαφών</translation>
+    </message>
+</context>
+<context>
+    <name>lmHotkeyHandler</name>
+    <message>
+        <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
+        <source>Microphone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Use a single key combination.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+138"/>
+        <source>This key cannot be used as a global hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-135"/>
+        <source>Combine the key with Ctrl, Alt or Win.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>Same combination as the %1 hotkey.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+66"/>
+        <source>Already in use by another application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Windows refused the hotkey (error %1).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>Global hotkeys are not supported on this platform.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>lmStrings</name>
+    <message>
+        <location filename="../../sources/translatabletext.cpp" line="+51"/>
+        <source>LAN Messenger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>LAN Messenger is a free peer-to-peer messaging application for
+intra-network communication and does not require a server.
+LAN Messenger works on essentially every popular desktop platform.
+
+You can support LAN Messenger by contributing code, translations,
+bug fixes or reports.
+Help us grow by sharing the project with others!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Automatic</source>
+        <translation type="unfinished">Αυτόματα</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Small (8.25pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Medium (9pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Large (10.5pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Available</source>
+        <translation type="unfinished">Διαθέσιμος/η</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Busy</source>
+        <translation type="unfinished">Απασχολημένος/η</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Do Not Disturb</source>
+        <translation type="unfinished">Μην Ενοχλείτε</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Be Right Back</source>
+        <translation type="unfinished">Επιστρέφω</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Away</source>
+        <translation type="unfinished">Μακρυά</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Appear Offline</source>
+        <translation type="unfinished">Εμφάνιση Εκτός Σύνδεσης</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Incoming message</source>
+        <translation type="unfinished">Εισερχόμενο μήνυμα</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>User is online</source>
+        <translation type="unfinished">Ο χρήσης είναι συνδεδεμένος</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>User is offline</source>
+        <translation type="unfinished">Ο χρήστης δεν είναι συνδεδεμένος</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming file transfer</source>
+        <translation type="unfinished">Εισερχόμενη λήψη αρχείου</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File transfer completed</source>
+        <translation type="unfinished">Η μεταφορά αρχείου ολοκληρώθηκε</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming public message</source>
+        <translation type="unfinished">Εισερχόμενο δημόσιο μήνυμα</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Microphone on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Microphone off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Camera off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Speaker off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Incoming call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Outgoing call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Nudge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Talking while microphone muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Detailed</source>
+        <translation type="unfinished">Αναλυτική</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Compact</source>
+        <translation type="unfinished">Συμπαγής</translation>
+    </message>
+</context>
+<context>
+    <name>lmWidgetThresholdSlider</name>
+    <message>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <source>%1 dB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>lmcAboutDialog</name>
     <message>
-        <location filename="aboutdialog.cpp" line="70"/>
         <source>About %1</source>
-        <translation>Σχετικά με %1</translation>
+        <translation type="vanished">Σχετικά με %1</translation>
     </message>
 </context>
 <context>
     <name>lmcBroadcastWindow</name>
     <message>
-        <location filename="broadcastwindow.cpp" line="299"/>
         <source>Send Broadcast Message</source>
-        <translation>Αποστολή Μηνύματος Εκπομπής</translation>
+        <translation type="vanished">Αποστολή Μηνύματος Εκπομπής</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="302"/>
         <source>Change Font Size</source>
-        <translation>Αλλαγή Μεγέθους Γραμματοσειράς</translation>
+        <translation type="vanished">Αλλαγή Μεγέθους Γραμματοσειράς</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="303"/>
         <source>Insert Smiley</source>
-        <translation>Εισαγωγή Smiley</translation>
+        <translation type="vanished">Εισαγωγή Smiley</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="339"/>
         <source>No recipient selected</source>
-        <translation>Δεν επιλέξατε παραλήπτη</translation>
+        <translation type="vanished">Δεν επιλέξατε παραλήπτη</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="340"/>
         <source>Please select at least one recipient to send a broadcast.</source>
-        <translation>Παρακαλώ επιλέξτε τουλάχιστον έναν παραλήπτη για αποστολή εκπομπής.</translation>
+        <translation type="vanished">Παρακαλώ επιλέξτε τουλάχιστον έναν παραλήπτη για αποστολή εκπομπής.</translation>
     </message>
     <message>
-        <location filename="broadcastwindow.cpp" line="362"/>
         <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation>Δεν είστε πλέον συνδεδεμένος. Το μήνυμα εκπομπής δεν μπορεί να σταλεί.</translation>
+        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος. Το μήνυμα εκπομπής δεν μπορεί να σταλεί.</translation>
     </message>
 </context>
 <context>
     <name>lmcChatRoomWindow</name>
     <message>
-        <location filename="chatroomwindow.cpp" line="165"/>
         <source>Group Conversation</source>
-        <translation>Ομαδική Συζήτηση</translation>
+        <translation type="vanished">Ομαδική Συζήτηση</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="300"/>
         <source>%1 says...</source>
-        <translation>%1 λέει...</translation>
+        <translation type="vanished">%1 λέει...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="465"/>
         <source>Select Font</source>
-        <translation>Επιλογή Γραμματοσειράς</translation>
+        <translation type="vanished">Επιλογή Γραμματοσειράς</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="471"/>
         <source>Select Color</source>
-        <translation>Επιλογή Χρώματος</translation>
+        <translation type="vanished">Επιλογή Χρώματος</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="480"/>
         <source>Save Conversation</source>
-        <translation>Αποθήκευση Συνομιλίας</translation>
+        <translation type="vanished">Αποθήκευση Συνομιλίας</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="619"/>
         <source>Participants</source>
-        <translation>Συμμετέχοντες</translation>
+        <translation type="vanished">Συμμετέχοντες</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="621"/>
         <source>&amp;Conversation</source>
-        <translation>&amp;Συνομιλία</translation>
+        <translation type="vanished">&amp;Συνομιλία</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="622"/>
         <source>Send &amp;File</source>
-        <translation>Αποθήκευση &amp;Αρχείου</translation>
+        <translation type="vanished">Αποθήκευση &amp;Αρχείου</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="623"/>
         <source>Get &amp;Information</source>
-        <translation>Λήψη &amp;Πληροφορίας</translation>
+        <translation type="vanished">Λήψη &amp;Πληροφορίας</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="624"/>
         <source>Insert Smiley</source>
-        <translation>Εισαγωγή Smiley</translation>
+        <translation type="vanished">Εισαγωγή Smiley</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="625"/>
         <source>&amp;Save As...</source>
-        <translation>Αποθήκευση &amp;Ως...</translation>
+        <translation type="vanished">Αποθήκευση &amp;Ως...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="626"/>
         <source>Save this conversation</source>
-        <translation>Αποθήκευση αυτής της συνομιλίας</translation>
+        <translation type="vanished">Αποθήκευση αυτής της συνομιλίας</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="627"/>
         <source>Change Font...</source>
-        <translation>Αλλαγή Γραμματοσειράς...</translation>
+        <translation type="vanished">Αλλαγή Γραμματοσειράς...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="628"/>
         <source>Change message font</source>
-        <translation>Αλλαγή γραμματοσειράς μηνύματος</translation>
+        <translation type="vanished">Αλλαγή γραμματοσειράς μηνύματος</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="629"/>
         <source>Change Color...</source>
-        <translation>Αλλαγή Χρώματος...</translation>
+        <translation type="vanished">Αλλαγή Χρώματος...</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="630"/>
         <source>Change message text color</source>
-        <translation>Αλλαγή χρώματος κειμένου μηνύματος</translation>
+        <translation type="vanished">Αλλαγή χρώματος κειμένου μηνύματος</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="633"/>
         <source>&amp;Add Contacts...</source>
         <oldsource>&amp;Add A Contact...</oldsource>
-        <translation>Προσθήκη &amp;Επαφής</translation>
+        <translation type="vanished">Προσθήκη &amp;Επαφής</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="634"/>
         <source>Add people to this conversation</source>
         <oldsource>Add contacts to this conversation</oldsource>
-        <translation>Προσθήκη ατόμων σε αυτή τη συνομιλία</translation>
+        <translation type="vanished">Προσθήκη ατόμων σε αυτή τη συνομιλία</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="704"/>
         <source>You are no longer connected.</source>
-        <translation>Δεν είστε πλέον συνδεδεμένος/η</translation>
+        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος/η</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="728"/>
         <source>Conversation</source>
-        <translation>Συνομιλία</translation>
+        <translation type="vanished">Συνομιλία</translation>
     </message>
     <message>
-        <location filename="chatroomwindow.cpp" line="730"/>
         <source>Public Chat</source>
-        <translation>Δημόσια Συζήτηση</translation>
+        <translation type="vanished">Δημόσια Συζήτηση</translation>
     </message>
 </context>
 <context>
     <name>lmcChatWindow</name>
     <message>
-        <location filename="chatwindow.cpp" line="530"/>
         <source>Insert Smiley</source>
-        <translation>Εισαγωγή Smiley</translation>
+        <translation type="vanished">Εισαγωγή Smiley</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="531"/>
         <source>Send A &amp;File...</source>
-        <translation>Αποστολή &amp;Αρχείου...</translation>
+        <translation type="vanished">Αποστολή &amp;Αρχείου...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="532"/>
         <source>Send A Fol&amp;der...</source>
-        <translation>Αποσολή &amp;Φακέλου...</translation>
+        <translation type="vanished">Αποσολή &amp;Φακέλου...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="533"/>
         <source>&amp;Save As...</source>
-        <translation>Αποθήκευση &amp;Ως...;</translation>
+        <translation type="vanished">Αποθήκευση &amp;Ως...;</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="534"/>
         <source>&amp;History</source>
-        <translation>&amp;Ιστορικό</translation>
+        <translation type="vanished">&amp;Ιστορικό</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="535"/>
         <source>File &amp;Transfers</source>
-        <translation>&amp;Μεταφορές Αρχείων</translation>
+        <translation type="vanished">&amp;Μεταφορές Αρχείων</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="537"/>
         <source>Send a file to %1</source>
-        <translation>Αποστολή αρχείου σε %1</translation>
+        <translation type="vanished">Αποστολή αρχείου σε %1</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="539"/>
         <source>Send a folder to %1</source>
-        <translation>Αποστολή φακέλου σε %1</translation>
+        <translation type="vanished">Αποστολή φακέλου σε %1</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="542"/>
         <source>Save this conversation</source>
-        <translation>Αποθήκευση αυτής της συνομιλίας</translation>
+        <translation type="vanished">Αποθήκευση αυτής της συνομιλίας</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="543"/>
         <source>View History</source>
-        <translation>Προβολή Ιστορικού</translation>
+        <translation type="vanished">Προβολή Ιστορικού</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="544"/>
         <source>View File Transfers</source>
-        <translation>Προβολή Μεταφορών Αρχείων</translation>
+        <translation type="vanished">Προβολή Μεταφορών Αρχείων</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="545"/>
         <source>Change Font...</source>
-        <translation>Αλλαγή Γραμματοσειράς...</translation>
+        <translation type="vanished">Αλλαγή Γραμματοσειράς...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="546"/>
         <source>Change message font</source>
-        <translation>Αλλαγή γραμματοσειράς μηνυμάτων</translation>
+        <translation type="vanished">Αλλαγή γραμματοσειράς μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="547"/>
         <source>Change Color...</source>
-        <translation>Αλλαγή Χρώματος...</translation>
+        <translation type="vanished">Αλλαγή Χρώματος...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="548"/>
         <source>Change message text color</source>
-        <translation>Αλλαγή χρώματος κειμένου μηνυμάτων</translation>
+        <translation type="vanished">Αλλαγή χρώματος κειμένου μηνυμάτων</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="380"/>
         <source>Select Font</source>
-        <translation>Επιλογή Γραμματοσειράς</translation>
+        <translation type="vanished">Επιλογή Γραμματοσειράς</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="386"/>
         <source>Select Color</source>
-        <translation>Επιλογή Χρώματος</translation>
+        <translation type="vanished">Επιλογή Χρώματος</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="413"/>
         <source>Save Conversation</source>
-        <translation>Αποθήκευση Συνομιλίας</translation>
+        <translation type="vanished">Αποθήκευση Συνομιλίας</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="152"/>
         <source>Group Conversation</source>
-        <translation>Ομαδική Συνομιλία</translation>
+        <translation type="vanished">Ομαδική Συνομιλία</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="174"/>
         <source>%1 says...</source>
-        <translation>%1 λέει...</translation>
+        <translation type="vanished">%1 λέει...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="182"/>
         <source>Broadcast from %1</source>
-        <translation>Εκπομπή από %1</translation>
+        <translation type="vanished">Εκπομπή από %1</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="225"/>
         <source>%1 sends a file...</source>
-        <translation>Ο/Η %1 στέλνει ένα αρχείο...</translation>
+        <translation type="vanished">Ο/Η %1 στέλνει ένα αρχείο...</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="227"/>
         <source>%1 sends a folder...</source>
-        <translation>Ο/Η %1 στέλνει ένα φάκελο</translation>
+        <translation type="vanished">Ο/Η %1 στέλνει ένα φάκελο</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="658"/>
         <source>You are no longer connected.</source>
-        <translation>Δεν είστε πλέον συνδεδεμένος/η</translation>
+        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος/η</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="661"/>
         <source>%1 is offline.</source>
-        <translation>Ο/Η %1 είναι εκτός σύνδεσης.</translation>
+        <translation type="vanished">Ο/Η %1 είναι εκτός σύνδεσης.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="665"/>
         <source>%1 is away.</source>
-        <translation>Ο/Η %1 λείπει.</translation>
+        <translation type="vanished">Ο/Η %1 λείπει.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="669"/>
         <source>%1 is busy. You may be interrupting.</source>
-        <translation>Ο/Η %1 είναι απασχολημένος. Μπορεί να ενοχλείς.</translation>
+        <translation type="vanished">Ο/Η %1 είναι απασχολημένος. Μπορεί να ενοχλείς.</translation>
     </message>
     <message>
-        <location filename="chatwindow.cpp" line="693"/>
         <source>Conversation</source>
-        <translation>Συνομιλία</translation>
+        <translation type="vanished">Συνομιλία</translation>
     </message>
 </context>
 <context>
     <name>lmcCore</name>
     <message>
-        <location filename="lmc.cpp" line="149"/>
         <source>Preferences could not be imported from &apos;%1&apos;.
 
 File may not exist, or may not be compatible with this version of %2.</source>
-        <translation>Δεν ήταν δυνατή η εισαγωγή των προτιμήσεων από &apos;%1&apos;.
+        <translation type="vanished">Δεν ήταν δυνατή η εισαγωγή των προτιμήσεων από &apos;%1&apos;.
 
 Το αρχείο μπορεί να μην υπάρχει, ή να μην είναι συμβατό με αυτήν την έκδοση του %2.</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="156"/>
-        <location filename="lmc.cpp" line="196"/>
-        <source>LAYOUT_DIRECTION</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="lmc.cpp" line="969"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation>Εντοπίστηκε διένεξη θύρας διευθύνσης. Το %1 θα κλείσει τώρα.</translation>
+        <translation type="vanished">Εντοπίστηκε διένεξη θύρας διευθύνσης. Το %1 θα κλείσει τώρα.</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="971"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation>Το %1 δεν μπορεί να ξεκινήσει γιατί μια άλλη εφαρμογή χρησιμοποιεί την θύρα που έχει ρυθμιστεί για χρήση από με το %2.</translation>
+        <translation type="vanished">Το %1 δεν μπορεί να ξεκινήσει γιατί μια άλλη εφαρμογή χρησιμοποιεί την θύρα που έχει ρυθμιστεί για χρήση από με το %2.</translation>
     </message>
     <message>
-        <location filename="lmc.cpp" line="143"/>
         <source>Your preferences file is corrupt or invalid.
 
 %1 is unable to recover your settings.</source>
-        <translation>Το αρχείο των προτιμήσεων είναι κατεστραμμένο ή άκυρο.
+        <translation type="vanished">Το αρχείο των προτιμήσεων είναι κατεστραμμένο ή άκυρο.
 
 Το %1 δεν μπορεί να ανακτήσει τις ρυθμίσεις σας.</translation>
     </message>
@@ -1204,637 +2398,483 @@ File may not exist, or may not be compatible with this version of %2.</source>
 <context>
     <name>lmcHelpWindow</name>
     <message>
-        <location filename="helpwindow.cpp" line="99"/>
         <source>Help</source>
-        <translation>Βοήθεια</translation>
-    </message>
-    <message>
-        <location filename="helpwindow.cpp" line="105"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="vanished">Βοήθεια</translation>
     </message>
 </context>
 <context>
     <name>lmcHistoryWindow</name>
     <message>
-        <location filename="historywindow.cpp" line="128"/>
         <source>Message History</source>
-        <translation>Ιστορικό Μηνυμάτων</translation>
+        <translation type="vanished">Ιστορικό Μηνυμάτων</translation>
     </message>
 </context>
 <context>
     <name>lmcMainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="211"/>
         <source>%1 is online.</source>
-        <translation>Ο/Η %1 συνδέθηκε.</translation>
+        <translation type="vanished">Ο/Η %1 συνδέθηκε.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="246"/>
         <source>%1 is offline.</source>
-        <translation>Ο/Η %1 είναι εκτός σύνδεσης.</translation>
+        <translation type="vanished">Ο/Η %1 είναι εκτός σύνδεσης.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="267"/>
         <source>You are online.</source>
-        <translation>Είστε συνδεδεμένος/η</translation>
+        <translation type="vanished">Είστε συνδεδεμένος/η</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1074"/>
         <source>%1 - Not Connected</source>
-        <translation>%1 - Μη Συνδεδεμένος/η</translation>
+        <translation type="vanished">%1 - Μη Συνδεδεμένος/η</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="269"/>
         <source>You are no longer connected.</source>
-        <translation>Δεν είστε πλέον συνδεδεμένος/η</translation>
+        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος/η</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="443"/>
         <source>Select avatar picture</source>
-        <translation>Επιλογή εικόνας avatar</translation>
+        <translation type="vanished">Επιλογή εικόνας avatar</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="564"/>
         <source>Add New Group</source>
-        <translation>Προσθήκη Νέας Ομάδας</translation>
+        <translation type="vanished">Προσθήκη Νέας Ομάδας</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="564"/>
         <source>Enter a name for the group</source>
-        <translation>Εισάγετε ένα όνομα για την ομάδα</translation>
+        <translation type="vanished">Εισάγετε ένα όνομα για την ομάδα</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="570"/>
-        <location filename="mainwindow.cpp" line="603"/>
         <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation>Μια ομάδα με όνομα &apos;%1&apos; υπάρχει ήδη. Παρακαλώ εισάγετε άλλο όνομα.</translation>
+        <translation type="vanished">Μια ομάδα με όνομα &apos;%1&apos; υπάρχει ήδη. Παρακαλώ εισάγετε άλλο όνομα.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="596"/>
         <source>Rename Group</source>
-        <translation>Μετονομασία Ομάδας</translation>
+        <translation type="vanished">Μετονομασία Ομάδας</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="597"/>
         <source>Enter a new name for the group</source>
-        <translation>Εισάγετε ένα νέο όνομα για την ομάδα</translation>
+        <translation type="vanished">Εισάγετε ένα νέο όνομα για την ομάδα</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="841"/>
-        <source>&amp;Messenger</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="842"/>
-        <location filename="mainwindow.cpp" line="876"/>
         <source>&amp;New Chat Room</source>
-        <translation>&amp;Νέο Δωμάτιο Συζήτησης</translation>
+        <translation type="vanished">&amp;Νέο Δωμάτιο Συζήτησης</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="844"/>
         <source>&amp;Refresh Contacts List</source>
-        <translation>&amp;Ανανέωση Λίστας Επαφών</translation>
+        <translation type="vanished">&amp;Ανανέωση Λίστας Επαφών</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="843"/>
-        <location filename="mainwindow.cpp" line="877"/>
         <source>&amp;Public Chat</source>
-        <translation>&amp;Δημόσια Συζήτηση</translation>
+        <translation type="vanished">&amp;Δημόσια Συζήτηση</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="845"/>
-        <location filename="mainwindow.cpp" line="863"/>
         <source>E&amp;xit</source>
-        <translation>Έ&amp;ξοδος</translation>
+        <translation type="vanished">Έ&amp;ξοδος</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="846"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Εργαλεία</translation>
+        <translation type="vanished">&amp;Εργαλεία</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="847"/>
-        <location filename="mainwindow.cpp" line="859"/>
         <source>&amp;History</source>
-        <translation>&amp;Ιστορικό</translation>
+        <translation type="vanished">&amp;Ιστορικό</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="848"/>
-        <location filename="mainwindow.cpp" line="860"/>
         <source>File &amp;Transfers</source>
-        <translation>&amp;Μεταφορές Αρχείων</translation>
+        <translation type="vanished">&amp;Μεταφορές Αρχείων</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="849"/>
-        <location filename="mainwindow.cpp" line="861"/>
         <source>&amp;Preferences</source>
-        <translation>&amp;Προτιμήσεις</translation>
+        <translation type="vanished">&amp;Προτιμήσεις</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="850"/>
-        <location filename="mainwindow.cpp" line="851"/>
         <source>&amp;Help</source>
-        <translation>&amp;Βοήθεια</translation>
+        <translation type="vanished">&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="852"/>
         <source>%1 &amp;online</source>
-        <translation>%1 στο διαδίκτ&amp;υο</translation>
+        <translation type="vanished">%1 στο διαδίκτ&amp;υο</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="854"/>
         <source>Check for &amp;Updates...</source>
-        <translation>Έλεγχος για Εν&amp;ημερώσεις...</translation>
+        <translation type="vanished">Έλεγχος για Εν&amp;ημερώσεις...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="855"/>
-        <location filename="mainwindow.cpp" line="862"/>
         <source>&amp;About</source>
-        <translation>&amp;Σχετικά με</translation>
+        <translation type="vanished">&amp;Σχετικά με</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="856"/>
         <source>&amp;Show %1</source>
-        <translation>&amp;Εμφάνιση %1</translation>
+        <translation type="vanished">&amp;Εμφάνιση %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="858"/>
         <source>&amp;Change Status</source>
-        <translation>&amp;Αλλαγή Κατάστασης</translation>
+        <translation type="vanished">&amp;Αλλαγή Κατάστασης</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="864"/>
         <source>Add &amp;New Group</source>
-        <translation>Προσθήκη &amp;Νέας Ομάδας</translation>
+        <translation type="vanished">Προσθήκη &amp;Νέας Ομάδας</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="865"/>
         <source>&amp;Rename This Group</source>
-        <translation>&amp;Μετονομασία Ομάδας</translation>
+        <translation type="vanished">&amp;Μετονομασία Ομάδας</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="866"/>
         <source>&amp;Delete This Group</source>
-        <translation>&amp;Διαγραφή Ομάδας</translation>
+        <translation type="vanished">&amp;Διαγραφή Ομάδας</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="867"/>
-        <location filename="mainwindow.cpp" line="873"/>
         <source>&amp;Conversation</source>
-        <translation>&amp;Συνομιλία</translation>
+        <translation type="vanished">&amp;Συνομιλία</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="868"/>
-        <location filename="mainwindow.cpp" line="875"/>
         <source>Send &amp;Broadcast Message</source>
-        <translation>Αποστολή Μηνύματος &amp;Εκπομπής</translation>
+        <translation type="vanished">Αποστολή Μηνύματος &amp;Εκπομπής</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="869"/>
-        <location filename="mainwindow.cpp" line="874"/>
         <source>Send &amp;File</source>
-        <translation>Αποστολή &amp;Αρχείου</translation>
+        <translation type="vanished">Αποστολή &amp;Αρχείου</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="870"/>
         <source>Send Fol&amp;der</source>
-        <translation>Αποστολή &amp;Φακέλου</translation>
+        <translation type="vanished">Αποστολή &amp;Φακέλου</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="871"/>
         <source>Get &amp;Information</source>
-        <translation>Λήψη &amp;Πληροφοριών</translation>
+        <translation type="vanished">Λήψη &amp;Πληροφοριών</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="872"/>
         <source>&amp;Browse for more pictures...</source>
-        <translation>&amp;Περιηγηθείτε για περισσότερες εικόνες...</translation>
+        <translation type="vanished">&amp;Περιηγηθείτε για περισσότερες εικόνες...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="900"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation>Το %1 θα συνεχίσει να τρέχει στο παρασκήνιο. Πατήστε σε αυτό το εικονίδιο για να επαναφέρετε το παράθυρο της εφαρμογής.</translation>
+        <translation type="vanished">Το %1 θα συνεχίσει να τρέχει στο παρασκήνιο. Πατήστε σε αυτό το εικονίδιο για να επαναφέρετε το παράθυρο της εφαρμογής.</translation>
     </message>
 </context>
 <context>
     <name>lmcMessageLog</name>
     <message>
-        <location filename="messagelog.cpp" line="472"/>
         <source>Broadcast message from %1:</source>
-        <translation>Μήνυμα εκπομπής από %1:</translation>
+        <translation type="vanished">Μήνυμα εκπομπής από %1:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="155"/>
         <source>This message was not delivered to %1:</source>
-        <translation>Αυτό το μήνυμα δεν παραδώθηκε σε %1:</translation>
+        <translation type="vanished">Αυτό το μήνυμα δεν παραδώθηκε σε %1:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="168"/>
         <source>Your message was not sent.</source>
-        <translation>Το μήνυμά σας δεν στάλθηκε.</translation>
+        <translation type="vanished">Το μήνυμά σας δεν στάλθηκε.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="602"/>
         <source>Sending &apos;%1&apos; to %2.</source>
-        <translation>Αποστολή &apos;%1&apos; σε %2.</translation>
+        <translation type="vanished">Αποστολή &apos;%1&apos; σε %2.</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="611"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation type="vanished">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="630"/>
         <source>%1 is sending you a file:</source>
-        <translation>Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
+        <translation type="vanished">Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="632"/>
         <source>%1 is sending you a folder:</source>
-        <translation>Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
+        <translation type="vanished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="639"/>
         <source>%1 sends you a file:</source>
-        <translation>Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
+        <translation type="vanished">Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="659"/>
         <source>Accept</source>
-        <translation>Αποδοχή</translation>
+        <translation type="vanished">Αποδοχή</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="660"/>
         <source>Decline</source>
-        <translation>Απόρριψη</translation>
+        <translation type="vanished">Απόρριψη</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="654"/>
-        <location filename="messagelog.cpp" line="711"/>
         <source>Accepted</source>
-        <translation>Έγινε αποδοχή</translation>
+        <translation type="vanished">Έγινε αποδοχή</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="714"/>
         <source>Declined</source>
-        <translation>Απορρίφθηκε</translation>
+        <translation type="vanished">Απορρίφθηκε</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="641"/>
         <source>%1 sends you a folder:</source>
-        <translation>Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
+        <translation type="vanished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="717"/>
         <source>Canceled</source>
-        <translation>Ακυρώθηκε</translation>
+        <translation type="vanished">Ακυρώθηκε</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="721"/>
         <source>Interrupted</source>
-        <translation>Διακόπηκε</translation>
+        <translation type="vanished">Διακόπηκε</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="724"/>
         <source>Completed</source>
-        <translation>Ολοκληρώθηκε</translation>
+        <translation type="vanished">Ολοκληρώθηκε</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="738"/>
         <source>%1 is typing...</source>
-        <translation>Ο/Η %1 πληκτρολογεί...</translation>
+        <translation type="vanished">Ο/Η %1 πληκτρολογεί...</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="741"/>
         <source>%1 has entered text</source>
-        <translation>Ο/Η %1 έγραψε κείμενο</translation>
+        <translation type="vanished">Ο/Η %1 έγραψε κείμενο</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="755"/>
         <source>%1 has joined this conversation</source>
-        <translation>Ο/Η %1 συνδέθηκε σε αυτή τη συνομιλία</translation>
+        <translation type="vanished">Ο/Η %1 συνδέθηκε σε αυτή τη συνομιλία</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="758"/>
         <source>%1 has left this conversation</source>
-        <translation>Ο/Η %1 έφυγε από την συνομιλία</translation>
+        <translation type="vanished">Ο/Η %1 έφυγε από την συνομιλία</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="877"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Αντιγραφή</translation>
+        <translation type="vanished">&amp;Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="messagelog.cpp" line="878"/>
         <source>Select &amp;All</source>
-        <translation>Επιλογή &amp;Όλων</translation>
+        <translation type="vanished">Επιλογή &amp;Όλων</translation>
     </message>
 </context>
 <context>
     <name>lmcSettingsDialog</name>
     <message>
-        <location filename="settingsdialog.cpp" line="195"/>
         <source>Save History</source>
-        <translation>Αποθήκευση Ιστορικού</translation>
+        <translation type="vanished">Αποθήκευση Ιστορικού</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="202"/>
         <source>Select folder</source>
-        <translation>Επιλογή φακέλου</translation>
+        <translation type="vanished">Επιλογή φακέλου</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="233"/>
         <source>Select Font</source>
-        <translation>Επιλογή Γραμματοσειράς</translation>
+        <translation type="vanished">Επιλογή Γραμματοσειράς</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="239"/>
         <source>Select Color</source>
-        <translation>Επιλογή Χρώματος</translation>
+        <translation type="vanished">Επιλογή Χρώματος</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="245"/>
         <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation>Είστε σίγουροι ότι θέλετε να αρχικοποιήσετε τις %1 προτιμήσεις σας;</translation>
+        <translation type="vanished">Είστε σίγουροι ότι θέλετε να αρχικοποιήσετε τις %1 προτιμήσεις σας;</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="246"/>
         <source>Reset Preferences</source>
-        <translation>Επαναφορά Προτιμήσεων</translation>
+        <translation type="vanished">Επαναφορά Προτιμήσεων</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="351"/>
         <source>&lt;File Not Found&gt;</source>
-        <translation>&lt;Το αρχείο δεν βρέθηκε&gt;</translation>
+        <translation type="vanished">&lt;Το αρχείο δεν βρέθηκε&gt;</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="365"/>
         <source>Select sound</source>
-        <translation>Επιλογή ήχου</translation>
+        <translation type="vanished">Επιλογή ήχου</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="393"/>
         <source>Preferences</source>
-        <translation>Προτιμήσεις</translation>
+        <translation type="vanished">Προτιμήσεις</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="401"/>
         <source>System Tray (Not Available)</source>
-        <translation>Περιοχή ειδοποιήσεων (Μη Διαθέσιμη)</translation>
+        <translation type="vanished">Περιοχή ειδοποιήσεων (Μη Διαθέσιμη)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="405"/>
         <source>Status Alerts (Not Available)</source>
-        <translation>Ειδοποιήσεις Κατάστασης (Μη Διαθέσιμες)</translation>
+        <translation type="vanished">Ειδοποιήσεις Κατάστασης (Μη Διαθέσιμες)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="409"/>
         <source>Sounds (Not Available)</source>
-        <translation>Ήχοι (Μη Διαθέσιμοι)</translation>
+        <translation type="vanished">Ήχοι (Μη Διαθέσιμοι)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="423"/>
         <source>Check for updates</source>
-        <translation>Έλεγχος για ενημερώσεις</translation>
+        <translation type="vanished">Έλεγχος για ενημερώσεις</translation>
     </message>
 </context>
 <context>
     <name>lmcStrings</name>
     <message>
-        <location filename="strings.cpp" line="55"/>
-        <source>LAN Messenger</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="strings.cpp" line="61"/>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="strings.cpp" line="69"/>
         <source>Automatic</source>
-        <translation>Αυτόματα</translation>
+        <translation type="vanished">Αυτόματα</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="75"/>
         <source>Small text</source>
-        <translation>Μικρό κείμενο</translation>
+        <translation type="vanished">Μικρό κείμενο</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="76"/>
         <source>Medium text</source>
-        <translation>Μέτριο κείμενο</translation>
+        <translation type="vanished">Μέτριο κείμενο</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="77"/>
         <source>Large text</source>
-        <translation>Μεγάλο κείμενο</translation>
+        <translation type="vanished">Μεγάλο κείμενο</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="84"/>
         <source>Available</source>
-        <translation>Διαθέσιμος/η</translation>
+        <translation type="vanished">Διαθέσιμος/η</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="85"/>
         <source>Busy</source>
-        <translation>Απασχολημένος/η</translation>
+        <translation type="vanished">Απασχολημένος/η</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="86"/>
         <source>Do Not Disturb</source>
-        <translation>Μην Ενοχλείτε</translation>
+        <translation type="vanished">Μην Ενοχλείτε</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="87"/>
         <source>Be Right Back</source>
-        <translation>Επιστρέφω</translation>
+        <translation type="vanished">Επιστρέφω</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="88"/>
         <source>Away</source>
-        <translation>Μακρυά</translation>
+        <translation type="vanished">Μακρυά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="89"/>
         <source>Appear Offline</source>
-        <translation>Εμφάνιση Εκτός Σύνδεσης</translation>
+        <translation type="vanished">Εμφάνιση Εκτός Σύνδεσης</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="96"/>
         <source>Incoming message</source>
-        <translation>Εισερχόμενο μήνυμα</translation>
+        <translation type="vanished">Εισερχόμενο μήνυμα</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="97"/>
         <source>User is online</source>
-        <translation>Ο χρήσης είναι συνδεδεμένος</translation>
+        <translation type="vanished">Ο χρήσης είναι συνδεδεμένος</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="98"/>
         <source>User is offline</source>
-        <translation>Ο χρήστης δεν είναι συνδεδεμένος</translation>
+        <translation type="vanished">Ο χρήστης δεν είναι συνδεδεμένος</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="99"/>
         <source>Incoming file transfer</source>
-        <translation>Εισερχόμενη λήψη αρχείου</translation>
+        <translation type="vanished">Εισερχόμενη λήψη αρχείου</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="100"/>
         <source>File transfer completed</source>
-        <translation>Η μεταφορά αρχείου ολοκληρώθηκε</translation>
+        <translation type="vanished">Η μεταφορά αρχείου ολοκληρώθηκε</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="101"/>
         <source>Incoming public message</source>
-        <translation>Εισερχόμενο δημόσιο μήνυμα</translation>
+        <translation type="vanished">Εισερχόμενο δημόσιο μήνυμα</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="108"/>
         <source>5 minutes</source>
-        <translation>5 λεπτά</translation>
+        <translation type="vanished">5 λεπτά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="109"/>
         <source>10 minutes</source>
-        <translation>10 λεπτά</translation>
+        <translation type="vanished">10 λεπτά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="110"/>
         <source>15 minutes</source>
-        <translation>15 λεπτά</translation>
+        <translation type="vanished">15 λεπτά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="111"/>
         <source>20 minutes</source>
-        <translation>20 λεπτά</translation>
+        <translation type="vanished">20 λεπτά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="112"/>
         <source>30 minutes</source>
-        <translation>30 λεπτά</translation>
+        <translation type="vanished">30 λεπτά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="113"/>
         <source>45 minutes</source>
-        <translation>45 λεπτά</translation>
+        <translation type="vanished">45 λεπτά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="114"/>
         <source>60 minutes</source>
-        <translation>60 λεπτά</translation>
+        <translation type="vanished">60 λεπτά</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="115"/>
         <source>Never</source>
-        <translation>Ποτέ</translation>
+        <translation type="vanished">Ποτέ</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="122"/>
         <source>Detailed</source>
-        <translation>Αναλυτική</translation>
+        <translation type="vanished">Αναλυτική</translation>
     </message>
     <message>
-        <location filename="strings.cpp" line="123"/>
         <source>Compact</source>
-        <translation>Συμπαγής</translation>
+        <translation type="vanished">Συμπαγής</translation>
     </message>
 </context>
 <context>
     <name>lmcTransferWindow</name>
     <message>
-        <location filename="transferwindow.cpp" line="177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation>Το %apos;%1&apos; έχει σταλεί σε %2.</translation>
+        <translation type="vanished">Το %apos;%1&apos; έχει σταλεί σε %2.</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="179"/>
-        <location filename="transferwindow.cpp" line="194"/>
         <source>File Transfer Completed</source>
-        <translation>Η Μεταφορά Αρχείου Ολοκληρώθηκε</translation>
+        <translation type="vanished">Η Μεταφορά Αρχείου Ολοκληρώθηκε</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="192"/>
         <source>&apos;%1&apos; has been received from %2.</source>
-        <translation>Το &apos;%1&apos; ελήφθη από %2.</translation>
+        <translation type="vanished">Το &apos;%1&apos; ελήφθη από %2.</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="316"/>
         <source>File Transfers</source>
-        <translation>Μεταφορές Αρχείων</translation>
+        <translation type="vanished">Μεταφορές Αρχείων</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="318"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation type="vanished">Ακύρωση</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="319"/>
         <source>Show In Folder</source>
-        <translation>Εμφάνιση Σε Φάκελο</translation>
+        <translation type="vanished">Εμφάνιση Σε Φάκελο</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="320"/>
         <source>Remove From List</source>
-        <translation>Αφαίρεση Από Λίστα</translation>
+        <translation type="vanished">Αφαίρεση Από Λίστα</translation>
     </message>
     <message>
-        <location filename="transferwindow.cpp" line="371"/>
         <source>Calculating time</source>
-        <translation>Υπολογισμός χρόνου</translation>
-    </message>
-    <message>
-        <location filename="transferwindow.cpp" line="410"/>
-        <source>/sec</source>
-        <translation></translation>
+        <translation type="vanished">Υπολογισμός χρόνου</translation>
     </message>
 </context>
 <context>
     <name>lmcUpdateWindow</name>
     <message>
-        <location filename="updatewindow.cpp" line="132"/>
         <source>%1 updates</source>
-        <translation>%1 ενημερώσεις</translation>
+        <translation type="vanished">%1 ενημερώσεις</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="151"/>
         <source>Launching an update request...</source>
-        <translation>Εκκίνηση αιτήματος ενημέρωσης...</translation>
+        <translation type="vanished">Εκκίνηση αιτήματος ενημέρωσης...</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="154"/>
         <source>An error occured while checking for updates.</source>
-        <translation>Ένα σφάλμα προέκυψε κατά τον έλεγχο ενημερώσεων.</translation>
+        <translation type="vanished">Ένα σφάλμα προέκυψε κατά τον έλεγχο ενημερώσεων.</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="157"/>
         <source>The new version %1 is available on %2 web site.</source>
-        <translation>Η νέα έκδοση %1 είναι διαθέσιμη στην ιστοσελίδα %2.</translation>
+        <translation type="vanished">Η νέα έκδοση %1 είναι διαθέσιμη στην ιστοσελίδα %2.</translation>
     </message>
     <message>
-        <location filename="updatewindow.cpp" line="160"/>
         <source>You have the latest version of %1.</source>
-        <translation>Έχετε την τελευταία έκδοση του %1.</translation>
+        <translation type="vanished">Έχετε την τελευταία έκδοση του %1.</translation>
     </message>
 </context>
 <context>
     <name>lmcUserInfoWindow</name>
     <message>
-        <location filename="userinfowindow.cpp" line="77"/>
         <source>User Information</source>
-        <translation>Πληροφορίες Χρήστη</translation>
+        <translation type="vanished">Πληροφορίες Χρήστη</translation>
     </message>
 </context>
 <context>
     <name>lmcUserSelectDialog</name>
     <message>
-        <location filename="userselectdialog.cpp" line="132"/>
         <source>Select Contacts</source>
-        <translation>Επιλογή Επαφών</translation>
+        <translation type="vanished">Επιλογή Επαφών</translation>
     </message>
 </context>
 </TS>
