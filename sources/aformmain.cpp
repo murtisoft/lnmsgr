@@ -179,7 +179,8 @@ void lmFormMain::minimize(void) {
 void lmFormMain::stop(void) {
 	//	These settings are saved only if the window was opened at least once by the user
 	if(windowLoaded) {
-		pSettings->setValue(IDS_WINDOWMAIN, saveGeometry());
+		if(!isMaximized())
+			pSettings->setValue(IDS_WINDOWMAIN, saveGeometry());
 		pSettings->setValue(IDS_MINIMIZEMSG, showMinimizeMsg, IDS_MINIMIZEMSG_VAL);
 	}
 

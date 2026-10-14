@@ -112,6 +112,7 @@ private:
 	void stop(void);
 	void loadSettings(void);
 	void settingsChanged(void);
+	void resetWindowGeometry(void);
     void processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage);
 	void processMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
     void processFile(MessageType type, QString* lpszUserId, MessageXml* pMessage);

@@ -81,8 +81,6 @@ void lmFormBroadcast::init(bool connected) {
 
 	//	load settings
 	pSettings = new lmSettings();
-	restoreGeometry(pSettings->value(IDS_WINDOWBROADCAST).toByteArray());
-	ui.splitter->restoreState(pSettings->value(IDS_SPLITTERBROADCAST).toByteArray());
 	showSmiley = pSettings->value(IDS_EMOTICON, IDS_EMOTICON_VAL).toBool();
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 	fontSizeVal = pSettings->value(IDS_FONTSIZE, IDS_FONTSIZE_VAL).toInt();
@@ -102,9 +100,7 @@ void lmFormBroadcast::init(bool connected) {
 }
 
 void lmFormBroadcast::stop(void) {
-	//	save window geometry and splitter panel sizes
-	pSettings->setValue(IDS_WINDOWBROADCAST, saveGeometry());
-	pSettings->setValue(IDS_SPLITTERBROADCAST, ui.splitter->saveState());
+	//	nothing to save; this window does not remember its layout
 }
 
 void lmFormBroadcast::show(QList<QTreeWidgetItem*>* pGroupList) {

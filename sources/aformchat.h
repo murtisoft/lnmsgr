@@ -61,6 +61,7 @@ public:
     bool isMicrophoneMuted(void) const { return micMuted; }
     void showMissedCall(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void settingsChanged(void);
+	void resetGeometry(void);
 
 	QString localId;
 	QHash<QString, QString> peerIds;
@@ -117,6 +118,9 @@ private:
 	void createSmileyMenu(void);
 	void createToolBar(void);
 	void setUIText(void);
+	void setDefaultSplitterSizes(void);
+
+	QSize defaultSize;
 	void sendMessage(void);
     void sendFile(QString* lpszFilePath);
     void sendFolder(QString* lpszFolderPath);

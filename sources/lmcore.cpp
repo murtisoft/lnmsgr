@@ -172,6 +172,17 @@ void lmCore::loadSettings(void) {
 	refreshTime = pSettings->value(IDS_REFRESHTIME, IDS_REFRESHTIME_VAL).toInt() * 1000;
 }
 
+//	Called after the preferences file was deleted. Open chat windows would otherwise keep their size
+//	and save it again when they close.
+void lmCore::resetWindowGeometry(void) {
+	if(pPublicChatWindow)
+		pPublicChatWindow->resetGeometry();
+	for(int index = 0; index < chatWindows.count(); index++)
+		chatWindows[index]->resetGeometry();
+	for(int index = 0; index < chatRoomWindows.count(); index++)
+		chatRoomWindows[index]->resetGeometry();
+}
+
 void lmCore::settingsChanged(void) {
 	pMessaging->settingsChanged();
 	if(pSoundPlayer)
@@ -394,6 +405,7 @@ bool lmCore::receiveAppMessage(const QStringList& options) {
 		QFile::remove(DefinitionsDir::avatarFile());
 		QFile::remove(pSettings->fileName());
 		pSettings->sync();
+		resetWindowGeometry();
 		settingsChanged();
 	}
 	const QString autoStartPrefix = QString(LM_OPT_AUTOSTART) + "=";
@@ -462,6 +474,7 @@ void lmCore::showSettings(void) {
 		pSettingsDialog = new lmFormSettings(pMainWindow);
 		connect(pSettingsDialog, SIGNAL(historyCleared()), this, SLOT(historyCleared()));
 		connect(pSettingsDialog, SIGNAL(fileHistoryCleared()), this, SLOT(fileHistoryCleared()));
+		connect(pSettingsDialog, &lmFormSettings::settingsReset, this, &lmCore::resetWindowGeometry);
 		//	While a hotkey is being recorded, release the global ones. Otherwise the system would swallow
 		//	the very combination the user is trying to (re)assign.
 		connect(pSettingsDialog, &lmFormSettings::hotkeyCaptureChanged, pHotkeys, &lmHotkeyHandler::setSuspended);

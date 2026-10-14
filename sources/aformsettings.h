@@ -67,6 +67,8 @@ public:
 signals:
 	void historyCleared(void);
 	void fileHistoryCleared(void);
+	//	the preferences file was deleted; windows that are still open must drop their saved layout too
+	void settingsReset(void);
 	//	true while one of the hotkey editors has focus. Global hotkeys must be released meanwhile, or the
 	//	system swallows the key combination before the editor gets to see it.
 	void hotkeyCaptureChanged(bool capturing);

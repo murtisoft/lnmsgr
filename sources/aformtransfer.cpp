@@ -57,7 +57,6 @@ void lmFormTransfer::init(void) {
 	setButtonState(FileView::TS_Max);
 
 	pSettings = new lmSettings();
-	restoreGeometry(pSettings->value(IDS_WINDOWTRANSFERS).toByteArray());
 	setUIText();
 
 	ui.lvTransferList->loadData(DefinitionsDir::transferHistory());
@@ -92,7 +91,6 @@ void lmFormTransfer::stop(void) {
 	bool saveHistory = pSettings->value(IDS_FILEHISTORY, IDS_FILEHISTORY_VAL).toBool();
 	if(saveHistory)
 		ui.lvTransferList->saveData(DefinitionsDir::transferHistory());
-	pSettings->setValue(IDS_WINDOWTRANSFERS, saveGeometry());
 }
 
 void lmFormTransfer::createTransfer(MessageType type, FileMode mode, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage) {

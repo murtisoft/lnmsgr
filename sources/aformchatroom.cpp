@@ -20,6 +20,7 @@
 ****************************************************************************/
 
 
+#include <QScreen>
 #include "aformchatroom.h"
 #include "sharedchatfunctions.h"
 #include "historydatabase.h"
@@ -28,6 +29,7 @@
 lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags) {
 	ui.setupUi(this);
+	defaultSize = size();
 	setAcceptDrops(true);
 
     connect(ui.tvUserListPeers, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
@@ -43,16 +45,7 @@ lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
 	connect(pMessageLog, SIGNAL(messageSent(MessageType,QString*,MessageXml*)),
 			this, SLOT(log_sendMessage(MessageType,QString*,MessageXml*)));
 
-	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
-			ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
-    QList<int> sizes;
-    sizes.append(height() - bottomPanelHeight - ui.hSplitter->handleWidth());
-    sizes.append(bottomPanelHeight);
-    ui.hSplitter->setSizes(sizes);
-    sizes.clear();
-    sizes.append(width() * 0.7);
-    sizes.append(width() - width() * 0.7 - ui.vSplitter->handleWidth());
-    ui.vSplitter->setSizes(sizes);
+	setDefaultSplitterSizes();
 
 	ui.lblInfo->setBackgroundRole(QPalette::Base);
 	ui.lblInfo->setAutoFillBackground(true);
@@ -67,6 +60,30 @@ lmFormChatRoom::lmFormChatRoom(QWidget *parent, Qt::WindowFlags flags)
 
 	localId = QString();
 	localName = QString();
+}
+
+void lmFormChatRoom::setDefaultSplitterSizes(void) {
+	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
+		ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
+	QList<int> sizes;
+	sizes.append(height() - bottomPanelHeight - ui.hSplitter->handleWidth());
+	sizes.append(bottomPanelHeight);
+	ui.hSplitter->setSizes(sizes);
+	sizes.clear();
+	sizes.append(width() * 0.7);
+	sizes.append(width() - width() * 0.7 - ui.vSplitter->handleWidth());
+	ui.vSplitter->setSizes(sizes);
+}
+
+//	Brings the window and its splitters back to the out of the box layout. Deleting the settings file
+//	is not enough for a window that is already open: it would keep its current size and write it back
+//	to the file when it closes.
+void lmFormChatRoom::resetGeometry(void) {
+	setWindowState(windowState() & ~(Qt::WindowMaximized | Qt::WindowFullScreen));
+	resize(defaultSize);
+	if(QScreen* pScreen = screen())
+		move(pScreen->availableGeometry().center() - rect().center());
+	setDefaultSplitterSizes();
 }
 
 lmFormChatRoom::~lmFormChatRoom() {

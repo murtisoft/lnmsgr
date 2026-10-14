@@ -27,6 +27,7 @@
 #include <QContextMenuEvent>
 #include <qclipboard.h>
 #include <qpropertyanimation.h>
+#include <QScreen>
 #include "aformchat.h"
 #include "sharedchatfunctions.h"
 #include "historydatabase.h"
@@ -35,6 +36,7 @@
 
 lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags) {
 	ui.setupUi(this);
+	defaultSize = size();
 	//	Destroy the window when it closes
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	setAcceptDrops(true);
@@ -50,16 +52,7 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
     connect(ui.btnSpeaker,    &QPushButton::clicked, this, &lmFormChat::btnSpeaker_toggle);
     connect(ui.btnCamera,     &QPushButton::clicked, this, &lmFormChat::btnCamera_toggle);
 
-	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
-			ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
-	QList<int> sizes;
-    sizes.append(height() - bottomPanelHeight - ui.hSplitter->handleWidth());
-    sizes.append(bottomPanelHeight);
-    ui.hSplitter->setSizes(sizes);
-    sizes.clear();
-    sizes.append(width() * 0.7);
-    sizes.append(width() - width() * 0.7 - ui.vSplitter->handleWidth());
-    ui.vSplitter->setSizes(sizes);
+	setDefaultSplitterSizes();
 
 	ui.lblInfo->setBackgroundRole(QPalette::Base);
 	ui.lblInfo->setAutoFillBackground(true);
@@ -85,6 +78,30 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
 
 	chatState = CS_Blank;
 	keyStroke = 0;
+}
+
+void lmFormChat::setDefaultSplitterSizes(void) {
+	int bottomPanelHeight = ui.txtMessage->minimumHeight() + ui.lblDividerBottom->minimumHeight() +
+		ui.lblDividerTop->minimumHeight() + ui.wgtToolBar->minimumHeight();
+	QList<int> sizes;
+	sizes.append(height() - bottomPanelHeight - ui.hSplitter->handleWidth());
+	sizes.append(bottomPanelHeight);
+	ui.hSplitter->setSizes(sizes);
+	sizes.clear();
+	sizes.append(width() * 0.7);
+	sizes.append(width() - width() * 0.7 - ui.vSplitter->handleWidth());
+	ui.vSplitter->setSizes(sizes);
+}
+
+//	Brings the window and its splitters back to the out of the box layout. Deleting the settings file
+//	is not enough for a window that is already open: it would keep its current size and write it back
+//	to the file when it closes.
+void lmFormChat::resetGeometry(void) {
+	setWindowState(windowState() & ~(Qt::WindowMaximized | Qt::WindowFullScreen));
+	resize(defaultSize);
+	if(QScreen* pScreen = screen())
+		move(pScreen->availableGeometry().center() - rect().center());
+	setDefaultSplitterSizes();
 }
 
 lmFormChat::~lmFormChat(void) {

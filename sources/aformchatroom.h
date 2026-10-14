@@ -57,6 +57,7 @@ public:
 	void receiveMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage);
 	void connectionStateChanged(bool connected);
 	void settingsChanged(void);
+	void resetGeometry(void);
 	void selectContacts(QStringList* selectedContacts);
 
 	QString threadId;
@@ -90,6 +91,9 @@ private:
 	void createSmileyMenu(void);
 	void createToolBar(void);
 	void setUIText(void);
+	void setDefaultSplitterSizes(void);
+
+	QSize defaultSize;
 	void sendMessage(void);
 	void encodeMessage(QString* lpszMessage);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage);

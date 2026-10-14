@@ -325,6 +325,7 @@ void lmFormSettings::btnReset_clicked(void) {
         == QMessageBox::Yes) {
         QFile::remove(pSettings->fileName());
         pSettings->sync();
+        emit settingsReset();
         accept();
     }
 }

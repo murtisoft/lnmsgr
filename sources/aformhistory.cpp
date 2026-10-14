@@ -63,8 +63,6 @@ void lmFormHistory::init(void) {
 	pMessageLog->setAutoScroll(false);
 
 	pSettings = new lmSettings();
-	restoreGeometry(pSettings->value(IDS_WINDOWHISTORY).toByteArray());
-	ui.splitter->restoreState(pSettings->value(IDS_SPLITTERHISTORY).toByteArray());
 	setUIText();
 
 	displayList();
@@ -75,8 +73,7 @@ void lmFormHistory::updateList(void) {
 }
 
 void lmFormHistory::stop(void) {
-	pSettings->setValue(IDS_WINDOWHISTORY, saveGeometry());
-	pSettings->setValue(IDS_SPLITTERHISTORY, ui.splitter->saveState());
+	//	nothing to save; this window does not remember its layout
 }
 
 void lmFormHistory::settingsChanged(void) {

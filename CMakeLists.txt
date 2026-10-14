@@ -15,8 +15,6 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
-#Resetting preferences cannot reset chatwindow geometry, due to how resetting and saving work. Window dimensions remain in use, and get resaved.
-#Window dimension saving while maximized or snapped to half screen needs rechecking.
 #Windows should pop up on whichever screen the main window was last at.
 
 #———————————————————————————————————————————————————————<< KNOWN ISSUES >>———————————————————————————————————————————————————————
