@@ -43,6 +43,7 @@
 #include "videocapture.h"
 #include "soundplayer.h"
 #include "hotkeyhandler.h"
+#include "firewallcheck.h"
 
 //	Command line options, as passed between main() and lmCore (and between instances).
 //	These are the parsed, canonical forms of the --switches, not raw user input.
@@ -165,6 +166,7 @@ private:
     QString                         callPeerId;     // user the current call (calling/ringing/connected) is with
     lmSoundPlayer*                  pSoundPlayer;
     lmHotkeyHandler*                pHotkeys;
+    lmFirewallCheck*                pFirewallCheck;
     bool                            pttSoundPlayed = false;      // push to talk went down with a sound, so it comes up with one
     bool                            micMutedByTest = false;     // the call mic was muted for the preferences mic test
     QMediaDevices*                  pMediaDevices;   // main thread, tells the call when mics come and go

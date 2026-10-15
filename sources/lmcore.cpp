@@ -69,6 +69,13 @@ lmCore::lmCore(void) {
     connect(pHotkeys, &lmHotkeyHandler::triggered, this, &lmCore::hotkeyTriggered);
     connect(pHotkeys, &lmHotkeyHandler::released, this, &lmCore::hotkeyReleased);
     connect(pHotkeys, &lmHotkeyHandler::registrationFailed, this, &lmCore::hotkeyRegistrationFailed);
+    pFirewallCheck = new lmFirewallCheck(this);
+    connect(pFirewallCheck, &lmFirewallCheck::blocked, this, [this]() {
+        //  The user cancelled the Windows prompt once, so Windows never asks again. Only they can lift the block.
+        QString message = tr("The firewall is blocking %1.").arg(lmStrings::appName());
+        lmDebugLog::write(message);
+        showTrayMessage(TM_Connection, message, QString(), TMI_Warning);
+    });
     pMediaDevices = new QMediaDevices(this);
     connect(pMediaDevices, &QMediaDevices::audioInputsChanged, this, [this]() {
         if (m_audioStream)
@@ -128,6 +135,7 @@ bool lmCore::start(void) {
 	}
 
 	pMainWindow->start();
+	pFirewallCheck->start();	//	async, a block shows up as a toast
 	pHotkeys->loadSettings(pSettings);	//	after the main window, a conflict is reported as a toast
 	
 	pTimer = new QTimer(this);
@@ -693,7 +701,7 @@ void lmCore::callConnected(MessageType type) {
                 ? tr("No microphone is available. Your voice cannot be sent.")
                 : tr("Your selected microphone is not available. Using %1 instead.").arg(name);
             lmDebugLog::write(message);
-            showTrayMessage(TM_Connection, message, tr("Microphone"), TMI_Warning);
+            showTrayMessage(TM_Connection, message, QString(), TMI_Warning);
         });
         connect(w, &lmFormChat::micToggled,
                 m_audioStream, &lmAudioStream::setMicMuted);
@@ -844,7 +852,7 @@ void lmCore::hotkeyRegistrationFailed(lmHotkeyHandler::Action action, const QKey
     QString message = tr("The %1 hotkey (%2) is not active: %3")
         .arg(lmHotkeyHandler::actionName(action), sequence.toString(QKeySequence::NativeText), reason);
     lmDebugLog::write(message);
-    showTrayMessage(TM_Connection, message, tr("Hotkey"), TMI_Warning);
+    showTrayMessage(TM_Connection, message, QString(), TMI_Warning);
 }
 
 void lmCore::processStream(MessageType type, QString *lpszUserId, MessageXml* pMessage) {

@@ -176,7 +176,7 @@ void lmFormTransfer::receiveMessage(MessageType type, QString* lpszUserId, Messa
             if(isHidden() || !isActiveWindow()) {
                 trayMsg = tr("'%1' has been sent to %2.");
                 emit showTrayMessage(TM_Transfer, trayMsg.arg(view->fileName, view->userName),
-                    tr("File Transfer Completed"), TMI_Info);
+                    QString(), TMI_Info);
                 pSoundPlayer->play(SE_FileDone);
             }
         } else {
@@ -191,7 +191,7 @@ void lmFormTransfer::receiveMessage(MessageType type, QString* lpszUserId, Messa
             if(isHidden() || !isActiveWindow()) {
                 trayMsg = tr("'%1' has been received from %2.");
                 emit showTrayMessage(TM_Transfer, trayMsg.arg(view->fileName, view->userName),
-                    tr("File Transfer Completed"), TMI_Info);
+                    QString(), TMI_Info);
                 pSoundPlayer->play(SE_FileDone);
             }
         }
