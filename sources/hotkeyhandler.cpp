@@ -265,9 +265,17 @@ void lmHotkeyHandler::setSuspended(bool suspended) {
     refresh();
 }
 
+void lmHotkeyHandler::setActive(bool active) {
+    if(active == m_active)
+        return;
+    m_active = active;
+    refresh();
+}
+
 void lmHotkeyHandler::clear(void) {
     unregisterAll();
     m_enabled = false;
+    m_active = false;
     m_sequences = {};
     m_failureReported.fill(false);
 }
@@ -278,7 +286,7 @@ bool lmHotkeyHandler::isRegistered(Action action) const {
 
 void lmHotkeyHandler::refresh(void) {
     unregisterAll();
-    if(!m_enabled || m_suspended || !isSupported())
+    if(!m_enabled || !m_active || m_suspended || !isSupported())
         return;
 
     for(int index = 0; index < HK_Max; index++) {

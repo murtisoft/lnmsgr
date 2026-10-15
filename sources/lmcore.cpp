@@ -659,6 +659,7 @@ void lmCore::callRequested(MessageType type) {
 
 void lmCore::callConnected(MessageType type) {
     callPhase = CP_Connected;
+    pHotkeys->setActive(true);      // global hotkeys only exist during a call
     emit callPhaseChanged(callPhase);
     stopLoopSound();
     //  Attach the call to the chat window of the call peer
@@ -730,6 +731,8 @@ void lmCore::callConnected(MessageType type) {
 
 void lmCore::callEnded(MessageType type) {
     callPhase = CP_Idle;
+    //  Still needed while the preferences microphone test runs push to talk
+    pHotkeys->setActive(pSettingsDialog && pSettingsDialog->isMicTesting());
     emit callPhaseChanged(callPhase);
     stopLoopSound();
 
@@ -744,6 +747,7 @@ void lmCore::callEnded(MessageType type) {
 //  The microphone test in preferences listens to the microphone, and during a call that must not reach the other
 //  side. So the call microphone is muted for the duration of the test, and restored afterwards.
 void lmCore::micTestChanged(bool testing) {
+    pHotkeys->setActive(testing || callPhase == CP_Connected);
     if (testing) {
         lmFormChat* w = callWindow();
         if (w && !w->isMicrophoneMuted()) {

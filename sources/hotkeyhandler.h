@@ -66,6 +66,9 @@ public:
 	//	Temporarily release all hotkeys, e.g. while the user is recording a new key combination.
 	//	Without this, a registered combination would be swallowed by the system and never reach the editor.
 	void setSuspended(bool suspended);
+	//	Hotkeys are only registered while active (during a call). Otherwise they would swallow the key
+	//	combination from other programs even though nothing here needs them.
+	void setActive(bool active);
 	//	Release all hotkeys right now.
 	void clear(void);
 
@@ -93,6 +96,7 @@ private:
 
 	bool m_enabled = false;
 	bool m_suspended = false;
+	bool m_active = false;
 	std::array<QKeySequence, HK_Max> m_sequences;
 	std::array<bool, HK_Max> m_registered{};
 	std::array<bool, HK_Max> m_failureReported{};
