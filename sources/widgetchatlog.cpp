@@ -278,13 +278,15 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 
 		for(int index = 0; index < messageLog.count(); index++) {
 			SingleMessage msg = messageLog.at(index);
-			if(msg.type == MT_Message || msg.type == MT_GroupMessage) {
+			if(msg.type == MT_Message || msg.type == MT_GroupMessage || msg.type == MT_Broadcast) {
                 time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
-				QString messageText = msg.message.data(XN_MESSAGE);
+				bool isBroadcast = (msg.type == MT_Broadcast);
+				QString messageText = msg.message.data(isBroadcast ? XN_BROADCAST : XN_MESSAGE);
 				decodeMessage(&messageText, true);
+				QString senderText = isBroadcast ? tr("%1 (Broadcast)").arg(msg.userName) : msg.userName;
                 QString htmlMsg =
                     "<table width='100%'><tr>"
-                    "<td style='font-weight: bold;'>" + msg.userName + ":</td>"
+                    "<td style='font-weight: bold;'>" + senderText + ":</td>"
                                      "<td style='text-align: right; white-space: nowrap;'>" + QLocale().toString(time.time(), QLocale::ShortFormat) + "</td>"
                                                                               "</tr><tr>"
                                                                               "<td colspan='2' style='border-bottom: 1px solid rgb(127,127,127);; padding-bottom: 2px;'>" + messageText + "</td>"
@@ -299,11 +301,13 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 		QString text;
 		for(int index = 0; index < messageLog.count(); index++) {
 			SingleMessage msg = messageLog.at(index);
-			if(msg.type == MT_Message || msg.type == MT_GroupMessage) {
+			if(msg.type == MT_Message || msg.type == MT_GroupMessage || msg.type == MT_Broadcast) {
                 time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
+				bool isBroadcast = (msg.type == MT_Broadcast);
+				QString senderText = isBroadcast ? tr("%1 (Broadcast)").arg(msg.userName) : msg.userName;
 				QString textMsg =
-					msg.userName + " [" + QLocale().toString(time.time(), QLocale::ShortFormat) + "]:\n" +
-					msg.message.data(XN_MESSAGE) + "\n\n";
+					senderText + " [" + QLocale().toString(time.time(), QLocale::ShortFormat) + "]:\n" +
+					msg.message.data(isBroadcast ? XN_BROADCAST : XN_MESSAGE) + "\n\n";
 				text.append(textMsg);
 			}
 		}
@@ -660,6 +664,8 @@ void lmChatLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QStr
 	html.replace("%message%", *lpszMessage);
 
     appendMessageLog(&html, MT_Broadcast);
+
+	hasData = true;
 }
 
 void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,

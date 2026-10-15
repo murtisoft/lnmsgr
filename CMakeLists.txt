@@ -21,7 +21,7 @@ endif()
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-#Broadcasts arent logged into history.
+
 #File transfers dont have a timestamp parameter, but they generate their own.
 #Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.
 #Avatar changes while appearing offline is sent to peers anyway.
