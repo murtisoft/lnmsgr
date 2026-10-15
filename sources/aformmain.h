@@ -116,6 +116,9 @@ private slots:
 	void txtNote_lostFocus(void);
 
 private:
+	QString fullUserName;		//	un-elided text of lblUserName
+	QString fullNote;			//	un-elided text of txtNote
+	bool noteElided;			//	true while txtNote shows the elided display text instead of the editable note
 	void createMainMenu(void);
 	void createTrayMenu(void);
 	void createTrayIcon(void);
@@ -124,6 +127,8 @@ private:
 	void createUserMenu(void);
 	void createToolBar(void);
 	void setUIText(void);
+	void updateNameText(void);
+	void updateNoteText(void);
 	void showMinimizeMessage(void);
 	void loadGroupExpansion(void);
 	void updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus);

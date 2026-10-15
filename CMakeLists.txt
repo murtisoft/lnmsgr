@@ -15,7 +15,6 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 #Appearing offline has regressed.
-#lblName and txtNote Elided text functionality was removed, bring it back.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #All translations are a decade behind.
 

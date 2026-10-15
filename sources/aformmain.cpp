@@ -50,6 +50,8 @@ lmFormMain::lmFormMain(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
     connect(ui.txtNote, &QLineEdit::editingFinished, this, &lmFormMain::txtNote_lostFocus);
 
     ui.txtNote->installEventFilter(this);
+    ui.lblUserName->installEventFilter(this);
+    noteElided = false;
     ui.tvUserList->installEventFilter(this);
 
 	windowLoaded = false;
@@ -95,7 +97,10 @@ void lmFormMain::init(User* pLocalUser, bool connected) {
     ui.lblUserName->setFont(font);
 	ui.lblStatus->setText(statusGroup->checkedAction()->text());
 	nAvatar = pLocalUser->avatar;
-	ui.txtNote->setText(pLocalUser->note);
+	fullNote = pLocalUser->note;
+	fullUserName = pLocalUser->name;
+	updateNameText();
+	updateNoteText();
 
 	pSoundPlayer = new lmSoundPlayer();
 	pSettings = new lmSettings();
@@ -378,7 +383,8 @@ void lmFormMain::settingsChanged(bool init) {
 		}
 	}
 	pSoundPlayer->settingsChanged();
-	ui.lblUserName->setText(pLocalUser->name);	// in case display name has been changed
+	fullUserName = pLocalUser->name;	// in case display name has been changed
+	updateNameText();
 }
 
 void lmFormMain::showTrayMessage(TrayMessageType type, QString szMessage, QString szTitle, TrayMessageIcon icon, const QPixmap &avatar) {
@@ -481,7 +487,20 @@ QList<QTreeWidgetItem*> lmFormMain::getContactsList(void) {
 }
 
 bool lmFormMain::eventFilter(QObject* pObject, QEvent* pEvent) {
-    Q_UNUSED(pObject);
+    if(pObject == ui.lblUserName && pEvent->type() == QEvent::Resize) {
+        updateNameText();
+        return false;
+    }
+    if(pObject == ui.txtNote) {
+        if(pEvent->type() == QEvent::Resize) {
+            updateNoteText();
+        } else if(pEvent->type() == QEvent::FocusIn) {
+            //  Editing starts, show the whole note
+            noteElided = false;
+            ui.txtNote->setText(fullNote);
+            ui.txtNote->setToolTip(QString());
+        }
+    }
     if(pEvent->type() == QEvent::KeyPress) {
         QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
         if(pKeyEvent->key() == Qt::Key_Escape) {
@@ -491,6 +510,26 @@ bool lmFormMain::eventFilter(QObject* pObject, QEvent* pEvent) {
     }
 
     return false;
+}
+
+//  The user name label shows an elided name when it is too long for the window, the full name goes in the tooltip.
+void lmFormMain::updateNameText(void) {
+    QString text = ui.lblUserName->fontMetrics().elidedText(fullUserName, Qt::ElideRight, ui.lblUserName->width());
+    ui.lblUserName->setText(text);
+    ui.lblUserName->setToolTip(text != fullUserName ? fullUserName : QString());
+}
+
+//  The note field shows an elided note while it is not being edited. While it has focus, the whole note is shown.
+void lmFormMain::updateNoteText(void) {
+    if(ui.txtNote->hasFocus())
+        return;
+
+    noteElided = true;
+    int available = ui.txtNote->width() - 12;   //  room for the frame and text margins
+    QString text = ui.txtNote->fontMetrics().elidedText(fullNote, Qt::ElideRight, qMax(available, 0));
+    ui.txtNote->setText(text);
+    ui.txtNote->setCursorPosition(0);
+    ui.txtNote->setToolTip(text != fullNote ? fullNote : QString());
 }
 
 void lmFormMain::closeEvent(QCloseEvent* pEvent) {
@@ -714,10 +753,17 @@ void lmFormMain::txtNote_returnPressed(void) {
 }
 
 void lmFormMain::txtNote_lostFocus(void) {
+	//	The field is showing the elided display text, there is nothing new to save
+	if(noteElided)
+		return;
+
 	QString note = ui.txtNote->text();
+	fullNote = note;
     pSettings->setValue(IDS_NOTE, note, IDS_NOTE_VAL);
 	pLocalUser->note = note;
 	sendMessage(MT_Note, NULL, &note);
+	if(!ui.txtNote->hasFocus())
+		updateNoteText();
 }
 
 void lmFormMain::createMainMenu(void) {
@@ -991,7 +1037,8 @@ void lmFormMain::setUIText(void) {
 	for(int index = 0; index < statusGroup->actions().count(); index++)
         statusGroup->actions().at(index)->setText(lmStrings::statusDesc()[index]);
 	
-	ui.lblUserName->setText(pLocalUser->name);	// in case of retranslation
+	fullUserName = pLocalUser->name;	// in case of retranslation
+	updateNameText();
 	if(statusGroup->checkedAction())
 		ui.lblStatus->setText(statusGroup->checkedAction()->text());
 
