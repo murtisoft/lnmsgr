@@ -33,7 +33,7 @@ add_executable(LanMessenger #—————————————————
 
 set(OPUS_DIR "C:/Qt/Tools/opus-1.6")          #——————————————————————————————————————————————————————————————————————<< libopus 1.6 path
 set(VPX_DIR "C:/Qt/Tools/libvpx-1.7")          #——————————————————————————————————————————————————————————————————————<< libvpx 1.7 path
-set(OPENSSL_DIR "C:/Qt/Tools/OpenSSL-Win64")  #——————————————————————————————————————————————————————————————————————<< Win64OpenSSL-3_6_0 path
+set(OPENSSL_DIR "C:/Qt/Tools/Openssl-3.6")  #——————————————————————————————————————————————————————————————————————<< openssl 3.6.5 path
 target_include_directories(LanMessenger PRIVATE
     ${CMAKE_SOURCE_DIR}/sources
     ${OPENSSL_DIR}/include
@@ -45,8 +45,9 @@ target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSI
 target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia Qt6::MultimediaWidgets
     user32 ole32 oleaut32 uuid
-    ${OPENSSL_DIR}/lib/VC/x64/MT/libssl.lib
-    ${OPENSSL_DIR}/lib/VC/x64/MT/libcrypto.lib
+    ${OPENSSL_DIR}/lib/libssl.a
+    ${OPENSSL_DIR}/lib/libcrypto.a
+    crypt32                             #Required for .a libraries without dlls.
     ${OPUS_DIR}/build/Release/libopus.a
     ${VPX_DIR}/lib/libvpx.a
 )

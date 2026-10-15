@@ -18,7 +18,7 @@ endif()
 #lblName and txtNote Elided text functionality was removed, bring it back.
 #Some links that do display fine in chatlog, dont display correctly in history window.
 #Setting migration function doesnt handle newly added ones.
-#Is there a way to handle firewall on windows, so program can access network without manual setup?
+#There is an incosistency with the borders around peers in userlist. investigate.
 #All translations are a decade behind.
 
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————

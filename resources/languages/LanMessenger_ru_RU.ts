@@ -1273,7 +1273,12 @@
 <context>
     <name>lmCore</name>
     <message>
-        <location filename="../../sources/lmcore.cpp" line="+158"/>
+        <location filename="../../sources/lmcore.cpp" line="+75"/>
+        <source>The firewall is blocking %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1289,7 +1294,7 @@
         <translation type="unfinished">LAYOUT_DIRECTION</translation>
     </message>
     <message>
-        <location line="+465"/>
+        <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1299,22 +1304,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Microphone</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+146"/>
+        <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>Hotkey</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+486"/>
+        <location line="+489"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
         <translation type="unfinished">Обнаружен конфликт адреса порта. %1 будет сейчас закрыт.</translation>
     </message>
@@ -1861,13 +1856,11 @@
         <translation type="unfinished">&apos;%1&apos; был отправлен к %2.</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <location line="+15"/>
         <source>File Transfer Completed</source>
-        <translation type="unfinished">Передача файла завершена</translation>
+        <translation type="obsolete">Передача файла завершена</translation>
     </message>
     <message>
-        <location line="-2"/>
+        <location line="+15"/>
         <source>&apos;%1&apos; has been received from %2.</source>
         <translation type="unfinished">&apos;%1&apos; был получен от %2.</translation>
     </message>
@@ -1942,17 +1935,17 @@
     </message>
     <message>
         <location line="+7"/>
-        <location line="+138"/>
+        <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-135"/>
+        <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+76"/>
+        <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
         <translation type="unfinished"></translation>
     </message>

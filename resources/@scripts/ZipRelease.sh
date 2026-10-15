@@ -7,7 +7,6 @@
 #================================================================================================
 SevenZip="/c/Program Files/7-Zip/7z.exe"
 WinDeployQt="/c/Qt/6.12.0/mingw_64/bin/windeployqt.exe"
-OpenSSL="/c/Qt/Tools/OpenSSL-Win64"
 ProjectDir="../../"
 #================================================================================================
 
@@ -25,9 +24,6 @@ cp "$ProjectDir/build/Release/LanMessenger.exe" "$ProjectDir/build/Deployment/"
 
 rm -rf "$ProjectDir/build/Deployment/translations"
 rm -f "$ProjectDir/build/Win64.zip"
-
-cp "$OpenSSL/libcrypto-3-x64.dll" "$ProjectDir/build/Deployment/"
-cp "$OpenSSL/libssl-3-x64.dll" "$ProjectDir/build/Deployment/"
 
 "$SevenZip" a "$ProjectDir/build/Win64.zip" "$ProjectDir/build/Deployment/*"
 cp "$ProjectDir/build/Win64.zip" ~/Desktop/
