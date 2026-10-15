@@ -425,12 +425,16 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 		data = pMessage->data(XN_STATUS);
 		statusIndex = Helper::statusIndexFromCode(data);
 		if(statusIndex != -1) {
-            setWindowIcon(QIcon(statusPic[statusIndex]));
-			statusType[statusIndex] == StatusTypeOffline ? showStatus(IT_Offline, true) : showStatus(IT_Offline, false);
-			statusType[statusIndex] == StatusTypeBusy ? showStatus(IT_Busy, true) : showStatus(IT_Busy, false);
-            statusType[statusIndex] == StatusTypeAway ? showStatus(IT_Away, true) : showStatus(IT_Away, false);
-            if(statusType[statusIndex] == StatusTypeOffline)
-                pMessageLog->abortPendingFileOperations();   //Behave the same as actually going offline.
+			//\tThe window icon and the info label describe the remote user. A status change of the local user
+			//\tis routed to this window as well (the user list needs it), it must not touch them.
+			if(senderId == peerId) {
+                setWindowIcon(QIcon(statusPic[statusIndex]));
+				statusType[statusIndex] == StatusTypeOffline ? showStatus(IT_Offline, true) : showStatus(IT_Offline, false);
+				statusType[statusIndex] == StatusTypeBusy ? showStatus(IT_Busy, true) : showStatus(IT_Busy, false);
+                statusType[statusIndex] == StatusTypeAway ? showStatus(IT_Away, true) : showStatus(IT_Away, false);
+                if(statusType[statusIndex] == StatusTypeOffline)
+                    pMessageLog->abortPendingFileOperations();   //Behave the same as actually going offline.
+			}
 			peerStatuses.insert(senderId, data);
             updateButtonStates();
 

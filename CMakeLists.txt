@@ -21,8 +21,6 @@ endif()
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-
-#File transfers dont have a timestamp parameter, but they generate their own.
 #Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.
 #Avatar changes while appearing offline is sent to peers anyway.
 #File transfers should be displayed nested inside a regular message with timestamps.

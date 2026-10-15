@@ -225,7 +225,7 @@ void lmFormSettings::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == statusTimerId) {
         MessageXml msg;
-        msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
+        msg.addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         msg.addData(XN_FONT, QFont().toString());
         QString userId = "Jack";
         QString userName = "Jack";
@@ -339,7 +339,7 @@ void lmFormSettings::cboTheme_currentIndexChanged(int index) {
     pMessageLog->initMessageLog();
 
     MessageXml msg;
-    msg.addData(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
+    msg.addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
     msg.addData(XN_FONT, QFont().toString());
 
     QString userId = "Jack";
@@ -372,6 +372,7 @@ void lmFormSettings::cboTheme_currentIndexChanged(int index) {
 
     pMessageLog->autoFile = false;
     MessageXml fileMsg;
+    fileMsg.addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
     auto fileId = Helper::getUuid();
     fileMsg.addData(XN_FILEPATH, "C:\\unreal file path\\file name.txt");
     fileMsg.addData(XN_FILEID, fileId);

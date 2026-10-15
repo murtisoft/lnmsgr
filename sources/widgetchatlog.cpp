@@ -164,6 +164,10 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 		break;
 	case MT_File:
     case MT_Folder:
+        //  File messages are not stamped when they are sent. Stamp it once, here, when it first enters the log.
+        //  The stamp is kept with the message in the log, so redraws (status updates, reloads) show the same time.
+        if(!pMessage->headerExists(XN_TIME))
+            pMessage->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         id = getFileTempId(pMessage);
         html = getFileMessageText(type, lpszUserName, pMessage, bReload);
 		lastId = QString();
@@ -184,6 +188,8 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
         break;
     case MT_Audio:
     case MT_Video:
+        if(!pMessage->headerExists(XN_TIME))
+            pMessage->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         id = getStreamTempId(pMessage);
         html = getStreamMessageText(type, lpszUserName, pMessage, bReload);
         lastId = QString();
@@ -798,14 +804,14 @@ QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserName,
         break;
     }
 
-    //This type of message doesnt come with a timestamp, but I want one anyway.
-    if (messageDate) {
-        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-    } else {
-        html.replace("%date%", "");
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-    }
+    //  Use the time the message was stamped with when it entered the log. Messages saved before stamping
+    //  existed have none, those fall back to now.
+    QDateTime time = QDateTime::currentDateTime();
+    qint64 stamp = pMessage->header(XN_TIME).toLongLong();
+    if(stamp > 0)
+        time.setMSecsSinceEpoch(stamp);
+    html.replace("%date%", messageDate ? time.date().toString("d MMMM yyyy") : QString());
+    html.replace("%time%", time.time().toString("hh:mm"));
 
     StreamMode streamMode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));
     StreamOp streamOp = (StreamOp)Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
@@ -892,14 +898,14 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, M
     html = templates.reqMsg;
     html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File));
 
-    //This type of message doesnt come with a timestamp, but I want one anyway.
-    if (messageDate) {
-        html.replace("%date%", QDate::currentDate().toString("d MMMM yyyy"));
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-    } else {
-        html.replace("%date%", "");
-        html.replace("%time%", QTime::currentTime().toString("hh:mm"));
-    }
+    //  Use the time the message was stamped with when it entered the log. Messages saved before stamping
+    //  existed have none, those fall back to now.
+    QDateTime time = QDateTime::currentDateTime();
+    qint64 stamp = pMessage->header(XN_TIME).toLongLong();
+    if(stamp > 0)
+        time.setMSecsSinceEpoch(stamp);
+    html.replace("%date%", messageDate ? time.date().toString("d MMMM yyyy") : QString());
+    html.replace("%time%", time.time().toString("hh:mm"));
 
 	FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
     FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
