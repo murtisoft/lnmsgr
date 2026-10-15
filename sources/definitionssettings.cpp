@@ -23,6 +23,57 @@
 #include "definitionssettings.h"
 #include "definitionsdir.h"
 #include "shareduifunctions.h"
+#include "definitionsui.h"
+#include <QVersionNumber>
+#include <QList>
+#include <QPair>
+#include <climits>
+#include <QSet>
+#include <functional>
+
+//	Keys that existed in older versions and are no longer used. Add a key here when it is retired.
+//	Nothing else needs touching when a new setting is added, unknown keys are kept as they are.
+static const QStringList obsoleteKeys = {
+	IDS_BROADCAST_OLD,
+};
+
+//	Value sanity checks. A value that fails is removed, so the application falls back to the default.
+//	Optional, a key without an entry here is kept as is.
+static const QList<QPair<QString, std::function<bool(const QVariant&)>>>& valueChecks() {
+	auto inRange = [](int min, int max) {
+		return [min, max](const QVariant& v) { bool ok; int n = v.toInt(&ok); return ok && n >= min && n <= max; };
+	};
+	static const QList<QPair<QString, std::function<bool(const QVariant&)>>> checks = {
+		{IDS_UDPPORT, inRange(1, 65535)},
+		{IDS_TCPPORT, inRange(1, 65535)},
+		{IDS_TIMEOUT, inRange(1, INT_MAX)},
+		{IDS_MAXRETRIES, inRange(0, INT_MAX)},
+		{IDS_REFRESHTIME, inRange(1, INT_MAX)},
+		{IDS_IDLETIME, inRange(0, INT_MAX)},
+		{IDS_FONTSIZE, inRange(0, FS_COUNT - 1)},
+		{IDS_COLORSCHEME, inRange(0, 2)},
+		{IDS_USERLISTVIEW, inRange(0, ULV_Max - 1)},
+		{IDS_MICACTIVATION, inRange(0, MA_Max - 1)},
+	};
+	return checks;
+}
+
+//	Keys and groups that describe this machine rather than the user's preferences. They are not
+//	carried over when importing a config file from somewhere else.
+static bool isMachineLocal(const QString& key) {
+	static const QStringList prefixes = {"Window/", "Splitter/", "Application/", "GroupExp/"};
+	static const QSet<QString> keys = {IDS_HISTORYPATH, IDS_FILEHISTORYPATH, IDS_FILESTORAGEPATH};
+	for(const QString& prefix : prefixes)
+		if(key.startsWith(prefix))
+			return true;
+	return keys.contains(key);
+}
+
+//	Array style settings ("Name/size", "Name/1/Key"...). Importing replaces the whole array, not merges it.
+static QString topLevelGroup(const QString& key) {
+	int slash = key.indexOf('/');
+	return slash < 0 ? QString() : key.left(slash);
+}
 
 lmSettingsBase::lmSettingsBase(void) : QSettings() {
 }
@@ -77,143 +128,28 @@ bool lmSettings::loadFromConfig(const QString& configFile) {
 	if(!migrateSettings(DefinitionsDir::tempConfigFile()))
 		return false;
 
-	QVariant value;
 	QSettings extSettings(DefinitionsDir::tempConfigFile(), QSettings::IniFormat);
 
-	value = extSettings.value(IDS_AUTOSTART);
-	if(value.isValid())	setValue(IDS_AUTOSTART, value);
-	value = extSettings.value(IDS_AUTOSHOW);
-	if(value.isValid())	setValue(IDS_AUTOSHOW, value);
-    value = extSettings.value(IDS_DEBUGLOG);
-    if(value.isValid())	setValue(IDS_DEBUGLOG, value);
+	//	Import everything that survived migration, except what is specific to the other machine.
+	//	New settings are picked up automatically.
+	const QStringList keys = extSettings.allKeys();
 
-	value = extSettings.value(IDS_SYSTRAY);
-	if(value.isValid())	setValue(IDS_SYSTRAY, value);
-	value = extSettings.value(IDS_MINIMIZETRAY);
-	if(value.isValid())	setValue(IDS_MINIMIZETRAY, value);
-	value = extSettings.value(IDS_SINGLECLICKTRAY);
-	if(value.isValid())	setValue(IDS_SINGLECLICKTRAY, value);
-	value = extSettings.value(IDS_SYSTRAYMSG);
-	if(value.isValid())	setValue(IDS_SYSTRAYMSG, value);
-	value = extSettings.value(IDS_ALLOWSYSTRAYMIN);
-	if(value.isValid())	setValue(IDS_ALLOWSYSTRAYMIN, value);
-	value = extSettings.value(IDS_LANGUAGE);
-	if(value.isValid())	setValue(IDS_LANGUAGE, value);
-
-	value = extSettings.value(IDS_USERNAME);
-	if(value.isValid())	setValue(IDS_USERNAME, value);
-    value = extSettings.value(IDS_USERGROUP);
-    if(value.isValid())	setValue(IDS_USERGROUP, value);
-	value = extSettings.value(IDS_USERFIRSTNAME);
-	if(value.isValid())	setValue(IDS_USERFIRSTNAME, value);
-	value = extSettings.value(IDS_USERLASTNAME);
-	if(value.isValid())	setValue(IDS_USERLASTNAME, value);
-	value = extSettings.value(IDS_USERABOUT);
-	if(value.isValid())	setValue(IDS_USERABOUT, value);
-	value = extSettings.value(IDS_REFRESHTIME);
-	if(value.isValid())	setValue(IDS_REFRESHTIME, value);
-
-	value = extSettings.value(IDS_MESSAGETOP);
-	if(value.isValid())	setValue(IDS_MESSAGETOP, value);
-	value = extSettings.value(IDS_PUBMESSAGEPOP);
-	if(value.isValid())	setValue(IDS_PUBMESSAGEPOP, value);
-	value = extSettings.value(IDS_EMOTICON);
-	if(value.isValid())	setValue(IDS_EMOTICON, value);
-	value = extSettings.value(IDS_MESSAGETIME);
-	if(value.isValid())	setValue(IDS_MESSAGETIME, value);
-	value = extSettings.value(IDS_MESSAGEDATE);
-	if(value.isValid())	setValue(IDS_MESSAGEDATE, value);
-	value = extSettings.value(IDS_ALLOWLINKS);
-	if(value.isValid())	setValue(IDS_ALLOWLINKS, value);
-	value = extSettings.value(IDS_PATHTOLINK);
-	if(value.isValid())	setValue(IDS_PATHTOLINK, value);
-	value = extSettings.value(IDS_TRIMMESSAGE);
-	if(value.isValid())	setValue(IDS_TRIMMESSAGE, value);
-	value = extSettings.value(IDS_COLOR);
-	if(value.isValid())	setValue(IDS_COLOR, value);
-	value = extSettings.value(IDS_FONTSIZE);
-	if(value.isValid())	setValue(IDS_FONTSIZE, value);
-
-	value = extSettings.value(IDS_HISTORY);
-	if(value.isValid())	setValue(IDS_HISTORY, value);
-	value = extSettings.value(IDS_SYSHISTORYPATH);
-	if(value.isValid())	setValue(IDS_SYSHISTORYPATH, value);
-	value = extSettings.value(IDS_FILEHISTORY);
-	if(value.isValid())	setValue(IDS_FILEHISTORY, value);
-
-	value = extSettings.value(IDS_ALERT);
-	if(value.isValid())	setValue(IDS_ALERT, value);
-	value = extSettings.value(IDS_NOBUSYALERT);
-	if(value.isValid())	setValue(IDS_NOBUSYALERT, value);
-	value = extSettings.value(IDS_NODNDALERT);
-	if(value.isValid())	setValue(IDS_NODNDALERT, value);
-	value = extSettings.value(IDS_SOUND);
-	if(value.isValid())	setValue(IDS_SOUND, value);
-	value = extSettings.value(IDS_NOBUSYSOUND);
-	if(value.isValid())	setValue(IDS_NOBUSYSOUND, value);
-	value = extSettings.value(IDS_NODNDSOUND);
-	if(value.isValid())	setValue(IDS_NODNDSOUND, value);
-
-	value = extSettings.value(IDS_TIMEOUT);
-	if(value.isValid())	setValue(IDS_TIMEOUT, value);
-	value = extSettings.value(IDS_MAXRETRIES);
-	if(value.isValid())	setValue(IDS_MAXRETRIES, value);
-	QStringList broadcastList;
-	int size = extSettings.beginReadArray(IDS_BROADCASTHDR);
-	for(int index = 0; index < size; index++) {
-		extSettings.setArrayIndex(index);
-		broadcastList.append(extSettings.value(IDS_BROADCAST).toString());
-	}
-	extSettings.endArray();
-	if(size > 0) {
-		beginWriteArray(IDS_BROADCASTHDR);
-		for(int index = 0; index < size; index++) {
-			setArrayIndex(index);
-			setValue(IDS_BROADCAST, broadcastList.at(index));
+	//	An imported array replaces the existing one, otherwise leftover entries would be mixed in
+	QSet<QString> replaced;
+	for(const QString& key : keys) {
+		if(key == IDS_VERSION || isMachineLocal(key))
+			continue;
+		QString group = topLevelGroup(key);
+		if(!group.isEmpty() && key.count('/') > 1 && !replaced.contains(group)) {
+			replaced.insert(group);
+			remove(group);
 		}
-		endArray();
 	}
-	value = extSettings.value(IDS_MULTICAST);
-	if(value.isValid())	setValue(IDS_MULTICAST, value);
-	value = extSettings.value(IDS_UDPPORT);
-	if(value.isValid())	setValue(IDS_UDPPORT, value);
-	value = extSettings.value(IDS_TCPPORT);
-	if(value.isValid())	setValue(IDS_TCPPORT, value);
-
-	value = extSettings.value(IDS_AUTOFILE);
-	if(value.isValid())	setValue(IDS_AUTOFILE, value);
-	value = extSettings.value(IDS_AUTOSHOWFILE);
-	if(value.isValid())	setValue(IDS_AUTOSHOWFILE, value);
-	value = extSettings.value(IDS_FILETOP);
-	if(value.isValid())	setValue(IDS_FILETOP, value);
-
-	value = extSettings.value(IDS_USERLISTVIEW);
-	if(value.isValid())	setValue(IDS_USERLISTVIEW, value);
-	value = extSettings.value(IDS_STATUSTOOLTIP);
-	if(value.isValid())	setValue(IDS_STATUSTOOLTIP, value);
-
-	value = extSettings.value(IDS_SENDKEYMOD);
-	if(value.isValid())	setValue(IDS_SENDKEYMOD, value);
-	value = extSettings.value(IDS_GLOBALHOTKEYS);
-	if(value.isValid())	setValue(IDS_GLOBALHOTKEYS, value);
-	value = extSettings.value(IDS_HOTKEYMIC);
-	if(value.isValid())	setValue(IDS_HOTKEYMIC, value);
-	value = extSettings.value(IDS_HOTKEYSPEAKER);
-	if(value.isValid())	setValue(IDS_HOTKEYSPEAKER, value);
-	value = extSettings.value(IDS_HOTKEYCAMERA);
-	if(value.isValid())	setValue(IDS_HOTKEYCAMERA, value);
-	value = extSettings.value(IDS_MICDEVICE);
-	if(value.isValid())	setValue(IDS_MICDEVICE, value);
-	value = extSettings.value(IDS_MICDEVICENAME);
-	if(value.isValid())	setValue(IDS_MICDEVICENAME, value);
-	value = extSettings.value(IDS_MICTHRESHOLD);
-	if(value.isValid())	setValue(IDS_MICTHRESHOLD, value);
-	value = extSettings.value(IDS_MICACTIVATION);
-	if(value.isValid())	setValue(IDS_MICACTIVATION, value);
-	value = extSettings.value(IDS_CAMDEVICE);
-	if(value.isValid())	setValue(IDS_CAMDEVICE, value);
-	value = extSettings.value(IDS_CAMDEVICENAME);
-	if(value.isValid())	setValue(IDS_CAMDEVICENAME, value);
+	for(const QString& key : keys) {
+		if(key == IDS_VERSION || isMachineLocal(key))
+			continue;
+		QSettings::setValue(key, extSettings.value(key));
+	}
 
 	setValue(IDS_VERSION, IDA_VERSION);
 	sync();
@@ -282,13 +218,24 @@ void lmSettings::setAutoStart(bool on) {
 bool lmSettings::migrateSettings(const QString& configFile) {
     lmSettingsBase settings(configFile, QSettings::IniFormat);
 
-    QString version = settings.value(IDS_VERSION, IDS_VERSION_VAL).toString();
+    //	A missing or unreadable version is treated as an old file, not as an error
+    QVersionNumber fileVersion = QVersionNumber::fromString(settings.value(IDS_VERSION).toString());
+    QVersionNumber appVersion = QVersionNumber::fromString(IDA_VERSION);
 
-    //	Check if settings can be migrated, else reset settings and return false
-    //	If the settings are from a later version, its deemed non migratable
-    if(Helper::compareVersions(IDA_VERSION, version) < 0) {
+    //	Settings from a later version are deemed non migratable, they are reset
+    if(!fileVersion.isNull() && !appVersion.isNull() && fileVersion > appVersion) {
         QFile::remove(configFile);
         return false;
+    }
+
+    //	Remove keys that are no longer used
+    for(const QString& key : obsoleteKeys)
+        settings.remove(key);
+
+    //	Remove values that do not make sense, defaults take over. Everything else is kept.
+    for(const auto& check : valueChecks()) {
+        if(settings.contains(check.first) && !check.second(settings.value(check.first)))
+            settings.remove(check.first);
     }
 
     settings.setValue(IDS_VERSION, IDA_VERSION);

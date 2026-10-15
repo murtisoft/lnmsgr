@@ -70,7 +70,7 @@ bool lmWidgetUserTreeUserItem::operator < (const QTreeWidgetItem& other) const {
 void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const {
 	painter->save();
 
-	QPalette palette = QApplication::palette();
+	QPalette palette = option.palette;
 	QRect itemRect = option.rect;
 	lmWidgetUserTreeItem* pItem = static_cast<lmWidgetUserTreeItem*>(index.internalPointer());
     lmWidgetUserTree* pTreeWidget = static_cast<lmWidgetUserTree*>(pItem->treeWidget());
@@ -131,7 +131,7 @@ void lmWidgetUserTreeDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 
 		if(option.state.testFlag(QStyle::State_Active) && option.state.testFlag(QStyle::State_Enabled)
 				&& option.state.testFlag(QStyle::State_Selected))
-			borderColor = palette.color(QPalette::Shadow);
+			borderColor = palette.color(QPalette::Highlight).darker(130);
 
 		painter->setPen(QPen(borderColor));
 		painter->setBrush(QBrush(fillColor));
