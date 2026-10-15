@@ -4,8 +4,15 @@ Notes
 ===========================
 Project related todo list and known issues are written down in main cmakelists.
 
-I would like to maintain compatibility between this and old versions, while adding more in the future. 
+I would like to maintain compatibility between this and mainline versions, while adding more in the future. 
 
+Tips & Tricks
+============================
+* Wrap UNC paths within quotes if they include spaces: "\\SambaShare\Folder\S p a c e.png"
+* Shift enter always adds a newline regardless of enter/ctrl+enter setting.
+* Writing --, __, == in chat will add a horizontal rule.
+* Pasting image snippets and files into chatbox sends them over.
+* You are not limited to smileys that the program presents you. You can use any unicode emoji.
 
 Why LAN Messenger? (2026)
 ============================
@@ -18,7 +25,7 @@ Why LAN Messenger? (2026)
 * 1 on 1 Encrypted communications.
 * Voice chat. (Opus 96kbps auto, encrypted)
 * Video chat/desktop sharing (VP8 720p 30fps 2000kbps, encrypted)
-* Multi platform (Eventually - older linux & mac versions are compatible.)
+* Multi platform (Eventually - mainline linux & mac versions are compatible.)
 
 User interface
 ============================
@@ -37,4 +44,16 @@ This project was compiled on Windows 11 with;
 * Libvpx (C:\Qt\Tools\libvpx-1.7)
 	* MSYS2 has prebuilt MinGW libvpx https://repo.msys2.org/mingw/mingw64/
 	* find the latest .tar.zst and extract it
+
+
+
+
+
+
+
+
+
+
+
+
 
