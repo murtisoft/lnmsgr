@@ -106,7 +106,6 @@ private:
 	QString getChatRoomMessage(GroupMsgOp op);
     void fileOperation(QString fileId, QString action, QString fileType, FileMode mode = FM_Receive);
 	void decodeMessage(QString* lpszMessage, bool useDefaults = false);
-	void processMessageText(QString* lpszMessageText, bool useDefaults);
 	QString getTimeString(QDateTime* pTime);
 	void setUIText(void);
     QString getFileTempId(FileMode mode, QString fileId) const;

@@ -28,6 +28,7 @@
 #include <QLocale>
 #include <QClipboard>
 #include "widgetchatlog.h"
+#include <algorithm>
 #include "sharedchatfunctions.h"
 #include "definitionsdir.h"
 
@@ -1115,52 +1116,173 @@ void lmChatLog::fileOperation(QString fileId, QString action, QString fileType, 
     emit messageSent(type, &peerId, &xmlMessage);
 }
 
+namespace {
+
+//  Appends text to out, made html safe. Same replacements as ChatHelper::makeHtmlSafe (htmlSymbol / htmlEscape),
+//  done in a single pass instead of one pass per symbol.
+void appendHtmlSafe(QString& out, QStringView text) {
+    for(QChar ch : text) {
+        switch(ch.unicode()) {
+        case '&': out += QLatin1String("&amp;"); break;
+        case '"': out += QLatin1String("&quot;"); break;
+        case '<': out += QLatin1String("&lt;"); break;
+        case '>': out += QLatin1String("&gt;"); break;
+        case ' ': out += QLatin1String("&nbsp;"); break;
+        default:  out += ch; break;
+        }
+    }
+}
+
+//  A line made of 2 or more of the same '-', '=' or '_' becomes a horizontal rule
+bool isRuleLine(const QString& line) {
+    if(line.size() < 2)
+        return false;
+    const QChar first = line.at(0);
+    if(first != QLatin1Char('-') && first != QLatin1Char('=') && first != QLatin1Char('_'))
+        return false;
+    for(QChar ch : line)
+        if(ch != first)
+            return false;
+    return true;
+}
+
+struct LinkSpan {
+    qsizetype start;
+    qsizetype end;
+    bool isPath;
+    QString path;       //  path links only, as typed and without the quotes
+    bool quoted;        //  path links only
+};
+
+}
+
 //	Called when message received, before adding to message log
 //	The useDefaults parameter is an override flag that will ignore app settings
 //	while decoding the message. If the flag is set, message is not trimmed,
 //	smileys are left as text and links will be detected and converted.
+//
+//	The message is processed one line at a time, in a single pass. Link detection runs on the plain text
+//	(the url and path patterns do not work on html), then everything between the links is made html safe,
+//	so nothing the sender typed can reach the chat log as markup. The converted links are given a "data-isLink"
+//	custom attribute to differentiate them from the message content.
 void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
 	if(!useDefaults && trimMessage)
 		*lpszMessage = lpszMessage->trimmed();
 
-	//	The url detection regexps only work with plain text, so link detection is done before
-	//	making the text html safe. The converted links are given a "data-isLink" custom
-	//	attribute to differentiate them from the message content
-    if(useDefaults || allowLinks) {
-        static const QRegularExpression regexURL(   //for a URL to be converted into a link, it needs to have http://, https://, ftp:// or www.
-            R"(((?:https?|ftp)://[-A-Z0-9+&@#/%=~_|$?!:,.]*[-A-Z0-9+&@#/%=~_|$]|www\.[-A-Z0-9+&@#/%=~_|$?!:,.]*[-A-Z0-9+&@#/%=~_|$]))",
-            QRegularExpression::CaseInsensitiveOption
+	//	Path links need links to be allowed, and are never made when decoding with defaults
+	const bool detectLinks = useDefaults || allowLinks;
+	const bool detectPaths = !useDefaults && allowLinks && pathToLink;
+	const bool smileys = !useDefaults && showSmiley;
+
+    static const QRegularExpression regexURL(   //for a URL to be converted into a link, it needs to have http://, https://, ftp:// or www.
+                R"(((?:https?|ftp)://[-A-Z0-9+&@#/%=~_|$?!:,.]*[-A-Z0-9+&@#/%=~_|$]|www\.[-A-Z0-9+&@#/%=~_|$?!:,.]*[-A-Z0-9+&@#/%=~_|$]))",
+                QRegularExpression::CaseInsensitiveOption
+                );
+
+    static const QRegularExpression regexUNC(  //Quoted UNC greedy, allows spaces | Unquoted UNC conservative, no spaces
+            R"~((")((?://|\\\\)[^"]+)"|(?<![:'"<\/])((?://|\\\\)[^\s/:*?<>|"'\\]+(?:[/\\][^\s/:*?<>|"'\\ ]*)*[/\\]?))~"
             );
 
-        lpszMessage->replace(regexURL, "<a data-isLink='true' href='\\1'>\\1</a>");
-        lpszMessage->replace("<a data-isLink='true' href='www", "<a data-isLink='true' href='http://www");
+    static const QString ruleHtml =
+        "<table width='100%' style='margin-top:0.5em;'>"
+        "<tr><td style='font-size:1px; background-color:rgb(127,127,127);'></td></tr>"
+        "</table>";
 
-if(!useDefaults && pathToLink) {
-    static const QRegularExpression regexUNC(  //Quoted UNC greedy, allows spaces | Unquoted UNC conservative, no spaces
-        R"~((")((?://|\\\\)[^"]+)"|(?<![:'"<\/])((?://|\\\\)[^\s/:*?<>|"'\\]+(?:[/\\][^\s/:*?<>|"'\\ ]*)*[/\\]?))~"
-        );
+    //  Text between links: html safe, then smileys
+    auto appendText = [&](QString& out, QStringView text) {
+        if(text.isEmpty())
+            return;
+        if(!smileys) {
+            appendHtmlSafe(out, text);
+            return;
+        }
+        QString safe;
+        safe.reserve(text.size() + text.size() / 4);
+        appendHtmlSafe(safe, text);
+        ChatHelper::decodeSmileys(&safe);
+        out += safe;
+    };
 
-    QString result;
-    int lastEnd = 0;
-    auto it = regexUNC.globalMatch(*lpszMessage);
-    while(it.hasNext()) {
-        auto m = it.next();
-        result += lpszMessage->sliced(lastEnd, m.capturedStart() - lastEnd);
-        QString path = m.captured(2).isEmpty() ? m.captured(3) : m.captured(2);
-        //  Only the link target is normalized to forward slashes, the message text keeps what was typed.
-        QString href = path;
-        href.replace('\\', '/');
-        //  Quoted paths keep their quotes in the visible text, but never in the link target.
-        QString text = m.captured(2).isEmpty() ? path : "\"" + path + "\"";
-        result += QString("<a data-isLink='true' href='file:%1'>%2</a>").arg(href, text);
-        lastEnd = m.capturedEnd();
-    }
-    result += lpszMessage->sliced(lastEnd);
-    *lpszMessage = result;
-    }
+    const QStringList lines = lpszMessage->split('\n');
+    QString message;
+    message.reserve(lpszMessage->size() + lpszMessage->size() / 2 + 16);
+
+    for(int lineIndex = 0; lineIndex < lines.count(); lineIndex++) {
+        const QString& line = lines.at(lineIndex);
+        if(lineIndex > 0)
+            message += QLatin1String("<br/>");
+
+        if(isRuleLine(line)) {
+            message += ruleHtml;
+            continue;
+        }
+
+        //  Find the links in this line. The cheap checks first, most messages have no links at all.
+        QList<LinkSpan> spans;
+        if(detectLinks && (line.contains(QLatin1String("://")) || line.contains(QLatin1String("www."), Qt::CaseInsensitive))) {
+            auto it = regexURL.globalMatch(line);
+            while(it.hasNext()) {
+                auto m = it.next();
+                spans.append({m.capturedStart(), m.capturedEnd(), false, QString(), false});
+            }
+        }
+        if(detectPaths && (line.contains(QLatin1String("//")) || line.contains(QLatin1String("\\\\")))) {
+            const qsizetype urlCount = spans.count();
+            auto it = regexUNC.globalMatch(line);
+            while(it.hasNext()) {
+                auto m = it.next();
+                //  Part of a url that was already found, the url wins
+                bool overlaps = false;
+                for(qsizetype i = 0; i < urlCount; i++)
+                    if(m.capturedStart() < spans.at(i).end && m.capturedEnd() > spans.at(i).start) {
+                        overlaps = true;
+                        break;
+                    }
+                if(overlaps)
+                    continue;
+                bool quoted = !m.captured(2).isEmpty();
+                spans.append({m.capturedStart(), m.capturedEnd(), true, quoted ? m.captured(2) : m.captured(3), quoted});
+            }
+            if(urlCount > 0)
+                std::sort(spans.begin(), spans.end(), [](const LinkSpan& a, const LinkSpan& b) { return a.start < b.start; });
+        }
+
+        qsizetype pos = 0;
+        for(const LinkSpan& span : std::as_const(spans)) {
+            appendText(message, QStringView(line).mid(pos, span.start - pos));
+            if(span.isPath) {
+                //  Only the link target is normalized to forward slashes, the message text keeps what was typed.
+                QString href = span.path;
+                href.replace('\\', '/');
+                message += QLatin1String("<a data-isLink='true' href='file:");
+                message += href;
+                message += QLatin1String("'>");
+                //  Quoted paths keep their quotes in the visible text, but never in the link target.
+                if(span.quoted)
+                    message += QLatin1Char('"');
+                message += span.path;
+                if(span.quoted)
+                    message += QLatin1Char('"');
+                message += QLatin1String("</a>");
+            } else {
+                QStringView url = QStringView(line).mid(span.start, span.end - span.start);
+                message += QLatin1String("<a data-isLink='true' href='");
+                //  "www." has no scheme, make it one so the link can be opened
+                if(url.startsWith(QLatin1String("www."), Qt::CaseInsensitive))
+                    message += QLatin1String("http://");
+                message.append(url.data(), url.size());
+                message += QLatin1String("'>");
+                message.append(url.data(), url.size());
+                message += QLatin1String("</a>");
+            }
+            pos = span.end;
+        }
+        appendText(message, QStringView(line).mid(pos));
     }
 
-//qDebug().noquote() << "\r\n" << QString(*lpszMessage).replace("\n", "\r\n") << "\r\n";
+    *lpszMessage = message;
+}
+
 /*  //TODO This part needs expansion.
 TEST CASES
 00 \\Share\e\Image.png                  pathToLink      Works as expected
@@ -1191,50 +1313,6 @@ TEST CASES
 25 file:///E:/Image.png                 ----------      This should be caught in the chatbox, and turned into a file send operation. Dont handle it here.IGNORE
 26 file:///E:/_qtprojects               ----------      This should be caught in the chatbox, and turned into a folder send operation. Dont handle it here.IGNORE
 */
-
-
-	QString message = QString();
-	int index = 0;
-
-	while(index < lpszMessage->length()) {
-		int aStart = lpszMessage->indexOf("<a data-isLink='true'", index);
-		if(aStart != -1) {
-			QString messageSegment = lpszMessage->mid(index, aStart - index);
-			processMessageText(&messageSegment, useDefaults);
-			message.append(messageSegment);
-			index = lpszMessage->indexOf("</a>", aStart) + 4;
-			QString linkSegment = lpszMessage->mid(aStart, index - aStart);
-			message.append(linkSegment);
-		} else {
-			QString messageSegment = lpszMessage->mid(index);
-			processMessageText(&messageSegment, useDefaults);
-			message.append(messageSegment);
-			break;
-		}
-	}
-
-	message.replace("\n", "<br/>");
-
-	*lpszMessage = message;
-}
-
-void lmChatLog::processMessageText(QString* lpszMessageText, bool useDefaults) {
-	ChatHelper::makeHtmlSafe(lpszMessageText);
-
-    static const QRegularExpression hrRegex("^(-{2,}|={2,}|_{2,})$");       //place a horizontal rule into chatlog replacing a line of --
-    QStringList lines = lpszMessageText->split('\n');
-    for (QString& line : lines) {
-        line.replace(hrRegex,
-                     "<table width='100%' style='margin-top:0.5em;'>"
-                     "<tr><td style='font-size:1px; background-color:rgb(127,127,127);'></td></tr>"
-                     "</table>");
-    }
-    *lpszMessageText = lines.join('\n');
-
-	//	if smileys are enabled, replace text emoticons with corresponding images
-	if(!useDefaults && showSmiley)
-		ChatHelper::decodeSmileys(lpszMessageText);
-}
 
 QString lmChatLog::getTimeString(QDateTime* pTime) {
     if (!pTime || !messageTime) return "";

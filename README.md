@@ -13,6 +13,7 @@ Tips & Tricks
 * Writing --, __, == in chat will add a horizontal rule.
 * Pasting image snippets and files into chatbox sends them over.
 * You are not limited to smileys that the program presents you. You can use any unicode emoji.
+* If you need more remote desktop features, I kindly recommend rustdesk:  https://github.com/rustdesk/rustdesk
 
 Why LAN Messenger? (2026)
 ============================

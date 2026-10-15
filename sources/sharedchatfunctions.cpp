@@ -65,21 +65,65 @@ void ChatHelper::encodeSmileys(QString* lpszMessage) {
 }
 
 void ChatHelper::decodeSmileys(QString* lpszMessage) {
+    //  The html safe codes and their replacements do not change, build them once instead of for every message.
+    struct SmileyEntry {
+        QString code;
+        QString replacement;
+    };
+    static const QList<SmileyEntry> entries = []() {
+        QList<SmileyEntry> list;
+        list.reserve(SM_MAPCOUNT);
+        for (int index = 0; index < SM_MAPCOUNT; index++) {
+            QString code = smileyCode[index];
+            makeHtmlSafe(&code);
+            if (smileyEmoji[index].startsWith(":/"))
+                list.append({code, "<img src='qrc" + smileyEmoji[index] + "'/>"});     //Legacy png handler
+            else
+                list.append({code, "&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;"});
+        }
+        return list;
+    }();
+    //  Characters a code can start with. A message without any of them has no text smileys, no need to look for all 81.
+    static const QList<bool> startsCode = []() {
+        QList<bool> table(128, false);
+        for (const SmileyEntry& entry : entries) {
+            ushort first = entry.code.at(0).unicode();
+            if (first < 128) {
+                table[first] = true;
+                table[QChar(first).toLower().unicode()] = true;     //  codes are matched case insensitive
+                table[QChar(first).toUpper().unicode()] = true;
+            }
+        }
+        return table;
+    }();
+
     // Handle any other unicode emoji that is not on the list, first. This doesnt handle everything because unicode emojis are a fucking mess.
-    static const QRegularExpression emojiRegex("(\\p{Emoji_Presentation}(?:\\x{200D}\\p{Emoji_Presentation})*)");
-    lpszMessage->replace(emojiRegex, "&#8203;<span style='font-size:18px; vertical-align: middle;'>\\1</span>&#8203;");
+    //  The lowest emoji presentation character is U+231A, plain text without anything above it can skip the regex.
+    bool maybeEmoji = false;
+    for (QChar ch : *lpszMessage)
+        if (ch.unicode() >= 0x231A) {
+            maybeEmoji = true;
+            break;
+        }
+    if (maybeEmoji) {
+        static const QRegularExpression emojiRegex("(\\p{Emoji_Presentation}(?:\\x{200D}\\p{Emoji_Presentation})*)");
+        lpszMessage->replace(emojiRegex, "&#8203;<span style='font-size:18px; vertical-align: middle;'>\\1</span>&#8203;");
+    }
 
     //	replace text emoticons with corresponding images
-    for (int index = 0; index < SM_MAPCOUNT; index++) {
-        QString code = smileyCode[index];
-        makeHtmlSafe(&code);
-
-        if (smileyEmoji[index].startsWith(":/")) {
-            lpszMessage->replace(code, "<img src='qrc" + smileyEmoji[index] + "'/>", Qt::CaseInsensitive);  //Legacy png handler
-        } else {
-            lpszMessage->replace(code, "&#8203;<span style='font-size:18px; vertical-align: middle;'>" + smileyEmoji[index] + "</span>&#8203;", Qt::CaseInsensitive);
+    bool maybeSmiley = false;
+    for (QChar ch : *lpszMessage) {
+        ushort u = ch.unicode();
+        if (u >= 128 || startsCode.at(u)) {
+            maybeSmiley = true;
+            break;
         }
     }
+    if (!maybeSmiley)
+        return;
+
+    for (const SmileyEntry& entry : entries)
+        lpszMessage->replace(entry.code, entry.replacement, Qt::CaseInsensitive);
 }
 
 QTextBlockData::QTextBlockData(QString id)
