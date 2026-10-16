@@ -42,6 +42,17 @@
 #include <QPixmap>
 #include <QPen>
 #include <QtMath>
+#include <QBuffer>
+#include <QColorSpace>
+#include <QEventLoop>
+#include <QImageReader>
+#include <QImageWriter>
+#include <QMediaPlayer>
+#include <QMimeDatabase>
+#include <QTimer>
+#include <QUrl>
+#include <QVideoFrame>
+#include <QVideoSink>
 
 int Helper::indexOf(const QString array[], int size, const QString& value) {
 	for(int index = 0; index < size; index++) {
@@ -301,4 +312,96 @@ void Helper::placeOnMainScreen(QWidget* pWindow) {
 	QRect rect(QPoint(0, 0), size);
 	rect.moveCenter(avail.center());
 	pWindow->move(rect.topLeft());
+}
+
+//	preview size limit, quality of the webp and how long to wait for a video frame
+static const int PREVIEW_SIZE = 128;
+static const int PREVIEW_QUALITY = 30;
+static const int PREVIEW_VIDEO_TIMEOUT = 3000;
+
+//	Reads an image file scaled down to fit the preview size. The reader scales while decoding, so
+//	large pictures are not loaded at full size.
+static QImage readImagePreview(const QString& filePath) {
+    QImageReader reader(filePath);
+    reader.setAutoTransform(true);
+    if(!reader.canRead())
+        return QImage();
+
+    QSize size = reader.size();
+    if(size.isValid() && (size.width() > PREVIEW_SIZE || size.height() > PREVIEW_SIZE)) {
+        size.scale(PREVIEW_SIZE, PREVIEW_SIZE, Qt::KeepAspectRatio);
+        reader.setScaledSize(size);
+    }
+    return reader.read();
+}
+
+//	Grabs the first frame of a video file. Gives up after a few seconds, or when Qt can't play the file.
+static QImage readVideoPreview(const QString& filePath) {
+    QImage result;
+    QMediaPlayer player;
+    QVideoSink sink;
+    QEventLoop loop;
+    QTimer timeout;
+    timeout.setSingleShot(true);
+
+    player.setVideoSink(&sink);
+    QObject::connect(&sink, &QVideoSink::videoFrameChanged, &loop, [&](const QVideoFrame& frame) {
+        if(!frame.isValid())
+            return;
+        QImage image = frame.toImage();
+        if(image.isNull())
+            return;
+        result = image;
+        loop.quit();
+    });
+    QObject::connect(&player, &QMediaPlayer::errorOccurred, &loop, [&]() { loop.quit(); });
+    QObject::connect(&player, &QMediaPlayer::mediaStatusChanged, &loop, [&](QMediaPlayer::MediaStatus status) {
+        if(status == QMediaPlayer::LoadedMedia)
+            player.play();
+        else if(status == QMediaPlayer::InvalidMedia)
+            loop.quit();
+    });
+    QObject::connect(&timeout, &QTimer::timeout, &loop, &QEventLoop::quit);
+
+    player.setSource(QUrl::fromLocalFile(filePath));
+    timeout.start(PREVIEW_VIDEO_TIMEOUT);
+    loop.exec();
+
+    player.stop();
+    player.setVideoSink(nullptr);
+    return result;
+}
+
+QString Helper::createFilePreview(const QString& filePath) {
+    QImage image = readImagePreview(filePath);
+
+    if(image.isNull()) {
+        QString mimeType = QMimeDatabase().mimeTypeForFile(filePath, QMimeDatabase::MatchExtension).name();
+        if(mimeType.startsWith("video/"))
+            image = readVideoPreview(filePath);
+    }
+    if(image.isNull())
+        return QString();
+
+    //	keep the aspect ratio, never enlarge
+    if(image.width() > PREVIEW_SIZE || image.height() > PREVIEW_SIZE)
+        image = image.scaled(PREVIEW_SIZE, PREVIEW_SIZE, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    //	webp is converted to sRGB and its color space is then cleared,
+    //	so no ICC profile gets embedded (about 4KB per icon).
+    //	convertedToColorSpace() returns a null image when the source has no profile
+    QImage srgb = image.convertedToColorSpace(QColorSpace::SRgb);
+    if(!srgb.isNull())
+        image = srgb;
+    image.setColorSpace(QColorSpace());
+
+    QByteArray data;
+    QBuffer buffer(&data);
+    buffer.open(QIODevice::WriteOnly);
+    QImageWriter writer(&buffer, "webp");
+    writer.setQuality(PREVIEW_QUALITY);
+    if(!writer.write(image))
+        return QString();
+
+    return QString::fromLatin1(data.toBase64());
 }

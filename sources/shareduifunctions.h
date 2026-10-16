@@ -53,6 +53,9 @@ public:
 	static bool copyFile(const QString& source, const QString& destination);
     static void changeColorScheme(int index);
     static QIcon renderEmoji(const QString& emoji, int size = 32, bool strikethrough = false);
+	//	Returns a base64 webp preview (max 128x128) of an image or video file, or an empty string if
+	//	the file is not an image/video Qt can read.
+	static QString createFilePreview(const QString& filePath);
 	//	The main window reports the screen it is on, so other windows can pop up there. The screen is
 	//	remembered while the main window is hidden in the tray.
 	static void setMainScreen(QScreen* pScreen);

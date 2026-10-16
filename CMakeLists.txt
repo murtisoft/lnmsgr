@@ -17,7 +17,6 @@ endif()
 
 #All translations are a decade behind.
 #Maybe detect when computer is about to hibernate or go to sleep and send offline message?
-#Send previews for known media types, and file icons for others.
 
 
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.

@@ -231,6 +231,12 @@ bool lmMessaging::addFileTransfer(FileMode fileMode, QString* lpszUserId, Messag
         pMessage->addData(XN_MODE, FileModeNames[fileMode]);
         pMessage->addData(XN_FILENAME, fileInfo.fileName());
         pMessage->addData(XN_FILESIZE, QString::number(fileInfo.size()));
+        //  Image/video preview travels in the message. Old clients ignore the field.
+        if(fileType == FT_Normal) {
+            QString preview = Helper::createFilePreview(fileInfo.filePath());
+            if(!preview.isEmpty())
+                pMessage->addData(XN_PREVIEW, preview);
+        }
         xmlMessage = pMessage->clone();
         switch(fileType) {
         case FT_Normal:

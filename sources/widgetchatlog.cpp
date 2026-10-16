@@ -930,7 +930,16 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserId, QSt
     html.replace("%rulecolor%", "#00b000");
     html.replace("%avatar%", getAvatarHtml(*lpszUserId));
     html.replace("%name%", *lpszUserName);
-    html.replace("%preview%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File));
+    //  Use the preview sent with the request. Fall back to the file icon when there is none (or old clients).
+    QString preview = QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File);
+    QImage previewImage = QImage::fromData(QByteArray::fromBase64(pMessage->data(XN_PREVIEW).toLatin1()), "WEBP");
+    if(!previewImage.isNull()) {
+        QString key = QString(fileId).replace(QRegularExpression("[^A-Za-z0-9]"), "_");
+        QUrl url("lmpreview:" + key);
+        document()->addResource(QTextDocument::ImageResource, url, previewImage);
+        preview = QString("<img src='%1' width='%2' height='%3'>").arg(url.toString()).arg(previewImage.width()).arg(previewImage.height());
+    }
+    html.replace("%preview%", preview);
 
     //  Use the time the message was stamped with when it entered the log. Messages saved before stamping
     //  existed have none, those fall back to now.

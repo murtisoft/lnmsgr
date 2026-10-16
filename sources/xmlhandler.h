@@ -62,6 +62,7 @@
 #define XN_FILEPATH			"filepath"
 #define XN_FILENAME			"filename"
 #define XN_FILESIZE			"filesize"
+#define XN_PREVIEW			"preview"	//	base64 webp preview of an image/video file
 #define XN_STREAMMODE       "streamode"
 #define XN_STREAMOP         "streamop"
 #define XN_STREAMID         "streamid"
