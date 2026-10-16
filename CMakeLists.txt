@@ -17,7 +17,6 @@ endif()
 
 #All translations are a decade behind.
 #Maybe detect when computer is about to hibernate or go to sleep and send offline message?
-#Switch to new templates and nested messages
 #Send previews for known media types, and file icons for others.
 
 

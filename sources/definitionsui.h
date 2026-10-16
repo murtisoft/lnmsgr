@@ -228,13 +228,10 @@ struct Templates {
         QFile f(path); return f.open(QFile::ReadOnly) ? f.readAll() : "";
     }
 
-    QString inMsg      = load(":/templates/old_content.html");
-    QString inNextMsg  = load(":/templates/old_nextcontent.html");
-    QString pubMsg     = load(":/templates/old_broadcast.html");
-    QString sysMsg     = load(":/templates/old_status.html");
-    QString sysNextMsg = load(":/templates/old_nextstatus.html");
-    QString reqMsg     = load(":/templates/old_request.html");
-    QString stateMsg   = load(":/templates/old_status.html");
+    QString msgHeader  = load(":/templates/msg_header.html");
+    QString msgBody    = load(":/templates/msg_body.html");
+    QString msgRequest = load(":/templates/msg_request.html");
+    QString msgWarning = load(":/templates/msg_warning.html");
 };
 
 #endif // DEFINITIONSUI_H

@@ -133,10 +133,7 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 		message = pMessage->data(XN_CHATSTATE);
 		caption = getChatStateMessage((ChatState)Helper::indexOf(ChatStateNames, CS_Max, message));
         if(!caption.isNull()) {
-            html = templates.stateMsg;
-            html.replace("%icon%", "" );  //Blank
-			html.replace("%sender%", caption.arg(*lpszUserName));
-			html.replace("%message%", "");
+            html = getWarningHtml(pMessage, "", caption.arg(*lpszUserName));
             appendMessageLog(&html, type);
 		}
 		addToLog = false;
@@ -144,22 +141,17 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 	case MT_Failed:
 		message = pMessage->data(XN_MESSAGE);
 		font.fromString(pMessage->data(XN_FONT));
-        html = templates.sysMsg;
+        if(!pMessage->headerExists(XN_TIME))
+            pMessage->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
 		caption = tr("This message was not delivered to %1:");
         fontStyle = getFontStyle(&font);
 		decodeMessage(&message);
-        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Alert));
-		html.replace("%sender%", caption.arg(*lpszUserName));
-		html.replace("%style%", fontStyle);
-		html.replace("%message%", message);
+        html = getWarningHtml(pMessage, Icons::Alert, caption.arg(*lpszUserName), message, fontStyle);
         appendMessageLog(&html, type);
 		lastId  = QString();
 		break;
 	case MT_Error:
-        html = templates.sysMsg;
-        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Alert));
-		html.replace("%sender%", tr("Your message was not sent."));
-		html.replace("%message%", "");
+        html = getWarningHtml(pMessage, Icons::Alert, tr("Your message was not sent."));
         appendMessageLog(&html, type);
 		lastId  = QString();
 		addToLog = false;
@@ -171,7 +163,7 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
         if(!pMessage->headerExists(XN_TIME))
             pMessage->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         id = getFileTempId(pMessage);
-        html = getFileMessageText(type, lpszUserName, pMessage, bReload);
+        html = getFileMessageText(type, lpszUserId, lpszUserName, pMessage, bReload);
 		lastId = QString();
         appendMessageLog(&html, MT_File, new QTextBlockData(id));
 		break;
@@ -180,10 +172,10 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 		message = pMessage->data(XN_GROUPMSGOP);
 		caption = getChatRoomMessage((GroupMsgOp)Helper::indexOf(GroupMsgOpNames, GMO_Max, message));
 		if(!caption.isNull()) {
-            html = templates.sysMsg;
-            html.replace("%icon%", "" );  //Blank
-			html.replace("%sender%", caption.arg(*lpszUserName));
-			html.replace("%message%", "");
+            //  Stamp it once, when it first enters the log, so reloads show the same time.
+            if(!pMessage->headerExists(XN_TIME))
+                pMessage->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
+            html = getWarningHtml(pMessage, "", caption.arg(*lpszUserName));
             appendMessageLog(&html, type);
 		}
 		lastId = QString();
@@ -193,7 +185,7 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
         if(!pMessage->headerExists(XN_TIME))
             pMessage->addHeader(XN_TIME, QString::number(QDateTime::currentMSecsSinceEpoch()));
         id = getStreamTempId(pMessage);
-        html = getStreamMessageText(type, lpszUserName, pMessage, bReload);
+        html = getStreamMessageText(type, lpszUserId, lpszUserName, pMessage, bReload);
         lastId = QString();
         appendMessageLog(&html, type, new QTextBlockData(id));
         break;
@@ -218,7 +210,7 @@ void lmChatLog::updateStreamMessage(StreamOp op, QString streamId)
             xmlMessage.removeData(XN_STREAMOP);
             xmlMessage.addData(XN_STREAMOP, StreamOpNames[op]);
             msg.message = xmlMessage;
-            QString html = getStreamMessageText(msg.type, &msg.userName, &msg.message);
+            QString html = getStreamMessageText(msg.type, &msg.userId, &msg.userName, &msg.message);
             replaceMessageLog(msg.type, msg.id, html);
             break;
         }
@@ -242,7 +234,7 @@ void lmChatLog::updateFileMessage(FileMode mode, FileOp op, QString fileId)
 			xmlMessage.addData(XN_FILEOP, FileOpNames[op]);
 			msg.message = xmlMessage;
 
-            QString html = getFileMessageText(msg.type, &msg.userName, &msg.message);
+            QString html = getFileMessageText(msg.type, &msg.userId, &msg.userName, &msg.message);
             replaceMessageLog(MT_File, tempId, html);
             break;
 		}
@@ -656,14 +648,16 @@ bool lmChatLog::isSameBlock(QTextCursor &cursor, MessageType type, QString &id) 
 }
 
 void lmChatLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime) {
-	Q_UNUSED(lpszUserId);
-
 	decodeMessage(lpszMessage);
 
-    QString html = templates.pubMsg;
+    QString html = templates.msgHeader + templates.msgRequest;
 	QString caption = tr("Broadcast message from %1:");
-    html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Broadcast));
-	html.replace("%sender%", caption.arg(*lpszUserName));
+    html.replace("%rulecolor%", "#b00000");
+    html.replace("%avatar%", getAvatarHtml(*lpszUserId));
+    html.replace("%name%", *lpszUserName);
+    html.replace("%preview%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Broadcast));
+	html.replace("%notification%", caption.arg(*lpszUserName));
+    html.replace("%links%", "");
 
     QString timeStr = getTimeString(pTime);
     QStringList parts = timeStr.split('|');
@@ -678,6 +672,34 @@ void lmChatLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QStr
 	hasData = true;
 }
 
+//	build a one line warning/system message, timed from the message stamp or now if it has none
+QString lmChatLog::getWarningHtml(MessageXml* pMessage, const QString& icon, const QString& sender,
+        const QString& message, const QString& style) {
+    QDateTime time = QDateTime::currentDateTime();
+    qint64 stamp = pMessage ? pMessage->header(XN_TIME).toLongLong() : 0;
+    if(stamp > 0)
+        time.setMSecsSinceEpoch(stamp);
+    QStringList parts = getTimeString(&time).split('|');
+
+    QString html = templates.msgWarning;
+    html.replace("%time%", parts.value(1));
+    html.replace("%icon%", icon);
+    html.replace("%name%", sender);
+    html.replace("%style%", style);
+    html.replace("%message%", message);
+    return html;
+}
+
+//	get the avatar html for a user, from the cache folder or the default avatar
+QString lmChatLog::getAvatarHtml(const QString& userId) {
+    QString filePath = participantAvatars.value(userId);
+    if (QFile::exists(filePath)) {
+        QString icon = QUrl::fromLocalFile(filePath).toString();
+        return "<img border='0' width='48' height='48' src='" + icon + "'>";
+    }
+    return QString("<span style='font-size:32px;'>" + avtEmoji[20] + "</span>"); //Hidden Default Avatar
+}
+
 void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
                                   QFont* pFont) {
 	QString html = QString();
@@ -688,7 +710,7 @@ void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QStrin
     QString fontStyle = getFontStyle(pFont);
 
 	if(lpszUserId->compare(lastId) != 0) {
-        html = localUser ? templates.inMsg : templates.inMsg;
+        html = templates.msgHeader + templates.msgBody;
 
 		//	get the avatar image for this user from the cache folder
 		QString filePath = participantAvatars.value(*lpszUserId);
@@ -702,8 +724,9 @@ void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QStrin
             icon = QString("<span style='font-size:32px;'>"+avtEmoji[20]+"</span>"); //Hidden Default Avatar
         }
 
-        html.replace("%icon%", icon);
-		html.replace("%sender%", *lpszUserName);
+        html.replace("%avatar%", icon);
+		html.replace("%name%", *lpszUserName);
+		html.replace("%rulecolor%", "#7f7f7f");
 
         QString timeStr = getTimeString(pTime);
         QStringList parts = timeStr.split('|');
@@ -714,7 +737,7 @@ void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QStrin
 		html.replace("%message%", *lpszMessage);
 
     } else {
-        html = localUser ? templates.inNextMsg : templates.inNextMsg;
+        html = templates.msgBody;
 
         QString timeStr = getTimeString(pTime);
         QStringList parts = timeStr.split('|');
@@ -742,7 +765,7 @@ void lmChatLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, 
 
 	if(lpszUserId->compare(lastId) != 0) {
 		outStyle = !outStyle;
-        html = outStyle ? templates.inMsg : templates.inMsg;
+        html = templates.msgHeader + templates.msgBody;
 
         //	get the avatar image for this user from the cache folder
         QString filePath = participantAvatars.value(*lpszUserId);
@@ -756,8 +779,9 @@ void lmChatLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, 
             icon = QString("<span style='font-size:32px;'>"+avtEmoji[20]+"</span>"); //Hidden Default Avatar
         }
 
-        html.replace("%icon%", icon);
-		html.replace("%sender%", *lpszUserName);
+        html.replace("%avatar%", icon);
+		html.replace("%name%", *lpszUserName);
+		html.replace("%rulecolor%", "#7f7f7f");
 
         QString timeStr = getTimeString(pTime);
         QStringList parts = timeStr.split('|');
@@ -768,7 +792,7 @@ void lmChatLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, 
 		html.replace("%message%", *lpszMessage);
 
     } else {
-        html = outStyle ? templates.inNextMsg : templates.inNextMsg;
+        html = templates.msgBody;
 
         QString timeStr = getTimeString(pTime);
         QStringList parts = timeStr.split('|');
@@ -786,22 +810,25 @@ void lmChatLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, 
 }
 
 // This function is called to display a audio/video request message in chatlog
-QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
+QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage, bool bReload)
 {
     QString html;
     QString caption;
     QString streamId = pMessage->data(XN_STREAMID);
     QString streamType;
-    html = templates.reqMsg;
+    html = templates.msgHeader + templates.msgRequest;
+    html.replace("%rulecolor%", "#00b000");
+    html.replace("%avatar%", getAvatarHtml(*lpszUserId));
+    html.replace("%name%", *lpszUserName);
 
     switch(type) {
     case MT_Audio:
         streamType = "audio";
-        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Telephone));
+        html.replace("%preview%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Telephone));
         break;
     case MT_Video:
         streamType = "video";
-        html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Camera));
+        html.replace("%preview%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::Camera));
         break;
     default:
         throw std::logic_error("lmChatLog::getStreamMessageText: not yet implemented");
@@ -825,7 +852,7 @@ QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserName,
 
         //"Requesting audio/video call from user"
         caption = tr("Requesting %1 call from %2.");
-        html.replace("%sender%", caption.arg(streamType, *lpszUserName));
+        html.replace("%notification%", caption.arg(streamType, *lpszUserName));
         html.replace("%message%", "");
 
         switch(streamOp) {
@@ -851,7 +878,7 @@ QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserName,
     }else{
             //"User is requesting audio/video call"
             caption = tr("%1 is requesting %2 call.");
-            html.replace("%sender%", caption.arg(*lpszUserName, streamType));
+            html.replace("%notification%", caption.arg(*lpszUserName, streamType));
             html.replace("%message%", "");
 
             switch(streamOp) {
@@ -880,7 +907,7 @@ QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserName,
 }
 
 // This function is called to display a file request message in chatlog
-QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload)
+QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage, bool bReload)
 {
     QString html;
 	QString caption;
@@ -899,8 +926,11 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, M
         throw std::logic_error("lmChatLog::getFileMessageText: not yet implemented");
     }
 
-    html = templates.reqMsg;
-    html.replace("%icon%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File));
+    html = templates.msgHeader + templates.msgRequest;
+    html.replace("%rulecolor%", "#00b000");
+    html.replace("%avatar%", getAvatarHtml(*lpszUserId));
+    html.replace("%name%", *lpszUserName);
+    html.replace("%preview%", QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File));
 
     //  Use the time the message was stamped with when it entered the log. Messages saved before stamping
     //  existed have none, those fall back to now.
@@ -916,7 +946,7 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, M
 
     if(fileMode == FM_Send) {
 		caption = tr("Sending '%1' to %2.");
-        html.replace("%sender%", caption.arg(pMessage->data(XN_FILENAME), *lpszUserName));
+        html.replace("%notification%", caption.arg(pMessage->data(XN_FILENAME), *lpszUserName));
         html.replace("%message%", "");
 
 		switch(fileOp) {
@@ -942,7 +972,7 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, M
                 caption = tr("%1 is sending you a file:");
             else
                 caption = tr("%1 is sending you a folder:");
-            html.replace("%sender%", caption.arg(*lpszUserName));
+            html.replace("%notification%", caption.arg(*lpszUserName));
             html.replace("%message%", pMessage->data(XN_FILENAME) + " (" +
 				Helper::formatSize(pMessage->data(XN_FILESIZE).toLongLong()) + ")");
             html.replace("%fileid%", "");
@@ -951,7 +981,7 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserName, M
                 caption = tr("%1 sends you a file:");
             else
                 caption = tr("%1 sends you a folder:");
-            html.replace("%sender%", caption.arg(*lpszUserName));
+            html.replace("%notification%", caption.arg(*lpszUserName));
             html.replace("%message%", pMessage->data(XN_FILENAME) + " (" +
 				Helper::formatSize(pMessage->data(XN_FILESIZE).toLongLong()) + ")");
 		}

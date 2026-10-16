@@ -27,12 +27,6 @@
         <file alias="msg_body.html">templates/msg_body.html</file>
         <file alias="msg_request.html">templates/msg_request.html</file>
         <file alias="msg_warning.html">templates/msg_warning.html</file>
-        <file alias="old_broadcast.html">templates/old_broadcast.html</file>
-        <file alias="old_content.html">templates/old_content.html</file>
-        <file alias="old_nextcontent.html">templates/old_nextcontent.html</file>
-        <file alias="old_nextstatus.html">templates/old_nextstatus.html</file>
-        <file alias="old_request.html">templates/old_request.html</file>
-        <file alias="old_status.html">templates/old_status.html</file>
     </qresource>
     <qresource prefix="/sounds">
         <file alias="filedone">sounds/filedone.wav</file>

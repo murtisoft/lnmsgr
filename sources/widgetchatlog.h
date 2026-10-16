@@ -98,8 +98,11 @@ private:
         QFont* pFont );
 	void appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
         QFont* pFont, MessageType messageType);
-    QString getStreamMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
-    QString getFileMessageText(MessageType type, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
+    QString getStreamMessageText(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
+    QString getFileMessageText(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
+    QString getAvatarHtml(const QString& userId);
+    QString getWarningHtml(MessageXml* pMessage, const QString& icon, const QString& sender,
+        const QString& message = QString(), const QString& style = QString());
     QString getFontStyle(QFont* pFont);
 	QString getFileStatusMessage(FileMode mode, FileOp op);
 	QString getChatStateMessage(ChatState chatState);

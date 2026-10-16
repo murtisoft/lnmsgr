@@ -8,7 +8,7 @@ I would like to maintain compatibility between this and mainline versions, while
 
 Tips & Tricks
 ============================
-* Wrap UNC paths within quotes if they include spaces: "\\SambaShare\Folder\S p a c e.png"
+* Wrap UNC paths within quotes if they include spaces: "//SambaShare/Folder/S p a c e.png"
 * Shift enter always adds a newline regardless of enter/ctrl+enter setting.
 * Writing --, __, == in chat will add a horizontal rule.
 * Pasting image snippets and files into chatbox sends them over.
