@@ -434,8 +434,8 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 				statusType[statusIndex] == StatusTypeOffline ? showStatus(IT_Offline, true) : showStatus(IT_Offline, false);
 				statusType[statusIndex] == StatusTypeBusy ? showStatus(IT_Busy, true) : showStatus(IT_Busy, false);
                 statusType[statusIndex] == StatusTypeAway ? showStatus(IT_Away, true) : showStatus(IT_Away, false);
-                if(statusType[statusIndex] == StatusTypeOffline)
-                    pMessageLog->abortPendingFileOperations();   //Behave the same as actually going offline.
+                //Nothing is aborted here: an offline status alone must not interrupt anything, a peer that
+                //actually leaves is handled by MT_Depart.
 			}
 			peerStatuses.insert(senderId, data);
             updateButtonStates();
@@ -483,8 +483,10 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
         //A null message means the peer really left. A non null one means it only switched to offline status
         //(appear offline), it still receives messages.
         peerGone = (pMessage == nullptr);
-        btnHangUp_clicked();
-        pMessageLog->abortPendingFileOperations();
+        if(peerGone) {
+            btnHangUp_clicked();
+            pMessageLog->abortPendingFileOperations();
+        }
         updateButtonStates();
         break;
     case MT_Audio:
@@ -520,10 +522,8 @@ void lmFormChat::callPhaseChanged(CallPhase phase) {
 }
 
 void lmFormChat::updateButtonStates() {
-    QString pStatus = peerStatuses.value(peerId);
-    int statusIndex = Helper::statusIndexFromCode(pStatus);
-
-    bool peerOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
+    //Peers that only appear offline are still reachable, only a peer that actually left is not.
+    bool peerOnline = !peerGone;
 
     this->setAcceptDrops(peerOnline && (peerCaps.value(peerId) & UC_File));
 
@@ -685,10 +685,7 @@ bool lmFormChat::handleClipboardPaste(void) {
                 QString path = url.toLocalFile();
                 QFileInfo fileInfo(path);
                 if (fileInfo.exists()) {
-                    QString currentStatus = peerStatuses.value(peerId);
-                    int statusIndex = Helper::statusIndexFromCode(currentStatus);
-                    bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
-                    if (!isOnline || !bConnected) break;  // stop silently before sending
+                    if (peerGone || !bConnected) break;  // stop silently before sending
 
                     if (fileInfo.isFile())  sendFile(&path);
                     else if (fileInfo.isDir())  sendFolder(&path);
@@ -703,10 +700,7 @@ bool lmFormChat::handleClipboardPaste(void) {
             QString tempPath = QDir(DefinitionsDir::cacheDir()).absoluteFilePath("Snip_" +
                                QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png");
             if (img.save(tempPath, "PNG")) {
-                QString currentStatus = peerStatuses.value(peerId);
-                int statusIndex = Helper::statusIndexFromCode(currentStatus);
-                bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
-                if (!isOnline || !bConnected) return true;  // stop silently before sending
+                if (peerGone || !bConnected) return true;  // stop silently before sending
 
                 sendFile(&tempPath);
                 return true;
@@ -791,11 +785,7 @@ void lmFormChat::btnFile_clicked(void) {
 	QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString fileName = QFileDialog::getOpenFileName(this, QString(), dir);
 	if(!fileName.isEmpty()) {
-        QString pStatus = peerStatuses.value(peerId);
-        int statusIndex = Helper::statusIndexFromCode(pStatus);
-        bool peerOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
-
-        if(!peerOnline || !bConnected) {
+        if(peerGone || !bConnected) {
             return; // Abort silently
         }
 		pSettings->setValue(IDS_OPENPATH, QFileInfo(fileName).dir().absolutePath());
@@ -807,11 +797,7 @@ void lmFormChat::btnFolder_clicked(void) {
     QString dir = pSettings->value(IDS_OPENPATH, IDS_OPENPATH_VAL).toString();
     QString path = QFileDialog::getExistingDirectory(this, QString(), dir, QFileDialog::ShowDirsOnly);
     if(!path.isEmpty()) {
-        QString pStatus = peerStatuses.value(peerId);
-        int statusIndex = Helper::statusIndexFromCode(pStatus);
-        bool peerOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
-
-        if(!peerOnline || !bConnected) {
+        if(peerGone || !bConnected) {
             return; // Abort silently
         }
         pSettings->setValue(IDS_OPENPATH, QFileInfo(path).absolutePath());
