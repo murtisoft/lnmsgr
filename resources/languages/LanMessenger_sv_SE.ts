@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">Tack</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Licens</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>Stäng</translation>
@@ -211,17 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Form</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Stäng</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -285,7 +266,7 @@
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -327,10 +308,6 @@
         <location line="+8"/>
         <source>Multicast address:</source>
         <translation>Massutsändningsadress:</translation>
-    </message>
-    <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">Chatt-tema</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -465,10 +442,6 @@
         <translation>Enkelklick på ikonen för att öppna</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">Visa aviseringsrutor i meddelandefältet</translation>
-    </message>
-    <message>
         <location line="+24"/>
         <source>Language</source>
         <translation>Språk</translation>
@@ -488,18 +461,6 @@
         <location line="+7"/>
         <source>Personal</source>
         <translation>Personligt</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">Användarnamn som visas för kontakter:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">Förnamn:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">Efternamn:</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -549,17 +510,9 @@
         <translation>Visa datum i tidsstämpel</translation>
     </message>
     <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">Visa inkommande meddelanden i förgrunden</translation>
-    </message>
-    <message>
         <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>Minimera inkommande meddelanden till meddelandefältet</translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">Teckensnitt för meddelanden</translation>
     </message>
     <message>
         <location line="-528"/>
@@ -603,18 +556,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation>Rensa bort meddelanden när fönstret stängs</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Byt teckensnitt...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Byt färg...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">Teckentstorlek för inkommande meddelande:</translation>
     </message>
     <message>
         <location line="+362"/>
@@ -956,21 +897,6 @@
     </message>
 </context>
 <context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Form</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Stäng</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">Kontrollera version igen</translation>
-    </message>
-</context>
-<context>
     <name>UserInfoWindow</name>
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
@@ -1106,7 +1032,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">Detta meddelande levererades inte till %1:</translation>
     </message>
@@ -1116,12 +1042,18 @@
         <translation type="unfinished">Ditt meddelande skickades inte.</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished">Massmeddelande från %1:</translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1259,7 +1191,7 @@
         <translation type="unfinished">%1 har lämnat denna konversation</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;Kopiera</translation>
     </message>
@@ -1362,7 +1294,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished">Gruppkonversation</translation>
     </message>
@@ -1377,7 +1309,7 @@
         <translation type="unfinished">Massutsändning från %1</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">%1 skickar en fil...</translation>
     </message>
@@ -1387,7 +1319,7 @@
         <translation type="unfinished">%1 skickar en mapp...</translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished">Spara konversation</translation>
     </message>
@@ -1510,7 +1442,7 @@
         <translation type="unfinished">Gruppkonversation</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished">%1 säger...</translation>
     </message>
@@ -1555,7 +1487,7 @@
         <translation type="unfinished">Lägg till personer till denna konversation</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished">Du är inte längre ansluten.</translation>
     </message>
@@ -1581,7 +1513,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">%1 är ansluten.</translation>
     </message>
@@ -1601,12 +1533,12 @@
         <translation type="unfinished">Du är inte längre ansluten.</translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">Välj avatar-bild</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished">&amp;Meddelandeklient</translation>
     </message>
@@ -1716,7 +1648,7 @@
         <translation type="unfinished">&amp;Bläddra efter fler bilder...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">%1 fortsätter köras i bakgrunden.Aktivera den här ikonen för att återställa programfönstret.</translation>
     </message>
@@ -1749,7 +1681,7 @@
         <translation type="unfinished">Återställ inställningar</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished">&lt;Filen kunde inte hittas&gt;</translation>
     </message>
@@ -1853,10 +1785,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">&apos;%1&apos; har skickats till %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">Filöverföring slutförd</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2126,784 +2054,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">Om %1</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">Skicka massmeddelande</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">Byt teckenstorlek</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Infoga känsloikon</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">Ingen mottagare vald</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">Välj minst en mottagare för att skicka ett meddelande.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">Du är inte längre ansluten. Meddelanden kan inte skickas.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Gruppkonversation</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 säger...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Välj teckensnitt</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Välj färg</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Spara konversation</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">Deltagare</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Konversation</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Skicka &amp;fil</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Hämta &amp;information</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Infoga känsloikon</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Spara som...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Spara denna konversation</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Byt teckensnitt...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Byt teckensnitt i meddelande</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Byt färg...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Byt textfärg i meddelande</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <oldsource>&amp;Add A Contact...</oldsource>
-        <translation type="vanished">&amp;Lägg till kontakter...</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <oldsource>Add contacts to this conversation</oldsource>
-        <translation type="vanished">Lägg till personer till denna konversation</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Du är inte längre ansluten.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Konversation</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="vanished">Publik chatt</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Infoga  känsloikon</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">Skicka en &amp;fil...</translation>
-    </message>
-    <message>
-        <source>Send A Fol&amp;der...</source>
-        <translation type="vanished">Skicka en &amp;mapp...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Spara som...</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Historik</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">Fil&amp;överföringar</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">Skicka en fil till %1</translation>
-    </message>
-    <message>
-        <source>Send a folder to %1</source>
-        <translation type="vanished">Skicka en mapp till %1</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Spara denna konversation</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">Visa historik</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">Visa filöverföringar</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Byt teckensnitt...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Byt teckensnitt för meddelande</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Byt färg...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Byt textfärg för meddelande</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Välj teckensnitt</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Välj färg</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Spara konversation</translation>
-    </message>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Gruppkonversation</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 säger...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="vanished">Massutsändning från %1</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="vanished">%1 skickar en fil...</translation>
-    </message>
-    <message>
-        <source>%1 sends a folder...</source>
-        <translation type="vanished">%1 skickar en mapp...</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Du är inte längre ansluten.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 är inte ansluten.</translation>
-    </message>
-    <message>
-        <source>%1 is away.</source>
-        <translation type="vanished">%1 är borta.</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="vanished">%1 är upptagen. Du kanske stör.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Konversation</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>Preferences could not be imported from &apos;%1&apos;.
-
-File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="vanished">Inställningar kan inte importeras från &apos;%1&apos;.
-
-Filen kanske inte finns, eller kanske inte är kompatibel med den här versionen av %2.</translation>
-    </message>
-    <message>
-        <source>LAYOUT_DIRECTION</source>
-        <translation type="vanished">LAYOUT_DIRECTION</translation>
-    </message>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">En portkonflikt har upptäckts. %1 kommer att stängas nu.</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">%1 kan inte startas eftersom ett annat program använder den port som konfigurerats för %2.</translation>
-    </message>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">Din inställningsfil är skadad eller ogiltig.
-
-%1 kan inte återställa dina inställningar.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Hjälp</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Välkommen till LAN Messenger-hjälpen&lt;/h2&gt;&lt;h3&gt;Hjälp&lt;/h3&gt;&lt;p&gt;Du hittar dokumentationen på LAN Messengers &lt;a href=&apos;%1&apos;&gt;wiki-sida&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Sök i vår &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt; innan du ställer frågor.&lt;/p&gt;&lt;p&gt;Du kan sedan få (och ge) hjälp på vårt &lt;a href=&apos;%3&apos;&gt;Hjälpforum&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Bidra till projektet&lt;/h3&gt;&lt;p&gt;Du kan hjälpa LAN Messenger-projektet genom att ge lite av din tid till gemenskapen, genom att översätta programmet eller dokumentationen, och genom att testa programmet. Naturligtvis kan du också &lt;b&gt;göra reklam&lt;/b&gt; för LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">Meddelandehistorik</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">%1 är ansluten.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 är inte ansluten.</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">Du är ansluten.</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - Inte ansluten</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Du är inte längre ansluten.</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">Välj avatar-bild</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">Lägg till ny grupp</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">Ange ett gruppnamn</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">Det finns redan en grupp med namnet &apos;%1&apos;. Ange ett annat namn.</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">Byt namn på grupp</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">Ange nytt namn för gruppen</translation>
-    </message>
-    <message>
-        <source>&amp;Messenger</source>
-        <translation type="vanished">&amp;Meddelandeklient</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">&amp;Nytt chattrum</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">&amp;Uppdatera kontaktlistan</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="vanished">&amp;Publik chatt</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">A&amp;vsluta</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">&amp;Verktyg</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Historik</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">Fil&amp;överföringar</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">&amp;Inställningar</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">&amp;Hjälp</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 &amp;på nätet</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">Sök efter &amp;uppdateringar...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">&amp;Om</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">&amp;Visa %1</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">&amp;Ändra status</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">Lägg till &amp;ny grupp</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">&amp;Byt namn på denna grupp</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">&amp;Ta bort denna grupp</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Konversation</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="vanished">Skicka &amp;massmeddelande</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Skicka &amp;fil</translation>
-    </message>
-    <message>
-        <source>Send Fol&amp;der</source>
-        <translation type="vanished">Skicka &amp;mapp</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Hämta &amp;information</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">&amp;Bläddra efter fler bilder...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="vanished">%1 fortsätter köras i bakgrunden.Aktivera den här ikonen för att återställa programfönstret.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">Massmeddelande från %1:</translation>
-    </message>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">Detta meddelande levererades inte till %1:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">Ditt meddelande skickades inte.</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">Skickar &apos;%1&apos; till &apos;%2&apos;.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Avbryt</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="vanished">%1 skickar en fil till dig:</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a folder:</source>
-        <translation type="vanished">%1 skickar en mapp till dig:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">%1 skickar en fil:</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">Tacka ja</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">Tacka nej</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="vanished">Accepterad</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="vanished">Nekad</translation>
-    </message>
-    <message>
-        <source>%1 sends you a folder:</source>
-        <translation type="vanished">%1 skickar en mapp:</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">Avbruten</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="vanished">Avbruten</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">Slutförd</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">%1 skriver...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="vanished">%1 har skickat text</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">%1 har anslutit till denna konversation</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">%1 har lämnat denna konversation</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">&amp;Kopiera</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">Markera &amp;allt</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">Spara historik</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">Välj mapp</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Välj teckensnitt</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Välj färg</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">Vill du verkligen återställa dina %1-inställningar?</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">Återställ inställningar</translation>
-    </message>
-    <message>
-        <source>&lt;File Not Found&gt;</source>
-        <translation type="vanished">&lt;Filen kunde inte hittas&gt;</translation>
-    </message>
-    <message>
-        <source>Select sound</source>
-        <translation type="vanished">Välj ljud</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">Inställningar</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">Meddelandefält (Ej tillgängligt)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">Statusaviseringar (Ej tillgängligt)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">Ljud (Ej tillgängligt)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Sök efter uppdateringar</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>LAN Messenger</source>
-        <translation type="vanished">LAN Messenger</translation>
-    </message>
-    <message>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="vanished">LAN Messenger är ett fritt peer-to-peer meddelandeprogram för
-kommunikation över intranätverk och kräver ingen server.
-LAN Messenger fungerar på i stort sett varje populär skrivbordsplattform.</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="vanished">Atomatiskt</translation>
-    </message>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">Liten text</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">Medelstor text</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">Stor text</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">Tillgänglig</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">Upptagen</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">Stör ej</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">Strax tillbaka</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">Borta</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">Fejkat nedkopplad</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">Inkommande meddelande</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">Användaren är ansluten</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">Användaren är nedkopplad</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">Inkommande filöverföring</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">Filöverföring slutförd</translation>
-    </message>
-    <message>
-        <source>Incoming public message</source>
-        <translation type="vanished">Inkommande massmeddelande</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5 minuter</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10 minuter</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15 minuter</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20 minuter</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30 minuter</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45 minuter</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">60 minuter</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">Aldrig</translation>
-    </message>
-    <message>
-        <source>Detailed</source>
-        <translation type="vanished">Detaljerat</translation>
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="vanished">Kompakt</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">&apos;%1&apos; har skickats till %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">Filöverföring slutförd</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">&apos;%1&apos; har tagits emot från %2.</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">Filöverföringar</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Avbryt</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">Visa i målmappen</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">Ta bort från listan</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">Beräknar tid</translation>
-    </message>
-    <message>
-        <source>/sec</source>
-        <translation type="vanished">/sek</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">%1 uppdateringar</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">Startar en uppdateringsbegäran...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">Ett fel uppstod vid sökning efter uppdateringar.</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">Den nya version %1 finns tillgänglig på %2s webbsida.</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">Du har redan senaste version av %1.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">Användarinformation</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">Välj kontakter</translation>
     </message>
 </context>
 </TS>

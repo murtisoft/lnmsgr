@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">도와주신 분</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">저작권</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>닫기</translation>
@@ -211,13 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">취소</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -281,7 +266,7 @@
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,10 +308,6 @@
         <location line="+8"/>
         <source>Multicast address:</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">대화창 테마</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -455,10 +436,6 @@
         <translation>원클릭으로 열기</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">풍선 도움말 보기</translation>
-    </message>
-    <message>
         <location line="+24"/>
         <source>Language</source>
         <translation>언어</translation>
@@ -478,18 +455,6 @@
         <location line="+7"/>
         <source>Personal</source>
         <translation>개인</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">대화 상대에 표시할 이름:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">이름:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">성:</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -539,33 +504,9 @@
         <translation>날짜 표시하기</translation>
     </message>
     <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">메세지가 오면 화면에 표시하기</translation>
-    </message>
-    <message>
         <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>메세지가 오면 작업표시줄에 최소화하가</translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">메세지 글꼴</translation>
-    </message>
-    <message>
-        <source>Preview:</source>
-        <translation type="obsolete">미리 보기:</translation>
-    </message>
-    <message>
-        <source>Small size</source>
-        <translation type="obsolete">작은 글꼴</translation>
-    </message>
-    <message>
-        <source>Medium size</source>
-        <translation type="obsolete">보통 글꼴</translation>
-    </message>
-    <message>
-        <source>Large size</source>
-        <translation type="obsolete">큰 글꼴</translation>
     </message>
     <message>
         <location line="-528"/>
@@ -615,18 +556,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">글꼴 변경...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">색상 변경...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">받는 메세지 글꼴 크기:</translation>
     </message>
     <message>
         <location line="+362"/>
@@ -968,68 +897,6 @@
     </message>
 </context>
 <context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">취소</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">업데이트 확인</translation>
-    </message>
-</context>
-<context>
-    <name>UserInfoDialog</name>
-    <message>
-        <source>Personal Information</source>
-        <translation type="obsolete">개인 정보</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="obsolete">이름:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="obsolete">성:</translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation type="obsolete">없음</translation>
-    </message>
-    <message>
-        <source>About:</source>
-        <translation type="obsolete">정보:</translation>
-    </message>
-    <message>
-        <source>System Information</source>
-        <translation type="obsolete">시스템 정보</translation>
-    </message>
-    <message>
-        <source>Operating System:</source>
-        <translation type="obsolete">운영체제:</translation>
-    </message>
-    <message>
-        <source>IP Address:</source>
-        <translation type="obsolete">IP주소:</translation>
-    </message>
-    <message>
-        <source>Messenger Version:</source>
-        <translation type="obsolete">메신저 버전:</translation>
-    </message>
-    <message>
-        <source>Computer Name:</source>
-        <translation type="obsolete">컴퓨터 이름:</translation>
-    </message>
-    <message>
-        <source>Logon Name:</source>
-        <translation type="obsolete">로그인 이름:</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">닫기</translation>
-    </message>
-</context>
-<context>
     <name>UserInfoWindow</name>
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
@@ -1165,7 +1032,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">%1에게 전달되지 못한 메세지:</translation>
     </message>
@@ -1175,12 +1042,18 @@
         <translation type="unfinished">당신의 메세지는 전달되지 못했습니다.</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1318,7 +1191,7 @@
         <translation type="unfinished">%1이 대화를 마쳤습니다</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;부</translation>
     </message>
@@ -1421,7 +1294,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished">그룹 대화</translation>
     </message>
@@ -1436,7 +1309,7 @@
         <translation type="unfinished">%1가 보내온 전체 메세지</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">%1가 보낸 파일...</translation>
     </message>
@@ -1446,7 +1319,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished">대화 내용 저장하기</translation>
     </message>
@@ -1569,7 +1442,7 @@
         <translation type="unfinished">그룹 대화</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished">%1의 메세지...</translation>
     </message>
@@ -1614,7 +1487,7 @@
         <translation type="unfinished">현재 대화에 대화상대 추가</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished">연결이 끊어졌습니다.</translation>
     </message>
@@ -1640,7 +1513,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">%1와 연결됨.</translation>
     </message>
@@ -1660,12 +1533,12 @@
         <translation type="unfinished">연결이 끊어졌습니다.</translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">아바타 그림 고르기</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished">메신저(&amp;M)</translation>
     </message>
@@ -1775,7 +1648,7 @@
         <translation type="unfinished">다른 그림 찾아보기(&amp;B)...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">%1는 계속 실행중입니다. 창을 복원하려면 아이콘을 클릭하세요.</translation>
     </message>
@@ -1808,7 +1681,7 @@
         <translation type="unfinished">환경 설정 초기화</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1912,10 +1785,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">%2에게 &apos;%1&apos;를 보냈습니다.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">파일 전송이 완료됨</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2185,791 +2054,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">%1의 정보</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">전체 메세지 보내기</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">글꼴 크기 바꾸기</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">이모티콘 넣기</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">받을 사람이 없음</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">메세지를 보낼 때는 받을 사람을 1명이상 선택해 주세요.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">당신과 연결되어 있지 않아서 메세지를 보낼 수 없습니다.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">그룹 대화</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1의 메세지...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">글꼴 고르기</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">색상 고르기</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">대화 내용 저장하기</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">참여자</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">대화하기(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">파일 보내기(&amp;F)</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">정보 얻기(&amp;I)</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">이모티콘 넣기</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">다른 이름으로 저장하기(&amp;S)...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">현재 대화 내용 저장하기</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">메세지 글꼴 바꾸기</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">메세지 글꼴 색상 바꾸기</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <oldsource>&amp;Add A Contact...</oldsource>
-        <translation type="vanished">대화상대 &amp;추가...</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <oldsource>Add contacts to this conversation</oldsource>
-        <translation type="vanished">현재 대화에 대화상대 추가</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">연결이 끊어졌습니다.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">대화</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="vanished">공개 대화</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>Chat with %1</source>
-        <translation type="obsolete">%1와 대화하기</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="obsolete">글꼴 크기 바꾸기</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">이모티콘 넣기</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">파일 전송하기(&amp;F)...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">다른 이름으로 저장하기(&amp;S)...</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">히스토리(&amp;H)</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">파일 전송(&amp;T)</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">%1에게 파일 보내기</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">현재 대화 내용 저장하기</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">대화 내용 보기</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">파일 전송 내용 보기</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">글꼴 바꾸기...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">메세지 글꼴 바꾸기</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">색상 바꾸기...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">메세지 글꼴 색상 바꾸기</translation>
-    </message>
-    <message>
-        <source>You have accepted the file.</source>
-        <translation type="obsolete">당신이 수신을 허가한 파일입니다.</translation>
-    </message>
-    <message>
-        <source>You have declined the file.</source>
-        <translation type="obsolete">당신이 수신을 거부한 파일입니다.</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="obsolete">취소됨</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">글꼴 고르기</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">색상 고르기</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">대화 내용 저장하기</translation>
-    </message>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">그룹 대화</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1의 메세지...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="vanished">%1가 보내온 전체 메세지</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="vanished">%1가 보낸 파일...</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="obsolete">허가됨</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="obsolete">거부됨</translation>
-    </message>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="obsolete">%1가 보낸 메세지:</translation>
-    </message>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="obsolete">%1에게 전달되지 못한 메세지:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="obsolete">당신의 메세지는 전달되지 못했습니다.</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="obsolete">%2에게 %1를 보냅니다.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">취소</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="obsolete">%1가 보내는 파일:</translation>
-    </message>
-    <message>
-        <source>File has been accepted automatically.</source>
-        <translation type="obsolete">파일을 자동으로 수신합니다.</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="obsolete">%1가 보낸 파일:</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="obsolete">허가</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="obsolete">거부</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">연결이 끊어졌습니다.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1는 오프라인.</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="vanished">%1는 바쁩니다. 당신을 무시할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">대화</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">포트 주소가 충돌되었습니다. %1를 중지합니다.</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">%2가 포트를 사용하고 있어서 %1를 실행할 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">환경설정 파일이 손상되었습니다.
-
-%1의 설정을 복구할 수 없습니다.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">도움말</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">대화 내용</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">%1와 연결됨.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1외 연결이 끊어짐.</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">당신은 온라인입니다.</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - 연결되지 못함</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">연결이 끊어졌습니다.</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">아바타 그림 고르기</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">새로운 그룹 만들기</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">그룹 이름 넣기</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">%1이란 그룹은 있습니다. 다른 이름을 지어주세요.</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">그룹 이름 바꾸기</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">새로운 그룹 이름 넣기</translation>
-    </message>
-    <message>
-        <source>&amp;Messenger</source>
-        <translation type="vanished">메신저(&amp;M)</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">&amp;새로운 대화방</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">대화 상대 새로고침(&amp;R)</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="vanished">&amp;공개 대화</translation>
-    </message>
-    <message>
-        <source>New Chat Room</source>
-        <translation type="obsolete">새로운 대화방</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">나가기(&amp;X)</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">도구(&amp;T)</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">히스토리(&amp;H)</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">파일 전송(&amp;T)</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">환경 설정(&amp;P)</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">도움말(&amp;H)</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 사이트에 연결(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">업데이트 확인(&amp;U)...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">정보(&amp;A)</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">%1 보기(&amp;S)</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">상태 바꾸기(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">새 그룹 만들기(&amp;N)</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">현재 그룹 이름 바꾸기(&amp;R)</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">현재 그룹 지우기(&amp;D)</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">대화하기(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="vanished">전체 메세지 보내기(&amp;B)</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">파일 보내기(&amp;F)</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">정보 얻기(&amp;I)</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">다른 그림 찾아보기(&amp;B)...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="vanished">%1는 계속 실행중입니다. 창을 복원하려면 아이콘을 클릭하세요.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">%1에게 전달되지 못한 메세지:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">당신의 메세지는 전달되지 못했습니다.</translation>
-    </message>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">%1가 보낸 전체 메세지:</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">%2에게 %1를 보냅니다.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">취소</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="vanished">%1가 보내는 파일:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">%1가 보낸 파일:</translation>
-    </message>
-    <message>
-        <source>File has been accepted automatically.</source>
-        <translation type="obsolete">파일을 자동으로 수신합니다.</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">허가</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">거부</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="vanished">허가됨</translation>
-    </message>
-    <message>
-        <source>You have accepted the file.</source>
-        <translation type="obsolete">당신이 수신을 허가한 파일입니다.</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="vanished">거부됨</translation>
-    </message>
-    <message>
-        <source>You have declined the file.</source>
-        <translation type="obsolete">당신이 수신을 거부한 파일입니다.</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">취소됨</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="vanished">거절됨</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">완료됨</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">%1가 메세지 작성중...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="vanished">%1가 메세지를 작성함</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">%1이 대화에 참여하였습니다</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">%1이 대화를 마쳤습니다</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">&amp;부</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">&amp;모두 선택</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>AaBbYyZz</source>
-        <translation type="obsolete">AaBbYyZz</translation>
-    </message>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">대화 내용 저장</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">폴더 고르기</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">글꼴 고르기</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">색상 고르기</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">%1의 환경 설정을 초기화 하겠습니까?</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">환경 설정 초기화</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">환경 설정</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">알림 영역(사용할 수 없음)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">상태 알림(사용할 수 없음)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">효과음(사용할 수 없음)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">업데이트 확인하기</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">작은 글꼴</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">중간 글꼴</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">큰 글꼴</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">온라인</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">바쁨</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">방해 금지</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">금방 돌아옴</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">멀리 감</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">오프라인</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">도착한 메세지</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">온라인</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">오프라인</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">도착한 파일</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">파일 전송이 완료됨</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5분</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10분</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15분</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20분</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30분</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45분</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">60분</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">불가</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">%2에게 &apos;%1&apos;를 보냈습니다.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">파일 전송이 완료됨</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">%2가 &apos;%1&apos;를 보냈습니다.</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">파일 전송</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">취소</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">폴더 열기</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">제거하기</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">예상 시간</translation>
-    </message>
-    <message>
-        <source>/sec</source>
-        <translation type="vanished">/초</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">%1 업데이트</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">업데이트 요청을 시작...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">업데이트를 확인하는 동안 오류가 발생했습니다.</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">%2의 사이트에서 새 버전의 %1을 사용할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">%1이 최신 버전입니다.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoDialog</name>
-    <message>
-        <source>User Information</source>
-        <translation type="obsolete">사용자 정보</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">사용자 정보</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">대화상대 선택</translation>
     </message>
 </context>
 </TS>

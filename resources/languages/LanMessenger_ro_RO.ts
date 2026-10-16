@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">Mulțumiri</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Licență</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>Închide</translation>
@@ -79,10 +71,6 @@
         <location line="+35"/>
         <source>Send To:</source>
         <translation>Trimite către:</translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation type="obsolete">.</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -116,10 +104,6 @@
         <location line="+61"/>
         <source>+</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>.</source>
-        <translation type="obsolete">.</translation>
     </message>
 </context>
 <context>
@@ -219,17 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Formular</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Închide</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -245,10 +218,6 @@
         <location line="+5"/>
         <source>Date</source>
         <translation>Data</translation>
-    </message>
-    <message>
-        <source>about:blank</source>
-        <translation type="obsolete">about:blank</translation>
     </message>
     <message>
         <location line="+52"/>
@@ -293,15 +262,11 @@
         <source>Contacts</source>
         <translation>Contacte</translation>
     </message>
-    <message>
-        <source>.</source>
-        <translation type="obsolete">.</translation>
-    </message>
 </context>
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -416,10 +381,6 @@
         <translation>Un singur click pe pictogramă pentru a lansa aplicația</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">Arată înștiințările în zona de notificare</translation>
-    </message>
-    <message>
         <location line="+14"/>
         <source>Minimize main window using tray icon</source>
         <translation type="unfinished"></translation>
@@ -438,18 +399,6 @@
         <location line="+89"/>
         <source>Personal</source>
         <translation>Personal</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">Nume utilizator așa cum va fi afișat către contacte:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">Prenume:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">Nume:</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -475,10 +424,6 @@
         <location line="+66"/>
         <source>Message Window</source>
         <translation>Fereastra de mesaje</translation>
-    </message>
-    <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">Stabilește prim planul mesajelor ce sosesc</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -525,22 +470,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">Fontul mesajelor</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Schimbă fontul...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Schimbă culoarea...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">Dimensiunea textului mesajelor primite:</translation>
     </message>
     <message>
         <location line="-520"/>
@@ -865,10 +794,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">Tema chat</translation>
-    </message>
-    <message>
         <location line="+59"/>
         <source>Contacts List</source>
         <translation type="unfinished"></translation>
@@ -967,21 +892,6 @@
         <location line="+20"/>
         <source>Close</source>
         <translation>Închide</translation>
-    </message>
-</context>
-<context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Formular</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Închide</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">Reverifică versiunea</translation>
     </message>
 </context>
 <context>
@@ -1107,10 +1017,6 @@
         <translation>Contacte</translation>
     </message>
     <message>
-        <source>.</source>
-        <translation type="obsolete">.</translation>
-    </message>
-    <message>
         <location line="+23"/>
         <source>OK</source>
         <translation>OK</translation>
@@ -1124,7 +1030,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">Mesajul nu a fost livrat către %1:</translation>
     </message>
@@ -1134,12 +1040,18 @@
         <translation type="unfinished">Mesajul nu a fost trimis.</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished">Mesaj către mai mulți trimis de la %1:</translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1277,7 +1189,7 @@
         <translation type="unfinished">%1 a părasit conversația</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;Copie(ază)</translation>
     </message>
@@ -1380,7 +1292,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished">Grup de conversație</translation>
     </message>
@@ -1395,7 +1307,7 @@
         <translation type="unfinished">Mesaj către mai mulți de la %1</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">%1 trimite un fișier...</translation>
     </message>
@@ -1405,7 +1317,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished">Salvează conversația</translation>
     </message>
@@ -1528,7 +1440,7 @@
         <translation type="unfinished">Grup de conversație</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished">%1 spune...</translation>
     </message>
@@ -1573,7 +1485,7 @@
         <translation type="unfinished">Adaugă persoane la acestă conversație</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1599,7 +1511,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">%1 este conectat.</translation>
     </message>
@@ -1619,12 +1531,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">Alege imaginea avatarului</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished">&amp;Messenger</translation>
     </message>
@@ -1734,7 +1646,7 @@
         <translation type="unfinished">&amp;Caută mai multe imagini...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">%1 va continua să ruleze în fundal. Pentru a restaura fereastra aplicației dați click pe iconița acesteia.</translation>
     </message>
@@ -1767,7 +1679,7 @@
         <translation type="unfinished">Resetează preferințele</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1871,10 +1783,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">&apos;%1&apos; a fost transmis la %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">Transferul fișierelor s-a terminat</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2144,729 +2052,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">Despre %1</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">Trimite un mesaj către mai mulți</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">Schimbă dimensiunea fontului</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Inserează emoticon</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">Nu a fost selectat un destinatar</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">Selectați cel puțin destinatar.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">Nu mai sunteți conectat. Mesajul către mai mulți nu poate fi transmis.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Grup de conversație</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 spune...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Alege fontul</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Alege culoarea</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Salvează conversația</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">Participanți</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Conversație</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Trimite &amp;fișierul</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Obține &amp;informații</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Inserează emoticon</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">amp;&amp;Salvează ca...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Salvează acestă conversație</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Schimbă fontul...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Schimbă font mesaje</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Schimbă culoarea...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Schimbă culoarea text mesaj</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <translation type="vanished">&amp;Adaugă contacte...</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <translation type="vanished">Adaugă persoane la acestă conversație</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Nu mai sunteți conectat.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Conversație</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="vanished">Conversație publică</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Grup de conversație</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 spune...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="vanished">Mesaj către mai mulți de la %1</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="vanished">%1 trimite un fișier...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Alege fontul</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Alege culoarea</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Salvează conversația</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Inserează emoticon</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">Trimite un &amp;fișier...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">amp;&amp;Salvează ca...</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Istoric</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">&amp;Transferuri de fișiere</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">Trimite un fișier la %1</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Salvează acestă conversație</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">Vezi istoricul</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">Vezi fișierele transferate</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Schimbă fontul...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Schimbă font mesaje</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Schimbă culoarea...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Schimbă culoarea text mesaj</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Nu mai sunteți conectat.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 este deconectat.</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="vanished">%1 este ocupat. Este posibil să îl întrerupi.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Conversație</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">Un conflict de adrese de porturi a fost detectat. %1 se va inchide.</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">%1 nu poate porni pentru că o altă aplicație folosește portul configurat pentru utilizare %2.</translation>
-    </message>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">Fișierul cu setări este invalid.
-
-%1 nu poate recupera setările.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Ajutor</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Ajutor pentru LAN Messenger&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;Puteți găsi documentație privind LAN Messenger la adresa &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Înainte de a pune întrebări vă rugăm să consultați &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Este posibil ca să primiți (și să dați) ajutor prin intermediul &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribuții la proiect&lt;/h3&gt;&lt;p&gt;Puteți ajuta proiectul LAN Messenger  prin traducerea aplicației sau a documentației și testând programul. Bineînțeles puteți &lt;b&gt;promova&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">Istoric mesaje</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">%1 este conectat.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 este deconectat.</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">Sunteți conectat.</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - Nu este conectat</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Sunteți deconectat.</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">Alege imaginea avatarului</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">Adaugă un nou grup</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">Introduceți un nume pentru grup</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">Un grup numit %1 deja există. Introduceți alt nume.</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">Redenumește grupul</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">Introduceți un nume nou pentru grup</translation>
-    </message>
-    <message>
-        <source>&amp;Messenger</source>
-        <translation type="vanished">&amp;Messenger</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">&amp;Cameră nouă pentru discuții</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="vanished">Conversație &amp;publică</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">&amp;Actualizează lista de contacte</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">I&amp;eșire</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">&amp;Unelte</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Istoric</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">&amp;Transferuri de fișiere</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">&amp;Preferințe</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">&amp;Ajutor</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 este &amp;conectat</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">Caută &amp;actualizări...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">&amp;Despre</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">&amp;Afișează %1</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">&amp;Schimbă starea</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">Adaugă un &amp;nou grup</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">&amp;Redenumește grupul</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">Ș&amp;terge acest grup</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Conversație</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="vanished">Trimite un &amp;mesaj către mai mulți</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Trimite &amp;amp;fișierul</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Obține &amp;informații</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">&amp;Caută mai multe imagini...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="vanished">%1 va continua să ruleze în fundal. Pentru a restaura fereastra aplicației dați click pe iconița acesteia.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">Mesajul nu a fost livrat către %1:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">Mesajul nu a fost trimis.</translation>
-    </message>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">Mesaj către mai mulți trimis de la %1:</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">Trimit %1 către %2.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Anulează</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="vanished">%1 trimite un fișier:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">%1 trimite un fișier:</translation>
-    </message>
-    <message>
-        <source>File has been accepted automatically.</source>
-        <translation type="obsolete">Fișierul a fost acceptat automat.</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">Acceptă</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">Refuză</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="vanished">Acceptat</translation>
-    </message>
-    <message>
-        <source>You have accepted the file.</source>
-        <translation type="obsolete">Ați acceptat fișierul.</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="vanished">Refuzat</translation>
-    </message>
-    <message>
-        <source>You have declined the file.</source>
-        <translation type="obsolete">Ați refuzat fișierul.</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">Abandonat</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="vanished">Întrerupt</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">Finalizat</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">%1 scrie...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="vanished">%1 a introdus text</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">%1 s-a alăturat conversației</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">%1 a părasit conversația</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">&amp;Copie(ază)</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">Selectează &amp;tot</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">Salvează istoricul</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">Alege dosarul</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Alege fontul</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Alege culoarea</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">Sigur resetați preferințele pentru %1?</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">Resetează preferințele</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">Preferințe</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">Zona de notificare (nedisponibilă)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">Atenționări de stare (indisponibile)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">Sunete (indisponibile)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Caută actualizări</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>LAN Messenger</source>
-        <translation type="vanished">LAN Messenger</translation>
-    </message>
-    <message>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="vanished">LAN Messenger este o aplicație gratis pentru comunicare peer-to-peer
-în cadrul unui intranet și nu necesită un server.</translation>
-    </message>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">Text mărime mică</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">Text mărime medie</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">Text mărime mare</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">Disponibil (Available)</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">Ocupat (Busy)</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">Nu mă deranjați (DND)</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">Mă întorc imediat (BRB)</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">Plecat (Away)</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">Invizibil (Appear offline)</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">Primire mesaj(e)</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">Utilizatorul este conectat</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">Utilizatorul este deconectat</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">Primire fișier(e)</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">Transferul fișierelor s-a terminat</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5 minute</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10 minute</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15 minute</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20 minute</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30 minute</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45 minute</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">60 minute</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">Niciodată</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">&apos;%1&apos; a fost transmis la %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">Transferul fișierelor s-a terminat</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">&apos;%1&apos; a fost reepționat de la %2.</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">Transfer de fișier(e)</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Anulează</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">Arată în dosar</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">Elimină din listă</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">Estimez timpul</translation>
-    </message>
-    <message>
-        <source>/sec</source>
-        <translation type="vanished">/sec</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">%1 actualizări</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">S-a lansat o cerere de actualizare...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">A apărut o eroare la verificarea actualizărilor.</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">Noua versiune %1 este disponibilă la %2.</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">Aveți ultima versiune a %1.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">Informații utilizator</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">Alege contacte</translation>
     </message>
 </context>
 </TS>

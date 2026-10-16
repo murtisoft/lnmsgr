@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">謝辞</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">ライセンス</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>閉じる</translation>
@@ -211,13 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">閉じる</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -281,7 +266,7 @@
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,10 +308,6 @@
         <location line="+8"/>
         <source>Multicast address:</source>
         <translation>マルチキャストアドレス:</translation>
-    </message>
-    <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">会話画面のテーマ</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -461,10 +442,6 @@
         <translation>トレイアイコンを一度クリックするだけで表示</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">バルーン通知を利用</translation>
-    </message>
-    <message>
         <location line="+24"/>
         <source>Language</source>
         <translation>表示言語</translation>
@@ -484,18 +461,6 @@
         <location line="+7"/>
         <source>Personal</source>
         <translation>利用者</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">コンタクトリスト上のユーザー名:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">名:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">性:</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -545,17 +510,9 @@
         <translation>インスタントメッセージに日付を表示</translation>
     </message>
     <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">メッセージ受信時に前面に表示</translation>
-    </message>
-    <message>
         <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>メッセージ受信時にタスクバーに最小化</translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">メッセージのフォント</translation>
     </message>
     <message>
         <location line="-528"/>
@@ -599,18 +556,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation>ウィンドウを閉じるとメッセージをクリア</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">フォントの変更...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">色の変更...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">受信メッセージの文字の大きさ:</translation>
     </message>
     <message>
         <location line="+362"/>
@@ -952,17 +897,6 @@
     </message>
 </context>
 <context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">閉じる</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">再確認</translation>
-    </message>
-</context>
-<context>
     <name>UserInfoWindow</name>
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
@@ -1098,7 +1032,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">このメッセージは %1 に送信されませんでした:</translation>
     </message>
@@ -1108,12 +1042,18 @@
         <translation type="unfinished">メッセージは送信されていません。</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished">%1 からブロードキャストでメッセージ:</translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1251,7 +1191,7 @@
         <translation type="unfinished">%1は会話から離脱しました</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">コピー(&amp;C)</translation>
     </message>
@@ -1354,7 +1294,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished">グループ会話</translation>
     </message>
@@ -1369,7 +1309,7 @@
         <translation type="unfinished">%1 からブロードキャスト</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">%1 からファイルの送信...</translation>
     </message>
@@ -1379,7 +1319,7 @@
         <translation type="unfinished">%1 からフォルダの送信...</translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished">会話の保存</translation>
     </message>
@@ -1502,7 +1442,7 @@
         <translation type="unfinished">グループ会話</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1547,7 +1487,7 @@
         <translation type="unfinished">この会話に他の人を追加</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1573,7 +1513,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">%1 がオンラインです。</translation>
     </message>
@@ -1593,12 +1533,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">画像の選択</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished">メッセンジャー(&amp;M)</translation>
     </message>
@@ -1708,7 +1648,7 @@
         <translation type="unfinished">用意した画像を参照(&amp;B)...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">%1はバックグラウンドで実行されます。このアイコンからメイン画面を復帰できます。</translation>
     </message>
@@ -1741,7 +1681,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1845,10 +1785,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">%2 へ %1 を送信完了しました。</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">ファイル転送が完了しました</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2118,768 +2054,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">ソフトウェア情報 %1</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">ブロードキャストでメッセージを送信</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">フォントサイズの変更</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">絵文字</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">参加者が選択されていません</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">ブロードキャスト送信の受信者を選択してください。</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">接続されていません。ブロードキャストのメッセージを送信できません。</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">グループ会話</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1の発言...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">フォントの選択</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">色の選択</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">参加者</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">会話(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">ファイルを送る(&amp;F)</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">情報の表示(&amp;I)</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">絵文字</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">名前を付けて保存(&amp;S)...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">この会話を保存</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">フォントの変更...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">メッセージのフォントの変更</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">色の変更...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">メッセージの文字色の変更</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <oldsource>&amp;Add A Contact...</oldsource>
-        <translation type="vanished">コンタクトリストに追加(&amp;A)...</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <oldsource>Add contacts to this conversation</oldsource>
-        <translation type="vanished">この会話に他の人を追加</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">接続されていません。</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">会話</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="obsolete">公開チャット</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">絵文字</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">ファイルを送る(&amp;F)...</translation>
-    </message>
-    <message>
-        <source>Send A Fol&amp;der...</source>
-        <translation type="vanished">フォルダを送る(&amp;D)...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">名前を付けて保存(&amp;S)...</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">履歴(&amp;H)</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">ファイル転送(&amp;T)</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">%1 へファイルを送信</translation>
-    </message>
-    <message>
-        <source>Send a folder to %1</source>
-        <translation type="vanished">%1 へフォルダを送信</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">この会話を保存</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">履歴を表示</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">ファイル転送を表示</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">フォントの変更...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">メッセージのフォントの変更</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">色の変更...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">メッセージの文字色を変更</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">フォントの選択</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">色の選択</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">会話の保存</translation>
-    </message>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">グループ会話</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 の発言...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="obsolete">%1 からブロードキャスト</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="obsolete">%1 からファイルの送信...</translation>
-    </message>
-    <message>
-        <source>%1 sends a folder...</source>
-        <translation type="obsolete">%1 からフォルダの送信...</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">接続がありません。</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1はオフラインです。</translation>
-    </message>
-    <message>
-        <source>%1 is away.</source>
-        <translation type="vanished">%1は離席中です。</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="obsolete">%1 は忙しいようです。負担にならないよう。</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">会話</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>Preferences could not be imported from &apos;%1&apos;.
-
-File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="vanished">%1 から設定をインポートできませんでした。
-
-ファイルが存在しないか、このバージョン %2 と互換性がない可能性があります。</translation>
-    </message>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">ポートアドレスが競合しています。%1はすぐに終了されます。</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">%1 は開始できません。別のプログラムが %2 で利用するポートを使っています。</translation>
-    </message>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">設定ファイルが壊れているか正しくありません。
-
-%1 は設定を復元できませんでした。</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">ヘルプ</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;LAN Messenger ヘルプです&lt;/h2&gt;&lt;h3&gt;ヘルプ&lt;/h3&gt;&lt;p&gt;ヘルプ用の文書は LAN Messenger の &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; にあります。&lt;/p&gt;&lt;p&gt;質問の前に&lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;をお読みください。&lt;/p&gt;&lt;p&gt;それでも解決しなければ、&lt;a href=&apos;%3&apos;&gt;サポートフォーラム&lt;/a&gt;で助けを求めてみてください。.&lt;/p&gt;&lt;h3&gt;プロジェクトに貢献したい場合&lt;/h3&gt;&lt;p&gt;LAN Messenger プロジェクトにお手を貸して頂けるなら、コミュニティを支援したり、ソフトウェアの文書の翻訳やプログラムをテストしてください。そしてぜひ LAN Messenger を&lt;b&gt;宣伝&lt;/b&gt;し広めてください。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">メッセージの履歴</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">%1 がオンラインです。</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 はオンラインです。</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">あなたはオンラインです。</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - 未接続</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">接続がありません。</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">画像の選択</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">新規グループ</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">グループ名を入力してください</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">グループ名「%1」は既に存在します。違う名前にしてください。</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">グループ名変更</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">新しいグループ名を入力してください</translation>
-    </message>
-    <message>
-        <source>&amp;Messenger</source>
-        <translation type="vanished">メッセンジャー(&amp;M)</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">グループ会話(&amp;N)</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">コンタクトリストの更新(&amp;R)</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="obsolete">公開チャット(&amp;P)</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">終了(&amp;X)</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">ツール(&amp;T)</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">履歴(&amp;H)</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">ファイル転送(&amp;T)</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">設定(&amp;P)</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">ヘルプ(&amp;H)</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 のサイト(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">アップデートの確認(&amp;U)...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">このソフトについて(&amp;A)</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">%1 を表示(&amp;S)</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">状態の変更(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">グループの追加(&amp;N)</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">このグループの名前を変更(&amp;R)</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">このグループを削除(&amp;D)</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">会話(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="obsolete">ブロードキャストでメッセージを送信(&amp;B)</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">ファイルを送る(&amp;F)</translation>
-    </message>
-    <message>
-        <source>Send Fol&amp;der</source>
-        <translation type="vanished">フォルダを送る(&amp;D)</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">情報の表示(&amp;I)</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">用意した画像を参照(&amp;B)...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="obsolete">%1はバックグラウンドで実行されます。このアイコンからメイン画面を復帰できます。</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">%1 からブロードキャストでメッセージ:</translation>
-    </message>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">このメッセージは %1 に送信されませんでした:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">メッセージは送信されていません。</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">%2へ送信: %1.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">キャンセル</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="obsolete">%1 がファイルを送信:</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a folder:</source>
-        <translation type="obsolete">%1 がフォルダを送信:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">%1 からファイルの送信:</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">承認</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">拒否</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="obsolete">承認しました</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="obsolete">拒否しました</translation>
-    </message>
-    <message>
-        <source>%1 sends you a folder:</source>
-        <translation type="vanished">%1 からフォルダの送信:</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">キャンセルされました</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="obsolete">中断されました</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">完了しました</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">%1 入力中...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="obsolete">%1 が入力しました</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">%1が会話に参加しました</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">%1は会話から離脱しました</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">コピー(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">すべて選択(&amp;A)</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">履歴の保存</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">フォルダの選択</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">フォントの選択</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">色の選択</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">本当に %1 の設定を初期化しますか？</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">設定を初期化</translation>
-    </message>
-    <message>
-        <source>Select sound</source>
-        <translation type="vanished">サウンドの選択</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">設定</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">システムトレイ(利用不可)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">状態通知(利用不可)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">音(利用不可)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">アップデートの確認</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="vanished">LAN Messenger は、無料のピアツーピアの連絡用アプリケーションです。
-サーバーがなくても企業内でのネットワーク通信ができます。
-LAN Messenger は原則的にすべての一般的なデスクトップのシステムで動作します。</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="vanished">自動</translation>
-    </message>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">小さい文字</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">通常の文字</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">大きい文字</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">対応できます</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">忙しいです</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">集中させてください</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">すぐ戻ります</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">離席中</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">オフラインで表示</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">メッセージがあります</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">ユーザーはオンラインです</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">ユーザーはオフラインです</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">ファイルが転送されています</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">ファイル転送が完了しました</translation>
-    </message>
-    <message>
-        <source>Incoming public message</source>
-        <translation type="obsolete">公開チャットがあります</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5分</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10分</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15分</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20分</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30分</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45分</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">60分</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">ずっと</translation>
-    </message>
-    <message>
-        <source>Detailed</source>
-        <translation type="vanished">詳細</translation>
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="vanished">コンパクト</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">%2 へ %1 を送信完了しました。</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">ファイル転送が完了しました</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">%2 から %1 を受信しました。</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">ファイル転送</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">キャンセル</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">保存フォルダを開く</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">一覧から除去</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">所要時間を計算中</translation>
-    </message>
-    <message>
-        <source>/sec</source>
-        <translation type="vanished">/秒</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">%1 の更新</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">アップデートの確認開始...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">アップデート確認中にエラーが発生しました。</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">%1の最新版があります。%2 のサイトをご確認ください。</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">最新版の %1 をお使いです。</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">ユーザーの情報</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">参加者の選択</translation>
     </message>
 </context>
 </TS>

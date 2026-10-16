@@ -20,6 +20,7 @@ endif()
 #All translations are a decade behind.
 #Maybe detect when computer is about to hibernate or go to sleep and send offline message?
 
+
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -27,3 +28,4 @@ endif()
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
 #    Encryption in the program only works 1 on 1. That kinda hinders those plans.
 #   I dont think that this is possible anymore without BTFOing the compatibility entirely so... no go.
+

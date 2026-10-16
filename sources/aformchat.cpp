@@ -74,6 +74,7 @@ lmFormChat::lmFormChat(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent,
     peerCaps.clear();
 	threadId = QString();
 	groupMode = false;
+	peerGone = false;
 	dataSaved = false;
 
 	chatState = CS_Blank;
@@ -428,6 +429,7 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
             //The window icon and the info label describe the remote user. A status change of the local user
             //is routed to this window as well (the user list needs it), it must not touch them.
 			if(senderId == peerId) {
+                peerGone = false;   //A status update means the peer is on the network (again).
                 setWindowIcon(QIcon(statusPic[statusIndex]));
 				statusType[statusIndex] == StatusTypeOffline ? showStatus(IT_Offline, true) : showStatus(IT_Offline, false);
 				statusType[statusIndex] == StatusTypeBusy ? showStatus(IT_Busy, true) : showStatus(IT_Busy, false);
@@ -478,8 +480,12 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 		}
 		break;
     case MT_Depart:
+        //A null message means the peer really left. A non null one means it only switched to offline status
+        //(appear offline), it still receives messages.
+        peerGone = (pMessage == nullptr);
         btnHangUp_clicked();
         pMessageLog->abortPendingFileOperations();
+        updateButtonStates();
         break;
     case MT_Audio:
     case MT_Video:
@@ -521,7 +527,7 @@ void lmFormChat::updateButtonStates() {
 
     this->setAcceptDrops(peerOnline && (peerCaps.value(peerId) & UC_File));
 
-    ui.btnSend->setEnabled(peerOnline && bConnected);
+    ui.btnSend->setEnabled(!peerGone && bConnected);   //Stealth (appear offline) peers can still be messaged.
     pFileAction->setEnabled(peerOnline && (peerCaps.value(peerId) & UC_File));
     pFolderAction->setEnabled(peerOnline && (peerCaps.value(peerId) & UC_Folder));
     pNudgeAction->setEnabled(peerOnline && (peerCaps.value(peerId) & UC_Nudge));
@@ -637,11 +643,8 @@ bool lmFormChat::eventFilter(QObject* pObject, QEvent* pEvent) {
                     ui.txtMessage->insertPlainText("\n");
                     return true;
                 }
-                QString currentStatus = peerStatuses.value(peerId);
-                int statusIndex = Helper::statusIndexFromCode(currentStatus);
-                bool isOnline = (statusIndex != -1 && statusType[statusIndex] != StatusTypeOffline);
-                if(!isOnline || !bConnected)
-                    return true;             //Ignore key event if the peer is offline.
+                if(peerGone || !bConnected)
+                    return true;             //Ignore key event if the peer is gone.
 
                 bool keyMod = ((pKeyEvent->modifiers() & Qt::ControlModifier) == Qt::ControlModifier);
                 if(keyMod == sendKeyMod) {

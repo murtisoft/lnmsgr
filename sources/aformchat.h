@@ -173,6 +173,7 @@ private:
 	lmImagePickerAction* pSmileyAction;
 	int nSmiley;
 	bool bConnected;
+	bool peerGone;		//	true only when the peer actually left the network, not when it merely shows offline
 	int infoFlag;
 	bool showSmiley;
 	bool sendKeyMod;

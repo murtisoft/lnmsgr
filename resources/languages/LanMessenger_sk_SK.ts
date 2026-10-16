@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">Poďakovanie</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Licencia</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>Zavrieť</translation>
@@ -211,13 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Zavrieť</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -281,7 +266,7 @@
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -396,10 +381,6 @@
         <translation>Aktivovať program jedným kliknutím na ikonu</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">Zobrazovať bublinové notifikácie v oblasti oznámení</translation>
-    </message>
-    <message>
         <location line="+14"/>
         <source>Minimize main window using tray icon</source>
         <translation>Minimalizovať okno programu pomocou ikony</translation>
@@ -418,18 +399,6 @@
         <location line="+89"/>
         <source>Personal</source>
         <translation>Osobné informácie</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">Meno zobrazené ostatným používateľom:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">Krstné meno:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">Priezvisko:</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -455,10 +424,6 @@
         <location line="+66"/>
         <source>Message Window</source>
         <translation>Okno konverzácie</translation>
-    </message>
-    <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">Presunúť prijaté správy do popredia</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -504,22 +469,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation>Nezobrazovať staré správy v konverzáciách</translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">Písmo správ</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Zmeniť písmo...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Zmeniť farbu...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">Veľkosť písma prichádzajúcich sprav:</translation>
     </message>
     <message>
         <location line="-520"/>
@@ -842,10 +791,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">Vzhľad konverzácií</translation>
-    </message>
-    <message>
         <location line="+59"/>
         <source>Contacts List</source>
         <translation>Zoznam používateľov</translation>
@@ -859,10 +804,6 @@
         <location line="+25"/>
         <source>Show status as tooltip</source>
         <translation>Zobrazovať stav používateľov ako tooltip</translation>
-    </message>
-    <message>
-        <source>Show offline contacts</source>
-        <translation type="vanished">Zobrazovať odpojených používateľov</translation>
     </message>
     <message>
         <location line="+75"/>
@@ -948,17 +889,6 @@
         <location line="+20"/>
         <source>Close</source>
         <translation>Zavrieť</translation>
-    </message>
-</context>
-<context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Zavrieť</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">Skontrolovať znovu</translation>
     </message>
 </context>
 <context>
@@ -1097,7 +1027,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">Táto správa nebola doručená používateľovi %1:</translation>
     </message>
@@ -1107,12 +1037,18 @@
         <translation type="unfinished">Vaša správa nebola odoslaná.</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished">Hromadná správa od %1:</translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1250,7 +1186,7 @@
         <translation type="unfinished">%1 sa odpojil(a) z tejto konverzácie</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;Kopírovať</translation>
     </message>
@@ -1353,7 +1289,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished">Skupinová konverzácia</translation>
     </message>
@@ -1368,7 +1304,7 @@
         <translation type="unfinished">Hromadná správa od %1</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">%1 posiela súbor...</translation>
     </message>
@@ -1378,7 +1314,7 @@
         <translation type="unfinished">%1 posiela priečinok...</translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1501,7 +1437,7 @@
         <translation type="unfinished">Skupinová konverzácia</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished">%1 píše správu...</translation>
     </message>
@@ -1546,7 +1482,7 @@
         <translation type="unfinished">Pridať účastníkov do tejto konverzácie</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished">Ste offline.</translation>
     </message>
@@ -1572,7 +1508,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">%1 je online.</translation>
     </message>
@@ -1592,12 +1528,12 @@
         <translation type="unfinished">Ste offline.</translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">Vyberte si obrázok</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished">&amp;Komunikátor</translation>
     </message>
@@ -1707,7 +1643,7 @@
         <translation type="unfinished">&amp;Prehľadávať ďalšie obrázky...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">%1 bude naďalej bežať na pozadí. Kliknite na túto ikonu pre zobrazenie okna programu.</translation>
     </message>
@@ -1740,7 +1676,7 @@
         <translation type="unfinished">Obnoviť pôvodné nastavenia</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1844,10 +1780,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">&apos;%1&apos; bol odoslaný používateľovi %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">Prenos dokončený</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2117,770 +2049,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">O programe %1</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">Poslať hromadnú správu</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">Zmeniť veľkosť písma</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Vložiť smajlíka</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">Nie je vybraný príjemca</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">Prosím vyberte aspoň jedného príjemcu pre hromadnú správu.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">Ste offline. Hromadnú správu nemožno odoslať.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Skupinová konverzácia</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 píše správu...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Vybrať písmo</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Vybrať farbu</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Uložiť skupinovú konverzáciu</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">Účastníci</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">Súkromná &amp;konverzácia</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Poslať &amp;súbor</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Zobraziť &amp;informácie</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Vložiť smajlíka</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Uložiť ako...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Uložiť túto skupinovú konverzáciu</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Zmeniť písmo...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Zmeniť písmo</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Zmeniť farbu...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Zmeniť farbu písma</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <translation type="vanished">&amp;Pridať používateľov...</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <translation type="vanished">Pridať účastníkov do tejto konverzácie</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Ste offline.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Skupinová konverzácia</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="vanished">Verejný chat</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 píše správu...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="vanished">Hromadná správa od %1</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="vanished">%1 posiela súbor...</translation>
-    </message>
-    <message>
-        <source>%1 sends a folder...</source>
-        <translation type="vanished">%1 posiela priečinok...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Vybrať písmo</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Vybrať farbu</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Uložiť súkromnú konverzáciu</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Vložiť smajlíka</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">Poslať &amp;súbor...</translation>
-    </message>
-    <message>
-        <source>Send A Fol&amp;der...</source>
-        <translation type="vanished">Poslať &amp;priečinok...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Uložiť ako...</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;História správ</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">Prenosy &amp;súborov</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">Poslať súbor používateľovi %1</translation>
-    </message>
-    <message>
-        <source>Send a folder to %1</source>
-        <translation type="vanished">Poslať priečinok používateľovi %1</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Uložiť túto súkromnú konverzáciu</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">Zobraziť históriu správ</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">Zobraziť prenosy súborov</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Zmeniť písmo...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Zmeniť písmo</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Zmeniť farbu...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Zmeniť farbu písma</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Ste offline.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 je offline.</translation>
-    </message>
-    <message>
-        <source>%1 is away.</source>
-        <translation type="vanished">%1 je preč.</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="vanished">%1 je zaneprázdnený a neželá si byť rušený.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Súkromná konverzácia</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">Súbor s Vašimi nastaveniami je poškodený alebo neplatný.
-
-%1 nedokáže obnoviť Vaše nastavenia.</translation>
-    </message>
-    <message>
-        <source>Preferences could not be imported from &apos;%1&apos;.
-
-File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="vanished">Nastavenia nemohli byť naimportované z &apos;%1&apos;.
-
-Súbor neexistuje alebo nie je kompatibilný s touto verziou programu %2.</translation>
-    </message>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">Bol zistený konflikt v adrese portu. Program %1 bude ukončený.</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">%1 sa nemôže spustiť, pretože iná aplikácia využíva port nastavený na použitie s %2.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Pomoc</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Vitajte v pomoci pre LAN komunikátor&lt;/h2&gt;&lt;h3&gt;Pomoc&lt;/h3&gt;&lt;p&gt;Dokumentáciu môžete nájsť na &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; stránke LAN komunikátora.&lt;/p&gt;&lt;p&gt;Predtým, ako sa opýtate otázku, prečítajte si prosím &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Až potom sa obráťte na (alebo poskytnite) pomoc na &lt;a href=&apos;%3&apos;&gt;diskusnom fóre&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Prispejte do projektu&lt;/h3&gt;&lt;p&gt;Môžete pomôcť projektu LAN komunikátora vyčlenením vášho voľného času pomoci komunite, preložením aplikácie, dokumentácie alebo testovaním programu. Samozrejme, môžete aj &lt;b&gt;propagovať&lt;/b&gt; LAN komunikátor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">História správ</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">%1 je online.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 je offline.</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">Ste online.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Ste offline.</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">Vyberte si obrázok</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">Pridať novú skupinu</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">Zadajte názov skupiny</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">Skupina s názvom &apos;%1&apos; už existuje. Prosím zadajte iný názov skupiny.</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">Premenovať skupinu</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">Zadajte nový názov skupiny</translation>
-    </message>
-    <message>
-        <source>&amp;Messenger</source>
-        <translation type="vanished">&amp;Komunikátor</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">&amp;Skupinová konverzácia</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="vanished">Verejný &amp;chat</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">&amp;Obnoviť používateľov</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">&amp;Ukončiť program</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">&amp;Nástroje</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;História správ</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">Prenosy &amp;súborov</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">&amp;Nastavenia</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">&amp;Pomoc</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 &amp;online</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">Skontrolovať &amp;aktualizácie...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">&amp;O programe</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">&amp;Zobraziť %1</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">Zmeniť &amp;môj stav</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">Pridať &amp;novú skupinu</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">&amp;Premenovať skupinu</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">&amp;Vymazať skupinu</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">Súkromná &amp;konverzácia</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="vanished">Poslať &amp;hromadnú správu</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Poslať &amp;súbor</translation>
-    </message>
-    <message>
-        <source>Send Fol&amp;der</source>
-        <translation type="vanished">Poslať &amp;priečinok</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Zobraziť &amp;informácie</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">&amp;Prehľadávať ďalšie obrázky...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="vanished">%1 bude naďalej bežať na pozadí. Kliknite na túto ikonu pre zobrazenie okna programu.</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - Offline</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">Táto správa nebola doručená používateľovi %1:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">Vaša správa nebola odoslaná.</translation>
-    </message>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">Hromadná správa od %1:</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">Pokus o odoslanie &apos;%1&apos; používateľovi %2.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Zrušiť</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="vanished">%1 Vám posiela súbor:</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a folder:</source>
-        <translation type="vanished">%1 Vám posiela priečinok:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">%1 Vám posiela súbor:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a folder:</source>
-        <translation type="vanished">%1 Vám posiela priečinok:</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="vanished">Prenos prijatý</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">Prijať</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">Odmietnuť</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="vanished">Prenos odmietnutý</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">Prenos zrušený</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="vanished">Prenos prerušený</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">Prenos dokončený</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">%1 píše správu...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="vanished">%1 má rozpísanú správu</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">%1 sa pripojil(a) do tejto konverzácie</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">%1 sa odpojil(a) z tejto konverzácie</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">&amp;Kopírovať</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">Vybrať &amp;všetko</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">Uložiť históriu</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">Vybrať priečinok</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Vybrať písmo</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Vybrať farbu</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">Ste si istí, že chcete obnoviť Vaše pôvodné nastavenia pre %1?</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">Obnoviť pôvodné nastavenia</translation>
-    </message>
-    <message>
-        <source>Select sound</source>
-        <translation type="vanished">Vybrať zvuk</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">Nastavenia</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">Oblasť oznámení (nie je k dispozícií)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">Notifikácie o zmene stavu (nie sú k dispozícií)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">Zvuky (nie sú dispozícií)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Skontrolovať aktualizácie</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>LAN Messenger</source>
-        <translation type="vanished">LAN komunikátor</translation>
-    </message>
-    <message>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="vanished">LAN komunikátor je bezplatná peer-to-peer komunikačná aplikácia pre
-vnútrosieťovú komunikáciu a nevyžaduje server.
-LAN komunikátor funguje na každej populárnej desktopovej platforme.</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="vanished">Automaticky</translation>
-    </message>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">Malé písmo</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">Stredné pismo</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">Veľké písmo</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">K dispozícií</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">Zaneprázdnený</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">Prosím nerušiť</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">Hneď sa vrátim</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">Preč</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">Neviditeľný</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">Prichádzajúca správa</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">Používateľ je online</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">Používateľ je offline</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">Prichádzajúci súbor</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">Prenos súboru ukončený</translation>
-    </message>
-    <message>
-        <source>Incoming public message</source>
-        <translation type="vanished">Prichádzajúca hromadná správa</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5 minút</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10 minút</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15 minút</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20 minút</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30 minút</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45 minút</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">60 minút</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">Nikdy</translation>
-    </message>
-    <message>
-        <source>Detailed</source>
-        <translation type="vanished">Podrobný</translation>
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="vanished">Kompaktný</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">&apos;%1&apos; bol odoslaný používateľovi %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">Prenos dokončený</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">&apos;%1&apos; bol prijatý od používateľa %2.</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">Prenosy súborov</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Zrušiť</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">Zobraziť v priečinku</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">Vymazať zo zoznamu</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">Výpočet času</translation>
-    </message>
-    <message>
-        <source>/sec</source>
-        <translation type="vanished">/s</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">Aktualizácia %1</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">Spúšťanie kontroly aktualizácií...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">Počas kontroly aktualizácií nastala chyba.</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">Nová verzia %1 je dostupná na stránke %2.</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">Používate najnovšiu verziu programu %1.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">Informácie o používateľovi</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">Vybrať používateľov</translation>
     </message>
 </context>
 </TS>

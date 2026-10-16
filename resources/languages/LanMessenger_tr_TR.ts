@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">Teşekkürler</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Lisans</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>Kapat</translation>
@@ -211,13 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Kapat</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -281,7 +266,7 @@
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,10 +308,6 @@
         <location line="+8"/>
         <source>Multicast address:</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">Sohbet penceresinin Tema</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -461,10 +442,6 @@
         <translation>Açmak için sistem simgesine tek tıkla</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">Balon uyarıları bildirim alanında göster</translation>
-    </message>
-    <message>
         <location line="+24"/>
         <source>Language</source>
         <translation>Dil</translation>
@@ -484,18 +461,6 @@
         <location line="+7"/>
         <source>Personal</source>
         <translation>Kişisel</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">Kişilerde görünecek kullanıcı adı:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">İsim:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">Soyisim:</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -545,33 +510,9 @@
         <translation>Zaman gösteririken tarihi de ekle</translation>
     </message>
     <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">Anlık ileti gelince pencereyi öne çıkar</translation>
-    </message>
-    <message>
         <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>Gelen iletileri görev çubuğuna küçült</translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">İleti fontu</translation>
-    </message>
-    <message>
-        <source>Preview:</source>
-        <translation type="obsolete">Önizleme:</translation>
-    </message>
-    <message>
-        <source>Small size</source>
-        <translation type="obsolete">Küçük</translation>
-    </message>
-    <message>
-        <source>Medium size</source>
-        <translation type="obsolete">Orta</translation>
-    </message>
-    <message>
-        <source>Large size</source>
-        <translation type="obsolete">Büyük</translation>
     </message>
     <message>
         <location line="-528"/>
@@ -615,18 +556,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Fontu Değiştir...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Renk Değiştir...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">Gelen ileti yazı ölçüsü:</translation>
     </message>
     <message>
         <location line="+362"/>
@@ -968,68 +897,6 @@
     </message>
 </context>
 <context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Kapat</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">Sürümü yeniden denetle</translation>
-    </message>
-</context>
-<context>
-    <name>UserInfoDialog</name>
-    <message>
-        <source>Personal Information</source>
-        <translation type="obsolete">Kişisel Bilgiler</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="obsolete">İsim:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="obsolete">Soyisim:</translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation type="obsolete">N / A</translation>
-    </message>
-    <message>
-        <source>About:</source>
-        <translation type="obsolete">Hakkında:</translation>
-    </message>
-    <message>
-        <source>System Information</source>
-        <translation type="obsolete">Sistem Bilgisi</translation>
-    </message>
-    <message>
-        <source>Operating System:</source>
-        <translation type="obsolete">İşletim Sistemi:</translation>
-    </message>
-    <message>
-        <source>IP Address:</source>
-        <translation type="obsolete">IP Adresi:</translation>
-    </message>
-    <message>
-        <source>Messenger Version:</source>
-        <translation type="obsolete">Messenger Versiyonu:</translation>
-    </message>
-    <message>
-        <source>Computer Name:</source>
-        <translation type="obsolete">Bilgisayar Adı:</translation>
-    </message>
-    <message>
-        <source>Logon Name:</source>
-        <translation type="obsolete">Oturum Adı:</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="obsolete">Kapat</translation>
-    </message>
-</context>
-<context>
     <name>UserInfoWindow</name>
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
@@ -1165,7 +1032,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">İleti %1 alıcısına gönderilemedi:</translation>
     </message>
@@ -1175,12 +1042,18 @@
         <translation type="unfinished">İletiniz gönderilmedi.</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished">İleti %1 alıcısına gönderildi:</translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1318,7 +1191,7 @@
         <translation type="unfinished">%1 görüşmeden ayrıldı</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;Kopyala</translation>
     </message>
@@ -1421,7 +1294,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished">Grup Görüşmesi</translation>
     </message>
@@ -1436,7 +1309,7 @@
         <translation type="unfinished">%1 kullanıcısından yayın iletisi var</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">%1 kullanıcısı dosya gönderiyor...</translation>
     </message>
@@ -1446,7 +1319,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished">Konuşmayı kaydet</translation>
     </message>
@@ -1569,7 +1442,7 @@
         <translation type="unfinished">Grup Görüşmesi</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished">%1 diyorki ...</translation>
     </message>
@@ -1614,7 +1487,7 @@
         <translation type="unfinished">Bu görüşmeye kişi ekle</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1640,7 +1513,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">%1 çevrimiçi.</translation>
     </message>
@@ -1660,12 +1533,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">Avatar resmi seç</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished">&amp;Messenger</translation>
     </message>
@@ -1775,7 +1648,7 @@
         <translation type="unfinished">&amp;Daha fazla resime gözat...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">%1 arkaplanda çalışmasına devam edecek. Uygulamayı açmak için ikonu aktif edin.</translation>
     </message>
@@ -1808,7 +1681,7 @@
         <translation type="unfinished">Ayarları Sıfırla</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1912,10 +1785,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">&apos;%1&apos; kullanıcısı %2 kullanıcısına gönderdi.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">Dosya transferi tamamlandı</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2185,831 +2054,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">%1 Hakkında</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">Yayın İletisi Gönder</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">Font Ölçüsünü Değiştir</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Smiley Ekle</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">Seçilmiş alıcı yok</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">Yayın iletisi göndermek için lütfen en az bir alıcı seçiniz.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">Yeteri süre bağlı kalamadınız. Yayın iletisi gönderilemedi.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Grup Görüşmesi</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 diyorki ...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Font Seç</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Renk Seç</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Konuşmayı kaydet</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">Katılımcılar</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Görüşme</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">&amp;Dosya gönder</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">&amp;Bilgi al</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Smiley Ekle</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Farklı Kaydet ...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Bu konuşmayı kaydet</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Fontu Değiştir...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">İleti fontunu değiştir</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Renk Değiştir...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">İleti yazı rengini değiştir</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <oldsource>&amp;Add A Contact...</oldsource>
-        <translation type="vanished">Kişi &amp;Ekle...</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <oldsource>Add contacts to this conversation</oldsource>
-        <translation type="vanished">Bu görüşmeye kişi ekle</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Bağlantınız Yok.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Görüşme</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="vanished">Genel Sohbet</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>Chat with %1</source>
-        <translation type="obsolete">%1 ile konuş</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="obsolete">Font Ölçüsünü Değiştir</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Smiley Ekle</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">Bir &amp;dosya gönder...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Farklı Kaydet ...</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Geçmiş</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">Dosya &amp;Transfer</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">%1 alıcısına dosya gönder</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Bu konuşmayı kaydet</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">Geçmişe Bakın</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">Dosya Transferine Bakın</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Fontu Değiştir...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">İleti fontunu değiştir</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Renk Değiştir...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">İleti yazı rengini değiştir</translation>
-    </message>
-    <message>
-        <source>You have accepted the file.</source>
-        <translation type="obsolete">Dosya Transferini kabul ettniz.</translation>
-    </message>
-    <message>
-        <source>You have declined the file.</source>
-        <translation type="obsolete">Dosya Transferini reddettiniz.</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="obsolete">İptal Edildi</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Font Seç</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Renk Seç</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Konuşmayı kaydet</translation>
-    </message>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Grup Görüşmesi</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 diyorki ...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="vanished">%1 kullanıcısından yayın iletisi var</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="vanished">%1 kullanıcısı dosya gönderiyor...</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="obsolete">Kabul Edildi</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="obsolete">Reddedildi</translation>
-    </message>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="obsolete">İleti %1 alıcısına gönderildi:</translation>
-    </message>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="obsolete">İleti %1 alıcısına gönderilemedi:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="obsolete">İletiniz gönderilmedi.</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="obsolete">&apos;%1&apos;  %2 kullanıcısına gönderiliyor.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">İptal Edildi</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="obsolete">%1 kullanıcısı size dosya gönderiyor:</translation>
-    </message>
-    <message>
-        <source>File has been accepted automatically.</source>
-        <translation type="obsolete">Dosya otomatik olarak kabul edildi.</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="obsolete">%1 kullanıcısı size dosya gönderiyor:</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="obsolete">Kabul Et</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="obsolete">Reddet</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Bağlantınız Yok.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 çevrimdışı.</translation>
-    </message>
-    <message>
-        <source>%1 is away.</source>
-        <translation type="vanished">%1 uzakta.</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="vanished">%1 meşgul, yanıt vermeyebilir.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Görüşme</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">Port adresinizde çakışma algılandı. %1 şimdi kapanacak.</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">%1 başlatılamıyor çünkü %2 adlı başka bir uygulama aynı portu kullanıyor.</translation>
-    </message>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">Tercihleriniz geçersiz veya bozuk.
-
-%1 ayarlarınızı kurtaramıyor.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Yardım</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;LAN Messenger Yardım&apos;a hoşgeldiniz&lt;/h2&gt;&lt;h3&gt;Yardım&lt;/h3&gt;&lt;p&gt;Gerekli dokümantasyonları Lan Messenger&apos;ın &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; websitesinde bulabilirsiniz.&lt;/p&gt;&lt;p&gt;Herhangi bir soru yöneltmeden önce, lütfen &lt;a href=&apos;%2&apos;&gt;Sıkça Sorulanlara&lt;/a&gt; başvurunuz.&lt;/p&gt;&lt;p&gt;Yeterli olmadığı takdirde &lt;a href=&apos;%3&apos;&gt;Destek Forumlarına&lt;/a&gt; başvurabilirsiniz.&lt;/p&gt;&lt;h3&gt;Projeye katkıda bulunmak için&lt;/h3&gt;&lt;p&gt;Lan Messenger yardım topluluğuna zamanınızı ayırarak, uygulama tercümesi ve dokümentasyon tercümesi yaparak  ya da yazılımı test ederek katkıda bulunabilirsiniz, ayrıca LAN Messenger&apos;ın &lt;b&gt;geliştirilmesine&lt;/b&gt; yardımcı olabilirsiniz.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">İleti Geçmişi</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">%1 çevrimiçi.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 çevrimdışı.</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">Çevrimiçisin.</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - Bağlanamadı</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Bağlantınız Kesildi.</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">Avatar resmi seç</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">Yeni Grup Ekle</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">Grup İsmi giriniz</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">%1&apos; grup adı zaten var. Lütfen farklı bir isim giriniz.</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">Grubu yeniden adlandır</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">Grup için yeni isim giriniz</translation>
-    </message>
-    <message>
-        <source>&amp;Messenger</source>
-        <translation type="vanished">&amp;Messenger</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">&amp;Yeni Sohbet Odası</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">&amp;Kişi Listesini Yenile</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="vanished">&amp;Genel Sohbet</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">&amp;Çıkış</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">&amp;Araçlar</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Geçmiş</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">Dosya &amp;Transferi</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">&amp;Tercihler</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">&amp;Yardım</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 &amp;çevrimiçi</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">Güncelleştirmeleri &amp;denetle...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">&amp;Hakkında</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">%1 &amp;gösterilsin</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">&amp;Durumu Değiştir</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">&amp;Yeni grup ekle</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">&amp;Bu grubu yeniden adlandır</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">&amp;Bu grubu sil</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Görüşme</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="vanished">&amp;Yayın iletisi gönder</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">&amp;Dosya gönder</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">&amp;Bilgi al</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">&amp;Daha fazla resime gözat...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="vanished">%1 arkaplanda çalışmasına devam edecek. Uygulamayı açmak için ikonu aktif edin.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">İleti %1 alıcısına gönderildi:</translation>
-    </message>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">İleti %1 alıcısına gönderilemedi:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">İletiniz gönderilmedi.</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">&apos;%1&apos;  %2 kullanıcısına gönderiliyor.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">İptal</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="vanished">%1 kullanıcısı size dosya gönderiyor:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">%1 kullanıcısı size dosya gönderiyor:</translation>
-    </message>
-    <message>
-        <source>File has been accepted automatically.</source>
-        <translation type="obsolete">Dosya otomatik olarak kabul edildi.</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">Kabul Et</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">Reddet</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="vanished">Kabul Edildi</translation>
-    </message>
-    <message>
-        <source>You have accepted the file.</source>
-        <translation type="obsolete">Dosya Transferini kabul ettniz.</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="vanished">Reddedildi</translation>
-    </message>
-    <message>
-        <source>You have declined the file.</source>
-        <translation type="obsolete">Dosya Transferini reddettiniz.</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">İptal Edildi</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="vanished">Kesildi</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">Tamamlandı</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">%1 yazarak...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="vanished">%1 metin girmiştir</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">%1 görüşmeye katıldı</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">%1 görüşmeden ayrıldı</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">&amp;Kopyala</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">Hepsini &amp;Seç</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>AaBbYyZz</source>
-        <translation type="obsolete">AaBbYyZz</translation>
-    </message>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">Geçmişi Kaydet</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">Dosya Seç</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Font Seç</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Renk Seç</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">%1 seçeneklerinizi sıfırlamak istediğinizden emin misiniz?</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">Ayarları Sıfırla</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">Tercihler</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">Sistem Simgesi(Uygun Değil)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">Durum Uyarıları (Uygun Değil)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">Sesler (Uygun Değil)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Güncelleştirmeleri denetle</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>LAN Messenger</source>
-        <translation type="vanished">LAN Messenger</translation>
-    </message>
-    <message>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="vanished">LAN Messenger yerel ağda kullanılan ücretsiz eşzamanlı (peer-to-peer)
-mesajlaşma uygulamasıdır ve sunucu gerektirmez.
-LAN Messenger yaygın bütün masaüstü platformlarda kullanılabilir.</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="vanished">Otomatik</translation>
-    </message>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">Küçük yazı</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">Orta yazı</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">Büyük yazı</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">Uygun</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">Meşgul</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">Rahatsız Etmeyin</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">Hemen Dönecek</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">Uzakta</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">Çevrimdışı Görün</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">Gelen ileti</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">Kullancı çevrimiçi</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">Kullancı çevrimdışı</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">Gelen dosya transferi</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">Dosya transferi tamamlandı</translation>
-    </message>
-    <message>
-        <source>Incoming public message</source>
-        <translation type="vanished">Gelen genel mesaj</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5 dakika</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10 dakika</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15 dakika</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20 dakika</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30 dakika</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45 dakika</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">60 dakika</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">Asla</translation>
-    </message>
-    <message>
-        <source>Detailed</source>
-        <translation type="vanished">Ayrıntılı</translation>
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="vanished">Kompakt</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">&apos;%1&apos; kullanıcısı %2 kullanıcısına gönderdi.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">Dosya transferi tamamlandı</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">&apos;%1&apos; %2 kullanıcısından alındı.</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">Dosya Transferi</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">İptal Et</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">Klasörde Göster</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">Listeden Kaldır</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">Süre hesaplanıyor</translation>
-    </message>
-    <message>
-        <source>/sec</source>
-        <translation type="vanished">/ Saniye</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">%1 güncellemeleri</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">Güncelleme isteği yapılıyor...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">Güncellemeleri denetlerken bir hata oluştu.</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">Yeni sürüm %1 %2 Web Sıtesınden indirilebilir.</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">%1  en son sürümüne sahipsiniz.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoDialog</name>
-    <message>
-        <source>User Information</source>
-        <translation type="obsolete">Kullanıcı Bilgisi</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">Kullanıcı Bilgisi</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">Kişileri Seç</translation>
     </message>
 </context>
 </TS>

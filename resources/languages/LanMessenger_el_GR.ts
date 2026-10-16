@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">Ευχαριστίες</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Άδεια</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
@@ -211,13 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Κλείσιμο</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -281,7 +266,7 @@
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,10 +308,6 @@
         <location line="+8"/>
         <source>Multicast address:</source>
         <translation>Διεύθυνση πολλαπλής διανομής:</translation>
-    </message>
-    <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">Θέμα Συνομιλίας</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -461,10 +442,6 @@
         <translation>Μονό κλικ στο εικονίδιο για άνοιγμα</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">Εμφάνιση ειδοποιήσεων στην περιοχή ειδοποιήσεων</translation>
-    </message>
-    <message>
         <location line="+24"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
@@ -484,18 +461,6 @@
         <location line="+7"/>
         <source>Personal</source>
         <translation>Προσωπικά</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">Όνομα χρήστη όπως φαίνεται στις επαφές:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">Όνομα</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">Επώνυμο</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -545,17 +510,9 @@
         <translation>Εμφάνιση ημερομηνίας στα άμεσα μηνύματα</translation>
     </message>
     <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">Ορισμός προσκηνίου εισερχόμενων άμεσων μηνυμάτων</translation>
-    </message>
-    <message>
         <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
         <translation>Ελαχιστοποίηση άμεσων μηνυμάτων στην γραμμή εργασιών</translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">Γραμματοσειρά Μηνυμάτων</translation>
     </message>
     <message>
         <location line="-528"/>
@@ -599,18 +556,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation>Εκκαθάριση μηνυμάτων όταν κλείσει το παράθυρο</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Επιλογή Γραμματοσειράς...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Αλλαγή Χρώματος...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">Μέγεθος κειμένου εισερχόμενου μηνύματος:</translation>
     </message>
     <message>
         <location line="+362"/>
@@ -952,17 +897,6 @@
     </message>
 </context>
 <context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Κλείσιμο</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">Επανέλεγχος Έκδοσης</translation>
-    </message>
-</context>
-<context>
     <name>UserInfoWindow</name>
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
@@ -1098,7 +1032,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">Αυτό το μήνυμα δεν παραδώθηκε σε %1:</translation>
     </message>
@@ -1108,12 +1042,18 @@
         <translation type="unfinished">Το μήνυμά σας δεν στάλθηκε.</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished">Μήνυμα εκπομπής από %1:</translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1251,7 +1191,7 @@
         <translation type="unfinished">Ο/Η %1 έφυγε από την συνομιλία</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;Αντιγραφή</translation>
     </message>
@@ -1354,7 +1294,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1369,7 +1309,7 @@
         <translation type="unfinished">Εκπομπή από %1</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">Ο/Η %1 στέλνει ένα αρχείο...</translation>
     </message>
@@ -1379,7 +1319,7 @@
         <translation type="unfinished">Ο/Η %1 στέλνει ένα φάκελο</translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished">Αποθήκευση Συνομιλίας</translation>
     </message>
@@ -1502,7 +1442,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished">%1 λέει...</translation>
     </message>
@@ -1547,7 +1487,7 @@
         <translation type="unfinished">Προσθήκη ατόμων σε αυτή τη συνομιλία</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
     </message>
@@ -1573,7 +1513,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">Ο/Η %1 συνδέθηκε.</translation>
     </message>
@@ -1593,12 +1533,12 @@
         <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">Επιλογή εικόνας avatar</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1708,7 +1648,7 @@
         <translation type="unfinished">&amp;Περιηγηθείτε για περισσότερες εικόνες...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">Το %1 θα συνεχίσει να τρέχει στο παρασκήνιο. Πατήστε σε αυτό το εικονίδιο για να επαναφέρετε το παράθυρο της εφαρμογής.</translation>
     </message>
@@ -1741,7 +1681,7 @@
         <translation type="unfinished">Επαναφορά Προτιμήσεων</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished">&lt;Το αρχείο δεν βρέθηκε&gt;</translation>
     </message>
@@ -1845,10 +1785,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">Το %apos;%1&apos; έχει σταλεί σε %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">Η Μεταφορά Αρχείου Ολοκληρώθηκε</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2118,756 +2054,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">Σχετικά με %1</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">Αποστολή Μηνύματος Εκπομπής</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">Αλλαγή Μεγέθους Γραμματοσειράς</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Εισαγωγή Smiley</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">Δεν επιλέξατε παραλήπτη</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">Παρακαλώ επιλέξτε τουλάχιστον έναν παραλήπτη για αποστολή εκπομπής.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος. Το μήνυμα εκπομπής δεν μπορεί να σταλεί.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Ομαδική Συζήτηση</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 λέει...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Επιλογή Γραμματοσειράς</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Επιλογή Χρώματος</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Αποθήκευση Συνομιλίας</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">Συμμετέχοντες</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Συνομιλία</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Αποθήκευση &amp;Αρχείου</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Λήψη &amp;Πληροφορίας</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Εισαγωγή Smiley</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">Αποθήκευση &amp;Ως...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Αποθήκευση αυτής της συνομιλίας</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Αλλαγή Γραμματοσειράς...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Αλλαγή γραμματοσειράς μηνύματος</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Αλλαγή Χρώματος...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Αλλαγή χρώματος κειμένου μηνύματος</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <oldsource>&amp;Add A Contact...</oldsource>
-        <translation type="vanished">Προσθήκη &amp;Επαφής</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <oldsource>Add contacts to this conversation</oldsource>
-        <translation type="vanished">Προσθήκη ατόμων σε αυτή τη συνομιλία</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος/η</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Συνομιλία</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="vanished">Δημόσια Συζήτηση</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Εισαγωγή Smiley</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">Αποστολή &amp;Αρχείου...</translation>
-    </message>
-    <message>
-        <source>Send A Fol&amp;der...</source>
-        <translation type="vanished">Αποσολή &amp;Φακέλου...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">Αποθήκευση &amp;Ως...;</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Ιστορικό</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">&amp;Μεταφορές Αρχείων</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">Αποστολή αρχείου σε %1</translation>
-    </message>
-    <message>
-        <source>Send a folder to %1</source>
-        <translation type="vanished">Αποστολή φακέλου σε %1</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Αποθήκευση αυτής της συνομιλίας</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">Προβολή Ιστορικού</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">Προβολή Μεταφορών Αρχείων</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Αλλαγή Γραμματοσειράς...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Αλλαγή γραμματοσειράς μηνυμάτων</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Αλλαγή Χρώματος...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Αλλαγή χρώματος κειμένου μηνυμάτων</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Επιλογή Γραμματοσειράς</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Επιλογή Χρώματος</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Αποθήκευση Συνομιλίας</translation>
-    </message>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Ομαδική Συνομιλία</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 λέει...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="vanished">Εκπομπή από %1</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="vanished">Ο/Η %1 στέλνει ένα αρχείο...</translation>
-    </message>
-    <message>
-        <source>%1 sends a folder...</source>
-        <translation type="vanished">Ο/Η %1 στέλνει ένα φάκελο</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος/η</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">Ο/Η %1 είναι εκτός σύνδεσης.</translation>
-    </message>
-    <message>
-        <source>%1 is away.</source>
-        <translation type="vanished">Ο/Η %1 λείπει.</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="vanished">Ο/Η %1 είναι απασχολημένος. Μπορεί να ενοχλείς.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Συνομιλία</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>Preferences could not be imported from &apos;%1&apos;.
-
-File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="vanished">Δεν ήταν δυνατή η εισαγωγή των προτιμήσεων από &apos;%1&apos;.
-
-Το αρχείο μπορεί να μην υπάρχει, ή να μην είναι συμβατό με αυτήν την έκδοση του %2.</translation>
-    </message>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">Εντοπίστηκε διένεξη θύρας διευθύνσης. Το %1 θα κλείσει τώρα.</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">Το %1 δεν μπορεί να ξεκινήσει γιατί μια άλλη εφαρμογή χρησιμοποιεί την θύρα που έχει ρυθμιστεί για χρήση από με το %2.</translation>
-    </message>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">Το αρχείο των προτιμήσεων είναι κατεστραμμένο ή άκυρο.
-
-Το %1 δεν μπορεί να ανακτήσει τις ρυθμίσεις σας.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Βοήθεια</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">Ιστορικό Μηνυμάτων</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">Ο/Η %1 συνδέθηκε.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">Ο/Η %1 είναι εκτός σύνδεσης.</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">Είστε συνδεδεμένος/η</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - Μη Συνδεδεμένος/η</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Δεν είστε πλέον συνδεδεμένος/η</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">Επιλογή εικόνας avatar</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">Προσθήκη Νέας Ομάδας</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">Εισάγετε ένα όνομα για την ομάδα</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">Μια ομάδα με όνομα &apos;%1&apos; υπάρχει ήδη. Παρακαλώ εισάγετε άλλο όνομα.</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">Μετονομασία Ομάδας</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">Εισάγετε ένα νέο όνομα για την ομάδα</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">&amp;Νέο Δωμάτιο Συζήτησης</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">&amp;Ανανέωση Λίστας Επαφών</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="vanished">&amp;Δημόσια Συζήτηση</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">Έ&amp;ξοδος</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">&amp;Εργαλεία</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Ιστορικό</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">&amp;Μεταφορές Αρχείων</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">&amp;Προτιμήσεις</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">&amp;Βοήθεια</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 στο διαδίκτ&amp;υο</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">Έλεγχος για Εν&amp;ημερώσεις...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">&amp;Σχετικά με</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">&amp;Εμφάνιση %1</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">&amp;Αλλαγή Κατάστασης</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">Προσθήκη &amp;Νέας Ομάδας</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">&amp;Μετονομασία Ομάδας</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">&amp;Διαγραφή Ομάδας</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Συνομιλία</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="vanished">Αποστολή Μηνύματος &amp;Εκπομπής</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Αποστολή &amp;Αρχείου</translation>
-    </message>
-    <message>
-        <source>Send Fol&amp;der</source>
-        <translation type="vanished">Αποστολή &amp;Φακέλου</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Λήψη &amp;Πληροφοριών</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">&amp;Περιηγηθείτε για περισσότερες εικόνες...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="vanished">Το %1 θα συνεχίσει να τρέχει στο παρασκήνιο. Πατήστε σε αυτό το εικονίδιο για να επαναφέρετε το παράθυρο της εφαρμογής.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">Μήνυμα εκπομπής από %1:</translation>
-    </message>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">Αυτό το μήνυμα δεν παραδώθηκε σε %1:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">Το μήνυμά σας δεν στάλθηκε.</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">Αποστολή &apos;%1&apos; σε %2.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Ακύρωση</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="vanished">Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a folder:</source>
-        <translation type="vanished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">Ο/Η %1 σου στέλνει ένα αρχείο:</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">Αποδοχή</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">Απόρριψη</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="vanished">Έγινε αποδοχή</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="vanished">Απορρίφθηκε</translation>
-    </message>
-    <message>
-        <source>%1 sends you a folder:</source>
-        <translation type="vanished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">Ακυρώθηκε</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="vanished">Διακόπηκε</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">Ολοκληρώθηκε</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">Ο/Η %1 πληκτρολογεί...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="vanished">Ο/Η %1 έγραψε κείμενο</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">Ο/Η %1 συνδέθηκε σε αυτή τη συνομιλία</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">Ο/Η %1 έφυγε από την συνομιλία</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">&amp;Αντιγραφή</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">Επιλογή &amp;Όλων</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">Αποθήκευση Ιστορικού</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">Επιλογή φακέλου</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Επιλογή Γραμματοσειράς</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Επιλογή Χρώματος</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">Είστε σίγουροι ότι θέλετε να αρχικοποιήσετε τις %1 προτιμήσεις σας;</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">Επαναφορά Προτιμήσεων</translation>
-    </message>
-    <message>
-        <source>&lt;File Not Found&gt;</source>
-        <translation type="vanished">&lt;Το αρχείο δεν βρέθηκε&gt;</translation>
-    </message>
-    <message>
-        <source>Select sound</source>
-        <translation type="vanished">Επιλογή ήχου</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">Προτιμήσεις</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">Περιοχή ειδοποιήσεων (Μη Διαθέσιμη)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">Ειδοποιήσεις Κατάστασης (Μη Διαθέσιμες)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">Ήχοι (Μη Διαθέσιμοι)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Έλεγχος για ενημερώσεις</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>Automatic</source>
-        <translation type="vanished">Αυτόματα</translation>
-    </message>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">Μικρό κείμενο</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">Μέτριο κείμενο</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">Μεγάλο κείμενο</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">Διαθέσιμος/η</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">Απασχολημένος/η</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">Μην Ενοχλείτε</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">Επιστρέφω</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">Μακρυά</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">Εμφάνιση Εκτός Σύνδεσης</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">Εισερχόμενο μήνυμα</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">Ο χρήσης είναι συνδεδεμένος</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">Ο χρήστης δεν είναι συνδεδεμένος</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">Εισερχόμενη λήψη αρχείου</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">Η μεταφορά αρχείου ολοκληρώθηκε</translation>
-    </message>
-    <message>
-        <source>Incoming public message</source>
-        <translation type="vanished">Εισερχόμενο δημόσιο μήνυμα</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5 λεπτά</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10 λεπτά</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15 λεπτά</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20 λεπτά</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30 λεπτά</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45 λεπτά</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">60 λεπτά</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">Ποτέ</translation>
-    </message>
-    <message>
-        <source>Detailed</source>
-        <translation type="vanished">Αναλυτική</translation>
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="vanished">Συμπαγής</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">Το %apos;%1&apos; έχει σταλεί σε %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">Η Μεταφορά Αρχείου Ολοκληρώθηκε</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">Το &apos;%1&apos; ελήφθη από %2.</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">Μεταφορές Αρχείων</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Ακύρωση</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">Εμφάνιση Σε Φάκελο</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">Αφαίρεση Από Λίστα</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">Υπολογισμός χρόνου</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">%1 ενημερώσεις</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">Εκκίνηση αιτήματος ενημέρωσης...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">Ένα σφάλμα προέκυψε κατά τον έλεγχο ενημερώσεων.</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">Η νέα έκδοση %1 είναι διαθέσιμη στην ιστοσελίδα %2.</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">Έχετε την τελευταία έκδοση του %1.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">Πληροφορίες Χρήστη</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">Επιλογή Επαφών</translation>
     </message>
 </context>
 </TS>

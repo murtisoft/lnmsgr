@@ -44,14 +44,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thanks</source>
-        <translation type="vanished">Agradecimentos</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Licença</translation>
-    </message>
-    <message>
         <location line="+77"/>
         <source>Close</source>
         <translation>Fechar</translation>
@@ -211,17 +203,6 @@
     </message>
 </context>
 <context>
-    <name>HelpWindow</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Formulário 04</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Fechar</translation>
-    </message>
-</context>
-<context>
     <name>HistoryWindow</name>
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
@@ -285,7 +266,7 @@
 <context>
     <name>QWidgetTextControl</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="+606"/>
+        <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
@@ -400,10 +381,6 @@
         <translation>Um clique no ícone da bandeja para abrir</translation>
     </message>
     <message>
-        <source>Show balloon notifications in tray</source>
-        <translation type="vanished">Mostrar balões de notificações na bandeja</translation>
-    </message>
-    <message>
         <location line="+14"/>
         <source>Minimize main window using tray icon</source>
         <translation>Minimizar janela principal usando o ícone da bandeja</translation>
@@ -422,18 +399,6 @@
         <location line="+89"/>
         <source>Personal</source>
         <translation>Pessoal</translation>
-    </message>
-    <message>
-        <source>User name as seen by contacts:</source>
-        <translation type="vanished">Nome de usuário que será visto pelos contatos:</translation>
-    </message>
-    <message>
-        <source>First Name:</source>
-        <translation type="vanished">Primeiro Nome:</translation>
-    </message>
-    <message>
-        <source>Last Name:</source>
-        <translation type="vanished">Último Nome:</translation>
     </message>
     <message>
         <location line="+122"/>
@@ -459,10 +424,6 @@
         <location line="+66"/>
         <source>Message Window</source>
         <translation>Janela de Mensagem</translation>
-    </message>
-    <message>
-        <source>Set incoming messages foreground</source>
-        <translation type="vanished">Ajustar recebimento de mensagens em segundo plano</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -509,22 +470,6 @@
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Message Font</source>
-        <translation type="vanished">Fonte da mensagem</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Mudar Fonte...</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Mudar Cor...</translation>
-    </message>
-    <message>
-        <source>Incoming message text size:</source>
-        <translation type="vanished">Tamanho de texto das mensagens recebidas:</translation>
     </message>
     <message>
         <location line="-520"/>
@@ -849,10 +794,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Chat Theme</source>
-        <translation type="vanished">Tema do Bate-Papo</translation>
-    </message>
-    <message>
         <location line="+59"/>
         <source>Contacts List</source>
         <translation>Lista de Contatos</translation>
@@ -951,21 +892,6 @@
         <location line="+20"/>
         <source>Close</source>
         <translation>Fechar</translation>
-    </message>
-</context>
-<context>
-    <name>UpdateWindow</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Formulário 07</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Fechar</translation>
-    </message>
-    <message>
-        <source>Recheck Version</source>
-        <translation type="vanished">Re-checar Versão</translation>
     </message>
 </context>
 <context>
@@ -1104,7 +1030,7 @@
 <context>
     <name>lmChatLog</name>
     <message>
-        <location filename="../../sources/widgetchatlog.cpp" line="+146"/>
+        <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
         <translation type="unfinished">Esta mensagem não foi enviada a %1:</translation>
     </message>
@@ -1114,12 +1040,18 @@
         <translation type="unfinished">Sua mensagem não foi enviada.</translation>
     </message>
     <message>
-        <location line="+491"/>
+        <location line="+133"/>
+        <location line="+21"/>
+        <source>%1 (Broadcast)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+347"/>
         <source>Broadcast message from %1:</source>
         <translation type="unfinished">Transmissão de mensagem de %1:</translation>
     </message>
     <message>
-        <location line="+161"/>
+        <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1257,7 +1189,7 @@
         <translation type="unfinished">%1 saiu desta conversa</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+258"/>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;Copiar</translation>
     </message>
@@ -1360,7 +1292,7 @@
 <context>
     <name>lmFormChat</name>
     <message>
-        <location filename="../../sources/aformchat.cpp" line="-345"/>
+        <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
         <translation type="unfinished">Conversa em Grupo</translation>
     </message>
@@ -1375,7 +1307,7 @@
         <translation type="unfinished">Transmissão de %1</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+54"/>
         <source>%1 sends a file...</source>
         <translation type="unfinished">%1 está enviando um arquivo...</translation>
     </message>
@@ -1385,7 +1317,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+349"/>
+        <location line="+350"/>
         <source>Save Conversation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1508,7 +1440,7 @@
         <translation type="unfinished">Conversa em Grupo</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+135"/>
         <source>%1 says...</source>
         <translation type="unfinished">%1 diz...</translation>
     </message>
@@ -1553,7 +1485,7 @@
         <translation type="unfinished">Adicionar pessoas a esta conversa</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+72"/>
         <source>You are no longer connected.</source>
         <translation type="unfinished">Você não está mais conectado.</translation>
     </message>
@@ -1579,7 +1511,7 @@
 <context>
     <name>lmFormMain</name>
     <message>
-        <location filename="../../sources/aformmain.cpp" line="+267"/>
+        <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
         <translation type="unfinished">%1 está on-line.</translation>
     </message>
@@ -1599,12 +1531,12 @@
         <translation type="unfinished">Você não está mais conectado.</translation>
     </message>
     <message>
-        <location line="+228"/>
+        <location line="+262"/>
         <source>Select avatar picture</source>
         <translation type="unfinished">Selecionar imagem de exibição</translation>
     </message>
     <message>
-        <location line="+385"/>
+        <location line="+392"/>
         <source>&amp;Messenger</source>
         <translation type="unfinished">&amp;Messenger</translation>
     </message>
@@ -1714,7 +1646,7 @@
         <translation type="unfinished">&amp;Procurar mais imagens...</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
         <translation type="unfinished">O %1 continuará aberto no segundo plano. Dê duplo-clique neste ícone para restaurar a janela do programa.</translation>
     </message>
@@ -1747,7 +1679,7 @@
         <translation type="unfinished">Redefinir Preferências</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
         <translation type="unfinished">&lt;File Not Found&gt;</translation>
     </message>
@@ -1851,10 +1783,6 @@
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
         <translation type="unfinished">&apos;%1&apos; foi enviado a %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="obsolete">Transferência de arquivo completa</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2124,769 +2052,9 @@ Help us grow by sharing the project with others!</source>
 <context>
     <name>lmWidgetThresholdSlider</name>
     <message>
-        <location filename="../../sources/widgetthresholdslider.cpp" line="+197"/>
+        <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>lmcAboutDialog</name>
-    <message>
-        <source>About %1</source>
-        <translation type="vanished">Sobre o %1</translation>
-    </message>
-</context>
-<context>
-    <name>lmcBroadcastWindow</name>
-    <message>
-        <source>Send Broadcast Message</source>
-        <translation type="vanished">Transmitir Mensagem</translation>
-    </message>
-    <message>
-        <source>Change Font Size</source>
-        <translation type="vanished">Mudar Tamanho da Fonte</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Inserir Smiley</translation>
-    </message>
-    <message>
-        <source>No recipient selected</source>
-        <translation type="vanished">Nenhum destinatário selecionado</translation>
-    </message>
-    <message>
-        <source>Please select at least one recipient to send a broadcast.</source>
-        <translation type="vanished">Por favor selecione pelo menos um destinatário para enviar uma transmissão.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="vanished">Você não está mais conectado. Transmissões de mensagens não poderão ser feitas.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatRoomWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Conversa em Grupo</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 diz...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Selecionar Fonte</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Selecionar Cor</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Salvar Conversa</translation>
-    </message>
-    <message>
-        <source>Participants</source>
-        <translation type="vanished">Participantes</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Conversa</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Enviar &amp;Arquivo</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Obter &amp;Informação</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Inserir Smiley</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Salvar como...</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Salvar esta conversa</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Mudar Fonte...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Mudar fonte da mensagem</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Mudar Cor...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Mudar cor do texto da mensagem</translation>
-    </message>
-    <message>
-        <source>&amp;Add Contacts...</source>
-        <translation type="vanished">&amp;Adicionar Contatos...</translation>
-    </message>
-    <message>
-        <source>Add people to this conversation</source>
-        <translation type="vanished">Adicionar pessoas a esta conversa</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Você não está mais conectado.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Conversa</translation>
-    </message>
-    <message>
-        <source>Public Chat</source>
-        <translation type="vanished">Bate-Papo Público</translation>
-    </message>
-</context>
-<context>
-    <name>lmcChatWindow</name>
-    <message>
-        <source>Group Conversation</source>
-        <translation type="vanished">Conversa em Grupo</translation>
-    </message>
-    <message>
-        <source>%1 says...</source>
-        <translation type="vanished">%1 diz...</translation>
-    </message>
-    <message>
-        <source>Broadcast from %1</source>
-        <translation type="vanished">Transmissão de %1</translation>
-    </message>
-    <message>
-        <source>%1 sends a file...</source>
-        <translation type="vanished">%1 está enviando um arquivo...</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Selecionar Fonte</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Selecionar Cor</translation>
-    </message>
-    <message>
-        <source>Save Conversation</source>
-        <translation type="vanished">Salva esta conversa</translation>
-    </message>
-    <message>
-        <source>Insert Smiley</source>
-        <translation type="vanished">Inserir Smiley</translation>
-    </message>
-    <message>
-        <source>Send A &amp;File...</source>
-        <translation type="vanished">Enviar um &amp;Arquivo...</translation>
-    </message>
-    <message>
-        <source>&amp;Save As...</source>
-        <translation type="vanished">&amp;Salvar como...</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Histórico</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">&amp;Transferências de Arquivos</translation>
-    </message>
-    <message>
-        <source>Send a file to %1</source>
-        <translation type="vanished">Enviar um arquivo para %1</translation>
-    </message>
-    <message>
-        <source>Save this conversation</source>
-        <translation type="vanished">Salvar esta conversa</translation>
-    </message>
-    <message>
-        <source>View History</source>
-        <translation type="vanished">Exibir Histórico</translation>
-    </message>
-    <message>
-        <source>View File Transfers</source>
-        <translation type="vanished">Exibir Transferências de Arquivos</translation>
-    </message>
-    <message>
-        <source>Change Font...</source>
-        <translation type="vanished">Mudar Fonte...</translation>
-    </message>
-    <message>
-        <source>Change message font</source>
-        <translation type="vanished">Mudar fonte da mensagem</translation>
-    </message>
-    <message>
-        <source>Change Color...</source>
-        <translation type="vanished">Mudar Cor...</translation>
-    </message>
-    <message>
-        <source>Change message text color</source>
-        <translation type="vanished">Mudar cor do texto da mensagem</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Você não está mais conectado.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 está off-line.</translation>
-    </message>
-    <message>
-        <source>%1 is away.</source>
-        <translation type="vanished">%1 está ausente.</translation>
-    </message>
-    <message>
-        <source>%1 is busy. You may be interrupting.</source>
-        <translation type="vanished">%1 está ocupado. Você pode estar interrompendo algo.</translation>
-    </message>
-    <message>
-        <source>Conversation</source>
-        <translation type="vanished">Conversa</translation>
-    </message>
-</context>
-<context>
-    <name>lmcCore</name>
-    <message>
-        <source>Your preferences file is corrupt or invalid.
-
-%1 is unable to recover your settings.</source>
-        <translation type="vanished">Seu arquivo de preferências está corrompido ou inválido.
-
-O %1 é incapaz de recuperar suas configurações.</translation>
-    </message>
-    <message>
-        <source>Preferences could not be imported from &apos;%1&apos;.
-
-File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="vanished">Não pode importar as preferências do &apos;%1&apos;.
-
-O arquivo não existe, ou não é compitível com esta versão do %2.</translation>
-    </message>
-    <message>
-        <source>LAYOUT_DIRECTION</source>
-        <translation type="vanished">LAYOUT_DIRECTION</translation>
-    </message>
-    <message>
-        <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="vanished">Um conflito de endereço de porta foi detectado. O %1 será fechado agora.</translation>
-    </message>
-    <message>
-        <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="vanished">%1 não pode iniciar porque outro programa está usando a porta que foi configurada para ser usada pelo %2.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHelpWindow</name>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Ajuda</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Welcome to LAN Messenger Help&lt;/h2&gt;&lt;h3&gt;Help&lt;/h3&gt;&lt;p&gt;You can find documentation on LAN Messenger&apos;s &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt; website.&lt;/p&gt;&lt;p&gt;Before asking any question, please refer yourself to the &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;You might then get (and give) help on the &lt;a href=&apos;%3&apos;&gt;Support Forums&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribute to the project&lt;/h3&gt;&lt;p&gt;You can help the LAN Messenger project giving some of your time to help the community, to translate the application or documentation, and to test the program. And of course, you can &lt;b&gt;promote&lt;/b&gt; LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;&lt;/head&gt;&lt;body&gt;&lt;h2&gt;Bem-vindo à ajuda do LAN Messenger&lt;/h2&gt;&lt;h3&gt;Ajuda&lt;/h3&gt;&lt;p&gt;Você pode encontrar documentação sobre o LAN Messenger no website &lt;a href=&apos;%1&apos;&gt;wiki&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Antes de fazer qualquer pergunta, pesquise no &lt;a href=&apos;%2&apos;&gt;FAQ&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Você poderá obter ajuda (e também poderá ajudar) nos &lt;a href=&apos;%3&apos;&gt;Fórums de Suporte&lt;/a&gt;.&lt;/p&gt;&lt;h3&gt;Contribua com o projeto.&lt;/h3&gt;&lt;p&gt;Você pode colaborar com o projeto LAN Messenger dedicando um pouco do seu tempo para ajudar a comunidade, traduzir o programa ou a documentação, e testar o programa. E é claro, você também pode ajudar-nos a &lt;b&gt;promover&lt;/b&gt; o LAN Messenger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>lmcHistoryWindow</name>
-    <message>
-        <source>Message History</source>
-        <translation type="vanished">Histórico de Mensagens</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMainWindow</name>
-    <message>
-        <source>%1 is online.</source>
-        <translation type="vanished">%1 está on-line.</translation>
-    </message>
-    <message>
-        <source>%1 is offline.</source>
-        <translation type="vanished">%1 está off-line.</translation>
-    </message>
-    <message>
-        <source>You are online.</source>
-        <translation type="vanished">Você está on-line.</translation>
-    </message>
-    <message>
-        <source>You are no longer connected.</source>
-        <translation type="vanished">Você não está mais conectado.</translation>
-    </message>
-    <message>
-        <source>Select avatar picture</source>
-        <translation type="vanished">Selecionar imagem de exibição</translation>
-    </message>
-    <message>
-        <source>Add New Group</source>
-        <translation type="vanished">Adicionar Novo Grupo</translation>
-    </message>
-    <message>
-        <source>Enter a name for the group</source>
-        <translation type="vanished">Insira um nome para o grupo</translation>
-    </message>
-    <message>
-        <source>A group named &apos;%1&apos; already exists. Please enter a different name.</source>
-        <translation type="vanished">Um grupo chamado &apos;%1&apos; já existe. Por favor, insira um nome diferente.</translation>
-    </message>
-    <message>
-        <source>Rename Group</source>
-        <translation type="vanished">Renomear Grupo</translation>
-    </message>
-    <message>
-        <source>Enter a new name for the group</source>
-        <translation type="vanished">Insira um novo nome para o grupo</translation>
-    </message>
-    <message>
-        <source>&amp;Messenger</source>
-        <translation type="vanished">&amp;Messenger</translation>
-    </message>
-    <message>
-        <source>&amp;New Chat Room</source>
-        <translation type="vanished">&amp;Nova Sala de Bate-Papo</translation>
-    </message>
-    <message>
-        <source>&amp;Public Chat</source>
-        <translation type="vanished">&amp;Bate-Papo Público</translation>
-    </message>
-    <message>
-        <source>&amp;Refresh Contacts List</source>
-        <translation type="vanished">Atualizar &amp;Lista de Contatos</translation>
-    </message>
-    <message>
-        <source>E&amp;xit</source>
-        <translation type="vanished">Sai&amp;r</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">&amp;Ferramentas</translation>
-    </message>
-    <message>
-        <source>&amp;History</source>
-        <translation type="vanished">&amp;Histórico</translation>
-    </message>
-    <message>
-        <source>File &amp;Transfers</source>
-        <translation type="vanished">&amp;Transferências de Arquivos</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="vanished">&amp;Preferências</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">&amp;Ajuda</translation>
-    </message>
-    <message>
-        <source>%1 &amp;online</source>
-        <translation type="vanished">%1 &amp;on-line</translation>
-    </message>
-    <message>
-        <source>Check for &amp;Updates...</source>
-        <translation type="vanished">&amp;Verificar se há Atualizações...</translation>
-    </message>
-    <message>
-        <source>&amp;About</source>
-        <translation type="vanished">&amp;Sobre</translation>
-    </message>
-    <message>
-        <source>&amp;Show %1</source>
-        <translation type="vanished">&amp;Exibir %1</translation>
-    </message>
-    <message>
-        <source>&amp;Change Status</source>
-        <translation type="vanished">&amp;Alterar Status</translation>
-    </message>
-    <message>
-        <source>Add &amp;New Group</source>
-        <translation type="vanished">Adicionar um &amp;Novo Grupo</translation>
-    </message>
-    <message>
-        <source>&amp;Rename This Group</source>
-        <translation type="vanished">&amp;Renomear Este Grupo</translation>
-    </message>
-    <message>
-        <source>&amp;Delete This Group</source>
-        <translation type="vanished">&amp;Deletar Este Grupo</translation>
-    </message>
-    <message>
-        <source>&amp;Conversation</source>
-        <translation type="vanished">&amp;Conversa</translation>
-    </message>
-    <message>
-        <source>Send &amp;Broadcast Message</source>
-        <translation type="vanished">&amp;Transmitir Mensagem</translation>
-    </message>
-    <message>
-        <source>Send &amp;File</source>
-        <translation type="vanished">Enviar &amp;Arquivo</translation>
-    </message>
-    <message>
-        <source>Get &amp;Information</source>
-        <translation type="vanished">Obter &amp;Informação</translation>
-    </message>
-    <message>
-        <source>&amp;Browse for more pictures...</source>
-        <translation type="vanished">&amp;Procurar mais imagens...</translation>
-    </message>
-    <message>
-        <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="vanished">O %1 continuará aberto no segundo plano. Dê duplo-clique neste ícone para restaurar a janela do programa.</translation>
-    </message>
-    <message>
-        <source>%1 - Not Connected</source>
-        <translation type="vanished">%1 - Não Conectado</translation>
-    </message>
-</context>
-<context>
-    <name>lmcMessageLog</name>
-    <message>
-        <source>This message was not delivered to %1:</source>
-        <translation type="vanished">Esta mensagem não foi enviada a %1:</translation>
-    </message>
-    <message>
-        <source>Your message was not sent.</source>
-        <translation type="vanished">Sua mensagem não foi enviada.</translation>
-    </message>
-    <message>
-        <source>Broadcast message from %1:</source>
-        <translation type="vanished">Transmissão de mensagem de %1:</translation>
-    </message>
-    <message>
-        <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="vanished">Enviando &apos;%1&apos; para %2.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Cancelar</translation>
-    </message>
-    <message>
-        <source>%1 is sending you a file:</source>
-        <translation type="vanished">%1 está enviando um arquivo para você:</translation>
-    </message>
-    <message>
-        <source>%1 sends you a file:</source>
-        <translation type="vanished">%1 envia um arquivo para você:</translation>
-    </message>
-    <message>
-        <source>File has been accepted automatically.</source>
-        <translation type="obsolete">Arquivo foi aceito automaticamente.</translation>
-    </message>
-    <message>
-        <source>Accept</source>
-        <translation type="vanished">Aceitar</translation>
-    </message>
-    <message>
-        <source>Decline</source>
-        <translation type="vanished">Declinar</translation>
-    </message>
-    <message>
-        <source>Accepted</source>
-        <translation type="vanished">Aceito</translation>
-    </message>
-    <message>
-        <source>You have accepted the file.</source>
-        <translation type="obsolete">Você aceitou receber o arquivo.</translation>
-    </message>
-    <message>
-        <source>Declined</source>
-        <translation type="vanished">Declinado</translation>
-    </message>
-    <message>
-        <source>You have declined the file.</source>
-        <translation type="obsolete">Você recusou o arquivo.</translation>
-    </message>
-    <message>
-        <source>Canceled</source>
-        <translation type="vanished">Cancelado</translation>
-    </message>
-    <message>
-        <source>Interrupted</source>
-        <translation type="vanished">Interrompido</translation>
-    </message>
-    <message>
-        <source>Completed</source>
-        <translation type="vanished">Completo</translation>
-    </message>
-    <message>
-        <source>%1 is typing...</source>
-        <translation type="vanished">%1 está digitando...</translation>
-    </message>
-    <message>
-        <source>%1 has entered text</source>
-        <translation type="vanished">%1 entrou com o texto</translation>
-    </message>
-    <message>
-        <source>%1 has joined this conversation</source>
-        <translation type="vanished">%1 entrou nesta conversa</translation>
-    </message>
-    <message>
-        <source>%1 has left this conversation</source>
-        <translation type="vanished">%1 saiu desta conversa</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="vanished">&amp;Copiar</translation>
-    </message>
-    <message>
-        <source>Select &amp;All</source>
-        <translation type="vanished">Selecionar &amp;Tudo</translation>
-    </message>
-</context>
-<context>
-    <name>lmcSettingsDialog</name>
-    <message>
-        <source>Save History</source>
-        <translation type="vanished">Salvar Histórico</translation>
-    </message>
-    <message>
-        <source>Select folder</source>
-        <translation type="vanished">Selecionar pasta</translation>
-    </message>
-    <message>
-        <source>Select Font</source>
-        <translation type="vanished">Selecionar Fonte</translation>
-    </message>
-    <message>
-        <source>Select Color</source>
-        <translation type="vanished">Selecionar Cor</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="vanished">Tem certeza de que quer redefinir suas preferências do %1?</translation>
-    </message>
-    <message>
-        <source>Reset Preferences</source>
-        <translation type="vanished">Redefinir Preferências</translation>
-    </message>
-    <message>
-        <source>&lt;File Not Found&gt;</source>
-        <translation type="vanished">&lt;File Not Found&gt;</translation>
-    </message>
-    <message>
-        <source>Select sound</source>
-        <translation type="vanished">Selecionar som</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="vanished">Preferências</translation>
-    </message>
-    <message>
-        <source>System Tray (Not Available)</source>
-        <translation type="vanished">Bandeja do Sistema (Não Disponível)</translation>
-    </message>
-    <message>
-        <source>Status Alerts (Not Available)</source>
-        <translation type="vanished">Alertas de Status (Não Disponível)</translation>
-    </message>
-    <message>
-        <source>Sounds (Not Available)</source>
-        <translation type="vanished">Sons (Não Disponível)</translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="vanished">Verificar se há atualizações</translation>
-    </message>
-</context>
-<context>
-    <name>lmcStrings</name>
-    <message>
-        <source>LAN Messenger</source>
-        <translation type="vanished">LAN Messenger</translation>
-    </message>
-    <message>
-        <source>LAN Messenger is a free peer-to-peer messaging application for
-intra-network communication and does not require a server.
-LAN Messenger works on essentially every popular desktop platform.</source>
-        <translation type="vanished">LAN Messenger é um aplicativo grátis e livre para mensagens P2P numa rede local e que não requer um servidor.
-LAN Messenger funciona em todas as plataformas desktop mais conhecidas.</translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="vanished">Automático</translation>
-    </message>
-    <message>
-        <source>Small text</source>
-        <translation type="vanished">Texto pequeno</translation>
-    </message>
-    <message>
-        <source>Medium text</source>
-        <translation type="vanished">Texto médio</translation>
-    </message>
-    <message>
-        <source>Large text</source>
-        <translation type="vanished">Texto grande</translation>
-    </message>
-    <message>
-        <source>Available</source>
-        <translation type="vanished">Disponível</translation>
-    </message>
-    <message>
-        <source>Busy</source>
-        <translation type="vanished">Ocupado</translation>
-    </message>
-    <message>
-        <source>Do Not Disturb</source>
-        <translation type="vanished">Não Pertube</translation>
-    </message>
-    <message>
-        <source>Be Right Back</source>
-        <translation type="vanished">Breve Retorno</translation>
-    </message>
-    <message>
-        <source>Away</source>
-        <translation type="vanished">Ausente</translation>
-    </message>
-    <message>
-        <source>Appear Offline</source>
-        <translation type="vanished">Aparecer como Off-Line</translation>
-    </message>
-    <message>
-        <source>Incoming message</source>
-        <translation type="vanished">Recebendo mensagem</translation>
-    </message>
-    <message>
-        <source>User is online</source>
-        <translation type="vanished">Usuário está on-line</translation>
-    </message>
-    <message>
-        <source>User is offline</source>
-        <translation type="vanished">Usuário está off-line</translation>
-    </message>
-    <message>
-        <source>Incoming file transfer</source>
-        <translation type="vanished">Recebendo arquivo</translation>
-    </message>
-    <message>
-        <source>File transfer completed</source>
-        <translation type="vanished">Transferência de arquivo completa</translation>
-    </message>
-    <message>
-        <source>Incoming public message</source>
-        <translation type="vanished">Recebendo mensagem pública</translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="vanished">5 minutos</translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="vanished">10 minutos</translation>
-    </message>
-    <message>
-        <source>15 minutes</source>
-        <translation type="vanished">15 minutos</translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="vanished">20 minutos</translation>
-    </message>
-    <message>
-        <source>30 minutes</source>
-        <translation type="vanished">30 minutos</translation>
-    </message>
-    <message>
-        <source>45 minutes</source>
-        <translation type="vanished">45 minutos</translation>
-    </message>
-    <message>
-        <source>60 minutes</source>
-        <translation type="vanished">1 hora</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <translation type="vanished">Nunca</translation>
-    </message>
-    <message>
-        <source>Detailed</source>
-        <translation type="vanished">Detalhado</translation>
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="vanished">Compacto</translation>
-    </message>
-</context>
-<context>
-    <name>lmcTransferWindow</name>
-    <message>
-        <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="vanished">&apos;%1&apos; foi enviado a %2.</translation>
-    </message>
-    <message>
-        <source>File Transfer Completed</source>
-        <translation type="vanished">Transferência de arquivo completa</translation>
-    </message>
-    <message>
-        <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="vanished">&apos;%1&apos; foi recebido de %2.</translation>
-    </message>
-    <message>
-        <source>File Transfers</source>
-        <translation type="vanished">Transferências de Arquivos</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Cancelar</translation>
-    </message>
-    <message>
-        <source>Show In Folder</source>
-        <translation type="vanished">Mostrar a Pasta</translation>
-    </message>
-    <message>
-        <source>Remove From List</source>
-        <translation type="vanished">Remover da Lista</translation>
-    </message>
-    <message>
-        <source>Calculating time</source>
-        <translation type="vanished">Calculando tempo</translation>
-    </message>
-    <message>
-        <source>/sec</source>
-        <translation type="vanished">/sec</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUpdateWindow</name>
-    <message>
-        <source>%1 updates</source>
-        <translation type="vanished">Atualizações de %1</translation>
-    </message>
-    <message>
-        <source>Launching an update request...</source>
-        <translation type="vanished">Enviando um pedido de atualização...</translation>
-    </message>
-    <message>
-        <source>An error occured while checking for updates.</source>
-        <translation type="vanished">Houve um erro ao verificar se havia atualizações.</translation>
-    </message>
-    <message>
-        <source>The new version %1 is available on %2 web site.</source>
-        <translation type="vanished">Nova versão %1 disponível no site do %2.</translation>
-    </message>
-    <message>
-        <source>You have the latest version of %1.</source>
-        <translation type="vanished">Você já está usando a versão mais recente do %1.</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserInfoWindow</name>
-    <message>
-        <source>User Information</source>
-        <translation type="vanished">Informação do Usuário</translation>
-    </message>
-</context>
-<context>
-    <name>lmcUserSelectDialog</name>
-    <message>
-        <source>Select Contacts</source>
-        <translation type="vanished">Selecionar Contatos</translation>
     </message>
 </context>
 </TS>
