@@ -259,7 +259,7 @@ void lmFormChat::stop(void) {
             if(!groupMode)
                 History::save(peerNames.value(peerId), QDateTime::currentDateTime(), &szMessageLog);
             else
-                History::save(tr("Group Conversation"), QDateTime::currentDateTime(), &szMessageLog);
+                History::save(tr("Group Conversation"), QDateTime::currentDateTime(), &szMessageLog, false);
             dataSaved = true;
         } else {
             pMessageLog->saveMessageLog(QDir(DefinitionsDir::cacheDir()).absoluteFilePath("msg_" + peerId + ".tmp"));

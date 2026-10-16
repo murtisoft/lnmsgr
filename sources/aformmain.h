@@ -119,6 +119,7 @@ private:
 	QString fullUserName;		//	un-elided text of lblUserName
 	QString fullNote;			//	un-elided text of txtNote
 	bool noteElided;			//	true while txtNote shows the elided display text instead of the editable note
+	void clearCache(void);
 	void createMainMenu(void);
 	void createTrayMenu(void);
 	void createTrayIcon(void);

@@ -105,7 +105,7 @@ private:
 	QString getChatStateMessage(ChatState chatState);
 	QString getChatRoomMessage(GroupMsgOp op);
     void fileOperation(QString fileId, QString action, QString fileType, FileMode mode = FM_Receive);
-	void decodeMessage(QString* lpszMessage, bool useDefaults = false);
+	void decodeMessage(QString* lpszMessage, bool useDefaults = false, bool linkPaths = false);
 	QString getTimeString(QDateTime* pTime);
 	void setUIText(void);
     QString getFileTempId(FileMode mode, QString fileId) const;

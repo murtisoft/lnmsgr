@@ -73,7 +73,7 @@ DBHeader History::readHeader(QDataStream* pStream) {
 	return header;
 }
 
-int History::save(QString user, QDateTime date, QString* lpszData) {
+int History::save(QString user, QDateTime date, QString* lpszData, bool merge) {
 	QString path = historyFile();
 	
 	QDir dir = QFileInfo(path).dir();
@@ -95,6 +95,32 @@ int History::save(QString user, QDateTime date, QString* lpszData) {
 		return -1;
 	}
 
+	//	One entry per peer and day: if there already is one, the new conversation is appended to it
+	if(merge) {
+		qint64 existing = findEntry(&stream, header.first, user, date.date());
+		if(existing != 0) {
+			QString marker;
+			qint64 next, oldDataPos;
+			stream.device()->seek(existing);
+			stream >> marker >> next;
+			qint64 fieldsPos = stream.device()->pos();	//	data offset and date follow, both fixed size
+			stream >> oldDataPos;
+
+			QByteArray oldBuffer;
+			stream.device()->seek(oldDataPos);
+			stream >> marker >> oldBuffer;
+
+			QString combined = combineData(QString::fromUtf8(oldBuffer), *lpszData);
+			qint64 newDataPos = insertData(&stream, &combined);	//	the old data stays behind unreferenced
+
+			stream.device()->seek(fieldsPos);
+			stream << newDataPos;
+			stream << date.toMSecsSinceEpoch();	//	the list shows when the conversation last continued
+			file.close();
+			return 0;
+		}
+	}
+
 	qint64 dataPos = insertData(&stream, lpszData);
 	qint64 newIndex = insertIndex(&stream, dataPos, user, date);
 	updateIndex(&stream, header.last, newIndex);
@@ -107,6 +133,33 @@ int History::save(QString user, QDateTime date, QString* lpszData) {
 
 	file.close();
 	return 0;
+}
+
+//	Returns the position of the latest index entry of this user on this day, 0 if there is none
+qint64 History::findEntry(QDataStream* pStream, qint64 first, const QString& user, const QDate& day) {
+	qint64 found = 0;
+	qint64 current = first;
+	while(current != 0) {
+		pStream->device()->seek(current);
+		QString marker, name;
+		qint64 next, dataPos, time;
+		*pStream >> marker >> next >> dataPos >> time >> name;
+		if(pStream->status() != QDataStream::Ok)
+			break;
+		if(name == user && QDateTime::fromMSecsSinceEpoch(time).date() == day)
+			found = current;
+		current = next;
+	}
+	return found;
+}
+
+//	Joins two saved conversations: the content of the second goes into the body of the first
+QString History::combineData(const QString& oldData, const QString& newData) {
+	int oldEnd = oldData.lastIndexOf("</body>");
+	int newStart = newData.indexOf("<body>");
+	if(oldEnd < 0 || newStart < 0)
+		return oldData + "\n" + newData;	//	plain text
+	return oldData.left(oldEnd) + newData.mid(newStart + 6);
 }
 
 qint64 History::insertData(QDataStream* pStream, QString* lpszData) {

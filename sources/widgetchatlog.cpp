@@ -31,6 +31,7 @@
 #include <algorithm>
 #include "sharedchatfunctions.h"
 #include "definitionsdir.h"
+#include "definitionssettings.h"
 
 inline constexpr char acceptOp[] = "accept";
 inline constexpr char declineOp[] = "decline";
@@ -278,6 +279,8 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
 	QDateTime time;
 
 	if(format == HtmlFormat) {
+		lmSettings settings;
+		const bool linkPaths = settings.value(IDS_PATHTOLINK, IDS_PATHTOLINK_VAL).toBool();
         QString html =
             "<html><head><style type='text/css'>"\
             "*{font-size: 9pt;}"\
@@ -289,7 +292,7 @@ QString lmChatLog::prepareMessageLogForSave(OutputFormat format) {
                 time.setMSecsSinceEpoch(msg.message.header(XN_TIME).toLongLong());
 				bool isBroadcast = (msg.type == MT_Broadcast);
 				QString messageText = msg.message.data(isBroadcast ? XN_BROADCAST : XN_MESSAGE);
-				decodeMessage(&messageText, true);
+				decodeMessage(&messageText, true, linkPaths);
 				QString senderText = isBroadcast ? tr("%1 (Broadcast)").arg(msg.userName) : msg.userName;
                 QString htmlMsg =
                     "<table width='100%'><tr>"
@@ -1165,13 +1168,15 @@ struct LinkSpan {
 //	(the url and path patterns do not work on html), then everything between the links is made html safe,
 //	so nothing the sender typed can reach the chat log as markup. The converted links are given a "data-isLink"
 //	custom attribute to differentiate them from the message content.
-void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults) {
+//	useDefaults is used when saving to history: links are always made, and smileys are not. Path links follow
+//	the setting, which the caller passes in as linkPaths because a log used for saving may not have it set.
+void lmChatLog::decodeMessage(QString* lpszMessage, bool useDefaults, bool linkPaths) {
 	if(!useDefaults && trimMessage)
 		*lpszMessage = lpszMessage->trimmed();
 
 	//	Path links need links to be allowed, and are never made when decoding with defaults
 	const bool detectLinks = useDefaults || allowLinks;
-	const bool detectPaths = !useDefaults && allowLinks && pathToLink;
+	const bool detectPaths = useDefaults ? linkPaths : (allowLinks && pathToLink);
 	const bool smileys = !useDefaults && showSmiley;
 
     static const QRegularExpression regexURL(   //for a URL to be converted into a link, it needs to have http://, https://, ftp:// or www.

@@ -79,7 +79,7 @@ struct MsgInfo {
 class History {
 public:
 	static QString historyFile(void);
-	static int save(QString user, QDateTime timeStamp, QString* lpszData);
+	static int save(QString user, QDateTime timeStamp, QString* lpszData, bool merge = true);
 	static QList<MsgInfo> getList(void);
 	static QString getMessage(qint64 offset);
 
@@ -90,6 +90,8 @@ private:
 	static qint64 insertData(QDataStream* pStream, QString* lpszData);
 	static qint64 insertIndex(QDataStream* pStream, qint64 dataPos, QString user, QDateTime timeStamp);
 	static void updateIndex(QDataStream* pData, qint64 oldIndex, qint64 newIndex);
+	static qint64 findEntry(QDataStream* pStream, qint64 first, const QString& user, const QDate& day);
+	static QString combineData(const QString& oldData, const QString& newData);
 };
 
 class lmHistoryTreeWidgetItem : public QTreeWidgetItem {

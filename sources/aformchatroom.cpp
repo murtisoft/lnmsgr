@@ -187,7 +187,7 @@ void lmFormChatRoom::stop(void) {
 	// window is closed by the user or by the application on exit
 	if(pMessageLog->hasData && saveHistory && groupMode && !dataSaved) {
 		QString szMessageLog = pMessageLog->prepareMessageLogForSave();
-		History::save(tr("Group Conversation"), QDateTime::currentDateTime(), &szMessageLog);
+		History::save(tr("Group Conversation"), QDateTime::currentDateTime(), &szMessageLog, false);
 		dataSaved = true;
 	}
 

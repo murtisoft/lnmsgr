@@ -61,6 +61,7 @@ lmFormMain::~lmFormMain(void) {
 }
 
 void lmFormMain::init(User* pLocalUser, bool connected) {
+	clearCache();	//	nothing from an earlier session is kept
 	setWindowIcon(QIcon(IDR_APPICON));
 
 	this->pLocalUser = pLocalUser;
@@ -211,11 +212,16 @@ void lmFormMain::stop(void) {
 
 	pTrayIcon->hide();
 
-	//	delete all temp files from cache
+	clearCache();
+}
+
+//	Saves conversations left in the cache to history, then deletes everything in it. Called at startup,
+//	when a previous session may have ended without cleaning up, and at exit.
+void lmFormMain::clearCache(void) {
 	QDir cacheDir(DefinitionsDir::cacheDir());
 	if(!cacheDir.exists())
 		return;
-    QDir::Filters filters = QDir::Files | QDir::Readable;
+    QDir::Filters filters = QDir::Files | QDir::Readable | QDir::Hidden;
     QDir::SortFlags sort = QDir::Name;
     //  save all cached conversations to history, then delete the files
     QString filter = "msg_*.tmp";
@@ -230,8 +236,8 @@ void lmFormMain::stop(void) {
     }
     pMessageLog->deleteLater();
 
-    //  delete all other temp files
-    filter = "*.tmp";
+    //  delete everything else (temp files, pasted screenshots)
+    filter = "*";
     fileNames = cacheDir.entryList(QStringList() << filter, filters, sort);
     foreach (QString fileName, fileNames) {
         QString filePath = cacheDir.absoluteFilePath(fileName);
