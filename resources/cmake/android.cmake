@@ -20,7 +20,7 @@ target_include_directories(LanMessenger PRIVATE
     ${VPX_DIR}/include/vpx
 )
 
-target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}")
+target_compile_definitions(LanMessenger PRIVATE PROJECT_VERSION="${PROJECT_VERSION}") #Passing cmake project version into code.
 target_link_libraries(LanMessenger PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Xml Qt6::Multimedia Qt6::MultimediaWidgets
     ${OPENSSL_DIR}/${ANDROID_ABI}/lib/libssl.a
@@ -34,5 +34,5 @@ qt6_add_translations(LanMessenger
     TS_FILES ${LanMessenger_LANGUAGES}
     RESOURCE_PREFIX "/translations"
     INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/sources
-    LUPDATE_OPTIONS -locations relative -source-language en -extensions cpp,h,ui
+    LUPDATE_OPTIONS -no-obsolete -locations relative -source-language en -extensions cpp,h,ui
 )
