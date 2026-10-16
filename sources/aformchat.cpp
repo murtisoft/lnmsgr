@@ -425,8 +425,8 @@ void lmFormChat::receiveMessage(MessageType type, QString* lpszUserId, MessageXm
 		data = pMessage->data(XN_STATUS);
 		statusIndex = Helper::statusIndexFromCode(data);
 		if(statusIndex != -1) {
-			//\tThe window icon and the info label describe the remote user. A status change of the local user
-			//\tis routed to this window as well (the user list needs it), it must not touch them.
+            //The window icon and the info label describe the remote user. A status change of the local user
+            //is routed to this window as well (the user list needs it), it must not touch them.
 			if(senderId == peerId) {
                 setWindowIcon(QIcon(statusPic[statusIndex]));
 				statusType[statusIndex] == StatusTypeOffline ? showStatus(IT_Offline, true) : showStatus(IT_Offline, false);

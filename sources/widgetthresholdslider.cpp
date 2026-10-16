@@ -119,8 +119,13 @@ void lmWidgetThresholdSlider::paintEvent(QPaintEvent*) {
 	const QRectF track = trackRect();
 	const qreal radius = track.height() / 2.0;
 
+	//	QPalette::Mid is only slightly different from Base in the dark color scheme, the outline disappears.
+	//	A translucent WindowText is a medium grey against both schemes.
+	QColor outline = color(QPalette::WindowText);
+	outline.setAlpha(110);
+
 	//	groove
-	painter.setPen(QPen(color(QPalette::Mid), 1));
+	painter.setPen(QPen(outline, 1));
 	painter.setBrush(color(QPalette::Base));
 	painter.drawRoundedRect(track, radius, radius);
 
@@ -133,7 +138,7 @@ void lmWidgetThresholdSlider::paintEvent(QPaintEvent*) {
 		painter.setClipPath(clip);
 		painter.setPen(Qt::NoPen);
 		const bool passing = m_externalTrigger ? m_triggered : (!m_thresholdVisible || m_level >= value());
-		painter.setBrush(!isEnabled() ? color(QPalette::Mid) : (passing ? kActiveColor : kQuietColor));
+		painter.setBrush(!isEnabled() ? outline : (passing ? kActiveColor : kQuietColor));
 		painter.drawRect(QRectF(track.left(), track.top(), levelX - track.left(), track.height()));
 		painter.restore();
 	}

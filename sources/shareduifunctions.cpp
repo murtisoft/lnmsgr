@@ -37,6 +37,11 @@
 #include <QScreen>
 #include <QGuiApplication>
 #include <QWidget>
+#include <QHash>
+#include <QImage>
+#include <QPixmap>
+#include <QPen>
+#include <QtMath>
 
 int Helper::indexOf(const QString array[], int size, const QString& value) {
 	for(int index = 0; index < size; index++) {
@@ -186,44 +191,89 @@ void Helper::changeColorScheme(int index){
     QCoreApplication::sendEvent(qApp, &event);
 }
 
+//Renders one emoji at a given device pixel scale to an image of size*scale pixels square.
+static QImage renderEmojiImage(const QString& emoji, int size, int scale, bool strikethrough) {
+    const int target = size * scale;
+    //Pixel size of the font. A pixel size does not depend on the screen dpi, unlike a point size.
+    //0.933 is what a 0.7 * size point font comes to at 96 dpi, so the icons keep the look they had.
+    const int fontPixels = qMax(1, qRound(target * 0.933));
+
+    QImage canvas(target * 2, target * 2, QImage::Format_ARGB32_Premultiplied);
+    canvas.fill(Qt::transparent);
+    QPainter p(&canvas);
+    QFont font = p.font();
+    font.setPixelSize(fontPixels);
+    p.setFont(font);
+    p.drawText(canvas.rect(), Qt::AlignCenter, emoji);
+    p.end();                                                                        //Render to a double size canvas
+
+    QImage result(target, target, QImage::Format_ARGB32_Premultiplied);
+    result.fill(Qt::transparent);
+
+    //Find the bounds of what was actually drawn
+    int top = canvas.height(), bottom = -1, left = canvas.width(), right = -1;
+    for (int y = 0; y < canvas.height(); y++) {
+        const QRgb* line = reinterpret_cast<const QRgb*>(canvas.constScanLine(y));
+        for (int x = 0; x < canvas.width(); x++) {
+            if (qAlpha(line[x]) > 0) {
+                top = qMin(top, y); bottom = qMax(bottom, y);
+                left = qMin(left, x); right = qMax(right, x);
+            }
+        }
+    }
+
+    if (bottom >= 0) {                                                              //Nothing drawn (empty text, missing glyph) leaves a blank icon.
+        QImage cropped = canvas.copy(left, top, right - left + 1, bottom - top + 1);
+        if (cropped.width() > target || cropped.height() > target)                  //A glyph larger than the icon is scaled down, not clipped.
+            cropped = cropped.scaled(target, target, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+        QPainter painter(&result);
+        painter.drawImage((target - cropped.width()) / 2, (target - cropped.height()) / 2, cropped);
+        painter.end();                                                              //Center and crop to actual canvas.
+                                                                                    //Because centering vector emojis is goddamn impossible.
+    }
+
+    if (strikethrough) {
+        QPainter painter(&result);
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setPen(QPen(Qt::red, qMax(2, size / 12) * scale, Qt::SolidLine, Qt::RoundCap));
+        painter.drawLine(QPoint(0, 0), QPoint(target - 1, target - 1));
+    }
+
+    return result;
+}
+
 //Renders emojis to a pixmap so they can be used as an icon. Unicode, so every OS has its own flavor.
 //Using colorful emojis, i am deliberately avoiding garbage monochrome brutalist iconpacks of the last decade and a half.
 //Man, i could write a fucking manifesto about this...
 QIcon Helper::renderEmoji(const QString& emoji, int size, bool strikethrough) {
-    QPixmap temp(size * 2, size * 2);
-    temp.fill(Qt::transparent);
-    QPainter p(&temp);
-    QFont font = p.font();
-    font.setPointSize(qRound(size * 0.7));
-    p.setFont(font);
-    p.drawText(temp.rect(), Qt::AlignCenter, emoji);
-    p.end();                                                                        //Render to a double size canvas
+    if (size <= 0)
+        return QIcon();
 
-    QImage img = temp.toImage();
-    int top = img.height(), bottom = 0, left = img.width(), right = 0;
-    for (int y = 0; y < img.height(); y++)
-        for (int x = 0; x < img.width(); x++)
-            if (qAlpha(img.pixel(x, y)) > 0) {
-                top = qMin(top, y); bottom = qMax(bottom, y);
-                left = qMin(left, x); right = qMax(right, x);
-            }
+    //The highest pixel ratio of any screen. The icon gets a pixmap for every whole ratio up to it, so it stays sharp
+    //on high dpi screens, and when a window is dragged between screens of different ratios.
+    int maxScale = 1;
+    for (const QScreen* pScreen : QGuiApplication::screens())
+        maxScale = qMax(maxScale, qCeil(pScreen->devicePixelRatio()));
 
-    QPixmap cropped = temp.copy(left, top, right - left + 1, bottom - top + 1);
+    //Icons are asked for again and again (avatars on every user list refresh, the mute buttons...). Rendering is
+    //not free, so render once. Like all pixmap work this belongs to the GUI thread, so no locking is needed.
+    static QHash<QString, QIcon> cache;
+    const QString key = emoji + QChar(0x1F) + QString::number(size) + QChar(0x1F)
+                      + QString::number(strikethrough ? 1 : 0) + QChar(0x1F) + QString::number(maxScale);
+    auto it = cache.constFind(key);
+    if (it != cache.constEnd())
+        return it.value();
 
-    QPixmap pixmap(size, size);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    int ox = (size - cropped.width()) / 2;
-    int oy = (size - cropped.height()) / 2;
-    painter.drawPixmap(ox, oy, cropped);                                            //Center and crop to actual canvas.
-                                                                                    //Because centering vector emojis is goddamn impossible.
-    if (strikethrough) {
-        painter.setRenderHint(QPainter::Antialiasing);
-        painter.setPen(QPen(Qt::red, qMax(2, size / 12), Qt::SolidLine, Qt::RoundCap));
-        painter.drawLine(pixmap.rect().topLeft(), pixmap.rect().bottomRight());
+    QIcon icon;
+    for (int scale = 1; scale <= maxScale; scale++) {
+        QPixmap pixmap = QPixmap::fromImage(renderEmojiImage(emoji, size, scale, strikethrough));
+        pixmap.setDevicePixelRatio(scale);
+        icon.addPixmap(pixmap);
     }
 
-    return QIcon(pixmap);
+    cache.insert(key, icon);
+    return icon;
 }
 
 static QPointer<QScreen> s_pMainScreen;
