@@ -245,11 +245,12 @@ void lmFormChatRoom::addUser(User* pUser) {
         emit messageSent(MT_GroupMessage, NULL, &xmlMessage);
     }
 
-    //	Local user cannot participate in public chat if status is offline
-    if(isLocal) {
-        bool offline = (statusType[Helper::statusIndexFromCode(pUser->status)] == StatusTypeOffline);
-        ui.txtMessage->setEnabled(!offline);
-        ui.txtMessage->setFocus();
+    //	A local user who appears offline cannot send to the public chat, everyone would see them there.
+    //	The text box stays usable; Send and Enter are blocked. Chat rooms do not care.
+    if(isLocal && !groupMode) {
+        int statusIndex = Helper::statusIndexFromCode(pUser->status);
+        bool offline = (statusIndex != -1 && statusType[statusIndex] == StatusTypeOffline);
+        ui.btnSend->setEnabled(!offline);
     }
 }
 
@@ -269,11 +270,12 @@ void lmFormChatRoom::updateUser(User* pUser) {
     if(groupMode)
         setWindowTitle(getWindowTitle());
 
-    //	Local user cannot participate in public chat if status is offline
-    if(pUser->id.compare(localId) == 0) {
-        bool offline = (statusType[Helper::statusIndexFromCode(pUser->status)] == StatusTypeOffline);
-        ui.txtMessage->setEnabled(!offline);
-        ui.txtMessage->setFocus();
+    //	A local user who appears offline cannot send to the public chat, everyone would see them there.
+    //	The text box stays usable; Send and Enter are blocked. Chat rooms do not care.
+    if(pUser->id.compare(localId) == 0 && !groupMode) {
+        int statusIndex = Helper::statusIndexFromCode(pUser->status);
+        bool offline = (statusIndex != -1 && statusType[statusIndex] == StatusTypeOffline);
+        ui.btnSend->setEnabled(!offline);
     }
 }
 
@@ -646,6 +648,8 @@ void lmFormChatRoom::setUIText(void) {
 }
 
 void lmFormChatRoom::sendMessage(void) {
+	if(!ui.btnSend->isEnabled())	//	stealth user in public chat, sending blocked (Send button and Enter key)
+		return;
 	if(ui.txtMessage->document()->isEmpty())
 		return;
 

@@ -23,8 +23,6 @@ endif()
 #——————————————————————————————————————————————————————————<< NOTES >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-#Remote user going stealth doesnt remove them from chatroom. Not sure if this was intended or just an oversight.
-#Avatar changes while appearing offline is sent to peers anyway.
 #File transfers should be displayed nested inside a regular message with timestamps.
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
 #    Encryption in the program only works 1 on 1. That kinda hinders those plans.
