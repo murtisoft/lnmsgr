@@ -6,22 +6,22 @@
     <message>
         <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Dialóg</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>&lt;Logo&gt;</source>
-        <translation></translation>
+        <translation>&lt;Logo&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
-        <translation></translation>
+        <translation>&lt;Názov aplikácie&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;_Qt Version&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;_Qt verzia&gt;</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -31,17 +31,17 @@
     <message>
         <location line="+21"/>
         <source>&lt;Description&gt;</source>
-        <translation></translation>
+        <translation>&lt;Popis&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prispievatelia</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Autorské práva</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location line="+132"/>
@@ -88,7 +88,7 @@
     <message>
         <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location line="+206"/>
@@ -98,12 +98,12 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location line="+213"/>
@@ -121,42 +121,42 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Microphone toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prepnúť mikrofón</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Speaker toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prepnúť reproduktor</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Camera toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prepnúť kameru</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C</translation>
     </message>
 </context>
 <context>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location line="+110"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Prilepiť</translation>
     </message>
 </context>
 <context>
@@ -276,7 +276,7 @@
     <message>
         <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Dialóg</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -301,7 +301,7 @@
         <location line="-2203"/>
         <location line="+775"/>
         <source>Voice &amp; Video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hlas &amp; Video</translation>
     </message>
     <message>
         <location line="-770"/>
@@ -348,7 +348,7 @@
     <message>
         <location line="-1943"/>
         <source>Start %1 on system startup</source>
-        <translation>Spustiť %1 pri štarte systemu</translation>
+        <translation>Spustiť %1 pri štarte systému</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -358,7 +358,7 @@
     <message>
         <location line="+7"/>
         <source>Enable Debug Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Povoliť ladenie protokolu</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -473,105 +473,105 @@
     <message>
         <location line="-520"/>
         <source>Show toast notifications in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zobrazovať toast oznámenia v oblasti oznámení</translation>
     </message>
     <message>
         <location line="+120"/>
         <source>User name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Používateľské meno :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>User name as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Používateľské meno, ako ho vidia kontakty</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Group :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skupina :</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Group as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skupina, ako ju vidia kontakty</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>First Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krstné meno :</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+20"/>
         <location line="+32"/>
         <source>For User Information dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pre dialóg Informácie o používateľovi</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Priezvisko :</translation>
     </message>
     <message>
         <location line="+165"/>
         <source>Show incoming messages without grabbing focus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zobrazovať prichádzajúce správy bez prevzatia fokusu</translation>
     </message>
     <message>
         <location line="+149"/>
         <source>Chat Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Text chatu</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Chat text size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Veľkosť textu chatu:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Only applies to new chat windows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Platí len pre nové okná chatu.</translation>
     </message>
     <message>
         <location line="+73"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofón</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+113"/>
         <source>Capture Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zariadenie na zachytávanie</translation>
     </message>
     <message>
         <location line="-87"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktivácia</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Continuous Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nepretržitý prenos</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Push to Talk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stlačiť pre hovor</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Voice Activity Threshold</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prah hlasovej aktivity</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Test</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+126"/>
@@ -608,7 +608,7 @@
         <location line="+220"/>
         <location line="+591"/>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location line="-799"/>
@@ -653,7 +653,7 @@
     <message>
         <location line="+6"/>
         <source>Provide feedback with sounds</source>
-        <translation>K notifikáciam prehrávať zvuky</translation>
+        <translation>K notifikáciám prehrávať zvuky</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -778,17 +778,17 @@
     <message>
         <location line="+82"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Farebná schéma</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Svetlá</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tmavá</translation>
     </message>
     <message>
         <location line="+59"/>
@@ -813,49 +813,49 @@
     <message>
         <location line="+25"/>
         <source>&lt;Enter&gt;</source>
-        <translation></translation>
+        <translation>&lt;Enter&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
-        <translation></translation>
+        <translation>&lt;Cmd + Enter&gt;</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hovory</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Enable global hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Povoliť globálne skratky</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skratky ovládajú aktívny hovor a fungujú aj keď %1 nie je aktívne okno.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Toggle microphone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prepnúť mikrofón:</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+17"/>
         <location line="+17"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Predvolené</translation>
     </message>
     <message>
         <location line="-27"/>
         <source>Toggle speaker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prepnúť reproduktor:</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Toggle camera:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prepnúť kameru:</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -865,7 +865,7 @@
     <message>
         <location line="+20"/>
         <source>OK</source>
-        <translation></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -878,7 +878,7 @@
     <message>
         <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location line="+74"/>
@@ -896,22 +896,22 @@
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Dialóg</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>&lt;Avatar&gt;</source>
-        <translation></translation>
+        <translation>&lt;Avatar&gt;</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&lt;User Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Používateľské meno&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Status&gt;</source>
-        <translation></translation>
+        <translation>&lt;Stav&gt;</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -953,7 +953,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
-        <translation></translation>
+        <translation>&lt;IP adresa&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -963,7 +963,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Prihlasovacie meno&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -973,7 +973,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Názov počítača&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -983,7 +983,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
-        <translation></translation>
+        <translation>&lt;Operačný systém&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -993,7 +993,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
-        <translation></translation>
+        <translation>&lt;Verzia programu&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1006,7 +1006,7 @@
     <message>
         <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Dialóg</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1040,7 +1040,7 @@
         <location line="+133"/>
         <location line="+21"/>
         <source>%1 (Broadcast)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Broadcast)</translation>
     </message>
     <message>
         <location line="+347"/>
@@ -1050,7 +1050,7 @@
     <message>
         <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Žiadam o hovor %1 od %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1062,30 +1062,30 @@
         <location line="-89"/>
         <location line="+28"/>
         <source>Call in progress.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hovor prebieha.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call declined.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hovor odmietnutý.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chyba hovoru.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hovor prerušený.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>%1 is requesting %2 call.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 žiada o hovor %2.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1134,12 +1134,12 @@
     <message>
         <location line="-35"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Otvoriť</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show in Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zobraziť v priečinku</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -1201,38 +1201,38 @@
     <message>
         <location filename="../../sources/lmcore.cpp" line="+75"/>
         <source>The firewall is blocking %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Firewall blokuje %1.</translation>
     </message>
     <message>
         <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Váš súbor nastavení je poškodený alebo neplatný. %1 nedokáže obnoviť vaše nastavenia.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nastavenia sa nepodarilo importovať z &apos;%1&apos;. Súbor nemusí existovať alebo nie je kompatibilný s touto verziou %2.</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+58"/>
         <source>LAYOUT_DIRECTION</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAYOUT_DIRECTION</translation>
     </message>
     <message>
         <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofón nie je k dispozícii. Váš hlas nemožno odoslať.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Your selected microphone is not available. Using %1 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vami vybraný mikrofón nie je k dispozícii. Namiesto toho sa používa %1.</translation>
     </message>
     <message>
         <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skratka %1 (%2) nie je aktívna: %3</translation>
     </message>
     <message>
         <location line="+489"/>
@@ -1268,17 +1268,17 @@
     <message>
         <location line="+60"/>
         <source>You are not connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie ste pripojený. Hromadnú správu nemožno odoslať.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select at least one recipient to send a broadcast.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vyberte aspoň jedného príjemcu na odoslanie hromadnej správy.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type a message to send.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Napíšte správu na odoslanie.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -1316,12 +1316,12 @@
     <message>
         <location line="+350"/>
         <source>Save Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uložiť konverzáciu</translation>
     </message>
     <message>
         <location line="+211"/>
         <source>Sent a nudge!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poslal(a) upozornenie!</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1331,37 +1331,37 @@
     <message>
         <location line="+1"/>
         <source>Send A File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poslať súbor...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poslať priečinok...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uložiť ako...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Upozornenie</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Voice Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hlasový hovor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Video Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Videohovor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Hang Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zavesiť</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1386,7 +1386,7 @@
     <message>
         <location line="+3"/>
         <source>Save this conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uložiť túto konverzáciu</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1421,12 +1421,12 @@
     <message>
         <location line="+23"/>
         <source>Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konverzácia</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Encrypted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šifrované</translation>
     </message>
 </context>
 <context>
@@ -1444,22 +1444,22 @@
     <message>
         <location line="+177"/>
         <source>Save Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uložiť konverzáciu</translation>
     </message>
     <message>
         <location line="+134"/>
         <source>Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konverzácia</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poslať súbor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Získať informácie</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1469,12 +1469,12 @@
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uložiť ako...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save this conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uložiť túto konverzáciu</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1489,7 +1489,7 @@
     <message>
         <location line="+25"/>
         <source>Chat Room</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chatovacia miestnosť</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1678,7 +1678,7 @@
     <message>
         <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;Súbor nenájdený&gt;</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -1688,65 +1688,65 @@
     <message>
         <location line="+82"/>
         <source>The microphone is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofón nie je k dispozícii.</translation>
     </message>
     <message>
         <location line="+12"/>
         <location line="+240"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zastaviť</translation>
     </message>
     <message>
         <location line="-201"/>
         <source>Default Communication Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Predvolené komunikačné zariadenie</translation>
     </message>
     <message>
         <location line="+14"/>
         <location line="+37"/>
         <source>Unknown device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neznáme zariadenie</translation>
     </message>
     <message>
         <location line="-36"/>
         <location line="+37"/>
         <source>%1 (Not connected)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Nepripojený)</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Still Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Statický obrázok</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Desktop %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Plocha %1</translation>
     </message>
     <message>
         <location line="+87"/>
         <source>Push to talk:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stlačiť pre hovor:</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: %2</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>%1 and %2 cannot share the same hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 a %2 nemôžu zdieľať rovnakú skratku.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stlačiť pre hovor vyžaduje globálne skratky. Povoľte ich na stránke Skratky.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stlačiť pre hovor vyžaduje kláves. Nastavte ho na stránke Skratky.</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -1756,22 +1756,22 @@
     <message>
         <location line="+13"/>
         <source>System Tray (Not Available)</source>
-        <translation type="unfinished">Oblasť oznámení (nie je k dispozícií)</translation>
+        <translation type="unfinished">Oblasť oznámení (nie je k dispozícii)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Status Alerts (Not Available)</source>
-        <translation type="unfinished">Notifikácie o zmene stavu (nie sú k dispozícií)</translation>
+        <translation type="unfinished">Notifikácie o zmene stavu (nie sú k dispozícii)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Sounds (Not Available)</source>
-        <translation type="unfinished">Zvuky (nie sú dispozícií)</translation>
+        <translation type="unfinished">Zvuky (nie sú k dispozícii)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Calls (Not Available)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hovory (nie sú k dispozícii)</translation>
     </message>
 </context>
 <context>
@@ -1838,53 +1838,53 @@
     <message>
         <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofón</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reproduktor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Use a single key combination.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Použite jednu kombináciu kláves.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tento kláves nemožno použiť ako globálnu skratku.</translation>
     </message>
     <message>
         <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skombinujte kláves s Ctrl, Alt alebo Win.</translation>
     </message>
     <message>
         <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rovnaká kombinácia ako skratka %1.</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Already in use by another application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Už používaná inou aplikáciou.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Windows refused the hotkey (error %1).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Windows odmietol skratku (chyba %1).</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Global hotkeys are not supported on this platform.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Globálne skratky nie sú na tejto platforme podporované.</translation>
     </message>
 </context>
 <context>
@@ -1903,7 +1903,13 @@ LAN Messenger works on essentially every popular desktop platform.
 You can support LAN Messenger by contributing code, translations,
 bug fixes or reports.
 Help us grow by sharing the project with others!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAN Messenger je bezplatná peer-to-peer aplikácia na zasielanie správ
+pre komunikáciu v rámci siete a nevyžaduje server.
+LAN Messenger funguje prakticky na každej populárnej desktopovej platforme.
+
+LAN Messenger môžete podporiť prispievaním kódu, prekladov,
+opráv chýb alebo správ.
+Pomôžte nám rásť zdieľaním projektu s ostatnými!</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -1913,22 +1919,22 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+6"/>
         <source>Small (8.25pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Malé (8.25pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium (9pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stredné (9pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Large (10.5pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Veľké (10.5pt)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Available</source>
-        <translation type="unfinished">K dispozícií</translation>
+        <translation type="unfinished">K dispozícii</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1988,52 +1994,52 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Microphone on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofón zapnutý</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofón vypnutý</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera zapnutá</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera vypnutá</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reproduktor zapnutý</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reproduktor vypnutý</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prichádzajúci hovor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Odchádzajúci hovor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Upozornenie</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Talking while microphone muted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hovorenie pri stlmenom mikrofóne</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2051,7 +2057,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 dB</translation>
     </message>
 </context>
 </TS>

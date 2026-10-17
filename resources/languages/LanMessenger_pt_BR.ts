@@ -6,7 +6,7 @@
     <message>
         <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
-        <translation>Diálogo 01</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -16,12 +16,12 @@
     <message>
         <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
-        <translation>&lt;Application Title&gt;</translation>
+        <translation>&lt;Título do Aplicativo&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;_Qt Version&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;_Qt Version&gt;</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -31,17 +31,17 @@
     <message>
         <location line="+21"/>
         <source>&lt;Description&gt;</source>
-        <translation>&lt;Description&gt;</translation>
+        <translation>&lt;Descrição&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Colaboradores</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Direitos autorais</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -88,7 +88,7 @@
     <message>
         <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
-        <translation>Formulário 02</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location line="+206"/>
@@ -98,12 +98,12 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
-        <translation>Formulário 03</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location line="+213"/>
@@ -121,42 +121,42 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Microphone toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alternar microfone</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Speaker toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alternar alto-falante</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Camera toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alternar câmera</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C</translation>
     </message>
 </context>
 <context>
@@ -179,17 +179,17 @@
     <message>
         <location line="+38"/>
         <source>To: </source>
-        <translation>Para:</translation>
+        <translation>Para: </translation>
     </message>
     <message>
         <location line="+0"/>
         <source>From: </source>
-        <translation>De:</translation>
+        <translation>De: </translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Completed</source>
-        <translation>Completo</translation>
+        <translation>Concluído</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
-        <translation>Formulário 05</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
-        <translation>Formulário 06</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location line="+110"/>
@@ -255,7 +255,7 @@
     <message>
         <location line="+25"/>
         <source>Change avatar</source>
-        <translation>Mudar imagem de exibição</translation>
+        <translation>Alterar avatar</translation>
     </message>
     <message>
         <location line="+116"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Colar</translation>
     </message>
 </context>
 <context>
@@ -276,7 +276,7 @@
     <message>
         <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
-        <translation>Diálogo 07</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -301,7 +301,7 @@
         <location line="-2203"/>
         <location line="+775"/>
         <source>Voice &amp; Video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voz e Vídeo</translation>
     </message>
     <message>
         <location line="-770"/>
@@ -358,7 +358,7 @@
     <message>
         <location line="+7"/>
         <source>Enable Debug Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ativar registro de depuração</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -439,17 +439,17 @@
     <message>
         <location line="+25"/>
         <source>Show emoticons in instant messages</source>
-        <translation>Mostrar emoctions em mensagens instantâneas</translation>
+        <translation>Mostrar emoticons em mensagens instantâneas</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Add time stamp to instant messages</source>
-        <translation>Adicionar timbre de horário às mensagens instantâneas</translation>
+        <translation>Adicionar carimbo de horário às mensagens instantâneas</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Show date in time stamp</source>
-        <translation>Mostrar data no timbre de horário</translation>
+        <translation>Mostrar data no carimbo de horário</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -469,110 +469,110 @@
     <message>
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Limpar mensagens ao fechar a janela</translation>
     </message>
     <message>
         <location line="-520"/>
         <source>Show toast notifications in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar notificações toast na bandeja</translation>
     </message>
     <message>
         <location line="+120"/>
         <source>User name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nome de usuário :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>User name as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nome de usuário visível aos contatos</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Group :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grupo :</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Group as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grupo visível aos contatos</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>First Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Primeiro Nome :</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+20"/>
         <location line="+32"/>
         <source>For User Information dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Para o diálogo de Informações do Usuário</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sobrenome :</translation>
     </message>
     <message>
         <location line="+165"/>
         <source>Show incoming messages without grabbing focus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar mensagens recebidas sem capturar o foco</translation>
     </message>
     <message>
         <location line="+149"/>
         <source>Chat Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Texto do Chat</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Chat text size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamanho do texto do chat:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Only applies to new chat windows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aplica-se apenas a novas janelas de chat.</translation>
     </message>
     <message>
         <location line="+73"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfone</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+113"/>
         <source>Capture Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispositivo de Captura</translation>
     </message>
     <message>
         <location line="-87"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ativação</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Continuous Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Transmissão Contínua</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Push to Talk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pressione para Falar</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Voice Activity Threshold</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Limite de Atividade de Voz</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Testar</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Câmera</translation>
     </message>
     <message>
         <location line="+126"/>
@@ -644,7 +644,7 @@
     <message>
         <location line="+7"/>
         <source>Suspend alerts when my status is Do Not Disturb</source>
-        <translation>Suspender alertas quando meu status é Não Pertube</translation>
+        <translation>Suspender alertas quando meu status é Não Perturbe</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -654,7 +654,7 @@
     <message>
         <location line="+6"/>
         <source>Provide feedback with sounds</source>
-        <translation>Prover comentários com sons</translation>
+        <translation>Fornecer feedback com sons</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -674,7 +674,7 @@
     <message>
         <location line="+7"/>
         <source>Suspend sound when my status is Do Not Disturb</source>
-        <translation>Suspender sons quando meu status é Não Pertube</translation>
+        <translation>Suspender sons quando meu status é Não Perturbe</translation>
     </message>
     <message>
         <location line="+64"/>
@@ -711,7 +711,8 @@
     <message>
         <location line="+37"/>
         <source>&lt;- Add</source>
-        <translation>&lt;- Adicionar</translation>
+        <translation>&lt;- Adicionar
+</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -746,7 +747,7 @@
     <message>
         <location line="+61"/>
         <source>Incoming File Request</source>
-        <translation>Requerimento para Recebimento de Arquivo</translation>
+        <translation>Solicitação de Recebimento de Arquivo</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -756,12 +757,12 @@
     <message>
         <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
-        <translation>Mostrar janela de Transferência de Arquivos ao mandar ou receber arquivos</translation>
+        <translation>Mostrar janela de Transferência de Arquivos ao enviar ou receber arquivos</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Bring window to foreground</source>
-        <translation>Colocar janela em segundo plano</translation>
+        <translation>Trazer janela para o primeiro plano</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -781,17 +782,17 @@
     <message>
         <location line="+82"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esquema de Cores</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Claro</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Escuro</translation>
     </message>
     <message>
         <location line="+59"/>
@@ -801,12 +802,12 @@
     <message>
         <location line="+8"/>
         <source>Contacts list view:</source>
-        <translation>Visualizar lista de contatos:</translation>
+        <translation>Visualização da lista de contatos:</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Show status as tooltip</source>
-        <translation>Mostar status como dica de ferramenta</translation>
+        <translation>Mostrar status como dica de ferramenta</translation>
     </message>
     <message>
         <location line="+75"/>
@@ -826,39 +827,39 @@
     <message>
         <location line="+27"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamadas</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Enable global hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ativar teclas de atalho globais</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">As teclas de atalho controlam a chamada ativa e funcionam mesmo quando o %1 não é a janela em foco.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Toggle microphone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alternar microfone:</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+17"/>
         <location line="+17"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Padrão</translation>
     </message>
     <message>
         <location line="-27"/>
         <source>Toggle speaker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alternar alto-falante:</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Toggle camera:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alternar câmera:</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -881,12 +882,12 @@
     <message>
         <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
-        <translation>Formulário 06</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location line="+74"/>
         <source>Clear List</source>
-        <translation>Apagar Lista</translation>
+        <translation>Limpar Lista</translation>
     </message>
     <message>
         <location line="+20"/>
@@ -899,7 +900,7 @@
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
-        <translation>Diálogo 08</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location line="+20"/>
@@ -909,7 +910,7 @@
     <message>
         <location line="+9"/>
         <source>&lt;User Name&gt;</source>
-        <translation>&lt;User Name&gt;</translation>
+        <translation>&lt;Nome de Usuário&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -936,7 +937,7 @@
     <message>
         <location line="-45"/>
         <source>Last Name:</source>
-        <translation>Último Nome:</translation>
+        <translation>Sobrenome:</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -956,7 +957,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
-        <translation>&lt;IP Address&gt;</translation>
+        <translation>&lt;Endereço IP&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -966,7 +967,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
-        <translation>&lt;Logon Name&gt;</translation>
+        <translation>&lt;Nome de Logon&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -976,7 +977,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
-        <translation>&lt;Computer Name&gt;</translation>
+        <translation>&lt;Nome do Computador&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -986,7 +987,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
-        <translation>&lt;Operating System&gt;</translation>
+        <translation>&lt;Sistema Operacional&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -996,7 +997,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
-        <translation>&lt;Messenger Version&gt;</translation>
+        <translation>&lt;Versão do Mensageiro&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1009,7 +1010,7 @@
     <message>
         <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
-        <translation>Diálogo 09</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1032,7 +1033,7 @@
     <message>
         <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
-        <translation type="unfinished">Esta mensagem não foi enviada a %1:</translation>
+        <translation type="unfinished">Esta mensagem não foi entregue a %1:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1043,17 +1044,17 @@
         <location line="+133"/>
         <location line="+21"/>
         <source>%1 (Broadcast)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Transmissão)</translation>
     </message>
     <message>
         <location line="+347"/>
         <source>Broadcast message from %1:</source>
-        <translation type="unfinished">Transmissão de mensagem de %1:</translation>
+        <translation type="unfinished">Mensagem de transmissão de %1:</translation>
     </message>
     <message>
         <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Solicitando chamada %1 de %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1065,30 +1066,30 @@
         <location line="-89"/>
         <location line="+28"/>
         <source>Call in progress.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamada em andamento.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call declined.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamada recusada.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erro na chamada.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamada abortada.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>%1 is requesting %2 call.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 está solicitando uma chamada %2.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1100,7 +1101,7 @@
         <location line="-108"/>
         <location line="+109"/>
         <source>Decline</source>
-        <translation type="unfinished">Declinar</translation>
+        <translation type="unfinished">Recusar</translation>
     </message>
     <message>
         <location line="-52"/>
@@ -1115,7 +1116,7 @@
     <message>
         <location line="+2"/>
         <source>%1 is sending you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 está enviando uma pasta para você:</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1125,7 +1126,7 @@
     <message>
         <location line="+2"/>
         <source>%1 sends you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 envia uma pasta para você:</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1137,18 +1138,18 @@
     <message>
         <location line="-35"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Abrir</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show in Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar na Pasta</translation>
     </message>
     <message>
         <location line="+37"/>
         <location line="+0"/>
         <source>Declined</source>
-        <translation type="unfinished">Declinado</translation>
+        <translation type="unfinished">Recusado</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1166,7 +1167,7 @@
         <location line="+3"/>
         <location line="+0"/>
         <source>Completed</source>
-        <translation type="unfinished">Completo</translation>
+        <translation type="unfinished">Concluído</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -1176,7 +1177,7 @@
     <message>
         <location line="+3"/>
         <source>%1 has entered text</source>
-        <translation type="unfinished">%1 entrou com o texto</translation>
+        <translation type="unfinished">%1 inseriu texto</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -1204,17 +1205,17 @@
     <message>
         <location filename="../../sources/lmcore.cpp" line="+75"/>
         <source>The firewall is blocking %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O firewall está bloqueando o %1.</translation>
     </message>
     <message>
         <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seu arquivo de preferências está corrompido ou inválido. O %1 não consegue recuperar suas configurações.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">As preferências não puderam ser importadas de &apos;%1&apos;. O arquivo pode não existir ou não ser compatível com esta versão do %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1225,17 +1226,17 @@
     <message>
         <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nenhum microfone está disponível. Sua voz não pode ser enviada.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Your selected microphone is not available. Using %1 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O microfone selecionado não está disponível. Usando %1 em seu lugar.</translation>
     </message>
     <message>
         <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A tecla de atalho %1 (%2) não está ativa: %3</translation>
     </message>
     <message>
         <location line="+489"/>
@@ -1245,7 +1246,7 @@
     <message>
         <location line="+2"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="unfinished">%1 não pode iniciar porque outro programa está usando a porta que foi configurada para ser usada pelo %2.</translation>
+        <translation type="unfinished">%1 não pode iniciar porque outro programa está usando a porta configurada para uso com o %2.</translation>
     </message>
 </context>
 <context>
@@ -1271,17 +1272,17 @@
     <message>
         <location line="+60"/>
         <source>You are not connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Você não está conectado. A mensagem de transmissão não pode ser enviada.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select at least one recipient to send a broadcast.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Selecione pelo menos um destinatário para enviar uma transmissão.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type a message to send.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Digite uma mensagem para enviar.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -1314,17 +1315,17 @@
     <message>
         <location line="+2"/>
         <source>%1 sends a folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 está enviando uma pasta...</translation>
     </message>
     <message>
         <location line="+350"/>
         <source>Save Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salvar Conversa</translation>
     </message>
     <message>
         <location line="+211"/>
         <source>Sent a nudge!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enviou um cutucão!</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1334,37 +1335,37 @@
     <message>
         <location line="+1"/>
         <source>Send A File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enviar um Arquivo...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enviar uma Pasta...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salvar Como...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cutucão</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Voice Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamada de Voz</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Video Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamada de Vídeo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Hang Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Desligar</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1384,7 +1385,7 @@
     <message>
         <location line="+2"/>
         <source>Send a folder to %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enviar uma pasta para %1</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1409,7 +1410,7 @@
     <message>
         <location line="+3"/>
         <source>%1 is offline.</source>
-        <translation type="unfinished">%1 está off-line.</translation>
+        <translation type="unfinished">%1 está offline.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1419,7 +1420,7 @@
     <message>
         <location line="+4"/>
         <source>%1 is busy. You may be interrupting.</source>
-        <translation type="unfinished">%1 está ocupado. Você pode estar interrompendo algo.</translation>
+        <translation type="unfinished">%1 está ocupado. Você pode estar interrompendo.</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1429,7 +1430,7 @@
     <message>
         <location line="+0"/>
         <source>Encrypted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Criptografado</translation>
     </message>
 </context>
 <context>
@@ -1447,7 +1448,7 @@
     <message>
         <location line="+177"/>
         <source>Save Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salvar Conversa</translation>
     </message>
     <message>
         <location line="+134"/>
@@ -1457,12 +1458,12 @@
     <message>
         <location line="+1"/>
         <source>Send File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enviar Arquivo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Obter Informação</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1472,7 +1473,7 @@
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salvar Como...</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1492,7 +1493,7 @@
     <message>
         <location line="+25"/>
         <source>Chat Room</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sala de Chat</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1505,7 +1506,7 @@
     <message>
         <location filename="../../sources/aformhistory.cpp" line="+126"/>
         <source>Message History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Histórico de Mensagens</translation>
     </message>
 </context>
 <context>
@@ -1513,17 +1514,17 @@
     <message>
         <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
-        <translation type="unfinished">%1 está on-line.</translation>
+        <translation type="unfinished">%1 está online.</translation>
     </message>
     <message>
         <location line="+49"/>
         <source>%1 is offline.</source>
-        <translation type="unfinished">%1 está off-line.</translation>
+        <translation type="unfinished">%1 está offline.</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>You are online.</source>
-        <translation type="unfinished">Você está on-line.</translation>
+        <translation type="unfinished">Você está online.</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1533,7 +1534,7 @@
     <message>
         <location line="+262"/>
         <source>Select avatar picture</source>
-        <translation type="unfinished">Selecionar imagem de exibição</translation>
+        <translation type="unfinished">Selecionar imagem de avatar</translation>
     </message>
     <message>
         <location line="+392"/>
@@ -1594,7 +1595,7 @@
     <message>
         <location line="+1"/>
         <source>%1 &amp;online</source>
-        <translation type="unfinished">%1 &amp;on-line</translation>
+        <translation type="unfinished">%1 &amp;online</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1633,7 +1634,7 @@
     <message>
         <location line="-4"/>
         <source>Send Fol&amp;der</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enviar Pas&amp;ta</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1648,7 +1649,7 @@
     <message>
         <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="unfinished">O %1 continuará aberto no segundo plano. Dê duplo-clique neste ícone para restaurar a janela do programa.</translation>
+        <translation type="unfinished">O %1 continuará aberto em segundo plano. Ative este ícone para restaurar a janela do aplicativo.</translation>
     </message>
     <message>
         <location line="+183"/>
@@ -1671,7 +1672,7 @@
     <message>
         <location line="+30"/>
         <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="unfinished">Tem certeza de que quer redefinir suas preferências do %1?</translation>
+        <translation type="unfinished">Tem certeza de que deseja redefinir suas preferências do %1?</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1681,7 +1682,7 @@
     <message>
         <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished">&lt;File Not Found&gt;</translation>
+        <translation type="unfinished">&lt;Arquivo Não Encontrado&gt;</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -1691,65 +1692,65 @@
     <message>
         <location line="+82"/>
         <source>The microphone is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O microfone não está disponível.</translation>
     </message>
     <message>
         <location line="+12"/>
         <location line="+240"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Parar</translation>
     </message>
     <message>
         <location line="-201"/>
         <source>Default Communication Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispositivo de Comunicação Padrão</translation>
     </message>
     <message>
         <location line="+14"/>
         <location line="+37"/>
         <source>Unknown device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispositivo desconhecido</translation>
     </message>
     <message>
         <location line="-36"/>
         <location line="+37"/>
         <source>%1 (Not connected)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Não conectado)</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Still Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Imagem Estática</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Desktop %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Área de Trabalho %1</translation>
     </message>
     <message>
         <location line="+87"/>
         <source>Push to talk:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pressione para falar:</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: %2</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>%1 and %2 cannot share the same hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 e %2 não podem compartilhar a mesma tecla de atalho.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pressione para falar requer teclas de atalho globais. Ative-as na página de Teclas de Atalho.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pressione para falar requer uma tecla. Defina uma na página de Teclas de Atalho.</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -1774,7 +1775,7 @@
     <message>
         <location line="+4"/>
         <source>Calls (Not Available)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamadas (Não Disponível)</translation>
     </message>
 </context>
 <context>
@@ -1802,7 +1803,7 @@
     <message>
         <location line="+1"/>
         <source>Show In Folder</source>
-        <translation type="unfinished">Mostrar a Pasta</translation>
+        <translation type="unfinished">Mostrar na Pasta</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1817,7 +1818,7 @@
     <message>
         <location line="+39"/>
         <source>/sec</source>
-        <translation type="unfinished">/sec</translation>
+        <translation type="unfinished">/seg</translation>
     </message>
 </context>
 <context>
@@ -1841,53 +1842,53 @@
     <message>
         <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfone</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alto-falante</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Câmera</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Use a single key combination.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Use uma única combinação de teclas.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esta tecla não pode ser usada como atalho global.</translation>
     </message>
     <message>
         <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Combine a tecla com Ctrl, Alt ou Win.</translation>
     </message>
     <message>
         <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mesma combinação da tecla de atalho %1.</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Already in use by another application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Já está em uso por outro aplicativo.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Windows refused the hotkey (error %1).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O Windows recusou a tecla de atalho (erro %1).</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Global hotkeys are not supported on this platform.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teclas de atalho globais não são suportadas nesta plataforma.</translation>
     </message>
 </context>
 <context>
@@ -1906,7 +1907,13 @@ LAN Messenger works on essentially every popular desktop platform.
 You can support LAN Messenger by contributing code, translations,
 bug fixes or reports.
 Help us grow by sharing the project with others!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O LAN Messenger é um aplicativo gratuito de mensagens peer-to-peer para
+comunicação intra-rede e não requer um servidor.
+O LAN Messenger funciona em praticamente todas as plataformas desktop populares.
+
+Você pode apoiar o LAN Messenger contribuindo com código, traduções,
+correções de bugs ou relatórios.
+Ajude-nos a crescer compartilhando o projeto com outros!</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -1916,17 +1923,17 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+6"/>
         <source>Small (8.25pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pequeno (8.25pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium (9pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Médio (9pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Large (10.5pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grande (10.5pt)</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1941,12 +1948,12 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Do Not Disturb</source>
-        <translation type="unfinished">Não Pertube</translation>
+        <translation type="unfinished">Não Perturbe</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Be Right Back</source>
-        <translation type="unfinished">Breve Retorno</translation>
+        <translation type="unfinished">Já Volto</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1956,87 +1963,87 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Appear Offline</source>
-        <translation type="unfinished">Aparecer como Off-Line</translation>
+        <translation type="unfinished">Aparecer Offline</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Incoming message</source>
-        <translation type="unfinished">Recebendo mensagem</translation>
+        <translation type="unfinished">Mensagem recebida</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>User is online</source>
-        <translation type="unfinished">Usuário está on-line</translation>
+        <translation type="unfinished">Usuário está online</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>User is offline</source>
-        <translation type="unfinished">Usuário está off-line</translation>
+        <translation type="unfinished">Usuário está offline</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming file transfer</source>
-        <translation type="unfinished">Recebendo arquivo</translation>
+        <translation type="unfinished">Transferência de arquivo recebida</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>File transfer completed</source>
-        <translation type="unfinished">Transferência de arquivo completa</translation>
+        <translation type="unfinished">Transferência de arquivo concluída</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming public message</source>
-        <translation type="unfinished">Recebendo mensagem pública</translation>
+        <translation type="unfinished">Mensagem pública recebida</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfone ligado</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfone desligado</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Câmera ligada</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Câmera desligada</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alto-falante ligado</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alto-falante desligado</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamada recebida</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chamada efetuada</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cutucão</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Talking while microphone muted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Falando com o microfone silenciado</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2054,7 +2061,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 dB</translation>
     </message>
 </context>
 </TS>

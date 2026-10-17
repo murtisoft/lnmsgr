@@ -6,22 +6,22 @@
     <message>
         <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Pogovorno okno</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>&lt;Logo&gt;</source>
-        <translation></translation>
+        <translation>&lt;Logotip&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
-        <translation></translation>
+        <translation>&lt;Naslov aplikacije&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;_Qt Version&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;_Qt različica&gt;</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -31,17 +31,17 @@
     <message>
         <location line="+21"/>
         <source>&lt;Description&gt;</source>
-        <translation></translation>
+        <translation>&lt;Opis&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sodelavci</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avtorske pravice</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Obrazec</translation>
     </message>
     <message>
         <location line="+132"/>
@@ -88,7 +88,7 @@
     <message>
         <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Obrazec</translation>
     </message>
     <message>
         <location line="+206"/>
@@ -98,12 +98,12 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Obrazec</translation>
     </message>
     <message>
         <location line="+213"/>
@@ -121,42 +121,42 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Microphone toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preklopi mikrofon</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Speaker toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preklopi zvočnik</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Camera toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preklopi kamero</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C</translation>
     </message>
 </context>
 <context>
@@ -179,12 +179,12 @@
     <message>
         <location line="+38"/>
         <source>To: </source>
-        <translation>Za:</translation>
+        <translation>Za: </translation>
     </message>
     <message>
         <location line="+0"/>
         <source>From: </source>
-        <translation>Od:</translation>
+        <translation>Od: </translation>
     </message>
     <message>
         <location line="+24"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Obrazec</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -235,12 +235,12 @@
     <message>
         <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Obrazec</translation>
     </message>
     <message>
         <location line="+110"/>
         <source>Username</source>
-        <translation>Uporabnik</translation>
+        <translation>Uporabniško ime</translation>
     </message>
     <message>
         <location line="+44"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Prilepi</translation>
     </message>
 </context>
 <context>
@@ -276,7 +276,7 @@
     <message>
         <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Pogovorno okno</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -301,7 +301,7 @@
         <location line="-2203"/>
         <location line="+775"/>
         <source>Voice &amp; Video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Glas &amp; Video</translation>
     </message>
     <message>
         <location line="-770"/>
@@ -358,7 +358,7 @@
     <message>
         <location line="+7"/>
         <source>Enable Debug Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Omogoči beleženje napak</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -433,7 +433,7 @@
     <message>
         <location line="+50"/>
         <source>Show emoticons in instant messages</source>
-        <translation>Prikaži emocije v takojšnjih sporočilih</translation>
+        <translation>Prikaži emotikone v takojšnjih sporočilih</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -448,17 +448,17 @@
     <message>
         <location line="+9"/>
         <source>Allow hyperlinks in instant messages</source>
-        <translation>Dovoli hiper-povezave v takojšnjih sporočilih</translation>
+        <translation>Dovoli hiperpovezave v takojšnjih sporočilih</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Convert network paths to links</source>
-        <translation>Spremeni omrežne poti v povezave</translation>
+        <translation>Pretvori omrežne poti v povezave</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Remove whitespace from start and end of messages</source>
-        <translation>Odstrani presledke iz začetkov in koncev sporočil</translation>
+        <translation>Odstrani presledke z začetka in konca sporočil</translation>
     </message>
     <message>
         <location line="+369"/>
@@ -515,22 +515,22 @@
     <message>
         <location line="+79"/>
         <source>Status Alerts</source>
-        <translation>Opozorila</translation>
+        <translation>Opozorila o statusu</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Display status alerts</source>
-        <translation>Prikaži opozorila</translation>
+        <translation>Prikaži opozorila o statusu</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Suspend alerts when my status is Busy</source>
-        <translation>Ne prikaži opozoril, ko sem &quot;Zaseden&quot;</translation>
+        <translation>Ne prikaži opozoril, ko sem »Zaseden«</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Suspend alerts when my status is Do Not Disturb</source>
-        <translation>Ne prikaži opozoril, ko je moj status &quot;Ne moti&quot;</translation>
+        <translation>Ne prikaži opozoril, ko je moj status »Ne moti«</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -550,12 +550,12 @@
     <message>
         <location line="+84"/>
         <source>Suspend sounds when my status is Busy</source>
-        <translation>Ne uporabljaj zvokov, ko sem &quot;Zaseden&quot;</translation>
+        <translation>Ne uporabljaj zvokov, ko sem »Zaseden«</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Suspend sound when my status is Do Not Disturb</source>
-        <translation>Ne uporabi zvokov, ko je moj status &quot;Ne moti&quot;</translation>
+        <translation>Ne uporabi zvokov, ko je moj status »Ne moti«</translation>
     </message>
     <message>
         <location line="+64"/>
@@ -565,7 +565,7 @@
     <message>
         <location line="+8"/>
         <source>Connection timeout (seconds):</source>
-        <translation>Potek povezave (sekund):</translation>
+        <translation>Časovna omejitev povezave (sekund):</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -580,12 +580,12 @@
     <message>
         <location line="+144"/>
         <source>UDP Port*:</source>
-        <translation>UDP Vrata*:</translation>
+        <translation>UDP vrata*:</translation>
     </message>
     <message>
         <location line="+43"/>
         <source>TCP Port*:</source>
-        <translation>TCP Vrata*:</translation>
+        <translation>TCP vrata*:</translation>
     </message>
     <message>
         <location line="+44"/>
@@ -650,49 +650,49 @@
     <message>
         <location line="+25"/>
         <source>&lt;Enter&gt;</source>
-        <translation></translation>
+        <translation>&lt;Enter&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
-        <translation></translation>
+        <translation>&lt;Cmd + Enter&gt;</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klici</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Enable global hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Omogoči globalne bližnjice</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bližnjice upravljajo aktivni klic in delujejo tudi, ko %1 ni osredotočeno okno.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Toggle microphone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preklopi mikrofon:</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+17"/>
         <location line="+17"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Privzeto</translation>
     </message>
     <message>
         <location line="-27"/>
         <source>Toggle speaker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preklopi zvočnik:</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Toggle camera:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preklopi kamero:</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -702,7 +702,7 @@
     <message>
         <location line="+20"/>
         <source>OK</source>
-        <translation>Vredu</translation>
+        <translation>V redu</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -712,165 +712,165 @@
     <message>
         <location line="-926"/>
         <source>Broadcast</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Broadcast</translation>
     </message>
     <message>
         <location line="-1374"/>
         <source>Show toast notifications in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prikaži toast obvestila v opravilni vrstici</translation>
     </message>
     <message>
         <location line="+120"/>
         <source>User name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uporabniško ime :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>User name as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uporabniško ime, kot ga vidijo kontakti</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Group :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skupina :</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Group as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skupina, kot jo vidijo kontakti</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>First Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ime :</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+20"/>
         <location line="+32"/>
         <source>For User Information dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Za pogovorno okno s podatki o uporabniku</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Priimek :</translation>
     </message>
     <message>
         <location line="+165"/>
         <source>Show incoming messages without grabbing focus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prikaži dohodna sporočila brez prevzema fokusa</translation>
     </message>
     <message>
         <location line="+149"/>
         <source>Chat Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Besedilo klepeta</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Chat text size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Velikost besedila klepeta:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Only applies to new chat windows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Velja le za nova okna klepeta.</translation>
     </message>
     <message>
         <location line="+73"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+113"/>
         <source>Capture Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Naprava za zajem</translation>
     </message>
     <message>
         <location line="-87"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktivacija</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Continuous Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neprekinjen prenos</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Push to Talk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pritisni za govor</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Voice Activity Threshold</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prag glasovne aktivnosti</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preizkus</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+675"/>
         <source>&lt;- Add</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;- Dodaj</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izbriši</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Napredno</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Multicast address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Multicast naslov:</translation>
     </message>
     <message>
         <location line="+382"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Barvna shema</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Svetla</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Temna</translation>
     </message>
     <message>
         <location line="-522"/>
         <source>Broadcast list:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seznam broadcast:</translation>
     </message>
     <message>
         <location line="-967"/>
         <source>Apply to public messages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uporabi za javna sporočila</translation>
     </message>
     <message>
         <location line="+800"/>
         <source>Reset All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ponastavi vse</translation>
     </message>
     <message>
         <location line="-693"/>
         <source>Clear messages when window is closed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Počisti sporočila, ko se okno zapre</translation>
     </message>
 </context>
 <context>
@@ -878,7 +878,7 @@
     <message>
         <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Obrazec</translation>
     </message>
     <message>
         <location line="+74"/>
@@ -896,22 +896,22 @@
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Pogovorno okno</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>&lt;Avatar&gt;</source>
-        <translation></translation>
+        <translation>&lt;Avatar&gt;</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&lt;User Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Uporabniško ime&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Status&gt;</source>
-        <translation></translation>
+        <translation>&lt;Status&gt;</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -928,7 +928,7 @@
         <location line="+21"/>
         <location line="+38"/>
         <source>N/A</source>
-        <translation></translation>
+        <translation>N/A</translation>
     </message>
     <message>
         <location line="-45"/>
@@ -948,12 +948,12 @@
     <message>
         <location line="+6"/>
         <source>IP Address:</source>
-        <translation>IP Naslov:</translation>
+        <translation>IP naslov:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
-        <translation></translation>
+        <translation>&lt;IP naslov&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -963,7 +963,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Prijavno ime&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -973,7 +973,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Ime računalnika&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -983,7 +983,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
-        <translation></translation>
+        <translation>&lt;Operacijski sistem&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -993,7 +993,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
-        <translation></translation>
+        <translation>&lt;Verzija programa&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1006,7 +1006,7 @@
     <message>
         <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Pogovorno okno</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1016,7 +1016,7 @@
     <message>
         <location line="+23"/>
         <source>OK</source>
-        <translation>Vredu</translation>
+        <translation>V redu</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1029,7 +1029,7 @@
     <message>
         <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
-        <translation type="unfinished">Sporočilo ni bilo poslano %1:</translation>
+        <translation type="unfinished">Sporočilo ni bilo dostavljeno %1:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1040,7 +1040,7 @@
         <location line="+133"/>
         <location line="+21"/>
         <source>%1 (Broadcast)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Broadcast)</translation>
     </message>
     <message>
         <location line="+347"/>
@@ -1050,7 +1050,7 @@
     <message>
         <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zahtevam klic %1 od %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1062,30 +1062,30 @@
         <location line="-89"/>
         <location line="+28"/>
         <source>Call in progress.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klic poteka.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call declined.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klic zavrnjen.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Napaka klica.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klic prekinjen.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>%1 is requesting %2 call.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 zahteva klic %2.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1112,7 +1112,7 @@
     <message>
         <location line="+2"/>
         <source>%1 is sending you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 vam pošilja mapo:</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1122,7 +1122,7 @@
     <message>
         <location line="+2"/>
         <source>%1 sends you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 pošilja mapo:</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1134,12 +1134,12 @@
     <message>
         <location line="-35"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Odpri</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show in Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prikaži v mapi</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -1193,7 +1193,7 @@
     <message>
         <location line="+1"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished">Izberi &amp;Vse</translation>
+        <translation type="unfinished">Izberi &amp;vse</translation>
     </message>
 </context>
 <context>
@@ -1201,48 +1201,48 @@
     <message>
         <location filename="../../sources/lmcore.cpp" line="+75"/>
         <source>The firewall is blocking %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Požarni zid blokira %1.</translation>
     </message>
     <message>
         <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vaša datoteka z nastavitvami je poškodovana ali neveljavna. %1 ne more obnoviti vaših nastavitev.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nastavitev ni bilo mogoče uvoziti iz &apos;%1&apos;. Datoteka morda ne obstaja ali ni združljiva s to različico %2.</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+58"/>
         <source>LAYOUT_DIRECTION</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAYOUT_DIRECTION</translation>
     </message>
     <message>
         <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon ni na voljo. Vašega glasu ni mogoče poslati.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Your selected microphone is not available. Using %1 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izbrani mikrofon ni na voljo. Namesto tega se uporablja %1.</translation>
     </message>
     <message>
         <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bližnjica %1 (%2) ni aktivna: %3</translation>
     </message>
     <message>
         <location line="+489"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="unfinished">Zaznan je bil spor naslova porta. %1 se bo zaprl.</translation>
+        <translation type="unfinished">Zaznan je bil spor naslova porta. %1 se bo zdaj zaprl.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="unfinished">%1 se ne more zagnati, ker drug program uporablja port, ki je nastavljen za uporabo %2.</translation>
+        <translation type="unfinished">%1 se ne more zagnati, ker drug program uporablja port, nastavljen za %2.</translation>
     </message>
 </context>
 <context>
@@ -1263,27 +1263,27 @@
     <message>
         <location line="+2"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vstavi smeška</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>You are not connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Niste povezani. Skupinskega sporočila ni mogoče poslati.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select at least one recipient to send a broadcast.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izberite vsaj enega prejemnika za pošiljanje skupinskega sporočila.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type a message to send.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vpišite sporočilo za pošiljanje.</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished">Niste več povezani. Sporočil ni možno pošiljati.</translation>
+        <translation type="unfinished">Niste več povezani. Skupinskega sporočila ni mogoče poslati.</translation>
     </message>
 </context>
 <context>
@@ -1311,7 +1311,7 @@
     <message>
         <location line="+2"/>
         <source>%1 sends a folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 pošilja mapo...</translation>
     </message>
     <message>
         <location line="+350"/>
@@ -1321,47 +1321,47 @@
     <message>
         <location line="+211"/>
         <source>Sent a nudge!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Poslal je sunek!</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vstavi smeška</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pošlji datoteko...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pošlji mapo...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Shrani kot...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sunek</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Voice Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Glasovni klic</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Video Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Videoklic</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Hang Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prekini klic</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1371,7 +1371,7 @@
     <message>
         <location line="+1"/>
         <source>File Transfers</source>
-        <translation type="unfinished">Prenos datotek</translation>
+        <translation type="unfinished">Prenosi datotek</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1381,7 +1381,7 @@
     <message>
         <location line="+2"/>
         <source>Send a folder to %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pošlji mapo %1</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1406,7 +1406,7 @@
     <message>
         <location line="+3"/>
         <source>%1 is offline.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 je odjavljen.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1426,7 +1426,7 @@
     <message>
         <location line="+0"/>
         <source>Encrypted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šifrirano</translation>
     </message>
 </context>
 <context>
@@ -1454,22 +1454,22 @@
     <message>
         <location line="+1"/>
         <source>Send File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pošlji datoteko</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pridobi informacije</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vstavi smeška</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Shrani kot...</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1489,7 +1489,7 @@
     <message>
         <location line="+25"/>
         <source>Chat Room</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pogovorna soba</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1515,7 +1515,7 @@
     <message>
         <location line="+49"/>
         <source>%1 is offline.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 je odjavljen.</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -1530,12 +1530,12 @@
     <message>
         <location line="+262"/>
         <source>Select avatar picture</source>
-        <translation type="unfinished">Izberi sliko</translation>
+        <translation type="unfinished">Izberi sliko avatarja</translation>
     </message>
     <message>
         <location line="+392"/>
         <source>&amp;Messenger</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Messenger</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1575,7 +1575,7 @@
         <location line="-9"/>
         <location line="+10"/>
         <source>File &amp;Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prenosi &amp;datotek</translation>
     </message>
     <message>
         <location line="-9"/>
@@ -1619,23 +1619,23 @@
         <location line="-5"/>
         <location line="+7"/>
         <source>Send &amp;Broadcast Message</source>
-        <translation type="unfinished">Pošlji (&amp;skupinsko) sporočilo</translation>
+        <translation type="unfinished">Pošlji &amp;skupinsko sporočilo</translation>
     </message>
     <message>
         <location line="-6"/>
         <location line="+5"/>
         <source>Send &amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pošlji &amp;datoteko</translation>
     </message>
     <message>
         <location line="-4"/>
         <source>Send Fol&amp;der</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pošlji &amp;mapo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get &amp;Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pridobi &amp;informacije</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1678,75 +1678,75 @@
     <message>
         <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;Datoteka ni najdena&gt;</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Select sound</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izberi zvok</translation>
     </message>
     <message>
         <location line="+82"/>
         <source>The microphone is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon ni na voljo.</translation>
     </message>
     <message>
         <location line="+12"/>
         <location line="+240"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ustavi</translation>
     </message>
     <message>
         <location line="-201"/>
         <source>Default Communication Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Privzeta komunikacijska naprava</translation>
     </message>
     <message>
         <location line="+14"/>
         <location line="+37"/>
         <source>Unknown device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neznana naprava</translation>
     </message>
     <message>
         <location line="-36"/>
         <location line="+37"/>
         <source>%1 (Not connected)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Ni povezan)</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Still Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mirujoča slika</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Desktop %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Namizje %1</translation>
     </message>
     <message>
         <location line="+87"/>
         <source>Push to talk:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pritisni za govor:</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: %2</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>%1 and %2 cannot share the same hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 in %2 ne moreta deliti iste bližnjice.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pritisni za govor zahteva globalne bližnjice. Omogočite jih na strani Bližnjice.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pritisni za govor zahteva tipko. Nastavite jo na strani Bližnjice.</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -1761,7 +1761,7 @@
     <message>
         <location line="+4"/>
         <source>Status Alerts (Not Available)</source>
-        <translation type="unfinished">Opozorila (Ni na voljo)</translation>
+        <translation type="unfinished">Opozorila o statusu (Ni na voljo)</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1771,7 +1771,7 @@
     <message>
         <location line="+4"/>
         <source>Calls (Not Available)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klici (Ni na voljo)</translation>
     </message>
 </context>
 <context>
@@ -1789,7 +1789,7 @@
     <message>
         <location line="+124"/>
         <source>File Transfers</source>
-        <translation type="unfinished">Prenos datotek</translation>
+        <translation type="unfinished">Prenosi datotek</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1809,7 +1809,7 @@
     <message>
         <location line="+53"/>
         <source>Calculating time</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izračun časa</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -1838,53 +1838,53 @@
     <message>
         <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zvočnik</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Use a single key combination.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uporabite eno kombinacijo tipk.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Te tipke ni mogoče uporabiti kot globalno bližnjico.</translation>
     </message>
     <message>
         <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Združite tipko s Ctrl, Alt ali Win.</translation>
     </message>
     <message>
         <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ista kombinacija kot bližnjica %1.</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Already in use by another application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Že v uporabi pri drugem programu.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Windows refused the hotkey (error %1).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Windows je zavrnil bližnjico (napaka %1).</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Global hotkeys are not supported on this platform.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Globalne bližnjice na tej platformi niso podprte.</translation>
     </message>
 </context>
 <context>
@@ -1892,7 +1892,7 @@
     <message>
         <location filename="../../sources/translatabletext.cpp" line="+51"/>
         <source>LAN Messenger</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAN Messenger</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1903,7 +1903,13 @@ LAN Messenger works on essentially every popular desktop platform.
 You can support LAN Messenger by contributing code, translations,
 bug fixes or reports.
 Help us grow by sharing the project with others!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAN Messenger je brezplačna peer-to-peer aplikacija za sporočanje
+znotraj omrežja in ne zahteva strežnika.
+LAN Messenger deluje na skoraj vseh priljubljenih namiznih platformah.
+
+LAN Messenger lahko podprete s prispevkom kode, prevodov,
+popravkov napak ali poročil.
+Pomagajte nam rasti z deljenjem projekta z drugimi!</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -1913,17 +1919,17 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+6"/>
         <source>Small (8.25pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Majhno (8.25pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium (9pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Srednje (9pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Large (10.5pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Veliko (10.5pt)</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1988,52 +1994,52 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Microphone on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon vklopljen</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon izklopljen</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera vklopljena</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera izklopljena</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zvočnik vklopljen</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zvočnik izklopljen</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dohodni klic</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Odhodni klic</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sunek</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Talking while microphone muted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Govorjenje z izklopljenim mikrofonom</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2051,7 +2057,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 dB</translation>
     </message>
 </context>
 </TS>

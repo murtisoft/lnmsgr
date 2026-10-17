@@ -15,9 +15,15 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project.
 
-#All translations are a decade behind.
-
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
 #    Encryption in the program only works 1 on 1. That kinda hinders those plans.
 #   I dont think that this is possible anymore without BTFOing the compatibility entirely so... no go.
+
+
+
+
+
+
+#   Looks like this is the end. :)
+
 

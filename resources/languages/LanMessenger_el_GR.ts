@@ -6,22 +6,22 @@
     <message>
         <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Διάλογος</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>&lt;Logo&gt;</source>
-        <translation></translation>
+        <translation>&lt;Λογότυπο&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
-        <translation></translation>
+        <translation>&lt;Τίτλος εφαρμογής&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;_Qt Version&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;_Qt Έκδοση&gt;</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -31,17 +31,17 @@
     <message>
         <location line="+21"/>
         <source>&lt;Description&gt;</source>
-        <translation></translation>
+        <translation>&lt;Περιγραφή&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Συντελεστές</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Πνευματικά δικαιώματα</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Φόρμα</translation>
     </message>
     <message>
         <location line="+132"/>
@@ -69,18 +69,18 @@
     <message>
         <location line="+86"/>
         <source>Select All</source>
-        <translation>Επιλογή Όλων</translation>
+        <translation>Επιλογή όλων</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Select None</source>
-        <translation>Καμία Επιλογή</translation>
+        <translation>Καμία επιλογή</translation>
     </message>
     <message>
         <location line="-68"/>
         <location line="+35"/>
         <source>Send To:</source>
-        <translation>Αποστολή Προς:</translation>
+        <translation>Αποστολή προς:</translation>
     </message>
 </context>
 <context>
@@ -88,7 +88,7 @@
     <message>
         <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Φόρμα</translation>
     </message>
     <message>
         <location line="+206"/>
@@ -98,12 +98,12 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Φόρμα</translation>
     </message>
     <message>
         <location line="+213"/>
@@ -121,42 +121,42 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Microphone toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εναλλαγή μικροφώνου</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Speaker toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εναλλαγή ηχείου</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Camera toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εναλλαγή κάμερας</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C</translation>
     </message>
 </context>
 <context>
@@ -169,7 +169,7 @@
     <message>
         <location line="+1"/>
         <source>0 bytes/sec</source>
-        <translation>0 bytes/sec</translation>
+        <translation>0 bytes/δευτ.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Φόρμα</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -222,7 +222,7 @@
     <message>
         <location line="+52"/>
         <source>Clear History</source>
-        <translation>Εκκαθάριση Ιστορικού</translation>
+        <translation>Εκκαθάριση ιστορικού</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Φόρμα</translation>
     </message>
     <message>
         <location line="+110"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Επικόλληση</translation>
     </message>
 </context>
 <context>
@@ -276,23 +276,24 @@
     <message>
         <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Διάλογος</translation>
     </message>
     <message>
         <location line="+1415"/>
         <source>Reset All</source>
-        <translation>Επαναφορά Όλων</translation>
+        <translation>Επαναφορά όλων</translation>
     </message>
     <message>
         <location line="+181"/>
         <source>Broadcast address:</source>
         <oldsource>Broadcast Address:</oldsource>
-        <translation>Διεύθυνση Εκπομπής:</translation>
+        <translation>Διεύθυνση εκπομπής:</translation>
     </message>
     <message>
         <location line="+37"/>
         <source>&lt;- Add</source>
-        <translation>&lt;- Προσθήκη</translation>
+        <translation>&lt;- Προσθήκη
+</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -312,7 +313,7 @@
     <message>
         <location line="+466"/>
         <source>Contacts List</source>
-        <translation>Λίστα Επαφών</translation>
+        <translation>Λίστα επαφών</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -327,66 +328,66 @@
     <message>
         <location line="+75"/>
         <source>Send messages using:</source>
-        <translation>Αποστολή μηνυμάτων χρησιμοποιώντας:</translation>
+        <translation>Αποστολή μηνυμάτων με:</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>&lt;Enter&gt;</source>
         <oldsource>Enter</oldsource>
-        <translation></translation>
+        <translation>&lt;Enter&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
         <oldsource>Ctrl + Enter</oldsource>
-        <translation></translation>
+        <translation>&lt;Cmd + Enter&gt;</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κλήσεις</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Enable global hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ενεργοποίηση καθολικών συντομεύσεων</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Οι συντομεύσεις ελέγχουν την ενεργή κλήση και λειτουργούν ακόμα και όταν το %1 δεν είναι το εστιασμένο παράθυρο.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Toggle microphone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εναλλαγή μικροφώνου:</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+17"/>
         <location line="+17"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Προεπιλογή</translation>
     </message>
     <message>
         <location line="-27"/>
         <source>Toggle speaker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εναλλαγή ηχείου:</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Toggle camera:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εναλλαγή κάμερας:</translation>
     </message>
     <message>
         <location line="+67"/>
         <source>Reset Preferences</source>
-        <translation>Επαναφορά Προτιμήσεων</translation>
+        <translation>Επαναφορά προτιμήσεων</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>OK</source>
-        <translation></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -419,7 +420,7 @@
     <message>
         <location line="+7"/>
         <source>Show main window when %1 starts</source>
-        <translation>Εμφάνιση κεντρικού παραθύρου όταν το %1 ξεκινά</translation>
+        <translation>Εμφάνιση κεντρικού παραθύρου όταν ξεκινά το %1</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -492,7 +493,7 @@
     <message>
         <location line="-1683"/>
         <source>Message Window</source>
-        <translation>Παράθυρο Μηνυμάτων</translation>
+        <translation>Παράθυρο μηνυμάτων</translation>
     </message>
     <message>
         <location line="+63"/>
@@ -502,17 +503,17 @@
     <message>
         <location line="+7"/>
         <source>Add time stamp to instant messages</source>
-        <translation>Προσθήκη χρονοσφραγίδων στα άμεσα μηνύματα</translation>
+        <translation>Προσθήκη χρονοσφραγίδας στα άμεσα μηνύματα</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Show date in time stamp</source>
-        <translation>Εμφάνιση ημερομηνίας στα άμεσα μηνύματα</translation>
+        <translation>Εμφάνιση ημερομηνίας στη χρονοσφραγίδα</translation>
     </message>
     <message>
         <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
-        <translation>Ελαχιστοποίηση άμεσων μηνυμάτων στην γραμμή εργασιών</translation>
+        <translation>Ελαχιστοποίηση εισερχόμενων μηνυμάτων στη γραμμή εργασιών</translation>
     </message>
     <message>
         <location line="-528"/>
@@ -524,12 +525,12 @@
         <location line="-990"/>
         <location line="+2166"/>
         <source>Hotkeys</source>
-        <translation>Συνδυασμοί πλήκτρων</translation>
+        <translation>Συντομεύσεις πληκτρολογίου</translation>
     </message>
     <message>
         <location line="-2044"/>
         <source>Minimize main window using tray icon</source>
-        <translation>Ελαχιστοποίηση κεντρικού παραθύρου χρησιμοποιώντας το εικονίδιο</translation>
+        <translation>Ελαχιστοποίηση κεντρικού παραθύρου με το εικονίδιο περιοχής ειδοποιήσεων</translation>
     </message>
     <message>
         <location line="+406"/>
@@ -540,7 +541,7 @@
     <message>
         <location line="+66"/>
         <source>Allow hyperlinks in instant messages</source>
-        <translation>Επέτρεψε υπερσυνδέσμους σε άμεσα μηνύματα</translation>
+        <translation>Επιτρέψτε υπερσυνδέσμους σε άμεσα μηνύματα</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -560,7 +561,7 @@
     <message>
         <location line="+362"/>
         <source>Message History</source>
-        <translation>Ιστορικό Μηνυμάτων</translation>
+        <translation>Ιστορικό μηνυμάτων</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -570,17 +571,17 @@
     <message>
         <location line="+9"/>
         <source>Clear Message History</source>
-        <translation>Εκκαθάριση Ιστορικού Μηνυμάτων</translation>
+        <translation>Εκκαθάριση ιστορικού μηνυμάτων</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>History File Location</source>
-        <translation>Τοποθεσία Αρχείου Ιστορικού</translation>
+        <translation>Τοποθεσία αρχείου ιστορικού</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>System default location</source>
-        <translation>Προκαθορισμένη τοποθεσία συστήματος</translation>
+        <translation>Προεπιλεγμένη τοποθεσία συστήματος</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -597,7 +598,7 @@
     <message>
         <location line="-799"/>
         <source>File Transfer History</source>
-        <translation>Ιστορικό Μεταφοράς Αρχείων</translation>
+        <translation>Ιστορικό μεταφοράς αρχείων</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -607,7 +608,7 @@
     <message>
         <location line="+9"/>
         <source>Clear Transfer History</source>
-        <translation>Εκκαθάριση Ιστορικού Μεταφορών</translation>
+        <translation>Εκκαθάριση ιστορικού μεταφορών</translation>
     </message>
     <message>
         <location line="-1135"/>
@@ -618,7 +619,7 @@
     <message>
         <location line="+7"/>
         <source>Status Alerts</source>
-        <translation>Ειδοποιήσεις Κατάστασης</translation>
+        <translation>Ειδοποιήσεις κατάστασης</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -658,13 +659,13 @@
     <message>
         <location line="-91"/>
         <source>Play sounds for these events:</source>
-        <translation>Αναπαραγωγή ήχων για τα παρακάτω συμβάντα:</translation>
+        <translation>Αναπαραγωγή ήχων για αυτά τα συμβάντα:</translation>
     </message>
     <message>
         <location line="-1287"/>
         <location line="+775"/>
         <source>Voice &amp; Video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Φωνή και βίντεο</translation>
     </message>
     <message>
         <location line="-760"/>
@@ -675,110 +676,110 @@
     <message>
         <location line="-1327"/>
         <source>Enable Debug Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ενεργοποίηση καταγραφής αποσφαλμάτωσης</translation>
     </message>
     <message>
         <location line="+37"/>
         <source>Show toast notifications in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εμφάνιση ειδοποιήσεων toast στην περιοχή ειδοποιήσεων</translation>
     </message>
     <message>
         <location line="+120"/>
         <source>User name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Όνομα χρήστη :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>User name as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Όνομα χρήστη όπως φαίνεται από τις επαφές</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Group :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ομάδα :</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Group as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ομάδα όπως φαίνεται από τις επαφές</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>First Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Όνομα :</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+20"/>
         <location line="+32"/>
         <source>For User Information dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Για το παράθυρο πληροφοριών χρήστη</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Επώνυμο :</translation>
     </message>
     <message>
         <location line="+165"/>
         <source>Show incoming messages without grabbing focus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εμφάνιση εισερχόμενων μηνυμάτων χωρίς να παίρνει την εστίαση</translation>
     </message>
     <message>
         <location line="+149"/>
         <source>Chat Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κείμενο συνομιλίας</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Chat text size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μέγεθος κειμένου συνομιλίας:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Only applies to new chat windows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ισχύει μόνο για νέα παράθυρα συνομιλίας.</translation>
     </message>
     <message>
         <location line="+73"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μικρόφωνο</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+113"/>
         <source>Capture Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Συσκευή καταγραφής</translation>
     </message>
     <message>
         <location line="-87"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ενεργοποίηση</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Continuous Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Συνεχής μετάδοση</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Push to Talk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Πάτημα για ομιλία</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Voice Activity Threshold</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Όριο δραστηριότητας φωνής</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Δοκιμή</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κάμερα</translation>
     </message>
     <message>
         <location line="+541"/>
@@ -793,7 +794,7 @@
     <message>
         <location line="+34"/>
         <source>Maximum number of retries:</source>
-        <translation>Μέγιστος αριθμός δοκιμών:</translation>
+        <translation>Μέγιστος αριθμός προσπαθειών:</translation>
     </message>
     <message>
         <location line="+35"/>
@@ -824,28 +825,28 @@
     <message>
         <location line="+252"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Σχέδιο χρωμάτων</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Φωτεινό</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Σκοτεινό</translation>
     </message>
     <message>
         <location line="-2027"/>
         <location line="+1804"/>
         <source>File Transfer</source>
-        <translation>Μεταφορά Αρχείου</translation>
+        <translation>Μεταφορά αρχείου</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Incoming File Request</source>
-        <translation>Εισερχόμενο Αίτημα Αρχείου</translation>
+        <translation>Εισερχόμενο αίτημα αρχείου</translation>
     </message>
     <message>
         <location line="+38"/>
@@ -860,22 +861,22 @@
     <message>
         <location line="-59"/>
         <source>Accept and start receiving files automatically</source>
-        <translation>Αυτόματη αποδοχή και λήψη αρχείων</translation>
+        <translation>Αυτόματη αποδοχή και έναρξη λήψης αρχείων</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
-        <translation>Εμφάνιση παραθύρου Μεταφοράς Αρχείου όταν στέλνεις ή λαμβάνεις αρχεία</translation>
+        <translation>Εμφάνιση παραθύρου μεταφοράς αρχείου κατά την αποστολή ή λήψη αρχείων</translation>
     </message>
     <message>
         <location line="+64"/>
         <source>Store Received Files in this Folder</source>
-        <translation>Αποθήκευση Εισερχομένων Αρχείων σε αυτό τον Φάκελο</translation>
+        <translation>Αποθήκευση ληφθέντων αρχείων σε αυτόν τον φάκελο</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>View Files</source>
-        <translation>Προβολή Αρχείων</translation>
+        <translation>Προβολή αρχείων</translation>
     </message>
 </context>
 <context>
@@ -883,12 +884,12 @@
     <message>
         <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Φόρμα</translation>
     </message>
     <message>
         <location line="+74"/>
         <source>Clear List</source>
-        <translation>Εκκαθάριση Λίστας</translation>
+        <translation>Εκκαθάριση λίστας</translation>
     </message>
     <message>
         <location line="+20"/>
@@ -901,27 +902,27 @@
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Διάλογος</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>&lt;Avatar&gt;</source>
-        <translation></translation>
+        <translation>&lt;Άβαταρ&gt;</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&lt;User Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Όνομα χρήστη&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Status&gt;</source>
-        <translation></translation>
+        <translation>&lt;Κατάσταση&gt;</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Personal Information</source>
-        <translation>Προσωπικές Πληροφορίες</translation>
+        <translation>Προσωπικές πληροφορίες</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -938,7 +939,7 @@
     <message>
         <location line="-45"/>
         <source>Last Name:</source>
-        <translation>Επώνυμο</translation>
+        <translation>Επώνυμο:</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -948,7 +949,7 @@
     <message>
         <location line="+32"/>
         <source>System Information</source>
-        <translation>Πληροφορίες Συστήματος</translation>
+        <translation>Πληροφορίες συστήματος</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -958,47 +959,47 @@
     <message>
         <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
-        <translation></translation>
+        <translation>&lt;Διεύθυνση IP&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Logon Name:</source>
-        <translation>Όνομα Σύνδεσης:</translation>
+        <translation>Όνομα σύνδεσης:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Όνομα σύνδεσης&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Computer Name:</source>
-        <translation>Όνομα Υπολογιστή:</translation>
+        <translation>Όνομα υπολογιστή:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Όνομα υπολογιστή&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Operating System:</source>
-        <translation>Λειτουργικό Σύστημα:</translation>
+        <translation>Λειτουργικό σύστημα:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
-        <translation></translation>
+        <translation>&lt;Λειτουργικό σύστημα&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Messenger Version:</source>
-        <translation>Έκδοση Messenger</translation>
+        <translation>Έκδοση Messenger:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
-        <translation></translation>
+        <translation>&lt;Έκδοση Messenger&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1011,7 +1012,7 @@
     <message>
         <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Διάλογος</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1021,7 +1022,7 @@
     <message>
         <location line="+23"/>
         <source>OK</source>
-        <translation></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1034,7 +1035,7 @@
     <message>
         <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
-        <translation type="unfinished">Αυτό το μήνυμα δεν παραδώθηκε σε %1:</translation>
+        <translation type="unfinished">Αυτό το μήνυμα δεν παραδόθηκε σε %1:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1045,7 +1046,7 @@
         <location line="+133"/>
         <location line="+21"/>
         <source>%1 (Broadcast)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Εκπομπή)</translation>
     </message>
     <message>
         <location line="+347"/>
@@ -1055,7 +1056,7 @@
     <message>
         <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αίτηση κλήσης %1 από %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1067,30 +1068,30 @@
         <location line="-89"/>
         <location line="+28"/>
         <source>Call in progress.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κλήση σε εξέλιξη.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call declined.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Η κλήση απορρίφθηκε.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Σφάλμα κλήσης.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Η κλήση διακόπηκε.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>%1 is requesting %2 call.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ο/Η %1 ζητά κλήση %2.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1117,7 +1118,7 @@
     <message>
         <location line="+2"/>
         <source>%1 is sending you a folder:</source>
-        <translation type="unfinished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
+        <translation type="unfinished">Ο/Η %1 σου στέλνει έναν φάκελο:</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1127,7 +1128,7 @@
     <message>
         <location line="+2"/>
         <source>%1 sends you a folder:</source>
-        <translation type="unfinished">Ο/Η %1 σου στέλνει ένα φάκελο:</translation>
+        <translation type="unfinished">Ο/Η %1 σου στέλνει έναν φάκελο:</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1139,12 +1140,12 @@
     <message>
         <location line="-35"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Άνοιγμα</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show in Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εμφάνιση σε φάκελο</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -1178,17 +1179,17 @@
     <message>
         <location line="+3"/>
         <source>%1 has entered text</source>
-        <translation type="unfinished">Ο/Η %1 έγραψε κείμενο</translation>
+        <translation type="unfinished">Ο/Η %1 εισήγαγε κείμενο</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>%1 has joined this conversation</source>
-        <translation type="unfinished">Ο/Η %1 συνδέθηκε σε αυτή τη συνομιλία</translation>
+        <translation type="unfinished">Ο/Η %1 συμμετείχε σε αυτή τη συνομιλία</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>%1 has left this conversation</source>
-        <translation type="unfinished">Ο/Η %1 έφυγε από την συνομιλία</translation>
+        <translation type="unfinished">Ο/Η %1 αποχώρησε από αυτή τη συνομιλία</translation>
     </message>
     <message>
         <location line="+258"/>
@@ -1198,7 +1199,7 @@
     <message>
         <location line="+1"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished">Επιλογή &amp;Όλων</translation>
+        <translation type="unfinished">Επιλογή &amp;όλων</translation>
     </message>
 </context>
 <context>
@@ -1206,48 +1207,48 @@
     <message>
         <location filename="../../sources/lmcore.cpp" line="+75"/>
         <source>The firewall is blocking %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το τείχος προστασίας αποκλείει το %1.</translation>
     </message>
     <message>
         <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το αρχείο προτιμήσεών σας είναι κατεστραμμένο ή μη έγκυρο. Το %1 δεν μπορεί να ανακτήσει τις ρυθμίσεις σας.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Δεν ήταν δυνατή η εισαγωγή προτιμήσεων από το &apos;%1&apos;. Το αρχείο μπορεί να μην υπάρχει ή να μην είναι συμβατό με αυτή την έκδοση του %2.</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+58"/>
         <source>LAYOUT_DIRECTION</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAYOUT_DIRECTION</translation>
     </message>
     <message>
         <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Δεν υπάρχει διαθέσιμο μικρόφωνο. Η φωνή σας δεν μπορεί να σταλεί.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Your selected microphone is not available. Using %1 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το επιλεγμένο μικρόφωνο δεν είναι διαθέσιμο. Χρησιμοποιείται το %1 αντί αυτού.</translation>
     </message>
     <message>
         <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Η συντόμευση %1 (%2) δεν είναι ενεργή: %3</translation>
     </message>
     <message>
         <location line="+489"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="unfinished">Εντοπίστηκε διένεξη θύρας διευθύνσης. Το %1 θα κλείσει τώρα.</translation>
+        <translation type="unfinished">Εντοπίστηκε διένεξη διεύθυνσης θύρας. Το %1 θα κλείσει τώρα.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="unfinished">Το %1 δεν μπορεί να ξεκινήσει γιατί μια άλλη εφαρμογή χρησιμοποιεί την θύρα που έχει ρυθμιστεί για χρήση από με το %2.</translation>
+        <translation type="unfinished">Το %1 δεν μπορεί να ξεκινήσει επειδή άλλη εφαρμογή χρησιμοποιεί τη θύρα που έχει ρυθμιστεί για χρήση με το %2.</translation>
     </message>
 </context>
 <context>
@@ -1263,32 +1264,32 @@
     <message>
         <location filename="../../sources/aformbroadcast.cpp" line="+340"/>
         <source>Send Broadcast Message</source>
-        <translation type="unfinished">Αποστολή Μηνύματος Εκπομπής</translation>
+        <translation type="unfinished">Αποστολή μηνύματος εκπομπής</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished">Εισαγωγή Smiley</translation>
+        <translation type="unfinished">Εισαγωγή smiley</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>You are not connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Δεν είστε συνδεδεμένοι. Το μήνυμα εκπομπής δεν μπορεί να σταλεί.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select at least one recipient to send a broadcast.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Επιλέξτε τουλάχιστον έναν παραλήπτη για αποστολή εκπομπής.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type a message to send.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Πληκτρολογήστε ένα μήνυμα για αποστολή.</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος. Το μήνυμα εκπομπής δεν μπορεί να σταλεί.</translation>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένοι. Το μήνυμα εκπομπής δεν μπορεί να σταλεί.</translation>
     </message>
 </context>
 <context>
@@ -1296,12 +1297,12 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="-354"/>
         <source>Group Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ομαδική συνομιλία</translation>
     </message>
     <message>
         <location line="+147"/>
         <source>%1 says...</source>
-        <translation type="unfinished">%1 λέει...</translation>
+        <translation type="unfinished">Ο/Η %1 λέει...</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -1316,57 +1317,57 @@
     <message>
         <location line="+2"/>
         <source>%1 sends a folder...</source>
-        <translation type="unfinished">Ο/Η %1 στέλνει ένα φάκελο</translation>
+        <translation type="unfinished">Ο/Η %1 στέλνει έναν φάκελο...</translation>
     </message>
     <message>
         <location line="+350"/>
         <source>Save Conversation</source>
-        <translation type="unfinished">Αποθήκευση Συνομιλίας</translation>
+        <translation type="unfinished">Αποθήκευση συνομιλίας</translation>
     </message>
     <message>
         <location line="+211"/>
         <source>Sent a nudge!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Έστειλε ένα nudge!</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished">Εισαγωγή Smiley</translation>
+        <translation type="unfinished">Εισαγωγή smiley</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αποστολή αρχείου...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αποστολή φακέλου...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αποθήκευση ως...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nudge</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Voice Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κλήση φωνής</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Video Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Βιντεοκλήση</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Hang Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Τερματισμός κλήσης</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1376,7 +1377,7 @@
     <message>
         <location line="+1"/>
         <source>File Transfers</source>
-        <translation type="unfinished">Μεταφορές Αρχείων</translation>
+        <translation type="unfinished">Μεταφορές αρχείων</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1396,17 +1397,17 @@
     <message>
         <location line="+1"/>
         <source>View History</source>
-        <translation type="unfinished">Προβολή Ιστορικού</translation>
+        <translation type="unfinished">Προβολή ιστορικού</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>View File Transfers</source>
-        <translation type="unfinished">Προβολή Μεταφορών Αρχείων</translation>
+        <translation type="unfinished">Προβολή μεταφορών αρχείων</translation>
     </message>
     <message>
         <location line="+138"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένοι.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1421,7 +1422,7 @@
     <message>
         <location line="+4"/>
         <source>%1 is busy. You may be interrupting.</source>
-        <translation type="unfinished">Ο/Η %1 είναι απασχολημένος. Μπορεί να ενοχλείς.</translation>
+        <translation type="unfinished">Ο/Η %1 είναι απασχολημένος/η. Μπορεί να ενοχλείτε.</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1431,7 +1432,7 @@
     <message>
         <location line="+0"/>
         <source>Encrypted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κρυπτογραφημένο</translation>
     </message>
 </context>
 <context>
@@ -1439,17 +1440,17 @@
     <message>
         <location filename="../../sources/aformchatroom.cpp" line="+190"/>
         <source>Group Conversation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ομαδική συνομιλία</translation>
     </message>
     <message>
         <location line="+135"/>
         <source>%1 says...</source>
-        <translation type="unfinished">%1 λέει...</translation>
+        <translation type="unfinished">Ο/Η %1 λέει...</translation>
     </message>
     <message>
         <location line="+177"/>
         <source>Save Conversation</source>
-        <translation type="unfinished">Αποθήκευση Συνομιλίας</translation>
+        <translation type="unfinished">Αποθήκευση συνομιλίας</translation>
     </message>
     <message>
         <location line="+134"/>
@@ -1459,22 +1460,22 @@
     <message>
         <location line="+1"/>
         <source>Send File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αποστολή αρχείου</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Λήψη πληροφοριών</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished">Εισαγωγή Smiley</translation>
+        <translation type="unfinished">Εισαγωγή smiley</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αποθήκευση ως...</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1489,17 +1490,17 @@
     <message>
         <location line="+72"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένοι.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Chat Room</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Δωμάτιο συνομιλίας</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Public Chat</source>
-        <translation type="unfinished">Δημόσια Συζήτηση</translation>
+        <translation type="unfinished">Δημόσια συνομιλία</translation>
     </message>
 </context>
 <context>
@@ -1507,7 +1508,7 @@
     <message>
         <location filename="../../sources/aformhistory.cpp" line="+126"/>
         <source>Message History</source>
-        <translation type="unfinished">Ιστορικό Μηνυμάτων</translation>
+        <translation type="unfinished">Ιστορικό μηνυμάτων</translation>
     </message>
 </context>
 <context>
@@ -1515,7 +1516,7 @@
     <message>
         <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
-        <translation type="unfinished">Ο/Η %1 συνδέθηκε.</translation>
+        <translation type="unfinished">Ο/Η %1 είναι συνδεδεμένος/η.</translation>
     </message>
     <message>
         <location line="+49"/>
@@ -1525,39 +1526,39 @@
     <message>
         <location line="+27"/>
         <source>You are online.</source>
-        <translation type="unfinished">Είστε συνδεδεμένος/η</translation>
+        <translation type="unfinished">Είστε συνδεδεμένοι.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένος/η</translation>
+        <translation type="unfinished">Δεν είστε πλέον συνδεδεμένοι.</translation>
     </message>
     <message>
         <location line="+262"/>
         <source>Select avatar picture</source>
-        <translation type="unfinished">Επιλογή εικόνας avatar</translation>
+        <translation type="unfinished">Επιλογή εικόνας άβαταρ</translation>
     </message>
     <message>
         <location line="+392"/>
         <source>&amp;Messenger</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Messenger</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+29"/>
         <source>&amp;New Chat Room</source>
-        <translation type="unfinished">&amp;Νέο Δωμάτιο Συζήτησης</translation>
+        <translation type="unfinished">&amp;Νέο δωμάτιο συνομιλίας</translation>
     </message>
     <message>
         <location line="-28"/>
         <location line="+29"/>
         <source>&amp;Public Chat</source>
-        <translation type="unfinished">&amp;Δημόσια Συζήτηση</translation>
+        <translation type="unfinished">&amp;Δημόσια συνομιλία</translation>
     </message>
     <message>
         <location line="-28"/>
         <source>&amp;Refresh Contacts List</source>
-        <translation type="unfinished">&amp;Ανανέωση Λίστας Επαφών</translation>
+        <translation type="unfinished">&amp;Ανανέωση λίστας επαφών</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1580,7 +1581,7 @@
         <location line="-9"/>
         <location line="+10"/>
         <source>File &amp;Transfers</source>
-        <translation type="unfinished">&amp;Μεταφορές Αρχείων</translation>
+        <translation type="unfinished">&amp;Μεταφορές αρχείων</translation>
     </message>
     <message>
         <location line="-9"/>
@@ -1596,7 +1597,7 @@
     <message>
         <location line="+1"/>
         <source>%1 &amp;online</source>
-        <translation type="unfinished">%1 στο διαδίκτ&amp;υο</translation>
+        <translation type="unfinished">%1 &amp;συνδεδεμένος/η</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1612,7 +1613,7 @@
     <message>
         <location line="+2"/>
         <source>&amp;Change Status</source>
-        <translation type="unfinished">&amp;Αλλαγή Κατάστασης</translation>
+        <translation type="unfinished">&amp;Αλλαγή κατάστασης</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1624,38 +1625,38 @@
         <location line="-5"/>
         <location line="+7"/>
         <source>Send &amp;Broadcast Message</source>
-        <translation type="unfinished">Αποστολή Μηνύματος &amp;Εκπομπής</translation>
+        <translation type="unfinished">Αποστολή μηνύματος &amp;εκπομπής</translation>
     </message>
     <message>
         <location line="-6"/>
         <location line="+5"/>
         <source>Send &amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αποστολή &amp;αρχείου</translation>
     </message>
     <message>
         <location line="-4"/>
         <source>Send Fol&amp;der</source>
-        <translation type="unfinished">Αποστολή &amp;Φακέλου</translation>
+        <translation type="unfinished">Αποστολή φα&amp;κέλου</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get &amp;Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Λήψη &amp;πληροφοριών</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Browse for more pictures...</source>
-        <translation type="unfinished">&amp;Περιηγηθείτε για περισσότερες εικόνες...</translation>
+        <translation type="unfinished">&amp;Περιήγηση για περισσότερες εικόνες...</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="unfinished">Το %1 θα συνεχίσει να τρέχει στο παρασκήνιο. Πατήστε σε αυτό το εικονίδιο για να επαναφέρετε το παράθυρο της εφαρμογής.</translation>
+        <translation type="unfinished">Το %1 θα συνεχίσει να εκτελείται στο παρασκήνιο. Ενεργοποιήστε αυτό το εικονίδιο για να επαναφέρετε το παράθυρο της εφαρμογής.</translation>
     </message>
     <message>
         <location line="+183"/>
         <source>%1 - Not Connected</source>
-        <translation type="unfinished">%1 - Μη Συνδεδεμένος/η</translation>
+        <translation type="unfinished">%1 - Μη συνδεδεμένος/η</translation>
     </message>
 </context>
 <context>
@@ -1663,7 +1664,7 @@
     <message>
         <location filename="../../sources/aformsettings.cpp" line="+286"/>
         <source>Save History</source>
-        <translation type="unfinished">Αποθήκευση Ιστορικού</translation>
+        <translation type="unfinished">Αποθήκευση ιστορικού</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1673,12 +1674,12 @@
     <message>
         <location line="+30"/>
         <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="unfinished">Είστε σίγουροι ότι θέλετε να αρχικοποιήσετε τις %1 προτιμήσεις σας;</translation>
+        <translation type="unfinished">Είστε σίγουροι ότι θέλετε να επαναφέρετε τις προτιμήσεις του %1;</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Reset Preferences</source>
-        <translation type="unfinished">Επαναφορά Προτιμήσεων</translation>
+        <translation type="unfinished">Επαναφορά προτιμήσεων</translation>
     </message>
     <message>
         <location line="+123"/>
@@ -1693,65 +1694,65 @@
     <message>
         <location line="+82"/>
         <source>The microphone is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το μικρόφωνο δεν είναι διαθέσιμο.</translation>
     </message>
     <message>
         <location line="+12"/>
         <location line="+240"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Διακοπή</translation>
     </message>
     <message>
         <location line="-201"/>
         <source>Default Communication Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Προεπιλεγμένη συσκευή επικοινωνίας</translation>
     </message>
     <message>
         <location line="+14"/>
         <location line="+37"/>
         <source>Unknown device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Άγνωστη συσκευή</translation>
     </message>
     <message>
         <location line="-36"/>
         <location line="+37"/>
         <source>%1 (Not connected)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Μη συνδεδεμένος/η)</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Still Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Στατική εικόνα</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Desktop %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Επιφάνεια εργασίας %1</translation>
     </message>
     <message>
         <location line="+87"/>
         <source>Push to talk:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Πάτημα για ομιλία:</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: %2</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>%1 and %2 cannot share the same hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το %1 και το %2 δεν μπορούν να μοιράζονται την ίδια συντόμευση.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το πάτημα για ομιλία απαιτεί καθολικές συντομεύσεις. Ενεργοποιήστε τις στη σελίδα Συντομεύσεις.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το πάτημα για ομιλία απαιτεί ένα πλήκτρο. Ορίστε ένα στη σελίδα Συντομεύσεις.</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -1761,22 +1762,22 @@
     <message>
         <location line="+13"/>
         <source>System Tray (Not Available)</source>
-        <translation type="unfinished">Περιοχή ειδοποιήσεων (Μη Διαθέσιμη)</translation>
+        <translation type="unfinished">Περιοχή ειδοποιήσεων (Μη διαθέσιμη)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Status Alerts (Not Available)</source>
-        <translation type="unfinished">Ειδοποιήσεις Κατάστασης (Μη Διαθέσιμες)</translation>
+        <translation type="unfinished">Ειδοποιήσεις κατάστασης (Μη διαθέσιμες)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Sounds (Not Available)</source>
-        <translation type="unfinished">Ήχοι (Μη Διαθέσιμοι)</translation>
+        <translation type="unfinished">Ήχοι (Μη διαθέσιμοι)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Calls (Not Available)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κλήσεις (Μη διαθέσιμες)</translation>
     </message>
 </context>
 <context>
@@ -1784,17 +1785,17 @@
     <message>
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="unfinished">Το %apos;%1&apos; έχει σταλεί σε %2.</translation>
+        <translation type="unfinished">Το &apos;%1&apos; έχει σταλεί σε %2.</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="unfinished">Το &apos;%1&apos; ελήφθη από %2.</translation>
+        <translation type="unfinished">Το &apos;%1&apos; έχει ληφθεί από %2.</translation>
     </message>
     <message>
         <location line="+124"/>
         <source>File Transfers</source>
-        <translation type="unfinished">Μεταφορές Αρχείων</translation>
+        <translation type="unfinished">Μεταφορές αρχείων</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1804,12 +1805,12 @@
     <message>
         <location line="+1"/>
         <source>Show In Folder</source>
-        <translation type="unfinished">Εμφάνιση Σε Φάκελο</translation>
+        <translation type="unfinished">Εμφάνιση σε φάκελο</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Remove From List</source>
-        <translation type="unfinished">Αφαίρεση Από Λίστα</translation>
+        <translation type="unfinished">Αφαίρεση από τη λίστα</translation>
     </message>
     <message>
         <location line="+53"/>
@@ -1819,7 +1820,7 @@
     <message>
         <location line="+39"/>
         <source>/sec</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/δευτ.</translation>
     </message>
 </context>
 <context>
@@ -1827,7 +1828,7 @@
     <message>
         <location filename="../../sources/aformuserinfo.cpp" line="+77"/>
         <source>User Information</source>
-        <translation type="unfinished">Πληροφορίες Χρήστη</translation>
+        <translation type="unfinished">Πληροφορίες χρήστη</translation>
     </message>
 </context>
 <context>
@@ -1835,7 +1836,7 @@
     <message>
         <location filename="../../sources/aformuserselect.cpp" line="+172"/>
         <source>Select Contacts</source>
-        <translation type="unfinished">Επιλογή Επαφών</translation>
+        <translation type="unfinished">Επιλογή επαφών</translation>
     </message>
 </context>
 <context>
@@ -1843,53 +1844,53 @@
     <message>
         <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μικρόφωνο</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ηχείο</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κάμερα</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Use a single key combination.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Χρησιμοποιήστε έναν μόνο συνδυασμό πλήκτρων.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αυτό το πλήκτρο δεν μπορεί να χρησιμοποιηθεί ως καθολική συντόμευση.</translation>
     </message>
     <message>
         <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Συνδυάστε το πλήκτρο με Ctrl, Alt ή Win.</translation>
     </message>
     <message>
         <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ίδιος συνδυασμός με τη συντόμευση %1.</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Already in use by another application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ήδη σε χρήση από άλλη εφαρμογή.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Windows refused the hotkey (error %1).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Τα Windows αρνήθηκαν τη συντόμευση (σφάλμα %1).</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Global hotkeys are not supported on this platform.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Οι καθολικές συντομεύσεις δεν υποστηρίζονται σε αυτή την πλατφόρμα.</translation>
     </message>
 </context>
 <context>
@@ -1897,7 +1898,7 @@
     <message>
         <location filename="../../sources/translatabletext.cpp" line="+51"/>
         <source>LAN Messenger</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAN Messenger</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1908,27 +1909,33 @@ LAN Messenger works on essentially every popular desktop platform.
 You can support LAN Messenger by contributing code, translations,
 bug fixes or reports.
 Help us grow by sharing the project with others!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Το LAN Messenger είναι μια δωρεάν εφαρμογή ανταλλαγής μηνυμάτων peer-to-peer για
+επικοινωνία εντός δικτύου και δεν απαιτεί διακομιστή.
+Το LAN Messenger λειτουργεί σχεδόν σε όλες τις δημοφιλείς πλατφόρμες επιφάνειας εργασίας.
+
+Μπορείτε να υποστηρίξετε το LAN Messenger συνεισφέροντας κώδικα, μεταφράσεις,
+διορθώσεις σφαλμάτων ή αναφορές.
+Βοηθήστε μας να αναπτυχθούμε κοινοποιώντας το έργο σε άλλους!</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Automatic</source>
-        <translation type="unfinished">Αυτόματα</translation>
+        <translation type="unfinished">Αυτόματο</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Small (8.25pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μικρό (8.25pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium (9pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μεσαίο (9pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Large (10.5pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μεγάλο (10.5pt)</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1948,17 +1955,17 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Be Right Back</source>
-        <translation type="unfinished">Επιστρέφω</translation>
+        <translation type="unfinished">Επιστρέφω σύντομα</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Away</source>
-        <translation type="unfinished">Μακρυά</translation>
+        <translation type="unfinished">Απών/ούσα</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Appear Offline</source>
-        <translation type="unfinished">Εμφάνιση Εκτός Σύνδεσης</translation>
+        <translation type="unfinished">Εμφάνιση εκτός σύνδεσης</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1968,17 +1975,17 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>User is online</source>
-        <translation type="unfinished">Ο χρήσης είναι συνδεδεμένος</translation>
+        <translation type="unfinished">Ο χρήστης είναι συνδεδεμένος</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>User is offline</source>
-        <translation type="unfinished">Ο χρήστης δεν είναι συνδεδεμένος</translation>
+        <translation type="unfinished">Ο χρήστης είναι εκτός σύνδεσης</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming file transfer</source>
-        <translation type="unfinished">Εισερχόμενη λήψη αρχείου</translation>
+        <translation type="unfinished">Εισερχόμενη μεταφορά αρχείου</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1993,52 +2000,52 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Microphone on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μικρόφωνο ενεργό</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μικρόφωνο ανενεργό</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κάμερα ενεργή</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κάμερα ανενεργή</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ηχείο ενεργό</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ηχείο ανενεργό</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εισερχόμενη κλήση</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εξερχόμενη κλήση</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nudge</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Talking while microphone muted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ομιλία με σιγασμένο μικρόφωνο</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2056,7 +2063,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 dB</translation>
     </message>
 </context>
 </TS>

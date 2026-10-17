@@ -6,22 +6,22 @@
     <message>
         <location filename="../../sources/aformabout.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Diyalog</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>&lt;Logo&gt;</source>
-        <translation></translation>
+        <translation>&lt;Logo&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
-        <translation></translation>
+        <translation>&lt;Uygulama Başlığı&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;_Qt Version&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;_Qt Sürümü&gt;</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -31,17 +31,17 @@
     <message>
         <location line="+21"/>
         <source>&lt;Description&gt;</source>
-        <translation></translation>
+        <translation>&lt;Açıklama&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Katkıda Bulunanlar</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Telif Hakkı</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location line="+132"/>
@@ -88,7 +88,7 @@
     <message>
         <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location line="+206"/>
@@ -98,12 +98,12 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location line="+213"/>
@@ -121,42 +121,42 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Microphone toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon değiştir</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Speaker toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hoparlör değiştir</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Camera toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera değiştir</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C</translation>
     </message>
 </context>
 <context>
@@ -164,27 +164,27 @@
     <message>
         <location filename="../../sources/widgettransferlist.cpp" line="+39"/>
         <source>0 bytes</source>
-        <translation>0 byte</translation>
+        <translation>0 bayt</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>0 bytes/sec</source>
-        <translation>0 byte / sn</translation>
+        <translation>0 bayt/sn</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Calculating time</source>
-        <translation>Süre Hesaplanıyor</translation>
+        <translation>Süre hesaplanıyor</translation>
     </message>
     <message>
         <location line="+38"/>
         <source>To: </source>
-        <translation>Kime:</translation>
+        <translation>Kime: </translation>
     </message>
     <message>
         <location line="+0"/>
         <source>From: </source>
-        <translation>Kimden:</translation>
+        <translation>Kimden: </translation>
     </message>
     <message>
         <location line="+24"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -235,22 +235,22 @@
     <message>
         <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location line="+110"/>
         <source>Username</source>
-        <translation></translation>
+        <translation>Kullanıcı Adı</translation>
     </message>
     <message>
         <location line="+44"/>
         <source>Status</source>
-        <translation></translation>
+        <translation>Durum</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Type a note</source>
-        <translation>Hızlı ileti paylaşın</translation>
+        <translation>Bir not yazın</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Yapıştır</translation>
     </message>
 </context>
 <context>
@@ -276,38 +276,38 @@
     <message>
         <location filename="../../sources/aformsettings.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Diyalog</translation>
     </message>
     <message>
         <location line="+1415"/>
         <source>Reset All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tümünü Sıfırla</translation>
     </message>
     <message>
         <location line="+181"/>
         <source>Broadcast address:</source>
         <oldsource>Broadcast Address:</oldsource>
-        <translation>Broadcast adresi:</translation>
+        <translation>Yayın adresi:</translation>
     </message>
     <message>
         <location line="+37"/>
         <source>&lt;- Add</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;- Ekle</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sil</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gelişmiş</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Multicast address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Çok noktaya yayın adresi:</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -322,61 +322,61 @@
     <message>
         <location line="+25"/>
         <source>Show status as tooltip</source>
-        <translation>Durumu araç bilgisi olarak göster</translation>
+        <translation>Durumu araç ipucu olarak göster</translation>
     </message>
     <message>
         <location line="+75"/>
         <source>Send messages using:</source>
-        <translation>Mesajı göndermek için girin:</translation>
+        <translation>Mesajları şu şekilde gönder:</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>&lt;Enter&gt;</source>
         <oldsource>Enter</oldsource>
-        <translation></translation>
+        <translation>&lt;Enter&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
         <oldsource>Ctrl + Enter</oldsource>
-        <translation></translation>
+        <translation>&lt;Cmd + Enter&gt;</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aramalar</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Enable global hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Genel kısayol tuşlarını etkinleştir</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kısayol tuşları aktif aramayı kontrol eder ve %1 odaklı pencere olmasa bile çalışır.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Toggle microphone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofonu değiştir:</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+17"/>
         <location line="+17"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Varsayılan</translation>
     </message>
     <message>
         <location line="-27"/>
         <source>Toggle speaker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hoparlörü değiştir:</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Toggle camera:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamerayı değiştir:</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -414,32 +414,32 @@
     <message>
         <location line="-1943"/>
         <source>Start %1 on system startup</source>
-        <translation>Başlangıçta %1 &apos;ı çalıştır </translation>
+        <translation>Sistem başlangıcında %1 uygulamasını başlat</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show main window when %1 starts</source>
-        <translation>%1 başladığında ana pencerede göster</translation>
+        <translation>%1 başladığında ana pencereyi göster</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>System Tray</source>
-        <translation>Sistem Simgesi</translation>
+        <translation>Sistem Tepsisi</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Show system tray icon</source>
-        <translation>Sistem simgesini göster</translation>
+        <translation>Sistem tepsisi simgesini göster</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Minimize main window to system tray</source>
-        <translation>Pencereyi sistem simgesi durumunda çalıştır</translation>
+        <translation>Ana pencereyi sistem tepsisine küçült</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Single click on tray icon to open</source>
-        <translation>Açmak için sistem simgesine tek tıkla</translation>
+        <translation>Açmak için tepsi simgesine tek tıklayın</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -449,7 +449,7 @@
     <message>
         <location line="+8"/>
         <source>Select language:</source>
-        <translation>Dil Seç:</translation>
+        <translation>Dil seç:</translation>
     </message>
     <message>
         <location line="-180"/>
@@ -480,7 +480,7 @@
     <message>
         <location line="+30"/>
         <source>seconds</source>
-        <translation>saniyede güncelle</translation>
+        <translation>saniyede yenile</translation>
     </message>
     <message>
         <location line="-459"/>
@@ -502,12 +502,12 @@
     <message>
         <location line="+7"/>
         <source>Add time stamp to instant messages</source>
-        <translation>Anlık iletilere tarihi ekle</translation>
+        <translation>Anlık iletilere zaman damgası ekle</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Show date in time stamp</source>
-        <translation>Zaman gösteririken tarihi de ekle</translation>
+        <translation>Zaman damgasında tarihi göster</translation>
     </message>
     <message>
         <location line="-82"/>
@@ -529,33 +529,33 @@
     <message>
         <location line="-2044"/>
         <source>Minimize main window using tray icon</source>
-        <translation>Sistem çubuğu simgesi ile ana pencereyi simge durumuna küçült</translation>
+        <translation>Tepsi simgesi ile ana pencereyi küçült</translation>
     </message>
     <message>
         <location line="+406"/>
         <source>Apply to public messages</source>
         <oldsource>Apply  to public messages</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Genel mesajlara uygula</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Allow hyperlinks in instant messages</source>
-        <translation>Anlık iletilerde linklere izin ver</translation>
+        <translation>Anlık iletilerde köprüleri etkinleştir</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Convert network paths to links</source>
-        <translation>Ağ yollarını linklere dönüştür</translation>
+        <translation>Ağ yollarını bağlantılara dönüştür</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Remove whitespace from start and end of messages</source>
-        <translation>İletilerin başındaki ve sonundaki alfabe dışı karakterleri kaldır</translation>
+        <translation>İletilerin başındaki ve sonundaki boşlukları kaldır</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pencere kapatıldığında iletileri temizle</translation>
     </message>
     <message>
         <location line="+362"/>
@@ -575,39 +575,39 @@
     <message>
         <location line="+25"/>
         <source>History File Location</source>
-        <translation>Geçmiş Saklama Lokasyonu</translation>
+        <translation>Geçmiş Dosya Konumu</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>System default location</source>
-        <translation>Sistem varsayılan lokasyonu</translation>
+        <translation>Sistem varsayılan konumu</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Custom location</source>
-        <translation>Özel lokasyon</translation>
+        <translation>Özel konum</translation>
     </message>
     <message>
         <location line="+38"/>
         <location line="+220"/>
         <location line="+591"/>
         <source>...</source>
-        <translation></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location line="-799"/>
         <source>File Transfer History</source>
-        <translation>Dosya Transfer Geçmişi</translation>
+        <translation>Dosya Aktarım Geçmişi</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Keep a history of file transfers</source>
-        <translation>Dosya Transfer Geçmişini Sakla</translation>
+        <translation>Dosya aktarımlarının geçmişini sakla</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Clear Transfer History</source>
-        <translation>Transfer geçmişini temizle</translation>
+        <translation>Aktarım geçmişini temizle</translation>
     </message>
     <message>
         <location line="-1135"/>
@@ -628,12 +628,12 @@
     <message>
         <location line="+7"/>
         <source>Suspend alerts when my status is Busy</source>
-        <translation>Durumum Meşgul iken uyarıları yoksay</translation>
+        <translation>Durumum Meşgul iken uyarıları askıya al</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Suspend alerts when my status is Do Not Disturb</source>
-        <translation>Durumum Rahatsız Etmeyin iken uyarıları yoksay</translation>
+        <translation>Durumum Rahatsız Etmeyin iken uyarıları askıya al</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -643,17 +643,17 @@
     <message>
         <location line="+6"/>
         <source>Provide feedback with sounds</source>
-        <translation>Seslerle geribildirim sağla</translation>
+        <translation>Seslerle geri bildirim sağla</translation>
     </message>
     <message>
         <location line="+111"/>
         <source>Suspend sounds when my status is Busy</source>
-        <translation>Durumum Meşgul iken sesleri yoksay</translation>
+        <translation>Durumum Meşgul iken sesleri askıya al</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Suspend sound when my status is Do Not Disturb</source>
-        <translation>Durumum Rahatsız Etmeyin iken sesleri yoksay</translation>
+        <translation>Durumum Rahatsız Etmeyin iken sesleri askıya al</translation>
     </message>
     <message>
         <location line="-91"/>
@@ -664,7 +664,7 @@
         <location line="-1287"/>
         <location line="+775"/>
         <source>Voice &amp; Video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ses &amp; Video</translation>
     </message>
     <message>
         <location line="-760"/>
@@ -675,110 +675,110 @@
     <message>
         <location line="-1327"/>
         <source>Enable Debug Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hata ayıklama günlüğünü etkinleştir</translation>
     </message>
     <message>
         <location line="+37"/>
         <source>Show toast notifications in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tepsisinde toast bildirimlerini göster</translation>
     </message>
     <message>
         <location line="+120"/>
         <source>User name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kullanıcı adı :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>User name as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kişiler tarafından görünen kullanıcı adı</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Group :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grup :</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Group as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kişiler tarafından görünen grup</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>First Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ad :</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+20"/>
         <location line="+32"/>
         <source>For User Information dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kullanıcı Bilgisi diyaloğu için</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Soyad :</translation>
     </message>
     <message>
         <location line="+165"/>
         <source>Show incoming messages without grabbing focus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gelen iletileri odak almadan göster</translation>
     </message>
     <message>
         <location line="+149"/>
         <source>Chat Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sohbet Metni</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Chat text size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sohbet metin boyutu:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Only applies to new chat windows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yalnızca yeni sohbet pencerelerine uygulanır.</translation>
     </message>
     <message>
         <location line="+73"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+113"/>
         <source>Capture Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yakalama Cihazı</translation>
     </message>
     <message>
         <location line="-87"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Etkinleştirme</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Continuous Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sürekli İletim</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Push to Talk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bas Konuş</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Voice Activity Threshold</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ses Etkinliği Eşiği</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Test</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+541"/>
@@ -788,23 +788,23 @@
     <message>
         <location line="+8"/>
         <source>Connection timeout (seconds):</source>
-        <translation>Bağlantı süre aşımı (saniye):</translation>
+        <translation>Bağlantı zaman aşımı (saniye):</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Maximum number of retries:</source>
-        <translation>Maksimum tekrar sayısı:</translation>
+        <translation>Maksimum yeniden deneme sayısı:</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Broadcast</source>
         <oldsource>Broadcast Settings</oldsource>
-        <translation>Broadcast Ayarları</translation>
+        <translation>Yayın</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Broadcast list:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yayın listesi:</translation>
     </message>
     <message>
         <location line="+158"/>
@@ -819,28 +819,28 @@
     <message>
         <location line="+44"/>
         <source>* Takes effect after you restart %1.</source>
-        <translation>*  %1  yeniden başlatıldıktan sonra etki edecek.</translation>
+        <translation>* %1 yeniden başlatıldıktan sonra etkili olur.</translation>
     </message>
     <message>
         <location line="+252"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Renk Şeması</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Açık</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Koyu</translation>
     </message>
     <message>
         <location line="-2027"/>
         <location line="+1804"/>
         <source>File Transfer</source>
-        <translation>Dosya Transferi</translation>
+        <translation>Dosya Aktarımı</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -855,27 +855,27 @@
     <message>
         <location line="+27"/>
         <source>Minimize window to taskbar</source>
-        <translation>Pencereyi bildirim alanına küçült</translation>
+        <translation>Pencereyi görev çubuğuna küçült</translation>
     </message>
     <message>
         <location line="-59"/>
         <source>Accept and start receiving files automatically</source>
-        <translation>Dosya almayı otomatik olarak kabul et ve başlat</translation>
+        <translation>Dosyaları otomatik olarak kabul et ve almaya başla</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
-        <translation>Dosya alınırken/gönderilirken Dosya Transfer Penceresini göster</translation>
+        <translation>Dosya gönderirken veya alırken Dosya Aktarım penceresini göster</translation>
     </message>
     <message>
         <location line="+64"/>
         <source>Store Received Files in this Folder</source>
-        <translation>Alınan Dosyaları Klasörde depola</translation>
+        <translation>Alınan Dosyaları Bu Klasörde Sakla</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>View Files</source>
-        <translation>Dosyalara bakış</translation>
+        <translation>Dosyaları Görüntüle</translation>
     </message>
 </context>
 <context>
@@ -883,7 +883,7 @@
     <message>
         <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location line="+74"/>
@@ -901,22 +901,22 @@
     <message>
         <location filename="../../sources/aformuserinfo.ui" line="+14"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Diyalog</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>&lt;Avatar&gt;</source>
-        <translation></translation>
+        <translation>&lt;Avatar&gt;</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&lt;User Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Kullanıcı Adı&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Status&gt;</source>
-        <translation></translation>
+        <translation>&lt;Durum&gt;</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -926,19 +926,19 @@
     <message>
         <location line="+10"/>
         <source>First Name:</source>
-        <translation>İsim:</translation>
+        <translation>Ad:</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+21"/>
         <location line="+38"/>
         <source>N/A</source>
-        <translation>N / A</translation>
+        <translation>Yok</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name:</source>
-        <translation>Soyisim:</translation>
+        <translation>Soyad:</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -958,7 +958,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;IP Address&gt;</source>
-        <translation></translation>
+        <translation>&lt;IP Adresi&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -968,7 +968,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Logon Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Oturum Adı&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -978,7 +978,7 @@
     <message>
         <location line="+10"/>
         <source>&lt;Computer Name&gt;</source>
-        <translation></translation>
+        <translation>&lt;Bilgisayar Adı&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -988,17 +988,17 @@
     <message>
         <location line="+10"/>
         <source>&lt;Operating System&gt;</source>
-        <translation></translation>
+        <translation>&lt;İşletim Sistemi&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Messenger Version:</source>
-        <translation>Messenger Versiyonu:</translation>
+        <translation>Messenger Sürümü:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
-        <translation></translation>
+        <translation>&lt;Messenger Sürümü&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1011,7 +1011,7 @@
     <message>
         <location filename="../../sources/aformuserselect.ui" line="+17"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Diyalog</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1034,7 +1034,7 @@
     <message>
         <location filename="../../sources/widgetchatlog.cpp" line="+147"/>
         <source>This message was not delivered to %1:</source>
-        <translation type="unfinished">İleti %1 alıcısına gönderilemedi:</translation>
+        <translation type="unfinished">Bu ileti %1 adresine teslim edilmedi:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1045,52 +1045,52 @@
         <location line="+133"/>
         <location line="+21"/>
         <source>%1 (Broadcast)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Yayın)</translation>
     </message>
     <message>
         <location line="+347"/>
         <source>Broadcast message from %1:</source>
-        <translation type="unfinished">İleti %1 alıcısına gönderildi:</translation>
+        <translation type="unfinished">%1 kullanıcısından yayın iletisi:</translation>
     </message>
     <message>
         <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%2 kullanıcısından %1 araması isteniyor.</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+92"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İptal</translation>
     </message>
     <message>
         <location line="-89"/>
         <location line="+28"/>
         <source>Call in progress.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama devam ediyor.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call declined.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama reddedildi.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama hatası.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama iptal edildi.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>%1 is requesting %2 call.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1, %2 araması istiyor.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1107,27 +1107,27 @@
     <message>
         <location line="-52"/>
         <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="unfinished">&apos;%1&apos;  %2 kullanıcısına gönderiliyor.</translation>
+        <translation type="unfinished">&apos;%1&apos; dosyası %2 kullanıcısına gönderiliyor.</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>%1 is sending you a file:</source>
-        <translation type="unfinished">%1 kullanıcısı size dosya gönderiyor:</translation>
+        <translation type="unfinished">%1 size bir dosya gönderiyor:</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 is sending you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 size bir klasör gönderiyor:</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>%1 sends you a file:</source>
-        <translation type="unfinished">%1 kullanıcısı size dosya gönderiyor:</translation>
+        <translation type="unfinished">%1 size bir dosya gönderiyor:</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 sends you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 size bir klasör gönderiyor:</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1139,12 +1139,12 @@
     <message>
         <location line="-35"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aç</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show in Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klasörde Göster</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -1173,22 +1173,22 @@
     <message>
         <location line="+14"/>
         <source>%1 is typing...</source>
-        <translation type="unfinished">%1 yazarak...</translation>
+        <translation type="unfinished">%1 yazıyor...</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>%1 has entered text</source>
-        <translation type="unfinished">%1 metin girmiştir</translation>
+        <translation type="unfinished">%1 metin girdi</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>%1 has joined this conversation</source>
-        <translation type="unfinished">%1 görüşmeye katıldı</translation>
+        <translation type="unfinished">%1 bu görüşmeye katıldı</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>%1 has left this conversation</source>
-        <translation type="unfinished">%1 görüşmeden ayrıldı</translation>
+        <translation type="unfinished">%1 bu görüşmeden ayrıldı</translation>
     </message>
     <message>
         <location line="+258"/>
@@ -1206,48 +1206,48 @@
     <message>
         <location filename="../../sources/lmcore.cpp" line="+75"/>
         <source>The firewall is blocking %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Güvenlik duvarı %1 uygulamasını engelliyor.</translation>
     </message>
     <message>
         <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tercih dosyanız bozuk veya geçersiz. %1 ayarlarınızı kurtaramıyor.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&apos;%1&apos; dosyasından tercihler içe aktarılamadı. Dosya mevcut olmayabilir veya %2 sürümüyle uyumlu olmayabilir.</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+58"/>
         <source>LAYOUT_DIRECTION</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAYOUT_DIRECTION</translation>
     </message>
     <message>
         <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon bulunamadı. Sesiniz gönderilemez.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Your selected microphone is not available. Using %1 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seçtiğiniz mikrofon kullanılamıyor. Bunun yerine %1 kullanılıyor.</translation>
     </message>
     <message>
         <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 kısayol tuşu (%2) etkin değil: %3</translation>
     </message>
     <message>
         <location line="+489"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="unfinished">Port adresinizde çakışma algılandı. %1 şimdi kapanacak.</translation>
+        <translation type="unfinished">Bir port adresi çakışması tespit edildi. %1 şimdi kapanacak.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="unfinished">%1 başlatılamıyor çünkü %2 adlı başka bir uygulama aynı portu kullanıyor.</translation>
+        <translation type="unfinished">%1 başlatılamıyor çünkü başka bir uygulama %2 için yapılandırılmış portu kullanıyor.</translation>
     </message>
 </context>
 <context>
@@ -1268,27 +1268,27 @@
     <message>
         <location line="+2"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished">Smiley Ekle</translation>
+        <translation type="unfinished">Gülümseme Ekle</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>You are not connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bağlı değilsiniz. Yayın iletisi gönderilemez.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select at least one recipient to send a broadcast.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yayın göndermek için en az bir alıcı seçin.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type a message to send.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Göndermek için bir ileti yazın.</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished">Yeteri süre bağlı kalamadınız. Yayın iletisi gönderilemedi.</translation>
+        <translation type="unfinished">Artık bağlı değilsiniz. Yayın iletisi gönderilemez.</translation>
     </message>
 </context>
 <context>
@@ -1301,72 +1301,72 @@
     <message>
         <location line="+147"/>
         <source>%1 says...</source>
-        <translation type="unfinished">%1 diyorki ...</translation>
+        <translation type="unfinished">%1 diyor...</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Broadcast from %1</source>
-        <translation type="unfinished">%1 kullanıcısından yayın iletisi var</translation>
+        <translation type="unfinished">%1 kullanıcısından yayın</translation>
     </message>
     <message>
         <location line="+54"/>
         <source>%1 sends a file...</source>
-        <translation type="unfinished">%1 kullanıcısı dosya gönderiyor...</translation>
+        <translation type="unfinished">%1 bir dosya gönderiyor...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 sends a folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 bir klasör gönderiyor...</translation>
     </message>
     <message>
         <location line="+350"/>
         <source>Save Conversation</source>
-        <translation type="unfinished">Konuşmayı kaydet</translation>
+        <translation type="unfinished">Konuşmayı Kaydet</translation>
     </message>
     <message>
         <location line="+211"/>
         <source>Sent a nudge!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bir dürtme gönderildi!</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished">Smiley Ekle</translation>
+        <translation type="unfinished">Gülümseme Ekle</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosya Gönder...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klasör Gönder...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Farklı Kaydet...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dürtme</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Voice Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sesli Arama</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Video Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Görüntülü Arama</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Hang Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kapat</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1376,17 +1376,17 @@
     <message>
         <location line="+1"/>
         <source>File Transfers</source>
-        <translation type="unfinished">Dosya Transferi</translation>
+        <translation type="unfinished">Dosya Aktarımları</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Send a file to %1</source>
-        <translation type="unfinished">%1 alıcısına dosya gönder</translation>
+        <translation type="unfinished">%1 kullanıcısına dosya gönder</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Send a folder to %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 kullanıcısına klasör gönder</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1396,17 +1396,17 @@
     <message>
         <location line="+1"/>
         <source>View History</source>
-        <translation type="unfinished">Geçmişe Bakın</translation>
+        <translation type="unfinished">Geçmişi Görüntüle</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>View File Transfers</source>
-        <translation type="unfinished">Dosya Transferine Bakın</translation>
+        <translation type="unfinished">Dosya Aktarımlarını Görüntüle</translation>
     </message>
     <message>
         <location line="+138"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Artık bağlı değilsiniz.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1421,7 +1421,7 @@
     <message>
         <location line="+4"/>
         <source>%1 is busy. You may be interrupting.</source>
-        <translation type="unfinished">%1 meşgul, yanıt vermeyebilir.</translation>
+        <translation type="unfinished">%1 meşgul. Rahatsız ediyor olabilirsiniz.</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1431,7 +1431,7 @@
     <message>
         <location line="+0"/>
         <source>Encrypted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Şifreli</translation>
     </message>
 </context>
 <context>
@@ -1444,12 +1444,12 @@
     <message>
         <location line="+135"/>
         <source>%1 says...</source>
-        <translation type="unfinished">%1 diyorki ...</translation>
+        <translation type="unfinished">%1 diyor...</translation>
     </message>
     <message>
         <location line="+177"/>
         <source>Save Conversation</source>
-        <translation type="unfinished">Konuşmayı kaydet</translation>
+        <translation type="unfinished">Konuşmayı Kaydet</translation>
     </message>
     <message>
         <location line="+134"/>
@@ -1459,22 +1459,22 @@
     <message>
         <location line="+1"/>
         <source>Send File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosya Gönder</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bilgi Al</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished">Smiley Ekle</translation>
+        <translation type="unfinished">Gülümseme Ekle</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Farklı Kaydet...</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1489,12 +1489,12 @@
     <message>
         <location line="+72"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Artık bağlı değilsiniz.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Chat Room</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sohbet Odası</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1525,12 +1525,12 @@
     <message>
         <location line="+27"/>
         <source>You are online.</source>
-        <translation type="unfinished">Çevrimiçisin.</translation>
+        <translation type="unfinished">Çevrimiçisiniz.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Artık bağlı değilsiniz.</translation>
     </message>
     <message>
         <location line="+262"/>
@@ -1580,7 +1580,7 @@
         <location line="-9"/>
         <location line="+10"/>
         <source>File &amp;Transfers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosya &amp;Aktarımları</translation>
     </message>
     <message>
         <location line="-9"/>
@@ -1607,7 +1607,7 @@
     <message>
         <location line="-6"/>
         <source>&amp;Show %1</source>
-        <translation type="unfinished">%1 &amp;gösterilsin</translation>
+        <translation type="unfinished">%1 &amp;göster</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1624,38 +1624,38 @@
         <location line="-5"/>
         <location line="+7"/>
         <source>Send &amp;Broadcast Message</source>
-        <translation type="unfinished">&amp;Yayın iletisi gönder</translation>
+        <translation type="unfinished">&amp;Yayın İletisi Gönder</translation>
     </message>
     <message>
         <location line="-6"/>
         <location line="+5"/>
         <source>Send &amp;File</source>
-        <translation type="unfinished">&amp;Dosya gönder</translation>
+        <translation type="unfinished">&amp;Dosya Gönder</translation>
     </message>
     <message>
         <location line="-4"/>
         <source>Send Fol&amp;der</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klas&amp;ör Gönder</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get &amp;Information</source>
-        <translation type="unfinished">&amp;Bilgi al</translation>
+        <translation type="unfinished">&amp;Bilgi Al</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Browse for more pictures...</source>
-        <translation type="unfinished">&amp;Daha fazla resime gözat...</translation>
+        <translation type="unfinished">&amp;Daha fazla resim için göz at...</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="unfinished">%1 arkaplanda çalışmasına devam edecek. Uygulamayı açmak için ikonu aktif edin.</translation>
+        <translation type="unfinished">%1 arka planda çalışmaya devam edecek. Uygulama penceresini geri yüklemek için bu simgeyi etkinleştirin.</translation>
     </message>
     <message>
         <location line="+183"/>
         <source>%1 - Not Connected</source>
-        <translation type="unfinished">%1 - Bağlanamadı</translation>
+        <translation type="unfinished">%1 - Bağlı Değil</translation>
     </message>
 </context>
 <context>
@@ -1668,12 +1668,12 @@
     <message>
         <location line="+7"/>
         <source>Select folder</source>
-        <translation type="unfinished">Dosya Seç</translation>
+        <translation type="unfinished">Klasör seç</translation>
     </message>
     <message>
         <location line="+30"/>
         <source>Are you sure you want to reset your %1 preferences?</source>
-        <translation type="unfinished">%1 seçeneklerinizi sıfırlamak istediğinizden emin misiniz?</translation>
+        <translation type="unfinished">%1 tercihlerinizi sıfırlamak istediğinizden emin misiniz?</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1683,75 +1683,75 @@
     <message>
         <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;Dosya Bulunamadı&gt;</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Select sound</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ses seç</translation>
     </message>
     <message>
         <location line="+82"/>
         <source>The microphone is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon kullanılamıyor.</translation>
     </message>
     <message>
         <location line="+12"/>
         <location line="+240"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Durdur</translation>
     </message>
     <message>
         <location line="-201"/>
         <source>Default Communication Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Varsayılan İletişim Cihazı</translation>
     </message>
     <message>
         <location line="+14"/>
         <location line="+37"/>
         <source>Unknown device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bilinmeyen cihaz</translation>
     </message>
     <message>
         <location line="-36"/>
         <location line="+37"/>
         <source>%1 (Not connected)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Bağlı değil)</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Still Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sabit Görüntü</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Desktop %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Masaüstü %1</translation>
     </message>
     <message>
         <location line="+87"/>
         <source>Push to talk:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bas konuş:</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: %2</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>%1 and %2 cannot share the same hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 ve %2 aynı kısayol tuşunu paylaşamaz.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bas konuş için genel kısayol tuşları gerekir. Bunları Kısayol Tuşları sayfasından etkinleştirin.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bas konuş için bir tuş gerekir. Kısayol Tuşları sayfasından birini ayarlayın.</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -1761,22 +1761,22 @@
     <message>
         <location line="+13"/>
         <source>System Tray (Not Available)</source>
-        <translation type="unfinished">Sistem Simgesi(Uygun Değil)</translation>
+        <translation type="unfinished">Sistem Tepsisi (Kullanılamıyor)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Status Alerts (Not Available)</source>
-        <translation type="unfinished">Durum Uyarıları (Uygun Değil)</translation>
+        <translation type="unfinished">Durum Uyarıları (Kullanılamıyor)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Sounds (Not Available)</source>
-        <translation type="unfinished">Sesler (Uygun Değil)</translation>
+        <translation type="unfinished">Sesler (Kullanılamıyor)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Calls (Not Available)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aramalar (Kullanılamıyor)</translation>
     </message>
 </context>
 <context>
@@ -1784,22 +1784,22 @@
     <message>
         <location filename="../../sources/aformtransfer.cpp" line="+177"/>
         <source>&apos;%1&apos; has been sent to %2.</source>
-        <translation type="unfinished">&apos;%1&apos; kullanıcısı %2 kullanıcısına gönderdi.</translation>
+        <translation type="unfinished">&apos;%1&apos; dosyası %2 kullanıcısına gönderildi.</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="unfinished">&apos;%1&apos; %2 kullanıcısından alındı.</translation>
+        <translation type="unfinished">&apos;%1&apos; dosyası %2 kullanıcısından alındı.</translation>
     </message>
     <message>
         <location line="+124"/>
         <source>File Transfers</source>
-        <translation type="unfinished">Dosya Transferi</translation>
+        <translation type="unfinished">Dosya Aktarımları</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İptal</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1814,12 +1814,12 @@
     <message>
         <location line="+53"/>
         <source>Calculating time</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Süre hesaplanıyor</translation>
     </message>
     <message>
         <location line="+39"/>
         <source>/sec</source>
-        <translation type="unfinished">/ Saniye</translation>
+        <translation type="unfinished">/sn</translation>
     </message>
 </context>
 <context>
@@ -1843,53 +1843,53 @@
     <message>
         <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hoparlör</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Use a single key combination.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tek bir tuş kombinasyonu kullanın.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu tuş genel kısayol tuşu olarak kullanılamaz.</translation>
     </message>
     <message>
         <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tuşu Ctrl, Alt veya Win ile birleştirin.</translation>
     </message>
     <message>
         <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 kısayol tuşuyla aynı kombinasyon.</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Already in use by another application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Başka bir uygulama tarafından zaten kullanılıyor.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Windows refused the hotkey (error %1).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Windows kısayol tuşunu reddetti (hata %1).</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Global hotkeys are not supported on this platform.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu platformda genel kısayol tuşları desteklenmiyor.</translation>
     </message>
 </context>
 <context>
@@ -1908,7 +1908,11 @@ LAN Messenger works on essentially every popular desktop platform.
 You can support LAN Messenger by contributing code, translations,
 bug fixes or reports.
 Help us grow by sharing the project with others!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAN Messenger, ağ içi iletişim için ücretsiz bir eşler arası mesajlaşma uygulamasıdır ve sunucu gerektirmez.
+LAN Messenger neredeyse her popüler masaüstü platformunda çalışır.
+
+Kod, çeviri, hata düzeltmeleri veya raporlar göndererek LAN Messenger&apos;ı destekleyebilirsiniz.
+Projeyi başkalarıyla paylaşarak büyümemize yardımcı olun!</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -1918,17 +1922,17 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+6"/>
         <source>Small (8.25pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Küçük (8.25pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium (9pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Orta (9pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Large (10.5pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Büyük (10.5pt)</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1948,7 +1952,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Be Right Back</source>
-        <translation type="unfinished">Hemen Dönecek</translation>
+        <translation type="unfinished">Hemen Döneceğim</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1968,77 +1972,77 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>User is online</source>
-        <translation type="unfinished">Kullancı çevrimiçi</translation>
+        <translation type="unfinished">Kullanıcı çevrimiçi</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>User is offline</source>
-        <translation type="unfinished">Kullancı çevrimdışı</translation>
+        <translation type="unfinished">Kullanıcı çevrimdışı</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming file transfer</source>
-        <translation type="unfinished">Gelen dosya transferi</translation>
+        <translation type="unfinished">Gelen dosya aktarımı</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>File transfer completed</source>
-        <translation type="unfinished">Dosya transferi tamamlandı</translation>
+        <translation type="unfinished">Dosya aktarımı tamamlandı</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming public message</source>
-        <translation type="unfinished">Gelen genel mesaj</translation>
+        <translation type="unfinished">Gelen genel ileti</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon açık</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon kapalı</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera açık</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera kapalı</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hoparlör açık</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hoparlör kapalı</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gelen arama</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Giden arama</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dürtme</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Talking while microphone muted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon kapalıyken konuşma</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2056,7 +2060,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 dB</translation>
     </message>
 </context>
 </TS>

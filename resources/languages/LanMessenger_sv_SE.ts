@@ -16,12 +16,12 @@
     <message>
         <location line="+7"/>
         <source>&lt;Application Title&gt;</source>
-        <translation>&lt;Program Titel&gt;</translation>
+        <translation>&lt;Programtitel&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;_Qt Version&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;_Qt-version&gt;</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -36,12 +36,12 @@
     <message>
         <location line="+26"/>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bidragsgivare</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Copyright</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../../sources/aformbroadcast.ui" line="+14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulär</translation>
     </message>
     <message>
         <location line="+132"/>
@@ -88,7 +88,7 @@
     <message>
         <location filename="../../sources/aformchatroom.ui" line="+14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulär</translation>
     </message>
     <message>
         <location line="+206"/>
@@ -98,12 +98,12 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulär</translation>
     </message>
     <message>
         <location line="+213"/>
@@ -121,42 +121,42 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Microphone toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Växla mikrofon</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Speaker toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Växla högtalare</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Camera toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Växla kamera</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C</translation>
     </message>
 </context>
 <context>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../../sources/aformhistory.ui" line="+14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulär</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulär</translation>
     </message>
     <message>
         <location line="+110"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Klistra in</translation>
     </message>
 </context>
 <context>
@@ -287,7 +287,7 @@
         <location line="+181"/>
         <source>Broadcast address:</source>
         <oldsource>Broadcast Address:</oldsource>
-        <translation>Massutsändningsadress:</translation>
+        <translation>Broadcast-adress:</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -307,7 +307,7 @@
     <message>
         <location line="+8"/>
         <source>Multicast address:</source>
-        <translation>Massutsändningsadress:</translation>
+        <translation>Multicast-adress:</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -344,39 +344,39 @@
     <message>
         <location line="+27"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Samtal</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Enable global hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktivera globala snabbtangenter</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Snabbtangenter styr det aktiva samtalet och fungerar även när %1 inte är det fokuserade fönstret.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Toggle microphone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Växla mikrofon:</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+17"/>
         <location line="+17"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Standard</translation>
     </message>
     <message>
         <location line="-27"/>
         <source>Toggle speaker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Växla högtalare:</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Toggle camera:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Växla kamera:</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -480,7 +480,7 @@
     <message>
         <location line="+30"/>
         <source>seconds</source>
-        <translation>:e sekund</translation>
+        <translation>sekund</translation>
     </message>
     <message>
         <location line="-459"/>
@@ -512,7 +512,7 @@
     <message>
         <location line="-82"/>
         <source>Minimize incoming messages to taskbar</source>
-        <translation>Minimera inkommande meddelanden till meddelandefältet</translation>
+        <translation>Minimera inkommande meddelanden till aktivitetsfältet</translation>
     </message>
     <message>
         <location line="-528"/>
@@ -550,12 +550,12 @@
     <message>
         <location line="+9"/>
         <source>Remove whitespace from start and end of messages</source>
-        <translation>Ta bort blanksteg från början och slutet, i meddelanden</translation>
+        <translation>Ta bort blanksteg från början och slut av meddelanden</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
-        <translation>Rensa bort meddelanden när fönstret stängs</translation>
+        <translation>Rensa meddelanden när fönstret stängs</translation>
     </message>
     <message>
         <location line="+362"/>
@@ -570,7 +570,7 @@
     <message>
         <location line="+9"/>
         <source>Clear Message History</source>
-        <translation>Rensa konversationshistorik</translation>
+        <translation>Rensa meddelandehistorik</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -628,12 +628,12 @@
     <message>
         <location line="+7"/>
         <source>Suspend alerts when my status is Busy</source>
-        <translation>Inga aviseringar när min status är &quot;Upptagen&quot;</translation>
+        <translation>Pausa aviseringar när min status är Upptagen</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Suspend alerts when my status is Do Not Disturb</source>
-        <translation>Inga aviseringar när min status är &quot;Stör ej&quot;</translation>
+        <translation>Pausa aviseringar när min status är Stör ej</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -643,17 +643,17 @@
     <message>
         <location line="+6"/>
         <source>Provide feedback with sounds</source>
-        <translation>Använd ljud vid avisering</translation>
+        <translation>Ge återkoppling med ljud</translation>
     </message>
     <message>
         <location line="+111"/>
         <source>Suspend sounds when my status is Busy</source>
-        <translation>Inget ljud när min status är &quot;Upptagen&quot;</translation>
+        <translation>Pausa ljud när min status är Upptagen</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Suspend sound when my status is Do Not Disturb</source>
-        <translation>Inget ljud när min status är &quot;Stör ej&quot;</translation>
+        <translation>Pausa ljud när min status är Stör ej</translation>
     </message>
     <message>
         <location line="-91"/>
@@ -664,7 +664,7 @@
         <location line="-1287"/>
         <location line="+775"/>
         <source>Voice &amp; Video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Röst &amp; Video</translation>
     </message>
     <message>
         <location line="-760"/>
@@ -675,110 +675,110 @@
     <message>
         <location line="-1327"/>
         <source>Enable Debug Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktivera felsökningsloggning</translation>
     </message>
     <message>
         <location line="+37"/>
         <source>Show toast notifications in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa toast-aviseringar i meddelandefältet</translation>
     </message>
     <message>
         <location line="+120"/>
         <source>User name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Användarnamn :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>User name as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Användarnamn som syns för kontakter</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Group :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grupp :</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Group as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grupp som syns för kontakter</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>First Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Förnamn :</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+20"/>
         <location line="+32"/>
         <source>For User Information dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">För dialogrutan Användarinformation</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Efternamn :</translation>
     </message>
     <message>
         <location line="+165"/>
         <source>Show incoming messages without grabbing focus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa inkommande meddelanden utan att ta fokus</translation>
     </message>
     <message>
         <location line="+149"/>
         <source>Chat Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chatttext</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Chat text size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chatttextstorlek:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Only applies to new chat windows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gäller endast nya chattfönster.</translation>
     </message>
     <message>
         <location line="+73"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+113"/>
         <source>Capture Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inspelningsenhet</translation>
     </message>
     <message>
         <location line="-87"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktivering</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Continuous Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kontinuerlig överföring</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Push to Talk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tryck för att prata</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Voice Activity Threshold</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tröskel för röstaktivitet</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Test</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+541"/>
@@ -788,23 +788,23 @@
     <message>
         <location line="+8"/>
         <source>Connection timeout (seconds):</source>
-        <translation>Anslutningens tidsgräns (sek):</translation>
+        <translation>Anslutningens tidsgräns (sekunder):</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Maximum number of retries:</source>
-        <translation>Max antal återförsök:</translation>
+        <translation>Maximalt antal återförsök:</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Broadcast</source>
         <oldsource>Broadcast Settings</oldsource>
-        <translation>Utsändning</translation>
+        <translation>Broadcast</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Broadcast list:</source>
-        <translation>Massutsändningslista:</translation>
+        <translation>Broadcast-lista:</translation>
     </message>
     <message>
         <location line="+158"/>
@@ -824,17 +824,17 @@
     <message>
         <location line="+252"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Färgschema</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ljust</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mörkt</translation>
     </message>
     <message>
         <location line="-2027"/>
@@ -855,17 +855,17 @@
     <message>
         <location line="+27"/>
         <source>Minimize window to taskbar</source>
-        <translation>Minimera fönstret till meddelandefältet</translation>
+        <translation>Minimera fönstret till aktivitetsfältet</translation>
     </message>
     <message>
         <location line="-59"/>
         <source>Accept and start receiving files automatically</source>
-        <translation>Acceptera och starta filmottagning automatiskt</translation>
+        <translation>Acceptera och börja ta emot filer automatiskt</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
-        <translation>Visa överföringsfönster vid sändning och mottagning av filer</translation>
+        <translation>Visa filöverföringsfönster vid sändning eller mottagning av filer</translation>
     </message>
     <message>
         <location line="+64"/>
@@ -883,7 +883,7 @@
     <message>
         <location filename="../../sources/aformtransfer.ui" line="+14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulär</translation>
     </message>
     <message>
         <location line="+74"/>
@@ -993,12 +993,12 @@
     <message>
         <location line="+7"/>
         <source>Messenger Version:</source>
-        <translation>Klientversion:</translation>
+        <translation>Messenger-version:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;Messenger Version&gt;</source>
-        <translation>&lt;Klientversion&gt;</translation>
+        <translation>&lt;Messenger-version&gt;</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1045,17 +1045,17 @@
         <location line="+133"/>
         <location line="+21"/>
         <source>%1 (Broadcast)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Broadcast)</translation>
     </message>
     <message>
         <location line="+347"/>
         <source>Broadcast message from %1:</source>
-        <translation type="unfinished">Massmeddelande från %1:</translation>
+        <translation type="unfinished">Broadcast-meddelande från %1:</translation>
     </message>
     <message>
         <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Begär %1-samtal från %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1067,47 +1067,47 @@
         <location line="-89"/>
         <location line="+28"/>
         <source>Call in progress.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Samtal pågår.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call declined.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Samtal avböjt.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Samtalsfel.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Samtal avbrutet.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>%1 is requesting %2 call.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 begär %2-samtal.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+109"/>
         <source>Accept</source>
-        <translation type="unfinished">Tacka ja</translation>
+        <translation type="unfinished">Acceptera</translation>
     </message>
     <message>
         <location line="-108"/>
         <location line="+109"/>
         <source>Decline</source>
-        <translation type="unfinished">Tacka nej</translation>
+        <translation type="unfinished">Avböj</translation>
     </message>
     <message>
         <location line="-52"/>
         <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="unfinished">Skickar &apos;%1&apos; till &apos;%2&apos;.</translation>
+        <translation type="unfinished">Skickar &apos;%1&apos; till %2.</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -1122,12 +1122,12 @@
     <message>
         <location line="+7"/>
         <source>%1 sends you a file:</source>
-        <translation type="unfinished">%1 skickar en fil:</translation>
+        <translation type="unfinished">%1 skickar en fil till dig:</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 sends you a folder:</source>
-        <translation type="unfinished">%1 skickar en mapp:</translation>
+        <translation type="unfinished">%1 skickar en mapp till dig:</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1139,18 +1139,18 @@
     <message>
         <location line="-35"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppna</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show in Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa i mapp</translation>
     </message>
     <message>
         <location line="+37"/>
         <location line="+0"/>
         <source>Declined</source>
-        <translation type="unfinished">Nekad</translation>
+        <translation type="unfinished">Avböjd</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1168,7 +1168,7 @@
         <location line="+3"/>
         <location line="+0"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slutfört</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -1178,7 +1178,7 @@
     <message>
         <location line="+3"/>
         <source>%1 has entered text</source>
-        <translation type="unfinished">%1 har skickat text</translation>
+        <translation type="unfinished">%1 har skrivit text</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -1206,17 +1206,17 @@
     <message>
         <location filename="../../sources/lmcore.cpp" line="+75"/>
         <source>The firewall is blocking %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brandväggen blockerar %1.</translation>
     </message>
     <message>
         <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Din inställningsfil är skadad eller ogiltig. %1 kan inte återställa dina inställningar.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inställningar kunde inte importeras från &apos;%1&apos;. Filen kanske inte finns eller är inte kompatibel med denna version av %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1227,27 +1227,27 @@
     <message>
         <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ingen mikrofon är tillgänglig. Din röst kan inte skickas.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Your selected microphone is not available. Using %1 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Din valda mikrofon är inte tillgänglig. Använder %1 istället.</translation>
     </message>
     <message>
         <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Snabbtangenten %1 (%2) är inte aktiv: %3</translation>
     </message>
     <message>
         <location line="+489"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="unfinished">En portkonflikt har upptäckts. %1 kommer att stängas nu.</translation>
+        <translation type="unfinished">En portadresskonflikt har upptäckts. %1 stängs nu.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="unfinished">%1 kan inte startas eftersom ett annat program använder den port som konfigurerats för %2.</translation>
+        <translation type="unfinished">%1 kan inte startas eftersom ett annat program använder den port som är konfigurerad för %2.</translation>
     </message>
 </context>
 <context>
@@ -1263,32 +1263,32 @@
     <message>
         <location filename="../../sources/aformbroadcast.cpp" line="+340"/>
         <source>Send Broadcast Message</source>
-        <translation type="unfinished">Skicka massmeddelande</translation>
+        <translation type="unfinished">Skicka broadcast-meddelande</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Infoga smiley</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>You are not connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Du är inte ansluten. Broadcast-meddelande kan inte skickas.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select at least one recipient to send a broadcast.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Välj minst en mottagare för att skicka ett broadcast-meddelande.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type a message to send.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skriv ett meddelande att skicka.</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>You are no longer connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished">Du är inte längre ansluten. Meddelanden kan inte skickas.</translation>
+        <translation type="unfinished">Du är inte längre ansluten. Broadcast-meddelande kan inte skickas.</translation>
     </message>
 </context>
 <context>
@@ -1306,7 +1306,7 @@
     <message>
         <location line="+9"/>
         <source>Broadcast from %1</source>
-        <translation type="unfinished">Massutsändning från %1</translation>
+        <translation type="unfinished">Broadcast från %1</translation>
     </message>
     <message>
         <location line="+54"/>
@@ -1326,47 +1326,47 @@
     <message>
         <location line="+211"/>
         <source>Sent a nudge!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skickade en knuff!</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Infoga smiley</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skicka en fil...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skicka en mapp...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spara som...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Knuff</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Voice Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Röstsamtal</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Video Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Videosamtal</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Hang Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lägg på</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1411,7 +1411,7 @@
     <message>
         <location line="+3"/>
         <source>%1 is offline.</source>
-        <translation type="unfinished">%1 är inte ansluten.</translation>
+        <translation type="unfinished">%1 är offline.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1431,7 +1431,7 @@
     <message>
         <location line="+0"/>
         <source>Encrypted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krypterad</translation>
     </message>
 </context>
 <context>
@@ -1459,22 +1459,22 @@
     <message>
         <location line="+1"/>
         <source>Send File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skicka fil</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hämta information</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insert Smiley</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Infoga smiley</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spara som...</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1484,7 +1484,7 @@
     <message>
         <location line="+3"/>
         <source>Add people to this conversation</source>
-        <translation type="unfinished">Lägg till personer till denna konversation</translation>
+        <translation type="unfinished">Lägg till personer i denna konversation</translation>
     </message>
     <message>
         <location line="+72"/>
@@ -1494,7 +1494,7 @@
     <message>
         <location line="+25"/>
         <source>Chat Room</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chattrum</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1515,17 +1515,17 @@
     <message>
         <location filename="../../sources/aformmain.cpp" line="+272"/>
         <source>%1 is online.</source>
-        <translation type="unfinished">%1 är ansluten.</translation>
+        <translation type="unfinished">%1 är online.</translation>
     </message>
     <message>
         <location line="+49"/>
         <source>%1 is offline.</source>
-        <translation type="unfinished">%1 är inte ansluten.</translation>
+        <translation type="unfinished">%1 är offline.</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>You are online.</source>
-        <translation type="unfinished">Du är ansluten.</translation>
+        <translation type="unfinished">Du är online.</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1535,12 +1535,12 @@
     <message>
         <location line="+262"/>
         <source>Select avatar picture</source>
-        <translation type="unfinished">Välj avatar-bild</translation>
+        <translation type="unfinished">Välj avatarbild</translation>
     </message>
     <message>
         <location line="+392"/>
         <source>&amp;Messenger</source>
-        <translation type="unfinished">&amp;Meddelandeklient</translation>
+        <translation type="unfinished">&amp;Messenger</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1596,7 +1596,7 @@
     <message>
         <location line="+1"/>
         <source>%1 &amp;online</source>
-        <translation type="unfinished">%1 &amp;på nätet</translation>
+        <translation type="unfinished">%1 &amp;online</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1624,7 +1624,7 @@
         <location line="-5"/>
         <location line="+7"/>
         <source>Send &amp;Broadcast Message</source>
-        <translation type="unfinished">Skicka &amp;massmeddelande</translation>
+        <translation type="unfinished">Skicka &amp;broadcast-meddelande</translation>
     </message>
     <message>
         <location line="-6"/>
@@ -1650,7 +1650,7 @@
     <message>
         <location line="+29"/>
         <source>%1 will continue to run in the background. Activate this icon to restore the application window.</source>
-        <translation type="unfinished">%1 fortsätter köras i bakgrunden.Aktivera den här ikonen för att återställa programfönstret.</translation>
+        <translation type="unfinished">%1 fortsätter att köras i bakgrunden. Aktivera denna ikon för att återställa programfönstret.</translation>
     </message>
     <message>
         <location line="+183"/>
@@ -1683,7 +1683,7 @@
     <message>
         <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished">&lt;Filen kunde inte hittas&gt;</translation>
+        <translation type="unfinished">&lt;Filen hittades inte&gt;</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -1693,65 +1693,65 @@
     <message>
         <location line="+82"/>
         <source>The microphone is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofonen är inte tillgänglig.</translation>
     </message>
     <message>
         <location line="+12"/>
         <location line="+240"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stoppa</translation>
     </message>
     <message>
         <location line="-201"/>
         <source>Default Communication Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Standard kommunikationsenhet</translation>
     </message>
     <message>
         <location line="+14"/>
         <location line="+37"/>
         <source>Unknown device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Okänd enhet</translation>
     </message>
     <message>
         <location line="-36"/>
         <location line="+37"/>
         <source>%1 (Not connected)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Inte ansluten)</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Still Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stillbild</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Desktop %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Skrivbord %1</translation>
     </message>
     <message>
         <location line="+87"/>
         <source>Push to talk:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tryck för att prata:</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: %2</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>%1 and %2 cannot share the same hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 och %2 kan inte dela samma snabbtangent.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tryck för att prata kräver globala snabbtangenter. Aktivera dem på sidan Snabbtangenter.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tryck för att prata kräver en tangent. Ange en på sidan Snabbtangenter.</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -1776,7 +1776,7 @@
     <message>
         <location line="+4"/>
         <source>Calls (Not Available)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Samtal (Ej tillgängligt)</translation>
     </message>
 </context>
 <context>
@@ -1804,7 +1804,7 @@
     <message>
         <location line="+1"/>
         <source>Show In Folder</source>
-        <translation type="unfinished">Visa i målmappen</translation>
+        <translation type="unfinished">Visa i mapp</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1843,53 +1843,53 @@
     <message>
         <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Högtalare</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Use a single key combination.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Använd en enda tangentkombination.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Denna tangent kan inte användas som global snabbtangent.</translation>
     </message>
     <message>
         <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kombinera tangenten med Ctrl, Alt eller Win.</translation>
     </message>
     <message>
         <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Samma kombination som snabbtangenten %1.</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Already in use by another application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Används redan av ett annat program.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Windows refused the hotkey (error %1).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Windows avvisade snabbtangenten (fel %1).</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Global hotkeys are not supported on this platform.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Globala snabbtangenter stöds inte på denna plattform.</translation>
     </message>
 </context>
 <context>
@@ -1908,27 +1908,33 @@ LAN Messenger works on essentially every popular desktop platform.
 You can support LAN Messenger by contributing code, translations,
 bug fixes or reports.
 Help us grow by sharing the project with others!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAN Messenger är ett gratis peer-to-peer-meddelandeprogram för
+kommunikation inom nätverket och kräver ingen server.
+LAN Messenger fungerar på i princip alla populära skrivbordsplattformar.
+
+Du kan stödja LAN Messenger genom att bidra med kod, översättningar,
+buggfixningar eller rapporter.
+Hjälp oss att växa genom att dela projektet med andra!</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Automatic</source>
-        <translation type="unfinished">Atomatiskt</translation>
+        <translation type="unfinished">Automatiskt</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Small (8.25pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Liten (8.25pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium (9pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Medium (9pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Large (10.5pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stor (10.5pt)</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1958,7 +1964,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Appear Offline</source>
-        <translation type="unfinished">Fejkat nedkopplad</translation>
+        <translation type="unfinished">Visa som offline</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1968,12 +1974,12 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>User is online</source>
-        <translation type="unfinished">Användaren är ansluten</translation>
+        <translation type="unfinished">Användaren är online</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>User is offline</source>
-        <translation type="unfinished">Användaren är nedkopplad</translation>
+        <translation type="unfinished">Användaren är offline</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1988,57 +1994,57 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Incoming public message</source>
-        <translation type="unfinished">Inkommande massmeddelande</translation>
+        <translation type="unfinished">Inkommande publikt meddelande</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon på</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mikrofon av</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera på</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kamera av</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Högtalare på</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Högtalare av</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inkommande samtal</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utgående samtal</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Knuff</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Talking while microphone muted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pratar med mikrofonen avstängd</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2056,7 +2062,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 dB</translation>
     </message>
 </context>
 </TS>

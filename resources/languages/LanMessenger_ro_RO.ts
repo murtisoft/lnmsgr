@@ -21,7 +21,7 @@
     <message>
         <location line="+7"/>
         <source>&lt;_Qt Version&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;_Qt Version&gt;</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -36,12 +36,12 @@
     <message>
         <location line="+26"/>
         <source>Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Contributori</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Drepturi de autor</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -98,12 +98,12 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
 </context>
 <context>
@@ -111,7 +111,7 @@
     <message>
         <location filename="../../sources/aformchat.ui" line="+14"/>
         <source>Form</source>
-        <translation>Fromular</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location line="+213"/>
@@ -121,42 +121,42 @@
     <message>
         <location line="+3"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&gt;</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>+</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">+</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Microphone toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comutare microfon</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">M</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Speaker toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comutare difuzor</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Camera toggle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comutare cameră</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">C</translation>
     </message>
 </context>
 <context>
@@ -179,12 +179,12 @@
     <message>
         <location line="+38"/>
         <source>To: </source>
-        <translation>Către:</translation>
+        <translation>Către: </translation>
     </message>
     <message>
         <location line="+0"/>
         <source>From: </source>
-        <translation>De la:</translation>
+        <translation>De la: </translation>
     </message>
     <message>
         <location line="+24"/>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../../sources/aformmain.ui" line="+14"/>
         <source>Form</source>
-        <translation>Fromular</translation>
+        <translation>Formular</translation>
     </message>
     <message>
         <location line="+110"/>
@@ -250,7 +250,7 @@
     <message>
         <location line="+23"/>
         <source>Type a note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Scrie o notă</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../../sources/aformchat.cpp" line="+616"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Lipește</translation>
     </message>
 </context>
 <context>
@@ -301,7 +301,7 @@
         <location line="-2203"/>
         <location line="+775"/>
         <source>Voice &amp; Video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Voce și video</translation>
     </message>
     <message>
         <location line="-770"/>
@@ -358,7 +358,7 @@
     <message>
         <location line="+7"/>
         <source>Enable Debug Logging</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Activează jurnalizarea de depanare</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -383,7 +383,7 @@
     <message>
         <location line="+14"/>
         <source>Minimize main window using tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minimizează fereastra principală folosind pictograma din zonă</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -434,7 +434,7 @@
         <location line="+25"/>
         <source>Apply to public messages</source>
         <oldsource>Apply  to public messages</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aplică la mesajele publice</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -469,110 +469,110 @@
     <message>
         <location line="+7"/>
         <source>Clear messages when window is closed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Șterge mesajele la închiderea ferestrei</translation>
     </message>
     <message>
         <location line="-520"/>
         <source>Show toast notifications in tray</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afișează notificări toast în zona de notificare</translation>
     </message>
     <message>
         <location line="+120"/>
         <source>User name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nume utilizator :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>User name as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Numele utilizatorului vizibil pentru contacte</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Group :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grup :</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Group as seen by contacts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grupul vizibil pentru contacte</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>First Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prenume :</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+20"/>
         <location line="+32"/>
         <source>For User Information dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pentru dialogul Informații utilizator</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>Last Name :</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nume :</translation>
     </message>
     <message>
         <location line="+165"/>
         <source>Show incoming messages without grabbing focus</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afișează mesajele primite fără a prelua focusul</translation>
     </message>
     <message>
         <location line="+149"/>
         <source>Chat Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Text chat</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Chat text size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dimensiune text chat:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Only applies to new chat windows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se aplică doar ferestrelor noi de chat.</translation>
     </message>
     <message>
         <location line="+73"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfon</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+113"/>
         <source>Capture Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispozitiv de captură</translation>
     </message>
     <message>
         <location line="-87"/>
         <source>Activation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Activare</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Continuous Transmission</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Transmitere continuă</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Push to Talk</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apasă pentru a vorbi</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Voice Activity Threshold</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Prag activitate vocală</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Test</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cameră</translation>
     </message>
     <message>
         <location line="+126"/>
@@ -624,7 +624,7 @@
     <message>
         <location line="+9"/>
         <source>Clear Transfer History</source>
-        <translation>Șterge instoricul transferurilor</translation>
+        <translation>Șterge istoricul transferurilor</translation>
     </message>
     <message>
         <location line="+79"/>
@@ -664,7 +664,7 @@
     <message>
         <location line="+71"/>
         <source>Reset All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Resetează tot</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -700,7 +700,7 @@
     <message>
         <location line="+6"/>
         <source>Broadcast list:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lista de difuzare:</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -711,22 +711,23 @@
     <message>
         <location line="+37"/>
         <source>&lt;- Add</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;- Adaugă
+</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Șterge</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avansat</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Multicast address:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adresa multicast:</translation>
     </message>
     <message>
         <location line="+43"/>
@@ -756,7 +757,7 @@
     <message>
         <location line="+7"/>
         <source>Show File Transfer window when sending or receiving files</source>
-        <translation>Arată fereastra de transfer de fișiere cânt se trimit sau se primesc fișiere</translation>
+        <translation>Arată fereastra de transfer de fișiere când se trimit sau se primesc fișiere</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -781,32 +782,32 @@
     <message>
         <location line="+82"/>
         <source>Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schemă de culori</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deschisă</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Întunecată</translation>
     </message>
     <message>
         <location line="+59"/>
         <source>Contacts List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Listă contacte</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Contacts list view:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vizualizare listă contacte:</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Show status as tooltip</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afișează starea ca tooltip</translation>
     </message>
     <message>
         <location line="+75"/>
@@ -816,49 +817,49 @@
     <message>
         <location line="+25"/>
         <source>&lt;Enter&gt;</source>
-        <translation>Enter</translation>
+        <translation>&lt;Enter&gt;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&lt;Cmd + Enter&gt;</source>
-        <translation>Cmd + Enter</translation>
+        <translation>&lt;Cmd + Enter&gt;</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apeluri</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Enable global hotkeys</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Activează tastele rapide globale</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Hotkeys control the active call, and work even when %1 is not the focused window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tastele rapide controlează apelul activ și funcționează chiar și când %1 nu este fereastra focalizată.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Toggle microphone:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comută microfonul:</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+17"/>
         <location line="+17"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Implicit</translation>
     </message>
     <message>
         <location line="-27"/>
         <source>Toggle speaker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comută difuzorul:</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Toggle camera:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comută camera:</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -1043,7 +1044,7 @@
         <location line="+133"/>
         <location line="+21"/>
         <source>%1 (Broadcast)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Difuzare)</translation>
     </message>
     <message>
         <location line="+347"/>
@@ -1053,7 +1054,7 @@
     <message>
         <location line="+163"/>
         <source>Requesting %1 call from %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se solicită apel %1 de la %2.</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1065,30 +1066,30 @@
         <location line="-89"/>
         <location line="+28"/>
         <source>Call in progress.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apel în curs.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call declined.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apel refuzat.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eroare apel.</translation>
     </message>
     <message>
         <location line="-25"/>
         <location line="+28"/>
         <source>Call aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apel întrerupt.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>%1 is requesting %2 call.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 solicită un apel %2.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1105,7 +1106,7 @@
     <message>
         <location line="-52"/>
         <source>Sending &apos;%1&apos; to %2.</source>
-        <translation type="unfinished">Trimit %1 către %2.</translation>
+        <translation type="unfinished">Trimit &apos;%1&apos; către %2.</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -1115,7 +1116,7 @@
     <message>
         <location line="+2"/>
         <source>%1 is sending you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 trimite un dosar:</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1125,7 +1126,7 @@
     <message>
         <location line="+2"/>
         <source>%1 sends you a folder:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 trimite un dosar:</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1137,12 +1138,12 @@
     <message>
         <location line="-35"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deschide</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show in Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arată în dosar</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -1186,12 +1187,12 @@
     <message>
         <location line="+3"/>
         <source>%1 has left this conversation</source>
-        <translation type="unfinished">%1 a părasit conversația</translation>
+        <translation type="unfinished">%1 a părăsit conversația</translation>
     </message>
     <message>
         <location line="+258"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Copie(ază)</translation>
+        <translation type="unfinished">&amp;Copiază</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1204,48 +1205,48 @@
     <message>
         <location filename="../../sources/lmcore.cpp" line="+75"/>
         <source>The firewall is blocking %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Firewall-ul blochează %1.</translation>
     </message>
     <message>
         <location line="+91"/>
         <source>Your preferences file is corrupt or invalid. %1 is unable to recover your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fișierul de preferințe este corupt sau invalid. %1 nu poate recupera setările.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Preferences could not be imported from &apos;%1&apos;. File may not exist, or may not be compatible with this version of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preferințele nu au putut fi importate din &apos;%1&apos;. Fișierul poate să nu existe sau să nu fie compatibil cu această versiune de %2.</translation>
     </message>
     <message>
         <location line="+6"/>
         <location line="+58"/>
         <source>LAYOUT_DIRECTION</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAYOUT_DIRECTION</translation>
     </message>
     <message>
         <location line="+466"/>
         <source>No microphone is available. Your voice cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nu este disponibil niciun microfon. Vocea nu poate fi trimisă.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Your selected microphone is not available. Using %1 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfonul selectat nu este disponibil. Se folosește %1 în loc.</translation>
     </message>
     <message>
         <location line="+151"/>
         <source>The %1 hotkey (%2) is not active: %3</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tasta rapidă %1 (%2) nu este activă: %3</translation>
     </message>
     <message>
         <location line="+489"/>
         <source>A port address conflict has been detected. %1 will close now.</source>
-        <translation type="unfinished">Un conflict de adrese de porturi a fost detectat. %1 se va inchide.</translation>
+        <translation type="unfinished">Un conflict de adrese de porturi a fost detectat. %1 se va închide.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 cannot start because another application is using the port configured for use with %2.</source>
-        <translation type="unfinished">%1 nu poate porni pentru că o altă aplicație folosește portul configurat pentru utilizare %2.</translation>
+        <translation type="unfinished">%1 nu poate porni pentru că o altă aplicație folosește portul configurat pentru utilizare cu %2.</translation>
     </message>
 </context>
 <context>
@@ -1271,17 +1272,17 @@
     <message>
         <location line="+60"/>
         <source>You are not connected. Broadcast message cannot be sent.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nu sunteți conectat. Mesajul către mai mulți nu poate fi trimis.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select at least one recipient to send a broadcast.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Selectați cel puțin un destinatar pentru a trimite un mesaj difuzat.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type a message to send.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Scrieți un mesaj de trimis.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -1314,7 +1315,7 @@
     <message>
         <location line="+2"/>
         <source>%1 sends a folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 trimite un dosar...</translation>
     </message>
     <message>
         <location line="+350"/>
@@ -1324,7 +1325,7 @@
     <message>
         <location line="+211"/>
         <source>Sent a nudge!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A trimis un impuls!</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1334,37 +1335,37 @@
     <message>
         <location line="+1"/>
         <source>Send A File...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trimite un fișier...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send A Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trimite un dosar...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salvează ca...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Impuls</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Voice Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apel vocal</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Video Call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apel video</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Hang Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Închide apelul</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1384,12 +1385,12 @@
     <message>
         <location line="+2"/>
         <source>Send a folder to %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trimite un dosar la %1</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Save this conversation</source>
-        <translation type="unfinished">Salvează acestă conversație</translation>
+        <translation type="unfinished">Salvează această conversație</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1404,7 +1405,7 @@
     <message>
         <location line="+138"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nu mai sunteți conectat.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1414,7 +1415,7 @@
     <message>
         <location line="+4"/>
         <source>%1 is away.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 este plecat.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1429,7 +1430,7 @@
     <message>
         <location line="+0"/>
         <source>Encrypted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Criptat</translation>
     </message>
 </context>
 <context>
@@ -1457,12 +1458,12 @@
     <message>
         <location line="+1"/>
         <source>Send File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trimite fișier</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Obține informații</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1472,27 +1473,27 @@
     <message>
         <location line="+1"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salvează ca...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save this conversation</source>
-        <translation type="unfinished">Salvează acestă conversație</translation>
+        <translation type="unfinished">Salvează această conversație</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Add people to this conversation</source>
-        <translation type="unfinished">Adaugă persoane la acestă conversație</translation>
+        <translation type="unfinished">Adaugă persoane la această conversație</translation>
     </message>
     <message>
         <location line="+72"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nu mai sunteți conectat.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Chat Room</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cameră de chat</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1505,7 +1506,7 @@
     <message>
         <location filename="../../sources/aformhistory.cpp" line="+126"/>
         <source>Message History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Istoricul mesajelor</translation>
     </message>
 </context>
 <context>
@@ -1528,7 +1529,7 @@
     <message>
         <location line="+2"/>
         <source>You are no longer connected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nu mai sunteți conectat.</translation>
     </message>
     <message>
         <location line="+262"/>
@@ -1628,12 +1629,12 @@
         <location line="-6"/>
         <location line="+5"/>
         <source>Send &amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trimite &amp;fișier</translation>
     </message>
     <message>
         <location line="-4"/>
         <source>Send Fol&amp;der</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trimite dos&amp;ar</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1681,75 +1682,75 @@
     <message>
         <location line="+123"/>
         <source>&lt;File Not Found&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;Fișier negăsit&gt;</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Select sound</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Selectează sunet</translation>
     </message>
     <message>
         <location line="+82"/>
         <source>The microphone is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfonul nu este disponibil.</translation>
     </message>
     <message>
         <location line="+12"/>
         <location line="+240"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stop</translation>
     </message>
     <message>
         <location line="-201"/>
         <source>Default Communication Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispozitiv de comunicare implicit</translation>
     </message>
     <message>
         <location line="+14"/>
         <location line="+37"/>
         <source>Unknown device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dispozitiv necunoscut</translation>
     </message>
     <message>
         <location line="-36"/>
         <location line="+37"/>
         <source>%1 (Not connected)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 (Nu este conectat)</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Still Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Imagine statică</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Desktop %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Desktop %1</translation>
     </message>
     <message>
         <location line="+87"/>
         <source>Push to talk:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apasă pentru a vorbi:</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1: %2</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>%1 and %2 cannot share the same hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 și %2 nu pot partaja aceeași tastă rapidă.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Push to talk needs global hotkeys. Enable them on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apasă pentru a vorbi necesită taste rapide globale. Activați-le pe pagina Taste rapide.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Push to talk needs a key. Set one on the Hotkeys page.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apasă pentru a vorbi necesită o tastă. Setați una pe pagina Taste rapide.</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -1774,7 +1775,7 @@
     <message>
         <location line="+4"/>
         <source>Calls (Not Available)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apeluri (indisponibile)</translation>
     </message>
 </context>
 <context>
@@ -1787,7 +1788,7 @@
     <message>
         <location line="+15"/>
         <source>&apos;%1&apos; has been received from %2.</source>
-        <translation type="unfinished">&apos;%1&apos; a fost reepționat de la %2.</translation>
+        <translation type="unfinished">&apos;%1&apos; a fost recepționat de la %2.</translation>
     </message>
     <message>
         <location line="+124"/>
@@ -1841,53 +1842,53 @@
     <message>
         <location filename="../../sources/hotkeyhandler.cpp" line="+194"/>
         <source>Microphone</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfon</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Difuzor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cameră</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Use a single key combination.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Folosiți o singură combinație de taste.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+146"/>
         <source>This key cannot be used as a global hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Această tastă nu poate fi folosită ca tastă rapidă globală.</translation>
     </message>
     <message>
         <location line="-143"/>
         <source>Combine the key with Ctrl, Alt or Win.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Combinați tasta cu Ctrl, Alt sau Win.</translation>
     </message>
     <message>
         <location line="+84"/>
         <source>Same combination as the %1 hotkey.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aceeași combinație ca tasta rapidă %1.</translation>
     </message>
     <message>
         <location line="+66"/>
         <source>Already in use by another application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Deja folosită de o altă aplicație.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Windows refused the hotkey (error %1).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Windows a refuzat tasta rapidă (eroare %1).</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Global hotkeys are not supported on this platform.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tastele rapide globale nu sunt suportate pe această platformă.</translation>
     </message>
 </context>
 <context>
@@ -1906,57 +1907,63 @@ LAN Messenger works on essentially every popular desktop platform.
 You can support LAN Messenger by contributing code, translations,
 bug fixes or reports.
 Help us grow by sharing the project with others!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">LAN Messenger este o aplicație gratuită de mesagerie peer-to-peer pentru
+comunicare în rețea internă și nu necesită un server.
+LAN Messenger funcționează pe aproape toate platformele desktop populare.
+
+Puteți sprijini LAN Messenger contribuind cu cod, traduceri,
+corecții de erori sau rapoarte.
+Ajutați-ne să creștem partajând proiectul cu alții!</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Automat</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Small (8.25pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mic (8.25pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium (9pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mediu (9pt)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Large (10.5pt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mare (10.5pt)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Available</source>
-        <translation type="unfinished">Disponibil (Available)</translation>
+        <translation type="unfinished">Disponibil</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Busy</source>
-        <translation type="unfinished">Ocupat (Busy)</translation>
+        <translation type="unfinished">Ocupat</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Do Not Disturb</source>
-        <translation type="unfinished">Nu mă deranjați (DND)</translation>
+        <translation type="unfinished">Nu mă deranjați</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Be Right Back</source>
-        <translation type="unfinished">Mă întorc imediat (BRB)</translation>
+        <translation type="unfinished">Mă întorc imediat</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Away</source>
-        <translation type="unfinished">Plecat (Away)</translation>
+        <translation type="unfinished">Plecat</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Appear Offline</source>
-        <translation type="unfinished">Invizibil (Appear offline)</translation>
+        <translation type="unfinished">Invizibil</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1986,67 +1993,67 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location line="+1"/>
         <source>Incoming public message</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mesaj public primit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfon pornit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Microphone off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Microfon oprit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cameră pornită</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Camera off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cameră oprită</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Difuzor pornit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Speaker off</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Difuzor oprit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apel primit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apel efectuat</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Nudge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Impuls</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Talking while microphone muted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vorbire cu microfonul dezactivat</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Detailed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Detaliat</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Compact</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Compact</translation>
     </message>
 </context>
 <context>
@@ -2054,7 +2061,7 @@ Help us grow by sharing the project with others!</source>
     <message>
         <location filename="../../sources/widgetthresholdslider.cpp" line="+202"/>
         <source>%1 dB</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 dB</translation>
     </message>
 </context>
 </TS>

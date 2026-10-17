@@ -4,8 +4,6 @@ Notes
 ===========================
 Project related todo list and known issues are written down in main cmakelists.
 
-I would like to maintain compatibility between this and mainline versions, while adding more in the future. 
-
 Tips & Tricks
 ============================
 * Wrap UNC paths within quotes if they include spaces: "//SambaShare/Folder/S p a c e.png"
@@ -26,7 +24,7 @@ Why LAN Messenger? (2026)
 * 1 on 1 Encrypted communications.
 * Voice chat. (Opus 96kbps auto, encrypted)
 * Video chat/desktop sharing (VP8 720p 30fps 2000kbps, encrypted)
-* Multi platform (Eventually - mainline linux & mac versions are compatible.)
+* Multi platform (mainline linux & mac versions are compatible.)
 
 User interface
 ============================
