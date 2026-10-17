@@ -54,6 +54,7 @@ public:
     void restoreMessageLog(QString filePath, bool reload = true);
 
 	QString localId;
+	QString localName;
 	QString peerId;
     QString peerName;
 	QHash<QString, QString> participantAvatars;
@@ -102,7 +103,7 @@ private:
     QString getFileMessageText(MessageType type, QString* lpszUserId, QString* lpszUserName, MessageXml* pMessage, bool bReload = false);
     QString getAvatarHtml(const QString& userId);
     QString getWarningHtml(MessageXml* pMessage, const QString& icon, const QString& sender,
-        const QString& message = QString(), const QString& style = QString());
+        const QString& message = QString(), const QString& style = QString(), bool showTime = true);
     QString getFontStyle(QFont* pFont);
 	QString getFileStatusMessage(FileMode mode, FileOp op);
 	QString getChatStateMessage(ChatState chatState);

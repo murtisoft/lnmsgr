@@ -15,6 +15,7 @@ endif()
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 #Search for //TODO within the project. 15 year old ones are renamed to //TOD0
 
+#File transfers show the wrong username for the sender.
 #All translations are a decade behind.
 
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.

@@ -133,7 +133,7 @@ void lmChatLog::appendMessageLog(MessageType type, QString* lpszUserId, QString*
 		message = pMessage->data(XN_CHATSTATE);
 		caption = getChatStateMessage((ChatState)Helper::indexOf(ChatStateNames, CS_Max, message));
         if(!caption.isNull()) {
-            html = getWarningHtml(pMessage, "", caption.arg(*lpszUserName));
+            html = getWarningHtml(pMessage, "", caption.arg(*lpszUserName), QString(), QString(), false);
             appendMessageLog(&html, type);
 		}
 		addToLog = false;
@@ -674,7 +674,7 @@ void lmChatLog::appendBroadcast(QString* lpszUserId, QString* lpszUserName, QStr
 
 //	build a one line warning/system message, timed from the message stamp or now if it has none
 QString lmChatLog::getWarningHtml(MessageXml* pMessage, const QString& icon, const QString& sender,
-        const QString& message, const QString& style) {
+        const QString& message, const QString& style, bool showTime) {
     QDateTime time = QDateTime::currentDateTime();
     qint64 stamp = pMessage ? pMessage->header(XN_TIME).toLongLong() : 0;
     if(stamp > 0)
@@ -682,7 +682,7 @@ QString lmChatLog::getWarningHtml(MessageXml* pMessage, const QString& icon, con
     QStringList parts = getTimeString(&time).split('|');
 
     QString html = templates.msgWarning;
-    html.replace("%time%", parts.value(1));
+    html.replace("%time%", showTime ? parts.value(1) : QString());
     html.replace("%icon%", icon);
     html.replace("%name%", sender);
     html.replace("%style%", style);
@@ -703,7 +703,6 @@ QString lmChatLog::getAvatarHtml(const QString& userId) {
 void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage, QDateTime* pTime,
                                   QFont* pFont) {
 	QString html = QString();
-	bool localUser = (lpszUserId->compare(localId) == 0);
 
 	decodeMessage(lpszMessage);
 
@@ -757,7 +756,6 @@ void lmChatLog::appendMessage(QString* lpszUserId, QString* lpszUserName, QStrin
 void lmChatLog::appendPublicMessage(QString* lpszUserId, QString* lpszUserName, QString* lpszMessage,
                                         QDateTime *pTime, QFont *pFont, MessageType messageType) {
 	QString html = QString();
-	bool localUser = (lpszUserId->compare(localId) == 0);
 
 	decodeMessage(lpszMessage);
 
@@ -816,10 +814,17 @@ QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserId, Q
     QString caption;
     QString streamId = pMessage->data(XN_STREAMID);
     QString streamType;
+    StreamMode streamMode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));
+
+    //  For a call we start, lpszUserName is the peer's. The header belongs to the sender, the local user.
+    const bool isOut = (streamMode == SM_Out);
+    QString headerId = (isOut && !localId.isEmpty()) ? localId : *lpszUserId;
+    QString headerName = (isOut && !localName.isEmpty()) ? localName : *lpszUserName;
+
     html = templates.msgHeader + templates.msgRequest;
     html.replace("%rulecolor%", "#00b000");
-    html.replace("%avatar%", getAvatarHtml(*lpszUserId));
-    html.replace("%name%", *lpszUserName);
+    html.replace("%avatar%", getAvatarHtml(headerId));
+    html.replace("%name%", headerName);
 
     switch(type) {
     case MT_Audio:
@@ -844,7 +849,6 @@ QString lmChatLog::getStreamMessageText(MessageType type, QString* lpszUserId, Q
     html.replace("%date%", messageDate ? time.date().toString("d MMMM yyyy") : QString());
     html.replace("%time%", time.time().toString("hh:mm"));
 
-    StreamMode streamMode = (StreamMode)Helper::indexOf(StreamModeNames, SM_Max, pMessage->data(XN_STREAMMODE));
     StreamOp streamOp = (StreamOp)Helper::indexOf(StreamOpNames, SO_Max, pMessage->data(XN_STREAMOP));
     //"","request","accept","decline","error","abort",
 
@@ -926,10 +930,19 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserId, QSt
         throw std::logic_error("lmChatLog::getFileMessageText: not yet implemented");
     }
 
+    FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+    FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
+
+    //  For a file we send, lpszUserId/lpszUserName are the recipient's. The header (avatar and name)
+    //  belongs to the sender, so it has to be the local user in that case.
+    const bool isSend = (fileMode == FM_Send);
+    QString headerId = (isSend && !localId.isEmpty()) ? localId : *lpszUserId;
+    QString headerName = (isSend && !localName.isEmpty()) ? localName : *lpszUserName;
+
     html = templates.msgHeader + templates.msgRequest;
     html.replace("%rulecolor%", "#00b000");
-    html.replace("%avatar%", getAvatarHtml(*lpszUserId));
-    html.replace("%name%", *lpszUserName);
+    html.replace("%avatar%", getAvatarHtml(headerId));
+    html.replace("%name%", headerName);
     //  Use the preview sent with the request. Fall back to the file icon when there is none (or old clients).
     QString preview = QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File);
     QImage previewImage = QImage::fromData(QByteArray::fromBase64(pMessage->data(XN_PREVIEW).toLatin1()), "WEBP");
@@ -950,9 +963,6 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserId, QSt
         time.setMSecsSinceEpoch(stamp);
     html.replace("%date%", messageDate ? time.date().toString("d MMMM yyyy") : QString());
     html.replace("%time%", time.time().toString("hh:mm"));
-
-	FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
-    FileMode fileMode = (FileMode)Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
 
     if(fileMode == FM_Send) {
 		caption = tr("Sending '%1' to %2.");

@@ -121,6 +121,7 @@ void lmFormChat::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 	this->pLocalUser = pLocalUser;
 
 	pMessageLog->localId = localId;
+	pMessageLog->localName = localName;
 	pMessageLog->peerId = peerId;
     pMessageLog->peerName = pRemoteUser->name;
 
@@ -574,6 +575,7 @@ void lmFormChat::settingsChanged(void) {
 	pSoundPlayer->settingsChanged();
 	if(localName.compare(pLocalUser->name) != 0) {
 		localName = pLocalUser->name;
+		pMessageLog->localName = localName;
         updateUser(pLocalUser);
 		pMessageLog->updateUserName(&localId, &localName);
 	}
