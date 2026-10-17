@@ -76,9 +76,9 @@ signals:
 	void micTestChanged(bool testing);
 
 protected:
-	void changeEvent(QEvent* pEvent);
+	void changeEvent(QEvent* pEvent) override;
     void showEvent(QShowEvent* pEvent) override;
-    void timerEvent(QTimerEvent *event);
+    void timerEvent(QTimerEvent *event) override;
 
 private slots:
 	void lvCategories_currentRowChanged(int currentRow);

@@ -68,7 +68,6 @@ void lmMessaging::sendBroadcast(MessageType type, MessageXml* pMessage) {
 
 //	A message is to be sent
 void lmMessaging::sendMessage(MessageType type, QString* lpszUserId, MessageXml* pMessage) {
-	QString data = QString();
 	MessageXml message;
 
 	switch(type) {

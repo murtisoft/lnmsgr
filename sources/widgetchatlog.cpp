@@ -934,7 +934,8 @@ QString lmChatLog::getFileMessageText(MessageType type, QString* lpszUserId, QSt
     QString preview = QString("<span style='font-size:32px;'>%1</span>").arg(Icons::File);
     QImage previewImage = QImage::fromData(QByteArray::fromBase64(pMessage->data(XN_PREVIEW).toLatin1()), "WEBP");
     if(!previewImage.isNull()) {
-        QString key = QString(fileId).replace(QRegularExpression("[^A-Za-z0-9]"), "_");
+        static const QRegularExpression nonAlnum("[^A-Za-z0-9]");
+        QString key = QString(fileId).replace(nonAlnum, "_");
         QUrl url("lmpreview:" + key);
         document()->addResource(QTextDocument::ImageResource, url, previewImage);
         preview = QString("<img src='%1' width='%2' height='%3'>").arg(url.toString()).arg(previewImage.width()).arg(previewImage.height());

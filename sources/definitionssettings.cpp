@@ -33,9 +33,12 @@
 
 //	Keys that existed in older versions and are no longer used. Add a key here when it is retired.
 //	Nothing else needs touching when a new setting is added, unknown keys are kept as they are.
-static const QStringList obsoleteKeys = {
-	IDS_BROADCAST_OLD,
-};
+static const QStringList& obsoleteKeys() {
+	static const QStringList keys = {
+		IDS_BROADCAST_OLD,
+	};
+	return keys;
+}
 
 //	Value sanity checks. A value that fails is removed, so the application falls back to the default.
 //	Optional, a key without an entry here is kept as is.
@@ -229,7 +232,7 @@ bool lmSettings::migrateSettings(const QString& configFile) {
     }
 
     //	Remove keys that are no longer used
-    for(const QString& key : obsoleteKeys)
+    for(const QString& key : obsoleteKeys())
         settings.remove(key);
 
     //	Remove values that do not make sense, defaults take over. Everything else is kept.

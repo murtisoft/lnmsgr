@@ -150,7 +150,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
     if(!parser.positionalArguments().isEmpty())
-        return usageError(QString("unexpected argument '%1'").arg(parser.positionalArguments().first()));
+        return usageError(QString("unexpected argument '%1'").arg(parser.positionalArguments().constFirst()));
 
     QStringList options;
     if(parser.isSet(optLoopback))
@@ -258,7 +258,7 @@ int main(int argc, char *argv[]) {
     lmCore core;
     //	some options are handled when the application is initializing
     core.init(options);
-    for(const QString& warning : core.startupWarnings)
+    for(const QString& warning : std::as_const(core.startupWarnings))
         consoleWrite("Warning: " + warning + "\n", true);
     options << LM_OPT_NEW;	//	indicates this is a new instance
     //	the remaining options are handled after initializing all the layers
@@ -280,18 +280,18 @@ int main(int argc, char *argv[]) {
     QObject::connect(&application, SIGNAL(aboutToQuit()), &core, SLOT(aboutToExit()));
 
     // Receive actions (or a plain "bring me forward") from later instances
-    QObject::connect(&server, &QLocalServer::newConnection, &server, [&server, &core]() {
+    QObject::connect(&server, &QLocalServer::newConnection, &server, [&server, pCore = &core]() {
         while(QLocalSocket* client = server.nextPendingConnection()) {
             auto buffer = new QByteArray;
             QObject::connect(client, &QLocalSocket::readyRead, client, [client, buffer]() {
                 buffer->append(client->readAll());
             });
-            QObject::connect(client, &QLocalSocket::disconnected, client, [client, buffer, &core]() {
+            QObject::connect(client, &QLocalSocket::disconnected, client, [client, buffer, pCore]() {
                 buffer->append(client->readAll());
                 QStringList message = QString::fromUtf8(*buffer).split("\n", Qt::SkipEmptyParts);
                 delete buffer;
                 client->deleteLater();
-                core.receiveAppMessage(message);
+                pCore->receiveAppMessage(message);
             });
         }
     });

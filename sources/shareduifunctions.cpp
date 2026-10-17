@@ -264,7 +264,8 @@ QIcon Helper::renderEmoji(const QString& emoji, int size, bool strikethrough) {
     //The highest pixel ratio of any screen. The icon gets a pixmap for every whole ratio up to it, so it stays sharp
     //on high dpi screens, and when a window is dragged between screens of different ratios.
     int maxScale = 1;
-    for (const QScreen* pScreen : QGuiApplication::screens())
+    const QList<QScreen*> screens = QGuiApplication::screens();
+    for (const QScreen* pScreen : screens)
         maxScale = qMax(maxScale, qCeil(pScreen->devicePixelRatio()));
 
     //Icons are asked for again and again (avatars on every user list refresh, the mute buttons...). Rendering is
@@ -287,15 +288,18 @@ QIcon Helper::renderEmoji(const QString& emoji, int size, bool strikethrough) {
     return icon;
 }
 
-static QPointer<QScreen> s_pMainScreen;
+static QPointer<QScreen>& mainScreen() {
+	static QPointer<QScreen> pScreen;
+	return pScreen;
+}
 
 void Helper::setMainScreen(QScreen* pScreen) {
 	if(pScreen)
-		s_pMainScreen = pScreen;
+		mainScreen() = pScreen;
 }
 
 void Helper::placeOnMainScreen(QWidget* pWindow) {
-	QScreen* pMain = s_pMainScreen;
+	QScreen* pMain = mainScreen();
 	if(!pWindow || !pMain || pWindow->isVisible())
 		return;
 

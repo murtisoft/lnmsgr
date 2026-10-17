@@ -29,8 +29,8 @@
 #include "videocapture.h"
 
 namespace {
-const QString kScreenPrefix = "screen:";
-const QString kCameraPrefix = "camera:";
+constexpr QLatin1StringView kScreenPrefix("screen:");
+constexpr QLatin1StringView kCameraPrefix("camera:");
 constexpr int kStillAvatarSize = 240;
 constexpr int kStillIntervalMs = 200;       // the still image is static, this keeps the stream alive
 constexpr int kFrameIntervalMs = 33;        // 30 frames per second at most
@@ -58,7 +58,8 @@ QString lmVideoCapture::cameraKey(const QCameraDevice& device) {
 QScreen* lmVideoCapture::screenForKey(const QString& key) {
 	if(!key.startsWith(kScreenPrefix))
 		return nullptr;
-	for(QScreen* pScreen : QGuiApplication::screens())
+	const QList<QScreen*> screens = QGuiApplication::screens();
+	for(QScreen* pScreen : screens)
 		if(screenKey(pScreen) == key)
 			return pScreen;
 	return nullptr;
@@ -67,7 +68,8 @@ QScreen* lmVideoCapture::screenForKey(const QString& key) {
 QCameraDevice lmVideoCapture::cameraForKey(const QString& key) {
 	if(!key.startsWith(kCameraPrefix))
 		return QCameraDevice();
-	for(const QCameraDevice& device : QMediaDevices::videoInputs())
+	const QList<QCameraDevice> devices = QMediaDevices::videoInputs();
+	for(const QCameraDevice& device : devices)
 		if(cameraKey(device) == key)
 			return device;
 	return QCameraDevice();
@@ -143,7 +145,8 @@ void lmVideoCapture::apply(void) {
 			//	The format closest to 720p, a camera's default can be much bigger than what is sent
 			QCameraFormat best;
 			int bestScore = INT_MAX;
-			for(const QCameraFormat& format : device.videoFormats()) {
+			const QList<QCameraFormat> formats = device.videoFormats();
+						for(const QCameraFormat& format : formats) {
 				const int score = qAbs(format.resolution().width() - lmVpxHandler::Width)
 					+ qAbs(format.resolution().height() - lmVpxHandler::Height)
 					+ (format.maxFrameRate() >= 30 ? 0 : 100000);

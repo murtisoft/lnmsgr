@@ -100,7 +100,7 @@ void ChatHelper::decodeSmileys(QString* lpszMessage) {
     // Handle any other unicode emoji that is not on the list, first. This doesnt handle everything because unicode emojis are a fucking mess.
     //  The lowest emoji presentation character is U+231A, plain text without anything above it can skip the regex.
     bool maybeEmoji = false;
-    for (QChar ch : *lpszMessage)
+    for (QChar ch : std::as_const(*lpszMessage))
         if (ch.unicode() >= 0x231A) {
             maybeEmoji = true;
             break;
@@ -112,7 +112,7 @@ void ChatHelper::decodeSmileys(QString* lpszMessage) {
 
     //	replace text emoticons with corresponding images
     bool maybeSmiley = false;
-    for (QChar ch : *lpszMessage) {
+    for (QChar ch : std::as_const(*lpszMessage)) {
         ushort u = ch.unicode();
         if (u >= 128 || startsCode.at(u)) {
             maybeSmiley = true;
