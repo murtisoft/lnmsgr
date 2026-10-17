@@ -34,10 +34,11 @@ language_name() {
         hu*) echo "Hungarian" ;;
         id*) echo "Indonesian" ;;
         it*) echo "Italian" ;;
-        ja*) echo "Japanese" ;;
+        ja*|jp*) echo "Japanese" ;;
         ko*) echo "Korean" ;;
         lt*) echo "Lithuanian" ;;
         lv*) echo "Latvian" ;;
+        ml*) echo "Malayalam" ;;
         ms*) echo "Malay" ;;
         nb*|no*) echo "Norwegian" ;;
         nl*) echo "Dutch" ;;
@@ -78,9 +79,17 @@ for ts_file in "${files[@]}"; do
     basename="${filename%.ts}"
     txt_file="$OutputDir/$basename.txt"
 
+    # Nothing to translate in the English source file.
+    if [[ "$basename" == *_en_US ]]; then
+        printf 'Skipped: %s\n' "$filename"
+        continue
+    fi
+
     # Read the locale from the TS root element, e.g. language="tr_TR".
-    locale=$(sed -n 's/.*language="\([^"]*\)".*/\1/p' "$ts_file" | head -n 1)
-    [[ -n "$locale" ]] || locale="${basename##*_}"
+    # The leading whitespace avoids matching sourcelanguage="en_US".
+    locale=$(sed -n 's/.*[[:space:]]language="\([^"]*\)".*/\1/p' "$ts_file" | head -n 1)
+    # Fallback: locale from filename, e.g. LanMessenger_pl_PL -> pl_PL
+    [[ -n "$locale" ]] || locale="${basename#*_}"
     language=$(language_name "$locale")
 
     {

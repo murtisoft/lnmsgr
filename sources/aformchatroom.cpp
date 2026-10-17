@@ -707,11 +707,6 @@ void lmFormChatRoom::appendMessageLog(MessageType type, QString* lpszUserId, QSt
 void lmFormChatRoom::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
-//TOD0 lmFormChatRoom::showStatus
-//	int relScrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) -
-//			pMessageLog->page()->mainFrame()->scrollBarValue(Qt::Vertical);
-
-	//ui.lblInfo->setStyleSheet("QLabel { background-color:white; }");
 	if(infoFlag & IT_Disconnected) {
         ui.lblInfo->setText("<span style='color:rgb(127,127,127);'>" + tr("You are no longer connected.") + "</span>");
 		ui.lblInfo->setVisible(true);
@@ -719,10 +714,6 @@ void lmFormChatRoom::showStatus(int flag, bool add) {
 		ui.lblInfo->setText(QString());
 		ui.lblInfo->setVisible(false);
 	}
-
-//TOD0 lmFormChatRoom::showStatus
-//	int scrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) - relScrollPos;
-//	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }
 
 QString lmFormChatRoom::getWindowTitle(void) {

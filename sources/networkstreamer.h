@@ -343,7 +343,6 @@ private slots:
 	void connected(void);
 	void disconnected(void);
 	void readyRead(void);
-	void bytesWritten(qint64 bytes);
 
 private:
 	QTcpSocket* socket;
@@ -353,7 +352,6 @@ private:
 	QString peerAddress;
 	QByteArray outData;
 	QByteArray inData;
-	quint32 outDataLen;
 	quint32 inDataLen;
 	bool reading;
 };

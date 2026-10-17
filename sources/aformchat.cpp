@@ -1204,11 +1204,6 @@ void lmFormChat::updateFileMessage(FileMode mode, FileOp op, QString fileId) {
 void lmFormChat::showStatus(int flag, bool add) {
 	infoFlag = add ? infoFlag | flag : infoFlag & ~flag;
 
-//TOD0 lmFormChat::showStatus
-//	int relScrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) -
-//			pMessageLog->page()->mainFrame()->scrollBarValue(Qt::Vertical);
-
-	//ui.lblInfo->setStyleSheet("QLabel { background-color:white; }");
 	if(infoFlag & IT_Disconnected) {
         ui.lblInfo->setText("<span style='color:rgb(127,127,127);'>" + tr("You are no longer connected.") + "</span>");
 		ui.lblInfo->setVisible(true);
@@ -1228,10 +1223,6 @@ void lmFormChat::showStatus(int flag, bool add) {
 		ui.lblInfo->setText(QString());
 		ui.lblInfo->setVisible(false);
 	}
-
-//TOD0 lmFormChat::showStatus
-//	int scrollPos = pMessageLog->page()->mainFrame()->scrollBarMaximum(Qt::Vertical) - relScrollPos;
-//	pMessageLog->page()->mainFrame()->setScrollBarValue(Qt::Vertical, scrollPos);
 }
 
 QString lmFormChat::getWindowTitle(void) {

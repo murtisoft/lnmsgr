@@ -973,7 +973,6 @@ MsgStream::MsgStream(QString szLocalId, QString szPeerId, QString szPeerAddress,
 	port = nPort;
 	socket = NULL;
 	reading = false;
-	outDataLen = 0;
 	inDataLen = 0;
 }
 
@@ -985,7 +984,6 @@ void MsgStream::init(void) {
 	connect(socket, SIGNAL(connected()), this, SLOT(connected()));
 	connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
 	connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
-	connect(socket, SIGNAL(bytesWritten(qint64)), this, SLOT(bytesWritten(qint64)));
 
 	QHostAddress hostAddress(peerAddress);
 	socket->connectToHost(hostAddress, port);
@@ -995,7 +993,6 @@ void MsgStream::init(QTcpSocket* socket) {
 	this->socket = socket;
 	connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
 	connect(this->socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
-	connect(socket, SIGNAL(bytesWritten(qint64)), this, SLOT(bytesWritten(qint64)));
 }
 
 void MsgStream::stop(void) {
@@ -1005,7 +1002,6 @@ void MsgStream::stop(void) {
 
 void MsgStream::sendMessage(QByteArray& data) {
 	qint32 dataLen = sizeof(quint32) + data.length();
-	outDataLen += dataLen;
 	outData.resize(dataLen);
 
 	QDataStream stream(&outData, QIODevice::WriteOnly);
@@ -1020,7 +1016,6 @@ void MsgStream::sendMessage(QByteArray& data) {
 void MsgStream::connected(void) {
 	outData = localId.toLocal8Bit();
 	outData.insert(0, "MSG");	// insert indicator that this socket handles messages
-	outDataLen = outData.length();
 
 	//	send an id message and then wait for public key message 
 	//	from receiver, which will trigger readyRead signal
@@ -1061,21 +1056,4 @@ void MsgStream::readyRead(void) {
 			}
 		}
 	}
-}
-
-void MsgStream::bytesWritten(qint64 bytes) {
-	outDataLen -= bytes;
-	if(outDataLen == 0)
-		return;
-
-	if(outDataLen > 0)
-		lmDebugLog::write("Warning: Socket write operation not completed");
-	if(outDataLen < 0)
-		lmDebugLog::write("Warning: Socket write overrun");
-
-
-    //TOD0 handle situation when entire message is not written to stream in one write operation
-	//	The following code is not functional currently, hence commented out.
-	/*outData = outData.mid(outDataLen);
-	socket->write(outData);*/
 }

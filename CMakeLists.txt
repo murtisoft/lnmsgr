@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(LanMessenger VERSION 2026.18.0 LANGUAGES CXX)
+project(LanMessenger VERSION 2026.19.0 LANGUAGES CXX)
 include("resources/cmake/common.cmake")
 if(WIN32)
     include("resources/cmake/win.cmake")
@@ -13,9 +13,8 @@ endif()
 
 #——————————————————————————————————————————————————————————<< TO DO >>———————————————————————————————————————————————————————————
 #————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-#Search for //TODO within the project. 15 year old ones are renamed to //TOD0
+#Search for //TODO within the project.
 
-#File transfers show the wrong username for the sender.
 #All translations are a decade behind.
 
 #Merge chat, public chat, group chat, transfer history, chat history. Something like discord. Convenience of the new + Simplicity of the old.
