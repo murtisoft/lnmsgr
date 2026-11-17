@@ -37,7 +37,7 @@ set(OPENSSL_DIR "C:/Qt/Tools/Openssl-3.6")  #———————————�
 target_include_directories(LanMessenger PRIVATE
     ${CMAKE_SOURCE_DIR}/sources
     ${OPENSSL_DIR}/include
-    ${OPUS_DIR}/include
+    ${OPUS_DIR}/include/opus
     ${VPX_DIR}/include/vpx
 )
 
@@ -48,7 +48,7 @@ target_link_libraries(LanMessenger PRIVATE
     ${OPENSSL_DIR}/lib/libssl.a
     ${OPENSSL_DIR}/lib/libcrypto.a
     crypt32                             #Required for .a libraries without dlls.
-    ${OPUS_DIR}/build/Release/libopus.a
+    ${OPUS_DIR}/lib/libopus.a
     ${VPX_DIR}/lib/libvpx.a
 )
 

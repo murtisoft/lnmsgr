@@ -38,12 +38,13 @@ This project was compiled on Windows 11 with;
 * Qt 6.12.0 MinGW 64 bit
 * Openssl (C:/Qt/Tools/Openssl-3.6)
 	* MSYS2 has prebuilt MinGW Openssl https://repo.msys2.org/mingw/mingw64/
-	* find the latest .tar.zst and extract it
+	* find the latest mingw-w64-x86_64-openssl....tar.zst and extract it
 * Libopus (C:/Qt/Tools/opus-1.6) 
-	* Compile the project into (/build/release) https://opus-codec.org/downloads/
+	* MSYS2 has prebuilt MinGW Opus https://repo.msys2.org/mingw/mingw64/
+	* find the latest mingw-w64-x86_64-opus....tar.zst and extract it
 * Libvpx (C:/Qt/Tools/libvpx-1.7)
 	* MSYS2 has prebuilt MinGW libvpx https://repo.msys2.org/mingw/mingw64/
-	* find the latest .tar.zst and extract it
+	* find the latest mingw-w64-x86_64-libvpx....tar.zst and extract it
 
 
 
